@@ -41,8 +41,8 @@ const posts = [
 export default function Home() {
   return (
     <main className="bg-white min-h-screen">
-      {/* 1. Hero Section: Featured Post */}
-      <section className="relative pt-12 lg:pt-16 pb-20 px-6 lg:px-16 overflow-hidden">
+      {/* 1. Hero Section: Standard Professional Layout */}
+      <section className="relative pt-16 lg:pt-20 pb-24 px-6 lg:px-16 overflow-hidden bg-slate-50/30">
         {/* Abstract Background Elements */}
         <div className="absolute top-0 right-0 -z-10 w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-3xl opacity-50 translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 left-0 -z-10 w-[400px] h-[400px] bg-sky-50 rounded-full blur-3xl opacity-50 -translate-x-1/2 translate-y-1/2" />
@@ -56,8 +56,8 @@ export default function Home() {
                 <span>Featured Post</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-[1.1] tracking-tight">
-                Mastering the Art of <span className="text-blue-600 underline decoration-blue-200 underline-offset-8">Modern Code.</span>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-[1.1] tracking-tight font-outfit">
+                Mastering the Art of <span className="text-blue-600">Modern Code.</span>
               </h1>
 
               <p className="text-xl text-slate-500 leading-relaxed max-w-xl">
@@ -74,9 +74,9 @@ export default function Home() {
                 </Link>
                 <div className="flex items-center space-x-4">
                   <div className="flex -space-x-3">
-                    {[1, 2, 3].map(i => (
-                      <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-100" />
-                    ))}
+                    <img src="https://i.pravatar.cc/100?u=1" alt="Reader 1" className="w-10 h-10 rounded-full border-2 border-white shadow-md object-cover" />
+                    <img src="https://i.pravatar.cc/100?u=2" alt="Reader 2" className="w-10 h-10 rounded-full border-2 border-white shadow-md object-cover" />
+                    <img src="https://i.pravatar.cc/100?u=3" alt="Reader 3" className="w-10 h-10 rounded-full border-2 border-white shadow-md object-cover" />
                   </div>
                   <span className="text-sm font-bold text-slate-700">5k+ Readers</span>
                 </div>
@@ -108,17 +108,20 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="flex items-end justify-between mb-16">
             <div className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <div className="w-12 h-1 bg-blue-600 rounded-full" />
+              <div className="flex items-center space-x-3">
+                <div className="w-20 h-1 bg-blue-600 rounded-full opacity-80" />
                 <span className="text-blue-600 text-[11px] font-black uppercase tracking-widest">Fresh Insights</span>
               </div>
               <h2 className="text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
                 Latest from the <span className="text-blue-600">Blog.</span>
               </h2>
             </div>
-            <Link href="/blog" className="hidden sm:flex items-center space-x-2 text-slate-400 hover:text-slate-900 transition-colors font-bold text-sm group">
+            <Link
+              href="/blog"
+              className="hidden sm:flex items-center space-x-2 px-6 py-3 rounded-full bg-blue-600 text-white font-bold text-sm hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-500/20 hover:-translate-y-1 transition-all duration-300 ease-in-out active:scale-95 group"
+            >
               <span>View all articles</span>
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform duration-300" />
             </Link>
           </div>
 
@@ -129,9 +132,12 @@ export default function Home() {
           </div>
 
           <div className="mt-16 flex justify-center md:hidden">
-            <Link href="/blog" className="flex items-center space-x-2 bg-slate-50 text-slate-900 px-8 py-4 rounded-2xl font-bold border border-slate-100 shadow-sm active:scale-95 transition-all">
+            <Link
+              href="/blog"
+              className="flex items-center space-x-2 px-8 py-4 rounded-full bg-blue-600 text-white font-bold hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-500/20 hover:-translate-y-1 transition-all duration-300 ease-in-out active:scale-95 group"
+            >
               <span>Explore More</span>
-              <ArrowRight size={18} />
+              <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform duration-300" />
             </Link>
           </div>
         </div>

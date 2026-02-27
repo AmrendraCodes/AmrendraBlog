@@ -39,30 +39,31 @@ export default function Header() {
 
   return (
     <>
-      {/* Floating Pill Header */}
       <div className="fixed top-0 left-0 w-full z-50 flex justify-center px-4 sm:px-6 pt-6 pointer-events-none">
         <header
-          className={`pointer-events-auto transition-all duration-500 ease-out flex items-center justify-between px-6 py-2 rounded-full border border-white/20 shadow-2xl backdrop-blur-xl bg-white/70 
-          ${isScrolled ? "w-full max-w-5xl py-2 scale-95 shadow-blue-500/10" : "w-full max-w-7xl py-3 shadow-black/5"}
+          className={`pointer-events-auto transition-all duration-500 ease-out flex items-center justify-between px-6 py-3 rounded-full border border-slate-200 shadow-2xl backdrop-blur-md 
+          ${isScrolled ? "w-full max-w-5xl bg-white/95 scale-[0.98]" : "w-full max-w-7xl bg-white/90"}
           animate-in fade-in slide-in-from-top-4 duration-1000`}
         >
-          {/* Left Side: Logo */}
-          <Link href="/" className="group flex items-center space-x-2 shrink-0">
-            <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
-              <Sparkles size={24} className="text-white" />
-            </div>
-            <span className="text-2xl lg:text-3xl font-extrabold tracking-tight text-slate-900 hidden sm:block">
-              Amrendra<span className="text-blue-600">Blog</span>
-            </span>
-          </Link>
+          {/* Left Area: Logo */}
+          <div className="flex-1 flex justify-start">
+            <Link href="/" className="group flex items-center space-x-3 shrink-0">
+              <div className="w-10 h-10 lg:w-11 lg:h-11 bg-blue-600 rounded-full flex items-center justify-center group-hover:rotate-12 transition-all duration-300 shadow-lg shadow-blue-500/20">
+                <Sparkles size={22} className="text-white" />
+              </div>
+              <span className="text-2xl lg:text-3xl font-extrabold tracking-tight text-slate-900 hidden sm:block font-outfit">
+                Amrendra<span className="text-blue-600">Blog</span>
+              </span>
+            </Link>
+          </div>
 
-          {/* Center: Navigation Links (Desktop) */}
-          <nav className="hidden md:flex items-center bg-slate-100/50 rounded-full px-3 py-1 border border-slate-200/50">
+          {/* Center Area: Navigation (Desktop/Tablet) */}
+          <nav className="hidden md:flex items-center space-x-2 bg-slate-100 rounded-full p-1.5 border border-slate-200 mx-4">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="relative px-6 py-2.5 text-[15px] font-bold text-slate-600 hover:text-blue-600 transition-all group"
+                className="relative px-6 py-2 text-[14px] lg:text-[15px] font-bold text-slate-700 hover:text-blue-600 transition-all group"
               >
                 {link.name}
                 <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-1 bg-blue-600 rounded-full opacity-0 transition-all duration-300 group-hover:w-4 group-hover:opacity-100"></span>
@@ -70,30 +71,15 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Right Side: Search & CTA */}
-          <div className="flex items-center space-x-2 sm:space-x-4">
-            <button
-              className="p-2.5 text-slate-600 hover:text-blue-600 hover:bg-white rounded-full transition-all duration-300 cursor-pointer shadow-sm border border-transparent hover:border-slate-100"
-              aria-label="Search"
-            >
-              <Search size={18} strokeWidth={2.5} />
-            </button>
-
-            <Link
-              href="/subscribe"
-              className="hidden sm:flex items-center space-x-2 bg-blue-600 text-white px-6 py-2.5 rounded-full text-[13px] font-extrabold shadow-lg shadow-blue-200 hover:bg-blue-700 hover:-translate-y-1 transition-all duration-300 active:scale-95 whitespace-nowrap"
-            >
-              <span>Join Now</span>
-              <ArrowRight size={16} />
-            </Link>
-
+          {/* Right Area: Mobile Toggle only */}
+          <div className="flex-1 flex justify-end items-center">
             {/* Mobile Menu Icon */}
             <button
-              className="md:hidden p-2 text-slate-600 hover:text-blue-600 transition-colors cursor-pointer bg-slate-100 rounded-full"
+              className="md:hidden p-2.5 text-slate-700 hover:text-blue-600 transition-colors cursor-pointer bg-slate-100 rounded-full border border-slate-200"
               onClick={() => setIsMenuOpen(true)}
               aria-label="Open menu"
             >
-              <Menu size={20} />
+              <Menu size={22} />
             </button>
           </div>
         </header>
