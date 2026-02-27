@@ -48,21 +48,21 @@ export default function Header() {
         >
           {/* Left Side: Logo */}
           <Link href="/" className="group flex items-center space-x-2 shrink-0">
-            <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
-              <Sparkles size={16} className="text-white" />
+            <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
+              <Sparkles size={24} className="text-white" />
             </div>
-            <span className="text-xl font-extrabold tracking-tight text-slate-900 hidden sm:block">
+            <span className="text-2xl lg:text-3xl font-extrabold tracking-tight text-slate-900 hidden sm:block">
               Amrendra<span className="text-blue-600">Blog</span>
             </span>
           </Link>
 
           {/* Center: Navigation Links (Desktop) */}
-          <nav className="hidden md:flex items-center bg-slate-100/50 rounded-full px-2 py-1 border border-slate-200/50">
+          <nav className="hidden md:flex items-center bg-slate-100/50 rounded-full px-3 py-1 border border-slate-200/50">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="relative px-5 py-2 text-[13px] font-bold text-slate-600 hover:text-blue-600 transition-all group"
+                className="relative px-6 py-2.5 text-[15px] font-bold text-slate-600 hover:text-blue-600 transition-all group"
               >
                 {link.name}
                 <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-1 bg-blue-600 rounded-full opacity-0 transition-all duration-300 group-hover:w-4 group-hover:opacity-100"></span>
@@ -161,7 +161,7 @@ export default function Header() {
       </div>
 
       {/* Spacer */}
-      <div className="h-6"></div>
+      <div className="h-24 lg:h-28"></div>
     </>
   );
 }
