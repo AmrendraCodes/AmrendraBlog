@@ -3,8 +3,6 @@ import { ArrowRight, Sparkles, TrendingUp, Clock, Calendar, Mail, Zap } from "lu
 import BlogCard from "../components/BlogCard";
 
 // Sample Data
-const categories = ["Technology", "Design", "Productivity", "AI", "Startup", "Marketing", "Development"];
-
 const posts = [
   {
     title: "The Future of Web Development: What to Expect in 2026",
