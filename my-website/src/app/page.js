@@ -144,29 +144,29 @@ export default function Home() {
       {/* 4. Newsletter Section */}
       <section className="pb-24 px-6 lg:px-16">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-slate-900 rounded-[40px] px-8 py-16 md:p-16 flex flex-col items-center text-center space-y-10 relative overflow-hidden shadow-2xl">
+          <div className="bg-blue-50 rounded-[40px] px-8 py-16 md:p-16 flex flex-col items-center text-center space-y-10 relative overflow-hidden ring-1 ring-blue-100 shadow-sm">
             {/* Background elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-600/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
             <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center rotate-12 shadow-xl shadow-blue-500/20 mb-4">
               <Mail className="text-white" size={32} />
             </div>
 
             <div className="space-y-4 max-w-2xl">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight">
-                Join the <span className="text-blue-500">Amrendra</span> inner circle.
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                Join the <span className="text-blue-600">Amrendra</span> inner circle.
               </h2>
-              <p className="text-slate-400 text-base md:text-lg leading-relaxed">
+              <p className="text-slate-500 text-base md:text-lg leading-relaxed">
                 Get high-quality tutorials and case studies delivered directly to your inbox. No spam, ever.
               </p>
             </div>
 
-            <div className="w-full max-w-lg bg-white/5 backdrop-blur-md p-2 rounded-[28px] border border-white/10 flex flex-col sm:flex-row gap-2">
+            <div className="w-full max-w-lg bg-white p-2 rounded-[28px] border border-blue-100 flex flex-col sm:flex-row gap-2 shadow-sm">
               <input
                 type="email"
                 placeholder="Work email address"
-                className="flex-1 bg-transparent px-6 py-4 text-white placeholder-slate-500 outline-none font-medium"
+                className="flex-1 bg-transparent px-6 py-4 text-slate-900 placeholder-slate-400 outline-none font-medium"
               />
               <button className="bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-blue-700 transition-all hover:scale-[1.02] active:scale-95 shadow-lg shadow-blue-500/20">
                 Subscribe

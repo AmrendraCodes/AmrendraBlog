@@ -171,27 +171,27 @@ export default function AboutPage() {
 
       {/* Goal & CTA Section */}
       <section className="py-12 px-4 sm:px-6 max-w-6xl mx-auto mb-10">
-        <div className="bg-slate-900 rounded-[2rem] sm:rounded-[3rem] p-8 sm:p-12 md:p-20 text-center relative overflow-hidden">
+        <div className="bg-blue-50 border border-blue-100 rounded-[2rem] sm:rounded-[3rem] p-8 sm:p-12 md:p-20 text-center relative overflow-hidden shadow-sm">
           {/* Subtle background glow */}
-          <div className="absolute -top-24 -left-24 w-64 md:w-96 h-64 md:h-96 bg-blue-600/20 rounded-full blur-[60px] md:blur-[100px]"></div>
-          <div className="absolute -bottom-24 -right-24 w-64 md:w-96 h-64 md:h-96 bg-indigo-600/20 rounded-full blur-[60px] md:blur-[100px]"></div>
+          <div className="absolute -top-24 -left-24 w-64 md:w-96 h-64 md:h-96 bg-blue-600/5 rounded-full blur-[60px] md:blur-[100px]"></div>
+          <div className="absolute -bottom-24 -right-24 w-64 md:w-96 h-64 md:h-96 bg-indigo-600/5 rounded-full blur-[60px] md:blur-[100px]"></div>
 
           <div className="relative z-10">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-white mb-6 md:mb-8 tracking-tight">Building the Future</h2>
-            <p className="text-slate-400 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed font-light px-4">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-6 md:mb-8 tracking-tight">Building the Future</h2>
+            <p className="text-slate-600 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed font-medium px-4">
               My ultimate goal is to build my own digital products and scalable business ideas.
               Want to follow my journey or collaborate on something new?
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <Link
                 href="/contact"
-                className="w-full sm:w-auto px-10 md:px-12 py-4 md:py-5 bg-white text-slate-900 rounded-full font-black text-base md:text-lg hover:bg-blue-50 transition-all shadow-xl hover:scale-105"
+                className="w-full sm:w-auto px-10 md:px-12 py-4 md:py-5 bg-slate-900 text-white rounded-full font-black text-base md:text-lg hover:bg-blue-600 transition-all shadow-xl hover:scale-105"
               >
                 Get in Touch
               </Link>
               <Link
                 href="/blog"
-                className="w-full sm:w-auto px-10 md:px-12 py-4 md:py-5 bg-slate-800 text-white rounded-full font-black text-base md:text-lg hover:bg-slate-700 transition-all border border-slate-700 hover:scale-105"
+                className="w-full sm:w-auto px-10 md:px-12 py-4 md:py-5 bg-white text-slate-900 border border-slate-200 rounded-full font-black text-base md:text-lg hover:bg-slate-50 transition-all shadow-md hover:scale-105"
               >
                 Read My Blog
               </Link>

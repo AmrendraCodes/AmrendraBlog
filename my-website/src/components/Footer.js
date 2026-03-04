@@ -3,7 +3,7 @@ import { Github, Twitter, Linkedin, Instagram, Sparkles, Mail } from "lucide-rea
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 text-white pt-20 pb-10">
+    <footer className="bg-white text-slate-900 pt-20 pb-10 border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Column */}
@@ -20,16 +20,16 @@ export default function Footer() {
               Empowering developers and creators with the latest insights into modern technology and creative design.
             </p>
             <div className="flex items-center space-x-4">
-              <Link href="https://x.com/AmrendraCodes" target="_blank" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-colors">
+              <Link href="https://x.com/AmrendraCodes" target="_blank" className="w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors text-slate-600">
                 <Twitter size={18} />
               </Link>
-              <Link href="https://github.com/amrendra-dev" target="_blank" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-colors">
+              <Link href="https://github.com/amrendra-dev" target="_blank" className="w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors text-slate-600">
                 <Github size={18} />
               </Link>
-              <Link href="https://linkedin.com" target="_blank" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-colors">
+              <Link href="https://linkedin.com" target="_blank" className="w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors text-slate-600">
                 <Linkedin size={18} />
               </Link>
-              <Link href="https://instagram.com" target="_blank" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-colors">
+              <Link href="https://instagram.com" target="_blank" className="w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors text-slate-600">
                 <Instagram size={18} />
               </Link>
             </div>
@@ -76,7 +76,7 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="Your email"
-                className="w-full bg-slate-800 border border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-blue-600 transition-all"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 text-sm text-slate-900 focus:outline-none focus:border-blue-600 transition-all"
               />
               <button className="absolute right-2 top-2 bg-blue-600 p-1.5 rounded-lg hover:bg-blue-700 transition-colors">
                 <Mail size={16} />

@@ -78,10 +78,10 @@ export default function ContactPage() {
               ))}
             </div>
 
-            <div className="p-8 rounded-[2.5rem] bg-slate-900 text-white relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/20 rounded-full blur-3xl"></div>
-              <h3 className="text-xl font-bold mb-4 relative z-10 text-white">Current Response Time</h3>
-              <p className="text-slate-400 relative z-10 leading-relaxed">
+            <div className="p-8 rounded-[2.5rem] bg-blue-50 border border-blue-100 text-slate-900 relative overflow-hidden shadow-sm">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/5 rounded-full blur-3xl"></div>
+              <h3 className="text-xl font-bold mb-4 relative z-10 text-slate-900">Current Response Time</h3>
+              <p className="text-slate-600 relative z-10 leading-relaxed font-medium">
                 I usually respond to all emails within 24-48 business hours.
                 For urgent technical queries, DM me on X (Twitter).
               </p>
