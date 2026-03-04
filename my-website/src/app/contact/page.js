@@ -29,20 +29,20 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen bg-white text-slate-900 selection:bg-blue-100 font-sans overflow-x-hidden">
       {/* Hero Section */}
-      <section className="pt-16 pb-12 md:pt-24 md:pb-20 px-4 sm:px-6 max-w-5xl mx-auto text-center border-b border-slate-50">
+      <section className="pt-12 pb-8 md:pt-16 md:pb-12 px-4 sm:px-6 max-w-5xl mx-auto text-center border-b border-slate-50">
         <div className="inline-block px-4 py-1.5 mb-6 text-[10px] sm:text-xs font-bold tracking-[0.2em] text-blue-600 uppercase bg-blue-50 rounded-full">
           Get in touch
         </div>
-        <h1 className="text-5xl sm:text-6xl md:text-8xl font-black tracking-tighter mb-6 md:mb-8 leading-[1.1]">
+        <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-6 md:mb-8 leading-[1.1]">
           Let's <span className="text-blue-600">Connect</span>
-        </h1>
+        </h2>
         <p className="text-base sm:text-xl md:text-2xl text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed px-2">
           Whether you have a question about my work, a project idea, or just want to say hi, I'd love to hear from you.
         </p>
       </section>
 
       {/* Main Content */}
-      <section className="py-12 md:py-20 px-4 sm:px-6 max-w-6xl mx-auto">
+      <section className="py-8 md:py-12 px-4 sm:px-6 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
 
           {/* Left Side: Contact Info */}
@@ -179,7 +179,7 @@ export default function ContactPage() {
       </section>
 
       {/* Footer-like Space */}
-      <div className="py-12 md:py-20"></div>
+      <div className="py-6 md:py-10"></div>
     </main>
   );
 }
