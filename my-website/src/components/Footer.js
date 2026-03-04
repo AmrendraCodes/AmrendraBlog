@@ -20,16 +20,16 @@ export default function Footer() {
               Empowering developers and creators with the latest insights into modern technology and creative design.
             </p>
             <div className="flex items-center space-x-4">
-              <Link href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-colors">
+              <Link href="https://x.com/AmrendraCodes" target="_blank" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-colors">
                 <Twitter size={18} />
               </Link>
-              <Link href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-colors">
+              <Link href="https://github.com/amrendra-dev" target="_blank" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-colors">
                 <Github size={18} />
               </Link>
-              <Link href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-colors">
+              <Link href="https://linkedin.com" target="_blank" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-colors">
                 <Linkedin size={18} />
               </Link>
-              <Link href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-colors">
+              <Link href="https://instagram.com" target="_blank" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-colors">
                 <Instagram size={18} />
               </Link>
             </div>
@@ -39,10 +39,15 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-bold mb-6">Quick Links</h4>
             <ul className="space-y-4">
-              {["Home", "Blog", "About Us", "Contact"].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
-                    {item}
+              {[
+                { name: "Home", href: "/" },
+                { name: "Blog", href: "/blog" },
+                { name: "About", href: "/about" },
+                { name: "Contact", href: "/contact" }
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href} className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
+                    {link.name}
                   </Link>
                 </li>
               ))}
