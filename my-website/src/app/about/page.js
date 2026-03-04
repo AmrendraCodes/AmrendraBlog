@@ -52,17 +52,10 @@ export default function AboutPage() {
         </h2>
         <div className="space-y-6 md:space-y-8 text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed font-normal">
           <p>
-            For more than <strong>3 years</strong>, I've lived at the intersection of technology and storytelling.
-            I've spent thousands of hours breaking down complex technical concepts into clear, actionable content
-            for developers and businesses globally.
+            I've spent <strong>2.5+ years</strong> turning complex tech into clear, human-friendly content. But writing about software wasn't enough — I wanted to build it. So I did.
           </p>
           <p>
-            While I love the power of words, I found myself wanting to do more than just write about software—I wanted
-            to <em className="text-slate-900 font-semibold not-italic">build</em> it. This curiosity led me to pick up React, Next.js, and the modern web stack.
-          </p>
-          <p>
-            Today, I'm leveraging my experience in developer communication to build applications that are not
-            only functional but also intuitive, accessible, and fast. This is just the beginning of my engineering chapter.
+            Now I'm combining my writing background with <em className="text-slate-900 font-semibold not-italic">React and Next.js</em> to create things that are fast, intuitive, and actually make sense to real people.
           </p>
         </div>
       </section>
