@@ -51,7 +51,7 @@ export default function Header() {
                 <Sparkles size={22} className="text-white" />
               </div>
               <span className="text-2xl lg:text-3xl font-extrabold tracking-tight text-slate-900 hidden sm:block font-outfit">
-                Amrendra<span className="text-blue-600">Blog</span>
+                codewith<span className="text-blue-600">Amrendra</span>
               </span>
             </Link>
           </div>
