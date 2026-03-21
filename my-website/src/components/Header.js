@@ -45,19 +45,24 @@ export default function Header() {
           animate-in fade-in slide-in-from-top-4 duration-1000`}
         >
           {/* Left Area: Logo */}
-          <div className="flex-1 flex justify-start">
-            <Link href="/" className="group flex items-center space-x-3 shrink-0">
-              <div className="w-10 h-10 lg:w-11 lg:h-11 bg-blue-600 rounded-full flex items-center justify-center group-hover:rotate-12 transition-all duration-300 shadow-lg shadow-blue-500/20">
-                <Sparkles size={22} className="text-white" />
+          <div className="flex-1 flex justify-start min-w-0">
+            <Link
+              href="/"
+              className="group flex items-center space-x-2 sm:space-x-3 flex-shrink-0 hover:scale-[1.03] md:hover:scale-105 active:scale-[0.97] transition-transform duration-300 ease-out origin-left transform-gpu will-change-transform"
+              aria-label="Go to homepage"
+            >
+              <div className="w-9 h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11 bg-blue-600 rounded-full flex-shrink-0 flex items-center justify-center group-hover:rotate-12 transition-all duration-300 shadow-lg shadow-blue-500/20">
+                <Sparkles className="text-white w-4 h-4 sm:w-5 sm:h-5 lg:w-[22px] lg:h-[22px]" />
               </div>
-              <span className="text-2xl lg:text-3xl font-extrabold tracking-tight text-slate-900 hidden sm:block font-outfit">
-                codewith<span className="text-blue-600">Amrendra</span>
+              <span className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-slate-900 font-outfit whitespace-nowrap flex-shrink-0">
+                <span className="block sm:hidden">CWA</span>
+                <span className="hidden sm:block">codewith<span className="text-blue-600">Amrendra</span></span>
               </span>
             </Link>
           </div>
 
           {/* Center Area: Navigation (Desktop/Tablet) */}
-          <nav className="hidden md:flex items-center space-x-2 bg-slate-100 rounded-full p-1.5 border border-slate-200 mx-4">
+          <nav className="hidden md:flex flex-shrink-0 items-center space-x-2 bg-slate-100 rounded-full p-1.5 border border-slate-200 mx-4">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -71,14 +76,14 @@ export default function Header() {
           </nav>
 
           {/* Right Area: Mobile Toggle only */}
-          <div className="flex-1 flex justify-end items-center">
+          <div className="flex-1 flex justify-end items-center flex-shrink-0 min-w-0">
             {/* Mobile Menu Icon */}
             <button
-              className="md:hidden p-2.5 text-slate-700 hover:text-blue-600 transition-colors cursor-pointer bg-slate-100 rounded-full border border-slate-200"
+              className="md:hidden p-2 sm:p-2.5 text-slate-700 hover:text-blue-600 transition-colors cursor-pointer bg-slate-100 rounded-full border border-slate-200 flex-shrink-0 ml-4"
               onClick={() => setIsMenuOpen(true)}
               aria-label="Open menu"
             >
-              <Menu size={22} />
+              <Menu className="w-5 h-5 sm:w-[22px] sm:h-[22px]" />
             </button>
           </div>
         </header>
@@ -96,18 +101,21 @@ export default function Header() {
       >
         <div className="flex flex-col h-full">
           {/* Mobile Menu Header */}
-          <div className="p-8 flex items-center justify-between border-b border-slate-50">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                <Sparkles size={16} className="text-white" />
+          <div className="p-6 sm:p-8 flex items-center justify-between border-b border-slate-50 min-w-0">
+            <div className="flex items-center space-x-3 flex-shrink-0 min-w-0">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 bg-blue-600 rounded-full flex-shrink-0 flex items-center justify-center">
+                <Sparkles className="text-white w-4 h-4 sm:w-5 sm:h-5" />
               </div>
-              <span className="text-xl font-bold">Amrendra</span>
+              <span className="text-xl sm:text-2xl font-bold font-outfit text-slate-900 whitespace-nowrap flex-shrink-0">
+                <span className="block sm:hidden">CWAmrendra  </span>
+                <span className="hidden sm:block">codewith<span className="text-blue-600">Amrendra</span></span>
+              </span>
             </div>
             <button
               onClick={() => setIsMenuOpen(false)}
-              className="p-3 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full transition-colors cursor-pointer"
+              className="p-2 sm:p-3 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full transition-colors cursor-pointer flex-shrink-0 ml-4"
             >
-              <X size={24} />
+              <X className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </div>
 
