@@ -54,20 +54,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Legal */}
-          <div>
-            <h4 className="text-lg font-bold mb-6">Support</h4>
-            <ul className="space-y-4">
-              {["Privacy Policy", "Terms of Service", "Cookie Policy", "Help Center", "Status"].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
+         
           {/* Newsletter / Contact */}
           <div>
             <h4 className="text-lg font-bold mb-6">Newsletter</h4>
