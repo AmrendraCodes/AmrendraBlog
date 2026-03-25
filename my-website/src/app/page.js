@@ -2,66 +2,64 @@ import { getAllPosts } from "@/lib/posts";
 import Link from "next/link";
 import { ArrowRight, Sparkles, TrendingUp, Clock, Calendar, Mail, Zap } from "lucide-react";
 import BlogCard from "../components/BlogCard";
+import styles from "./page.module.css";
 
 export default function Home() {
   const posts = getAllPosts();
 
   return (
-    <main className="bg-white min-h-screen">
+    <main style={{ backgroundColor: 'white', minHeight: '100vh', margin: 0, padding: 0 }}>
       {/* 1. Hero Section: Standard Professional Layout */}
-      <section className="relative pt-16 lg:pt-20 pb-24 px-6 lg:px-16 overflow-hidden bg-slate-50/30">
+      <section className={styles.heroSection}>
         {/* Abstract Background Elements */}
-        <div className="absolute top-0 right-0 -z-10 w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-3xl opacity-50 translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 left-0 -z-10 w-[400px] h-[400px] bg-sky-50 rounded-full blur-3xl opacity-50 -translate-x-1/2 translate-y-1/2" />
+        <div className={styles.bgElement1} />
+        <div className={styles.bgElement2} />
 
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className={styles.container}>
+          <div className={styles.heroGrid}>
             {/* Left: Content */}
-            <div className="space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000">
-              <div className="inline-flex items-center space-x-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider">
+            <div className={styles.heroContent}>
+              <div className={styles.badge}>
                 <TrendingUp size={14} />
                 <span>Featured Post</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-[1.1] tracking-tight font-outfit">
-                Mastering the Art of <span className="text-blue-600">Modern Code.</span>
+              <h1 className={styles.heroTitle}>
+                Mastering the Art of <span className={styles.textBlue}>Modern Code.</span>
               </h1>
 
-              <p className="text-xl text-slate-500 leading-relaxed max-w-xl">
+              <p className={styles.heroDescription}>
                 Dive deep into the strategies, tools, and mindsets that drive the world's most innovative technology companies.
               </p>
 
-              <div className="flex flex-wrap items-center gap-6 pt-4">
-                <Link
-                  href="/blog/featured-post"
-                  className="bg-slate-900 text-white px-8 py-4 rounded-full font-bold shadow-2xl shadow-slate-200 hover:bg-slate-800 hover:-translate-y-1 transition-all duration-300 flex items-center space-x-2 group"
-                >
+              <div className={styles.heroActions}>
+                <Link href="/blog/featured-post" className={styles.primaryButton}>
                   <span>Read Full Article</span>
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight size={18} className={styles.btnArrow} />
                 </Link>
-                <div className="flex items-center space-x-4">
-                  <div className="flex -space-x-3">
-                    <img src="https://i.pravatar.cc/100?u=1" alt="Reader 1" className="w-10 h-10 rounded-full border-2 border-white shadow-md object-cover" />
-                    <img src="https://i.pravatar.cc/100?u=2" alt="Reader 2" className="w-10 h-10 rounded-full border-2 border-white shadow-md object-cover" />
-                    <img src="https://i.pravatar.cc/100?u=3" alt="Reader 3" className="w-10 h-10 rounded-full border-2 border-white shadow-md object-cover" />
+                <div className={styles.readersData}>
+                  <div className={styles.readersAvatars}>
+                    <img src="https://i.pravatar.cc/100?u=1" alt="Reader 1" />
+                    <img src="https://i.pravatar.cc/100?u=2" alt="Reader 2" />
+                    <img src="https://i.pravatar.cc/100?u=3" alt="Reader 3" />
                   </div>
-                  <span className="text-sm font-bold text-slate-700">5k+ Readers</span>
+                  <span className={styles.readersText}>5k+ Readers</span>
                 </div>
               </div>
             </div>
 
             {/* Right: Visual */}
-            <div className="relative animate-in fade-in slide-in-from-right-8 duration-1000">
-              <div className="relative rounded-[40px] overflow-hidden shadow-2xl shadow-blue-100 group">
+            <div className={styles.heroVisual}>
+              <div className={styles.imageWrapper}>
                 <img
                   src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200&auto=format&fit=crop"
                   alt="Featured Article"
-                  className="w-full h-[550px] object-cover transition-transform duration-1000 group-hover:scale-110"
+                  className={styles.heroImage}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                <div className="absolute bottom-10 left-10 text-white">
-                  <span className="bg-blue-600 px-3 py-1 rounded-md text-[10px] uppercase font-bold mb-4 inline-block">Trending now</span>
-                  <h2 className="text-2xl font-bold max-w-sm">How AI is Revolutionizing Personalized Learning</h2>
+                <div className={styles.imageOverlay} />
+                <div className={styles.imageContent}>
+                  <span className={styles.trendingBadge}>Trending now</span>
+                  <h2 className={styles.imageTitle}>How AI is Revolutionizing Personalized Learning</h2>
                 </div>
               </div>
             </div>
@@ -69,80 +67,73 @@ export default function Home() {
         </div>
       </section>
 
-
       {/* 3. Latest Posts Section */}
-      <section className="py-24 px-6 lg:px-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-end justify-between mb-16">
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <div className="w-20 h-1 bg-blue-600 rounded-full opacity-80" />
-                <span className="text-blue-600 text-[11px] font-black uppercase tracking-widest">Fresh Insights</span>
+      <section className={styles.postsSection}>
+        <div className={styles.container}>
+          <div className={styles.postsHeader}>
+            <div className={styles.sectionTitleBlock}>
+              <div className={styles.subtitleWrapper}>
+                <div className={styles.subtitleLine} />
+                <span className={styles.subtitleText}>Fresh Insights</span>
               </div>
-              <h2 className="text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
-                Latest from the <span className="text-blue-600">Blog.</span>
+              <h2 className={styles.sectionTitle}>
+                Latest from the <span className={styles.textBlue}>Blog.</span>
               </h2>
             </div>
-            <Link
-              href="/blog"
-              className="hidden sm:flex items-center space-x-2 px-6 py-3 rounded-full bg-blue-600 text-white font-bold text-sm hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-500/20 hover:-translate-y-1 transition-all duration-300 ease-in-out active:scale-95 group"
-            >
+            <Link href="/blog" className={styles.viewAllLink}>
               <span>View all articles</span>
-              <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform duration-300" />
+              <ArrowRight size={18} className={styles.viewAllArrow} />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className={styles.postsGrid}>
             {posts.map((post) => (
               <BlogCard key={post.slug} post={post} />
             ))}
           </div>
 
-          <div className="mt-16 flex justify-center md:hidden">
-            <Link
-              href="/blog"
-              className="flex items-center space-x-2 px-8 py-4 rounded-full bg-blue-600 text-white font-bold hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-500/20 hover:-translate-y-1 transition-all duration-300 ease-in-out active:scale-95 group"
-            >
+          <div className={styles.mobileExploreMore}>
+            <Link href="/blog" className={styles.mobileExploreLink}>
               <span>Explore More</span>
-              <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform duration-300" />
+              <ArrowRight size={18} className={styles.viewAllArrow} />
             </Link>
           </div>
         </div>
       </section>
 
       {/* 4. Newsletter Section */}
-      <section className="pb-24 px-6 lg:px-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="bg-blue-50 rounded-[40px] px-8 py-16 md:p-16 flex flex-col items-center text-center space-y-10 relative overflow-hidden ring-1 ring-blue-100 shadow-sm">
+      <section className={styles.newsletterSection}>
+        <div className={styles.container}>
+          <div className={styles.newsletterCard}>
             {/* Background elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-600/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+            <div className={styles.newsletterBgTop} />
+            <div className={styles.newsletterBgBottom} />
 
-            <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center rotate-12 shadow-xl shadow-blue-500/20 mb-4">
-              <Mail className="text-white" size={32} />
+            <div className={styles.newsletterIconWrapper}>
+              <Mail className={styles.newsletterIcon} size={32} />
             </div>
 
-            <div className="space-y-4 max-w-2xl">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                Join the <span className="text-blue-600">Amrendra</span> inner circle.
+            <div className={styles.newsletterText}>
+              <h2 className={styles.newsletterTitle}>
+                Join the <span className={styles.textBlue}>Amrendra</span> inner circle.
               </h2>
-              <p className="text-slate-500 text-base md:text-lg leading-relaxed">
+              <p className={styles.newsletterDesc}>
                 Get high-quality tutorials and case studies delivered directly to your inbox. No spam, ever.
               </p>
             </div>
 
-            <div className="w-full max-w-lg bg-white p-2 rounded-[28px] border border-blue-100 flex flex-col sm:flex-row gap-2 shadow-sm">
+            <div className={styles.newsletterForm}>
               <input
                 type="email"
                 placeholder="Work email address"
-                className="flex-1 bg-transparent px-6 py-4 text-slate-900 placeholder-slate-400 outline-none font-medium"
+                className={styles.newsletterInput}
               />
-              <button className="bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-blue-700 transition-all hover:scale-[1.02] active:scale-95 shadow-lg shadow-blue-500/20">
+              <button className={styles.newsletterSubmit}>
                 Subscribe
               </button>
             </div>
 
-            <p className="text-slate-500 text-xs font-medium">
+            <p className={styles.newsletterFooter}>
               Join 12,000+ developers receiving our weekly digest.
             </p>
           </div>
