@@ -1,52 +1,51 @@
 import Link from "next/link";
-import { Github, Twitter, Linkedin, Instagram, Sparkles, Mail } from "lucide-react";
+import { Github, Twitter, Linkedin, Instagram, Sparkles, Mail, Send } from "lucide-react";
+import styles from "./Footer.module.css";
 
 export default function Footer() {
   return (
-    <footer className="bg-white text-slate-900 pt-20 pb-10 border-t border-slate-100">
-      <div className="max-w-7xl mx-auto px-6 lg:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          {/* Brand Column */}
-          <div className="space-y-6">
-            <Link href="/" className="group flex items-center space-x-2">
-              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
-                <Sparkles size={20} className="text-white" />
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        <div className={styles.grid}>
+          <div className={styles.brandCol}>
+            <Link href="/" className={styles.logoArea}>
+              <div className={styles.logoIcon}>
+                <Sparkles size={18} />
               </div>
-              <span className="text-2xl font-extrabold tracking-tight">
-                Amrendra<span className="text-blue-600">Blog</span>
+              <span className={styles.logoText}>
+                Amrendra<span className={styles.logoHighlight}>Blog</span>
               </span>
             </Link>
-            <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
+            <p className={styles.description}>
               Empowering developers and creators with the latest insights into modern technology and creative design.
             </p>
-            <div className="flex items-center space-x-4">
-              <Link href="https://x.com/AmrendraCodes" target="_blank" className="w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors text-slate-600">
-                <Twitter size={18} />
+            <div className={styles.socials}>
+              <Link href="https://x.com/AmrendraCodes" target="_blank" className={styles.socialLink}>
+                <Twitter size={16} />
               </Link>
-              <Link href="https://github.com/amrendra-dev" target="_blank" className="w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors text-slate-600">
-                <Github size={18} />
+              <Link href="https://github.com/amrendra-dev" target="_blank" className={styles.socialLink}>
+                <Github size={16} />
               </Link>
-              <Link href="https://linkedin.com" target="_blank" className="w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors text-slate-600">
-                <Linkedin size={18} />
+              <Link href="https://linkedin.com" target="_blank" className={styles.socialLink}>
+                <Linkedin size={16} />
               </Link>
-              <Link href="https://instagram.com" target="_blank" className="w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors text-slate-600">
-                <Instagram size={18} />
+              <Link href="https://instagram.com" target="_blank" className={styles.socialLink}>
+                <Instagram size={16} />
               </Link>
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-bold mb-6">Quick Links</h4>
-            <ul className="space-y-4">
+            <h4 className={styles.colTitle}>Quick Links</h4>
+            <ul className={styles.linkList}>
               {[
                 { name: "Home", href: "/" },
                 { name: "Blog", href: "/blog" },
                 { name: "About", href: "/about" },
                 { name: "Contact", href: "/contact" }
               ].map((link) => (
-                <li key={link.name}>
-                  <Link href={link.href} className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
+                <li key={link.name} className={styles.linkItem}>
+                  <Link href={link.href}>
                     {link.name}
                   </Link>
                 </li>
@@ -54,32 +53,34 @@ export default function Footer() {
             </ul>
           </div>
 
-         
-          {/* Newsletter / Contact */}
           <div>
-            <h4 className="text-lg font-bold mb-6">Newsletter</h4>
-            <p className="text-slate-400 text-sm mb-6">Join 5,000+ others and never miss a new post.</p>
-            <div className="relative">
+            <h4 className={styles.colTitle}>Newsletter</h4>
+            <p className={styles.newsletterDesc}>Join 5,000+ others and never miss a new post.</p>
+            <form className={styles.newsletterForm}>
               <input
                 type="email"
                 placeholder="Your email"
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 text-sm text-slate-900 focus:outline-none focus:border-blue-600 transition-all"
+                className={styles.newsletterInput}
               />
-              <button className="absolute right-2 top-2 bg-blue-600 p-1.5 rounded-lg hover:bg-blue-700 transition-colors">
-                <Mail size={16} />
+              <button 
+                type="submit"
+                className={styles.newsletterBtn}
+                aria-label="Subscribe"
+              >
+                <Send size={14} />
               </button>
-            </div>
+            </form>
           </div>
         </div>
 
-        <div className="pt-10 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-slate-500 text-[13px] font-medium">
+        <div className={styles.bottomBar}>
+          <p className={styles.copyright}>
             &copy; {new Date().getFullYear()} AmrendraBlog. All rights reserved. Built with ❤️ for the community.
           </p>
-          <div className="flex items-center space-x-6 text-slate-500 text-[13px] font-medium">
-            <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
-            <Link href="#" className="hover:text-white transition-colors">Terms</Link>
-            <Link href="#" className="hover:text-white transition-colors">Sitemap</Link>
+          <div className={styles.bottomLinks}>
+            <Link href="/privacy">Privacy</Link>
+            <Link href="/terms">Terms</Link>
+            <Link href="/sitemap">Sitemap</Link>
           </div>
         </div>
       </div>

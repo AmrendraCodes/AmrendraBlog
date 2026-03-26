@@ -1,22 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --background: #030305;
+  --foreground: #f3f4f6;
+  --accent-cyan: #00f0ff;
+  --accent-purple: #b14bf4;
+  --accent-pink: #ff2a85;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-outfit: var(--font-outfit);
 }
 
-/* Force White Theme Only */
 :root,
 html,
 body {
-  background-color: white !important;
-  color: #0f172a !important;
-  color-scheme: light !important;
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+  color-scheme: dark !important;
 }
 
 body {
@@ -25,4 +27,45 @@ body {
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  background-attachment: fixed;
 }
+
+/* Custom Cursor Styles */
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-cyan);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 0 10px var(--accent-cyan);
+  transform: translate(-50%, -50%);
+  transition: background-color 0.2s;
+  will-change: transform;
+}
+
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: border-color 0.2s, width 0.2s, height 0.2s;
+  will-change: transform;
+}
+
+a:hover ~ .custom-cursor-ring,
+button:hover ~ .custom-cursor-ring {
+  width: 48px;
+  height: 48px;
+  border-color: var(--accent-pink);
+}
