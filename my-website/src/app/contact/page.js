@@ -156,7 +156,7 @@ export default function ContactPage() {
                     disabled={status === "sending"}
                     className={`w-full py-4 rounded-2xl font-black text-white transition-all duration-300 flex items-center justify-center gap-3 shadow-sm hover:scale-[1.01] active:scale-95 ${status === "success"
                       ? "bg-green-600"
-                      : "bg-slate-900 hover:bg-blue-600"
+                      : "bg-blue-600 hover:bg-blue-700"
                       }`}
                   >
                     {status === "sending" ? "Sending..." : status === "success" ? "Message Sent!" : "Send Message"}

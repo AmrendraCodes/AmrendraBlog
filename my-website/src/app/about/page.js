@@ -185,7 +185,7 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <Link
                 href="/contact"
-                className="w-full sm:w-auto px-10 md:px-12 py-4 md:py-5 bg-slate-900 text-white rounded-full font-black text-base md:text-lg hover:bg-blue-600 transition-all shadow-xl hover:scale-105"
+                className="w-full sm:w-auto px-10 md:px-12 py-4 md:py-5 bg-blue-600 text-white rounded-full font-black text-base md:text-lg hover:bg-blue-700 transition-all shadow-xl hover:scale-105"
               >
                 Get in Touch
               </Link>
