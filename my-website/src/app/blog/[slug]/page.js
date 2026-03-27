@@ -14,18 +14,18 @@ export default async function PostPage({ params }) {
   return (
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="relative h-[60vh] bg-slate-900 overflow-hidden">
+      <div className="relative h-[60vh] overflow-hidden">
         <img
           src={post.image || "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1200"}
           alt={post.title}
-          className="absolute inset-0 w-full h-full object-cover opacity-60"
+          className="absolute inset-0 w-full h-full object-cover opacity-70"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/70 to-transparent" />
 
         <div className="relative h-full max-w-4xl mx-auto px-6 flex flex-col justify-end pb-12">
           <Link
             href="/blog"
-            className="inline-flex items-center text-white/80 hover:text-white mb-8 transition-colors group"
+            className="inline-flex items-center text-slate-700 hover:text-slate-900 mb-8 transition-colors group"
           >
             <ArrowLeft size={18} className="mr-2 group-hover:-translate-x-1 transition-transform" />
             Back to Journal
@@ -37,11 +37,11 @@ export default async function PostPage({ params }) {
             </span>
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight mb-8">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-950 tracking-tight leading-tight mb-8">
             {post.title}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-6 text-white/70 text-sm font-medium border-t border-white/10 pt-8">
+          <div className="flex flex-wrap items-center gap-6 text-slate-600 text-sm font-medium border-t border-slate-200 pt-8">
             <div className="flex items-center">
               <User size={16} className="mr-2" />
               <span>{post.author}</span>
