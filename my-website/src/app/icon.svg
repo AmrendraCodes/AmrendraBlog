@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0c10" />
+      <stop offset="100%" stop-color="#151a25" />
+    </linearGradient>
+
+    <!-- Glowing Effects for the symbols -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <linearGradient id="leftGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f0ff" />
+      <stop offset="100%" stop-color="#0080ff" />
+    </linearGradient>
+
+    <linearGradient id="midGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a52ff" />
+      <stop offset="100%" stop-color="#7000ff" />
+    </linearGradient>
+
+    <linearGradient id="rightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a600ff" />
+      <stop offset="100%" stop-color="#ff00a2" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="256" height="256" rx="56" fill="url(#bg)" />
+
+  <!-- Small Decorative Particles -->
+  <rect x="70" y="50" width="10" height="10" fill="#ffd000" rx="2" />
+  <rect x="40" y="80" width="16" height="16" fill="#ff7f00" rx="3" />
+  <rect x="180" y="44" width="14" height="14" fill="#a600ff" rx="3" />
+  <rect x="210" y="84" width="12" height="12" fill="#ffd000" rx="2" />
+  <rect x="195" y="150" width="16" height="16" fill="#ff0055" rx="3" />
+  <rect x="60" y="170" width="8" height="8" fill="#00e5ff" rx="2" />
+
+  <!-- The Code Symbol `</>` -->
+  <g filter="url(#glow)" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Left Bracket `<` -->
+    <polyline points="95,95 40,128 95,161" stroke="url(#leftGrad)" />
+    
+    <!-- Slash `/` -->
+    <line x1="145" y1="75" x2="111" y2="181" stroke="url(#midGrad)" />
+    
+    <!-- Right Bracket `>` -->
+    <polyline points="159,95 214,128 159,161" stroke="url(#rightGrad)" />
+  </g>
+
+  <!-- Simple stylized circuit line at the bottom for aesthetic -->
+  <path d="M40,205 H65 L75,215 H110 L120,205 H216" stroke="#00f0ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.6"/>
+  <circle cx="40" cy="205" r="4" fill="#00f0ff" opacity="0.6"/>
+  <circle cx="216" cy="205" r="4" fill="#ff00a2" opacity="0.6"/>
+</svg>

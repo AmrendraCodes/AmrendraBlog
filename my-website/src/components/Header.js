@@ -42,7 +42,7 @@ export default function Header() {
         <header className={`${styles.header} ${isScrolled ? styles.headerScrolled : ""}`}>
           <Link href="/" className={styles.logoArea}>
             <div className={styles.logoIcon}>
-              <Sparkles size={18} />
+              <img src="/icon.svg" alt="Logo" className={styles.logoImage} />
             </div>
             <span className={styles.logoText}>
               Amrendra<span className={styles.logoHighlight}>Blog</span>
@@ -104,7 +104,7 @@ export default function Header() {
           ))}
         </nav>
       </div>
-      
+
       {/* Spacer */}
       <div style={{ height: "100px" }}></div>
     </>

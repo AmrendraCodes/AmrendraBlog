@@ -15,20 +15,21 @@
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0.75rem 1.5rem;
   border-radius: 9999px;
   border: 1px solid var(--glass-border);
   background: var(--glass-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: navy;
   width: 100%;
   max-width: 80rem;
+  background-color: magenta;
 }
 
 .headerScrolled {
-  background: rgba(5, 5, 5, 0.85);
+  background: blue;
   max-width: 64rem;
   padding: 0.5rem 1.5rem;
 }
@@ -58,7 +59,7 @@
 }
 
 .logoText {
-  font-size: 1.25rem;
+  font-size: 30px;
   font-weight: 800;
   color: var(--foreground);
   letter-spacing: -0.02em;
@@ -183,7 +184,7 @@
 }
 
 .mobileMenuClose {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--glass-border);
   color: #fff;
   width: 2.5rem;
