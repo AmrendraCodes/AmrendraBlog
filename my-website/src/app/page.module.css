@@ -66,10 +66,10 @@
 
 /* Hero Section */
 .heroSection {
-  padding: 7rem 1.5rem 6rem;
+  padding: 4rem 1.5rem 6rem;
   max-width: 80rem;
   margin: 0 auto;
-  min-height: 90vh;
+  min-height: 75vh;
   display: flex;
   align-items: center;
 }
