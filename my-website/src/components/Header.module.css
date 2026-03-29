@@ -78,8 +78,8 @@
   display: none;
   gap: 1.2rem;
   position: absolute;
-  left: 50%;
-  transform: translateX(-30%);
+  left: 58%;
+  transform: translateX(-50%);
 
 }
 
@@ -89,9 +89,9 @@
     align-items: center;
     gap: 2rem;
     position: absolute;
-    left: 50%;
+    left: 58%;
     top: 50%;
-    transform: translate(-50%, -30%);
+    transform: translate(-50%, -50%);
     width: max-content;
     white-space: nowrap;
   }
