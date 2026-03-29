@@ -1,44 +1,67 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import styles from "./CustomCursor.module.css";
 
 export default function CustomCursor() {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isPointer, setIsPointer] = useState(false);
+  const [hidden, setHidden] = useState(true);
+
   useEffect(() => {
-    const dot = document.querySelector('.custom-cursor-dot');
-    const ring = document.querySelector('.custom-cursor-ring');
-
-    if (!dot || !ring) return;
-
-    let mouseX = 0;
-    let mouseY = 0;
-    let ringX = 0;
-    let ringY = 0;
-
-    const onMouseMove = (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+    const handleMouseMove = (e) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+      if (hidden) setHidden(false);
     };
 
-    const animateRing = () => {
-      ringX += (mouseX - ringX) * 0.15;
-      ringY += (mouseY - ringY) * 0.15;
-      ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
-      requestAnimationFrame(animateRing);
+    const handleMouseLeave = () => setHidden(true);
+    const handleMouseEnter = () => setHidden(false);
+
+    const handleMouseOver = (e) => {
+      // Check if hovering over clickable elements
+      const target = e.target;
+      const isClickable =
+        window.getComputedStyle(target).cursor === "pointer" ||
+        target.closest("a") !== null ||
+        target.closest("button") !== null ||
+        target.tagName.toLowerCase() === "a" ||
+        target.tagName.toLowerCase() === "button";
+        
+      setIsPointer(isClickable);
     };
 
-    window.addEventListener("mousemove", onMouseMove);
-    requestAnimationFrame(animateRing);
+    window.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("mouseenter", handleMouseEnter);
+    window.addEventListener("mouseover", handleMouseOver);
 
     return () => {
-      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("mouseenter", handleMouseEnter);
+      window.removeEventListener("mouseover", handleMouseOver);
     };
-  }, []);
+  }, [hidden]);
+
+  // Only run on client
+  if (typeof window === "undefined") return null;
 
   return (
     <>
-      <div className="custom-cursor-dot"></div>
-      <div className="custom-cursor-ring"></div>
+      <div
+        className={`${styles.cursorDot} ${hidden ? styles.hidden : ""}`}
+        style={{
+          transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
+        }}
+      />
+      <div
+        className={`${styles.cursorOutline} ${
+          isPointer ? styles.pointer : ""
+        } ${hidden ? styles.hidden : ""}`}
+        style={{
+          transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
+        }}
+      />
     </>
   );
 }
