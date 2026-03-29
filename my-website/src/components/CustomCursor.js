@@ -4,9 +4,14 @@ import { useEffect, useState } from "react";
 import styles from "./CustomCursor.module.css";
 
 export default function CustomCursor() {
+  const [isMounted, setIsMounted] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isPointer, setIsPointer] = useState(false);
   const [hidden, setHidden] = useState(true);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -43,8 +48,8 @@ export default function CustomCursor() {
     };
   }, [hidden]);
 
-  // Only run on client
-  if (typeof window === "undefined") return null;
+  // Only render on client to avoid hydration mismatch
+  if (!isMounted) return null;
 
   return (
     <>

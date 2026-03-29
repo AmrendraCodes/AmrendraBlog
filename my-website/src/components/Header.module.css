@@ -15,8 +15,8 @@
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding: 1rem 1rem;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
   border-radius: 9999px;
   border: 1px solid rgba(15, 23, 42, 0.08);
   background: rgba(255, 255, 255, 0.9);
@@ -24,10 +24,17 @@
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
   width: 100%;
-  max-width: 60%;
+  max-width: 95%;
   position: relative;
-
 }
+
+@media (min-width: 768px) {
+  .header {
+    max-width: 65%;
+    padding: 1rem 1.5rem;
+  }
+}
+
 
 .headerScrolled {
   background: rgba(255, 255, 255, 0.95);
@@ -41,11 +48,12 @@
   align-items: center;
   text-decoration: none;
   gap: 0.75rem;
+  flex-shrink: 0;
 }
 
 .logoIcon {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
   border-radius: 50%;
   display: flex;
@@ -54,6 +62,14 @@
   color: #fff;
   transition: transform 0.3s ease;
   box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .logoIcon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 }
 
 .logoArea:hover .logoIcon {
@@ -61,10 +77,16 @@
 }
 
 .logoText {
-  font-size: 30px;
+  font-size: 22px;
   font-weight: 800;
   color: var(--foreground);
   letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+  .logoText {
+    font-size: 28px;
+  }
 }
 
 .logoHighlight {
@@ -76,24 +98,26 @@
 
 .nav {
   display: none;
-  gap: 1.2rem;
-  position: absolute;
-  left: 58%;
-  transform: translateX(-50%);
+
 
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
+  .mobileToggle {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
   .nav {
     display: flex;
     align-items: center;
     gap: 2rem;
+
     position: absolute;
-    left: 58%;
+    left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: max-content;
-    white-space: nowrap;
   }
 }
 
@@ -139,6 +163,7 @@
   border-radius: 50%;
   cursor: pointer;
   transition: background 0.3s ease;
+  flex-shrink: 0;
 }
 
 @media (min-width: 768px) {
