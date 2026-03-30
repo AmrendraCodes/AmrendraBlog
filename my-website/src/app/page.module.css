@@ -381,7 +381,8 @@
 
 @media (min-width: 768px) {
   .blogGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
   }
 }
 
@@ -393,7 +394,7 @@
 
 /* Blog Card Styles (Embedded for simplicity) */
 .featuredCard {
-  grid-column: 1 / -1;
+  grid-column: auto;
   display: flex;
   flex-direction: column;
   background: #ffffff;
