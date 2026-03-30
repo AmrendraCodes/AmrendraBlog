@@ -58,9 +58,11 @@ export default function Header() {
           </nav>
 
           <button
+            type="button"
             className={styles.mobileToggle}
             onClick={() => setIsMenuOpen(true)}
             aria-label="Open menu"
+            aria-expanded={isMenuOpen}
           >
             <Menu size={20} />
           </button>
@@ -72,7 +74,12 @@ export default function Header() {
         onClick={() => setIsMenuOpen(false)}
       />
 
-      <div className={`${styles.mobileMenu} ${isMenuOpen ? styles.mobileMenuOpen : ""}`}>
+      <div
+        className={`${styles.mobileMenu} ${isMenuOpen ? styles.mobileMenuOpen : ""}`}
+        role="dialog"
+        aria-modal="true"
+        aria-hidden={!isMenuOpen}
+      >
         <div className={styles.mobileMenuHeader}>
           <div className={styles.logoArea}>
             <div className={styles.logoIcon}>
@@ -83,6 +90,7 @@ export default function Header() {
             </span>
           </div>
           <button
+            type="button"
             onClick={() => setIsMenuOpen(false)}
             className={styles.mobileMenuClose}
             aria-label="Close menu"
