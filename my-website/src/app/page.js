@@ -1,13 +1,65 @@
-import { getAllPosts } from "@/lib/posts";
 import Link from "next/link";
-import { ArrowRight, Sparkles, MoveRight, Code, TerminalSquare } from "lucide-react";
+import { ArrowRight, Sparkles, TerminalSquare } from "lucide-react";
 import styles from "./page.module.css";
 
-export default function Home() {
-  const posts = getAllPosts();
-  const featuredPost = posts[0];
-  const standardPosts = posts.slice(1, 4);
+const blogCards = [
+  {
+    title: "Design Systems for High-Impact Interfaces",
+    description: "Build strong visual systems with modular components, consistent spacing, and accessible typography for teams that scale.",
+    author: "Maya Patel",
+    date: "April 1, 2026",
+    category: "Design",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop",
+    href: "/blog/design-systems-for-interfaces",
+  },
+  {
+    title: "Performance‑First CSS Grid Layouts",
+    description: "Learn layout strategies that load faster, adapt fluidly, and keep interfaces polished across devices.",
+    author: "Noah Rivera",
+    date: "March 28, 2026",
+    category: "Frontend",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop",
+    href: "/blog/performance-first-css-grid",
+  },
+  {
+    title: "Accessible Animations That Delight",
+    description: "Create motion patterns that feel smooth, reduce cognitive load, and honor preferences for reduced motion.",
+    author: "Ava Thompson",
+    date: "March 24, 2026",
+    category: "UX",
+    image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop",
+    href: "/blog/accessible-animations-delight",
+  },
+  {
+    title: "Data-Driven Content Strategy for Product Teams",
+    description: "Use analytics, user feedback, and editorial design to keep your blog content relevant and high-converting.",
+    author: "Elijah Scott",
+    date: "March 18, 2026",
+    category: "Content",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop",
+    href: "/blog/data-driven-content-strategy",
+  },
+  {
+    title: "Scaling Component Libraries for Teams",
+    description: "Adopt a systemized approach to reusable components, naming conventions, and documentation for faster product delivery.",
+    author: "Sofia Kim",
+    date: "March 12, 2026",
+    category: "Architecture",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop",
+    href: "/blog/scaling-component-libraries",
+  },
+  {
+    title: "Micro-Interactions That Improve Conversion",
+    description: "Small UI moments can build trust and make every interaction feel polished without overwhelming the user.",
+    author: "Leo Martinez",
+    date: "March 5, 2026",
+    category: "Motion",
+    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop",
+    href: "/blog/micro-interactions-conversion",
+  },
+];
 
+export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.bgGrid} />
@@ -88,77 +140,32 @@ export default function Home() {
       <section className={styles.blogSection}>
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Latest <span className={styles.gradientText}>Insights</span></h2>
-          <p className={styles.sectionDesc}>Explore detailed articles on modern web development, state-of-the-art frameworks, and design philosophies.</p>
+          <p className={styles.sectionDesc}>Explore thoughtful design and development stories built for modern products.</p>
         </div>
 
         <div className={styles.blogGrid}>
-          {/* Featured Card */}
-          {featuredPost && (
-            <article className={styles.featuredCard}>
+          {blogCards.map((post, index) => (
+            <article key={index} className={styles.standardCard}>
               <div className={styles.cardImageWrapper}>
-                <div className={styles.cardBadge}>{featuredPost.category || "Architecture"}</div>
-                <img 
-                  src={featuredPost.image || "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop"} 
-                  alt={featuredPost.title} 
+                <span className={styles.cardBadge}>{post.category}</span>
+                <img
+                  src={post.image}
+                  alt={post.title}
                   className={styles.cardImage}
                 />
               </div>
               <div className={styles.cardContent}>
                 <div className={styles.cardMeta}>
-                  <div className={styles.metaItem}><span>{featuredPost.date || "March 15, 2026"}</span></div>
+                  <div className={styles.metaItem}><span>{post.date}</span></div>
                   <div className={styles.metaItem}>•</div>
-                  <div className={styles.metaItem}><span>{featuredPost.readTime || "8 min read"}</span></div>
+                  <div className={styles.metaItem}><span>By {post.author}</span></div>
                 </div>
-                <h3 className={styles.cardTitle}>
-                  <Link href={`/blog/${featuredPost.slug}`} style={{textDecoration:'none', color:'inherit'}}>
-                    {featuredPost.title}
-                  </Link>
-                </h3>
-                <p className={styles.cardDesc}>
-                  {featuredPost.excerpt || "Discover the patterns and architectures behind highly scalable web applications in the modern era."}
-                </p>
+                <h3 className={styles.cardTitle}>{post.title}</h3>
+                <p className={styles.cardDesc}>{post.description}</p>
                 <div className={styles.cardFooter}>
-                  <div className={styles.cardAuthor}>
-                    <div className={styles.authorAvatar}></div>
-                    <span className={styles.authorName}>{featuredPost.author || "Amrendra"}</span>
-                  </div>
-                  <Link href={`/blog/${featuredPost.slug}`} className={styles.cardLink}>
-                    <MoveRight size={18} />
-                  </Link>
-                </div>
-              </div>
-            </article>
-          )}
-
-          {/* Standard Cards */}
-          {standardPosts.map((post) => (
-            <article key={post.slug} className={styles.standardCard}>
-              <div className={styles.cardImageWrapper}>
-                <div className={styles.cardBadge}>{post.category || "Development"}</div>
-                <img 
-                  src={post.image || "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop"} 
-                  alt={post.title} 
-                  className={styles.cardImage}
-                />
-              </div>
-              <div className={styles.cardContent} style={{ flex: 1 }}>
-                <div className={styles.cardMeta}>
-                  <div className={styles.metaItem}><span>{post.date || "Mar 10, 2026"}</span></div>
-                  <div className={styles.metaItem}>•</div>
-                  <div className={styles.metaItem}><span>{post.readTime || "5 min read"}</span></div>
-                </div>
-                <h3 className={styles.cardTitle} style={{ fontSize: '1.5rem' }}>
-                  <Link href={`/blog/${post.slug}`} style={{textDecoration:'none', color:'inherit'}}>
-                    {post.title}
-                  </Link>
-                </h3>
-                <div className={styles.cardFooter}>
-                  <div className={styles.cardAuthor}>
-                    <div className={styles.authorAvatar} style={{width:'2rem', height:'2rem'}}></div>
-                    <span className={styles.authorName} style={{fontSize:'0.8rem'}}>{post.author || "Amrendra"}</span>
-                  </div>
-                  <Link href={`/blog/${post.slug}`} className={styles.cardLink}>
-                    <MoveRight size={16} />
+                  <span className={styles.authorName}>{post.author}</span>
+                  <Link href={post.href} className={styles.readMoreBtn}>
+                    Read More
                   </Link>
                 </div>
               </div>
