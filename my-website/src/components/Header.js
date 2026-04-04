@@ -42,29 +42,31 @@ export default function Header() {
     <>
       <div className={styles.headerWrapper}>
         <header className={`${styles.header} ${isScrolled ? styles.headerScrolled : ""}`}>
-          <Link href="/" className={styles.logoArea}>
-            <div className={styles.logoIcon}>
-              <img src="/icon.svg" alt="Logo" className={styles.logoImage} />
-            </div>
-            <span className={styles.logoText}>
-              Amrendra<span className={styles.logoHighlight}>Blog</span>
-            </span>
-          </Link>
+          <div className={styles.leftGroup}>
+            <Link href="/" className={styles.logoArea}>
+              <div className={styles.logoIcon}>
+                <img src="/icon.svg" alt="Logo" className={styles.logoImage} />
+              </div>
+              <span className={styles.logoText}>
+                Amrendra<span className={styles.logoHighlight}>Blog</span>
+              </span>
+            </Link>
 
-          <nav className={styles.nav}>
-            {navLinks.map((link) => {
-              const isActive = link.href === '/' ? pathname === '/' : pathname.startsWith(link.href);
-              return (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={`${styles.navLink} ${isActive ? styles.active : ""}`}
-                >
-                  {link.name}
-                </Link>
-              );
-            })}
-          </nav>
+            <nav className={styles.nav}>
+              {navLinks.map((link) => {
+                const isActive = link.href === '/' ? pathname === '/' : pathname.startsWith(link.href);
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={`${styles.navLink} ${isActive ? styles.active : ""}`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
 
           <button
             type="button"
