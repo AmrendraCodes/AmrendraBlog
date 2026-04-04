@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Sparkles } from "lucide-react";
 import styles from "./Header.module.css";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -13,6 +14,7 @@ const navLinks = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -50,11 +52,18 @@ export default function Header() {
           </Link>
 
           <nav className={styles.nav}>
-            {navLinks.map((link) => (
-              <Link key={link.name} href={link.href} className={styles.navLink}>
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = link.href === '/' ? pathname === '/' : pathname.startsWith(link.href);
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`${styles.navLink} ${isActive ? styles.active : ""}`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
           </nav>
 
           <button
@@ -100,16 +109,19 @@ export default function Header() {
         </div>
 
         <nav className={styles.mobileNav}>
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className={styles.mobileNavLink}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {link.name}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = link.href === '/' ? pathname === '/' : pathname.startsWith(link.href);
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`${styles.mobileNavLink} ${isActive ? styles.activeMobile : ""}`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
         </nav>
       </div>
 
