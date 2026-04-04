@@ -42,7 +42,7 @@ export default function Header() {
     <>
       <div className={styles.headerWrapper}>
         <header className={`${styles.header} ${isScrolled ? styles.headerScrolled : ""}`}>
-          <div className={styles.leftGroup}>
+          <div className={styles.leftSection}>
             <Link href="/" className={styles.logoArea}>
               <div className={styles.logoIcon}>
                 <img src="/icon.svg" alt="Logo" className={styles.logoImage} />
@@ -51,7 +51,9 @@ export default function Header() {
                 Amrendra<span className={styles.logoHighlight}>Blog</span>
               </span>
             </Link>
+          </div>
 
+          <div className={styles.centerSection}>
             <nav className={styles.nav}>
               {navLinks.map((link) => {
                 const isActive = link.href === '/' ? pathname === '/' : pathname.startsWith(link.href);
@@ -68,15 +70,18 @@ export default function Header() {
             </nav>
           </div>
 
-          <button
-            type="button"
-            className={styles.mobileToggle}
-            onClick={() => setIsMenuOpen(true)}
-            aria-label="Open menu"
-            aria-expanded={isMenuOpen}
-          >
-            <Menu size={20} />
-          </button>
+          <div className={styles.rightSection}>
+            <button className={styles.ctaButton}>Subscribe</button>
+            <button
+              type="button"
+              className={styles.mobileToggle}
+              onClick={() => setIsMenuOpen(true)}
+              aria-label="Open menu"
+              aria-expanded={isMenuOpen}
+            >
+              <Menu size={20} />
+            </button>
+          </div>
         </header>
       </div>
 
@@ -124,6 +129,9 @@ export default function Header() {
               </Link>
             );
           })}
+          <button className={styles.mobileCtaButton} onClick={() => setIsMenuOpen(false)}>
+            Subscribe
+          </button>
         </nav>
       </div>
 
