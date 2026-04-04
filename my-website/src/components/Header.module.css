@@ -21,13 +21,12 @@
   border: 1px solid rgba(15, 23, 42, 0.08);
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
   width: min(100%, 95vw);
   max-width: 95%;
   position: relative;
   box-sizing: border-box;
-  padding-right: 3.5rem;
 }
 
 @media (min-width: 768px) {
@@ -61,7 +60,13 @@
   align-items: center;
   justify-content: flex-end;
   gap: 0.75rem;
-  margin-right: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .rightSection {
+    padding-right: 2.25rem;
+    /* Clean breathing space for the CTA */
+  }
 }
 
 @media (min-width: 640px) {
@@ -348,7 +353,6 @@
 /* CTA Button */
 .ctaButton {
   display: none;
-  margin-right: 1.5rem;
 }
 
 @media (min-width: 768px) {
