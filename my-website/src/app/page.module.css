@@ -179,7 +179,7 @@
 
 .btnPrimary {
   padding: 1rem 2rem;
-  background: #ffffff;
+  background: skyblue;
   color: #0f172a;
   font-weight: 700;
   border-radius: 0.75rem;
@@ -199,10 +199,10 @@
 
 .btnGhost {
   padding: 1rem 2rem;
-  background: rgba(255, 255, 255, 0.85);
+  background: skyblue;
   border: 1px solid rgba(15, 23, 42, 0.08);
   color: #0f172a;
-  font-weight: 600;
+  font-weight: 700;
   border-radius: 0.75rem;
   text-decoration: none;
   display: flex;
@@ -211,7 +211,7 @@
 }
 
 .btnGhost:hover {
-  background: #f8fafc;
+  background: mediumseagreen;
   border-color: rgba(15, 23, 42, 0.12);
   transform: translateY(-4px);
 }
