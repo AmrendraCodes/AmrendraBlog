@@ -71,19 +71,18 @@ export default function Home() {
         <div className={styles.heroGrid}>
           <div className={styles.heroContent}>
             <div className={styles.heroBadge}>
-              <Sparkles size={14} />
               <span>Next-Gen Web Design</span>
             </div>
-            
+
             <h1 className={styles.heroTitle}>
-              Engineering the <br/>
+              Engineering the <br />
               <span className={styles.gradientText}>Future of Code</span>
             </h1>
-            
+
             <p className={styles.heroSubtitle}>
               Dive into advanced architectures, sleek modern UIs, and the tools that top-tier developers use to build the web of tomorrow.
             </p>
-            
+
             <div className={styles.heroActions}>
               <Link href="/blog" className={styles.btnPrimary}>
                 Read Articles
@@ -94,7 +93,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          
+
           <div className={styles.heroVisual}>
             <div className={styles.codeCardWrapper}>
               <div className={styles.codeCardHeader}>
@@ -103,17 +102,17 @@ export default function Home() {
                 <div className={`${styles.codeDot} ${styles.dotGreen}`}></div>
               </div>
               <div className={styles.codeContent}>
-                <span className={styles.keyword}>const</span> <span className={styles.method}>buildFuture</span> = <span className={styles.keyword}>async</span> () {`=>`} {`{`}<br/>
-                &nbsp;&nbsp;<span className={styles.keyword}>const</span> tech = <span className={styles.keyword}>await</span> <span className={styles.method}>import</span>(<span className={styles.string}>'@/lib/innovation'</span>);<br/>
-                &nbsp;&nbsp;<span className={styles.comment}>// Initialize modern stack</span><br/>
-                &nbsp;&nbsp;tech.init(&#123;<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;performance: <span className={styles.string}>'blazing-fast'</span>,<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;design: <span className={styles.string}>'pixel-perfect'</span>,<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;experience: <span className={styles.string}>'seamless'</span><br/>
-                &nbsp;&nbsp;&#125;);<br/>
-                <br/>
-                &nbsp;&nbsp;<span className={styles.keyword}>return</span> tech.deploy();<br/>
-                {`}`};<br/>
+                <span className={styles.keyword}>const</span> <span className={styles.method}>buildFuture</span> = <span className={styles.keyword}>async</span> () {`=>`} {`{`}<br />
+                &nbsp;&nbsp;<span className={styles.keyword}>const</span> tech = <span className={styles.keyword}>await</span> <span className={styles.method}>import</span>(<span className={styles.string}>'@/lib/innovation'</span>);<br />
+                &nbsp;&nbsp;<span className={styles.comment}>// Initialize modern stack</span><br />
+                &nbsp;&nbsp;tech.init(&#123;<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;performance: <span className={styles.string}>'blazing-fast'</span>,<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;design: <span className={styles.string}>'pixel-perfect'</span>,<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;experience: <span className={styles.string}>'seamless'</span><br />
+                &nbsp;&nbsp;&#125;);<br />
+                <br />
+                &nbsp;&nbsp;<span className={styles.keyword}>return</span> tech.deploy();<br />
+                {`}`};<br />
               </div>
             </div>
           </div>
@@ -124,7 +123,7 @@ export default function Home() {
       <section className={styles.tickerSection}>
         <div className={styles.tickerTrack}>
           {[...Array(2)].map((_, i) => (
-            <div key={i} style={{display: 'flex', gap: '4rem'}}>
+            <div key={i} style={{ display: 'flex', gap: '4rem' }}>
               <div className={styles.tickerItem}><span className={styles.tickerStar}>✦</span> React Architecture</div>
               <div className={styles.tickerItem}><span className={styles.tickerStar}>✦</span> Advanced CSS Pro</div>
               <div className={styles.tickerItem}><span className={styles.tickerStar}>✦</span> Next.js Mastery</div>
@@ -187,9 +186,9 @@ export default function Home() {
             Get advanced tutorials, architectural patterns, and UI/UX case studies delivered to your inbox every month. No fluff, just code.
           </p>
           <form className={styles.newsletterForm}>
-            <input 
-              type="email" 
-              placeholder="name@company.com" 
+            <input
+              type="email"
+              placeholder="name@company.com"
               className={styles.newsletterInput}
               required
             />

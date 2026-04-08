@@ -179,7 +179,7 @@
 
 .btnPrimary {
   padding: 1rem 2rem;
-  background: skyblue;
+  background: white;
   color: #0f172a;
   font-weight: 700;
   border-radius: 0.75rem;
@@ -188,7 +188,8 @@
   align-items: center;
   gap: 0.5rem;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  border: 2px solid black;
+  border-radius: 30px;
   cursor: pointer;
 }
 
@@ -200,7 +201,7 @@
 .btnGhost {
   padding: 1rem 2rem;
   background: skyblue;
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  border: 1px solid black;
   color: #0f172a;
   font-weight: 700;
   border-radius: 0.75rem;
@@ -208,6 +209,7 @@
   display: flex;
   align-items: center;
   transition: all 0.3s;
+  border-radius: 30px;
 }
 
 .btnGhost:hover {
