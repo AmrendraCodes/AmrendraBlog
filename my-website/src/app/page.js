@@ -1,60 +1,72 @@
 import Link from "next/link";
-import { ArrowRight, Sparkles, TerminalSquare } from "lucide-react";
+import { ArrowRight, TerminalSquare } from "lucide-react"; // ❌ Sparkles removed (unused)
 import styles from "./page.module.css";
 
 const blogCards = [
   {
     title: "Design Systems for High-Impact Interfaces",
-    description: "Build strong visual systems with modular components, consistent spacing, and accessible typography for teams that scale.",
+    description:
+      "Build strong visual systems with modular components, consistent spacing, and accessible typography for teams that scale.",
     author: "Maya Patel",
     date: "April 1, 2026",
     category: "Design",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop",
     href: "/blog/design-systems-for-interfaces",
   },
   {
-    title: "Performance‑First CSS Grid Layouts",
-    description: "Learn layout strategies that load faster, adapt fluidly, and keep interfaces polished across devices.",
+    title: "Performance-First CSS Grid Layouts",
+    description:
+      "Learn layout strategies that load faster, adapt fluidly, and keep interfaces polished across devices.",
     author: "Noah Rivera",
     date: "March 28, 2026",
     category: "Frontend",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop",
     href: "/blog/performance-first-css-grid",
   },
   {
     title: "Accessible Animations That Delight",
-    description: "Create motion patterns that feel smooth, reduce cognitive load, and honor preferences for reduced motion.",
+    description:
+      "Create motion patterns that feel smooth, reduce cognitive load, and honor preferences for reduced motion.",
     author: "Ava Thompson",
     date: "March 24, 2026",
     category: "UX",
-    image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop",
     href: "/blog/accessible-animations-delight",
   },
   {
     title: "Data-Driven Content Strategy for Product Teams",
-    description: "Use analytics, user feedback, and editorial design to keep your blog content relevant and high-converting.",
+    description:
+      "Use analytics, user feedback, and editorial design to keep your blog content relevant and high-converting.",
     author: "Elijah Scott",
     date: "March 18, 2026",
     category: "Content",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop",
     href: "/blog/data-driven-content-strategy",
   },
   {
     title: "Scaling Component Libraries for Teams",
-    description: "Adopt a systemized approach to reusable components, naming conventions, and documentation for faster product delivery.",
+    description:
+      "Adopt a systemized approach to reusable components, naming conventions, and documentation for faster product delivery.",
     author: "Sofia Kim",
     date: "March 12, 2026",
     category: "Architecture",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop",
     href: "/blog/scaling-component-libraries",
   },
   {
     title: "Micro-Interactions That Improve Conversion",
-    description: "Small UI moments can build trust and make every interaction feel polished without overwhelming the user.",
+    description:
+      "Small UI moments can build trust and make every interaction feel polished without overwhelming the user.",
     author: "Leo Martinez",
     date: "March 5, 2026",
     category: "Motion",
-    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop",
     href: "/blog/micro-interactions-conversion",
   },
 ];
@@ -76,11 +88,14 @@ export default function Home() {
 
             <h1 className={styles.heroTitle}>
               Engineering the <br />
-              <span className={styles.gradientText}>Future of Code</span>
+              <span className={styles.gradientText}>
+                Future of Code
+              </span>
             </h1>
 
             <p className={styles.heroSubtitle}>
-              Dive into advanced architectures, sleek modern UIs, and the tools that top-tier developers use to build the web of tomorrow.
+              Dive into advanced architectures, sleek modern UIs, and the tools
+              that top-tier developers use to build the web of tomorrow.
             </p>
 
             <div className={styles.heroActions}>
@@ -88,32 +103,10 @@ export default function Home() {
                 Read Articles
                 <ArrowRight size={18} className={styles.arrowIcon} />
               </Link>
+
               <Link href="/about" className={styles.btnGhost}>
                 Learn More
               </Link>
-            </div>
-          </div>
-
-          <div className={styles.heroVisual}>
-            <div className={styles.codeCardWrapper}>
-              <div className={styles.codeCardHeader}>
-                <div className={`${styles.codeDot} ${styles.dotRed}`}></div>
-                <div className={`${styles.codeDot} ${styles.dotYellow}`}></div>
-                <div className={`${styles.codeDot} ${styles.dotGreen}`}></div>
-              </div>
-              <div className={styles.codeContent}>
-                <span className={styles.keyword}>const</span> <span className={styles.method}>buildFuture</span> = <span className={styles.keyword}>async</span> () {`=>`} {`{`}<br />
-                &nbsp;&nbsp;<span className={styles.keyword}>const</span> tech = <span className={styles.keyword}>await</span> <span className={styles.method}>import</span>(<span className={styles.string}>'@/lib/innovation'</span>);<br />
-                &nbsp;&nbsp;<span className={styles.comment}>// Initialize modern stack</span><br />
-                &nbsp;&nbsp;tech.init(&#123;<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;performance: <span className={styles.string}>'blazing-fast'</span>,<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;design: <span className={styles.string}>'pixel-perfect'</span>,<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;experience: <span className={styles.string}>'seamless'</span><br />
-                &nbsp;&nbsp;&#125;);<br />
-                <br />
-                &nbsp;&nbsp;<span className={styles.keyword}>return</span> tech.deploy();<br />
-                {`}`};<br />
-              </div>
             </div>
           </div>
         </div>
@@ -123,13 +116,13 @@ export default function Home() {
       <section className={styles.tickerSection}>
         <div className={styles.tickerTrack}>
           {[...Array(2)].map((_, i) => (
-            <div key={i} style={{ display: 'flex', gap: '4rem' }}>
-              <div className={styles.tickerItem}><span className={styles.tickerStar}>✦</span> React Architecture</div>
-              <div className={styles.tickerItem}><span className={styles.tickerStar}>✦</span> Advanced CSS Pro</div>
-              <div className={styles.tickerItem}><span className={styles.tickerStar}>✦</span> Next.js Mastery</div>
-              <div className={styles.tickerItem}><span className={styles.tickerStar}>✦</span> UI/UX Patterns</div>
-              <div className={styles.tickerItem}><span className={styles.tickerStar}>✦</span> Server Actions</div>
-              <div className={styles.tickerItem}><span className={styles.tickerStar}>✦</span> Animations</div>
+            <div key={i} style={{ display: "flex", gap: "4rem" }}>
+              <div className={styles.tickerItem}>✦ React Architecture</div>
+              <div className={styles.tickerItem}>✦ Advanced CSS Pro</div>
+              <div className={styles.tickerItem}>✦ Next.js Mastery</div>
+              <div className={styles.tickerItem}>✦ UI/UX Patterns</div>
+              <div className={styles.tickerItem}>✦ Server Actions</div>
+              <div className={styles.tickerItem}>✦ Animations</div>
             </div>
           ))}
         </div>
@@ -138,8 +131,12 @@ export default function Home() {
       {/* Blog Section */}
       <section className={styles.blogSection}>
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Latest <span className={styles.gradientText}>Insights</span></h2>
-          <p className={styles.sectionDesc}>Explore thoughtful design and development stories built for modern products.</p>
+          <h2 className={styles.sectionTitle}>
+            Latest <span className={styles.gradientText}>Insights</span>
+          </h2>
+          <p className={styles.sectionDesc}>
+            Explore thoughtful design and development stories built for modern products.
+          </p>
         </div>
 
         <div className={styles.blogGrid}>
@@ -153,16 +150,17 @@ export default function Home() {
                   className={styles.cardImage}
                 />
               </div>
+
               <div className={styles.cardContent}>
                 <div className={styles.cardMeta}>
-                  <div className={styles.metaItem}><span>{post.date}</span></div>
-                  <div className={styles.metaItem}>•</div>
-                  <div className={styles.metaItem}><span>By {post.author}</span></div>
+                  <span>{post.date}</span> • <span>By {post.author}</span>
                 </div>
+
                 <h3 className={styles.cardTitle}>{post.title}</h3>
                 <p className={styles.cardDesc}>{post.description}</p>
+
                 <div className={styles.cardFooter}>
-                  <span className={styles.authorName}>{post.author}</span>
+                  <span>{post.author}</span>
                   <Link href={post.href} className={styles.readMoreBtn}>
                     Read More
                   </Link>
@@ -179,12 +177,15 @@ export default function Home() {
           <div className={styles.newsletterIconWrapper}>
             <TerminalSquare size={32} />
           </div>
+
           <h2 className={styles.newsletterTitle}>
             Join the <span className={styles.gradientText}>Developer List</span>
           </h2>
+
           <p className={styles.newsletterDesc}>
-            Get advanced tutorials, architectural patterns, and UI/UX case studies delivered to your inbox every month. No fluff, just code.
+            Get advanced tutorials, architectural patterns, and UI/UX case studies delivered to your inbox every month.
           </p>
+
           <form className={styles.newsletterForm}>
             <input
               type="email"
