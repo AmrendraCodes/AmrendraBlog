@@ -121,7 +121,7 @@ export default function Home() {
               <div className={styles.tickerItem}>✦ Devops </div>
               <div className={styles.tickerItem}>✦ Digital Marketing</div>
               <div className={styles.tickerItem}>✦ UI/UX Patterns</div>
-              <div className={styles.tickerItem}>✦ Server Actions</div>
+              <div className={styles.tickerItem}>✦ AI Learning</div>
               <div className={styles.tickerItem}>✦ Animations</div>
             </div>
           ))}
