@@ -90,7 +90,7 @@
   align-items: center;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .heroGrid {
     grid-template-columns: minmax(300px, 1.05fr) minmax(320px, 0.95fr);
     gap: 4rem;
