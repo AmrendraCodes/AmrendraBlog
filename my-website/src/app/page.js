@@ -81,6 +81,16 @@ export default function Home() {
       {/* Hero Section */}
       <section className={styles.heroSection}>
         <div className={styles.heroGrid}>
+          <div className={styles.heroVisual}>
+            <div className={styles.heroImageWrapper}>
+              <img
+                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop"
+                alt="Engineering the Future of Code"
+                className={styles.heroImage}
+              />
+            </div>
+          </div>
+
           <div className={styles.heroContent}>
             <div className={styles.heroBadge}>
               <span>Next-Gen Web Design</span>

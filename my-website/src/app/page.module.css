@@ -237,6 +237,35 @@
   animation: fadeIn 1.2s ease-out forwards;
 }
 
+.heroImageWrapper {
+  width: 100%;
+  max-width: 34rem;
+  border-radius: 1.75rem;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(15, 23, 42, 0.08);
+  position: relative;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.heroImageWrapper:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 36px 90px rgba(15, 23, 42, 0.12);
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.heroImageWrapper:hover .heroImage {
+  transform: scale(1.05);
+}
+
 /* Code block card container: subtle contrast, soft border, rounded corners, and shadow */
 .codeCardWrapper {
   position: relative;
