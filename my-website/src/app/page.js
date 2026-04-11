@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, TerminalSquare } from "lucide-react"; // ❌ Sparkles removed (unused)
+import { ArrowRight, TerminalSquare } from "lucide-react";
 import styles from "./page.module.css";
 
 const blogCards = [
@@ -117,9 +117,9 @@ export default function Home() {
         <div className={styles.tickerTrack}>
           {[...Array(2)].map((_, i) => (
             <div key={i} style={{ display: "flex", gap: "4rem" }}>
-              <div className={styles.tickerItem}>✦ React Architecture</div>
-              <div className={styles.tickerItem}>✦ Advanced CSS Pro</div>
-              <div className={styles.tickerItem}>✦ Next.js Mastery</div>
+              <div className={styles.tickerItem}>✦ Mobile Devlopment</div>
+              <div className={styles.tickerItem}>✦ Devops </div>
+              <div className={styles.tickerItem}>✦ Digital Marketing</div>
               <div className={styles.tickerItem}>✦ UI/UX Patterns</div>
               <div className={styles.tickerItem}>✦ Server Actions</div>
               <div className={styles.tickerItem}>✦ Animations</div>
