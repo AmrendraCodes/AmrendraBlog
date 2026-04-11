@@ -51,7 +51,7 @@ const blogCards = [
     title: "Scaling Component Libraries for Teams",
     description:
       "Adopt a systemized approach to reusable components, naming conventions, and documentation for faster product delivery.",
-    author: "Sofia Kim",
+    author: "Amrendra Kumar",
     date: "March 12, 2026",
     category: "Architecture",
     image:
