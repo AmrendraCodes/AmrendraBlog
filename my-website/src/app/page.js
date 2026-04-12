@@ -97,9 +97,9 @@ export default function Home() {
             </div>
 
             <h1 className={styles.heroTitle}>
-              Engineering the <br />
+              Learn, Build & Grow <br />
               <span className={styles.gradientText}>
-                Future of Code
+                as a Developer
               </span>
             </h1>
 
