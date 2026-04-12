@@ -448,7 +448,7 @@
   border: 1px solid rgba(15, 23, 42, 0.08);
   border-radius: 1.5rem;
   overflow: hidden;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
   position: relative;
 }
 
@@ -459,11 +459,24 @@
   }
 }
 
-.featuredCard:hover,
-.standardCard:hover {
-  border-color: rgba(15, 23, 42, 0.12);
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
-  transform: translateY(-5px);
+/* Advanced Modern Grid Hover Interaction */
+@media (hover: hover) and (pointer: fine) {
+  /* 1. When hovering over the grid, fade and scale down all cards slightly */
+  .blogGrid:hover .featuredCard,
+  .blogGrid:hover .standardCard {
+    opacity: 0.5;
+    transform: scale(0.96);
+  }
+
+  /* 2. When hovering over a specific card, bring it to front, make it fully visible and pop it out */
+  .blogGrid .featuredCard:hover,
+  .blogGrid .standardCard:hover {
+    opacity: 1;
+    transform: scale(1.04) translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+    border-color: rgba(15, 23, 42, 0.15);
+    z-index: 10;
+  }
 }
 
 .cardImageWrapper {
@@ -637,7 +650,8 @@
   border: 1px solid rgba(15, 23, 42, 0.08);
   border-radius: 1.5rem;
   overflow: hidden;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 /* Newsletter Section */
