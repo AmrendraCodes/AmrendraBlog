@@ -110,6 +110,12 @@
   animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+@media (min-width: 768px) {
+  .heroContent {
+    order: -1;
+  }
+}
+
 .heroBadge {
   display: inline-flex;
   align-items: center;
@@ -231,7 +237,7 @@
   flex: 1;
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   min-height: 100%;
   animation: fadeIn 1.2s ease-out forwards;
