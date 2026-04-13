@@ -64,34 +64,20 @@
   }
 }
 
-/* Global Sections Base */
-.heroSection,
-.blogSection,
-.newsletterSection {
-  width: 100%;
-  max-width: 80rem;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-
 /* Hero Section */
 .heroSection {
-  padding: clamp(7rem, 15vh, 9rem) 1.5rem 5rem;
+  padding: clamp(5rem, 12vh, 7rem) 1.5rem 4rem;
+  max-width: 80rem;
+  margin: 0 auto;
   min-height: 75vh;
   display: flex;
   align-items: center;
-}
-
-@media (min-width: 768px) {
-  .heroSection {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
+  margin-top: -1.5rem;
 }
 
 @media (min-width: 1024px) {
   .heroSection {
-    padding: clamp(9rem, 18vh, 10rem) 4rem 8rem;
+    padding: clamp(7rem, 18vh, 9rem) 4rem 6rem;
   }
 }
 
@@ -106,15 +92,8 @@
 
 @media (min-width: 768px) {
   .heroGrid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(300px, 1.05fr) minmax(320px, 0.95fr);
     gap: 4rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .heroGrid {
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 5rem;
   }
 }
 
@@ -197,70 +176,54 @@
 }
 
 .heroActions {
-  display: flex;
   flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  .heroActions {
-    flex-direction: row;
-    align-items: center;
-  }
-}
-
-.btnPrimary,
-.btnGhost {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 1rem 2rem;
-  border-radius: 9999px;
-  font-size: 1rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-
-  .btnPrimary,
-  .btnGhost {
-    width: auto;
-  }
+  align-items: stretch;
+  gap: 20px;
 }
 
 .btnPrimary {
-  background: #0f172a;
-  color: #ffffff;
-  border: 1px solid #0f172a;
+  padding: 1rem 2rem;
+  background: white;
+  color: #0f172a;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 2px solid black;
+  border-radius: 30px;
+  cursor: pointer;
 }
 
 .btnPrimary:hover {
-  transform: translateY(-2px);
-  background: #1e293b;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
 }
 
 .btnGhost {
-  background: transparent;
+  padding: 1rem 2rem;
+  background: skyblue;
+  border: 1px solid black;
   color: #0f172a;
-  border: 1px solid rgba(15, 23, 42, 0.15);
+  font-weight: 700;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s;
+  border-radius: 30px;
 }
 
 .btnGhost:hover {
-  background: rgba(15, 23, 42, 0.04);
-  border-color: rgba(15, 23, 42, 0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
+  background: mediumseagreen;
+  border-color: rgba(15, 23, 42, 0.12);
+  transform: translateY(-4px);
 }
 
 .arrowIcon {
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s;
 }
 
 .btnPrimary:hover .arrowIcon {
@@ -281,11 +244,11 @@
 .heroImageWrapper {
   width: 100%;
   max-width: 34rem;
-  border-radius: 1.5rem;
+  border-radius: 1.75rem;
   overflow: hidden;
   box-shadow: 0 32px 80px rgba(15, 23, 42, 0.08);
   position: relative;
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.12);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
@@ -378,7 +341,7 @@
 
 /* Ticker Section */
 .tickerSection {
-  padding: 3rem 0;
+  padding: 2rem 0;
   background: #f8fafc;
   border-top: 1px solid rgba(15, 23, 42, 0.06);
   border-bottom: 1px solid rgba(15, 23, 42, 0.06);
@@ -427,53 +390,31 @@
 
 /* Blog Section */
 .blogSection {
-  padding: 5rem 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .blogSection {
-    padding: 6rem 2rem;
-  }
+  padding: 8rem 1.5rem;
+  max-width: 80rem;
+  margin: 0 auto;
 }
 
 @media (min-width: 1024px) {
   .blogSection {
-    padding: 8rem 4rem;
+    padding: 10rem 4rem;
   }
 }
 
 .sectionHeader {
-  margin-bottom: 3rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-@media (min-width: 768px) {
-  .sectionHeader {
-    margin-bottom: 4rem;
-  }
+  margin-bottom: 4rem;
 }
 
 .sectionTitle {
   font-size: 2.5rem;
-  line-height: 1.2;
   font-weight: 800;
   margin: 0 0 1rem;
-  letter-spacing: -0.02em;
-}
-
-@media (min-width: 768px) {
-  .sectionTitle {
-    font-size: 3rem;
-  }
 }
 
 .sectionDesc {
-  color: #475569;
+  color: #64748b;
   font-size: 1.125rem;
-  line-height: 1.6;
-  max-width: 36rem;
+  max-width: 30rem;
   margin: 0;
 }
 
@@ -579,22 +520,15 @@
 }
 
 .cardContent {
-  padding: 1.5rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  flex: 1;
-}
-
-@media (min-width: 768px) {
-  .cardContent {
-    padding: 2rem;
-  }
 }
 
 @media (min-width: 1024px) {
   .featuredCard .cardContent {
     width: 50%;
-    padding: 3rem;
+    padding: 4rem;
     justify-content: center;
   }
 }
@@ -691,22 +625,21 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.5rem;
+  padding: 0.9rem 1.3rem;
   border-radius: 9999px;
-  border: 1px solid #0f172a;
+  border: 1px solid rgba(15, 23, 42, 0.1);
   background: #0f172a;
   color: #ffffff;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 700;
   text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-sizing: border-box;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .readMoreBtn:hover {
-  background: #1e293b;
+  background: #111827;
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
 }
 
 .standardCard {
@@ -722,28 +655,20 @@
 
 /* Newsletter Section */
 .newsletterSection {
-  padding: 5rem 1.5rem;
-  display: flex;
-  justify-content: center;
-}
-
-@media (min-width: 768px) {
-  .newsletterSection {
-    padding: 6rem 2rem;
-  }
+  padding: 4rem 1.5rem;
+  max-width: 56rem;
+  margin: 0 auto;
 }
 
 @media (min-width: 1024px) {
   .newsletterSection {
-    padding: 8rem 4rem;
+    padding: 6rem 1.5rem;
   }
 }
 
 .newsletterCard {
   position: relative;
-  width: 100%;
-  max-width: 56rem;
-  border-radius: 1.5rem;
+  border-radius: 2rem;
   padding: 1.5rem;
   text-align: center;
   background: #ffffff;
@@ -754,7 +679,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
@@ -823,14 +747,13 @@
 .newsletterInput {
   flex: 1;
   padding: 1rem 1.5rem;
-  border-radius: 9999px;
+  border-radius: 0.75rem;
   background: #f8fafc;
   border: 1px solid rgba(15, 23, 42, 0.08);
   color: #0f172a;
   outline: none;
   font-size: 1rem;
-  transition: all 0.3s ease;
-  box-sizing: border-box;
+  transition: all 0.3s;
 }
 
 .newsletterInput:focus {
@@ -839,25 +762,19 @@
 }
 
 .newsletterSubmit {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 1rem 2rem;
-  border-radius: 9999px;
+  border-radius: 0.75rem;
   background: #0f172a;
   color: #fff;
-  font-size: 1rem;
   font-weight: 700;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-sizing: border-box;
+  transition: all 0.3s;
 }
 
 .newsletterSubmit:hover {
-  background: #1e293b;
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
 }
 
 @keyframes slideUp {
