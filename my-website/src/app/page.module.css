@@ -406,14 +406,14 @@
 
 /* Blog Section */
 .blogSection {
-  padding: 8rem 1.5rem;
+  padding: 35px 15px;
   max-width: 80rem;
   margin: 0 auto;
 }
 
 @media (min-width: 1024px) {
   .blogSection {
-    padding: 10rem 4rem;
+    padding: 4rem 4rem;
   }
 }
 
