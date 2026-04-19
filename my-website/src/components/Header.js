@@ -136,7 +136,7 @@ export default function Header() {
       </div>
 
       {/* Spacer */}
-      <div style={{ height: "100px" }}></div>
+      <div style={{ height: "130px" }}></div>
     </>
   );
 }
