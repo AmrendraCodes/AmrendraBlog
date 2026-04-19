@@ -92,11 +92,14 @@ export default function Home() {
           </div>
 
           <div className={styles.heroContent}>
+<<<<<<< HEAD
             <div className={styles.heroBadge}>
               <span className={styles.badgeLabel}>New</span>
               <span>Next-Gen Web Design</span>
             </div>
 
+=======
+>>>>>>> 79947ebeb8a55f9648b1f49232de9b170cb15a80
             <h1 className={styles.heroTitle}>
               Learn, Build & Grow <br />
               <span className={styles.gradientText}>
