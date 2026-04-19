@@ -116,7 +116,6 @@
   }
 }
 
-<<<<<<< HEAD
 .heroBadge {
   display: inline-flex;
   align-items: center;
@@ -133,8 +132,6 @@
   width: max-content;
   backdrop-filter: blur(8px);
 }
-=======
->>>>>>> 79947ebeb8a55f9648b1f49232de9b170cb15a80
 
 .badgeLabel {
   background: var(--accent-cyan);
