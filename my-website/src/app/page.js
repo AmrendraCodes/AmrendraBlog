@@ -74,9 +74,7 @@ const blogCards = [
 export default function Home() {
   return (
     <main className={styles.main}>
-      <div className={styles.bgGrid} />
-      <div className={styles.glowBlob1} />
-      <div className={styles.glowBlob2} />
+
 
       {/* Hero Section */}
       <section className={styles.heroSection}>
