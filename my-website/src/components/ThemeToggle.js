@@ -26,7 +26,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-200 hover:bg-slate-900/10 dark:hover:bg-white/20 transition-colors duration-300"
+      className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-900/5 dark:bg-white dark:bg-[#020617]/10 text-slate-700 dark:text-slate-200 hover:bg-slate-900/10 dark:hover:bg-white dark:bg-[#020617]/20 transition-colors duration-300"
       aria-label="Toggle Dark Mode"
     >
       {isDark ? <Sun size={18} /> : <Moon size={18} />}

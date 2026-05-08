@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 transition-colors duration-300`}
+        className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} bg-white dark:bg-[#020617] dark:bg-slate-950 text-slate-900 dark:text-white dark:text-slate-50 transition-colors duration-300`}
         suppressHydrationWarning
       >
         <Header />

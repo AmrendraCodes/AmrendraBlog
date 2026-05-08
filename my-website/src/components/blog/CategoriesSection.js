@@ -9,10 +9,10 @@ export default function CategoriesSection() {
   ];
 
   return (
-    <section className="py-20 px-6 lg:px-16 bg-white">
+    <section className="py-20 px-6 lg:px-16 bg-white dark:bg-[#020617]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">Find what clicks with you</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white mb-4">Find what clicks with you</h2>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto">
             Browse by topic. Every category is built for a different kind of curious.
           </p>
@@ -20,10 +20,10 @@ export default function CategoriesSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {categories.map((category, index) => (
-            <div key={index} className="p-8 rounded-2xl border border-slate-100 hover:border-blue-100 hover:bg-slate-50 transition-colors group cursor-pointer">
+            <div key={index} className="p-8 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-blue-100 hover:bg-slate-50 dark:bg-[#0f172a] transition-colors group cursor-pointer">
               <div className="flex justify-between items-start mb-4">
-                <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{category.name}</h3>
-                <span className="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-semibold rounded-full">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">{category.name}</h3>
+                <span className="px-3 py-1 bg-slate-100 text-slate-600 dark:text-slate-300 text-xs font-semibold rounded-full">
                   12 articles
                 </span>
               </div>
@@ -33,7 +33,7 @@ export default function CategoriesSection() {
         </div>
 
         <div className="text-center">
-          <button className="px-8 py-3 bg-white text-slate-900 border border-slate-200 rounded-full font-semibold hover:bg-slate-50 transition-colors">
+          <button className="px-8 py-3 bg-white dark:bg-[#020617] text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 rounded-full font-semibold hover:bg-slate-50 dark:bg-[#0f172a] transition-colors">
             Explore all categories
           </button>
         </div>

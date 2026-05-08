@@ -7,7 +7,7 @@ export default function CTABanner() {
           Use our search to find articles on exactly what you need — or let a category surprise you.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="px-8 py-4 bg-white text-blue-600 rounded-full font-semibold hover:bg-blue-50 transition-colors">
+          <button className="px-8 py-4 bg-white dark:bg-[#020617] text-blue-600 rounded-full font-semibold hover:bg-blue-50 transition-colors">
             Search articles
           </button>
           <button className="px-8 py-4 bg-blue-700 text-white border border-blue-500 rounded-full font-semibold hover:bg-blue-800 transition-colors">
