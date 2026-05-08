@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, TerminalSquare } from "lucide-react";
 import styles from "./page.module.css";
 
@@ -81,9 +82,12 @@ export default function Home() {
         <div className={styles.heroGrid}>
           <div className={styles.heroVisual}>
             <div className={styles.heroImageWrapper}>
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop"
                 alt="Engineering the Future of Code"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className={styles.heroImage}
               />
             </div>
@@ -152,9 +156,11 @@ export default function Home() {
             <article key={index} className={styles.standardCard}>
               <div className={styles.cardImageWrapper}>
                 <span className={styles.cardBadge}>{post.category}</span>
-                <img
+                <Image
                   src={post.image}
                   alt={post.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className={styles.cardImage}
                 />
               </div>
