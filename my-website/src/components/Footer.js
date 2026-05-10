@@ -11,31 +11,31 @@ export default function Footer() {
               <div className="bg-gradient-to-br from-[#00b7ff] to-[#7c3aed] text-white rounded-full flex justify-center items-center w-10 h-10 transition-transform duration-300 shadow-[0_0_15px_rgba(168,85,247,0.5)] group-hover:rotate-12 group-hover:scale-110">
                 <Sparkles size={18} />
               </div>
-              <span className="text-slate-900 dark:text-white tracking-tight text-2xl font-extrabold">
+              <span className="text-slate-900 dark:text-slate-50 tracking-tight text-2xl font-extrabold">
                 Amrendra<span className="bg-gradient-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text">Blog</span>
               </span>
             </Link>
-            <p className="text-slate-500 max-w-xs text-sm leading-relaxed">
+            <p className="text-slate-500 dark:text-slate-400 max-w-xs text-sm leading-relaxed">
               Empowering developers and creators with the latest insights into modern technology and creative design.
             </p>
             <div className="flex items-center gap-4">
-              <Link href="https://x.com/AmrendraCodes" target="_blank" className="text-slate-600 dark:text-slate-300 bg-slate-900/5 border border-slate-900/5 rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-[#00b7ff] hover:text-slate-900 dark:text-white hover:border-[#00b7ff] hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(6,182,212,0.3)]">
+              <Link href="https://x.com/AmrendraCodes" target="_blank" className="text-slate-600 dark:text-slate-300 bg-slate-900/5 border border-slate-900/5 rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(6,182,212,0.3)]">
                 <Twitter size={16} />
               </Link>
-              <Link href="https://github.com/amrendra-dev" target="_blank" className="text-slate-600 dark:text-slate-300 bg-slate-900/5 border border-slate-900/5 rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-[#00b7ff] hover:text-slate-900 dark:text-white hover:border-[#00b7ff] hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(6,182,212,0.3)]">
+              <Link href="https://github.com/amrendra-dev" target="_blank" className="text-slate-600 dark:text-slate-300 bg-slate-900/5 border border-slate-900/5 rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(6,182,212,0.3)]">
                 <Github size={16} />
               </Link>
-              <Link href="https://linkedin.com" target="_blank" className="text-slate-600 dark:text-slate-300 bg-slate-900/5 border border-slate-900/5 rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-[#00b7ff] hover:text-slate-900 dark:text-white hover:border-[#00b7ff] hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(6,182,212,0.3)]">
+              <Link href="https://linkedin.com" target="_blank" className="text-slate-600 dark:text-slate-300 bg-slate-900/5 border border-slate-900/5 rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(6,182,212,0.3)]">
                 <Linkedin size={16} />
               </Link>
-              <Link href="https://instagram.com" target="_blank" className="text-slate-600 dark:text-slate-300 bg-slate-900/5 border border-slate-900/5 rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-[#00b7ff] hover:text-slate-900 dark:text-white hover:border-[#00b7ff] hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(6,182,212,0.3)]">
+              <Link href="https://instagram.com" target="_blank" className="text-slate-600 dark:text-slate-300 bg-slate-900/5 border border-slate-900/5 rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(6,182,212,0.3)]">
                 <Instagram size={16} />
               </Link>
             </div>
           </div>
 
           <div>
-            <h4 className="text-slate-900 dark:text-white mb-6 text-lg font-bold">Quick Links</h4>
+            <h4 className="text-slate-900 dark:text-slate-50 mb-6 text-lg font-bold">Quick Links</h4>
             <ul className="flex flex-col gap-4 m-0 p-0 list-none">
               {[
                 { name: "Home", href: "/" },
@@ -44,7 +44,7 @@ export default function Footer() {
                 { name: "Contact", href: "/contact" }
               ].map((link) => (
                 <li key={link.name} className="flex">
-                  <Link href={link.href} className="text-slate-600 dark:text-slate-300 text-sm font-medium no-underline transition-colors duration-300 hover:text-[#00b7ff]">
+                  <Link href={link.href} className="text-slate-600 dark:text-slate-300 text-sm font-medium no-underline transition-colors duration-300 hover:text-blue-600 dark:hover:text-blue-400">
                     {link.name}
                   </Link>
                 </li>
@@ -53,13 +53,13 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-slate-900 dark:text-white mb-6 text-lg font-bold">Newsletter</h4>
+            <h4 className="text-slate-900 dark:text-slate-50 mb-6 text-lg font-bold">Newsletter</h4>
             <p className="text-slate-500 mb-6 text-sm">Join 5,000+ others and never miss a new post.</p>
             <form className="flex relative">
               <input
                 type="email"
                 placeholder="Your email"
-                className="text-slate-900 dark:text-white bg-slate-50 dark:bg-[#0f172a] border border-slate-200 dark:border-slate-800 rounded-xl outline-none w-full py-3 pr-12 pl-4 text-sm transition-colors duration-300 focus:border-[#00b7ff]"
+                className="text-slate-900 dark:text-slate-50 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl outline-none w-full py-3 pr-12 pl-4 text-sm transition-colors duration-300 focus:border-[#00b7ff]"
               />
               <button 
                 type="submit"
@@ -77,9 +77,9 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} AmrendraBlog. All rights reserved. Built with ❤️ for the community.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="/privacy" className="text-slate-500 text-[13px] font-medium no-underline transition-colors duration-300 hover:text-slate-900 dark:text-white">Privacy</Link>
-            <Link href="/terms" className="text-slate-500 text-[13px] font-medium no-underline transition-colors duration-300 hover:text-slate-900 dark:text-white">Terms</Link>
-            <Link href="/sitemap" className="text-slate-500 text-[13px] font-medium no-underline transition-colors duration-300 hover:text-slate-900 dark:text-white">Sitemap</Link>
+            <Link href="/privacy" className="text-slate-500 text-[13px] font-medium no-underline transition-colors duration-300 hover:text-slate-900 dark:text-slate-50">Privacy</Link>
+            <Link href="/terms" className="text-slate-500 text-[13px] font-medium no-underline transition-colors duration-300 hover:text-slate-900 dark:text-slate-50">Terms</Link>
+            <Link href="/sitemap" className="text-slate-500 text-[13px] font-medium no-underline transition-colors duration-300 hover:text-slate-900 dark:text-slate-50">Sitemap</Link>
           </div>
         </div>
       </div>

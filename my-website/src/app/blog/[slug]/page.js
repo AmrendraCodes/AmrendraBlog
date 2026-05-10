@@ -12,7 +12,7 @@ export default async function PostPage({ params }) {
   }
 
   return (
-    <main className="min-h-screen bg-white dark:bg-[#020617]">
+    <main className="min-h-screen bg-white dark:bg-slate-950">
       {/* Hero Section */}
       <div className="relative h-[60vh] overflow-hidden">
         <img
@@ -20,12 +20,12 @@ export default async function PostPage({ params }) {
           alt={post.title}
           className="absolute inset-0 w-full h-full object-cover opacity-70"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-slate-950 via-white/70 dark:via-slate-950/70 to-transparent" />
 
         <div className="relative h-full max-w-4xl mx-auto px-6 flex flex-col justify-end pb-12">
           <Link
             href="/blog"
-            className="inline-flex items-center text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:text-white mb-8 transition-colors group"
+            className="inline-flex items-center text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:text-slate-50 mb-8 transition-colors group"
           >
             <ArrowLeft size={18} className="mr-2 group-hover:-translate-x-1 transition-transform" />
             Back to Journal
@@ -37,7 +37,7 @@ export default async function PostPage({ params }) {
             </span>
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-950 tracking-tight leading-tight mb-8">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-950 dark:text-slate-50 tracking-tight leading-tight mb-8">
             {post.title}
           </h1>
 
@@ -61,9 +61,9 @@ export default async function PostPage({ params }) {
       {/* Content Section */}
       <article className="max-w-3xl mx-auto px-6 py-16">
         <div className="prose prose-lg prose-slate max-w-none 
-          prose-headings:text-slate-900 dark:text-white prose-headings:font-extrabold prose-headings:tracking-tight
+          prose-headings:text-slate-900 dark:text-slate-50 prose-headings:font-extrabold prose-headings:tracking-tight
           prose-p:text-slate-600 dark:text-slate-300 prose-p:leading-relaxed prose-p:text-lg
-          prose-strong:text-slate-900 dark:text-white prose-a:text-blue-600 hover:prose-a:text-blue-700
+          prose-strong:text-slate-900 dark:text-slate-50 prose-a:text-blue-600 hover:prose-a:text-blue-700
           prose-img:rounded-[2rem] prose-img:shadow-2xl">
           {/* This is a simple placeholder for blog content rendering. In a real app, use react-markdown or similar */}
           <div dangerouslySetInnerHTML={{ __html: post.content.replace(/\n/g, '<br/>') }} />
