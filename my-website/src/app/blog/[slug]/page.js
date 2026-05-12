@@ -1,4 +1,5 @@
 import { getPostBySlug } from "@/lib/posts";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Clock, Calendar, User } from "lucide-react";
 import { notFound } from "next/navigation";

@@ -88,7 +88,7 @@ export default function Home() {
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className={styles.heroImage}
+                className={`${styles.heroImage} object-cover`}
               />
             </div>
           </div>
