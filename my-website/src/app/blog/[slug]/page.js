@@ -16,10 +16,13 @@ export default async function PostPage({ params }) {
     <main className="min-h-screen bg-white dark:bg-slate-950">
       {/* Hero Section */}
       <div className="relative h-[60vh] overflow-hidden">
-        <img
+        <Image
           src={post.image || "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1200"}
           alt={post.title}
-          className="absolute inset-0 w-full h-full object-cover opacity-70"
+          fill
+          priority
+          sizes="100vw"
+          className="absolute inset-0 object-cover opacity-70"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-slate-950 via-white/70 dark:via-slate-950/70 to-transparent" />
 
