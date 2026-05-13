@@ -80,19 +80,6 @@ export default function Home() {
       {/* Hero Section */}
       <section className={styles.heroSection}>
         <div className={styles.heroGrid}>
-          <div className={styles.heroVisual}>
-            <div className={styles.heroImageWrapper}>
-              <Image
-                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop"
-                alt="Engineering the Future of Code"
-                fill
-                priority
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className={`${styles.heroImage} object-cover`}
-              />
-            </div>
-          </div>
-
           <div className={styles.heroContent}>
             <div className={styles.heroBadge}>
               <span className={styles.badgeLabel}>New</span>
@@ -119,6 +106,19 @@ export default function Home() {
               <Link href="/about" className={styles.btnGhost}>
                 Learn More
               </Link>
+            </div>
+          </div>
+
+          <div className={styles.heroVisual}>
+            <div className={styles.heroImageWrapper}>
+              <Image
+                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop"
+                alt="Engineering the Future of Code"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className={`${styles.heroImage} object-cover`}
+              />
             </div>
           </div>
         </div>
