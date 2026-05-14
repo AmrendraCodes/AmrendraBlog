@@ -53,6 +53,24 @@ export default function Footer() {
           </div>
 
           <div>
+            <h4 className="text-slate-900 dark:text-slate-50 mb-6 text-lg font-bold">Categories</h4>
+            <ul className="flex flex-col gap-4 m-0 p-0 list-none">
+              {[
+                { name: "React", href: "/category/react" },
+                { name: "AI Agents", href: "/category/ai-agents" },
+                { name: "SaaS Architecture", href: "/category/saas" },
+                { name: "DevOps", href: "/category/devops" }
+              ].map((link) => (
+                <li key={link.name} className="flex">
+                  <Link href={link.href} className="text-slate-600 dark:text-slate-300 text-sm font-medium no-underline transition-colors duration-300 hover:text-blue-600 dark:hover:text-blue-400">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
             <h4 className="text-slate-900 dark:text-slate-50 mb-6 text-lg font-bold">Newsletter</h4>
             <p className="text-slate-500 mb-6 text-sm">Join 5,000+ others and never miss a new post.</p>
             <form className="flex relative">
@@ -73,10 +91,10 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-slate-900/5 flex flex-col md:flex-row justify-between items-center gap-4 pt-10">
-          <p className="text-slate-500 text-[13px] font-medium">
+          <p className="text-slate-500 text-[13px] font-medium text-center md:text-left">
             &copy; {new Date().getFullYear()} AmrendraBlog. All rights reserved. Built with ❤️ for the community.
           </p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
             <Link href="/privacy" className="text-slate-500 text-[13px] font-medium no-underline transition-colors duration-300 hover:text-slate-900 dark:text-slate-50">Privacy</Link>
             <Link href="/terms" className="text-slate-500 text-[13px] font-medium no-underline transition-colors duration-300 hover:text-slate-900 dark:text-slate-50">Terms</Link>
             <Link href="/sitemap" className="text-slate-500 text-[13px] font-medium no-underline transition-colors duration-300 hover:text-slate-900 dark:text-slate-50">Sitemap</Link>

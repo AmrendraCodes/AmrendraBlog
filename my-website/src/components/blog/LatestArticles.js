@@ -65,7 +65,7 @@ export default function LatestArticles() {
   ];
 
   return (
-    <section className="py-24 px-6 lg:px-16 bg-slate-50 dark:bg-slate-950">
+    <section className="py-16 md:py-24 px-6 lg:px-16 bg-slate-50 dark:bg-slate-950">
       <div className="max-w-7xl mx-auto">
         
         <div className="mb-12">
@@ -123,31 +123,12 @@ export default function LatestArticles() {
           ))}
         </div>
 
-        {/* Pagination Section */}
-        <div className="flex items-center justify-center gap-2 mt-8">
-          <button className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+        {/* Load More Section */}
+        <div className="flex items-center justify-center mt-12">
+          <button className="px-8 py-4 rounded-full border-2 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors inline-flex items-center gap-2">
+            Load More Articles
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M15 18l-6-6 6-6"/>
-            </svg>
-          </button>
-          
-          <button className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white font-semibold shadow-md">
-            1
-          </button>
-          <button className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white font-semibold transition-colors">
-            2
-          </button>
-          <button className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white font-semibold transition-colors">
-            3
-          </button>
-          <span className="text-slate-400 dark:text-slate-500 px-2">...</span>
-          <button className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white font-semibold transition-colors">
-            8
-          </button>
-          
-          <button className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M9 18l6-6-6-6"/>
+              <path d="M6 9l6 6 6-6"/>
             </svg>
           </button>
         </div>
