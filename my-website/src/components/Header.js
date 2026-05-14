@@ -120,14 +120,14 @@ export default function Header() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`text-[1.5rem] font-extrabold no-underline transition-colors duration-300 leading-tight py-2.5 px-5 rounded-full w-fit ${isActive ? "text-[#00b7ff] bg-[#00b7ff]/15" : "text-slate-900 dark:text-slate-50 hover:text-[#00b7ff] dark:hover:text-[#00b7ff] hover:bg-[#00b7ff]/10 dark:hover:bg-[#00b7ff]/10"}`}
+                className={`text-[1.5rem] font-extrabold no-underline transition-colors duration-300 leading-tight py-3.5 px-6 rounded-2xl block w-full ${isActive ? "text-[#00b7ff] bg-[#00b7ff]/15" : "text-slate-900 dark:text-slate-50 hover:text-[#00b7ff] dark:hover:text-[#00b7ff] hover:bg-[#00b7ff]/10 dark:hover:bg-[#00b7ff]/10"}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.name}
               </Link>
             );
           })}
-          <button className="inline-flex items-center justify-center bg-gradient-to-br from-[#00b7ff] to-[#7c3aed] text-white font-bold text-[1.1rem] py-3 px-8 rounded-full border-none cursor-pointer mt-4 w-fit transition-opacity duration-300 hover:opacity-90" onClick={() => setIsMenuOpen(false)}>
+          <button className="inline-flex items-center justify-center bg-gradient-to-br from-[#00b7ff] to-[#7c3aed] text-white font-bold text-[1.1rem] py-4 px-8 rounded-full border-none cursor-pointer mt-auto mb-8 w-full transition-opacity duration-300 hover:opacity-90 shadow-lg shadow-purple-500/20" onClick={() => setIsMenuOpen(false)}>
             Subscribe
           </button>
         </nav>

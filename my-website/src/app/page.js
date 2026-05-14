@@ -79,6 +79,10 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className={styles.heroSection}>
+        {/* Animated Background Blur Glows */}
+        <div className={styles.glowBlob1} />
+        <div className={styles.glowBlob2} />
+
         <div className={styles.heroGrid}>
           <div className={styles.heroContent}>
             <div className={styles.heroBadge}>
@@ -86,9 +90,9 @@ export default function Home() {
               <span>Next-Gen Web Design</span>
             </div>
             <h1 className={styles.heroTitle}>
-              Learn, Build & Grow <br />
+              Build, Learn & Grow <br />
               <span className={styles.gradientText}>
-                as a Developer
+                as a Modern Developer
               </span>
             </h1>
 
@@ -100,7 +104,7 @@ export default function Home() {
             <div className={styles.heroActions}>
               <Link href="/blog" className={styles.btnPrimary}>
                 Read Articles
-                <ArrowRight size={18} className={styles.arrowIcon} />
+                <ArrowRight size={20} className={styles.arrowIcon} />
               </Link>
 
               <Link href="/about" className={styles.btnGhost}>
@@ -140,56 +144,54 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Blog Section */}
-      <section className={styles.blogSection}>
-        <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>
-            Latest <span className={styles.gradientText}>Insights</span>
-          </h2>
-          <p className={styles.sectionDesc}>
-            Explore thoughtful design and development stories built for modern products.
-          </p>
+      {/* Trending Articles Horizontal Slider Section */}
+      <section className={styles.sliderSection}>
+        <div className={styles.sliderHeaderWrapper}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              Trending <span className={styles.gradientText}>Topics</span>
+            </h2>
+            <p className={styles.sectionDesc}>
+              Discover what developers are reading right now. Swipe to explore more.
+            </p>
+          </div>
         </div>
 
-        <div className={styles.blogGrid}>
-          {blogCards.map((post, index) => (
-            <article key={index} className={styles.standardCard}>
-              <div className={styles.cardImageWrapper}>
-                <span className={styles.cardBadge}>{post.category}</span>
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className={styles.cardImage}
-                />
-              </div>
-
-              <div className={styles.cardContent}>
-                <div className={styles.cardMeta}>
-                  <span>{post.date}</span> • <span>By {post.author}</span>
+        <div className={styles.sliderContainer}>
+          <div className={styles.sliderTrack}>
+            {blogCards.map((post, index) => (
+              <article key={index} className={styles.compactCard}>
+                <div className={styles.compactImageWrapper}>
+                  <span className={styles.compactBadge}>{post.category}</span>
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 768px) 80vw, 30vw"
+                    className={styles.compactImage}
+                  />
                 </div>
-
-                <h3 className={styles.cardTitle}>{post.title}</h3>
-                <p className={styles.cardDesc}>{post.description}</p>
-
-                <div className={styles.cardFooter}>
-                  <span>{post.author}</span>
-                  <Link href={post.href} className={styles.readMoreBtn}>
-                    Read More
-                  </Link>
+                <div className={styles.compactContent}>
+                  <h3 className={styles.compactTitle}>{post.title}</h3>
+                  <div className={styles.compactFooter}>
+                    <span className={styles.compactAuthor}>{post.author}</span>
+                    <Link href={post.href} className={styles.compactLink}>
+                      <ArrowRight size={16} />
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Newsletter Section */}
       <section className={styles.newsletterSection}>
-        <div className={styles.newsletterCard}>
+        <div className={styles.newsletterGlassCard}>
+          <div className={styles.newsletterGlassBorder} />
           <div className={styles.newsletterIconWrapper}>
-            <TerminalSquare size={32} />
+            <TerminalSquare size={36} />
           </div>
 
           <h2 className={styles.newsletterTitle}>
@@ -197,7 +199,7 @@ export default function Home() {
           </h2>
 
           <p className={styles.newsletterDesc}>
-            Get advanced tutorials, architectural patterns, and UI/UX case studies delivered to your inbox every month.
+            Get advanced tutorials, architectural patterns, and UI/UX case studies delivered to your inbox. No spam, just pure signal.
           </p>
 
           <form className={styles.newsletterForm}>

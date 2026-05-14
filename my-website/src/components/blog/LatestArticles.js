@@ -65,37 +65,38 @@ export default function LatestArticles() {
   ];
 
   return (
-    <section className="py-16 px-6 lg:px-16 bg-slate-50 dark:bg-slate-950">
+    <section className="py-24 px-6 lg:px-16 bg-slate-50 dark:bg-slate-950">
       <div className="max-w-7xl mx-auto">
         
         <div className="mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-slate-50 mb-4">Latest Articles</h2>
+          <h2 className="text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-slate-50 mb-4 tracking-tight">Latest Articles</h2>
           <p className="text-lg text-slate-500 dark:text-slate-400">
             Dive into our newest thoughts, tutorials, and insights.
           </p>
         </div>
 
         {/* Blog Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {articles.map((article, index) => (
-            <article key={index} className="group bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 overflow-hidden transition-all duration-300 flex flex-col">
+            <article key={index} className={`group bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-2xl hover:-translate-y-2 overflow-hidden transition-all duration-500 flex flex-col ${index === 0 ? 'sm:col-span-2 lg:col-span-2 sm:flex-row' : ''}`}>
               {/* Card Image */}
-              <div className="relative aspect-[16/10] overflow-hidden">
+              <div className={`relative overflow-hidden ${index === 0 ? 'sm:w-1/2 aspect-[4/3] sm:aspect-auto' : 'aspect-[16/10]'}`}>
                 <div className="absolute top-4 left-4 z-10">
-                  <span className="inline-block px-3 py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm text-slate-900 dark:text-white text-xs font-bold rounded-full shadow-sm">
+                  <span className="inline-block px-3 py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-slate-900 dark:text-white text-xs font-bold rounded-full shadow-sm">
                     {article.category}
                   </span>
                 </div>
+                <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/10 transition-colors z-10" />
                 <img 
                   src={article.image} 
                   alt={article.title} 
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out"
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
               </div>
 
               {/* Card Content */}
-              <div className="p-6 md:p-8 flex flex-col flex-grow">
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
+              <div className={`p-6 md:p-8 flex flex-col flex-grow ${index === 0 ? 'sm:w-1/2 justify-center' : ''}`}>
+                <h3 className={`font-extrabold text-slate-900 dark:text-white mb-3 line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug ${index === 0 ? 'text-2xl sm:text-3xl lg:text-4xl' : 'text-xl'}`}>
                   {article.title}
                 </h3>
                 <p className="text-slate-500 dark:text-slate-400 mb-6 line-clamp-2 text-sm leading-relaxed flex-grow">
