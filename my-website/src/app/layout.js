@@ -34,6 +34,9 @@ const dmSans = DM_Sans({
 export const metadata = {
   title: "AmrendraBlog",
   description: "A personal blog built with Next.js and Tailwind CSS",
+  verification: {
+    google: "3v-o-lc_-Ym9wck1txXt3ZODb6whlC089kLg_fBK578",
+  },
 };
 
 export default function RootLayout({ children }) {
