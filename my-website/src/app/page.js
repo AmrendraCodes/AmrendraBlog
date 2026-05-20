@@ -71,7 +71,7 @@ export default function Home() {
               <span>Software Engineer & Cloud Architect</span>
             </div>
             <h1 className={styles.heroTitle}>
-              Building Modern <span className={styles.gradientText}>Web Experiences</span>, AI Systems & Scalable Cloud Infrastructure
+              Developer Notes on Frontend, SaaS & Growth
             </h1>
 
             <p className={styles.heroSubtitle}>

@@ -24,7 +24,7 @@ export default function Header() {
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       setIsScrolled(currentScrollY > 20);
 
       // Handle visibility based on scroll direction
@@ -62,7 +62,7 @@ export default function Header() {
                 <img src="/icon.svg" alt="Logo" className="w-[1.1rem] max-w-full h-auto" />
               </div>
               <span className="text-slate-900 dark:text-slate-50 tracking-tight text-[22px] md:text-[24px] lg:text-[28px] font-extrabold">
-                Amrendra<span className="bg-linear-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text">Blog</span>
+                CWA<span className="bg-linear-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text"></span>
               </span>
             </Link>
           </div>
