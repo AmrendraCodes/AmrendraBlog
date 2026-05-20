@@ -24,12 +24,12 @@ export default async function PostPage({ params }) {
           sizes="100vw"
           className="absolute inset-0 object-cover opacity-70"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-slate-950 via-white/70 dark:via-slate-950/70 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-white dark:from-slate-950 via-white/70 dark:via-slate-950/70 to-transparent" />
 
         <div className="relative h-full max-w-4xl mx-auto px-6 flex flex-col justify-end pb-12">
           <Link
             href="/blog"
-            className="inline-flex items-center text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:text-slate-50 mb-8 transition-colors group"
+            className="inline-flex items-center text-slate-700 hover:text-slate-900 dark:text-slate-50 mb-8 transition-colors group"
           >
             <ArrowLeft size={18} className="mr-2 group-hover:-translate-x-1 transition-transform" />
             Back to Journal
@@ -68,7 +68,7 @@ export default async function PostPage({ params }) {
           prose-headings:text-slate-900 dark:text-slate-50 prose-headings:font-extrabold prose-headings:tracking-tight
           prose-p:text-slate-600 dark:text-slate-300 prose-p:leading-relaxed prose-p:text-lg
           prose-strong:text-slate-900 dark:text-slate-50 prose-a:text-blue-600 hover:prose-a:text-blue-700
-          prose-img:rounded-[2rem] prose-img:shadow-2xl">
+          prose-img:rounded-4xl prose-img:shadow-2xl">
           {/* This is a simple placeholder for blog content rendering. In a real app, use react-markdown or similar */}
           <div dangerouslySetInnerHTML={{ __html: post.content.replace(/\n/g, '<br/>') }} />
         </div>

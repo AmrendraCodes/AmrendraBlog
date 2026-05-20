@@ -4,7 +4,7 @@ export default function HeroSection() {
   return (
     <section className="relative py-24 px-6 lg:px-16 overflow-hidden bg-white dark:bg-slate-950 flex flex-col items-center justify-center text-center min-h-[50vh] md:min-h-[60vh]">
       {/* Decorative Gradients */}
-      <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-br from-blue-600/30 to-violet-600/30 blur-[120px] rounded-full pointer-events-none animate-pulse-slow" />
+      <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-linear-to-br from-blue-600/30 to-violet-600/30 blur-[120px] rounded-full pointer-events-none animate-pulse-slow" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-gradient-to-tl from-cyan-500/20 to-transparent blur-[100px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center animate-fade-in-up mt-12 md:mt-0">
@@ -20,7 +20,7 @@ export default function HeroSection() {
         {/* Heading */}
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 dark:text-white leading-[1.1] mb-8 tracking-tight">
           Insights, Ideas & <br className="hidden md:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600 dark:from-blue-400 dark:to-violet-400">Industry Trends</span>
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-violet-600 dark:from-blue-400 dark:to-violet-400">Industry Trends</span>
         </h1>
 
         {/* Description */}

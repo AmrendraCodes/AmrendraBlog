@@ -79,7 +79,7 @@ export default function ContactPage() {
                 ))}
               </div>
 
-              <div className="p-8 rounded-[2rem] bg-blue-50 border border-blue-100 text-slate-900 dark:text-slate-50 relative overflow-hidden shadow-sm">
+              <div className="p-8 rounded-4xl bg-blue-50 border border-blue-100 text-slate-900 dark:text-slate-50 relative overflow-hidden shadow-sm">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/5 rounded-full blur-3xl"></div>
                 <h3 className="text-xl font-bold mb-4 relative z-10 text-slate-900 dark:text-slate-50">Current Response Time</h3>
                 <p className="text-slate-600 dark:text-slate-300 relative z-10 leading-relaxed font-medium">
@@ -90,7 +90,7 @@ export default function ContactPage() {
             </div>
 
             {/* Right Side: Contact Form - Refined & Centered Layout */}
-            <div className="w-full max-w-[600px] mx-auto lg:mx-0">
+            <div className="w-full max-w-150 mx-auto lg:mx-0">
               <div className="bg-white dark:bg-slate-950 p-6 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-lg">
                 <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-slate-50 mb-8">Send a Message</h2>
 
@@ -147,7 +147,7 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={handleChange}
                       placeholder="Tell me about your project..."
-                      className="w-full px-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all text-slate-900 dark:text-slate-50 font-medium placeholder:text-slate-400 min-h-[160px] resize-none"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all text-slate-900 dark:text-slate-50 font-medium placeholder:text-slate-400 min-h-40 resize-none"
                     ></textarea>
                   </div>
 

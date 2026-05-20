@@ -80,7 +80,7 @@ export default function LatestArticles() {
           {articles.map((article, index) => (
             <article key={index} className={`group bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-2xl hover:-translate-y-2 overflow-hidden transition-all duration-500 flex flex-col ${index === 0 ? 'sm:col-span-2 lg:col-span-2 sm:flex-row' : ''}`}>
               {/* Card Image */}
-              <div className={`relative overflow-hidden ${index === 0 ? 'sm:w-1/2 aspect-[4/3] sm:aspect-auto' : 'aspect-[16/10]'}`}>
+              <div className={`relative overflow-hidden ${index === 0 ? 'sm:w-1/2 aspect-4/3 sm:aspect-auto' : 'aspect-16/10'}`}>
                 <div className="absolute top-4 left-4 z-10">
                   <span className="inline-block px-3 py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-slate-900 dark:text-white text-xs font-bold rounded-full shadow-sm">
                     {article.category}
@@ -95,11 +95,11 @@ export default function LatestArticles() {
               </div>
 
               {/* Card Content */}
-              <div className={`p-6 md:p-8 flex flex-col flex-grow ${index === 0 ? 'sm:w-1/2 justify-center' : ''}`}>
+              <div className={`p-6 md:p-8 flex flex-col grow ${index === 0 ? 'sm:w-1/2 justify-center' : ''}`}>
                 <h3 className={`font-extrabold text-slate-900 dark:text-white mb-3 line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug ${index === 0 ? 'text-2xl sm:text-3xl lg:text-4xl' : 'text-xl'}`}>
                   {article.title}
                 </h3>
-                <p className="text-slate-500 dark:text-slate-400 mb-6 line-clamp-2 text-sm leading-relaxed flex-grow">
+                <p className="text-slate-500 dark:text-slate-400 mb-6 line-clamp-2 text-sm leading-relaxed grow">
                   {article.description}
                 </p>
 

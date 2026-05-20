@@ -4,15 +4,15 @@ import { Github, Twitter, Linkedin, Instagram, Sparkles, Send } from "lucide-rea
 export default function Footer() {
   return (
     <footer className="border-t border-slate-900/5 relative z-10 bg-transparent pt-20 pb-10">
-      <div className="max-w-[80rem] mx-auto px-6 lg:px-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-3 no-underline group">
-              <div className="bg-gradient-to-br from-[#00b7ff] to-[#7c3aed] text-white rounded-full flex justify-center items-center w-10 h-10 transition-transform duration-300 shadow-[0_0_15px_rgba(168,85,247,0.5)] group-hover:rotate-12 group-hover:scale-110">
+              <div className="bg-linear-to-br from-[#00b7ff] to-[#7c3aed] text-white rounded-full flex justify-center items-center w-10 h-10 transition-transform duration-300 shadow-[0_0_15px_rgba(168,85,247,0.5)] group-hover:rotate-12 group-hover:scale-110">
                 <Sparkles size={18} />
               </div>
               <span className="text-slate-900 dark:text-slate-50 tracking-tight text-2xl font-extrabold">
-                Amrendra<span className="bg-gradient-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text">Blog</span>
+                Amrendra<span className="bg-linear-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text">Blog</span>
               </span>
             </Link>
             <p className="text-slate-500 dark:text-slate-400 max-w-xs text-sm leading-relaxed">
@@ -81,7 +81,7 @@ export default function Footer() {
               />
               <button 
                 type="submit"
-                className="bg-gradient-to-br from-[#00b7ff] to-[#7c3aed] text-white cursor-pointer border-none rounded-lg flex justify-center items-center w-8 h-8 transition-all duration-300 absolute top-1/2 right-2 -translate-y-1/2 hover:opacity-90 hover:scale-105"
+                className="bg-linear-to-br from-[#00b7ff] to-[#7c3aed] text-white cursor-pointer border-none rounded-lg flex justify-center items-center w-8 h-8 transition-all duration-300 absolute top-1/2 right-2 -translate-y-1/2 hover:opacity-90 hover:scale-105"
                 aria-label="Subscribe"
               >
                 <Send size={14} />

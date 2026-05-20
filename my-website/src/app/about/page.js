@@ -171,7 +171,7 @@ export default function AboutPage() {
 
       {/* Goal & CTA Section */}
       <section className="py-12 px-4 sm:px-6 max-w-6xl mx-auto mb-10">
-        <div className="bg-blue-50 border border-blue-100 rounded-[2rem] sm:rounded-[3rem] p-8 sm:p-12 md:p-20 text-center relative overflow-hidden shadow-sm">
+        <div className="bg-blue-50 border border-blue-100 rounded-4xl sm:rounded-[3rem] p-8 sm:p-12 md:p-20 text-center relative overflow-hidden shadow-sm">
           {/* Subtle background glow */}
           <div className="absolute -top-24 -left-24 w-64 md:w-96 h-64 md:h-96 bg-blue-600/5 rounded-full blur-[60px] md:blur-[100px]"></div>
           <div className="absolute -bottom-24 -right-24 w-64 md:w-96 h-64 md:h-96 bg-indigo-600/5 rounded-full blur-[60px] md:blur-[100px]"></div>

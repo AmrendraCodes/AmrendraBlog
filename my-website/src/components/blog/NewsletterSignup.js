@@ -47,7 +47,7 @@ export default function NewsletterSignup() {
                 if (status !== 'idle') setStatus('idle');
               }}
               placeholder="Your email address"
-              className="flex-grow px-5 py-3 rounded-full bg-slate-800 border border-slate-700 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="grow px-5 py-3 rounded-full bg-slate-800 border border-slate-700 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
             <button
