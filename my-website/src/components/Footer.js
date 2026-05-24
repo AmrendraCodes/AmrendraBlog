@@ -3,9 +3,9 @@ import { Github, Twitter, Linkedin, Instagram, Sparkles, Send } from "lucide-rea
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-900/5 relative z-10 bg-transparent pt-20 pb-10">
+    <footer className="border-t border-slate-900/5 relative z-10 bg-transparent pt-12 pb-8">
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
           <div className="flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-3 no-underline group">
               <div className="bg-linear-to-br from-[#00b7ff] to-[#7c3aed] text-white rounded-full flex justify-center items-center w-10 h-10 transition-transform duration-300 shadow-[0_0_15px_rgba(168,85,247,0.5)] group-hover:rotate-12 group-hover:scale-110">

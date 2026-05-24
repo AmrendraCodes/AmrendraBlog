@@ -66,7 +66,7 @@
 
 /* Hero Section */
 .heroSection {
-  padding: clamp(2rem, 5vh, 4rem) 1.5rem 3rem;
+  padding: clamp(2rem, 5vh, 3rem) 1.5rem 2rem;
   max-width: 80rem;
   margin: 0 auto;
   min-height: auto;
@@ -76,7 +76,7 @@
 
 @media (min-width: 1024px) {
   .heroSection {
-    padding: clamp(3rem, 8vh, 6rem) 4rem 5rem;
+    padding: clamp(2rem, 6vh, 4rem) 4rem 3rem;
     min-height: calc(100vh - 6rem);
   }
 }
@@ -425,7 +425,7 @@
 
 /* Ticker Section */
 .tickerSection {
-  padding: 2rem 0;
+  padding: 1.25rem 0;
   border-top: 1px solid rgba(15, 23, 42, 0.06);
   border-bottom: 1px solid rgba(15, 23, 42, 0.06);
   overflow: hidden;
@@ -485,7 +485,7 @@
 }
 
 .sectionHeader {
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
 }
 
 .sectionTitle {
@@ -522,7 +522,7 @@
 
 /* Trending Articles Grid Section */
 .trendingSection {
-  padding: 4rem 0;
+  padding: 3rem 0;
   width: 100%;
 }
 
@@ -550,7 +550,7 @@
 
 @media (min-width: 1024px) {
   .trendingSection {
-    padding: 6rem 0;
+    padding: 4rem 0;
   }
   .trendingHeaderWrapper {
     padding: 0 4rem;
@@ -680,14 +680,14 @@
 
 /* Newsletter Section */
 .newsletterSection {
-  padding: 4rem 1.5rem;
+  padding: 2.5rem 1.5rem;
   max-width: 64rem;
   margin: 0 auto;
 }
 
 @media (min-width: 1024px) {
   .newsletterSection {
-    padding: 6rem 1.5rem;
+    padding: 3.5rem 1.5rem;
   }
 }
 
@@ -730,7 +730,7 @@
 
 @media (min-width: 768px) {
   .newsletterGlassCard {
-    padding: 4rem 3rem;
+    padding: 3rem 3rem;
   }
 }
 
@@ -744,7 +744,7 @@
   align-items: center;
   justify-content: center;
   color: var(--accent-cyan);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   transform: rotate(-10deg);
   box-shadow: 0 10px 30px rgba(6, 182, 212, 0.16);
 }
@@ -837,13 +837,13 @@
 
 /* About Blogger Section */
 .aboutSection {
-  padding: 4rem 1rem;
+  padding: 3rem 1rem;
   background: var(--background);
 }
 
 @media (min-width: 768px) {
   .aboutSection {
-    padding: 6rem 1.5rem;
+    padding: 4rem 1.5rem;
   }
 }
 
@@ -853,7 +853,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
+  gap: 2rem;
   text-align: center;
 }
 
@@ -943,7 +943,7 @@
 
 /* Testimonials Section */
 .testimonialsSection {
-  padding: 4rem 1rem;
+  padding: 3rem 1rem;
   background: var(--card-bg);
   border-top: 1px solid rgba(15, 23, 42, 0.05);
   border-bottom: 1px solid rgba(15, 23, 42, 0.05);
@@ -951,7 +951,7 @@
 
 @media (min-width: 768px) {
   .testimonialsSection {
-    padding: 6rem 1.5rem;
+    padding: 4rem 1.5rem;
   }
 }
 
@@ -1007,13 +1007,13 @@
 
 /* Social Section */
 .socialSection {
-  padding: 4rem 1rem;
+  padding: 3rem 1rem;
   background: var(--background);
 }
 
 @media (min-width: 768px) {
   .socialSection {
-    padding: 6rem 1.5rem;
+    padding: 4rem 1.5rem;
   }
 }
 
@@ -1023,7 +1023,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
+  gap: 2rem;
 }
 
 .socialGrid {

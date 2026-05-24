@@ -65,10 +65,10 @@ export default function LatestArticles() {
   ];
 
   return (
-    <section className="py-16 md:py-24 px-6 lg:px-16 bg-slate-50 dark:bg-slate-950">
+    <section className="py-12 md:py-16 px-6 lg:px-16 bg-slate-50 dark:bg-slate-950">
       <div className="max-w-7xl mx-auto">
         
-        <div className="mb-12">
+        <div className="mb-8">
           <h2 className="text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-slate-50 mb-4 tracking-tight">Latest Articles</h2>
           <p className="text-lg text-slate-500 dark:text-slate-400">
             Dive into our newest thoughts, tutorials, and insights.

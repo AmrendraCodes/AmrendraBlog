@@ -58,16 +58,16 @@ export default function CategoriesSection() {
   const getCount = (slug) => posts.filter(p => p.categorySlug === slug).length;
 
   return (
-    <section className="py-16 md:py-24 px-6 lg:px-16 bg-white dark:bg-slate-950">
+    <section className="py-12 md:py-16 px-6 lg:px-16 bg-white dark:bg-slate-950">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h2 className="text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-slate-50 mb-4 tracking-tight">Browse Categories</h2>
           <p className="text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
             Find exactly what you&apos;re looking for. From deep engineering dives to high-level strategy.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {categories.map((category, index) => {
             const count = getCount(category.slug);
             return (
