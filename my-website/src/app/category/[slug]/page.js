@@ -9,6 +9,9 @@ export async function generateMetadata({ params }) {
   return {
     title: `${formattedName} Articles | AmrendraBlog`,
     description: `Browse all articles about ${formattedName} on AmrendraBlog.`,
+    alternates: {
+      canonical: `/category/${slug}`,
+    },
   };
 }
 

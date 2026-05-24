@@ -1,6 +1,9 @@
 export const metadata = {
   title: "Terms of Service",
   description: "Terms of service for AmrendraBlog — the rules and guidelines for using our site.",
+  alternates: {
+    canonical: '/terms',
+  },
 };
 
 export default function TermsPage() {

@@ -38,6 +38,24 @@ export const metadata = {
     template: "%s | AmrendraBlog"
   },
   description: "A personal blog by Amrendra — insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.",
+  keywords: ["React", "Next.js", "AI Agents", "SaaS Architecture", "AWS", "DevOps", "Frontend Development", "Web Development", "JavaScript", "Blog"],
+  authors: [{ name: "Amrendra Kumar", url: "https://amrendra-blog.vercel.app" }],
+  creator: "Amrendra Kumar",
+  publisher: "AmrendraBlog",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',

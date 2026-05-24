@@ -6,6 +6,9 @@ import LatestArticles from "@/components/blog/LatestArticles";
 export const metadata = {
   title: "Blog | AmrendraBlog",
   description: "Read the latest stories and insights from AmrendraBlog.",
+  alternates: {
+    canonical: '/blog',
+  },
 };
 
 export default function BlogPage() {
