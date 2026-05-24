@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, Calendar, User, Clock } from "lucide-react";
 
 export default function BlogCard({ post }) {
@@ -6,9 +7,11 @@ export default function BlogCard({ post }) {
     <article className="group bg-white dark:bg-slate-950 rounded-3xl overflow-hidden border border-slate-100 dark:border-slate-800 hover:border-blue-100 hover:shadow-[0_20px_50px_rgba(8,112,184,0.07)] transition-all duration-500">
       {/* Thumbnail */}
       <div className="relative h-64 overflow-hidden">
-        <img
+        <Image
           src={post.image || `https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=800&auto=format&fit=crop`}
           alt={post.title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
         <div className="absolute top-4 left-4">

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function LatestArticles() {
   const articles = [
@@ -87,9 +88,11 @@ export default function LatestArticles() {
                   </span>
                 </div>
                 <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/10 transition-colors z-10" />
-                <img 
+                <Image 
                   src={article.image} 
-                  alt={article.title} 
+                  alt={article.title}
+                  fill
+                  sizes={index === 0 ? '(max-width: 768px) 100vw, 50vw' : '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'}
                   className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
               </div>
@@ -105,7 +108,7 @@ export default function LatestArticles() {
 
                 <div className="mt-auto pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <img src={article.authorImage} alt={article.author} className="w-8 h-8 rounded-full bg-slate-200 object-cover" />
+                    <Image src={article.authorImage} alt={article.author} width={32} height={32} className="w-8 h-8 rounded-full bg-slate-200 object-cover" />
                     <div className="flex flex-col">
                       <span className="text-xs font-bold text-slate-900 dark:text-white">{article.author}</span>
                       <span className="text-[10px] text-slate-500 dark:text-slate-400">{article.date}</span>

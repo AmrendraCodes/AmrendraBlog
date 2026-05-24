@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, Sparkles } from "lucide-react";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
@@ -59,7 +60,7 @@ export default function Header() {
           <div className="flex items-center justify-start">
             <Link href="/" className="flex items-center gap-3 no-underline shrink-0 group">
               <div className="bg-linear-to-br from-[#00b7ff] to-[#7c3aed] text-white rounded-full flex justify-center items-center w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 transition-transform duration-300 shadow-[0_0_15px_rgba(168,85,247,0.5)] shrink-0 group-hover:rotate-12 group-hover:scale-110">
-                <img src="/icon.svg" alt="Logo" className="w-[1.1rem] max-w-full h-auto" />
+                <Image src="/icon.svg" alt="Logo" width={18} height={18} className="w-[1.1rem] max-w-full h-auto" priority />
               </div>
               <span className="text-slate-900 dark:text-slate-50 tracking-tight text-[22px] md:text-[24px] lg:text-[28px] font-extrabold">
                 Amrendra<span className="bg-linear-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text">Blog</span>

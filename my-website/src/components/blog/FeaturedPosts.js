@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function FeaturedPosts() {
   const featuredPost = {
@@ -27,10 +28,12 @@ export default function FeaturedPosts() {
             {/* Image Wrapper */}
             <div className="w-full lg:w-[45%] relative h-[250px] sm:h-[300px] lg:h-auto overflow-hidden shrink-0">
               <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors z-10" />
-              <img 
+              <Image 
                 src={featuredPost.image} 
                 alt={featuredPost.title}
-                className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                fill
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
               />
             </div>
 
@@ -52,7 +55,7 @@ export default function FeaturedPosts() {
               
               <div className="flex items-center justify-between mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
                 <div className="flex items-center gap-4">
-                  <img src={featuredPost.authorImage} alt={featuredPost.author} className="w-12 h-12 rounded-full ring-2 ring-slate-100 dark:ring-slate-800 object-cover" />
+                  <Image src={featuredPost.authorImage} alt={featuredPost.author} width={48} height={48} className="w-12 h-12 rounded-full ring-2 ring-slate-100 dark:ring-slate-800 object-cover" />
                   <div>
                     <p className="text-sm font-bold text-slate-900 dark:text-white leading-tight">{featuredPost.author}</p>
                     <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">{featuredPost.date} · {featuredPost.readTime}</p>

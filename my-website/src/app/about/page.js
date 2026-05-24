@@ -52,10 +52,10 @@ export default function AboutPage() {
         </h2>
         <div className="space-y-6 md:space-y-8 text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
           <p>
-            I've spent <strong>2.5+ years</strong> turning complex tech into clear, human-friendly content. But writing about software wasn't enough — I wanted to build it. So I did.
+            I&apos;ve spent <strong>2.5+ years</strong> turning complex tech into clear, human-friendly content. But writing about software wasn&apos;t enough — I wanted to build it. So I did.
           </p>
           <p>
-            Now I'm combining my writing background with <em className="text-slate-900 dark:text-slate-50 font-semibold not-italic">React and Next.js</em> to create things that are fast, intuitive, and actually make sense to real people.
+            Now I&apos;m combining my writing background with <em className="text-slate-900 dark:text-slate-50 font-semibold not-italic">React and Next.js</em> to create things that are fast, intuitive, and actually make sense to real people.
           </p>
         </div>
       </section>
@@ -135,7 +135,7 @@ export default function AboutPage() {
               <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center font-black text-lg md:text-xl mb-6">02</div>
               <h3 className="font-bold text-lg md:text-xl mb-3 md:mb-4 text-slate-900 dark:text-slate-50">Live Portfolio</h3>
               <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
-                This site is my sandbox. Every feature here is a product of what I'm currently learning and experimenting with in real-time.
+                This site is my sandbox. Every feature here is a product of what I&apos;m currently learning and experimenting with in real-time.
               </p>
             </div>
             <div className="bg-white dark:bg-slate-950 p-8 md:p-10 rounded-3xl md:rounded-[2.5rem] shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 sm:col-span-2 lg:col-span-1">

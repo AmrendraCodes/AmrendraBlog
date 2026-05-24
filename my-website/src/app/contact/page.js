@@ -34,10 +34,10 @@ export default function ContactPage() {
           Get in touch
         </div>
         <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-6 md:mb-8 leading-[1.1]">
-          Let's <span className="text-blue-600">Connect</span>
+          Let&apos;s <span className="text-blue-600">Connect</span>
         </h2>
         <p className="text-base sm:text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-medium max-w-2xl mx-auto leading-relaxed px-2">
-          Whether you have a question about my work, a project idea, or just want to say hi, I'd love to hear from you.
+          Whether you have a question about my work, a project idea, or just want to say hi, I&apos;d love to hear from you.
         </p>
       </section>
 
@@ -54,7 +54,7 @@ export default function ContactPage() {
                   Contact Info
                 </h2>
                 <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed mb-8">
-                  I'm currently based in India and open to freelance opportunities,
+                  I&apos;m currently based in India and open to freelance opportunities,
                   collaborations, or full-time roles in Frontend Development & Tech Content.
                 </p>
               </div>
@@ -171,7 +171,7 @@ export default function ContactPage() {
 
                   {status === "success" && (
                     <p className="text-center text-sm font-bold text-green-600 animate-in fade-in slide-in-from-top-2">
-                      Thank you! I'll get back to you soon.
+                      Thank you! I&apos;ll get back to you soon.
                     </p>
                   )}
                 </form>

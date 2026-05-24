@@ -7,7 +7,7 @@ export default function BlogFooter() {
     { label: "Categories", href: "/categories" },
     { label: "Newsletter", href: "/contact" },
     { label: "About", href: "/about" },
-    { label: "RSS", href: "/sitemap.xml" }
+    { label: "Sitemap", href: "/sitemap.xml" }
   ];
 
   return (

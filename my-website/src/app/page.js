@@ -219,6 +219,7 @@ export default function Home() {
             <input
               type="email"
               placeholder="name@company.com"
+              aria-label="Email address for weekly journal"
               className={styles.newsletterInput}
               required
             />
@@ -236,7 +237,7 @@ export default function Home() {
             &ldquo;One of the most practical and well-designed engineering blogs I follow. The insights on architecture are unparalleled.&rdquo;
           </blockquote>
           <div className={styles.testimonialAuthor}>
-            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop" alt="Sarah J." className={styles.testimonialAuthorImage} />
+            <Image src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop" alt="Sarah J." width={48} height={48} className={styles.testimonialAuthorImage} />
             <div className={styles.testimonialAuthorInfo}>
               <span className={styles.testimonialAuthorName}>Sarah Jenkins</span>
               <span className={styles.testimonialAuthorRole}>Lead Frontend Engineer</span>
