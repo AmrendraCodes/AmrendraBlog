@@ -696,16 +696,22 @@
   border-radius: 2rem;
   padding: 3rem 1.25rem;
   text-align: center;
-  background: rgba(255, 255, 255, 0.03);
+  background: #f8fafc;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 1;
+}
+
+:global(.dark) .newsletterGlassCard {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
 .newsletterGlassBorder {

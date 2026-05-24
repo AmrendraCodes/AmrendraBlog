@@ -49,7 +49,7 @@ export default function LatestArticles() {
       author: "Sarah Jenkins",
       authorImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=facearea&facepad=2",
       date: "April 28, 2026",
-      image: "https://images.unsplash.com/photo-1515378960530-7c0da6229674?q=80&w=800&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea?q=80&w=800&auto=format&fit=crop",
       link: "/blog/typography-rules"
     },
     {

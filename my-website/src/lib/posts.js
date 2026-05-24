@@ -167,7 +167,7 @@ const posts = [
     readTime: "5 min read",
     author: "Sarah Jenkins",
     excerpt: "Stop guessing your font sizes. Learn the mathematical ratios and pairing techniques for perfect typography.",
-    image: "https://images.unsplash.com/photo-1515378960530-7c0da6229674?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea?q=80&w=800&auto=format&fit=crop",
     content: "# Typography Rules Every Designer Should Know\n\nStop guessing your font sizes. Learn the mathematical ratios and pairing techniques for perfect typography."
   },
   {
