@@ -75,7 +75,7 @@ export default function AboutPage() {
               <div className="w-[calc(100%-3.5rem)] md:w-[45%] p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-slate-50 dark:bg-[#0f172a] border border-slate-100 dark:border-slate-800 shadow-sm group-hover:shadow-md transition-shadow">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
                   <div className="font-black text-slate-900 dark:text-slate-50 text-base sm:text-lg leading-tight uppercase tracking-tight">SEO Executive</div>
-                  <time className="inline-block self-start text-[10px] font-black bg-blue-100 text-blue-600 px-2.5 py-1 rounded-full uppercase tracking-tighter">2022 - 2024</time>
+                  <time className="inline-block self-start text-[10px] font-black bg-blue-100 text-blue-600 px-2.5 py-1 rounded-full uppercase tracking-tighter whitespace-nowrap">2022 - 2024</time>
                 </div>
                 <div className="text-blue-600 font-bold text-xs sm:text-sm mb-3">Tech Mahindra</div>
                 <p className="text-slate-500 text-xs sm:text-sm leading-relaxed">Driven results through data-backed SEO strategies and technical optimizations for enterprise clients.</p>
@@ -90,7 +90,7 @@ export default function AboutPage() {
               <div className="w-[calc(100%-3.5rem)] md:w-[45%] p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-slate-50 dark:bg-[#0f172a] border border-slate-100 dark:border-slate-800 shadow-sm group-hover:shadow-md transition-shadow">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
                   <div className="font-black text-slate-900 dark:text-slate-50 text-base sm:text-lg leading-tight uppercase tracking-tight">Technical Content Writer</div>
-                  <time className="inline-block self-start text-[10px] font-black bg-indigo-100 text-indigo-600 px-2.5 py-1 rounded-full uppercase tracking-tighter">2024 - 2025</time>
+                  <time className="inline-block self-start text-[10px] font-black bg-indigo-100 text-indigo-600 px-2.5 py-1 rounded-full uppercase tracking-tighter whitespace-nowrap">2024 - 2025</time>
                 </div>
                 <div className="text-indigo-600 font-bold text-xs sm:text-sm mb-3">Astha Technology</div>
                 <p className="text-slate-500 text-xs sm:text-sm leading-relaxed">Articulated complex software functionalities and technical guides for diverse industry sectors.</p>
@@ -105,7 +105,7 @@ export default function AboutPage() {
               <div className="w-[calc(100%-3.5rem)] md:w-[45%] p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-slate-50 dark:bg-[#0f172a] border border-slate-100 dark:border-slate-800 shadow-sm group-hover:shadow-md transition-shadow">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
                   <div className="font-black text-slate-900 dark:text-slate-50 text-base sm:text-lg leading-tight uppercase tracking-tight">Technical Content Writer</div>
-                  <time className="inline-block self-start text-[10px] font-black bg-green-100 text-green-600 px-2.5 py-1 rounded-full uppercase tracking-tighter">2025 - Present</time>
+                  <time className="inline-block self-start text-[10px] font-black bg-green-100 text-green-600 px-2.5 py-1 rounded-full uppercase tracking-tighter whitespace-nowrap">2025 - Present</time>
                 </div>
                 <div className="text-blue-600 font-bold text-xs sm:text-sm mb-3">Rejoicehub LLP</div>
                 <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-medium italic">Current Focus: Bridging the gap between engineering documentation and user-friendly technical content.</p>
