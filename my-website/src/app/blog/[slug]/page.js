@@ -1,8 +1,34 @@
-import { getPostBySlug } from "@/lib/posts";
+import { getPostBySlug, getAllPosts } from "@/lib/posts";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Clock, Calendar, User } from "lucide-react";
 import { notFound } from "next/navigation";
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+
+  if (!post) {
+    return { title: "Post Not Found" };
+  }
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      images: [post.image],
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [post.image],
+    },
+  };
+}
 
 export default async function PostPage({ params }) {
   const { slug } = await params;
@@ -11,6 +37,22 @@ export default async function PostPage({ params }) {
   if (!post) {
     notFound();
   }
+
+  // Simple markdown-to-HTML conversion
+  const renderContent = (content) => {
+    return content
+      .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+      .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+      .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+      .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+      .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br/>')
+      .replace(/^(.*)$/gm, (match) => {
+        if (match.startsWith('<h') || match.startsWith('<p') || match.startsWith('</p')) return match;
+        return match;
+      });
+  };
 
   return (
     <main className="min-h-screen bg-white dark:bg-slate-950">
@@ -36,9 +78,9 @@ export default async function PostPage({ params }) {
           </Link>
 
           <div className="flex items-center space-x-3 mb-6">
-            <span className="bg-blue-600 text-white text-[11px] font-black px-3 py-1.5 rounded-full uppercase tracking-wider shadow-lg shadow-blue-500/20">
+            <Link href={`/category/${post.categorySlug}`} className="bg-blue-600 text-white text-[11px] font-black px-3 py-1.5 rounded-full uppercase tracking-wider shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition-colors">
               {post.category}
-            </span>
+            </Link>
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-950 dark:text-slate-50 tracking-tight leading-tight mb-8">
@@ -69,8 +111,7 @@ export default async function PostPage({ params }) {
           prose-p:text-slate-600 dark:text-slate-300 prose-p:leading-relaxed prose-p:text-lg
           prose-strong:text-slate-900 dark:text-slate-50 prose-a:text-blue-600 hover:prose-a:text-blue-700
           prose-img:rounded-4xl prose-img:shadow-2xl">
-          {/* This is a simple placeholder for blog content rendering. In a real app, use react-markdown or similar */}
-          <div dangerouslySetInnerHTML={{ __html: post.content.replace(/\n/g, '<br/>') }} />
+          <div dangerouslySetInnerHTML={{ __html: renderContent(post.content) }} />
         </div>
       </article>
     </main>

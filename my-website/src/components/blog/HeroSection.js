@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 export default function HeroSection() {
   return (
     <section className="relative py-24 px-6 lg:px-16 overflow-hidden bg-white dark:bg-slate-950 flex flex-col items-center justify-center text-center min-h-[50vh] md:min-h-[60vh]">
@@ -30,12 +32,12 @@ export default function HeroSection() {
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-          <button className="w-full sm:w-auto px-8 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full font-bold text-lg hover:shadow-[0_10px_30px_rgba(15,23,42,0.2)] dark:hover:shadow-[0_10px_30px_rgba(255,255,255,0.2)] transition-all transform hover:-translate-y-1">
+          <Link href="/contact" className="w-full sm:w-auto px-8 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full font-bold text-lg hover:shadow-[0_10px_30px_rgba(15,23,42,0.2)] dark:hover:shadow-[0_10px_30px_rgba(255,255,255,0.2)] transition-all transform hover:-translate-y-1 inline-flex items-center justify-center">
             Subscribe Now
-          </button>
-          <button className="w-full sm:w-auto px-8 py-4 bg-transparent text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-800 rounded-full font-bold text-lg hover:bg-slate-50 dark:hover:bg-slate-900 transition-all">
+          </Link>
+          <Link href="/categories" className="w-full sm:w-auto px-8 py-4 bg-transparent text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-800 rounded-full font-bold text-lg hover:bg-slate-50 dark:hover:bg-slate-900 transition-all inline-flex items-center justify-center">
             Browse Topics
-          </button>
+          </Link>
         </div>
       </div>
     </section>

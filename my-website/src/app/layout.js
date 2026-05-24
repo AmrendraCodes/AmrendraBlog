@@ -32,8 +32,21 @@ const dmSans = DM_Sans({
 });
 
 export const metadata = {
-  title: "AmrendraBlog",
-  description: "A personal blog built with Next.js and Tailwind CSS",
+  metadataBase: new URL('https://amrendra-blog.vercel.app'),
+  title: {
+    default: "AmrendraBlog",
+    template: "%s | AmrendraBlog"
+  },
+  description: "A personal blog by Amrendra — insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.",
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    siteName: 'AmrendraBlog',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    creator: '@AmrendraCodes',
+  },
   verification: {
     google: "3v-o-lc_-Ym9wck1txXt3ZODb6whlC089kLg_fBK578",
   },

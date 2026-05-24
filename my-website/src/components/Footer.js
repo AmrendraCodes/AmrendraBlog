@@ -19,18 +19,18 @@ export default function Footer() {
               Empowering developers and creators with the latest insights into modern technology and creative design.
             </p>
             <div className="flex items-center gap-4">
-              <Link href="https://x.com/AmrendraCodes" target="_blank" className="text-slate-600 dark:text-slate-300 bg-slate-900/5 border border-slate-900/5 rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(6,182,212,0.3)]">
+              <a href="https://x.com/AmrendraCodes" target="_blank" rel="noopener noreferrer" className="text-slate-600 dark:text-slate-300 bg-slate-900/5 border border-slate-900/5 rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(6,182,212,0.3)]">
                 <Twitter size={16} />
-              </Link>
-              <Link href="https://github.com/amrendra-dev" target="_blank" className="text-slate-600 dark:text-slate-300 bg-slate-900/5 border border-slate-900/5 rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(6,182,212,0.3)]">
+              </a>
+              <a href="https://github.com/amrendra-dev" target="_blank" rel="noopener noreferrer" className="text-slate-600 dark:text-slate-300 bg-slate-900/5 border border-slate-900/5 rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(6,182,212,0.3)]">
                 <Github size={16} />
-              </Link>
-              <Link href="https://linkedin.com" target="_blank" className="text-slate-600 dark:text-slate-300 bg-slate-900/5 border border-slate-900/5 rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(6,182,212,0.3)]">
+              </a>
+              <a href="https://linkedin.com/in/amrendra-kumar" target="_blank" rel="noopener noreferrer" className="text-slate-600 dark:text-slate-300 bg-slate-900/5 border border-slate-900/5 rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(6,182,212,0.3)]">
                 <Linkedin size={16} />
-              </Link>
-              <Link href="https://instagram.com" target="_blank" className="text-slate-600 dark:text-slate-300 bg-slate-900/5 border border-slate-900/5 rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(6,182,212,0.3)]">
+              </a>
+              <a href="https://instagram.com/amrendracodes" target="_blank" rel="noopener noreferrer" className="text-slate-600 dark:text-slate-300 bg-slate-900/5 border border-slate-900/5 rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(6,182,212,0.3)]">
                 <Instagram size={16} />
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -58,7 +58,7 @@ export default function Footer() {
               {[
                 { name: "React", href: "/category/react" },
                 { name: "AI Agents", href: "/category/ai-agents" },
-                { name: "SaaS Architecture", href: "/category/saas" },
+                { name: "SaaS Architecture", href: "/category/saas-architecture" },
                 { name: "DevOps", href: "/category/devops" }
               ].map((link) => (
                 <li key={link.name} className="flex">
@@ -73,7 +73,7 @@ export default function Footer() {
           <div>
             <h4 className="text-slate-900 dark:text-slate-50 mb-6 text-lg font-bold">Newsletter</h4>
             <p className="text-slate-500 mb-6 text-sm">Join 5,000+ others and never miss a new post.</p>
-            <form className="flex relative">
+            <form className="flex relative" action="#">
               <input
                 type="email"
                 placeholder="Your email"
@@ -97,7 +97,7 @@ export default function Footer() {
           <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
             <Link href="/privacy" className="text-slate-500 text-[13px] font-medium no-underline transition-colors duration-300 hover:text-slate-900 dark:text-slate-50">Privacy</Link>
             <Link href="/terms" className="text-slate-500 text-[13px] font-medium no-underline transition-colors duration-300 hover:text-slate-900 dark:text-slate-50">Terms</Link>
-            <Link href="/sitemap" className="text-slate-500 text-[13px] font-medium no-underline transition-colors duration-300 hover:text-slate-900 dark:text-slate-50">Sitemap</Link>
+            <a href="/sitemap.xml" className="text-slate-500 text-[13px] font-medium no-underline transition-colors duration-300 hover:text-slate-900 dark:hover:text-slate-50">Sitemap</a>
           </div>
         </div>
       </div>

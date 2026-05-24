@@ -11,7 +11,7 @@ export default function FeaturedPosts() {
     date: "May 12, 2026",
     readTime: "5 min read",
     image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1200&auto=format&fit=crop",
-    link: "#"
+    link: "/blog/future-of-user-interfaces"
   };
 
   return (

@@ -67,11 +67,11 @@ export default function Home() {
         <div className={styles.heroGrid}>
           <div className={styles.heroContent}>
             <div className={styles.heroBadge}>
-              <span className={styles.badgeLabel}>Alex</span>
-              <span>Software Engineer & Cloud Architect</span>
+              <span className={styles.badgeLabel}>Amrendra</span>
+              <span>Technical Content Writer &amp; Frontend Developer</span>
             </div>
             <h1 className={styles.heroTitle}>
-              Developer Notes on Frontend, SaaS & Growth
+              Developer Notes on Frontend, SaaS &amp; Growth
             </h1>
 
             <p className={styles.heroSubtitle}>
@@ -110,8 +110,8 @@ export default function Home() {
         <div className={styles.tickerTrack}>
           {[...Array(2)].map((_, i) => (
             <div key={i} style={{ display: "flex", gap: "4rem" }}>
-              <div className={styles.tickerItem}>✦ Mobile Devlopment</div>
-              <div className={styles.tickerItem}>✦ Devops </div>
+              <div className={styles.tickerItem}>✦ Mobile Development</div>
+              <div className={styles.tickerItem}>✦ DevOps </div>
               <div className={styles.tickerItem}>✦ Digital Marketing</div>
               <div className={styles.tickerItem}>✦ UI/UX Patterns</div>
               <div className={styles.tickerItem}>✦ AI Learning</div>
@@ -168,23 +168,23 @@ export default function Home() {
           <div className={styles.aboutImageWrapper}>
             <Image
               src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop"
-              alt="Alex - Software Engineer"
+              alt="Amrendra - Technical Content Writer"
               fill
               className={styles.aboutImage}
             />
           </div>
           <div className={styles.aboutContent}>
             <h2 className={styles.aboutTitle}>
-              Hi, I'm <span className={styles.gradientText}>Alex</span>
+              Hi, I&apos;m <span className={styles.gradientText}>Amrendra</span>
             </h2>
             <p className={styles.aboutDesc}>
               Software engineer, cloud architect, and technical writer sharing practical insights on frontend engineering, AI systems, scalable SaaS platforms, and DevOps automation.
             </p>
             <div className={styles.techStack}>
-              <span className={styles.techBadge}>React & Next.js</span>
-              <span className={styles.techBadge}>AWS & Terraform</span>
-              <span className={styles.techBadge}>Python & AI Agents</span>
-              <span className={styles.techBadge}>Node.js & Go</span>
+              <span className={styles.techBadge}>React &amp; Next.js</span>
+              <span className={styles.techBadge}>AWS &amp; Terraform</span>
+              <span className={styles.techBadge}>Python &amp; AI Agents</span>
+              <span className={styles.techBadge}>Node.js &amp; Go</span>
             </div>
             <Link href="/about" className={styles.btnPrimary}>
               More About Me
@@ -215,7 +215,7 @@ export default function Home() {
             Get practical engineering insights, AI workflows, cloud architecture tips, and developer resources every week.
           </p>
 
-          <form className={styles.newsletterForm}>
+          <form className={styles.newsletterForm} action="#">
             <input
               type="email"
               placeholder="name@company.com"
@@ -233,7 +233,7 @@ export default function Home() {
       <section className={styles.testimonialsSection}>
         <div className={styles.testimonialsContainer}>
           <blockquote className={styles.testimonialQuote}>
-            “One of the most practical and well-designed engineering blogs I follow. The insights on architecture are unparalleled.”
+            &ldquo;One of the most practical and well-designed engineering blogs I follow. The insights on architecture are unparalleled.&rdquo;
           </blockquote>
           <div className={styles.testimonialAuthor}>
             <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop" alt="Sarah J." className={styles.testimonialAuthorImage} />
@@ -250,7 +250,7 @@ export default function Home() {
         <div className={styles.socialContainer}>
           <div className={styles.sectionHeader} style={{ marginBottom: 0, textAlign: 'center' }}>
             <h2 className={styles.sectionTitle}>
-              Let's <span className={styles.gradientText}>Connect</span>
+              Let&apos;s <span className={styles.gradientText}>Connect</span>
             </h2>
             <p className={styles.sectionDesc}>
               Find me around the web where I build in public.
@@ -258,19 +258,19 @@ export default function Home() {
           </div>
           
           <div className={styles.socialGrid}>
-            <a href="#" className={styles.socialCard}>
+            <a href="https://github.com/amrendra-dev" target="_blank" rel="noopener noreferrer" className={styles.socialCard}>
               <Github size={32} className={styles.socialIcon} />
               <span className={styles.socialName}>GitHub</span>
             </a>
-            <a href="#" className={styles.socialCard}>
+            <a href="https://x.com/AmrendraCodes" target="_blank" rel="noopener noreferrer" className={styles.socialCard}>
               <Twitter size={32} className={styles.socialIcon} />
               <span className={styles.socialName}>Twitter / X</span>
             </a>
-            <a href="#" className={styles.socialCard}>
+            <a href="https://linkedin.com/in/amrendra-kumar" target="_blank" rel="noopener noreferrer" className={styles.socialCard}>
               <Linkedin size={32} className={styles.socialIcon} />
               <span className={styles.socialName}>LinkedIn</span>
             </a>
-            <a href="#" className={styles.socialCard}>
+            <a href="https://youtube.com/@AmrendraCodes" target="_blank" rel="noopener noreferrer" className={styles.socialCard}>
               <Youtube size={32} className={styles.socialIcon} />
               <span className={styles.socialName}>YouTube</span>
             </a>

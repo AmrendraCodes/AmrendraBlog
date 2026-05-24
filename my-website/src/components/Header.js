@@ -62,7 +62,7 @@ export default function Header() {
                 <img src="/icon.svg" alt="Logo" className="w-[1.1rem] max-w-full h-auto" />
               </div>
               <span className="text-slate-900 dark:text-slate-50 tracking-tight text-[22px] md:text-[24px] lg:text-[28px] font-extrabold">
-                CWA<span className="bg-linear-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text"></span>
+                Amrendra<span className="bg-linear-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text">Blog</span>
               </span>
             </Link>
           </div>
@@ -86,7 +86,7 @@ export default function Header() {
 
           <div className="flex items-center justify-end gap-3 md:pr-2">
             <ThemeToggle />
-            <button className="hidden md:inline-flex items-center justify-center bg-linear-to-br from-[#00b7ff] to-[#7c3aed] text-white font-semibold text-[0.95rem] py-2 px-5 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_4px_15px_rgba(168,85,247,0.2)] hover:-translate-y-0.5 hover:opacity-95 hover:shadow-[0_6px_20px_rgba(168,85,247,0.4)]">Subscribe</button>
+            <Link href="/contact" className="hidden md:inline-flex items-center justify-center bg-linear-to-br from-[#00b7ff] to-[#7c3aed] text-white font-semibold text-[0.95rem] py-2 px-5 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_4px_15px_rgba(168,85,247,0.2)] hover:-translate-y-0.5 hover:opacity-95 hover:shadow-[0_6px_20px_rgba(168,85,247,0.4)]">Subscribe</Link>
             <button
               type="button"
               className="flex md:hidden items-center justify-center bg-slate-900/5 dark:bg-slate-800/20 border border-slate-900/10 dark:border-slate-700/20 text-slate-900 dark:text-slate-50 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-background duration-300 shrink-0 hover:bg-slate-900/10 dark:hover:bg-slate-700/20"
@@ -144,9 +144,9 @@ export default function Header() {
               </Link>
             );
           })}
-          <button className="inline-flex items-center justify-center bg-linear-to-br from-[#00b7ff] to-[#7c3aed] text-white font-bold text-[1.1rem] py-4 px-8 rounded-full border-none cursor-pointer mt-auto mb-8 w-full transition-opacity duration-300 hover:opacity-90 shadow-lg shadow-purple-500/20" onClick={() => setIsMenuOpen(false)}>
+          <Link href="/contact" className="inline-flex items-center justify-center bg-linear-to-br from-[#00b7ff] to-[#7c3aed] text-white font-bold text-[1.1rem] py-4 px-8 rounded-full border-none cursor-pointer mt-auto mb-8 w-full transition-opacity duration-300 hover:opacity-90 shadow-lg shadow-purple-500/20" onClick={() => setIsMenuOpen(false)}>
             Subscribe
-          </button>
+          </Link>
         </nav>
       </div>
 

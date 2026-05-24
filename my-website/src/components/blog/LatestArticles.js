@@ -10,7 +10,7 @@ export default function LatestArticles() {
       authorImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=facearea&facepad=2",
       date: "May 10, 2026",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
-      link: "#"
+      link: "/blog/high-converting-landing-page"
     },
     {
       title: "Mastering Tailwind CSS in 2026",
@@ -20,7 +20,7 @@ export default function LatestArticles() {
       authorImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=256&auto=format&fit=facearea&facepad=2",
       date: "May 8, 2026",
       image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
-      link: "#"
+      link: "/blog/mastering-tailwind-css"
     },
     {
       title: "Why Minimalist UI is Back and Here to Stay",
@@ -30,17 +30,17 @@ export default function LatestArticles() {
       authorImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=facearea&facepad=2",
       date: "May 5, 2026",
       image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
-      link: "#"
+      link: "/blog/minimalist-ui"
     },
     {
       title: "Building Scalable Next.js Applications",
       description: "Architectural patterns and best practices for creating Next.js apps that perform under heavy traffic.",
-      category: "Engineering",
+      category: "Development",
       author: "David Chen",
       authorImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&auto=format&fit=facearea&facepad=2",
       date: "May 2, 2026",
       image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop",
-      link: "#"
+      link: "/blog/scalable-nextjs"
     },
     {
       title: "Typography Rules Every Designer Should Know",
@@ -50,17 +50,17 @@ export default function LatestArticles() {
       authorImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=facearea&facepad=2",
       date: "April 28, 2026",
       image: "https://images.unsplash.com/photo-1515378960530-7c0da6229674?q=80&w=800&auto=format&fit=crop",
-      link: "#"
+      link: "/blog/typography-rules"
     },
     {
       title: "The Ultimate Guide to SEO in the AI Era",
       description: "How search engines are changing and what you need to do today to keep your content ranking high.",
-      category: "Growth",
+      category: "Marketing",
       author: "Michael Torres",
       authorImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=256&auto=format&fit=facearea&facepad=2",
       date: "April 24, 2026",
       image: "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?q=80&w=800&auto=format&fit=crop",
-      link: "#"
+      link: "/blog/seo-ai-era"
     }
   ];
 
@@ -123,14 +123,14 @@ export default function LatestArticles() {
           ))}
         </div>
 
-        {/* Load More Section */}
+        {/* View All Section */}
         <div className="flex items-center justify-center mt-12">
-          <button className="px-8 py-4 rounded-full border-2 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors inline-flex items-center gap-2">
-            Load More Articles
+          <Link href="/blog" className="px-8 py-4 rounded-full border-2 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors inline-flex items-center gap-2">
+            View All Articles
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M6 9l6 6 6-6"/>
+              <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
-          </button>
+          </Link>
         </div>
 
       </div>
