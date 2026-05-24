@@ -258,19 +258,19 @@ export default function Home() {
           </div>
           
           <div className={styles.socialGrid}>
-            <a href="https://github.com/amrendra-dev" target="_blank" rel="noopener noreferrer" className={styles.socialCard}>
+            <a href="https://github.com/AmrendraCodes" target="_blank" rel="noopener noreferrer" aria-label="Visit Amrendra GitHub Profile" className={styles.socialCard}>
               <Github size={32} className={styles.socialIcon} />
               <span className={styles.socialName}>GitHub</span>
             </a>
-            <a href="https://x.com/AmrendraCodes" target="_blank" rel="noopener noreferrer" className={styles.socialCard}>
+            <a href="https://x.com/AmrendraCodes" target="_blank" rel="noopener noreferrer" aria-label="Visit Amrendra Twitter Profile" className={styles.socialCard}>
               <Twitter size={32} className={styles.socialIcon} />
               <span className={styles.socialName}>Twitter / X</span>
             </a>
-            <a href="https://linkedin.com/in/amrendra-kumar" target="_blank" rel="noopener noreferrer" className={styles.socialCard}>
+            <a href="https://www.linkedin.com/in/amrendra-reactdev/" target="_blank" rel="noopener noreferrer" aria-label="Visit Amrendra LinkedIn Profile" className={styles.socialCard}>
               <Linkedin size={32} className={styles.socialIcon} />
               <span className={styles.socialName}>LinkedIn</span>
             </a>
-            <a href="https://youtube.com/@AmrendraCodes" target="_blank" rel="noopener noreferrer" className={styles.socialCard}>
+            <a href="https://www.youtube.com/@codewithamrendra" target="_blank" rel="noopener noreferrer" aria-label="Visit Amrendra YouTube Channel" className={styles.socialCard}>
               <Youtube size={32} className={styles.socialIcon} />
               <span className={styles.socialName}>YouTube</span>
             </a>

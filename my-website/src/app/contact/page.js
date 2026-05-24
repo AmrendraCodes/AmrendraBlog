@@ -63,8 +63,8 @@ export default function ContactPage() {
                 {[
                   { label: "Email Me", value: "amrendrakumar@example.com", link: "mailto:amrendrakumar@example.com" },
                   { label: "Follow on X", value: "@AmrendraCodes", link: "https://x.com/AmrendraCodes" },
-                  { label: "Connect on LinkedIn", value: "Amrendra Kumar", link: "https://linkedin.com" },
-                  { label: "GitHub Projects", value: "amrendra-dev", link: "https://github.com/amrendra-dev" }
+                  { label: "Connect on LinkedIn", value: "Amrendra Kumar", link: "https://www.linkedin.com/in/amrendra-reactdev/" },
+                  { label: "GitHub Projects", value: "AmrendraCodes", link: "https://github.com/AmrendraCodes" }
                 ].map((item, i) => (
                   <a
                     key={i}
