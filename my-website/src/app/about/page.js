@@ -102,7 +102,7 @@ export default function AboutPage() {
               <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-blue-600 text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
                 <div className="w-2 h-2 bg-white dark:bg-slate-950 rounded-full animate-pulse"></div>
               </div>
-              <div className="w-[calc(100%-3.5rem)] md:w-[45%] p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-blue-50/50 border border-blue-100 shadow-sm group-hover:shadow-md transition-shadow">
+              <div className="w-[calc(100%-3.5rem)] md:w-[45%] p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-slate-50 dark:bg-[#0f172a] border border-slate-100 dark:border-slate-800 shadow-sm group-hover:shadow-md transition-shadow">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
                   <div className="font-black text-slate-900 dark:text-slate-50 text-base sm:text-lg leading-tight uppercase tracking-tight">Technical Content Writer</div>
                   <time className="inline-block self-start text-[10px] font-black bg-green-100 text-green-600 px-2.5 py-1 rounded-full uppercase tracking-tighter">2025 - Present</time>
@@ -125,21 +125,21 @@ export default function AboutPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             <div className="bg-white dark:bg-slate-950 p-8 md:p-10 rounded-3xl md:rounded-[2.5rem] shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-50 text-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center font-black text-lg md:text-xl mb-6">01</div>
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center font-black text-lg md:text-xl mb-6">01</div>
               <h3 className="font-bold text-lg md:text-xl mb-3 md:mb-4 text-slate-900 dark:text-slate-50">Learn in Public</h3>
               <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
                 Documenting my progress in Linux, DevOps, and Frontend helps me solidify concepts and stay accountable to my growth.
               </p>
             </div>
             <div className="bg-white dark:bg-slate-950 p-8 md:p-10 rounded-3xl md:rounded-[2.5rem] shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-50 text-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center font-black text-lg md:text-xl mb-6">02</div>
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center font-black text-lg md:text-xl mb-6">02</div>
               <h3 className="font-bold text-lg md:text-xl mb-3 md:mb-4 text-slate-900 dark:text-slate-50">Live Portfolio</h3>
               <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
                 This site is my sandbox. Every feature here is a product of what I'm currently learning and experimenting with in real-time.
               </p>
             </div>
             <div className="bg-white dark:bg-slate-950 p-8 md:p-10 rounded-3xl md:rounded-[2.5rem] shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 sm:col-span-2 lg:col-span-1">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-50 text-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center font-black text-lg md:text-xl mb-6">03</div>
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center font-black text-lg md:text-xl mb-6">03</div>
               <h3 className="font-bold text-lg md:text-xl mb-3 md:mb-4 text-slate-900 dark:text-slate-50">Pay It Forward</h3>
               <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
                 If my journey or technical guides can help someone else cross a bridge faster, then this blog has served its ultimate purpose.
@@ -171,10 +171,10 @@ export default function AboutPage() {
 
       {/* Goal & CTA Section */}
       <section className="py-12 px-4 sm:px-6 max-w-6xl mx-auto mb-10">
-        <div className="bg-blue-50 border border-blue-100 rounded-4xl sm:rounded-[3rem] p-8 sm:p-12 md:p-20 text-center relative overflow-hidden shadow-sm">
+        <div className="bg-blue-50 dark:bg-slate-900 border border-blue-100 dark:border-slate-800 rounded-4xl sm:rounded-[3rem] p-8 sm:p-12 md:p-20 text-center relative overflow-hidden shadow-sm">
           {/* Subtle background glow */}
-          <div className="absolute -top-24 -left-24 w-64 md:w-96 h-64 md:h-96 bg-blue-600/5 rounded-full blur-[60px] md:blur-[100px]"></div>
-          <div className="absolute -bottom-24 -right-24 w-64 md:w-96 h-64 md:h-96 bg-indigo-600/5 rounded-full blur-[60px] md:blur-[100px]"></div>
+          <div className="absolute -top-24 -left-24 w-64 md:w-96 h-64 md:h-96 bg-blue-600/5 dark:bg-blue-500/10 rounded-full blur-[60px] md:blur-[100px]"></div>
+          <div className="absolute -bottom-24 -right-24 w-64 md:w-96 h-64 md:h-96 bg-indigo-600/5 dark:bg-indigo-500/10 rounded-full blur-[60px] md:blur-[100px]"></div>
 
           <div className="relative z-10">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-slate-50 mb-6 md:mb-8 tracking-tight">Building the Future</h2>
