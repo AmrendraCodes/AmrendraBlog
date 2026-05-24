@@ -61,7 +61,7 @@ export default function ContactPage() {
 
               <div className="space-y-4">
                 {[
-                  { label: "Email Me", value: "amrendrakumar@example.com", link: "mailto:amrendrakumar@example.com" },
+                  { label: "Email Me", value: "amrendra1999official@gmail.com", link: "mailto:amrendra1999official@gmail.com" },
                   { label: "Follow on X", value: "@AmrendraCodes", link: "https://x.com/AmrendraCodes" },
                   { label: "Connect on LinkedIn", value: "Amrendra Kumar", link: "https://www.linkedin.com/in/amrendra-reactdev/" },
                   { label: "GitHub Projects", value: "AmrendraCodes", link: "https://github.com/AmrendraCodes" }
@@ -94,10 +94,10 @@ export default function ContactPage() {
               <div className="bg-white dark:bg-slate-950 p-6 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-lg">
                 <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-slate-50 mb-8">Send a Message</h2>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="text-xs font-black text-slate-900 dark:text-slate-50 uppercase tracking-wider ml-1">Your Name</label>
+                <form onSubmit={handleSubmit} className="space-y-7">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="flex flex-col gap-3">
+                      <label htmlFor="name" className="text-[11px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-[0.15em] ml-1">Your Name</label>
                       <input
                         required
                         type="text"
@@ -106,11 +106,11 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="John Doe"
-                        className="w-full px-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all text-slate-900 dark:text-slate-50 font-medium placeholder:text-slate-400"
+                        className="w-full px-5 py-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30 transition-all text-slate-900 dark:text-slate-50 font-medium placeholder:text-slate-400 dark:placeholder:text-slate-600"
                       />
                     </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-xs font-black text-slate-900 dark:text-slate-50 uppercase tracking-wider ml-1">Email Address</label>
+                    <div className="flex flex-col gap-3">
+                      <label htmlFor="email" className="text-[11px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-[0.15em] ml-1">Email Address</label>
                       <input
                         required
                         type="email"
@@ -119,13 +119,13 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="name@example.com"
-                        className="w-full px-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all text-slate-900 dark:text-slate-50 font-medium placeholder:text-slate-400"
+                        className="w-full px-5 py-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30 transition-all text-slate-900 dark:text-slate-50 font-medium placeholder:text-slate-400 dark:placeholder:text-slate-600"
                       />
                     </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <label htmlFor="subject" className="text-xs font-black text-slate-900 dark:text-slate-50 uppercase tracking-wider ml-1">Subject</label>
+                  <div className="flex flex-col gap-3">
+                    <label htmlFor="subject" className="text-[11px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-[0.15em] ml-1">Subject</label>
                     <input
                       required
                       type="text"
@@ -134,12 +134,12 @@ export default function ContactPage() {
                       value={formData.subject}
                       onChange={handleChange}
                       placeholder="Project Inquiry"
-                      className="w-full px-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all text-slate-900 dark:text-slate-50 font-medium placeholder:text-slate-400"
+                      className="w-full px-5 py-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30 transition-all text-slate-900 dark:text-slate-50 font-medium placeholder:text-slate-400 dark:placeholder:text-slate-600"
                     />
                   </div>
 
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-xs font-black text-slate-900 dark:text-slate-50 uppercase tracking-wider ml-1">Your Message</label>
+                  <div className="flex flex-col gap-3">
+                    <label htmlFor="message" className="text-[11px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-[0.15em] ml-1">Your Message</label>
                     <textarea
                       required
                       id="message"
@@ -147,7 +147,7 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={handleChange}
                       placeholder="Tell me about your project..."
-                      className="w-full px-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all text-slate-900 dark:text-slate-50 font-medium placeholder:text-slate-400 min-h-40 resize-none"
+                      className="w-full px-5 py-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30 transition-all text-slate-900 dark:text-slate-50 font-medium placeholder:text-slate-400 dark:placeholder:text-slate-600 min-h-40 resize-none"
                     ></textarea>
                   </div>
 
