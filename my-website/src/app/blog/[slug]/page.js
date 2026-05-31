@@ -41,21 +41,66 @@ export default async function PostPage({ params }) {
     notFound();
   }
 
-  // Simple markdown-to-HTML conversion
-  const renderContent = (content) => {
-    return content
-      .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-      .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-      .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-      .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
-      .replace(/\*(.*?)\*/gim, '<em>$1</em>')
-      .replace(/\n\n/g, '</p><p>')
-      .replace(/\n/g, '<br/>')
-      .replace(/^(.*)$/gm, (match) => {
-        if (match.startsWith('<h') || match.startsWith('<p') || match.startsWith('</p')) return match;
-        return match;
-      });
+  // Markdown-to-HTML conversion
+  const renderContent = (markdown) => {
+    let html = markdown;
+
+    // Fenced code blocks (```lang ... ```)
+    html = html.replace(/```(\w*)\n([\s\S]*?)```/g, (_, lang, code) => {
+      const escaped = code.replace(/</g, '&lt;').replace(/>/g, '&gt;').trimEnd();
+      return `<pre><code class="language-${lang || 'text'}">${escaped}</code></pre>`;
+    });
+
+    // Inline code
+    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+    // Images: ![alt](url)
+    html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />');
+
+    // Links: [text](url)
+    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+
+    // Headings
+    html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+    html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+    html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+
+    // Horizontal rules
+    html = html.replace(/^---$/gim, '<hr />');
+
+    // Bold and italic
+    html = html.replace(/\*\*\*(.*?)\*\*\*/gim, '<strong><em>$1</em></strong>');
+    html = html.replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>');
+    html = html.replace(/\*([^*]+)\*/gim, '<em>$1</em>');
+
+    // Blockquotes
+    html = html.replace(/^> (.*$)/gim, '<blockquote><p>$1</p></blockquote>');
+    // Merge adjacent blockquotes
+    html = html.replace(/<\/blockquote>\n<blockquote>/g, '\n');
+
+    // Unordered lists
+    html = html.replace(/^(?:- |\* )(.+)$/gim, '<li>$1</li>');
+    html = html.replace(/(<li>.*<\/li>\n?)+/g, (match) => `<ul>${match}</ul>`);
+
+    // Ordered lists
+    html = html.replace(/^\d+\. (.+)$/gim, '<oli>$1</oli>');
+    html = html.replace(/(<oli>.*<\/oli>\n?)+/g, (match) => {
+      return `<ol>${match.replace(/<\/?oli>/g, (t) => t.replace('oli', 'li'))}</ol>`;
+    });
+
+    // Paragraphs — wrap remaining plain-text lines
+    const lines = html.split('\n\n');
+    html = lines.map(block => {
+      const trimmed = block.trim();
+      if (!trimmed) return '';
+      if (/^<(h[1-6]|ul|ol|li|pre|blockquote|hr|img|div|table)/.test(trimmed)) return trimmed;
+      if (trimmed.startsWith('<p>')) return trimmed;
+      return `<p>${trimmed.replace(/\n/g, '<br/>')}</p>`;
+    }).join('\n');
+
+    return html;
   };
+
 
   return (
     <main className="min-h-screen bg-white dark:bg-slate-950">

@@ -53,6 +53,12 @@ const featuredPosts = [
   },
 ];
 
+export const metadata = {
+  title: "Code with Amrendra — React, AI & SaaS Insights",  // ← Browser tab title
+  description: "Personal insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.",
+};
+
+
 export default function Home() {
   return (
     <main className={styles.main}>
@@ -257,7 +263,7 @@ export default function Home() {
               Find me around the web where I build in public.
             </p>
           </div>
-          
+
           <div className={styles.socialGrid}>
             <a href="https://github.com/AmrendraCodes" target="_blank" rel="noopener noreferrer" aria-label="Visit Amrendra GitHub Profile" className={styles.socialCard}>
               <Github size={32} className={styles.socialIcon} />
