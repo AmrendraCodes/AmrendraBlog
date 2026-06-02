@@ -5,12 +5,38 @@ import BlogCard from '@/components/BlogCard';
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const formattedName = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  const posts = getAllPosts().filter(
+    (p) => (p.categorySlug || '').toLowerCase() === slug.toLowerCase()
+  );
+
+  // Use the first post's image as the category OG image, fallback to default
+  const ogImage = posts.length > 0 ? posts[0].image : '/images/og-default.png';
+  const title = `${formattedName} Articles | AmrendraBlog`;
+  const description = `Browse all articles about ${formattedName} on AmrendraBlog.`;
 
   return {
-    title: `${formattedName} Articles | AmrendraBlog`,
-    description: `Browse all articles about ${formattedName} on AmrendraBlog.`,
+    title,
+    description,
     alternates: {
       canonical: `/category/${slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `/category/${slug}`,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${formattedName} — AmrendraBlog`,
+        },
+      ],
+    },
+    twitter: {
+      title,
+      description,
+      images: [ogImage],
     },
   };
 }

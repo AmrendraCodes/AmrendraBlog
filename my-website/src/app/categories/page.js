@@ -7,6 +7,24 @@ export const metadata = {
   alternates: {
     canonical: '/categories',
   },
+  openGraph: {
+    title: 'Categories | AmrendraBlog',
+    description: 'Browse blog posts by category — React, AI Agents, SaaS Architecture, DevOps, and more.',
+    url: '/categories',
+    images: [
+      {
+        url: '/images/og-default.png',
+        width: 1200,
+        height: 630,
+        alt: 'AmrendraBlog — Browse Categories',
+      },
+    ],
+  },
+  twitter: {
+    title: 'Categories | AmrendraBlog',
+    description: 'Browse blog posts by category — React, AI Agents, SaaS Architecture, DevOps, and more.',
+    images: ['/images/og-default.png'],
+  },
 };
 
 export default function CategoriesPage() {

@@ -54,8 +54,26 @@ const featuredPosts = [
 ];
 
 export const metadata = {
-  title: "Code with Amrendra — React, AI & SaaS Insights",  // ← Browser tab title
+  title: "Code with Amrendra — React, AI & SaaS Insights",
   description: "Personal insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.",
+  openGraph: {
+    title: 'Code with Amrendra — React, AI & SaaS Insights',
+    description: 'Personal insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.',
+    url: '/',
+    images: [
+      {
+        url: '/images/og-default.png',
+        width: 1200,
+        height: 630,
+        alt: 'AmrendraBlog — React, AI Agents, SaaS & DevOps',
+      },
+    ],
+  },
+  twitter: {
+    title: 'Code with Amrendra — React, AI & SaaS Insights',
+    description: 'Personal insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.',
+    images: ['/images/og-default.png'],
+  },
 };
 
 
