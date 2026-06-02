@@ -72,10 +72,6 @@ export default function Home() {
 
         <div className={styles.heroGrid}>
           <div className={styles.heroContent}>
-            <div className={styles.heroBadge}>
-              <span className={styles.badgeLabel}>Amrendra</span>
-              <span>Technical Content Writer &amp; Frontend Developer</span>
-            </div>
             <h1 className={styles.heroTitle}>
               Developer Notes on Frontend, SaaS &amp; Growth
             </h1>
