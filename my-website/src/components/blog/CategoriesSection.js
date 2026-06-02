@@ -74,8 +74,10 @@ export default function CategoriesSection() {
               <Link key={index} href={`/category/${category.slug}`} className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 hover:bg-white dark:hover:bg-slate-900 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:hover:shadow-[0_8px_30px_rgb(0,0,0,0.2)] hover:-translate-y-1 hover:border-blue-200 dark:hover:border-blue-900/50 transition-all duration-300 group cursor-pointer flex flex-col text-left no-underline">
                 {/* Row 1: Icon + Badge — always on same line */}
                 <div className="flex items-center justify-between w-full mb-4">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 shadow-sm border border-slate-100 dark:border-slate-700 group-hover:scale-110 transition-transform duration-300 shrink-0">
-                    {category.icon}
+                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-blue-50 to-violet-50 dark:from-slate-800 dark:to-slate-700 text-blue-600 dark:text-blue-400 shadow-sm border border-blue-100/60 dark:border-slate-600 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.35)] dark:group-hover:shadow-[0_0_20px_rgba(96,165,250,0.25)] transition-all duration-300 shrink-0">
+                    <span className="inline-flex group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300">
+                      {category.icon}
+                    </span>
                   </div>
                   <span className="shrink-0 px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-semibold rounded-full group-hover:bg-blue-50 dark:group-hover:bg-blue-900/30 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors whitespace-nowrap">
                     {count} {count === 1 ? 'Article' : 'Articles'}

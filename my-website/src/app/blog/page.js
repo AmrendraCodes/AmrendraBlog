@@ -1,7 +1,7 @@
 import HeroSection from "@/components/blog/HeroSection";
 import FeaturedPosts from "@/components/blog/FeaturedPosts";
 import CategoriesSection from "@/components/blog/CategoriesSection";
-import LatestArticles from "@/components/blog/LatestArticles";
+import BlogPageClient from "@/components/blog/BlogPageClient";
 
 export const metadata = {
   title: "Blog | AmrendraBlog",
@@ -17,7 +17,7 @@ export default function BlogPage() {
       <HeroSection />
       <FeaturedPosts />
       <CategoriesSection />
-      <LatestArticles />
+      <BlogPageClient />
     </div>
   );
 }
