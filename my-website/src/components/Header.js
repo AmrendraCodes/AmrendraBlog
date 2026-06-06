@@ -110,7 +110,7 @@ export default function Header() {
         className={`fixed top-0 right-0 bottom-0 w-[min(100%,24rem)] bg-white dark:bg-slate-950 z-[70] transition-transform duration-500 flex flex-col border-l border-slate-900/10 dark:border-slate-700/20 box-border ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
         role="dialog"
         aria-modal="true"
-        aria-hidden={!isMenuOpen}
+        {...(!isMenuOpen ? { inert: "" } : {})}
       >
         <div className="flex items-center justify-between p-6 border-b border-slate-900/10 dark:border-slate-700/20 gap-4">
           <div className="flex items-center gap-3 shrink-0">
