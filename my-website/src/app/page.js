@@ -65,7 +65,7 @@ export const metadata = {
         url: '/images/og-default.png',
         width: 1200,
         height: 630,
-        alt: 'AmrendraBlog — React, AI Agents, SaaS & DevOps',
+        alt: 'Code with Amrendra — React, AI Agents, SaaS & DevOps',
       },
     ],
   },

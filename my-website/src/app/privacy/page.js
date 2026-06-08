@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Privacy Policy",
-  description: "Privacy policy for AmrendraBlog — how we handle your data and protect your privacy.",
+  description: "Privacy policy for Code with Amrendra — how we handle your data and protect your privacy.",
   alternates: {
     canonical: '/privacy',
   },

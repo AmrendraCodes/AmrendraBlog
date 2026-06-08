@@ -34,14 +34,14 @@ const dmSans = DM_Sans({
 export const metadata = {
   metadataBase: new URL('https://amrendra-blog.vercel.app'),
   title: {
-    default: "AmrendraBlog",
-    template: "%s | AmrendraBlog"
+    default: "Code with Amrendra",
+    template: "%s | Code with Amrendra"
   },
   description: "A personal blog by Amrendra — insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.",
   keywords: ["React", "Next.js", "AI Agents", "SaaS Architecture", "AWS", "DevOps", "Frontend Development", "Web Development", "JavaScript", "Blog"],
   authors: [{ name: "Amrendra kumar", url: "https://amrendra-blog.vercel.app" }],
   creator: "Amrendra kumar",
-  publisher: "AmrendraBlog",
+  publisher: "Code with Amrendra",
   robots: {
     index: true,
     follow: true,
@@ -59,13 +59,13 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'AmrendraBlog',
+    siteName: 'Code with Amrendra',
     images: [
       {
         url: '/images/og-default.png',
         width: 1200,
         height: 630,
-        alt: 'AmrendraBlog — React, AI Agents, SaaS & DevOps',
+        alt: 'Code with Amrendra — React, AI Agents, SaaS & DevOps',
       },
     ],
   },

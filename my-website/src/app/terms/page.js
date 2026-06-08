@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Terms of Service",
-  description: "Terms of service for AmrendraBlog — the rules and guidelines for using our site.",
+  description: "Terms of service for Code with Amrendra — the rules and guidelines for using our site.",
   alternates: {
     canonical: '/terms',
   },
@@ -19,7 +19,7 @@ export default function TermsPage() {
           <div>
             <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-4">Acceptance of Terms</h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-              By accessing and using AmrendraBlog, you agree to be bound by these Terms of Service. 
+              By accessing and using Code with Amrendra, you agree to be bound by these Terms of Service. 
               If you do not agree with any part of these terms, please do not use this website.
             </p>
           </div>
@@ -27,7 +27,7 @@ export default function TermsPage() {
           <div>
             <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-4">Content Usage</h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-              All content published on AmrendraBlog is for informational purposes only. 
+              All content published on Code with Amrendra is for informational purposes only. 
               You may share and link to our articles with proper attribution. 
               Reproducing full articles without permission is not allowed.
             </p>

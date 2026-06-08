@@ -27,7 +27,7 @@ export default function BlogFooter() {
         </div>
         
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-slate-100 dark:border-slate-800 text-sm text-slate-400">
-          <p>© {new Date().getFullYear()} AmrendraBlog. All rights reserved. · <Link href="/privacy" className="hover:text-slate-600 transition-colors">Privacy</Link> · <Link href="/terms" className="hover:text-slate-600 transition-colors">Terms</Link></p>
+          <p>© {new Date().getFullYear()} Code with Amrendra. All rights reserved. · <Link href="/privacy" className="hover:text-slate-600 transition-colors">Privacy</Link> · <Link href="/terms" className="hover:text-slate-600 transition-colors">Terms</Link></p>
           <p>Made with curiosity. Updated weekly. Opinions are our own.</p>
         </div>
       </div>

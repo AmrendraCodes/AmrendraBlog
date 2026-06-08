@@ -62,8 +62,8 @@ export default function Header() {
               <div className="bg-linear-to-br from-[#00b7ff] to-[#7c3aed] text-white rounded-full flex justify-center items-center w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 transition-transform duration-300 shadow-[0_0_15px_rgba(168,85,247,0.5)] shrink-0 group-hover:rotate-12 group-hover:scale-110">
                 <Image src="/icon.svg" alt="Logo" width={18} height={18} className="w-[1.1rem] max-w-full h-auto" priority />
               </div>
-              <span className="text-[24px] lg:text-[26px] font-extrabold tracking-tight flex items-center">
-                <span className="bg-linear-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text">CWA</span>
+              <span className="text-[22px] lg:text-[24px] font-extrabold tracking-tight flex items-center text-slate-900 dark:text-white ml-2">
+                Code with <span className="bg-linear-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text ml-1.5">Amrendra</span>
               </span>
             </Link>
           </div>
@@ -117,8 +117,8 @@ export default function Header() {
             <div className="bg-linear-to-br from-[#00b7ff] to-[#7c3aed] text-white rounded-full flex justify-center items-center w-8 h-8 shadow-[0_0_15px_rgba(168,85,247,0.5)]">
               <Sparkles size={18} />
             </div>
-            <span className="text-[24px] font-extrabold flex items-center">
-              <span className="bg-linear-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text">CWA</span>
+            <span className="text-[22px] font-extrabold flex items-center text-slate-900 dark:text-white">
+              Code with <span className="bg-linear-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text ml-1.5">Amrendra</span>
             </span>
           </div>
           <button

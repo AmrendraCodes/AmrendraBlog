@@ -11,8 +11,8 @@ export async function generateMetadata({ params }) {
 
   // Use the first post's image as the category OG image, fallback to default
   const ogImage = posts.length > 0 ? posts[0].image : '/images/og-default.png';
-  const title = `${formattedName} Articles | AmrendraBlog`;
-  const description = `Browse all articles about ${formattedName} on AmrendraBlog.`;
+  const title = `${formattedName} Articles | Code with Amrendra`;
+  const description = `Browse all articles about ${formattedName} on Code with Amrendra.`;
 
   return {
     title,
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }) {
           url: ogImage,
           width: 1200,
           height: 630,
-          alt: `${formattedName} — AmrendraBlog`,
+          alt: `${formattedName} — Code with Amrendra`,
         },
       ],
     },

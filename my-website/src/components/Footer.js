@@ -93,7 +93,7 @@ export default function Footer() {
 
         <div className="border-t border-slate-900/5 flex flex-col md:flex-row justify-between items-center gap-4 pt-10">
           <p className="text-slate-500 text-[13px] font-medium text-center md:text-left">
-            &copy; {new Date().getFullYear()} AmrendraBlog. All rights reserved. Built with ❤️ for the community.
+            &copy; {new Date().getFullYear()} Code with Amrendra. All rights reserved. Built with ❤️ for the community.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
             <Link href="/privacy" className="text-slate-500 text-[13px] font-medium no-underline transition-colors duration-300 hover:text-slate-900 dark:text-slate-50">Privacy</Link>

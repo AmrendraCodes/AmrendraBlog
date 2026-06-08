@@ -4,27 +4,27 @@ import CategoriesSection from "@/components/blog/CategoriesSection";
 import BlogPageClient from "@/components/blog/BlogPageClient";
 
 export const metadata = {
-  title: "Blog | AmrendraBlog",
-  description: "Read the latest stories and insights from AmrendraBlog.",
+  title: "Blog | Code with Amrendra",
+  description: "Read the latest stories and insights from Code with Amrendra.",
   alternates: {
     canonical: '/blog',
   },
   openGraph: {
-    title: 'Blog | AmrendraBlog',
-    description: 'Read the latest stories and insights from AmrendraBlog.',
+    title: 'Blog | Code with Amrendra',
+    description: 'Read the latest stories and insights from Code with Amrendra.',
     url: '/blog',
     images: [
       {
         url: '/images/og-blog.png',
         width: 1200,
         height: 630,
-        alt: 'AmrendraBlog — Blog',
+        alt: 'Code with Amrendra — Blog',
       },
     ],
   },
   twitter: {
-    title: 'Blog | AmrendraBlog',
-    description: 'Read the latest stories and insights from AmrendraBlog.',
+    title: 'Blog | Code with Amrendra',
+    description: 'Read the latest stories and insights from Code with Amrendra.',
     images: ['/images/og-blog.png'],
   },
 };
