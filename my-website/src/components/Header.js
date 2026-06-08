@@ -58,12 +58,14 @@ export default function Header() {
       <div className={`fixed top-5 left-0 w-full z-50 flex justify-center p-0 pointer-events-none transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-[150%]"}`}>
         <header className={`pointer-events-auto z-50 transition-all duration-300 flex items-center justify-between rounded-full border relative w-[95%] mx-auto md:grid md:grid-cols-[1fr_auto_1fr] md:w-[85%] md:gap-4 lg:w-[70%] lg:max-w-[1200px] lg:py-3 lg:px-8 ${isScrolled ? 'bg-white/40 dark:bg-slate-950/40 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] py-3 px-8 border-slate-200/50 dark:border-slate-700/50' : 'bg-white/70 dark:bg-slate-950/70 backdrop-blur-md shadow-[0_10px_40px_rgba(15,23,42,0.05)] py-3 px-5 border-slate-900/10 dark:border-slate-700/20'}`}>
           <div className="flex items-center justify-start">
-            <Link href="/" className="flex items-center gap-3 no-underline shrink-0 group">
+            <Link href="/" className="flex items-center gap-2 md:gap-3 no-underline shrink-0 group">
               <div className="bg-linear-to-br from-[#00b7ff] to-[#7c3aed] text-white rounded-full flex justify-center items-center w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 transition-transform duration-300 shadow-[0_0_15px_rgba(168,85,247,0.5)] shrink-0 group-hover:rotate-12 group-hover:scale-110">
                 <Image src="/icon.svg" alt="Logo" width={18} height={18} className="w-[1.1rem] max-w-full h-auto" priority />
               </div>
-              <span className="text-[22px] lg:text-[24px] font-extrabold tracking-tight flex items-center text-slate-900 dark:text-white ml-2">
-                Code with <span className="bg-linear-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text ml-1.5">Amrendra</span>
+              <span className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] font-extrabold tracking-tight flex items-center text-slate-900 dark:text-white ml-1.5 sm:ml-2">
+                <span className="hidden sm:inline mr-1">Code with</span>
+                <span className="inline sm:hidden">CWA</span>
+                <span className="bg-linear-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text hidden sm:inline">Amrendra</span>
               </span>
             </Link>
           </div>
