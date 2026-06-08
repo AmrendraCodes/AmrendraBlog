@@ -39,8 +39,8 @@ export const metadata = {
   },
   description: "A personal blog by Amrendra — insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.",
   keywords: ["React", "Next.js", "AI Agents", "SaaS Architecture", "AWS", "DevOps", "Frontend Development", "Web Development", "JavaScript", "Blog"],
-  authors: [{ name: "Amrendra Kumar", url: "https://amrendra-blog.vercel.app" }],
-  creator: "Amrendra Kumar",
+  authors: [{ name: "Amrendra kumar", url: "https://amrendra-blog.vercel.app" }],
+  creator: "Amrendra kumar",
   publisher: "AmrendraBlog",
   robots: {
     index: true,

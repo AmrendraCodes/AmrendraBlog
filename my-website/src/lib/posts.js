@@ -7,7 +7,7 @@ const posts = [
     categorySlug: "development",
     date: "Feb 27, 2026",
     readTime: "8 min read",
-    author: "Amrendra",
+    author: "Amrendra kumar",
     excerpt: "Exploring the evolution of frontend frameworks, AI integration, and the rise of edge computing in modern web architectures.",
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop",
     content: "# The Future of Web Development\n\nExploring the evolution of frontend frameworks, AI integration, and the rise of edge computing in modern web architectures..."
@@ -19,7 +19,7 @@ const posts = [
     categorySlug: "design",
     date: "Feb 25, 2026",
     readTime: "6 min read",
-    author: "Sarah Smith",
+    author: "Amrendra kumar",
     excerpt: "How simplicity and performance-first design are shaping the digital experiences of tomorrow across global markets.",
     image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=800&auto=format&fit=crop",
     content: "# Designing for the Next Billion Users\n\nHow simplicity and performance-first design are shaping the digital experiences of tomorrow across global markets..."
@@ -31,7 +31,7 @@ const posts = [
     categorySlug: "productivity",
     date: "Feb 22, 2026",
     readTime: "5 min read",
-    author: "John Doe",
+    author: "Amrendra kumar",
     excerpt: "Practical strategies and tools to keep your distributed team synchronized and focused on high-impact results.",
     image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop",
     content: "# 10 Productivity Hacks for Remote Engineering Teams\n\nPractical strategies and tools to keep your distributed team synchronized and focused on high-impact results..."
@@ -43,7 +43,7 @@ const posts = [
     categorySlug: "react",
     date: "April 1, 2026",
     readTime: "8 min read",
-    author: "Amrendra",
+    author: "Amrendra kumar",
     excerpt: "Learn how to architect component libraries that grow with your application, enforcing consistency while remaining flexible for complex UI needs.",
     image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1200&auto=format&fit=crop",
     content: `# Building Reusable React Component Systems at Scale
@@ -210,7 +210,7 @@ Building a component system is an investment in velocity. The upfront cost pays 
     categorySlug: "ai-agents",
     date: "March 28, 2026",
     readTime: "12 min read",
-    author: "Amrendra",
+    author: "Amrendra kumar",
     excerpt: "A deep dive into building AI agents that can reason, use tools, and execute complex multi-step workflows using the latest LLM frameworks.",
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop",
     content: `# Creating Autonomous AI Agents with Modern LLM Workflows
@@ -310,7 +310,7 @@ The era of AI agents is just beginning. The developers who master these patterns
     categorySlug: "saas-architecture",
     date: "March 24, 2026",
     readTime: "15 min read",
-    author: "Amrendra",
+    author: "Amrendra kumar",
     excerpt: "Essential database architectures, routing strategies, and authentication patterns for building scalable multi-tenant applications.",
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop",
     content: `# Designing Multi-Tenant SaaS Platforms for Scale
@@ -387,7 +387,7 @@ Multi-tenancy is a spectrum, not a binary choice. Start with shared schema for s
     categorySlug: "aws-infrastructure",
     date: "March 18, 2026",
     readTime: "10 min read",
-    author: "Amrendra",
+    author: "Amrendra kumar",
     excerpt: "From VPC design to ECS deployments, learn the foundational AWS services and architectures every startup should implement.",
     image: "https://images.unsplash.com/photo-1620288627223-53302f4e8c74?q=80&w=1200&auto=format&fit=crop",
     content: `# AWS Infrastructure Best Practices for Startups
@@ -475,7 +475,7 @@ You cannot fix what you cannot see. Set up from day one:
     categorySlug: "devops",
     date: "March 12, 2026",
     readTime: "9 min read",
-    author: "Amrendra",
+    author: "Amrendra kumar",
     excerpt: "A practical guide to containerizing your applications and building robust, automated deployment pipelines.",
     image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?q=80&w=1200&auto=format&fit=crop",
     content: `# Automating CI/CD Pipelines with GitHub Actions & Docker
@@ -611,7 +611,7 @@ Combine CI/CD with **branch protection rules**:
     categorySlug: "design",
     date: "May 12, 2026",
     readTime: "5 min read",
-    author: "Amrendra Kumar",
+    author: "Amrendra kumar",
     excerpt: "Explore the evolution of modern UI design. From flat design to glassmorphism, we dive deep into the trends shaping the future of digital experiences.",
     image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1200&auto=format&fit=crop",
     content: "# The Future of User Interfaces: Glassmorphism and Beyond\n\nExplore the evolution of modern UI design. From flat design to glassmorphism, we dive deep into the trends shaping the future of digital experiences and how you can implement them today."
@@ -624,7 +624,7 @@ Combine CI/CD with **branch protection rules**:
     categorySlug: "marketing",
     date: "May 10, 2026",
     readTime: "7 min read",
-    author: "Sarah Jenkins",
+    author: "Amrendra kumar",
     excerpt: "Discover the psychological triggers and design patterns that turn casual visitors into paying customers.",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
     content: "# The Anatomy of a High-Converting Landing Page\n\nDiscover the psychological triggers and design patterns that turn casual visitors into paying customers."
@@ -636,7 +636,7 @@ Combine CI/CD with **branch protection rules**:
     categorySlug: "development",
     date: "May 8, 2026",
     readTime: "8 min read",
-    author: "Amrendra Kumar",
+    author: "Amrendra kumar",
     excerpt: "A comprehensive guide to using the latest utility classes and features to build responsive, modern interfaces faster.",
     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
     content: "# Mastering Tailwind CSS in 2026\n\nA comprehensive guide to using the latest utility classes and features to build responsive, modern interfaces faster."
@@ -648,7 +648,7 @@ Combine CI/CD with **branch protection rules**:
     categorySlug: "design",
     date: "May 5, 2026",
     readTime: "6 min read",
-    author: "Elena Rodriguez",
+    author: "Amrendra kumar",
     excerpt: "How stripping away the noise can lead to better user engagement, faster load times, and a premium brand feel.",
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
     content: "# Why Minimalist UI is Back and Here to Stay\n\nHow stripping away the noise can lead to better user engagement, faster load times, and a premium brand feel."
@@ -660,7 +660,7 @@ Combine CI/CD with **branch protection rules**:
     categorySlug: "development",
     date: "May 2, 2026",
     readTime: "10 min read",
-    author: "David Chen",
+    author: "Amrendra kumar",
     excerpt: "Architectural patterns and best practices for creating Next.js apps that perform under heavy traffic.",
     image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop",
     content: "# Building Scalable Next.js Applications\n\nArchitectural patterns and best practices for creating Next.js apps that perform under heavy traffic."
@@ -672,7 +672,7 @@ Combine CI/CD with **branch protection rules**:
     categorySlug: "design",
     date: "April 28, 2026",
     readTime: "5 min read",
-    author: "Sarah Jenkins",
+    author: "Amrendra kumar",
     excerpt: "Stop guessing your font sizes. Learn the mathematical ratios and pairing techniques for perfect typography.",
     image: "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea?q=80&w=800&auto=format&fit=crop",
     content: "# Typography Rules Every Designer Should Know\n\nStop guessing your font sizes. Learn the mathematical ratios and pairing techniques for perfect typography."
@@ -684,7 +684,7 @@ Combine CI/CD with **branch protection rules**:
     categorySlug: "marketing",
     date: "April 24, 2026",
     readTime: "9 min read",
-    author: "Michael Torres",
+    author: "Amrendra kumar",
     excerpt: "How search engines are changing and what you need to do today to keep your content ranking high.",
     image: "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?q=80&w=800&auto=format&fit=crop",
     content: "# The Ultimate Guide to SEO in the AI Era\n\nHow search engines are changing and what you need to do today to keep your content ranking high."

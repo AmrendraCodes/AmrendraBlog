@@ -46,10 +46,14 @@ export default function BlogCard({ post }) {
 
         <div className="flex items-center justify-between pt-6 border-t border-slate-50 dark:border-slate-800">
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
-              <User size={16} className="text-slate-400 dark:text-slate-500" />
-            </div>
-            <span className="text-[13px] font-bold text-slate-700 dark:text-slate-200">{post.author || "Amrendra"}</span>
+            <Image 
+              src="/Profile photo.jpeg" 
+              alt={post.author || "Amrendra kumar"} 
+              width={32} 
+              height={32} 
+              className="w-8 h-8 rounded-full object-cover bg-slate-100 dark:bg-slate-800" 
+            />
+            <span className="text-[13px] font-bold text-slate-700 dark:text-slate-200">{post.author || "Amrendra kumar"}</span>
           </div>
 
           <Link

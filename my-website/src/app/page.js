@@ -154,31 +154,54 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={styles.trendingGrid}>
-          {featuredPosts.map((post, index) => (
-            <article key={index} className={styles.compactCard}>
-              <div className={styles.compactImageWrapper}>
-                <span className={styles.compactBadge}>{post.category}</span>
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  fill
-                  sizes="(max-width: 768px) 80vw, 30vw"
-                  className={styles.compactImage}
-                />
+        <div className="max-w-[80rem] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Hero Article */}
+          <article className="group relative rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-2xl transition-all duration-500 h-full min-h-[400px]">
+            <Image src={featuredPosts[0].image} alt={featuredPosts[0].title} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-900/60 to-transparent" />
+            <div className="absolute bottom-0 left-0 p-8 flex flex-col justify-end h-full w-full z-10">
+              <span className="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider w-fit mb-4 shadow-sm">
+                {featuredPosts[0].category}
+              </span>
+              <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-3 leading-snug">
+                {featuredPosts[0].title}
+              </h3>
+              <div className="flex items-center text-slate-300 text-sm font-medium">
+                <span>{featuredPosts[0].date} • {featuredPosts[0].readingTime}</span>
               </div>
-              <div className={styles.compactContent}>
-                <h3 className={styles.compactTitle}>{post.title}</h3>
-                <p className={styles.compactDesc}>{post.description}</p>
-                <div className={styles.compactFooter}>
-                  <span className={styles.compactAuthor}>{post.date} • {post.readingTime}</span>
-                  <Link href={post.href} className={styles.compactLink}>
-                    <ArrowRight size={16} />
-                  </Link>
+              <Link href={featuredPosts[0].href} className="absolute inset-0 z-20"><span className="sr-only">Read more</span></Link>
+            </div>
+          </article>
+          
+          {/* Supporting Articles */}
+          <div className="flex flex-col gap-6">
+            {featuredPosts.slice(1, 4).map((post, index) => (
+              <article key={index} className="flex gap-6 group items-center bg-white dark:bg-slate-900 p-4 rounded-3xl border border-slate-100 dark:border-slate-800 hover:border-blue-100 hover:shadow-xl transition-all duration-300 relative">
+                <div className="relative w-28 h-28 sm:w-36 sm:h-36 shrink-0 rounded-2xl overflow-hidden">
+                  <Image src={post.image} alt={post.title} fill sizes="150px" className="object-cover transition-transform duration-500 group-hover:scale-110" />
                 </div>
-              </div>
-            </article>
-          ))}
+                <div className="flex flex-col justify-center">
+                  <span className="text-blue-600 dark:text-blue-400 text-[11px] font-extrabold uppercase tracking-wider mb-2">
+                    {post.category}
+                  </span>
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-50 mb-2 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+                    <Link href={post.href} className="before:absolute before:inset-0 z-10">
+                      {post.title}
+                    </Link>
+                  </h3>
+                  <div className="text-slate-500 dark:text-slate-400 text-[13px] font-medium">
+                    <span>{post.date} • {post.readingTime}</span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex justify-center mt-12 w-full">
+          <Link href="/blog" className="inline-flex items-center justify-center bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold py-3.5 px-8 rounded-full hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-blue-600 dark:hover:bg-blue-500 dark:hover:text-white">
+            View All Posts <ArrowRight size={18} className="ml-2" />
+          </Link>
         </div>
       </section>
 
@@ -187,7 +210,7 @@ export default function Home() {
         <div className={styles.aboutContainer}>
           <div className={styles.aboutImageWrapper}>
             <Image
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop"
+              src="/Profile photo.jpeg"
               alt="Amrendra - Technical Content Writer"
               fill
               sizes="(max-width: 768px) 100vw, 400px"
@@ -217,8 +240,7 @@ export default function Home() {
       {/* Categories Section */}
       <CategoriesSection />
 
-      {/* Latest Articles Feed */}
-      <LatestArticles />
+      {/* Latest Articles Removed per new strategy */}
 
       {/* Newsletter Section */}
       <section className={styles.newsletterSection}>

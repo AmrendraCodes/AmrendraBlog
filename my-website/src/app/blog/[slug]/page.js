@@ -137,7 +137,13 @@ export default async function PostPage({ params }) {
 
           <div className="flex flex-wrap items-center gap-6 text-slate-600 dark:text-slate-300 text-sm font-medium border-t border-slate-200 dark:border-slate-800 pt-8">
             <div className="flex items-center">
-              <User size={16} className="mr-2" />
+              <Image 
+                src="/Profile photo.jpeg" 
+                alt={post.author} 
+                width={24} 
+                height={24} 
+                className="w-6 h-6 rounded-full object-cover mr-2" 
+              />
               <span>{post.author}</span>
             </div>
             <div className="flex items-center">

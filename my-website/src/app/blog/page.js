@@ -33,8 +33,6 @@ export default function BlogPage() {
   return (
     <div className="bg-white dark:bg-slate-950 min-h-screen">
       <HeroSection />
-      <FeaturedPosts />
-      <CategoriesSection />
       <BlogPageClient />
     </div>
   );
