@@ -31,7 +31,7 @@ export const metadata = {
 
 export default function BlogPage() {
   return (
-    <div className="bg-white dark:bg-slate-950 min-h-screen">
+    <div className="bg-white dark:bg-slate-950 min-h-screen pt-24 md:pt-28 lg:pt-32">
       <HeroSection />
       <BlogPageClient />
     </div>
