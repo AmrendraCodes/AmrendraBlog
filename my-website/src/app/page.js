@@ -83,7 +83,7 @@ export default function Home() {
 
 
       {/* Hero Section */}
-      <section className={styles.heroSection}>
+      <section className={`${styles.heroSection} pt-24 md:pt-28 lg:pt-32`}>
         {/* Animated Background Blur Glows */}
         <div className={styles.glowBlob1} />
         <div className={styles.glowBlob2} />

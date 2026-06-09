@@ -29,7 +29,7 @@ export const metadata = {
 
 export default function CategoriesPage() {
   return (
-    <main className="min-h-screen bg-white dark:bg-slate-950">
+    <main className="min-h-screen bg-white dark:bg-slate-950 pt-24 md:pt-28 lg:pt-32">
       <CategoriesSection />
     </main>
   );
