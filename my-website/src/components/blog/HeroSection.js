@@ -11,13 +11,6 @@ export default function HeroSection() {
 
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center animate-fade-in-up mt-12 md:mt-0">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-200 text-sm font-semibold mb-8 border border-slate-200 dark:border-slate-800 shadow-sm backdrop-blur-md transition-transform hover:scale-105 cursor-default">
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-600 dark:bg-blue-400"></span>
-          </span>
-          The Official Blog
-        </div>
 
         {/* Heading */}
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 dark:text-white leading-[1.1] mb-8 tracking-tight">
