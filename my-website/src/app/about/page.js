@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 export default function AboutPage() {
   const [displayText, setDisplayText] = useState("");
@@ -23,18 +25,37 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 selection:bg-blue-100 dark:selection:bg-blue-900 font-sans overflow-x-hidden">
       {/* Hero Section */}
-      <section className="pt-24 pb-10 md:pt-32 md:pb-16 px-4 sm:px-6 max-w-5xl mx-auto text-center border-b border-slate-50 dark:border-slate-800">
-        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] sm:text-xs font-bold tracking-[0.2em] text-blue-600 dark:text-blue-400 uppercase bg-blue-50 dark:bg-blue-900/20 rounded-full">
-          About me
+      <section className="pt-24 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          {/* Left: Photo */}
+          <div className="flex justify-center md:justify-end">
+            <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-[#00b7ff]/20 shadow-2xl shadow-[#7c3aed]/20 hover:shadow-[#7c3aed]/40 transition-shadow duration-300">
+              <Image
+                src="/Profile photo.jpeg"
+                alt="Amrendra"
+                width={224}
+                height={224}
+                priority
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
+          {/* Right: Hero Text */}
+          <div className="text-center md:text-left">
+            <div className="inline-block px-4 py-1.5 mb-6 text-[10px] sm:text-xs font-bold tracking-[0.2em] text-blue-600 dark:text-blue-400 uppercase bg-blue-50 dark:bg-blue-900/20 rounded-full">
+              About me
+            </div>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tighter mb-6 leading-[1.1]">
+              <span className="text-slate-900 dark:text-slate-50">{displayText.substring(0, 8)}</span>
+              <span className="text-blue-600">{displayText.substring(8)}</span>
+              <span className="inline-block w-1 md:w-1.5 h-[0.8em] bg-blue-600 ml-2 align-middle animate-[blink_1s_infinite]"></span>
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 font-medium max-w-xl leading-relaxed">
+              A <span className="text-blue-600 dark:text-blue-400 font-bold">Technical Content Writer</span> and <span className="text-blue-600 dark:text-blue-400 font-bold">Frontend Developer</span> passionate about building amazing web experiences and sharing knowledge with the community.
+            </p>
+          </div>
         </div>
-        <h1 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-6 md:mb-8 leading-[1.1] min-h-[3em] sm:min-h-[2em] md:min-h-[1.2em] flex flex-wrap justify-center items-center">
-          <span className="text-slate-900 dark:text-slate-50 inline-block mr-3">{displayText.substring(0, 8)}</span>
-          <span className="text-blue-600 inline-block">{displayText.substring(8)}</span>
-          <span className="inline-block w-1 md:w-1.5 h-[0.8em] bg-blue-600 ml-1 sm:ml-2 md:ml-3 align-middle animate-[blink_1s_infinite]"></span>
-        </h1>
-        <p className="text-base sm:text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-medium max-w-2xl mx-auto leading-relaxed px-2">
-          A Technical Content Writer currently building my path as a <span className="text-blue-600 dark:text-blue-400 font-bold">Frontend Developer</span>
-        </p>
 
         <style jsx global>{`
           @keyframes blink {
@@ -44,164 +65,77 @@ export default function AboutPage() {
         `}</style>
       </section>
 
-      {/* My Journey Section */}
-      <section className="py-12 md:py-20 px-4 sm:px-6 max-w-3xl mx-auto">
-        <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-slate-50 mb-6 md:mb-10 flex items-center gap-3 sm:gap-4">
-          <span className="w-8 sm:w-12 h-1 md:h-1.5 bg-blue-600 dark:bg-blue-400 rounded-full"></span>
-          My Journey
+      {/* Story Section */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 max-w-4xl mx-auto border-t border-slate-100 dark:border-slate-800">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-slate-50 mb-10 md:mb-14 flex items-center gap-3">
+          <span className="w-12 md:w-16 h-1.5 md:h-2 bg-gradient-to-r from-[#00b7ff] to-[#7c3aed] rounded-full"></span>
+          My Story
         </h2>
-        <div className="space-y-6 md:space-y-8 text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-          <p>
-            I&apos;ve spent <strong>2.5+ years</strong> turning complex tech into clear, human-friendly content. But writing about software wasn&apos;t enough — I wanted to build it. So I did.
+
+        <div className="space-y-6 md:space-y-8">
+          <p className="text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+            I'm a self-taught developer who started my journey by learning HTML, CSS, and JavaScript through online courses and building real-world projects. Over the past few years, I've developed a deep passion for frontend development and modern web technologies. What started as curiosity has turned into a full-fledged career where I constantly explore new frameworks, tools, and best practices in the web development ecosystem.
           </p>
-          <p>
-            Now I&apos;m combining my writing background with <em className="text-slate-900 dark:text-slate-50 font-semibold not-italic">React and Next.js</em> to create things that are fast, intuitive, and actually make sense to real people.
+
+          <p className="text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+            During my coding journey, I realized that learning in isolation wasn't fulfilling. I wanted to give back to the community that helped me grow. That's when I started creating content — blog posts, tutorials, and technical guides — to help other developers navigate the complexities of modern web development. Today, I blend my technical expertise with my passion for communication to create valuable, easy-to-understand content that empowers developers at all levels.
+          </p>
+
+          <p className="text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+            "Code with Amrendra" was born from this vision: to create a platform where developers can learn cutting-edge technologies, stay updated with industry trends, and connect with a like-minded community. Whether you're just starting your coding journey or looking to master advanced concepts, I'm here to guide you every step of the way. Let's build amazing things together!
           </p>
         </div>
       </section>
 
-      {/* Professional Timeline */}
-      <section className="py-12 md:py-20 px-4 sm:px-6 bg-white dark:bg-slate-950 border-t border-slate-50 dark:border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-slate-50 mb-10 md:mb-16 text-center">Work Experience</h2>
-
-          <div className="relative space-y-8 md:space-y-12 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-blue-200 before:to-transparent">
-
-            {/* Timeline Item 1 */}
-            <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-              <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-blue-600 text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
-                <div className="w-2 h-2 bg-white dark:bg-slate-950 rounded-full"></div>
-              </div>
-              <div className="w-[calc(100%-3.5rem)] md:w-[45%] p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-slate-50 dark:bg-[#0f172a] border border-slate-100 dark:border-slate-800 shadow-sm group-hover:shadow-md transition-shadow">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
-                  <div className="font-black text-slate-900 dark:text-slate-50 text-base sm:text-lg leading-tight uppercase tracking-tight">SEO Executive</div>
-                  <time className="inline-block self-start text-[10px] font-black bg-blue-100 text-blue-600 px-2.5 py-1 rounded-full uppercase tracking-tighter whitespace-nowrap">2022 - 2024</time>
-                </div>
-                <div className="text-blue-600 font-bold text-xs sm:text-sm mb-3">Tech Mahindra</div>
-                <p className="text-slate-500 text-xs sm:text-sm leading-relaxed">Driven results through data-backed SEO strategies and technical optimizations for enterprise clients.</p>
-              </div>
-            </div>
-
-            {/* Timeline Item 2 */}
-            <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-              <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-blue-600 text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
-                <div className="w-2 h-2 bg-white dark:bg-slate-950 rounded-full"></div>
-              </div>
-              <div className="w-[calc(100%-3.5rem)] md:w-[45%] p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-slate-50 dark:bg-[#0f172a] border border-slate-100 dark:border-slate-800 shadow-sm group-hover:shadow-md transition-shadow">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
-                  <div className="font-black text-slate-900 dark:text-slate-50 text-base sm:text-lg leading-tight uppercase tracking-tight">Technical Content Writer</div>
-                  <time className="inline-block self-start text-[10px] font-black bg-indigo-100 text-indigo-600 px-2.5 py-1 rounded-full uppercase tracking-tighter whitespace-nowrap">2024 - 2025</time>
-                </div>
-                <div className="text-indigo-600 font-bold text-xs sm:text-sm mb-3">Astha Technology</div>
-                <p className="text-slate-500 text-xs sm:text-sm leading-relaxed">Articulated complex software functionalities and technical guides for diverse industry sectors.</p>
-              </div>
-            </div>
-
-            {/* Timeline Item 3 */}
-            <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-              <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-blue-600 text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
-                <div className="w-2 h-2 bg-white dark:bg-slate-950 rounded-full animate-pulse"></div>
-              </div>
-              <div className="w-[calc(100%-3.5rem)] md:w-[45%] p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-slate-50 dark:bg-[#0f172a] border border-slate-100 dark:border-slate-800 shadow-sm group-hover:shadow-md transition-shadow">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
-                  <div className="font-black text-slate-900 dark:text-slate-50 text-base sm:text-lg leading-tight uppercase tracking-tight">Technical Content Writer</div>
-                  <time className="inline-block self-start text-[10px] font-black bg-green-100 text-green-600 px-2.5 py-1 rounded-full uppercase tracking-tighter whitespace-nowrap">2025 - Present</time>
-                </div>
-                <div className="text-blue-600 font-bold text-xs sm:text-sm mb-3">Rejoicehub LLP</div>
-                <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-medium italic">Current Focus: Bridging the gap between engineering documentation and user-friendly technical content.</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Why I started this blog Section */}
-      <section className="py-12 md:py-20 px-4 sm:px-6 bg-slate-50 dark:bg-[#0f172a] border-y border-slate-100 dark:border-slate-800">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-10 md:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-slate-50 mb-3 md:mb-4 px-2">Why I started this blog</h2>
-            <p className="text-slate-500 text-base sm:text-lg px-4">My personal mission for this digital space.</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            <div className="bg-white dark:bg-slate-950 p-8 md:p-10 rounded-3xl md:rounded-[2.5rem] shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center font-black text-lg md:text-xl mb-6">01</div>
-              <h3 className="font-bold text-lg md:text-xl mb-3 md:mb-4 text-slate-900 dark:text-slate-50">Learn in Public</h3>
-              <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
-                Documenting my progress in Linux, DevOps, and Frontend helps me solidify concepts and stay accountable to my growth.
-              </p>
-            </div>
-            <div className="bg-white dark:bg-slate-950 p-8 md:p-10 rounded-3xl md:rounded-[2.5rem] shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center font-black text-lg md:text-xl mb-6">02</div>
-              <h3 className="font-bold text-lg md:text-xl mb-3 md:mb-4 text-slate-900 dark:text-slate-50">Live Portfolio</h3>
-              <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
-                This site is my sandbox. Every feature here is a product of what I&apos;m currently learning and experimenting with in real-time.
-              </p>
-            </div>
-            <div className="bg-white dark:bg-slate-950 p-8 md:p-10 rounded-3xl md:rounded-[2.5rem] shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 sm:col-span-2 lg:col-span-1">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center font-black text-lg md:text-xl mb-6">03</div>
-              <h3 className="font-bold text-lg md:text-xl mb-3 md:mb-4 text-slate-900 dark:text-slate-50">Pay It Forward</h3>
-              <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
-                If my journey or technical guides can help someone else cross a bridge faster, then this blog has served its ultimate purpose.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* What to expect Section */}
-      <section className="py-12 md:py-20 px-4 sm:px-6 max-w-3xl mx-auto">
-        <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-slate-50 mb-10 text-center">What to expect here</h2>
-        <div className="space-y-4 md:space-y-6">
+      {/* Skills Section */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 max-w-4xl mx-auto border-t border-slate-100 dark:border-slate-800">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-slate-50 mb-10 md:mb-14 flex items-center gap-3">
+          <span className="w-12 md:w-16 h-1.5 md:h-2 bg-gradient-to-r from-[#00b7ff] to-[#7c3aed] rounded-full"></span>
+          Skills & Expertise
+        </h2>
+        <div className="space-y-8 md:space-y-10">
           {[
-            { title: "Honest Progress", desc: "No fluff, no shortcuts. Just real updates on my projects, struggles, and breakthroughs." },
-            { title: "Learning Strategies", desc: "Insights on how I tackle complex tech topics effectively and build mental models." },
-            { title: "Business Ideas & Logic", desc: "Documentation of my journey turning digital ideas into reality and business experiments." }
-          ].map((item, i) => (
-            <div key={i} className="group flex items-start gap-4 sm:gap-6 p-5 md:p-6 rounded-2xl md:rounded-3xl hover:bg-slate-50 dark:bg-[#0f172a] transition-all border border-transparent hover:border-slate-100 dark:border-slate-800">
-              <div className="mt-2 w-2.5 h-2.5 rounded-full bg-blue-600 shrink-0 group-hover:scale-125 transition-transform"></div>
-              <div>
-                <h4 className="font-bold text-lg md:text-xl text-slate-900 dark:text-slate-50 mb-1 leading-tight">{item.title}</h4>
-                <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm md:text-lg">{item.desc}</p>
+            { name: "React/Next.js", percentage: 95 },
+            { name: "Node.js", percentage: 85 },
+            { name: "React Native", percentage: 80 },
+            { name: "UI/UX (Figma)", percentage: 75 },
+            { name: "Digital Marketing", percentage: 88 },
+            { name: "TailwindCSS", percentage: 92 }
+          ].map((skill) => (
+            <div key={skill.name}>
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-lg md:text-xl font-bold text-slate-900 dark:text-slate-50">{skill.name}</h3>
+                <span className="text-sm md:text-base font-semibold text-blue-600 dark:text-blue-400">{skill.percentage}%</span>
+              </div>
+              <div className="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-2.5 md:h-3 overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-[#00b7ff] to-[#7c3aed] rounded-full transition-all duration-500 ease-out"
+                  style={{ width: `${skill.percentage}%` }}
+                ></div>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Goal & CTA Section */}
-      <section className="py-12 px-4 sm:px-6 max-w-6xl mx-auto mb-10">
-        <div className="bg-blue-50 dark:bg-slate-900 border border-blue-100 dark:border-slate-800 rounded-4xl sm:rounded-[3rem] p-8 sm:p-12 md:p-20 text-center relative overflow-hidden shadow-sm">
-          {/* Subtle background glow */}
-          <div className="absolute -top-24 -left-24 w-64 md:w-96 h-64 md:h-96 bg-blue-600/5 dark:bg-blue-500/10 rounded-full blur-[60px] md:blur-[100px]"></div>
-          <div className="absolute -bottom-24 -right-24 w-64 md:w-96 h-64 md:h-96 bg-indigo-600/5 dark:bg-indigo-500/10 rounded-full blur-[60px] md:blur-[100px]"></div>
-
-          <div className="relative z-10">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-slate-50 mb-6 md:mb-8 tracking-tight">Building the Future</h2>
-            <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed font-medium px-4">
-              My ultimate goal is to build my own digital products and scalable business ideas.
-              Want to follow my journey or collaborate on something new?
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-              <Link
-                href="/contact"
-                className="w-full sm:w-auto px-10 md:px-12 py-4 md:py-5 bg-blue-600 text-white rounded-full font-black text-base md:text-lg hover:bg-blue-700 transition-all shadow-xl hover:scale-105"
-              >
-                Get in Touch
-              </Link>
-              <Link
-                href="/blog"
-                className="w-full sm:w-auto px-10 md:px-12 py-4 md:py-5 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 border border-slate-200 dark:border-slate-800 rounded-full font-black text-base md:text-lg hover:bg-slate-50 dark:bg-slate-900 transition-all shadow-md hover:scale-105"
-              >
-                Read My Blog
-              </Link>
-            </div>
-          </div>
+      {/* CTA Section */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 max-w-4xl mx-auto border-t border-slate-100 dark:border-slate-800">
+        <div className="bg-gradient-to-br from-[#00b7ff]/10 to-[#7c3aed]/10 dark:from-[#00b7ff]/5 dark:to-[#7c3aed]/5 border border-[#00b7ff]/20 dark:border-[#7c3aed]/20 rounded-2xl p-8 md:p-12 text-center">
+          <h2 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-slate-50 mb-4">
+            Ready to work together?
+          </h2>
+          <p className="text-base md:text-lg text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto">
+            Whether you need a website built, want to collaborate on a project, or just want to chat about web development, I'd love to hear from you!
+          </p>
+          <Link
+            href="/hire-me"
+            className="inline-flex items-center gap-2 bg-gradient-to-br from-[#00b7ff] to-[#7c3aed] text-white font-bold text-base md:text-lg py-3 md:py-4 px-8 md:px-10 rounded-full transition-all duration-300 hover:shadow-[0_10px_30px_rgba(124,58,237,0.4)] hover:-translate-y-1 hover:opacity-95"
+          >
+            Get in Touch
+            <ArrowRight size={20} />
+          </Link>
         </div>
       </section>
-
-      {/* Footer Space - Minimal for Mobile */}
-      <div className="py-4 md:py-10"></div>
     </main>
   );
 }

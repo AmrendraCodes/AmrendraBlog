@@ -72,7 +72,7 @@ export default function Footer() {
 
           <div>
             <h4 className="text-slate-900 dark:text-slate-50 mb-6 text-lg font-bold">Newsletter</h4>
-            <p className="text-slate-500 mb-6 text-sm">Join 5,000+ others and never miss a new post.</p>
+            <p className="text-slate-500 mb-6 text-sm">Join our growing community</p>
             <form className="flex relative" action="#">
               <input
                 type="email"
