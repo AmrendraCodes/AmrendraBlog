@@ -89,7 +89,6 @@ export default function Header() {
           <div className="flex items-center justify-end gap-3 md:pr-2">
             <ThemeToggle />
             <Link href="/hire-me" className="hidden md:inline-flex items-center justify-center bg-linear-to-br from-purple-600 to-[#7c3aed] text-white font-semibold text-[0.95rem] py-2 px-5 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_4px_15px_rgba(168,85,247,0.2)] hover:-translate-y-0.5 hover:opacity-95 hover:shadow-[0_6px_20px_rgba(168,85,247,0.4)]">Hire Me</Link>
-            <Link href="/contact" className="hidden md:inline-flex items-center justify-center bg-linear-to-br from-[#00b7ff] to-[#7c3aed] text-white font-semibold text-[0.95rem] py-2 px-5 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_4px_15px_rgba(168,85,247,0.2)] hover:-translate-y-0.5 hover:opacity-95 hover:shadow-[0_6px_20px_rgba(168,85,247,0.4)]">Subscribe</Link>
             <button
               type="button"
               className="flex md:hidden items-center justify-center bg-slate-900/5 dark:bg-slate-800/20 border border-slate-900/10 dark:border-slate-700/20 text-slate-900 dark:text-slate-50 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-background duration-300 shrink-0 hover:bg-slate-900/10 dark:hover:bg-slate-700/20"
@@ -150,9 +149,6 @@ export default function Header() {
           <div className="flex flex-col gap-3 mt-auto mb-8">
             <Link href="/hire-me" className="inline-flex items-center justify-center bg-linear-to-br from-purple-600 to-[#7c3aed] text-white font-bold text-[1.1rem] py-4 px-8 rounded-full border-none cursor-pointer w-full transition-opacity duration-300 hover:opacity-90 shadow-lg shadow-purple-500/20" onClick={() => setIsMenuOpen(false)}>
               Hire Me
-            </Link>
-            <Link href="/contact" className="inline-flex items-center justify-center bg-linear-to-br from-[#00b7ff] to-[#7c3aed] text-white font-bold text-[1.1rem] py-4 px-8 rounded-full border-none cursor-pointer w-full transition-opacity duration-300 hover:opacity-90 shadow-lg shadow-purple-500/20" onClick={() => setIsMenuOpen(false)}>
-              Subscribe
             </Link>
           </div>
         </nav>
