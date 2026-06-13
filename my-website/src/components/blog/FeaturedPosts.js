@@ -1,18 +1,23 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { getAllPosts } from '@/lib/posts';
 
 export default function FeaturedPosts() {
+  // Get the latest post as the featured post
+  const posts = getAllPosts();
+  const latestPost = posts[0];
+
   const featuredPost = {
-    tag: "Design Strategy",
-    title: "The Future of User Interfaces: Glassmorphism and Beyond",
-    description: "Explore the evolution of modern UI design. From flat design to glassmorphism, we dive deep into the trends shaping the future of digital experiences and how you can implement them today.",
-    author: "Amrendra kumar",
+    tag: latestPost?.category || "Design Strategy",
+    title: latestPost?.title || "Featured Post",
+    description: latestPost?.excerpt || "",
+    author: latestPost?.author || "Amrendra kumar",
     authorRole: "Lead Designer",
     authorImage: "/Profile photo.jpeg",
-    date: "May 12, 2026",
-    readTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1200&auto=format&fit=crop",
-    link: "/blog/future-of-user-interfaces"
+    date: latestPost?.date || "",
+    readTime: latestPost?.readTime || "5 min read",
+    image: latestPost?.image || "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1200&auto=format&fit=crop",
+    link: latestPost ? `/blog/${latestPost.slug}` : "/blog",
   };
 
   return (
@@ -38,7 +43,7 @@ export default function FeaturedPosts() {
             </div>
 
             {/* Content Wrapper */}
-            <div className="w-full lg:w-[55%] p-8 lg:p-12 flex flex-col justify-center relative bg-white dark:bg-slate-900 z-20">
+            <div className="w-full lg:w-[55%] p-8 lg:p-12 flex flex-col justify-center relative bg-white dark:bg-slate-900">
               <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 blur-3xl rounded-full pointer-events-none" />
               
               <span className="inline-block px-4 py-1.5 bg-violet-50 dark:bg-violet-900/20 text-violet-600 dark:text-violet-400 text-xs font-bold rounded-full mb-6 self-start tracking-wider uppercase border border-violet-100 dark:border-violet-800/50">

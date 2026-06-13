@@ -1,7 +1,6 @@
 import HeroSection from "@/components/blog/HeroSection";
-import FeaturedPosts from "@/components/blog/FeaturedPosts";
-import CategoriesSection from "@/components/blog/CategoriesSection";
 import BlogPageClient from "@/components/blog/BlogPageClient";
+import { getAllPosts } from "@/lib/posts";
 
 export const metadata = {
   title: "Blog | Code with Amrendra",
@@ -30,10 +29,26 @@ export const metadata = {
 };
 
 export default function BlogPage() {
+  // Fetch all posts from markdown files (server-side)
+  const posts = getAllPosts();
+
+  // Transform posts into the shape BlogPageClient expects
+  const articles = posts.map((post) => ({
+    title: post.title,
+    excerpt: post.excerpt,
+    category: post.category,
+    tags: post.tags || [],
+    author: post.author,
+    authorImage: "/Profile photo.jpeg",
+    date: post.date,
+    image: post.image,
+    link: `/blog/${post.slug}`,
+  }));
+
   return (
-    <div className="bg-white dark:bg-slate-950 min-h-screen pt-24 md:pt-28 lg:pt-32">
+    <div className="bg-white dark:bg-slate-950 min-h-screen pt-24 md:pt-28 lg:pt-32 isolate">
       <HeroSection />
-      <BlogPageClient />
+      <BlogPageClient articles={articles} />
     </div>
   );
 }

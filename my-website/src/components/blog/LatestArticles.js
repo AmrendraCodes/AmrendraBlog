@@ -1,69 +1,20 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { getAllPosts } from '@/lib/posts';
 
 export default function LatestArticles() {
-  const articles = [
-    {
-      title: "The Anatomy of a High-Converting Landing Page",
-      description: "Discover the psychological triggers and design patterns that turn casual visitors into paying customers.",
-      category: "Marketing",
-      author: "Amrendra kumar",
-      authorImage: "/Profile photo.jpeg",
-      date: "May 10, 2026",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
-      link: "/blog/high-converting-landing-page"
-    },
-    {
-      title: "Mastering Tailwind CSS in 2026",
-      description: "A comprehensive guide to using the latest utility classes and features to build responsive, modern interfaces faster.",
-      category: "Development",
-      author: "Amrendra kumar",
-      authorImage: "/Profile photo.jpeg",
-      date: "May 8, 2026",
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
-      link: "/blog/mastering-tailwind-css"
-    },
-    {
-      title: "Why Minimalist UI is Back and Here to Stay",
-      description: "How stripping away the noise can lead to better user engagement, faster load times, and a premium brand feel.",
-      category: "Design",
-      author: "Amrendra kumar",
-      authorImage: "/Profile photo.jpeg",
-      date: "May 5, 2026",
-      image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
-      link: "/blog/minimalist-ui"
-    },
-    {
-      title: "Building Scalable Next.js Applications",
-      description: "Architectural patterns and best practices for creating Next.js apps that perform under heavy traffic.",
-      category: "Development",
-      author: "Amrendra kumar",
-      authorImage: "/Profile photo.jpeg",
-      date: "May 2, 2026",
-      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop",
-      link: "/blog/scalable-nextjs"
-    },
-    {
-      title: "Typography Rules Every Designer Should Know",
-      description: "Stop guessing your font sizes. Learn the mathematical ratios and pairing techniques for perfect typography.",
-      category: "Design",
-      author: "Amrendra kumar",
-      authorImage: "/Profile photo.jpeg",
-      date: "April 28, 2026",
-      image: "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea?q=80&w=800&auto=format&fit=crop",
-      link: "/blog/typography-rules"
-    },
-    {
-      title: "The Ultimate Guide to SEO in the AI Era",
-      description: "How search engines are changing and what you need to do today to keep your content ranking high.",
-      category: "Marketing",
-      author: "Amrendra kumar",
-      authorImage: "/Profile photo.jpeg",
-      date: "April 24, 2026",
-      image: "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?q=80&w=800&auto=format&fit=crop",
-      link: "/blog/seo-ai-era"
-    }
-  ];
+  // Fetch latest 6 posts from markdown files
+  const posts = getAllPosts();
+  const articles = posts.slice(0, 6).map((post) => ({
+    title: post.title,
+    description: post.excerpt,
+    category: post.category,
+    author: post.author,
+    authorImage: "/Profile photo.jpeg",
+    date: post.date,
+    image: post.image,
+    link: `/blog/${post.slug}`,
+  }));
 
   return (
     <section className="py-12 md:py-16 px-6 lg:px-16 bg-slate-50 dark:bg-slate-950">

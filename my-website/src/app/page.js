@@ -4,54 +4,7 @@ import { ArrowRight, TerminalSquare, Github, Linkedin, Twitter, Youtube } from "
 import styles from "./page.module.css";
 import CategoriesSection from "@/components/blog/CategoriesSection";
 import LatestArticles from "@/components/blog/LatestArticles";
-
-const featuredPosts = [
-  {
-    title: "Building Reusable React Component Systems at Scale",
-    description: "Learn how to architect component libraries that grow with your application, enforcing consistency while remaining flexible for complex UI needs.",
-    category: "React",
-    date: "April 1, 2026",
-    readingTime: "8 min read",
-    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1200&auto=format&fit=crop",
-    href: "/blog/react-component-systems",
-  },
-  {
-    title: "Creating Autonomous AI Agents with Modern LLM Workflows",
-    description: "A deep dive into building AI agents that can reason, use tools, and execute complex multi-step workflows using the latest LLM frameworks.",
-    category: "AI Agents",
-    date: "March 28, 2026",
-    readingTime: "12 min read",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop",
-    href: "/blog/autonomous-ai-agents",
-  },
-  {
-    title: "Designing Multi-Tenant SaaS Platforms for Scale",
-    description: "Essential database architectures, routing strategies, and authentication patterns for building scalable multi-tenant applications.",
-    category: "SaaS Architecture",
-    date: "March 24, 2026",
-    readingTime: "15 min read",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop",
-    href: "/blog/saas-architecture-scale",
-  },
-  {
-    title: "AWS Infrastructure Best Practices for Startups",
-    description: "From VPC design to ECS deployments, learn the foundational AWS services and architectures every startup should implement.",
-    category: "AWS Infrastructure",
-    date: "March 18, 2026",
-    readingTime: "10 min read",
-    image: "https://images.unsplash.com/photo-1620288627223-53302f4e8c74?q=80&w=1200&auto=format&fit=crop",
-    href: "/blog/aws-infrastructure-startups",
-  },
-  {
-    title: "Automating CI/CD Pipelines with GitHub Actions & Docker",
-    description: "A practical guide to containerizing your applications and building robust, automated deployment pipelines.",
-    category: "DevOps",
-    date: "March 12, 2026",
-    readingTime: "9 min read",
-    image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?q=80&w=1200&auto=format&fit=crop",
-    href: "/blog/github-actions-docker",
-  },
-];
+import { getAllPosts } from "@/lib/posts";
 
 export const metadata = {
   title: "Code with Amrendra — React, AI & SaaS Insights",
@@ -78,6 +31,18 @@ export const metadata = {
 
 
 export default function Home() {
+  // Fetch posts from markdown files and pick top 5 for featured section
+  const allPosts = getAllPosts();
+  const featuredPosts = allPosts.slice(0, 5).map((post) => ({
+    title: post.title,
+    description: post.excerpt,
+    category: post.category,
+    date: post.date,
+    readingTime: post.readTime,
+    image: post.image,
+    href: `/blog/${post.slug}`,
+  }));
+
   return (
     <main className={styles.main}>
 

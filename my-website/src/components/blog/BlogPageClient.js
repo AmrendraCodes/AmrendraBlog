@@ -5,89 +5,7 @@ import { SearchX } from 'lucide-react';
 import SearchToolbar from './SearchToolbar';
 import '@/styles/SearchToolbar.css';
 
-// ─── All articles data ─────────────────────────────────────
-// In a real app, this can come from props or an API.
-// We keep it here so the client component owns its data.
-const ALL_ARTICLES = [
-  {
-    title: 'The Anatomy of a High-Converting Landing Page',
-    excerpt:
-      'Discover the psychological triggers and design patterns that turn casual visitors into paying customers.',
-    category: 'Marketing',
-    tags: ['landing page', 'conversion', 'copywriting'],
-    author: "Amrendra kumar",
-    authorImage: "/Profile photo.jpeg",
-    date: 'May 10, 2026',
-    image:
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
-    link: '/blog/high-converting-landing-page',
-  },
-  {
-    title: 'Mastering Tailwind CSS in 2026',
-    excerpt:
-      'A comprehensive guide to using the latest utility classes and features to build responsive, modern interfaces faster.',
-    category: 'Development',
-    tags: ['tailwind', 'css', 'frontend'],
-    author: "Amrendra kumar",
-    authorImage: "/Profile photo.jpeg",
-    date: 'May 8, 2026',
-    image:
-      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop',
-    link: '/blog/mastering-tailwind-css',
-  },
-  {
-    title: 'Why Minimalist UI is Back and Here to Stay',
-    excerpt:
-      'How stripping away the noise can lead to better user engagement, faster load times, and a premium brand feel.',
-    category: 'Design',
-    tags: ['minimalism', 'ui', 'ux', 'trends'],
-    author: "Amrendra kumar",
-    authorImage: "/Profile photo.jpeg",
-    date: 'May 5, 2026',
-    image:
-      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop',
-    link: '/blog/minimalist-ui',
-  },
-  {
-    title: 'Building Scalable Next.js Applications',
-    excerpt:
-      'Architectural patterns and best practices for creating Next.js apps that perform under heavy traffic.',
-    category: 'Development',
-    tags: ['nextjs', 'react', 'architecture', 'scaling'],
-    author: "Amrendra kumar",
-    authorImage: "/Profile photo.jpeg",
-    date: 'May 2, 2026',
-    image:
-      'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop',
-    link: '/blog/scalable-nextjs',
-  },
-  {
-    title: 'Typography Rules Every Designer Should Know',
-    excerpt:
-      'Stop guessing your font sizes. Learn the mathematical ratios and pairing techniques for perfect typography.',
-    category: 'Design',
-    tags: ['typography', 'fonts', 'design-system'],
-    author: "Amrendra kumar",
-    authorImage: "/Profile photo.jpeg",
-    date: 'April 28, 2026',
-    image:
-      'https://images.unsplash.com/photo-1448932223592-d1fc686e76ea?q=80&w=800&auto=format&fit=crop',
-    link: '/blog/typography-rules',
-  },
-  {
-    title: 'The Ultimate Guide to SEO in the AI Era',
-    excerpt:
-      'How search engines are changing and what you need to do today to keep your content ranking high.',
-    category: 'Marketing',
-    tags: ['seo', 'ai', 'content-strategy', 'google'],
-    author: "Amrendra kumar",
-    authorImage: "/Profile photo.jpeg",
-    date: 'April 24, 2026',
-    image:
-      'https://images.unsplash.com/photo-1432821596592-e2c18b78144f?q=80&w=800&auto=format&fit=crop',
-    link: '/blog/seo-ai-era',
-  },
-];
+// ─── Articles data comes from props (passed by server component) ───
 
 // ─── Custom hook: useDebounce ──────────────────────────────
 // Delays value updates to avoid excessive re-filtering on
@@ -143,7 +61,7 @@ function filterAndSortArticles(articles, query, category, sortBy) {
 
 // ─── BlogPageClient Component ──────────────────────────────
 export default function BlogPageClient({ articles: propArticles }) {
-  const articles = propArticles || ALL_ARTICLES;
+  const articles = propArticles || [];
 
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
@@ -333,7 +251,7 @@ function ArticleGrid({ articles }) {
       {articles.map((article, index) => (
         <article
           key={article.link || index}
-          className="group bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 overflow-hidden transition-all duration-300 flex flex-col"
+          className="group relative bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 overflow-hidden transition-all duration-300 flex flex-col isolate"
         >
           <div className="relative aspect-16/10 overflow-hidden">
             <div className="absolute top-4 left-4 z-10">
