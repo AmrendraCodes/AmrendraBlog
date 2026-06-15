@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -56,15 +55,15 @@ export default function Header() {
 
   return (
     <>
-      <div className={`fixed top-5 left-0 w-full z-50 flex justify-center p-0 pointer-events-none transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-[150%]"}`}>
-        <header className={`pointer-events-auto z-50 transition-all duration-300 flex items-center justify-between rounded-full border relative w-[95%] mx-auto md:grid md:grid-cols-[1fr_auto_1fr] md:w-[85%] md:gap-4 lg:w-[70%] lg:max-w-[1200px] lg:py-3 lg:px-8 ${isScrolled ? 'bg-white/40 dark:bg-slate-950/40 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] py-3 px-8 border-slate-200/50 dark:border-slate-700/50' : 'bg-white/70 dark:bg-slate-950/70 backdrop-blur-md shadow-[0_10px_40px_rgba(15,23,42,0.05)] py-3 px-5 border-slate-900/10 dark:border-slate-700/20'}`}>
+      <div className={`fixed top-5 left-0 w-full z-[100] flex justify-center p-0 pointer-events-none transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-[150%]"}`}>
+        <header className={`pointer-events-auto z-[100] transition-all duration-300 flex items-center justify-between rounded-full border relative w-[95%] mx-auto md:grid md:grid-cols-[1fr_auto_1fr] md:w-[85%] md:gap-4 lg:w-[70%] lg:max-w-[1200px] lg:py-3 lg:px-8 ${isScrolled ? 'bg-white/30 dark:bg-slate-950/30 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.03)] py-3 px-8 border-slate-200/30 dark:border-slate-800/40' : 'bg-white/40 dark:bg-slate-950/40 backdrop-blur-md shadow-[0_10px_40px_rgba(15,23,42,0.02)] py-3 px-5 border-slate-200/20 dark:border-slate-800/30'}`}>
           <div className="flex items-center justify-start">
             <Link href="/" className="flex items-center gap-2 md:gap-3 no-underline shrink-0 group">
-              <div className="bg-linear-to-br from-[#00b7ff] to-[#7c3aed] text-white rounded-full flex justify-center items-center w-9 h-9 transition-transform duration-300 shadow-[0_0_15px_rgba(168,85,247,0.5)] shrink-0 group-hover:rotate-12 group-hover:scale-110">
+              <div className="bg-gradient-to-br from-[#00b7ff] to-[#7c3aed] text-white rounded-full flex justify-center items-center w-9 h-9 transition-transform duration-300 shadow-[0_0_15px_rgba(168,85,247,0.5)] shrink-0 group-hover:rotate-12 group-hover:scale-110">
                 <Image src="/icon.svg" alt="Logo" width={18} height={18} className="w-[1.1rem] max-w-full h-auto" priority />
               </div>
               <span className="text-[20px] font-extrabold tracking-tight flex items-center text-slate-900 dark:text-white ml-1.5 sm:ml-2">
-                <span className="bg-linear-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text">CWA</span>
+                <span className="bg-gradient-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text">CWA</span>
               </span>
             </Link>
           </div>
@@ -88,7 +87,7 @@ export default function Header() {
 
           <div className="flex items-center justify-end gap-3 md:pr-2">
             <ThemeToggle />
-            <Link href="/hire-me" className="hidden md:inline-flex items-center justify-center bg-linear-to-br from-purple-600 to-[#7c3aed] text-white font-semibold text-[0.95rem] py-2 px-5 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_4px_15px_rgba(168,85,247,0.2)] hover:-translate-y-0.5 hover:opacity-95 hover:shadow-[0_6px_20px_rgba(168,85,247,0.4)]">Hire Me</Link>
+            <Link href="/hire-me" className="hidden md:inline-flex items-center justify-center bg-gradient-to-br from-purple-600 to-[#7c3aed] text-white font-semibold text-[0.95rem] py-2 px-5 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_4px_15px_rgba(168,85,247,0.2)] hover:-translate-y-0.5 hover:opacity-95 hover:shadow-[0_6px_20px_rgba(168,85,247,0.4)]">Hire Me</Link>
             <button
               type="button"
               className="flex md:hidden items-center justify-center bg-slate-900/5 dark:bg-slate-800/20 border border-slate-900/10 dark:border-slate-700/20 text-slate-900 dark:text-slate-50 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-background duration-300 shrink-0 hover:bg-slate-900/10 dark:hover:bg-slate-700/20"
@@ -115,11 +114,11 @@ export default function Header() {
       >
         <div className="flex items-center justify-between p-6 border-b border-slate-900/10 dark:border-slate-700/20 gap-4">
           <div className="flex items-center gap-3 shrink-0">
-            <div className="bg-linear-to-br from-[#00b7ff] to-[#7c3aed] text-white rounded-full flex justify-center items-center w-8 h-8 shadow-[0_0_15px_rgba(168,85,247,0.5)]">
+            <div className="bg-gradient-to-br from-[#00b7ff] to-[#7c3aed] text-white rounded-full flex justify-center items-center w-8 h-8 shadow-[0_0_15px_rgba(168,85,247,0.5)]">
               <Sparkles size={18} />
             </div>
             <span className="text-[22px] font-extrabold flex items-center text-slate-900 dark:text-white">
-              Code with <span className="bg-linear-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text ml-1.5">Amrendra</span>
+              Code with <span className="bg-gradient-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text ml-1.5">Amrendra</span>
             </span>
           </div>
           <button
@@ -147,7 +146,7 @@ export default function Header() {
             );
           })}
           <div className="flex flex-col gap-3 mt-auto mb-8">
-            <Link href="/hire-me" className="inline-flex items-center justify-center bg-linear-to-br from-purple-600 to-[#7c3aed] text-white font-bold text-[1.1rem] py-4 px-8 rounded-full border-none cursor-pointer w-full transition-opacity duration-300 hover:opacity-90 shadow-lg shadow-purple-500/20" onClick={() => setIsMenuOpen(false)}>
+            <Link href="/hire-me" className="inline-flex items-center justify-center bg-gradient-to-br from-purple-600 to-[#7c3aed] text-white font-bold text-[1.1rem] py-4 px-8 rounded-full border-none cursor-pointer w-full transition-opacity duration-300 hover:opacity-90 shadow-lg shadow-purple-500/20" onClick={() => setIsMenuOpen(false)}>
               Hire Me
             </Link>
           </div>

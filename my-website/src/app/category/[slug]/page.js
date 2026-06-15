@@ -50,7 +50,7 @@ export default async function CategoryPage({ params }) {
   const formattedName = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
   return (
-    <main className="min-h-screen bg-white dark:bg-slate-950">
+    <main className="min-h-screen bg-white dark:bg-slate-950 pt-24 md:pt-28 lg:pt-32">
       <section className="max-w-6xl mx-auto px-6 py-16">
         <div className="mb-12">
           <Link href="/categories" className="text-blue-600 hover:text-blue-700 text-sm font-semibold mb-4 inline-flex items-center gap-2 transition-colors">

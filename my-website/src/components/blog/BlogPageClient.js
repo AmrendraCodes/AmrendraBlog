@@ -254,7 +254,7 @@ function ArticleGrid({ articles }) {
           className="group relative bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 overflow-hidden transition-all duration-300 flex flex-col isolate"
         >
           <div className="relative aspect-16/10 overflow-hidden">
-            <div className="absolute top-4 left-4 z-10">
+            <div className="absolute top-4 left-4 z-[1]">
               <span className="inline-block px-3 py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-slate-900 dark:text-white text-[11px] font-extrabold uppercase tracking-wider rounded-full shadow-sm">
                 {article.category}
               </span>
