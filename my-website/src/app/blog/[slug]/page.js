@@ -133,7 +133,7 @@ export default async function PostPage({ params }) {
               </p>
               
               <div className="flex items-center justify-center sm:justify-start gap-4">
-                <a href="https://x.com/AmrendraCodes" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:text-blue-500 hover:shadow-md transition-all border border-slate-200 dark:border-slate-700">
+                <a href="https://x.com/codewithamrendr" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:text-blue-500 hover:shadow-md transition-all border border-slate-200 dark:border-slate-700">
                   <Twitter size={18} />
                 </a>
                 <a href="https://www.linkedin.com/in/amrendra-reactdev/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:text-blue-700 hover:shadow-md transition-all border border-slate-200 dark:border-slate-700">

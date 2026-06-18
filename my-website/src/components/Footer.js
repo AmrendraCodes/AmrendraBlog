@@ -19,7 +19,7 @@ export default function Footer() {
               Empowering developers and creators with the latest insights into modern technology and creative design.
             </p>
             <div className="flex items-center gap-4">
-              <a href="https://x.com/AmrendraCodes" target="_blank" rel="noopener noreferrer" aria-label="Visit Twitter" className="text-slate-600 dark:text-slate-300 bg-slate-900/5 border border-slate-900/5 rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(6,182,212,0.3)]">
+              <a href="https://x.com/codewithamrendr" target="_blank" rel="noopener noreferrer" aria-label="Visit Twitter" className="text-slate-600 dark:text-slate-300 bg-slate-900/5 border border-slate-900/5 rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(6,182,212,0.3)]">
                 <Twitter size={16} />
               </a>
               <a href="https://github.com/AmrendraCodes" target="_blank" rel="noopener noreferrer" aria-label="Visit GitHub" className="text-slate-600 dark:text-slate-300 bg-slate-900/5 border border-slate-900/5 rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(6,182,212,0.3)]">

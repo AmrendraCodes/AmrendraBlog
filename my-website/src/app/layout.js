@@ -71,7 +71,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    creator: '@AmrendraCodes',
+    creator: '@codewithamrendr',
     images: ['/images/og-default.png'],
   },
   verification: {

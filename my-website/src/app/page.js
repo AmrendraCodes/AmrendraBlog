@@ -271,7 +271,7 @@ export default function Home() {
               <Github size={32} className={styles.socialIcon} />
               <span className={styles.socialName}>GitHub</span>
             </a>
-            <a href="https://x.com/AmrendraCodes" target="_blank" rel="noopener noreferrer" aria-label="Visit Amrendra Twitter Profile" className={styles.socialCard}>
+            <a href="https://x.com/codewithamrendr" target="_blank" rel="noopener noreferrer" aria-label="Visit Amrendra Twitter Profile" className={styles.socialCard}>
               <Twitter size={32} className={styles.socialIcon} />
               <span className={styles.socialName}>Twitter / X</span>
             </a>

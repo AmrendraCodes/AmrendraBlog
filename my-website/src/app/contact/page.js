@@ -59,7 +59,7 @@ export default function ContactPage() {
               <div className="space-y-4">
                 {[
                   { label: "Email Me", value: "amrendra1999official@gmail.com", link: "mailto:amrendra1999official@gmail.com" },
-                  { label: "Follow on X", value: "@AmrendraCodes", link: "https://x.com/AmrendraCodes" },
+                  { label: "Follow on X", value: "@codewithamrendr", link: "https://x.com/codewithamrendr" },
                   { label: "Connect on LinkedIn", value: "Amrendra Kumar", link: "https://www.linkedin.com/in/amrendra-reactdev/" },
                   { label: "GitHub Projects", value: "AmrendraCodes", link: "https://github.com/AmrendraCodes" }
                 ].map((item, i) => (

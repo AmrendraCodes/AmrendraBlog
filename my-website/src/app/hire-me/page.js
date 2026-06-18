@@ -256,7 +256,7 @@ export default function HireMePage() {
               📧 Email Me
             </a>
             <a
-              href="https://x.com/AmrendraCodes"
+              href="https://x.com/codewithamrendr"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-50 font-bold rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-300"
