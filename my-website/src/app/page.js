@@ -119,19 +119,19 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="max-w-[80rem] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="max-w-[80rem] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-8" suppressHydrationWarning>
           {/* Hero Article */}
-          <article className="group relative rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-2xl transition-all duration-500 h-full min-h-[400px]">
+          <article className="group relative rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-2xl transition-all duration-500 h-full min-h-[400px]" suppressHydrationWarning>
             <Image src={featuredPosts[0].image} alt={featuredPosts[0].title} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-900/60 to-transparent" />
-            <div className="absolute bottom-0 left-0 p-8 flex flex-col justify-end h-full w-full z-10">
+            <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-900/60 to-transparent" suppressHydrationWarning />
+            <div className="absolute bottom-0 left-0 p-8 flex flex-col justify-end h-full w-full z-10" suppressHydrationWarning>
               <span className="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider w-fit mb-4 shadow-sm">
                 {featuredPosts[0].category}
               </span>
               <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-3 leading-snug">
                 {featuredPosts[0].title}
               </h3>
-              <div className="flex items-center text-slate-300 text-sm font-medium">
+              <div className="flex items-center text-slate-300 text-sm font-medium" suppressHydrationWarning>
                 <span>{featuredPosts[0].date} • {featuredPosts[0].readingTime}</span>
               </div>
               <Link href={featuredPosts[0].href} className="absolute inset-0 z-20"><span className="sr-only">Read more</span></Link>
@@ -139,13 +139,13 @@ export default function Home() {
           </article>
           
           {/* Supporting Articles */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6" suppressHydrationWarning>
             {featuredPosts.slice(1, 4).map((post, index) => (
-              <article key={index} className="flex gap-6 group items-center bg-white dark:bg-slate-900 p-4 rounded-3xl border border-slate-100 dark:border-slate-800 hover:border-blue-100 hover:shadow-xl transition-all duration-300 relative">
-                <div className="relative w-28 h-28 sm:w-36 sm:h-36 shrink-0 rounded-2xl overflow-hidden">
+              <article key={index} className="flex gap-6 group items-center bg-white dark:bg-slate-900 p-4 rounded-3xl border border-slate-100 dark:border-slate-800 hover:border-blue-100 hover:shadow-xl transition-all duration-300 relative" suppressHydrationWarning>
+                <div className="relative w-28 h-28 sm:w-36 sm:h-36 shrink-0 rounded-2xl overflow-hidden" suppressHydrationWarning>
                   <Image src={post.image} alt={post.title} fill sizes="150px" className="object-cover transition-transform duration-500 group-hover:scale-110" />
                 </div>
-                <div className="flex flex-col justify-center">
+                <div className="flex flex-col justify-center" suppressHydrationWarning>
                   <span className="text-blue-600 dark:text-blue-400 text-[11px] font-extrabold uppercase tracking-wider mb-2">
                     {post.category}
                   </span>
@@ -154,7 +154,7 @@ export default function Home() {
                       {post.title}
                     </Link>
                   </h3>
-                  <div className="text-slate-500 dark:text-slate-400 text-[13px] font-medium">
+                  <div className="text-slate-500 dark:text-slate-400 text-[13px] font-medium" suppressHydrationWarning>
                     <span>{post.date} • {post.readingTime}</span>
                   </div>
                 </div>
@@ -163,7 +163,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex justify-center mt-12 w-full">
+        <div className="flex justify-center mt-12 w-full" suppressHydrationWarning>
           <Link href="/blog" className="inline-flex items-center justify-center bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold py-3.5 px-8 rounded-full hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-blue-600 dark:hover:bg-blue-500 dark:hover:text-white">
             View All Posts <ArrowRight size={18} className="ml-2" />
           </Link>

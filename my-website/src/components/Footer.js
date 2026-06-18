@@ -3,10 +3,10 @@ import { Github, Twitter, Linkedin, Instagram, Sparkles, Send } from "lucide-rea
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-900/5 relative z-10 bg-transparent pt-12 pb-8">
-      <div className="max-w-7xl mx-auto px-6 lg:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
-          <div className="flex flex-col gap-6">
+    <footer className="border-t border-slate-900/5 relative z-10 bg-transparent pt-12 pb-8" suppressHydrationWarning>
+      <div className="max-w-7xl mx-auto px-6 lg:px-16" suppressHydrationWarning>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10" suppressHydrationWarning>
+          <div className="flex flex-col gap-6" suppressHydrationWarning>
             <Link href="/" className="flex items-center gap-3 no-underline group">
               <div className="bg-linear-to-br from-[#00b7ff] to-[#7c3aed] text-white rounded-full flex justify-center items-center w-10 h-10 transition-transform duration-300 shadow-[0_0_15px_rgba(168,85,247,0.5)] group-hover:rotate-12 group-hover:scale-110">
                 <Sparkles size={18} />
@@ -91,11 +91,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-slate-900/5 flex flex-col md:flex-row justify-between items-center gap-4 pt-10">
-          <p className="text-slate-500 text-[13px] font-medium text-center md:text-left">
+        <div className="border-t border-slate-900/5 flex flex-col md:flex-row justify-between items-center gap-4 pt-10" suppressHydrationWarning>
+          <p className="text-slate-500 text-[13px] font-medium text-center md:text-left" suppressHydrationWarning>
             &copy; {new Date().getFullYear()} Code with Amrendra
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6" suppressHydrationWarning>
             <Link href="/privacy" className="text-slate-500 text-[13px] font-medium no-underline transition-colors duration-300 hover:text-slate-900 dark:text-slate-50">Privacy</Link>
             <Link href="/terms" className="text-slate-500 text-[13px] font-medium no-underline transition-colors duration-300 hover:text-slate-900 dark:text-slate-50">Terms</Link>
             <a href="/sitemap.xml" className="text-slate-500 text-[13px] font-medium no-underline transition-colors duration-300 hover:text-slate-900 dark:hover:text-slate-50">Sitemap</a>
