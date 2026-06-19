@@ -61,7 +61,7 @@ function filterAndSortArticles(articles, query, category, sortBy) {
 
 // ─── BlogPageClient Component ──────────────────────────────
 export default function BlogPageClient({ articles: propArticles }) {
-  const articles = propArticles || [];
+  const articles = useMemo(() => propArticles || [], [propArticles]);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
