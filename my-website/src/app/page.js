@@ -5,6 +5,8 @@ import styles from "./page.module.css";
 import CategoriesSection from "@/components/blog/CategoriesSection";
 import LatestArticles from "@/components/blog/LatestArticles";
 import { getAllPosts } from "@/lib/posts";
+import JsonLd from "@/components/JsonLd";
+import { getWebsiteSchema, getPersonSchema } from "@/lib/schema";
 
 export const metadata = {
   title: "Code with Amrendra — React, AI & SaaS Insights",
@@ -45,6 +47,8 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
+      <JsonLd data={getWebsiteSchema()} />
+      <JsonLd data={getPersonSchema()} />
 
 
       {/* Hero Section */}

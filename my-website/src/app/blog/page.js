@@ -1,6 +1,8 @@
 import HeroSection from "@/components/blog/HeroSection";
 import BlogPageClient from "@/components/blog/BlogPageClient";
 import { getAllPosts } from "@/lib/posts";
+import JsonLd from "@/components/JsonLd";
+import { getCollectionPageSchema } from "@/lib/schema";
 
 export const metadata = {
   title: "Blog | Code with Amrendra",
@@ -47,6 +49,13 @@ export default function BlogPage() {
 
   return (
     <div className="bg-white dark:bg-slate-950 min-h-screen pt-24 md:pt-28 lg:pt-32">
+      <JsonLd
+        data={getCollectionPageSchema({
+          name: "Blog — Code with Amrendra",
+          description: "Deep dives into architecture, scaling, and engineering workflows.",
+          url: "https://amrendra-blog.vercel.app/blog",
+        })}
+      />
       <HeroSection />
       <BlogPageClient articles={articles} />
     </div>

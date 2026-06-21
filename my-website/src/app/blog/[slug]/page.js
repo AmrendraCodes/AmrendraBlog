@@ -5,6 +5,8 @@ import { ArrowLeft, Clock, Calendar, User, Twitter, Linkedin, Github } from "luc
 import { notFound } from "next/navigation";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import "highlight.js/styles/atom-one-dark.css";
+import JsonLd from "@/components/JsonLd";
+import { getBlogPostSchema, getBreadcrumbSchema } from "@/lib/schema";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -43,8 +45,28 @@ export default async function PostPage({ params }) {
     notFound();
   }
 
+  const postSchema = getBlogPostSchema({
+    title: post.title,
+    description: post.excerpt,
+    slug: post.slug,
+    image: post.image,
+    datePublished: post.date,
+    category: post.category,
+  });
+
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: "Home", url: "https://amrendra-blog.vercel.app" },
+    { name: "Blog", url: "https://amrendra-blog.vercel.app/blog" },
+    {
+      name: post.title,
+      url: `https://amrendra-blog.vercel.app/blog/${post.slug}`,
+    },
+  ]);
+
   return (
     <main className="min-h-screen bg-white dark:bg-slate-950 isolate">
+      <JsonLd data={postSchema} />
+      <JsonLd data={breadcrumbSchema} />
       {/* Hero Section */}
       <div className="relative h-[60vh] overflow-hidden">
         <Image

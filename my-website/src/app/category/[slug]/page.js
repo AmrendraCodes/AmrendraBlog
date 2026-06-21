@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { getAllPosts } from '@/lib/posts';
 import BlogCard from '@/components/BlogCard';
+import JsonLd from '@/components/JsonLd';
+import { getCollectionPageSchema, getBreadcrumbSchema } from '@/lib/schema';
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -49,8 +51,25 @@ export default async function CategoryPage({ params }) {
 
   const formattedName = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
+  const categorySchema = getCollectionPageSchema({
+    name: `${formattedName} Articles`,
+    description: `Articles related to ${formattedName}`,
+    url: `https://amrendra-blog.vercel.app/category/${slug}`,
+  });
+
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: "Home", url: "https://amrendra-blog.vercel.app" },
+    { name: "Categories", url: "https://amrendra-blog.vercel.app/categories" },
+    {
+      name: formattedName,
+      url: `https://amrendra-blog.vercel.app/category/${slug}`,
+    },
+  ]);
+
   return (
     <main className="min-h-screen bg-white dark:bg-slate-950 pt-24 md:pt-28 lg:pt-32">
+      <JsonLd data={categorySchema} />
+      <JsonLd data={breadcrumbSchema} />
       <section className="max-w-6xl mx-auto px-6 py-16">
         <div className="mb-12">
           <Link href="/categories" className="text-blue-600 hover:text-blue-700 text-sm font-semibold mb-4 inline-flex items-center gap-2 transition-colors">

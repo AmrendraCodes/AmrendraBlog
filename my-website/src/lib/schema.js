@@ -1,0 +1,140 @@
+/**
+ * Normalizes a date string to ISO-8601 format (YYYY-MM-DD) for schema validation.
+ * @param {string} dateStr 
+ * @returns {string}
+ */
+function formatDate(dateStr) {
+  if (!dateStr) return undefined;
+  try {
+    const parsedDate = new Date(dateStr);
+    if (!isNaN(parsedDate.getTime())) {
+      return parsedDate.toISOString().split('T')[0];
+    }
+  } catch (e) {
+    // Return original string if parsing fails
+  }
+  return dateStr;
+}
+
+/**
+ * Returns Website JSON-LD Schema.
+ * Useful on the Homepage.
+ */
+export function getWebsiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Code with Amrendra",
+    "url": "https://amrendra-blog.vercel.app",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://amrendra-blog.vercel.app/blog?search={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  };
+}
+
+/**
+ * Returns Person JSON-LD Schema for the author.
+ * Useful on the Homepage.
+ */
+export function getPersonSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Amrendra Kumar",
+    "url": "https://amrendra-blog.vercel.app",
+    "image": "https://amrendra-blog.vercel.app/Profile%20photo.jpeg",
+    "sameAs": [
+      "https://github.com/AmrendraCodes",
+      "https://x.com/codewithamrendr",
+      "https://www.linkedin.com/in/amrendra-reactdev/",
+      "https://www.youtube.com/@codewithamrendra",
+      "https://instagram.com/amrendracodes"
+    ],
+    "jobTitle": "Software Engineer & Technical Writer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Code with Amrendra"
+    }
+  };
+}
+
+/**
+ * Returns CollectionPage JSON-LD Schema.
+ * Useful for category list pages and search result lists.
+ * @param {Object} params
+ * @param {string} params.name
+ * @param {string} params.description
+ * @param {string} params.url
+ */
+export function getCollectionPageSchema({ name, description, url }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": name,
+    "description": description,
+    "url": url
+  };
+}
+
+/**
+ * Returns BlogPost JSON-LD Schema.
+ * @param {Object} params
+ * @param {string} params.title
+ * @param {string} params.description
+ * @param {string} params.slug
+ * @param {string} params.image
+ * @param {string} params.datePublished
+ * @param {string} params.category
+ */
+export function getBlogPostSchema({ title, description, slug, image, datePublished, category }) {
+  const formattedDate = formatDate(datePublished);
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": title,
+    "description": description,
+    "image": image || "https://amrendra-blog.vercel.app/images/og-default.png",
+    "datePublished": formattedDate,
+    "dateModified": formattedDate,
+    "author": {
+      "@type": "Person",
+      "name": "Amrendra Kumar",
+      "url": "https://amrendra-blog.vercel.app"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Code with Amrendra",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://amrendra-blog.vercel.app/Profile%20photo.jpeg"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://amrendra-blog.vercel.app/blog/${slug}`
+    },
+    "articleSection": category
+  };
+}
+
+/**
+ * Returns BreadcrumbList JSON-LD Schema.
+ * @param {Array<{name: string, url: string}>} items
+ */
+export function getBreadcrumbSchema(items) {
+  if (!Array.isArray(items)) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": items.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      "item": item.url
+    }))
+  };
+}
