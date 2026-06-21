@@ -76,12 +76,85 @@ export const metadata = {
   },
   verification: {
     google: "3v-o-lc_-Ym9wck1txXt3ZODb6whlC089kLg_fBK578",
+    other: {
+      "msvalidate.01": "6AF92BFDAFBC08EC722E3BCC05211B45",
+    },
   },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              "additionalType": "https://schema.org/SoftwareCompany",
+              "name": "Code With Amrendra",
+              "description": "Personal insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.",
+              "url": "https://amrendra-blog.vercel.app",
+              "logo": "https://amrendra-blog.vercel.app/Profile%20photo.jpeg",
+              "image": "https://amrendra-blog.vercel.app/Profile%20photo.jpeg",
+              "telephone": "+916205482614",
+              "email": "amrendra1999official@gmail.com",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Moh- Guphaper, South of Devi Asthan, Kalyanpur",
+                "addressLocality": "Bihar Sharif",
+                "addressRegion": "Bihar",
+                "postalCode": "803101",
+                "addressCountry": "IN"
+              },
+              "sameAs": [
+                "https://github.com/amrendra-dev",
+                "https://x.com/AmrendraCodes",
+                "https://www.linkedin.com/in/amrendra-reactdev/",
+                "https://www.youtube.com/@codewithamrendra",
+                "https://instagram.com/amrendracodes"
+              ]
+            })
+          }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var observer = new MutationObserver(function(mutations) {
+                  for (var i = 0; i < mutations.length; i++) {
+                    var mutation = mutations[i];
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'bis_skin_checked') {
+                      mutation.target.removeAttribute('bis_skin_checked');
+                    }
+                    if (mutation.addedNodes) {
+                      for (var j = 0; j < mutation.addedNodes.length; j++) {
+                        var node = mutation.addedNodes[j];
+                        if (node.nodeType === 1) {
+                          if (node.hasAttribute('bis_skin_checked')) {
+                            node.removeAttribute('bis_skin_checked');
+                          }
+                          var children = node.querySelectorAll('[bis_skin_checked]');
+                          for (var k = 0; k < children.length; k++) {
+                            children[k].removeAttribute('bis_skin_checked');
+                          }
+                        }
+                      }
+                    }
+                  }
+                });
+                observer.observe(document.documentElement, {
+                  attributes: true,
+                  childList: true,
+                  subtree: true,
+                  attributeFilter: ['bis_skin_checked']
+                });
+              })();
+            `
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${syne.variable} ${dmSans.variable} bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 transition-colors duration-300`}
         suppressHydrationWarning
