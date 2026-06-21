@@ -86,6 +86,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta name="msvalidate.01" content="6AF92BFDAFBC08EC722E3BCC05211B45" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
