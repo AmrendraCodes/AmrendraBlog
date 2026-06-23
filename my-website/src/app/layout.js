@@ -1,8 +1,21 @@
-import { Geist, Geist_Mono, Outfit, Syne, DM_Sans } from "next/font/google";
+import { Inter, JetBrains_Mono, Geist, Geist_Mono, Outfit, Syne, DM_Sans } from "next/font/google";
 import { ThemeProvider } from 'next-themes'
 import "./globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import SmoothScroll from "../components/SmoothScroll";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -157,13 +170,20 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${syne.variable} ${dmSans.variable} bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 transition-colors duration-300`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${syne.variable} ${dmSans.variable} bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300`}
         suppressHydrationWarning
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Header />
-          {children}
-          <Footer />
+          <a href="#main-content" className="skip-to-main">
+            Skip to main content
+          </a>
+          <SmoothScroll>
+            <Header />
+            <div id="main-content">
+              {children}
+            </div>
+            <Footer />
+          </SmoothScroll>
         </ThemeProvider>
       </body>
     </html>

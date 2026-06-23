@@ -56,27 +56,39 @@ export default function Header() {
   return (
     <>
       <div className={`fixed top-5 left-0 w-full z-[100] flex justify-center p-0 pointer-events-none transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-[150%]"}`}>
-        <header className={`pointer-events-auto z-[100] transition-all duration-300 flex items-center justify-between rounded-full border relative w-[95%] mx-auto md:grid md:grid-cols-[1fr_auto_1fr] md:w-[85%] md:gap-4 lg:w-[70%] lg:max-w-[1200px] lg:py-3 lg:px-8 ${isScrolled ? 'bg-white/30 dark:bg-slate-950/30 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.03)] py-3 px-8 border-slate-200/30 dark:border-slate-800/40' : 'bg-white/40 dark:bg-slate-950/40 backdrop-blur-md shadow-[0_10px_40px_rgba(15,23,42,0.02)] py-3 px-5 border-slate-200/20 dark:border-slate-800/30'}`}>
+        <header
+          className={`pointer-events-auto z-[100] transition-all duration-300 flex items-center justify-between rounded-full border relative w-[95%] mx-auto md:grid md:grid-cols-[1fr_auto_1fr] md:w-[85%] md:gap-4 lg:w-[70%] lg:max-w-[1200px] lg:py-3 lg:px-8 ${
+            isScrolled
+              ? 'bg-white/60 dark:bg-[#111214]/70 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.3)] py-3 px-8 border-slate-200/40 dark:border-[#2A2B2E]/60'
+              : 'bg-white/40 dark:bg-[#08090A]/50 backdrop-blur-md shadow-[0_10px_40px_rgba(15,23,42,0.02)] dark:shadow-none py-3 px-5 border-slate-200/20 dark:border-[#2A2B2E]/30'
+          }`}
+          role="navigation"
+          aria-label="Main navigation"
+        >
           <div className="flex items-center justify-start">
             <Link href="/" className="flex items-center gap-2 md:gap-3 no-underline shrink-0 group">
-              <div className="bg-gradient-to-br from-[#00b7ff] to-[#7c3aed] text-white rounded-full flex justify-center items-center w-9 h-9 transition-transform duration-300 shadow-[0_0_15px_rgba(168,85,247,0.5)] shrink-0 group-hover:rotate-12 group-hover:scale-110">
+              <div className="bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white rounded-full flex justify-center items-center w-9 h-9 transition-transform duration-300 shadow-[0_0_20px_rgba(99,102,241,0.4)] shrink-0 group-hover:rotate-12 group-hover:scale-110">
                 <Image src="/icon.svg" alt="Logo" width={18} height={18} className="w-[1.1rem] max-w-full h-auto" priority />
               </div>
               <span className="text-[20px] font-extrabold tracking-tight flex items-center text-slate-900 dark:text-white ml-1.5 sm:ml-2">
-                <span className="bg-gradient-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text">CWA</span>
+                <span className="bg-gradient-to-r from-[#6366F1] to-[#a855f7] text-transparent bg-clip-text">CWA</span>
               </span>
             </Link>
           </div>
 
           <div className="hidden md:flex items-center justify-center">
-            <nav className="flex items-center gap-5 lg:gap-9 whitespace-nowrap">
+            <nav className="flex items-center gap-5 lg:gap-9 whitespace-nowrap" aria-label="Primary navigation">
               {navLinks.map((link) => {
                 const isActive = link.href === '/' ? pathname === '/' : pathname?.startsWith(link.href);
                 return (
                   <Link
                     key={link.name}
                     href={link.href}
-                    className={`relative text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-3.5 py-1.5 rounded-full ${isActive ? "text-[#00b7ff] bg-[#00b7ff]/15" : "text-slate-700 dark:text-slate-300 hover:text-[#00b7ff] dark:hover:text-[#00b7ff] hover:bg-[#00b7ff]/10 dark:hover:bg-[#00b7ff]/10"}`}
+                    className={`relative text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-3.5 py-1.5 rounded-full ${
+                      isActive
+                        ? "text-[#6366F1] bg-[#6366F1]/10 dark:bg-[#6366F1]/15"
+                        : "text-slate-600 dark:text-slate-400 hover:text-[#6366F1] dark:hover:text-[#818CF8] hover:bg-[#6366F1]/5 dark:hover:bg-[#6366F1]/10"
+                    }`}
                   >
                     {link.name}
                   </Link>
@@ -87,10 +99,15 @@ export default function Header() {
 
           <div className="flex items-center justify-end gap-3 md:pr-2">
             <ThemeToggle />
-            <Link href="/hire-me" className="hidden md:inline-flex items-center justify-center bg-gradient-to-br from-purple-600 to-[#7c3aed] text-white font-semibold text-[0.95rem] py-2 px-5 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_4px_15px_rgba(168,85,247,0.2)] hover:-translate-y-0.5 hover:opacity-95 hover:shadow-[0_6px_20px_rgba(168,85,247,0.4)]">Hire Me</Link>
+            <Link
+              href="/hire-me"
+              className="hidden md:inline-flex items-center justify-center bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-semibold text-[0.95rem] py-2 px-5 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_4px_15px_rgba(99,102,241,0.3)] hover:-translate-y-0.5 hover:opacity-95 hover:shadow-[0_6px_25px_rgba(99,102,241,0.5)]"
+            >
+              Hire Me
+            </Link>
             <button
               type="button"
-              className="flex md:hidden items-center justify-center bg-slate-900/5 dark:bg-slate-800/20 border border-slate-900/10 dark:border-slate-700/20 text-slate-900 dark:text-slate-50 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-background duration-300 shrink-0 hover:bg-slate-900/10 dark:hover:bg-slate-700/20"
+              className="flex md:hidden items-center justify-center bg-slate-100/80 dark:bg-[#1A1B1E]/80 border border-slate-200/50 dark:border-[#2A2B2E]/50 text-slate-900 dark:text-slate-50 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-all duration-300 shrink-0 hover:bg-slate-200/80 dark:hover:bg-[#2A2B2E]/80"
               onClick={() => setIsMenuOpen(true)}
               aria-label="Open menu"
               aria-expanded={isMenuOpen}
@@ -102,43 +119,47 @@ export default function Header() {
       </div>
 
       <div
-        className={`fixed inset-0 bg-slate-900/25 backdrop-blur-sm z-[60] transition-all duration-300 ${isMenuOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}
+        className={`fixed inset-0 bg-slate-900/25 dark:bg-black/50 backdrop-blur-sm z-[60] transition-all duration-300 ${isMenuOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}
         onClick={() => setIsMenuOpen(false)}
       />
 
       <div
-        className={`fixed top-0 right-0 bottom-0 w-[min(100%,24rem)] bg-white dark:bg-slate-950 z-[70] transition-transform duration-500 flex flex-col border-l border-slate-900/10 dark:border-slate-700/20 box-border ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed top-0 right-0 bottom-0 w-[min(100%,24rem)] bg-white dark:bg-[#111214] z-[70] transition-transform duration-500 flex flex-col border-l border-slate-200/50 dark:border-[#2A2B2E] box-border ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
         role="dialog"
         aria-modal="true"
         inert={!isMenuOpen}
       >
-        <div className="flex items-center justify-between p-6 border-b border-slate-900/10 dark:border-slate-700/20 gap-4">
+        <div className="flex items-center justify-between p-6 border-b border-slate-200/50 dark:border-[#2A2B2E] gap-4">
           <div className="flex items-center gap-3 shrink-0">
-            <div className="bg-gradient-to-br from-[#00b7ff] to-[#7c3aed] text-white rounded-full flex justify-center items-center w-8 h-8 shadow-[0_0_15px_rgba(168,85,247,0.5)]">
+            <div className="bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white rounded-full flex justify-center items-center w-8 h-8 shadow-[0_0_20px_rgba(99,102,241,0.4)]">
               <Sparkles size={18} />
             </div>
             <span className="text-[22px] font-extrabold flex items-center text-slate-900 dark:text-white">
-              Code with <span className="bg-gradient-to-r from-[#00b7ff] to-[#7c3aed] text-transparent bg-clip-text ml-1.5">Amrendra</span>
+              Code with <span className="bg-gradient-to-r from-[#6366F1] to-[#a855f7] text-transparent bg-clip-text ml-1.5">Amrendra</span>
             </span>
           </div>
           <button
             type="button"
             onClick={() => setIsMenuOpen(false)}
-            className="flex items-center justify-center bg-slate-900/5 dark:bg-slate-800/20 border border-slate-900/10 dark:border-slate-700/20 text-slate-900 dark:text-slate-50 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-background duration-300 hover:bg-slate-900/10 dark:hover:bg-slate-700/20"
+            className="flex items-center justify-center bg-slate-100/80 dark:bg-[#1A1B1E]/80 border border-slate-200/50 dark:border-[#2A2B2E]/50 text-slate-900 dark:text-slate-50 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-all duration-300 hover:bg-slate-200/80 dark:hover:bg-[#2A2B2E]/80"
             aria-label="Close menu"
           >
             <X size={20} />
           </button>
         </div>
 
-        <nav className="flex-1 p-8 flex flex-col gap-6">
+        <nav className="flex-1 p-8 flex flex-col gap-6" aria-label="Mobile navigation">
           {navLinks.map((link) => {
             const isActive = link.href === '/' ? pathname === '/' : pathname?.startsWith(link.href);
             return (
               <Link
                 key={link.name}
                 href={link.href}
-                className={`text-[1.5rem] font-extrabold no-underline transition-colors duration-300 leading-tight py-3.5 px-6 rounded-2xl block w-full ${isActive ? "text-[#00b7ff] bg-[#00b7ff]/15" : "text-slate-900 dark:text-slate-50 hover:text-[#00b7ff] dark:hover:text-[#00b7ff] hover:bg-[#00b7ff]/10 dark:hover:bg-[#00b7ff]/10"}`}
+                className={`text-[1.5rem] font-extrabold no-underline transition-colors duration-300 leading-tight py-3.5 px-6 rounded-2xl block w-full ${
+                  isActive
+                    ? "text-[#6366F1] bg-[#6366F1]/10 dark:bg-[#6366F1]/15"
+                    : "text-slate-900 dark:text-slate-50 hover:text-[#6366F1] dark:hover:text-[#818CF8] hover:bg-[#6366F1]/5 dark:hover:bg-[#6366F1]/10"
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.name}
@@ -146,7 +167,7 @@ export default function Header() {
             );
           })}
           <div className="flex flex-col gap-3 mt-auto mb-8">
-            <Link href="/hire-me" className="inline-flex items-center justify-center bg-gradient-to-br from-purple-600 to-[#7c3aed] text-white font-bold text-[1.1rem] py-4 px-8 rounded-full border-none cursor-pointer w-full transition-opacity duration-300 hover:opacity-90 shadow-lg shadow-purple-500/20" onClick={() => setIsMenuOpen(false)}>
+            <Link href="/hire-me" className="inline-flex items-center justify-center bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-bold text-[1.1rem] py-4 px-8 rounded-full border-none cursor-pointer w-full transition-opacity duration-300 hover:opacity-90 shadow-lg shadow-indigo-500/20" onClick={() => setIsMenuOpen(false)}>
               Hire Me
             </Link>
           </div>

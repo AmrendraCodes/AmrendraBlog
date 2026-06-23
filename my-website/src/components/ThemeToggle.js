@@ -16,7 +16,7 @@ export default function ThemeToggle() {
     return (
       <button
         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-900/5 dark:bg-slate-800 dark:bg-slate-950/10 text-slate-700 dark:text-slate-200 hover:bg-slate-900/10 dark:hover:bg-slate-700/20 transition-colors duration-300"
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-100/80 dark:bg-[#1A1B1E]/80 border border-slate-200/50 dark:border-[#2A2B2E]/50 text-slate-600 dark:text-slate-400 hover:bg-slate-200/80 dark:hover:bg-[#2A2B2E]/80 transition-all duration-300"
         aria-label="Toggle Dark Mode"
       >
         <div className="w-[18px] h-[18px]" />
@@ -27,10 +27,10 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-900/5 dark:bg-slate-800 dark:bg-slate-950/10 text-slate-700 dark:text-slate-200 hover:bg-slate-900/10 dark:hover:bg-slate-700/20 transition-colors duration-300"
+      className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-100/80 dark:bg-[#1A1B1E]/80 border border-slate-200/50 dark:border-[#2A2B2E]/50 text-slate-600 dark:text-slate-400 hover:bg-slate-200/80 dark:hover:bg-[#2A2B2E]/80 hover:text-[#6366F1] dark:hover:text-[#818CF8] transition-all duration-300"
       aria-label="Toggle Dark Mode"
     >
-      {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+      {theme === 'dark' ? <Sun size={18} className="transition-transform duration-300 hover:rotate-45" /> : <Moon size={18} className="transition-transform duration-300 hover:-rotate-12" />}
     </button>
   );
 }

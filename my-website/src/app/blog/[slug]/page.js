@@ -64,9 +64,10 @@ export default async function PostPage({ params }) {
   ]);
 
   return (
-    <main className="min-h-screen bg-white dark:bg-slate-950 isolate">
+    <main className="min-h-screen bg-[var(--background)] isolate">
       <JsonLd data={postSchema} />
       <JsonLd data={breadcrumbSchema} />
+
       {/* Hero Section */}
       <div className="relative h-[60vh] overflow-hidden">
         <Image
@@ -77,44 +78,47 @@ export default async function PostPage({ params }) {
           sizes="100vw"
           className="absolute inset-0 object-cover opacity-70"
         />
-        <div className="absolute inset-0 bg-linear-to-t from-white dark:from-slate-950 via-white/70 dark:via-slate-950/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)] via-[var(--background)]/70 to-transparent" />
 
         <div className="relative h-full max-w-4xl mx-auto px-6 flex flex-col justify-end pb-12 pt-28">
           <Link
             href="/blog"
-            className="inline-flex items-center text-slate-700 hover:text-slate-900 dark:text-slate-50 mb-8 transition-colors group"
+            className="inline-flex items-center text-[var(--text-body)] hover:text-[var(--foreground)] mb-8 transition-colors group no-underline"
           >
             <ArrowLeft size={18} className="mr-2 group-hover:-translate-x-1 transition-transform" />
             Back to Journal
           </Link>
 
           <div className="flex items-center space-x-3 mb-6">
-            <Link href={`/category/${post.categorySlug}`} className="bg-blue-600 text-white text-[11px] font-black px-3 py-1.5 rounded-full uppercase tracking-wider shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition-colors">
+            <Link
+              href={`/category/${post.categorySlug}`}
+              className="bg-[#6366F1] text-white text-[11px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-lg shadow-indigo-500/20 hover:bg-[#818CF8] transition-colors no-underline"
+            >
               {post.category}
             </Link>
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-950 dark:text-slate-50 tracking-tight leading-tight mb-8">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[var(--text-heading)] tracking-tight leading-tight mb-8">
             {post.title}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-6 text-slate-600 dark:text-slate-300 text-sm font-medium border-t border-slate-200 dark:border-slate-800 pt-8">
+          <div className="flex flex-wrap items-center gap-6 text-[var(--text-body)] text-sm font-medium border-t border-[var(--card-border)] pt-8">
             <div className="flex items-center">
               <Image 
                 src="/Profile photo.jpeg" 
                 alt={post.author} 
                 width={24} 
                 height={24} 
-                className="w-6 h-6 rounded-full object-cover mr-2" 
+                className="w-6 h-6 rounded-full object-cover mr-2 ring-1 ring-[var(--card-border)]" 
               />
               <span>{post.author}</span>
             </div>
             <div className="flex items-center">
-              <Calendar size={16} className="mr-2" />
+              <Calendar size={16} className="mr-2 text-[var(--text-muted)]" />
               <span>{post.date}</span>
             </div>
             <div className="flex items-center">
-              <Clock size={16} className="mr-2" />
+              <Clock size={16} className="mr-2 text-[var(--text-muted)]" />
               <span>{post.readTime}</span>
             </div>
           </div>
@@ -123,47 +127,56 @@ export default async function PostPage({ params }) {
 
       {/* Content Section */}
       <article className="max-w-3xl mx-auto px-6 py-16">
-        <div className="prose prose-lg prose-slate max-w-none 
-          prose-headings:text-slate-900 dark:text-slate-50 prose-headings:font-extrabold prose-headings:tracking-tight
-          prose-p:text-slate-600 dark:text-slate-300 prose-p:leading-relaxed prose-p:text-lg
-          prose-strong:text-slate-900 dark:text-slate-50 prose-a:text-blue-600 hover:prose-a:text-blue-700
-          prose-img:rounded-4xl prose-img:shadow-2xl">
+        <div className="prose prose-lg prose-slate dark:prose-invert max-w-none 
+          prose-headings:text-[var(--text-heading)] prose-headings:font-extrabold prose-headings:tracking-tight
+          prose-p:text-[var(--text-body)] prose-p:leading-relaxed prose-p:text-lg
+          prose-strong:text-[var(--text-heading)] prose-a:text-[#6366F1] hover:prose-a:text-[#818CF8]
+          prose-img:rounded-2xl prose-img:shadow-xl
+          prose-code:text-[#818CF8] prose-code:bg-[var(--card-bg)] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm prose-code:font-medium
+          prose-pre:bg-[#111214] prose-pre:border prose-pre:border-[var(--card-border)] prose-pre:rounded-xl
+          prose-blockquote:border-l-[#6366F1] prose-blockquote:bg-[var(--section-alt-bg)] prose-blockquote:rounded-r-xl prose-blockquote:py-1 prose-blockquote:px-6">
           <MarkdownRenderer content={post.content} />
         </div>
 
         {/* Author Bio Card */}
-        <div className="mt-16 pt-10 border-t border-slate-200 dark:border-slate-800">
-          <div className="bg-slate-50 dark:bg-slate-900/50 rounded-3xl p-8 sm:p-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start border border-slate-100 dark:border-slate-800 shadow-sm">
+        <div className="mt-16 pt-10 border-t border-[var(--card-border)]">
+          <div className="bg-[var(--section-alt-bg)] rounded-2xl p-8 sm:p-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start border border-[var(--card-border)]">
             <div className="shrink-0 relative">
-              <div className="absolute -inset-1 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full blur-sm opacity-50"></div>
+              <div className="absolute -inset-1 bg-gradient-to-br from-[#6366F1] to-[#a855f7] rounded-full blur-sm opacity-50"></div>
               <Image 
                 src="/Profile photo.jpeg" 
                 alt="Amrendra kumar" 
                 width={96} 
                 height={96} 
-                className="w-24 h-24 rounded-full object-cover relative border-2 border-white dark:border-slate-900" 
+                className="w-24 h-24 rounded-full object-cover relative border-2 border-[var(--background)]" 
               />
             </div>
             
             <div className="flex flex-col text-center sm:text-left">
-              <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-2 flex items-center justify-center sm:justify-start gap-2">
+              <h3 className="text-2xl font-extrabold text-[var(--text-heading)] mb-2 flex items-center justify-center sm:justify-start gap-2">
                 {post.author || "Amrendra kumar"}
-                <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full font-bold">Author</span>
+                <span className="bg-[#6366F1]/10 text-[#6366F1] dark:text-[#818CF8] text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full font-bold">Author</span>
               </h3>
-              <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+              <p className="text-[var(--text-body)] mb-6 leading-relaxed">
                 Hi, I'm Amrendra. I write about Frontend Engineering, AI systems, SaaS architecture, and modern web development. Thanks for reading this blog! Let's connect and build something awesome together.
               </p>
               
-              <div className="flex items-center justify-center sm:justify-start gap-4">
-                <a href="https://x.com/codewithamrendr" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:text-blue-500 hover:shadow-md transition-all border border-slate-200 dark:border-slate-700">
-                  <Twitter size={18} />
-                </a>
-                <a href="https://www.linkedin.com/in/amrendra-reactdev/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:text-blue-700 hover:shadow-md transition-all border border-slate-200 dark:border-slate-700">
-                  <Linkedin size={18} />
-                </a>
-                <a href="https://github.com/AmrendraCodes" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:text-slate-900 dark:hover:text-white hover:shadow-md transition-all border border-slate-200 dark:border-slate-700">
-                  <Github size={18} />
-                </a>
+              <div className="flex items-center justify-center sm:justify-start gap-3">
+                {[
+                  { href: "https://x.com/codewithamrendr", icon: Twitter, hoverColor: "hover:text-[#6366F1]" },
+                  { href: "https://www.linkedin.com/in/amrendra-reactdev/", icon: Linkedin, hoverColor: "hover:text-[#6366F1]" },
+                  { href: "https://github.com/AmrendraCodes", icon: Github, hoverColor: "hover:text-[#6366F1]" },
+                ].map(({ href, icon: Icon, hoverColor }) => (
+                  <a
+                    key={href}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-10 h-10 rounded-full bg-[var(--card-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--text-muted)] ${hoverColor} hover:border-[#6366F1]/30 hover:shadow-md transition-all`}
+                  >
+                    <Icon size={18} />
+                  </a>
+                ))}
               </div>
             </div>
           </div>

@@ -1,38 +1,65 @@
 'use client';
 
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 export default function HeroSection() {
   return (
-    <section className="relative py-24 px-6 lg:px-16 overflow-hidden bg-white dark:bg-slate-950 flex flex-col items-center justify-center text-center min-h-[50vh] md:min-h-[60vh]">
+    <section className="relative py-24 px-6 lg:px-16 overflow-hidden bg-[var(--background)] flex flex-col items-center justify-center text-center min-h-[50vh] md:min-h-[60vh]">
       {/* Decorative Gradients */}
-      <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-linear-to-br from-blue-600/30 to-violet-600/30 blur-[120px] rounded-full pointer-events-none animate-pulse-slow" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-gradient-to-tl from-cyan-500/20 to-transparent blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[radial-gradient(ellipse,rgba(99,102,241,0.15)_0%,transparent_70%)] blur-3xl rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-[radial-gradient(ellipse,rgba(168,85,247,0.1)_0%,transparent_70%)] blur-3xl rounded-full pointer-events-none" />
 
-      <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center animate-fade-in-up mt-12 md:mt-0">
-        {/* Badge */}
-
+      <motion.div
+        className="relative z-10 max-w-4xl mx-auto flex flex-col items-center mt-12 md:mt-0"
+        initial="hidden"
+        animate="visible"
+        variants={stagger}
+      >
         {/* Heading */}
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 dark:text-white leading-[1.1] mb-8 tracking-tight">
-          Insights, Ideas & <br className="hidden md:block" />
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-violet-600 dark:from-blue-400 dark:to-violet-400">Industry Trends</span>
-        </h1>
+        <motion.h1
+          variants={fadeUp}
+          className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-[var(--text-heading)] leading-[1.1] mb-8 tracking-tight"
+        >
+          Insights, Ideas &amp; <br className="hidden md:block" />
+          <span className="gradient-text">Industry Trends</span>
+        </motion.h1>
 
         {/* Description */}
-        <p className="text-lg md:text-xl lg:text-2xl text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed mb-10">
+        <motion.p variants={fadeUp} className="text-lg md:text-xl lg:text-2xl text-[var(--text-body)] max-w-2xl leading-relaxed mb-10">
           Explore daily blogs, design inspiration, development tips, and digital insights crafted to help your business grow.
-        </p>
+        </motion.p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-          <Link href="/contact" className="w-full sm:w-auto px-8 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full font-bold text-lg hover:shadow-[0_10px_30px_rgba(15,23,42,0.2)] dark:hover:shadow-[0_10px_30px_rgba(255,255,255,0.2)] transition-all transform hover:-translate-y-1 inline-flex items-center justify-center">
+        <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+          <Link
+            href="/contact"
+            className="w-full sm:w-auto px-8 py-4 bg-[#6366F1] text-white rounded-full font-bold text-lg hover:shadow-[0_10px_30px_rgba(99,102,241,0.35)] transition-all transform hover:-translate-y-1 inline-flex items-center justify-center no-underline"
+          >
             Subscribe Now
           </Link>
-          <Link href="/categories" className="w-full sm:w-auto px-8 py-4 bg-transparent text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-800 rounded-full font-bold text-lg hover:bg-slate-50 dark:hover:bg-slate-900 transition-all inline-flex items-center justify-center">
+          <Link
+            href="/categories"
+            className="w-full sm:w-auto px-8 py-4 bg-transparent text-[var(--foreground)] border border-[var(--card-border)] rounded-full font-bold text-lg hover:bg-[var(--card-bg-hover)] hover:border-[#6366F1]/30 transition-all inline-flex items-center justify-center no-underline"
+          >
             Browse Topics
           </Link>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

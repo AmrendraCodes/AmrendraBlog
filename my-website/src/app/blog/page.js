@@ -48,7 +48,7 @@ export default function BlogPage() {
   }));
 
   return (
-    <div className="bg-white dark:bg-slate-950 min-h-screen pt-24 md:pt-28 lg:pt-32">
+    <div className="bg-[var(--background)] min-h-screen pt-24 md:pt-28 lg:pt-32">
       <JsonLd
         data={getCollectionPageSchema({
           name: "Blog — Code with Amrendra",

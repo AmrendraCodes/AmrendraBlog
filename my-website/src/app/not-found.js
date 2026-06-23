@@ -2,28 +2,28 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center text-center px-6 bg-white dark:bg-slate-950">
+    <main className="min-h-screen flex flex-col items-center justify-center text-center px-6 bg-[var(--background)]">
       <div className="relative">
-        <h1 className="text-[10rem] md:text-[14rem] font-black text-slate-100 dark:text-slate-900 leading-none select-none">
+        <h1 className="text-[10rem] md:text-[14rem] font-black text-[var(--card-border)] leading-none select-none">
           404
         </h1>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <p className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-slate-50 mb-2">
+          <p className="text-2xl md:text-3xl font-bold text-[var(--text-heading)] mb-2">
             Page Not Found
           </p>
-          <p className="text-base md:text-lg text-slate-500 dark:text-slate-400 max-w-md mb-8 px-4">
+          <p className="text-base md:text-lg text-[var(--text-body)] max-w-md mb-8 px-4">
             The page you&apos;re looking for doesn&apos;t exist or has been moved.
           </p>
           <div className="flex flex-col sm:flex-row items-center gap-4">
             <Link
               href="/"
-              className="px-8 py-3.5 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 hover:-translate-y-0.5"
+              className="px-8 py-3.5 bg-[#6366F1] text-white rounded-full font-bold hover:bg-[#818CF8] transition-all shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 hover:-translate-y-0.5 no-underline"
             >
               Go Back Home
             </Link>
             <Link
               href="/blog"
-              className="px-8 py-3.5 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-50 rounded-full font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"
+              className="px-8 py-3.5 bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] rounded-full font-bold hover:bg-[var(--card-bg-hover)] transition-all no-underline"
             >
               Read the Blog
             </Link>

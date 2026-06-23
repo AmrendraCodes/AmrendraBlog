@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CategoriesSection from "@/components/blog/CategoriesSection";
+import { getAllPosts } from "@/lib/posts";
 
 export const metadata = {
   title: "Categories | Code with Amrendra",
@@ -28,9 +29,17 @@ export const metadata = {
 };
 
 export default function CategoriesPage() {
+  const allPosts = getAllPosts();
+  const categoryCounts = {};
+  allPosts.forEach((post) => {
+    if (post.categorySlug) {
+      categoryCounts[post.categorySlug] = (categoryCounts[post.categorySlug] || 0) + 1;
+    }
+  });
+
   return (
-    <main className="min-h-screen bg-white dark:bg-slate-950 pt-24 md:pt-28 lg:pt-32">
-      <CategoriesSection />
+    <main className="min-h-screen bg-[var(--background)] pt-24 md:pt-28 lg:pt-32">
+      <CategoriesSection categoryCounts={categoryCounts} />
     </main>
   );
 }
