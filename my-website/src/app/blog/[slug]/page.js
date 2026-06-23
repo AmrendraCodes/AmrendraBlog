@@ -69,7 +69,7 @@ export default async function PostPage({ params }) {
       <JsonLd data={breadcrumbSchema} />
 
       {/* Hero Section */}
-      <div className="relative h-[60vh] overflow-hidden">
+      <div className="relative h-[65vh] min-h-[520px] md:h-[60vh] overflow-hidden">
         <Image
           src={post.image || "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1200"}
           alt={post.title}
@@ -80,7 +80,7 @@ export default async function PostPage({ params }) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)] via-[var(--background)]/70 to-transparent" />
 
-        <div className="relative h-full max-w-4xl mx-auto px-6 flex flex-col justify-end pb-12 pt-28">
+        <div className="relative h-full max-w-4xl mx-auto px-6 flex flex-col justify-end pb-12 pt-36 md:pt-28">
           <Link
             href="/blog"
             className="inline-flex items-center text-[var(--text-body)] hover:text-[var(--foreground)] mb-8 transition-colors group no-underline"
