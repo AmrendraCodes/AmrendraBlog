@@ -69,6 +69,10 @@
 }
 
 /* ─── Base ─── */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-sans);
   margin: 0;
@@ -221,6 +225,16 @@ body {
   background: var(--text-muted);
 }
 
+/* Thin scrollbar for TOC */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 999px;
+}
+
 /* ─── Selection Styling ─── */
 ::selection {
   background: rgba(99, 102, 241, 0.3);
@@ -272,3 +286,113 @@ body {
   padding-right: 4rem; /* 64px gap */
 }
 
+/* ═══════════════════════════════════════════════════════════
+   BLOG CMS — Code Block Styles
+   ═══════════════════════════════════════════════════════════ */
+
+/* Code Block Wrapper */
+.code-block-wrapper {
+  position: relative;
+}
+
+/* Language Label */
+.code-lang-label {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  background: #6366F1;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0 0 0.375rem 0.375rem;
+  z-index: 10;
+  line-height: 1.4;
+}
+
+/* Copy Code Button */
+.copy-code-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 10;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  color: #a1a1aa;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+}
+
+.code-block-wrapper:hover .copy-code-btn,
+.copy-code-btn:focus-visible {
+  opacity: 1;
+}
+
+.copy-code-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #f4f4f5;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BLOG CMS — Heading Anchor Links
+   ═══════════════════════════════════════════════════════════ */
+
+.anchor-link {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1024px) {
+  .anchor-link {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BLOG CMS — Scroll Margin for Headings
+   ═══════════════════════════════════════════════════════════ */
+
+.scroll-mt-24 {
+  scroll-margin-top: 6rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BLOG CMS — KaTeX Overrides
+   ═══════════════════════════════════════════════════════════ */
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5rem 0;
+}
+
+.katex {
+  font-size: 1.1em;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BLOG CMS — Hide Scrollbar Utility
+   ═══════════════════════════════════════════════════════════ */
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

@@ -1,6 +1,6 @@
 'use client';
 
-import { Search, X } from 'lucide-react';
+import { Search, X, Command } from 'lucide-react';
 
 /**
  * SearchToolbar — A reusable, controlled search input component.
@@ -42,6 +42,15 @@ export default function SearchToolbar({
           autoComplete="off"
           aria-label="Search blog articles"
         />
+
+        {/* Keyboard shortcut hint */}
+        {!hasQuery && (
+          <div className="search-toolbar__shortcut" aria-hidden="true">
+            <kbd className="inline-flex items-center gap-0.5 px-1.5 py-0.5 bg-[var(--section-alt-bg)] border border-[var(--card-border)] rounded text-[10px] font-bold text-[var(--text-muted)] font-mono">
+              <Command size={10} />K
+            </kbd>
+          </div>
+        )}
 
         {/* Clear Button */}
         {hasQuery && (

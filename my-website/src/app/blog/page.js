@@ -1,6 +1,6 @@
 import HeroSection from "@/components/blog/HeroSection";
 import BlogPageClient from "@/components/blog/BlogPageClient";
-import { getAllPosts } from "@/lib/posts";
+import { getAllPosts, getAllTags } from "@/lib/posts";
 import JsonLd from "@/components/JsonLd";
 import { getCollectionPageSchema } from "@/lib/schema";
 
@@ -33,6 +33,7 @@ export const metadata = {
 export default function BlogPage() {
   // Fetch all posts from markdown files (server-side)
   const posts = getAllPosts();
+  const allTags = getAllTags();
 
   // Transform posts into the shape BlogPageClient expects
   const articles = posts.map((post) => ({
@@ -43,6 +44,7 @@ export default function BlogPage() {
     author: post.author,
     authorImage: "/Profile photo.jpeg",
     date: post.date,
+    readTime: post.readTime,
     image: post.image,
     link: `/blog/${post.slug}`,
   }));
@@ -57,7 +59,7 @@ export default function BlogPage() {
         })}
       />
       <HeroSection />
-      <BlogPageClient articles={articles} />
+      <BlogPageClient articles={articles} allTags={allTags} />
     </div>
   );
 }

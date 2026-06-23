@@ -1,15 +1,15 @@
 'use client';
 
-import { useState, useMemo, useEffect, useRef } from 'react';
-import { SearchX } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { SearchX, Clock, ChevronLeft, ChevronRight, Tag } from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
 import SearchToolbar from './SearchToolbar';
 import '@/styles/SearchToolbar.css';
 
-// ─── Articles data comes from props (passed by server component) ───
-
 // ─── Custom hook: useDebounce ──────────────────────────────
-// Delays value updates to avoid excessive re-filtering on
-// every keystroke. Great for large article lists or API calls.
+import { useEffect } from 'react';
+
 function useDebounce(value, delay = 300) {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
@@ -21,8 +21,11 @@ function useDebounce(value, delay = 300) {
   return debouncedValue;
 }
 
-// ─── Filter & Sort logic (pure function) ──────────────────────────
-function filterAndSortArticles(articles, query, category, sortBy) {
+// ─── Constants ──────────────────────────────
+const POSTS_PER_PAGE = 6;
+
+// ─── Filter & Sort logic ──────────────────────────────
+function filterAndSortArticles(articles, query, category, selectedTag, sortBy) {
   let result = [...articles];
 
   // 1. Filter by category
@@ -30,7 +33,12 @@ function filterAndSortArticles(articles, query, category, sortBy) {
     result = result.filter(a => a.category === category);
   }
 
-  // 2. Filter by search query
+  // 2. Filter by tag
+  if (selectedTag) {
+    result = result.filter(a => (a.tags || []).includes(selectedTag));
+  }
+
+  // 3. Filter by search query
   if (query.trim()) {
     const lowerQuery = query.toLowerCase().trim();
     result = result.filter((article) => {
@@ -47,7 +55,7 @@ function filterAndSortArticles(articles, query, category, sortBy) {
     });
   }
 
-  // 3. Sort
+  // 4. Sort
   if (sortBy === 'Latest') {
     result.sort((a, b) => new Date(b.date) - new Date(a.date));
   } else if (sortBy === 'Popular') {
@@ -60,13 +68,15 @@ function filterAndSortArticles(articles, query, category, sortBy) {
 }
 
 // ─── BlogPageClient Component ──────────────────────────────
-export default function BlogPageClient({ articles: propArticles }) {
+export default function BlogPageClient({ articles: propArticles, allTags: propTags }) {
   const articles = useMemo(() => propArticles || [], [propArticles]);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
+  const [selectedTag, setSelectedTag] = useState('');
   const [sortBy, setSortBy] = useState('Latest');
-  
+  const [currentPage, setCurrentPage] = useState(1);
+
   const debouncedQuery = useDebounce(searchQuery, 250);
 
   const categories = useMemo(() => {
@@ -74,19 +84,47 @@ export default function BlogPageClient({ articles: propArticles }) {
   }, [articles]);
 
   const allTags = useMemo(() => {
-    return [...new Set(articles.flatMap(a => a.tags || []))];
-  }, [articles]);
+    return propTags || [...new Set(articles.flatMap(a => a.tags || []))];
+  }, [articles, propTags]);
 
   // Mock popular posts
   const popularPosts = useMemo(() => [...articles].reverse().slice(0, 3), [articles]);
 
   const filteredArticles = useMemo(
-    () => filterAndSortArticles(articles, debouncedQuery, activeCategory, sortBy),
-    [articles, debouncedQuery, activeCategory, sortBy]
+    () => filterAndSortArticles(articles, debouncedQuery, activeCategory, selectedTag, sortBy),
+    [articles, debouncedQuery, activeCategory, selectedTag, sortBy]
+  );
+
+  // Reset page when filters change
+  useMemo(() => {
+    setCurrentPage(1);
+  }, [debouncedQuery, activeCategory, selectedTag, sortBy]);
+
+  // Pagination
+  const totalPages = Math.ceil(filteredArticles.length / POSTS_PER_PAGE);
+  const paginatedArticles = filteredArticles.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
   );
 
   const hasQuery = debouncedQuery.trim().length > 0;
   const noResults = filteredArticles.length === 0;
+
+  const handleTagClick = (tag) => {
+    if (selectedTag === tag) {
+      setSelectedTag('');
+    } else {
+      setSelectedTag(tag);
+    }
+    setCurrentPage(1);
+  };
+
+  const handleClearFilters = () => {
+    setSearchQuery('');
+    setActiveCategory('All');
+    setSelectedTag('');
+    setCurrentPage(1);
+  };
 
   return (
     <>
@@ -104,20 +142,20 @@ export default function BlogPageClient({ articles: propArticles }) {
 
       <section className="py-12 md:py-16 px-6 lg:px-16 bg-[var(--section-alt-bg)]">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12">
-          
+
           {/* Main Content (Articles) */}
           <div className="flex-1 min-w-0">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-6 sm:gap-4">
-              
+
               {/* Category Tabs */}
               <div className="flex overflow-x-auto pb-2 sm:pb-0 gap-2 w-full sm:w-auto scrollbar-hide">
                 {categories.map(cat => (
                   <button
                     key={cat}
-                    onClick={() => setActiveCategory(cat)}
+                    onClick={() => { setActiveCategory(cat); setCurrentPage(1); }}
                     className={`shrink-0 px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 border cursor-pointer ${
-                      activeCategory === cat 
-                        ? 'bg-[#6366F1] border-[#6366F1] text-white shadow-md shadow-indigo-500/20' 
+                      activeCategory === cat
+                        ? 'bg-[#6366F1] border-[#6366F1] text-white shadow-md shadow-indigo-500/20'
                         : 'bg-[var(--card-bg)] border-[var(--card-border)] text-[var(--text-body)] hover:border-[#6366F1]/30 hover:text-[#6366F1] dark:hover:text-[#818CF8]'
                     }`}
                   >
@@ -142,6 +180,26 @@ export default function BlogPageClient({ articles: propArticles }) {
 
             </div>
 
+            {/* Active Tag Filter Indicator */}
+            {selectedTag && (
+              <div className="flex items-center gap-2 mb-6">
+                <Tag size={14} className="text-[#6366F1]" />
+                <span className="text-sm text-[var(--text-body)]">
+                  Filtered by tag:
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#6366F1]/10 text-[#6366F1] dark:text-[#818CF8] text-xs font-bold rounded-full">
+                  #{selectedTag}
+                  <button
+                    onClick={() => setSelectedTag('')}
+                    className="hover:text-[#6366F1] cursor-pointer bg-transparent border-none p-0 text-current"
+                    aria-label="Clear tag filter"
+                  >
+                    ×
+                  </button>
+                </span>
+              </div>
+            )}
+
             {/* No results state */}
             {noResults ? (
               <div className="bg-[var(--card-bg)] rounded-2xl border border-[var(--card-border)] p-12 text-center flex flex-col items-center justify-center">
@@ -154,20 +212,61 @@ export default function BlogPageClient({ articles: propArticles }) {
                 </p>
                 <button
                   type="button"
-                  onClick={() => { setSearchQuery(''); setActiveCategory('All'); }}
+                  onClick={handleClearFilters}
                   className="mt-6 text-[#6366F1] dark:text-[#818CF8] font-bold hover:underline cursor-pointer bg-transparent border-none p-0"
                 >
                   Clear all filters
                 </button>
               </div>
             ) : (
-              <ArticleGrid articles={filteredArticles} />
+              <>
+                <ArticleGrid articles={paginatedArticles} />
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div className="flex items-center justify-center gap-2 mt-12">
+                    <button
+                      onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                      disabled={currentPage === 1}
+                      className="w-10 h-10 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] flex items-center justify-center text-[var(--text-muted)] hover:text-[#6366F1] hover:border-[#6366F1]/30 transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                      aria-label="Previous page"
+                    >
+                      <ChevronLeft size={18} />
+                    </button>
+
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                      <button
+                        key={page}
+                        onClick={() => setCurrentPage(page)}
+                        className={`w-10 h-10 rounded-full text-sm font-bold transition-all cursor-pointer border ${
+                          currentPage === page
+                            ? 'bg-[#6366F1] text-white border-[#6366F1] shadow-md shadow-indigo-500/20'
+                            : 'bg-[var(--card-bg)] border-[var(--card-border)] text-[var(--text-body)] hover:border-[#6366F1]/30 hover:text-[#6366F1]'
+                        }`}
+                        aria-label={`Page ${page}`}
+                        aria-current={currentPage === page ? 'page' : undefined}
+                      >
+                        {page}
+                      </button>
+                    ))}
+
+                    <button
+                      onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                      disabled={currentPage === totalPages}
+                      className="w-10 h-10 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] flex items-center justify-center text-[var(--text-muted)] hover:text-[#6366F1] hover:border-[#6366F1]/30 transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                      aria-label="Next page"
+                    >
+                      <ChevronRight size={18} />
+                    </button>
+                  </div>
+                )}
+              </>
             )}
           </div>
 
           {/* Sidebar */}
           <aside className="w-full lg:w-80 shrink-0 flex flex-col gap-8">
-            
+
             {/* Popular Posts Widget */}
             <div className="bg-[var(--card-bg)] rounded-2xl p-6 border border-[var(--card-border)]">
               <h3 className="text-lg font-extrabold text-[var(--text-heading)] mb-6 flex items-center">
@@ -199,11 +298,12 @@ export default function BlogPageClient({ articles: propArticles }) {
                 {allTags.map(tag => (
                   <button
                     key={tag}
-                    onClick={() => {
-                      setSearchQuery(tag);
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    className="px-3 py-1.5 bg-[var(--section-alt-bg)] text-[var(--text-body)] text-xs font-bold rounded-lg hover:bg-[#6366F1] hover:text-white transition-colors cursor-pointer border border-[var(--card-border)] hover:border-[#6366F1]"
+                    onClick={() => handleTagClick(tag)}
+                    className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-colors cursor-pointer border ${
+                      selectedTag === tag
+                        ? 'bg-[#6366F1] text-white border-[#6366F1]'
+                        : 'bg-[var(--section-alt-bg)] text-[var(--text-body)] border-[var(--card-border)] hover:bg-[#6366F1] hover:text-white hover:border-[#6366F1]'
+                    }`}
                   >
                     #{tag}
                   </button>
@@ -219,14 +319,14 @@ export default function BlogPageClient({ articles: propArticles }) {
                 Get the latest articles and insights delivered directly to your inbox every week.
               </p>
               <form className="relative z-10 flex flex-col gap-3">
-                <input 
-                  type="email" 
-                  placeholder="Your email address" 
+                <input
+                  type="email"
+                  placeholder="Your email address"
                   className="w-full px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-indigo-200 focus:outline-none focus:ring-2 focus:ring-white/50 text-sm font-medium"
                   required
                 />
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   className="w-full py-2.5 bg-white text-[#6366F1] font-extrabold rounded-xl hover:bg-indigo-50 transition-colors shadow-md text-sm cursor-pointer"
                 >
                   Subscribe Now
@@ -242,9 +342,6 @@ export default function BlogPageClient({ articles: propArticles }) {
 }
 
 // ─── ArticleGrid — renders the blog cards ──────────────────
-import Link from 'next/link';
-import Image from 'next/image';
-
 function ArticleGrid({ articles }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative">
@@ -275,7 +372,7 @@ function ArticleGrid({ articles }) {
                 {article.title}
               </Link>
             </h3>
-            <p className="text-[var(--text-body)] mb-6 line-clamp-2 text-sm leading-relaxed grow">
+            <p className="text-[var(--text-body)] mb-4 line-clamp-2 text-sm leading-relaxed grow">
               {article.excerpt || article.description}
             </p>
 
@@ -310,6 +407,12 @@ function ArticleGrid({ articles }) {
                   </span>
                 </div>
               </div>
+              {article.readTime && (
+                <div className="flex items-center gap-1 text-[11px] text-[var(--text-muted)] font-medium">
+                  <Clock size={12} />
+                  {article.readTime}
+                </div>
+              )}
             </div>
           </div>
         </article>

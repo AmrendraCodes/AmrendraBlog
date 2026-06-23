@@ -87,8 +87,10 @@ export function getCollectionPageSchema({ name, description, url }) {
  * @param {string} params.image
  * @param {string} params.datePublished
  * @param {string} params.category
+ * @param {number} params.wordCount
+ * @param {string[]} params.tags
  */
-export function getBlogPostSchema({ title, description, slug, image, datePublished, category }) {
+export function getBlogPostSchema({ title, description, slug, image, datePublished, category, wordCount, tags }) {
   const formattedDate = formatDate(datePublished);
   
   return {
@@ -99,6 +101,8 @@ export function getBlogPostSchema({ title, description, slug, image, datePublish
     "image": image || "https://amrendra-blog.vercel.app/images/og-default.png",
     "datePublished": formattedDate,
     "dateModified": formattedDate,
+    "wordCount": wordCount || undefined,
+    "keywords": tags && tags.length > 0 ? tags.join(", ") : undefined,
     "author": {
       "@type": "Person",
       "name": "Amrendra Kumar",
