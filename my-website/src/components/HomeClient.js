@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, TerminalSquare, Github, Linkedin, Twitter, Youtube, ChevronDown } from "lucide-react";
+import { ArrowRight, TerminalSquare, Github, Linkedin, Twitter, Youtube } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -90,31 +90,28 @@ export default function HomeClient({ featuredPosts }) {
             </Link>
           </motion.div>
         </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[var(--text-muted)]"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
-        >
-          <span className="text-xs font-medium uppercase tracking-widest">Scroll</span>
-          <ChevronDown size={16} className="animate-bounce" />
-        </motion.div>
       </section>
 
       {/* ═══════════ TICKER SECTION ═══════════ */}
-      <section className="py-4 border-t border-b border-[var(--card-border)] overflow-hidden" aria-hidden="true">
-        <div className="flex gap-16 animate-[ticker-scroll_30s_linear_infinite]" style={{ paddingLeft: '4rem' }}>
-          {[...Array(2)].map((_, i) => (
-            <div key={i} className="flex gap-16 shrink-0">
-              {["Mobile Development", "DevOps", "Digital Marketing", "UI/UX Patterns", "AI Learning", "Animations"].map((item) => (
-                <span key={item} className="text-lg sm:text-xl font-extrabold uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--foreground)] transition-colors whitespace-nowrap">
-                  ✦ {item}
-                </span>
-              ))}
-            </div>
-          ))}
+      <section className="relative py-4 border-t border-b border-[var(--card-border)] overflow-hidden bg-[var(--card-bg)] flex items-center" aria-hidden="true">
+        {/* Ticker Container with fades */}
+        <div className="w-full overflow-hidden relative">
+          {/* Gradient Fades */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[var(--card-bg)] to-transparent pointer-events-none z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[var(--card-bg)] to-transparent pointer-events-none z-10" />
+
+          {/* Scrolling Track */}
+          <div className="ticker-track">
+            {[...Array(2)].map((_, i) => (
+              <div key={i} className="flex shrink-0">
+                {["Mobile Development", "DevOps", "Digital Marketing", "UI/UX Patterns", "AI Learning", "Animations"].map((item) => (
+                  <span key={item} className="ticker-item text-lg sm:text-xl font-extrabold uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--foreground)] transition-colors whitespace-nowrap">
+                    ✦ {item}
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
