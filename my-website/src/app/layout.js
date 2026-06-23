@@ -87,38 +87,34 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="msvalidate.01" content="6AF92BFDAFBC08EC722E3BCC05211B45" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ProfessionalService",
-              "additionalType": "https://schema.org/SoftwareCompany",
-              "name": "Code With Amrendra",
-              "description": "Personal insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.",
-              "url": "https://amrendra-blog.vercel.app",
-              "logo": "https://amrendra-blog.vercel.app/Profile%20photo.jpeg",
-              "image": "https://amrendra-blog.vercel.app/Profile%20photo.jpeg",
-              "telephone": "+916205482614",
-              "email": "amrendra1999official@gmail.com",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Moh- Guphaper, South of Devi Asthan, Kalyanpur",
-                "addressLocality": "Bihar Sharif",
-                "addressRegion": "Bihar",
-                "postalCode": "803101",
-                "addressCountry": "IN"
-              },
-              "sameAs": [
-                "https://github.com/amrendra-dev",
-                "https://x.com/AmrendraCodes",
-                "https://www.linkedin.com/in/amrendra-reactdev/",
-                "https://www.youtube.com/@codewithamrendra",
-                "https://instagram.com/amrendracodes"
-              ]
-            })
-          }}
-        />
+       <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Amrendra Kumar",
+      "url": "https://amrendra-blog.vercel.app",
+      "image": "https://amrendra-blog.vercel.app/Profile%20photo.jpeg",
+      "jobTitle": "Frontend Developer & Technical Content Writer",
+      "description": "Personal insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.",
+      "email": "amrendra1999official@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bihar Sharif",
+        "addressRegion": "Bihar",
+        "addressCountry": "IN"
+      },
+      "sameAs": [
+        "https://github.com/AmrendraCodes",
+        "https://x.com/AmrendraCodes",
+        "https://www.linkedin.com/in/amrendra-reactdev/",
+        "https://www.youtube.com/@codewithamrendra",
+        "https://www.instagram.com/codewithamrendra"
+      ]
+    })
+  }}
+/>
         <script
           dangerouslySetInnerHTML={{
             __html: `
