@@ -281,8 +281,6 @@ export default function HomeClient({ featuredPosts }) {
           viewport={{ once: true, margin: "-80px" }}
           variants={stagger}
         >
-          {/* Gradient border overlay */}
-          <div className="absolute inset-0 rounded-3xl gradient-border pointer-events-none" />
           {/* Radial glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.08)_0%,transparent_70%)] pointer-events-none" />
 
