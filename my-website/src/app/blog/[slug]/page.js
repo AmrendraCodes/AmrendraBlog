@@ -11,8 +11,6 @@ import BlogDetailClient from "@/components/blog/BlogDetailClient";
 import ArticleNavigation from "@/components/blog/ArticleNavigation";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import AuthorBox from "@/components/blog/AuthorBox";
-import FAQAccordion from "@/components/blog/FAQAccordion";
-import CTABanner from "@/components/blog/CTABanner";
 
 /**
  * Generate static params for all blog posts at build time.
@@ -113,7 +111,7 @@ export default async function PostPage({ params }) {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] bg-[#6366F1]/10 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
+          <div className="max-w-[900px] mx-auto text-center flex flex-col items-center">
 
             {/* Category Badge */}
             <div className="mb-6">
@@ -161,7 +159,7 @@ export default async function PostPage({ params }) {
           </div>
 
           {/* Featured Image */}
-          <div className="max-w-5xl mx-auto relative aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-[#6366F1]/10 border border-white/10 group">
+          <div className="max-w-[900px] mx-auto relative aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-[#6366F1]/10 border border-white/10 group mt-4">
             <Image
               src={
                 post.image ||
@@ -187,12 +185,7 @@ export default async function PostPage({ params }) {
       />
 
       {/* ─── Bottom Sections (Server Rendered) ─── */}
-      <div className="max-w-[850px] mx-auto px-4 sm:px-6 pb-16">
-        {/* FAQ Section */}
-        {post.faq && <FAQAccordion faqs={post.faq} />}
-
-        {/* CTA Banner */}
-        <CTABanner />
+      <div className="max-w-[900px] mx-auto px-4 sm:px-6 pb-16">
 
         {/* Author Box */}
         <AuthorBox author={post.author} />

@@ -17,18 +17,24 @@ export default function BlogDetailClient({ content, headings, title, slug }) {
     <>
       <ReadingProgress />
 
-      {/* Two-column layout: Content + TOC */}
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
-        <div className="flex gap-10 items-start justify-center">
-          {/* Main Content */}
+      {/* Layout Container */}
+      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+        
+        {/* Desktop TOC — Sticky Sidebar on the Left (only visible on huge screens to prevent overlap) */}
+        <div className="hidden 2xl:block absolute left-8 top-14 w-[250px]">
+          <TableOfContents headings={headings} />
+        </div>
+
+        {/* Main Content strictly centered */}
+        <div className="max-w-[900px] mx-auto">
           <motion.article 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex-1 min-w-0 max-w-[850px]"
+            className="w-full"
           >
             {/* Mobile TOC */}
-            <div className="block lg:hidden mb-8">
+            <div className="block 2xl:hidden mb-8">
               <TableOfContents headings={headings} isMobile={true} />
             </div>
 
@@ -59,11 +65,6 @@ export default function BlogDetailClient({ content, headings, title, slug }) {
               <MarkdownRenderer content={content} />
             </div>
           </motion.article>
-
-          {/* Desktop TOC — Sticky Sidebar */}
-          <div className="hidden lg:block w-[300px] xl:w-[350px] shrink-0">
-            <TableOfContents headings={headings} />
-          </div>
         </div>
       </div>
 
