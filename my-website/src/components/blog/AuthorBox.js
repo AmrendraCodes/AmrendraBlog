@@ -27,8 +27,10 @@ export default function AuthorBox({ author }) {
   ];
 
   return (
-    <div className="mt-16 pt-10 border-t border-[var(--card-border)]">
-      <div className="bg-[var(--section-alt-bg)] rounded-2xl p-8 sm:p-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start border border-[var(--card-border)]">
+    <div className="mt-16 pt-10 border-t border-[var(--card-border)]/50">
+      <div className="bg-[var(--section-alt-bg)]/40 backdrop-blur-xl rounded-3xl p-8 sm:p-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start border border-white/5 shadow-2xl relative overflow-hidden">
+        {/* Glow behind author box */}
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#6366F1] rounded-full blur-[80px] opacity-10 pointer-events-none" />
         {/* Avatar with gradient ring */}
         <div className="shrink-0 relative">
           <div className="absolute -inset-1 bg-gradient-to-br from-[#6366F1] to-[#a855f7] rounded-full blur-sm opacity-50" />

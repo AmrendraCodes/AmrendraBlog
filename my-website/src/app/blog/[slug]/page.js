@@ -8,10 +8,11 @@ import JsonLd from "@/components/JsonLd";
 import { getBlogPostSchema, getBreadcrumbSchema } from "@/lib/schema";
 import { siteMetadata } from "@/config/seo";
 import BlogDetailClient from "@/components/blog/BlogDetailClient";
-import Breadcrumbs from "@/components/blog/Breadcrumbs";
 import ArticleNavigation from "@/components/blog/ArticleNavigation";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import AuthorBox from "@/components/blog/AuthorBox";
+import FAQAccordion from "@/components/blog/FAQAccordion";
+import CTABanner from "@/components/blog/CTABanner";
 
 /**
  * Generate static params for all blog posts at build time.
@@ -107,88 +108,72 @@ export default async function PostPage({ params }) {
       <JsonLd data={breadcrumbSchema} />
 
       {/* ─── Hero Section ─── */}
-      <div className="relative h-[60vh] min-h-[480px] md:h-[55vh] overflow-hidden">
-        <Image
-          src={
-            post.image ||
-            "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1200"
-          }
-          alt={post.title}
-          fill
-          priority
-          sizes="100vw"
-          className="absolute inset-0 object-cover opacity-60"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)] via-[var(--background)]/60 to-[var(--background)]/20" />
+      <div className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
+        {/* Background glow effects */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] bg-[#6366F1]/10 blur-[120px] rounded-full pointer-events-none" />
 
-        <div className="relative h-full max-w-4xl mx-auto px-4 sm:px-6 flex flex-col justify-end pb-10 pt-32 md:pt-28">
-          {/* Breadcrumbs */}
-          <div className="mb-6">
-            <Breadcrumbs
-              items={[
-                { label: "Home", href: "/" },
-                { label: "Blog", href: "/blog" },
-                { label: post.title },
-              ]}
-            />
-          </div>
+        <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
 
-          {/* Category Badge */}
-          <div className="flex items-center space-x-3 mb-5">
-            <Link
-              href={`/category/${post.categorySlug}`}
-              className="bg-[#6366F1] text-white text-[11px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-lg shadow-indigo-500/20 hover:bg-[#818CF8] transition-colors no-underline"
-            >
-              {post.category}
-            </Link>
-          </div>
-
-          {/* Title */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold text-[var(--text-heading)] tracking-tight leading-[1.12] mb-4">
-            {post.title}
-          </h1>
-
-          {/* Description */}
-          {post.description && (
-            <p className="text-lg text-[var(--text-body)] max-w-2xl mb-6 leading-relaxed">
-              {post.description}
-            </p>
-          )}
-
-          {/* Meta: Author, Date, Reading Time */}
-          <div className="flex flex-wrap items-center gap-5 text-[var(--text-body)] text-sm font-medium border-t border-[var(--card-border)]/50 pt-6">
-            <div className="flex items-center gap-2">
-              <Image
-                src={siteMetadata.profileImage}
-                alt={post.author}
-                width={28}
-                height={28}
-                className="w-7 h-7 rounded-full object-cover ring-2 ring-[var(--background)]"
-              />
-              <span className="font-semibold">{post.author}</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <Calendar size={15} className="text-[var(--text-muted)]" />
-              <span>{post.date}</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <Clock size={15} className="text-[var(--text-muted)]" />
-              <span>{post.readTime}</span>
+            {/* Category Badge */}
+            <div className="mb-6">
+              <Link
+                href={`/category/${post.categorySlug}`}
+                className="bg-white/5 backdrop-blur-md border border-[#6366F1]/30 text-[#818CF8] text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-lg hover:bg-white/10 hover:border-[#6366F1]/50 transition-all no-underline"
+              >
+                {post.category}
+              </Link>
             </div>
 
-            {/* Tags */}
-            {post.tags && post.tags.length > 0 && (
-              <div className="hidden sm:flex items-center gap-2 ml-auto">
-                {post.tags.slice(0, 3).map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)] bg-[var(--background)]/50 backdrop-blur-sm border border-[var(--card-border)]/50 px-2.5 py-1 rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+            {/* Title */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-extrabold text-[var(--text-heading)] tracking-tight leading-[1.1] mb-6 drop-shadow-sm">
+              {post.title}
+            </h1>
+
+            {/* Description */}
+            {post.description && (
+              <p className="text-lg sm:text-xl text-[var(--text-body)] max-w-2xl mb-10 leading-relaxed">
+                {post.description}
+              </p>
             )}
+
+            {/* Meta: Author, Date, Reading Time */}
+            <div className="flex flex-wrap items-center justify-center gap-6 text-[var(--text-body)] text-sm font-medium mb-12">
+              <div className="flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full">
+                <Image
+                  src={siteMetadata.profileImage}
+                  alt={post.author}
+                  width={24}
+                  height={24}
+                  className="w-6 h-6 rounded-full object-cover"
+                />
+                <span className="font-semibold text-[var(--text-heading)]">{post.author}</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full">
+                <Calendar size={16} className="text-[#818CF8]" />
+                <span>{post.date}</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full">
+                <Clock size={16} className="text-[#818CF8]" />
+                <span>{post.readTime}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Featured Image */}
+          <div className="max-w-5xl mx-auto relative aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-[#6366F1]/10 border border-white/10 group">
+            <Image
+              src={
+                post.image ||
+                "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1200"
+              }
+              alt={post.title}
+              fill
+              priority
+              sizes="(max-width: 1400px) 100vw, 1400px"
+              className="absolute inset-0 object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/80 via-transparent to-transparent opacity-60" />
           </div>
         </div>
       </div>
@@ -202,15 +187,23 @@ export default async function PostPage({ params }) {
       />
 
       {/* ─── Bottom Sections (Server Rendered) ─── */}
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 pb-16">
+      <div className="max-w-[850px] mx-auto px-4 sm:px-6 pb-16">
+        {/* FAQ Section */}
+        {post.faq && <FAQAccordion faqs={post.faq} />}
+
+        {/* CTA Banner */}
+        <CTABanner />
+
         {/* Author Box */}
         <AuthorBox author={post.author} />
 
-        {/* Related Posts */}
-        <RelatedPosts posts={relatedPosts} />
-
         {/* Previous / Next Navigation */}
         <ArticleNavigation prev={prev} next={next} />
+
+        {/* Related Posts */}
+        <div className="mt-20">
+          <RelatedPosts posts={relatedPosts} />
+        </div>
       </div>
     </main>
   );

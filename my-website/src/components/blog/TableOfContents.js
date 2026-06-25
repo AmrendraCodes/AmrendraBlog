@@ -11,9 +11,9 @@ import { motion, AnimatePresence } from "framer-motion";
  * Desktop: Sticky sidebar with smooth scroll and active section highlighting.
  * Mobile: Collapsible accordion with smooth open/close animation.
  *
- * @param {{ headings: Array<{id: string, text: string, level: number}> }} props
+ * @param {{ headings: Array<{id: string, text: string, level: number}>, isMobile?: boolean }} props
  */
-export default function TableOfContents({ headings }) {
+export default function TableOfContents({ headings, isMobile = false }) {
   const activeId = useActiveHeading(headings);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -37,28 +37,36 @@ export default function TableOfContents({ headings }) {
 
   const tocList = (
     <nav aria-label="Table of Contents">
-      <ul className="space-y-1">
+      <ul className="space-y-1.5 border-l border-[var(--card-border)]/50 ml-3">
         {headings.map((heading) => {
           const isActive = activeId === heading.id;
           const indent =
             heading.level === 3
-              ? "pl-4"
+              ? "ml-4"
               : heading.level === 4
-              ? "pl-8"
-              : "";
+              ? "ml-8"
+              : "ml-0";
 
           return (
-            <li key={heading.id}>
+            <li key={heading.id} className="relative">
+              {isActive && (
+                <motion.div
+                  layoutId="activeIndicator"
+                  className="absolute left-[-1px] top-0 bottom-0 w-0.5 bg-[#6366F1]"
+                  initial={false}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
               <a
                 href={`#${heading.id}`}
                 onClick={(e) => handleClick(e, heading.id)}
                 className={`
-                  block py-1.5 px-3 rounded-lg text-[13px] font-medium transition-all duration-200 no-underline border-l-2
+                  block py-1.5 pr-3 pl-4 rounded-r-lg text-[14px] font-medium transition-all duration-200 no-underline
                   ${indent}
                   ${
                     isActive
-                      ? "text-[#6366F1] dark:text-[#818CF8] bg-[#6366F1]/5 border-[#6366F1] font-semibold"
-                      : "text-[var(--text-muted)] hover:text-[var(--text-heading)] border-transparent hover:border-[var(--card-border)] hover:bg-[var(--section-alt-bg)]"
+                      ? "text-[#6366F1] dark:text-[#818CF8] bg-[#6366F1]/5 font-bold"
+                      : "text-[var(--text-muted)] hover:text-[var(--text-heading)] hover:bg-white/5"
                   }
                 `}
               >
@@ -71,39 +79,25 @@ export default function TableOfContents({ headings }) {
     </nav>
   );
 
-  return (
-    <>
-      {/* Desktop — Sticky Sidebar */}
-      <aside className="hidden lg:block w-64 shrink-0" id="toc-desktop">
-        <div className="sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto pr-2 scrollbar-thin">
-          <div className="flex items-center gap-2 mb-4 px-3">
-            <List size={16} className="text-[var(--text-muted)]" />
-            <h2 className="text-xs font-bold uppercase tracking-widest text-[var(--text-muted)]">
-              On This Page
-            </h2>
-          </div>
-          {tocList}
-        </div>
-      </aside>
-
-      {/* Mobile — Collapsible Accordion */}
-      <div className="lg:hidden mb-8" id="toc-mobile">
+  if (isMobile) {
+    return (
+      <div className="w-full mb-8 bg-white/5 backdrop-blur-md border border-[var(--card-border)]/50 rounded-2xl shadow-sm" id="toc-mobile">
         <button
           onClick={() => setMobileOpen((prev) => !prev)}
-          className="w-full flex items-center justify-between px-4 py-3 bg-[var(--section-alt-bg)] border border-[var(--card-border)] rounded-xl text-sm font-bold text-[var(--text-heading)] cursor-pointer"
+          className="w-full flex items-center justify-between px-5 py-4 text-sm font-bold text-[var(--text-heading)] cursor-pointer focus:outline-none"
           aria-expanded={mobileOpen}
           aria-controls="toc-mobile-content"
         >
           <span className="flex items-center gap-2">
-            <List size={16} className="text-[var(--text-muted)]" />
+            <List size={18} className="text-[#6366F1]" />
             Table of Contents
           </span>
-          <ChevronDown
-            size={16}
-            className={`text-[var(--text-muted)] transition-transform duration-300 ${
-              mobileOpen ? "rotate-180" : ""
-            }`}
-          />
+          <motion.div
+            animate={{ rotate: mobileOpen ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ChevronDown size={18} className="text-[#6366F1]" />
+          </motion.div>
         </button>
 
         <AnimatePresence>
@@ -116,11 +110,26 @@ export default function TableOfContents({ headings }) {
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="overflow-hidden"
             >
-              <div className="pt-3 px-2">{tocList}</div>
+              <div className="pt-2 pb-5 px-4">{tocList}</div>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
-    </>
+    );
+  }
+
+  // Desktop sticky TOC
+  return (
+    <aside className="w-full shrink-0" id="toc-desktop">
+      <div className="sticky top-32 max-h-[calc(100vh-10rem)] overflow-y-auto pr-2 scrollbar-thin pb-10">
+        <div className="flex items-center gap-2 mb-6 px-3">
+          <List size={18} className="text-[#6366F1]" />
+          <h2 className="text-sm font-bold uppercase tracking-widest text-[var(--text-heading)]">
+            On This Page
+          </h2>
+        </div>
+        {tocList}
+      </div>
+    </aside>
   );
 }

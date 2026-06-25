@@ -12,6 +12,8 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import CopyButton from "./blog/CopyButton";
 import { Link as LinkIcon } from "lucide-react";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 
 // Dynamically import MermaidBlock to keep initial bundle lean
 const MermaidBlock = dynamic(() => import("./blog/MermaidBlock"), {
@@ -149,21 +151,23 @@ export default function MarkdownRenderer({ content }) {
           );
         },
 
-        // ─── Images with Next.js Image optimization ───
+        // ─── Images with Next.js Image optimization and Zoom ───
         img: ({ src, alt, ...props }) => {
           // For external images, use standard img with lazy loading
           if (src && (src.startsWith("http://") || src.startsWith("https://"))) {
             return (
-              <span className="block my-8">
-                <img
-                  src={src}
-                  alt={alt || ""}
-                  loading="lazy"
-                  className="rounded-2xl shadow-xl w-full"
-                  {...props}
-                />
+              <span className="block my-10 flex flex-col items-center">
+                <Zoom>
+                  <img
+                    src={src}
+                    alt={alt || ""}
+                    loading="lazy"
+                    className="rounded-2xl shadow-xl max-w-full w-auto lg:max-w-[80%] mx-auto object-contain"
+                    {...props}
+                  />
+                </Zoom>
                 {alt && (
-                  <span className="block text-center text-sm text-[var(--text-muted)] mt-3 italic">
+                  <span className="block text-center text-sm text-[var(--text-muted)] mt-4 italic">
                     {alt}
                   </span>
                 )}
@@ -172,17 +176,19 @@ export default function MarkdownRenderer({ content }) {
           }
           // For local images, use Next.js Image
           return (
-            <span className="block my-8">
-              <Image
-                src={src || ""}
-                alt={alt || ""}
-                width={800}
-                height={450}
-                className="rounded-2xl shadow-xl w-full h-auto"
-                sizes="(max-width: 768px) 100vw, 800px"
-              />
+            <span className="block my-10 flex flex-col items-center">
+              <Zoom>
+                <Image
+                  src={src || ""}
+                  alt={alt || ""}
+                  width={800}
+                  height={450}
+                  className="rounded-2xl shadow-xl max-w-full w-auto lg:max-w-[80%] mx-auto object-contain"
+                  sizes="(max-width: 768px) 100vw, 800px"
+                />
+              </Zoom>
               {alt && (
-                <span className="block text-center text-sm text-[var(--text-muted)] mt-3 italic">
+                <span className="block text-center text-sm text-[var(--text-muted)] mt-4 italic">
                   {alt}
                 </span>
               )}
@@ -267,9 +273,9 @@ export default function MarkdownRenderer({ content }) {
 
         // ─── Tables ───
         table: ({ children, ...props }) => (
-          <div className="overflow-x-auto my-8 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xs">
+          <div className="overflow-x-auto my-8 border border-[var(--card-border)]/50 rounded-2xl shadow-lg bg-[var(--section-alt-bg)]/30 backdrop-blur-sm">
             <table
-              className="min-w-full divide-y divide-slate-200 dark:divide-slate-800 text-sm"
+              className="min-w-full divide-y divide-[var(--card-border)] text-sm text-left"
               {...props}
             >
               {children}
@@ -278,7 +284,7 @@ export default function MarkdownRenderer({ content }) {
         ),
         thead: ({ children, ...props }) => (
           <thead
-            className="bg-slate-50 dark:bg-slate-900/50"
+            className="bg-[#6366F1]/10 text-[var(--text-heading)] font-bold text-base"
             {...props}
           >
             {children}
@@ -286,7 +292,7 @@ export default function MarkdownRenderer({ content }) {
         ),
         th: ({ children, ...props }) => (
           <th
-            className="px-6 py-4 text-left font-semibold text-slate-900 dark:text-slate-100"
+            className="px-6 py-5 text-left font-semibold text-[var(--text-heading)] whitespace-nowrap"
             {...props}
           >
             {children}
@@ -294,7 +300,7 @@ export default function MarkdownRenderer({ content }) {
         ),
         td: ({ children, ...props }) => (
           <td
-            className="px-6 py-4 text-slate-700 dark:text-slate-300 border-t border-slate-100 dark:border-slate-800/50"
+            className="px-6 py-4 text-[var(--text-body)] border-t border-[var(--card-border)]/50"
             {...props}
           >
             {children}
