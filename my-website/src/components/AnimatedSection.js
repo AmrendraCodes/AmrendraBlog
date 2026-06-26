@@ -29,7 +29,7 @@ export default function AnimatedSection({
   as = 'div',
   ...props
 }) {
-  const Component = motion.create(as);
+  const Component = typeof as === 'string' && motion[as] ? motion[as] : motion.div;
   const directionOffset = directionMap[direction] || directionMap.up;
 
   return (

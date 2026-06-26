@@ -1,10 +1,12 @@
 "use client";
 
+import dynamic from 'next/dynamic';
 import ReadingProgress from "./ReadingProgress";
-import TableOfContents from "./TableOfContents";
-import BackToTop from "./BackToTop";
-import ShareButtons from "./ShareButtons";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
+
+const TableOfContents = dynamic(() => import('./TableOfContents'), { ssr: true });
+const ShareButtons = dynamic(() => import('./ShareButtons'), { ssr: false });
+const BackToTop = dynamic(() => import('./BackToTop'), { ssr: false });
 import "highlight.js/styles/atom-one-dark.css";
 import "katex/dist/katex.min.css";
 import { motion } from "framer-motion";

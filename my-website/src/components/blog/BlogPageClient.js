@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, memo } from 'react';
 import { SearchX, Clock, ChevronLeft, ChevronRight, Tag } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -8,8 +8,6 @@ import SearchToolbar from './SearchToolbar';
 import '@/styles/SearchToolbar.css';
 
 // ─── Custom hook: useDebounce ──────────────────────────────
-import { useEffect } from 'react';
-
 function useDebounce(value, delay = 300) {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
@@ -96,7 +94,7 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
   );
 
   // Reset page when filters change
-  useMemo(() => {
+  useEffect(() => {
     setCurrentPage(1);
   }, [debouncedQuery, activeCategory, selectedTag, sortBy]);
 
@@ -342,7 +340,7 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
 }
 
 // ─── ArticleGrid — renders the blog cards ──────────────────
-function ArticleGrid({ articles }) {
+const ArticleGrid = memo(function ArticleGrid({ articles }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative">
       {articles.map((article, index) => (
@@ -419,4 +417,4 @@ function ArticleGrid({ articles }) {
       ))}
     </div>
   );
-}
+});

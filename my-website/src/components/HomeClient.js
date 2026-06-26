@@ -145,6 +145,7 @@ export default function HomeClient({ featuredPosts }) {
                 src={featuredPosts[0].image}
                 alt={featuredPosts[0].title}
                 fill
+                priority={true}
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />

@@ -37,6 +37,7 @@ export default function FeaturedPosts() {
                 src={featuredPost.image} 
                 alt={featuredPost.title}
                 fill
+                priority={true}
                 sizes="(max-width: 1024px) 100vw, 45vw"
                 className="object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
               />
