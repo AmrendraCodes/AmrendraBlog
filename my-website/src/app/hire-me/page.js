@@ -77,7 +77,7 @@ export default function HireMePage() {
   };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 selection:bg-blue-100 dark:selection:bg-blue-900 font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 selection:bg-blue-100 dark:selection:bg-blue-900 font-sans overflow-x-hidden">
       {/* Hero Section */}
       <section className="pt-24 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 max-w-6xl mx-auto text-center border-b border-slate-100 dark:border-slate-800">
         <div className="inline-block px-4 py-1.5 mb-6 text-[10px] sm:text-xs font-bold tracking-[0.2em] text-purple-600 dark:text-purple-400 uppercase bg-purple-50 dark:bg-purple-900/20 rounded-full">
@@ -274,6 +274,6 @@ export default function HireMePage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

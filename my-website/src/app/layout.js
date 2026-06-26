@@ -175,9 +175,9 @@ export default function RootLayout({ children }) {
           </a>
           <SmoothScroll>
             <Header />
-            <div id="main-content">
+            <main id="main-content">
               {children}
-            </div>
+            </main>
             <Footer />
           </SmoothScroll>
         </ThemeProvider>

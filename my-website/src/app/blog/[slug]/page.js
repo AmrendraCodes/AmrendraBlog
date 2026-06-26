@@ -101,7 +101,7 @@ export default async function PostPage({ params }) {
   ]);
 
   return (
-    <main className="min-h-screen bg-[var(--background)] isolate">
+    <div className="min-h-screen bg-[var(--background)] isolate">
       <JsonLd data={postSchema} />
       <JsonLd data={breadcrumbSchema} />
 
@@ -198,6 +198,6 @@ export default async function PostPage({ params }) {
           <RelatedPosts posts={relatedPosts} />
         </div>
       </div>
-    </main>
+    </div>
   );
 }

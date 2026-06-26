@@ -97,8 +97,10 @@ const categories = [
  * Receives categoryCounts from parent server component.
  * @param {{ categoryCounts: Record<string, number> }} props
  */
-export default function CategoriesSection({ categoryCounts = {} }) {
+export default function CategoriesSection({ categoryCounts = {}, headingLevel = "h2" }) {
   const getCount = (slug) => categoryCounts[slug] || 0;
+  
+  const HeadingTag = headingLevel;
 
   return (
     <section className="py-16 md:py-24 px-6 lg:px-16 bg-[var(--background)]" aria-labelledby="categories-heading">
@@ -111,9 +113,9 @@ export default function CategoriesSection({ categoryCounts = {} }) {
       >
         {/* Section Header */}
         <motion.div variants={staggerItem} className="text-center mb-12">
-          <h2 id="categories-heading" className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 text-[var(--text-heading)]">
+          <HeadingTag id="categories-heading" className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 text-[var(--text-heading)]">
             Browse Categories
-          </h2>
+          </HeadingTag>
           <p className="text-lg text-[var(--text-body)] max-w-2xl mx-auto">
             Find exactly what you&apos;re looking for. From deep engineering dives to high-level strategy.
           </p>

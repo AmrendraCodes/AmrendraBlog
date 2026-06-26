@@ -38,7 +38,7 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-indigo-100 dark:selection:bg-indigo-900/40 font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-indigo-100 dark:selection:bg-indigo-900/40 font-sans overflow-x-hidden">
       {/* Hero Section */}
       <section className="pt-24 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 max-w-6xl mx-auto">
         <motion.div
@@ -176,6 +176,6 @@ export default function AboutPage() {
           </motion.div>
         </motion.div>
       </section>
-    </main>
+    </div>
   );
 }

@@ -67,7 +67,7 @@ export default async function CategoryPage({ params }) {
   ]);
 
   return (
-    <main className="min-h-screen bg-white dark:bg-slate-950 pt-24 md:pt-28 lg:pt-32">
+    <div className="min-h-screen bg-white dark:bg-slate-950 pt-24 md:pt-28 lg:pt-32">
       <JsonLd data={categorySchema} />
       <JsonLd data={breadcrumbSchema} />
       <section className="max-w-6xl mx-auto px-6 py-16">
@@ -99,6 +99,6 @@ export default async function CategoryPage({ params }) {
           </div>
         )}
       </section>
-    </main>
+    </div>
   );
 }

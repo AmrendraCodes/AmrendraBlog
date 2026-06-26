@@ -53,7 +53,7 @@ export default function Home() {
   });
 
   return (
-    <main className="min-h-screen w-full overflow-x-hidden relative bg-[var(--background)]">
+    <div className="min-h-screen w-full overflow-x-hidden relative bg-[var(--background)]">
       <JsonLd data={getWebsiteSchema()} />
       <JsonLd data={getPersonSchema()} />
 
@@ -61,6 +61,6 @@ export default function Home() {
 
       {/* Categories Section */}
       <CategoriesSection categoryCounts={categoryCounts} />
-    </main>
+    </div>
   );
 }

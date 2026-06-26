@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-white dark:bg-slate-950">
+    <div className="min-h-screen bg-white dark:bg-slate-950">
       <section className="max-w-3xl mx-auto px-6 py-16 pt-24 md:pt-32">
         <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-blue-600 dark:text-blue-400 uppercase bg-blue-50 dark:bg-blue-900/20 rounded-full">
           Legal
@@ -60,6 +60,6 @@ export default function PrivacyPage() {
           </p>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

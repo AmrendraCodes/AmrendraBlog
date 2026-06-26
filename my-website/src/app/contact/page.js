@@ -27,7 +27,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 selection:bg-blue-100 dark:selection:bg-blue-900 font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 selection:bg-blue-100 dark:selection:bg-blue-900 font-sans overflow-x-hidden">
       {/* Hero Section */}
       <section className="pt-24 pb-8 md:pt-32 md:pb-12 px-4 sm:px-6 max-w-5xl mx-auto text-center border-b border-slate-50 dark:border-slate-800">
         <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-6 md:mb-8 leading-[1.1]">
@@ -180,6 +180,6 @@ export default function ContactPage() {
 
       {/* Footer-like Space */}
       <div className="py-6 md:py-10"></div>
-    </main>
+    </div>
   );
 }

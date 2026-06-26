@@ -38,8 +38,8 @@ export default function CategoriesPage() {
   });
 
   return (
-    <main className="min-h-screen bg-[var(--background)] pt-24 md:pt-28 lg:pt-32">
-      <CategoriesSection categoryCounts={categoryCounts} />
-    </main>
+    <div className="min-h-screen bg-[var(--background)] pt-24 md:pt-28 lg:pt-32">
+      <CategoriesSection categoryCounts={categoryCounts} headingLevel="h1" />
+    </div>
   );
 }
