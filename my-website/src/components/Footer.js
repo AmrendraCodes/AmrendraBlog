@@ -1,6 +1,7 @@
 'use client';
 
 import Link from "next/link";
+import Image from "next/image";
 import { Github, Twitter, Linkedin, Instagram, Sparkles, Send, ArrowUp } from "lucide-react";
 
 export default function Footer() {
@@ -17,13 +18,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-14" suppressHydrationWarning>
           {/* Brand Column */}
           <div className="flex flex-col gap-6" suppressHydrationWarning>
-            <Link href="/" className="flex items-center gap-3 no-underline group">
-              <div className="bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white rounded-full flex justify-center items-center w-10 h-10 transition-transform duration-300 shadow-[0_0_20px_rgba(99,102,241,0.4)] group-hover:rotate-12 group-hover:scale-110">
-                <Sparkles size={18} />
-              </div>
-              <span className="text-[var(--text-heading)] tracking-tight text-2xl font-extrabold flex items-center">
-                <span className="bg-gradient-to-r from-[#6366F1] to-[#a855f7] text-transparent bg-clip-text">CWA</span>
-              </span>
+            <Link href="/" className="flex items-center gap-3 no-underline group mb-2">
+              <Image 
+                src="/logo-wide.png" 
+                alt="Code with Amrendra Logo" 
+                width={200} 
+                height={64} 
+                className="w-auto h-12 md:h-14 object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-sm" 
+              />
             </Link>
             <p className="text-[var(--text-body)] max-w-xs text-sm leading-relaxed">
               Empowering developers and creators with the latest insights into modern technology and creative design.

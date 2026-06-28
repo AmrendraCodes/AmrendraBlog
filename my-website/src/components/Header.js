@@ -67,9 +67,14 @@ export default function Header() {
         >
           <div className="flex items-center justify-start">
             <Link href="/" className="flex items-center gap-2 md:gap-3 no-underline shrink-0 group">
-              <div className="bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white rounded-full flex justify-center items-center w-9 h-9 transition-transform duration-300 shadow-[0_0_20px_rgba(99,102,241,0.4)] shrink-0 group-hover:rotate-12 group-hover:scale-110">
-                <Image src="/icon.svg" alt="Logo" width={18} height={18} className="w-[1.1rem] max-w-full h-auto" priority />
-              </div>
+              <Image 
+                src="/logo-square.png" 
+                alt="Code with Amrendra" 
+                width={36} 
+                height={36} 
+                className="w-9 h-9 object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-sm" 
+                priority 
+              />
               <span className="text-[20px] font-extrabold tracking-tight flex items-center text-slate-900 dark:text-white ml-1.5 sm:ml-2">
                 <span className="bg-gradient-to-r from-[#6366F1] to-[#a855f7] text-transparent bg-clip-text">CWA</span>
               </span>
