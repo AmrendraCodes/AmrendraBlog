@@ -4,7 +4,6 @@ import "./globals.css";
 import Header from "../components/Header";
 import SmoothScroll from "../components/SmoothScroll";
 import dynamic from 'next/dynamic';
-import Script from 'next/script';
 
 const Footer = dynamic(() => import('../components/Footer'), { ssr: true });
 
@@ -111,42 +110,9 @@ export default function RootLayout({ children }) {
     })
   }}
 />
-        <Script
-          id="bis-skin-checked-observer"
-          strategy="afterInteractive"
+        <script
           dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                var observer = new MutationObserver(function(mutations) {
-                  for (var i = 0; i < mutations.length; i++) {
-                    var mutation = mutations[i];
-                    if (mutation.type === 'attributes' && mutation.attributeName === 'bis_skin_checked') {
-                      mutation.target.removeAttribute('bis_skin_checked');
-                    }
-                    if (mutation.addedNodes) {
-                      for (var j = 0; j < mutation.addedNodes.length; j++) {
-                        var node = mutation.addedNodes[j];
-                        if (node.nodeType === 1) {
-                          if (node.hasAttribute('bis_skin_checked')) {
-                            node.removeAttribute('bis_skin_checked');
-                          }
-                          var children = node.querySelectorAll('[bis_skin_checked]');
-                          for (var k = 0; k < children.length; k++) {
-                            children[k].removeAttribute('bis_skin_checked');
-                          }
-                        }
-                      }
-                    }
-                  }
-                });
-                observer.observe(document.documentElement, {
-                  attributes: true,
-                  childList: true,
-                  subtree: true,
-                  attributeFilter: ['bis_skin_checked']
-                });
-              })();
-            `
+            __html: `(function(){var o=new MutationObserver(function(m){for(var i=0;i<m.length;i++){var c=m[i];if(c.type==='attributes'&&c.attributeName==='bis_skin_checked'){c.target.removeAttribute('bis_skin_checked')}if(c.addedNodes){for(var j=0;j<c.addedNodes.length;j++){var n=c.addedNodes[j];if(n.nodeType===1){if(n.hasAttribute('bis_skin_checked')){n.removeAttribute('bis_skin_checked')}var ch=n.querySelectorAll('[bis_skin_checked]');for(var k=0;k<ch.length;k++){ch[k].removeAttribute('bis_skin_checked')}}}}}});o.observe(document.documentElement,{attributes:true,childList:true,subtree:true,attributeFilter:['bis_skin_checked']})();`
           }}
         />
       </head>
