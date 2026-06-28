@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, TerminalSquare, Github, Linkedin, Twitter, Youtube, ChevronDown } from "lucide-react";
-import CategoriesSection from "@/components/blog/CategoriesSection";
+import dynamic from 'next/dynamic';
+const CategoriesSection = dynamic(() => import('@/components/blog/CategoriesSection'));
 import { getAllPosts } from "@/lib/posts";
 import JsonLd from "@/components/JsonLd";
 import { getWebsiteSchema, getPersonSchema } from "@/lib/schema";

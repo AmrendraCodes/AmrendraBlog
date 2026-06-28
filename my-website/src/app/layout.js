@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "../components/Header";
 import SmoothScroll from "../components/SmoothScroll";
 import dynamic from 'next/dynamic';
+import Script from 'next/script';
 
 const Footer = dynamic(() => import('../components/Footer'), { ssr: true });
 
@@ -110,7 +111,9 @@ export default function RootLayout({ children }) {
     })
   }}
 />
-        <script
+        <Script
+          id="bis-skin-checked-observer"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
