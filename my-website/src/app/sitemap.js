@@ -1,6 +1,6 @@
 import { getAllPosts } from '@/lib/posts';
 
-const BASE_URL = 'https://amrendra-blog.vercel.app';
+const BASE_URL = 'https://codewithamrendra.vercel.app';
 
 export default function sitemap() {
   const posts = getAllPosts();
