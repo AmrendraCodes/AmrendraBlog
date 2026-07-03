@@ -29,6 +29,9 @@ export const metadata = {
     description: 'Personal insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.',
     images: ['/images/og-default.png'],
   },
+  alternates: {
+    canonical: '/',
+  },
 };
 
 

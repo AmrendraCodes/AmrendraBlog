@@ -54,15 +54,15 @@ export default async function CategoryPage({ params }) {
   const categorySchema = getCollectionPageSchema({
     name: `${formattedName} Articles`,
     description: `Articles related to ${formattedName}`,
-    url: `https://amrendra-blog.vercel.app/category/${slug}`,
+    url: `https://codewithamrendra.vercel.app/category/${slug}`,
   });
 
   const breadcrumbSchema = getBreadcrumbSchema([
-    { name: "Home", url: "https://amrendra-blog.vercel.app" },
-    { name: "Categories", url: "https://amrendra-blog.vercel.app/categories" },
+    { name: "Home", url: "https://codewithamrendra.vercel.app" },
+    { name: "Categories", url: "https://codewithamrendra.vercel.app/categories" },
     {
       name: formattedName,
-      url: `https://amrendra-blog.vercel.app/category/${slug}`,
+      url: `https://codewithamrendra.vercel.app/category/${slug}`,
     },
   ]);
 

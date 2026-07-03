@@ -25,10 +25,10 @@ export function getWebsiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Code with Amrendra",
-    "url": "https://amrendra-blog.vercel.app",
+    "url": "https://codewithamrendra.vercel.app",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://amrendra-blog.vercel.app/blog?search={search_term_string}",
+      "target": "https://codewithamrendra.vercel.app/blog?search={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };
@@ -43,8 +43,8 @@ export function getPersonSchema() {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Amrendra Kumar",
-    "url": "https://amrendra-blog.vercel.app",
-    "image": "https://amrendra-blog.vercel.app/Profile%20photo.jpeg",
+    "url": "https://codewithamrendra.vercel.app",
+    "image": "https://codewithamrendra.vercel.app/Profile%20photo.jpeg",
     "sameAs": [
       "https://github.com/AmrendraCodes",
       "https://x.com/codewithamrendr",
@@ -98,7 +98,7 @@ export function getBlogPostSchema({ title, description, slug, image, datePublish
     "@type": "BlogPosting",
     "headline": title,
     "description": description,
-    "image": image || "https://amrendra-blog.vercel.app/images/og-default.png",
+    "image": image || "https://codewithamrendra.vercel.app/images/og-default.png",
     "datePublished": formattedDate,
     "dateModified": formattedDate,
     "wordCount": wordCount || undefined,
@@ -106,19 +106,19 @@ export function getBlogPostSchema({ title, description, slug, image, datePublish
     "author": {
       "@type": "Person",
       "name": "Amrendra Kumar",
-      "url": "https://amrendra-blog.vercel.app"
+      "url": "https://codewithamrendra.vercel.app"
     },
     "publisher": {
       "@type": "Organization",
       "name": "Code with Amrendra",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://amrendra-blog.vercel.app/Profile%20photo.jpeg"
+        "url": "https://codewithamrendra.vercel.app/Profile%20photo.jpeg"
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://amrendra-blog.vercel.app/blog/${slug}`
+      "@id": `https://codewithamrendra.vercel.app/blog/${slug}`
     },
     "articleSection": category
   };

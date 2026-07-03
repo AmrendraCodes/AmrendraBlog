@@ -2,7 +2,7 @@ export const siteMetadata = {
   title: "Code with Amrendra",
   description: "A personal blog built with Next.js and Tailwind CSS",
   author: "Amrendra Kumar",
-  siteUrl: "https://amrendra-blog.vercel.app",
+  siteUrl: "https://codewithamrendra.vercel.app",
   ogImage: "/images/og-default.png",
   profileImage: "/Profile photo.jpeg",
   social: {

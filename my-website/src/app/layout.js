@@ -27,14 +27,14 @@ const syne = Syne({
 });
 
 export const metadata = {
-  metadataBase: new URL('https://amrendra-blog.vercel.app'),
+  metadataBase: new URL('https://codewithamrendra.vercel.app'),
   title: {
     default: "Code with Amrendra",
     template: "%s | Code with Amrendra"
   },
   description: "A personal blog by Amrendra — insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.",
   keywords: ["React", "Next.js", "AI Agents", "SaaS Architecture", "AWS", "DevOps", "Frontend Development", "Web Development", "JavaScript", "Blog"],
-  authors: [{ name: "Amrendra kumar", url: "https://amrendra-blog.vercel.app" }],
+  authors: [{ name: "Amrendra kumar", url: "https://codewithamrendra.vercel.app" }],
   creator: "Amrendra kumar",
   publisher: "Code with Amrendra",
   robots: {
@@ -48,9 +48,7 @@ export const metadata = {
       'max-snippet': -1,
     },
   },
-  alternates: {
-    canonical: '/',
-  },
+
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -89,8 +87,8 @@ export default function RootLayout({ children }) {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Amrendra Kumar",
-      "url": "https://amrendra-blog.vercel.app",
-      "image": "https://amrendra-blog.vercel.app/Profile%20photo.jpeg",
+      "url": "https://codewithamrendra.vercel.app",
+      "image": "https://codewithamrendra.vercel.app/Profile%20photo.jpeg",
       "jobTitle": "Frontend Developer & Technical Content Writer",
       "description": "Personal insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.",
       "email": "amrendra1999official@gmail.com",

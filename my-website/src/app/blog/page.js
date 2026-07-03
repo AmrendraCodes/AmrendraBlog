@@ -55,7 +55,7 @@ export default function BlogPage() {
         data={getCollectionPageSchema({
           name: "Blog — Code with Amrendra",
           description: "Deep dives into architecture, scaling, and engineering workflows.",
-          url: "https://amrendra-blog.vercel.app/blog",
+          url: "https://codewithamrendra.vercel.app/blog",
         })}
       />
       <HeroSection />
