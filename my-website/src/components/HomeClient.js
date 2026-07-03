@@ -77,14 +77,14 @@ export default function HomeClient({ featuredPosts }) {
           <motion.div variants={staggerItem} className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
             <Link
               href="/blog"
-              className="group inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-[#6366F1] text-white font-bold text-base transition-all duration-300 hover:shadow-[0_8px_30px_rgba(99,102,241,0.4)] hover:-translate-y-0.5 w-full sm:w-auto"
+              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-bold text-base transition-all duration-300 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)] hover:-translate-y-1 hover:scale-105 w-full sm:w-auto"
             >
               Read Latest Articles
               <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <Link
               href="/categories"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border border-[var(--card-border)] bg-transparent text-[var(--foreground)] font-bold text-base transition-all duration-300 hover:bg-[var(--card-bg-hover)] hover:border-[#6366F1]/30 hover:-translate-y-0.5 w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[var(--card-bg)] shadow-[var(--shadow-card)] text-[var(--foreground)] font-bold text-base transition-all duration-300 hover:shadow-[var(--shadow-3d)] hover:border-[#6366F1]/50 hover:-translate-y-1 w-full sm:w-auto"
             >
               Explore Categories
             </Link>
@@ -134,12 +134,14 @@ export default function HomeClient({ featuredPosts }) {
             </p>
           </motion.div>
 
-          {/* Featured Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Featured Bento Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Hero Article */}
             <motion.article
               variants={staggerItem}
-              className="group relative rounded-2xl overflow-hidden border border-[var(--card-border)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-hover)] transition-all duration-500 h-full min-h-[420px]"
+              whileHover={{ y: -5, rotateX: 1, rotateY: -1 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="group relative rounded-3xl overflow-hidden border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-3d)] transition-shadow duration-500 min-h-[420px] lg:col-span-2 lg:row-span-2"
             >
               <Image
                 src={featuredPosts[0].image}
@@ -166,14 +168,15 @@ export default function HomeClient({ featuredPosts }) {
             </motion.article>
 
             {/* Supporting Articles */}
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-6">
               {featuredPosts.slice(1, 4).map((post, index) => (
                 <motion.article
                   key={index}
                   variants={staggerItem}
-                  className="flex gap-5 group items-center bg-[var(--card-bg)] p-4 rounded-2xl border border-[var(--card-border)] hover:border-[#6366F1]/30 hover:shadow-[var(--shadow-hover)] transition-all duration-300 relative"
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="flex flex-col sm:flex-row gap-5 group items-center bg-[var(--card-bg)] p-4 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:border-[#6366F1]/30 hover:shadow-[var(--shadow-3d)] transition-all duration-300 relative h-full"
                 >
-                  <div className="relative w-28 h-28 sm:w-36 sm:h-36 shrink-0 rounded-xl overflow-hidden">
+                  <div className="relative w-full sm:w-32 h-40 sm:h-32 shrink-0 rounded-2xl overflow-hidden">
                     <Image src={post.image} alt={post.title} fill sizes="150px" className="object-cover transition-transform duration-500 group-hover:scale-110" />
                   </div>
                   <div className="flex flex-col justify-center min-w-0">
@@ -304,12 +307,12 @@ export default function HomeClient({ featuredPosts }) {
                 type="email"
                 placeholder="name@company.com"
                 aria-label="Email address for weekly journal"
-                className="flex-1 px-5 py-3.5 rounded-xl bg-[var(--background)] border border-[var(--card-border)] text-[var(--foreground)] outline-none text-base transition-all duration-300 focus:border-[#6366F1] focus:shadow-[0_0_20px_rgba(99,102,241,0.15)] placeholder:text-[var(--text-muted)]"
+                className="flex-1 px-5 py-4 rounded-2xl bg-[var(--background)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] text-[var(--foreground)] outline-none text-base transition-all duration-300 focus:border-[#6366F1] focus:shadow-[var(--shadow-glow)] placeholder:text-[var(--text-muted)]"
                 required
               />
               <button
                 type="submit"
-                className="px-7 py-3.5 rounded-xl bg-[#6366F1] text-white font-bold border-none cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(99,102,241,0.4)] shrink-0"
+                className="px-8 py-4 rounded-2xl bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-bold border-none cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-glow)] hover:scale-105 shrink-0"
               >
                 Subscribe
               </button>

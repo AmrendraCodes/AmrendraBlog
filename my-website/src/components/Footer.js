@@ -10,9 +10,9 @@ export default function Footer() {
   };
 
   return (
-    <footer className="border-t border-[var(--card-border)] relative z-10 bg-[var(--background)] pt-16 pb-8" suppressHydrationWarning>
+    <footer className="relative z-10 bg-[var(--background)] pt-16 pb-8 border-t border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-float)] mt-24" suppressHydrationWarning>
       {/* Subtle gradient accent line at top */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#6366F1]/40 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#6366F1]/50 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-16" suppressHydrationWarning>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-14" suppressHydrationWarning>
@@ -99,11 +99,11 @@ export default function Footer() {
                 type="email"
                 placeholder="Your email"
                 aria-label="Email address for newsletter"
-                className="text-[var(--foreground)] bg-[var(--card-bg)] border border-[var(--card-border)] rounded-xl outline-none w-full py-3 pr-12 pl-4 text-sm transition-all duration-300 focus:border-[#6366F1] focus:shadow-[0_0_15px_rgba(99,102,241,0.1)] placeholder:text-[var(--text-muted)]"
+                className="text-[var(--foreground)] bg-[var(--card-bg)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] rounded-xl outline-none w-full py-3 pr-12 pl-4 text-sm transition-all duration-300 focus:border-[#6366F1] focus:shadow-[var(--shadow-glow)] placeholder:text-[var(--text-muted)]"
               />
               <button
                 type="submit"
-                className="bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white cursor-pointer border-none rounded-lg flex justify-center items-center w-8 h-8 transition-all duration-300 absolute top-1/2 right-2 -translate-y-1/2 hover:opacity-90 hover:scale-105"
+                className="bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white cursor-pointer border-none rounded-lg flex justify-center items-center w-8 h-8 transition-all duration-300 absolute top-1/2 right-2 -translate-y-1/2 hover:opacity-90 hover:scale-110 shadow-[var(--shadow-glow)]"
                 aria-label="Subscribe"
               >
                 <Send size={14} />

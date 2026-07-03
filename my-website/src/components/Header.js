@@ -57,10 +57,10 @@ export default function Header() {
     <>
       <div className={`fixed top-5 left-0 w-full z-[100] flex justify-center p-0 pointer-events-none transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-[150%]"}`}>
         <header
-          className={`pointer-events-auto z-[100] transition-all duration-300 flex items-center justify-between rounded-full border relative w-[95%] mx-auto md:grid md:grid-cols-[1fr_auto_1fr] md:w-[85%] md:gap-4 lg:w-[70%] lg:max-w-[1200px] lg:py-3 lg:px-8 ${
+          className={`pointer-events-auto z-[100] transition-all duration-300 flex items-center justify-between rounded-full relative w-[95%] mx-auto md:grid md:grid-cols-[1fr_auto_1fr] md:w-[85%] md:gap-4 lg:w-[70%] lg:max-w-[1200px] lg:py-3 lg:px-8 border ${
             isScrolled
-              ? 'bg-white/60 dark:bg-[#111214]/70 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.3)] py-3 px-8 border-slate-200/40 dark:border-[#2A2B2E]/60'
-              : 'bg-white/40 dark:bg-[#08090A]/50 backdrop-blur-md shadow-[0_10px_40px_rgba(15,23,42,0.02)] dark:shadow-none py-3 px-5 border-slate-200/20 dark:border-[#2A2B2E]/30'
+              ? 'bg-white/70 dark:bg-[#111214]/80 backdrop-blur-xl shadow-[var(--shadow-float)] py-3 px-8 border-slate-200/50 dark:border-[#2A2B2E]/80'
+              : 'bg-white/40 dark:bg-[#08090A]/50 backdrop-blur-md shadow-[var(--shadow-card)] py-3 px-5 border-slate-200/20 dark:border-[#2A2B2E]/40'
           }`}
           role="navigation"
           aria-label="Main navigation"
@@ -107,7 +107,7 @@ export default function Header() {
             <ThemeToggle />
             <Link
               href="/hire-me"
-              className="hidden md:inline-flex items-center justify-center bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-semibold text-[0.95rem] py-2 px-5 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_4px_15px_rgba(99,102,241,0.3)] hover:-translate-y-0.5 hover:opacity-95 hover:shadow-[0_6px_25px_rgba(99,102,241,0.5)]"
+              className="hidden md:inline-flex items-center justify-center bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-semibold text-[0.95rem] py-2 px-6 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[var(--shadow-glow)] hover:-translate-y-1 hover:shadow-[var(--shadow-float)] hover:scale-105 active:scale-95"
             >
               Hire Me
             </Link>

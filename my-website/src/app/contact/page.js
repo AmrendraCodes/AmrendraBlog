@@ -27,13 +27,13 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 selection:bg-blue-100 dark:selection:bg-blue-900 font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] font-sans overflow-x-hidden">
       {/* Hero Section */}
-      <section className="pt-24 pb-8 md:pt-32 md:pb-12 px-4 sm:px-6 max-w-5xl mx-auto text-center border-b border-slate-50 dark:border-slate-800">
+      <section className="pt-24 pb-8 md:pt-32 md:pb-12 px-4 sm:px-6 max-w-5xl mx-auto text-center border-b border-[var(--card-border)]">
         <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-6 md:mb-8 leading-[1.1]">
-          Let&apos;s <span className="text-blue-600">Connect</span>
+          Let&apos;s <span className="gradient-text">Connect</span>
         </h2>
-        <p className="text-base sm:text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-medium max-w-2xl mx-auto leading-relaxed px-2">
+        <p className="text-base sm:text-xl md:text-2xl text-[var(--text-body)] font-medium max-w-2xl mx-auto leading-relaxed px-2">
           Whether you have a question about my work, a project idea, or just want to say hi, I&apos;d love to hear from you.
         </p>
       </section>
@@ -46,11 +46,11 @@ export default function ContactPage() {
             {/* Left Side: Contact Info */}
             <div className="space-y-10 md:space-y-12 lg:sticky lg:top-32">
               <div>
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-slate-50 mb-6 flex items-center gap-4">
-                  <span className="w-10 h-1.5 bg-blue-600 rounded-full"></span>
+                <h2 className="text-2xl sm:text-3xl font-black text-[var(--text-heading)] mb-6 flex items-center gap-4">
+                  <span className="w-10 h-1.5 bg-gradient-to-r from-[#6366F1] to-[#a855f7] rounded-full"></span>
                   Contact Info
                 </h2>
-                <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed mb-8">
+                <p className="text-[var(--text-body)] text-lg leading-relaxed mb-8">
                   I&apos;m currently based in India and open to freelance opportunities,
                   collaborations, or full-time roles in Frontend Development & Tech Content.
                 </p>
@@ -68,18 +68,18 @@ export default function ContactPage() {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group block p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-blue-200 hover:bg-blue-50/50 transition-all duration-300"
+                    className="group block p-5 rounded-2xl bg-[var(--card-bg)] border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:border-[#6366F1]/30 hover:shadow-[var(--shadow-3d)] hover:-translate-y-1 transition-all duration-300 no-underline"
                   >
-                    <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-1">{item.label}</div>
-                    <div className="text-lg font-bold text-slate-900 dark:text-slate-50 group-hover:text-blue-600 transition-colors">{item.value}</div>
+                    <div className="text-[10px] font-black text-[#6366F1] uppercase tracking-widest mb-1">{item.label}</div>
+                    <div className="text-lg font-bold text-[var(--text-heading)] group-hover:text-[#6366F1] dark:group-hover:text-[#818CF8] transition-colors">{item.value}</div>
                   </a>
                 ))}
               </div>
 
-              <div className="p-8 rounded-4xl bg-blue-50 dark:bg-slate-900 border border-blue-100 dark:border-slate-800 text-slate-900 dark:text-slate-50 relative overflow-hidden shadow-sm">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/5 dark:bg-blue-500/10 rounded-full blur-3xl"></div>
-                <h3 className="text-xl font-bold mb-4 relative z-10 text-slate-900 dark:text-slate-50">Current Response Time</h3>
-                <p className="text-slate-600 dark:text-slate-300 relative z-10 leading-relaxed font-medium">
+              <div className="p-8 rounded-3xl bg-[var(--card-bg)] border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] text-[var(--text-heading)] relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#6366F1]/10 rounded-full blur-3xl"></div>
+                <h3 className="text-xl font-bold mb-4 relative z-10 text-[var(--text-heading)]">Current Response Time</h3>
+                <p className="text-[var(--text-body)] relative z-10 leading-relaxed font-medium">
                   I usually respond to all emails within 24-48 business hours.
                   For urgent technical queries, DM me on X (Twitter).
                 </p>
@@ -88,13 +88,13 @@ export default function ContactPage() {
 
             {/* Right Side: Contact Form - Refined & Centered Layout */}
             <div className="w-full max-w-150 mx-auto lg:mx-0">
-              <div className="bg-white dark:bg-slate-950 p-6 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-lg">
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-slate-50 mb-8">Send a Message</h2>
+              <div className="bg-[var(--card-bg)] p-8 md:p-10 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)]">
+                <h2 className="text-2xl sm:text-3xl font-black text-[var(--text-heading)] mb-8">Send a Message</h2>
 
                 <form onSubmit={handleSubmit} className="space-y-7">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="flex flex-col gap-3">
-                      <label htmlFor="name" className="text-[11px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-[0.15em] ml-1">Your Name</label>
+                      <label htmlFor="name" className="text-[11px] font-black text-[var(--text-muted)] uppercase tracking-[0.15em] ml-1">Your Name</label>
                       <input
                         required
                         type="text"
@@ -103,11 +103,11 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="John Doe"
-                        className="w-full px-5 py-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30 transition-all text-slate-900 dark:text-slate-50 font-medium placeholder:text-slate-400 dark:placeholder:text-slate-600"
+                        className="w-full px-5 py-4 rounded-2xl bg-[var(--background)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] focus:outline-none focus:border-[#6366F1] focus:shadow-[var(--shadow-glow)] transition-all text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]"
                       />
                     </div>
                     <div className="flex flex-col gap-3">
-                      <label htmlFor="email" className="text-[11px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-[0.15em] ml-1">Email Address</label>
+                      <label htmlFor="email" className="text-[11px] font-black text-[var(--text-muted)] uppercase tracking-[0.15em] ml-1">Email Address</label>
                       <input
                         required
                         type="email"
@@ -116,13 +116,13 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="name@example.com"
-                        className="w-full px-5 py-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30 transition-all text-slate-900 dark:text-slate-50 font-medium placeholder:text-slate-400 dark:placeholder:text-slate-600"
+                        className="w-full px-5 py-4 rounded-2xl bg-[var(--background)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] focus:outline-none focus:border-[#6366F1] focus:shadow-[var(--shadow-glow)] transition-all text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]"
                       />
                     </div>
                   </div>
 
                   <div className="flex flex-col gap-3">
-                    <label htmlFor="subject" className="text-[11px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-[0.15em] ml-1">Subject</label>
+                    <label htmlFor="subject" className="text-[11px] font-black text-[var(--text-muted)] uppercase tracking-[0.15em] ml-1">Subject</label>
                     <input
                       required
                       type="text"
@@ -131,12 +131,12 @@ export default function ContactPage() {
                       value={formData.subject}
                       onChange={handleChange}
                       placeholder="Project Inquiry"
-                      className="w-full px-5 py-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30 transition-all text-slate-900 dark:text-slate-50 font-medium placeholder:text-slate-400 dark:placeholder:text-slate-600"
+                      className="w-full px-5 py-4 rounded-2xl bg-[var(--background)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] focus:outline-none focus:border-[#6366F1] focus:shadow-[var(--shadow-glow)] transition-all text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]"
                     />
                   </div>
 
                   <div className="flex flex-col gap-3">
-                    <label htmlFor="message" className="text-[11px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-[0.15em] ml-1">Your Message</label>
+                    <label htmlFor="message" className="text-[11px] font-black text-[var(--text-muted)] uppercase tracking-[0.15em] ml-1">Your Message</label>
                     <textarea
                       required
                       id="message"
@@ -144,16 +144,16 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={handleChange}
                       placeholder="Tell me about your project..."
-                      className="w-full px-5 py-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30 transition-all text-slate-900 dark:text-slate-50 font-medium placeholder:text-slate-400 dark:placeholder:text-slate-600 min-h-40 resize-none"
+                      className="w-full px-5 py-4 rounded-2xl bg-[var(--background)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] focus:outline-none focus:border-[#6366F1] focus:shadow-[var(--shadow-glow)] transition-all text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)] min-h-[160px] resize-none"
                     ></textarea>
                   </div>
 
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className={`w-full py-4 rounded-2xl font-black text-white transition-all duration-300 flex items-center justify-center gap-3 shadow-sm hover:scale-[1.01] active:scale-95 ${status === "success"
-                      ? "bg-green-600"
-                      : "bg-blue-600 hover:bg-blue-700"
+                    className={`w-full py-4 rounded-2xl font-black text-white transition-all duration-300 flex items-center justify-center gap-3 hover:scale-105 active:scale-95 cursor-pointer ${status === "success"
+                      ? "bg-green-600 shadow-[0_0_20px_rgba(22,163,74,0.4)]"
+                      : "bg-gradient-to-br from-[#6366F1] to-[#a855f7] shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)]"
                       }`}
                   >
                     {status === "sending" ? "Sending..." : status === "success" ? "Message Sent!" : "Send Message"}

@@ -266,7 +266,7 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
           <aside className="w-full lg:w-80 shrink-0 flex flex-col gap-8">
 
             {/* Popular Posts Widget */}
-            <div className="bg-[var(--card-bg)] rounded-2xl p-6 border border-[var(--card-border)]">
+            <div className="bg-[var(--card-bg)] rounded-3xl p-6 border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)]">
               <h3 className="text-lg font-extrabold text-[var(--text-heading)] mb-6 flex items-center">
                 <span className="w-2 h-6 bg-[#6366F1] rounded-full mr-3"></span>
                 Popular Posts
@@ -287,7 +287,7 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
             </div>
 
             {/* Tags Cloud Widget */}
-            <div className="bg-[var(--card-bg)] rounded-2xl p-6 border border-[var(--card-border)]">
+            <div className="bg-[var(--card-bg)] rounded-3xl p-6 border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)]">
               <h3 className="text-lg font-extrabold text-[var(--text-heading)] mb-6 flex items-center">
                 <span className="w-2 h-6 bg-[#a855f7] rounded-full mr-3"></span>
                 Tags Cloud
@@ -310,7 +310,7 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
             </div>
 
             {/* Newsletter Widget */}
-            <div className="bg-gradient-to-br from-[#6366F1] to-[#a855f7] rounded-2xl p-6 text-white shadow-lg shadow-indigo-900/20 relative overflow-hidden">
+            <div className="bg-gradient-to-br from-[#6366F1] to-[#a855f7] rounded-3xl p-6 text-white shadow-[var(--shadow-float)] relative overflow-hidden">
               <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>
               <h3 className="text-xl font-extrabold mb-2 relative z-10">Join the Newsletter</h3>
               <p className="text-indigo-100 text-sm mb-6 relative z-10 leading-relaxed">
@@ -340,13 +340,17 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
 }
 
 // ─── ArticleGrid — renders the blog cards ──────────────────
+import { motion } from 'framer-motion';
+
 const ArticleGrid = memo(function ArticleGrid({ articles }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative">
       {articles.map((article, index) => (
-        <article
+        <motion.article
           key={article.link || index}
-          className="group relative bg-[var(--card-bg)] rounded-2xl border border-[var(--card-border)] hover:border-[#6366F1]/30 hover:shadow-[var(--shadow-hover)] overflow-hidden transition-all duration-300 flex flex-col isolate"
+          whileHover={{ y: -8, rotateX: 2, rotateY: -2 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          className="group relative bg-[var(--card-bg)] rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:border-[#6366F1]/30 hover:shadow-[var(--shadow-3d)] overflow-hidden transition-all duration-300 flex flex-col isolate"
         >
           <div className="relative aspect-16/10 overflow-hidden">
             <div className="absolute top-4 left-4 z-[1]">
@@ -413,7 +417,7 @@ const ArticleGrid = memo(function ArticleGrid({ articles }) {
               )}
             </div>
           </div>
-        </article>
+        </motion.article>
       ))}
     </div>
   );

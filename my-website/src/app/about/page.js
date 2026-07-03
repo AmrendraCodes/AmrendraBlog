@@ -81,70 +81,64 @@ export default function AboutPage() {
         </motion.div>
       </section>
 
-      {/* Story Section */}
-      <section className="py-16 md:py-24 px-4 sm:px-6 max-w-4xl mx-auto border-t border-[var(--card-border)]">
+      {/* Bento Grid Content */}
+      <section className="py-16 px-4 sm:px-6 max-w-7xl mx-auto border-t border-[rgba(255,255,255,0.05)] mt-12">
         <motion.div
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           variants={stagger}
         >
-          <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--text-heading)] mb-10 md:mb-14 flex items-center gap-3">
-            <span className="w-12 md:w-16 h-1.5 md:h-2 bg-gradient-to-r from-[#6366F1] to-[#a855f7] rounded-full"></span>
-            My Story
-          </motion.h2>
+          {/* Story Card */}
+          <motion.div variants={fadeUp} whileHover={{ y: -5 }} className="lg:col-span-2 bg-[var(--card-bg)] p-8 md:p-12 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-3d)] transition-all duration-500 flex flex-col justify-center">
+            <h2 className="text-3xl md:text-4xl font-black text-[var(--text-heading)] mb-8 flex items-center gap-3">
+              <span className="w-8 md:w-12 h-1.5 md:h-2 bg-gradient-to-r from-[#6366F1] to-[#a855f7] rounded-full"></span>
+              My Story
+            </h2>
+            <div className="space-y-6 md:space-y-8">
+              <p className="text-base md:text-lg text-[var(--text-body)] leading-relaxed">
+                I'm a self-taught developer who started my journey by learning HTML, CSS, and JavaScript through online courses and building real-world projects. Over the past few years, I've developed a deep passion for frontend development and modern web technologies. What started as curiosity has turned into a full-fledged career where I constantly explore new frameworks, tools, and best practices in the web development ecosystem.
+              </p>
+              <p className="text-base md:text-lg text-[var(--text-body)] leading-relaxed">
+                During my coding journey, I realized that learning in isolation wasn't fulfilling. I wanted to give back to the community that helped me grow. That's when I started creating content — blog posts, tutorials, and technical guides — to help other developers navigate the complexities of modern web development. Today, I blend my technical expertise with my passion for communication to create valuable, easy-to-understand content that empowers developers at all levels.
+              </p>
+              <p className="text-base md:text-lg text-[var(--text-body)] leading-relaxed">
+                "Code with Amrendra" was born from this vision: to create a platform where developers can learn cutting-edge technologies, stay updated with industry trends, and connect with a like-minded community. Whether you're just starting your coding journey or looking to master advanced concepts, I'm here to guide you every step of the way. Let's build amazing things together!
+              </p>
+            </div>
+          </motion.div>
 
-          <div className="space-y-6 md:space-y-8">
-            <motion.p variants={fadeUp} className="text-base md:text-lg text-[var(--text-body)] leading-relaxed">
-              I'm a self-taught developer who started my journey by learning HTML, CSS, and JavaScript through online courses and building real-world projects. Over the past few years, I've developed a deep passion for frontend development and modern web technologies. What started as curiosity has turned into a full-fledged career where I constantly explore new frameworks, tools, and best practices in the web development ecosystem.
-            </motion.p>
-
-            <motion.p variants={fadeUp} className="text-base md:text-lg text-[var(--text-body)] leading-relaxed">
-              During my coding journey, I realized that learning in isolation wasn't fulfilling. I wanted to give back to the community that helped me grow. That's when I started creating content — blog posts, tutorials, and technical guides — to help other developers navigate the complexities of modern web development. Today, I blend my technical expertise with my passion for communication to create valuable, easy-to-understand content that empowers developers at all levels.
-            </motion.p>
-
-            <motion.p variants={fadeUp} className="text-base md:text-lg text-[var(--text-body)] leading-relaxed">
-              "Code with Amrendra" was born from this vision: to create a platform where developers can learn cutting-edge technologies, stay updated with industry trends, and connect with a like-minded community. Whether you're just starting your coding journey or looking to master advanced concepts, I'm here to guide you every step of the way. Let's build amazing things together!
-            </motion.p>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Skills Section */}
-      <section className="py-16 md:py-24 px-4 sm:px-6 max-w-4xl mx-auto border-t border-[var(--card-border)]">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={stagger}
-        >
-          <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--text-heading)] mb-10 md:mb-14 flex items-center gap-3">
-            <span className="w-12 md:w-16 h-1.5 md:h-2 bg-gradient-to-r from-[#6366F1] to-[#a855f7] rounded-full"></span>
-            Skills &amp; Expertise
-          </motion.h2>
-          <div className="space-y-8 md:space-y-10">
-            {[
-              { name: "React/Next.js", percentage: 95 },
-              { name: "Node.js", percentage: 85 },
-              { name: "React Native", percentage: 80 },
-              { name: "UI/UX (Figma)", percentage: 75 },
-              { name: "Digital Marketing", percentage: 88 },
-              { name: "TailwindCSS", percentage: 92 }
-            ].map((skill) => (
-              <motion.div key={skill.name} variants={fadeUp}>
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg md:text-xl font-bold text-[var(--text-heading)]">{skill.name}</h3>
-                  <span className="text-sm md:text-base font-semibold text-[#6366F1] dark:text-[#818CF8]">{skill.percentage}%</span>
+          {/* Skills Card */}
+          <motion.div variants={fadeUp} whileHover={{ y: -5 }} className="lg:col-span-1 bg-[var(--card-bg)] p-8 md:p-10 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-3d)] transition-all duration-500">
+            <h2 className="text-2xl md:text-3xl font-black text-[var(--text-heading)] mb-8 flex items-center gap-3">
+              <span className="w-8 h-1.5 md:h-2 bg-gradient-to-r from-[#6366F1] to-[#a855f7] rounded-full"></span>
+              Expertise
+            </h2>
+            <div className="space-y-8">
+              {[
+                { name: "React/Next.js", percentage: 95 },
+                { name: "Node.js", percentage: 85 },
+                { name: "React Native", percentage: 80 },
+                { name: "UI/UX (Figma)", percentage: 75 },
+                { name: "Digital Marketing", percentage: 88 },
+                { name: "TailwindCSS", percentage: 92 }
+              ].map((skill) => (
+                <div key={skill.name}>
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-base font-bold text-[var(--text-heading)]">{skill.name}</h3>
+                    <span className="text-sm font-semibold text-[#6366F1] dark:text-[#818CF8]">{skill.percentage}%</span>
+                  </div>
+                  <div className="w-full bg-[var(--section-alt-bg)] border border-[rgba(255,255,255,0.05)] rounded-full h-2 overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-[#6366F1] to-[#a855f7] rounded-full transition-all duration-500 ease-out shadow-[var(--shadow-glow)]"
+                      style={{ width: `${skill.percentage}%` }}
+                    ></div>
+                  </div>
                 </div>
-                <div className="w-full bg-[var(--section-alt-bg)] border border-[var(--card-border)] rounded-full h-2.5 md:h-3 overflow-hidden">
-                  <div
-                    className="h-full bg-gradient-to-r from-[#6366F1] to-[#a855f7] rounded-full transition-all duration-500 ease-out"
-                    style={{ width: `${skill.percentage}%` }}
-                  ></div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </motion.div>
         </motion.div>
       </section>
 
@@ -168,7 +162,7 @@ export default function AboutPage() {
             </p>
             <Link
               href="/hire-me"
-              className="group inline-flex items-center gap-2 bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-bold text-base md:text-lg py-3 md:py-4 px-8 md:px-10 rounded-full transition-all duration-300 hover:shadow-[0_10px_30px_rgba(99,102,241,0.4)] hover:-translate-y-1 hover:opacity-95 no-underline"
+              className="group inline-flex items-center gap-2 bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-bold text-base md:text-lg py-4 md:py-5 px-8 md:px-10 rounded-2xl transition-all duration-300 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)] hover:-translate-y-1 hover:scale-105 no-underline"
             >
               Get in Touch
               <ArrowRight size={20} className="transition-transform duration-300 group-hover:translate-x-1" />

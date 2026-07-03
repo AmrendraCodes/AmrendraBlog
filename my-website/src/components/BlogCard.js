@@ -1,12 +1,19 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Calendar, User, Clock } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function BlogCard({ post }) {
   return (
-    <article className="group bg-[var(--card-bg)] rounded-2xl overflow-hidden border border-[var(--card-border)] hover:border-[#6366F1]/30 hover:shadow-[var(--shadow-hover)] transition-all duration-500">
+    <motion.article 
+      whileHover={{ y: -8, rotateX: 2, rotateY: -2 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      className="group bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-3d)] transition-shadow duration-500"
+    >
       {/* Thumbnail */}
-      <div className="relative h-64 overflow-hidden">
+      <div className="relative h-64 overflow-hidden rounded-t-3xl">
         <Image
           src={post.image || `https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=800&auto=format&fit=crop`}
           alt={post.title}
@@ -64,6 +71,6 @@ export default function BlogCard({ post }) {
           </Link>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }
