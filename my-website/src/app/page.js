@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowRight, TerminalSquare, Github, Linkedin, Twitter, Youtube, ChevronDown } from "lucide-react";
 import dynamic from 'next/dynamic';
 const CategoriesSection = dynamic(() => import('@/components/blog/CategoriesSection'));
+const FAQ = dynamic(() => import('@/components/FAQ'));
 import { getAllPosts } from "@/lib/posts";
 import JsonLd from "@/components/JsonLd";
 import { getWebsiteSchema, getPersonSchema } from "@/lib/schema";
@@ -62,6 +63,9 @@ export default function Home() {
       <JsonLd data={getPersonSchema()} />
 
       <HomeClient featuredPosts={featuredPosts} />
+
+      {/* FAQ Section */}
+      <FAQ />
 
       {/* Categories Section */}
       <CategoriesSection categoryCounts={categoryCounts} />
