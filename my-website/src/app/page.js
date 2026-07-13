@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 const CategoriesSection = dynamic(() => import('@/components/blog/CategoriesSection'));
 const FAQ = dynamic(() => import('@/components/FAQ'));
 import { getAllPosts } from "@/lib/posts";
+import { getAllCaseStudies } from "@/lib/case-studies";
 import JsonLd from "@/components/JsonLd";
 import { getWebsiteSchema, getPersonSchema } from "@/lib/schema";
 import HomeClient from "@/components/HomeClient";
@@ -56,13 +57,25 @@ export default function Home() {
       categoryCounts[post.categorySlug] = (categoryCounts[post.categorySlug] || 0) + 1;
     }
   });
+  // Fetch case studies from markdown files
+  const caseStudies = getAllCaseStudies().slice(0, 3).map((cs) => ({
+    title: cs.title,
+    slug: cs.slug,
+    description: cs.description,
+    client: cs.client,
+    role: cs.role,
+    stack: cs.stack,
+    duration: cs.duration,
+    coverImage: cs.coverImage,
+    metricHighlight: cs.metricHighlight,
+  }));
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden relative bg-[var(--background)]">
       <JsonLd data={getWebsiteSchema()} />
       <JsonLd data={getPersonSchema()} />
 
-      <HomeClient featuredPosts={featuredPosts} />
+      <HomeClient featuredPosts={featuredPosts} caseStudies={caseStudies} />
 
       {/* FAQ Section */}
       <FAQ />

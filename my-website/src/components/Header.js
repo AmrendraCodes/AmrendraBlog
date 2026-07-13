@@ -9,6 +9,7 @@ import ThemeToggle from "./ThemeToggle";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Blog", href: "/blog" },
+  { name: "Case Studies", href: "/case-studies" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
   { name: "Hire Me", href: "/hire-me" }
@@ -107,7 +108,7 @@ export default function Header() {
             <ThemeToggle />
             <Link
               href="/hire-me"
-              className="hidden md:inline-flex items-center justify-center bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-semibold text-[0.95rem] py-2 px-6 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[var(--shadow-glow)] hover:-translate-y-1 hover:shadow-[var(--shadow-float)] hover:scale-105 active:scale-95"
+              className="hidden md:inline-flex items-center justify-center bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-semibold text-[0.95rem] py-1.5 px-5 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[var(--shadow-glow)] hover:-translate-y-1 hover:shadow-[var(--shadow-float)] hover:scale-105 active:scale-95"
             >
               Hire Me
             </Link>

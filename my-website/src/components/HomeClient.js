@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, TerminalSquare, Github, Linkedin, Twitter, Youtube } from "lucide-react";
+import CaseStudiesSection from "./CaseStudiesSection";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -30,7 +31,7 @@ const staggerItem = {
   },
 };
 
-export default function HomeClient({ featuredPosts }) {
+export default function HomeClient({ featuredPosts, caseStudies }) {
   return (
     <>
       {/* ═══════════ HERO SECTION ═══════════ */}
@@ -208,6 +209,9 @@ export default function HomeClient({ featuredPosts }) {
           </motion.div>
         </motion.div>
       </section>
+
+      {/* ═══════════ CASE STUDIES ═══════════ */}
+      <CaseStudiesSection caseStudies={caseStudies} />
 
       {/* ═══════════ ABOUT THE BLOGGER ═══════════ */}
       <section className="py-16 md:py-24 bg-[var(--section-alt-bg)]">
