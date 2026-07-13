@@ -1,4 +1,4 @@
-import { Inter, JetBrains_Mono, Syne } from "next/font/google";
+import { Inter, JetBrains_Mono, Syne, Playfair_Display } from "next/font/google";
 import { ThemeProvider } from 'next-themes'
 import "./globals.css";
 import Header from "../components/Header";
@@ -23,6 +23,14 @@ const syne = Syne({
   variable: "--font-syne",
   subsets: ["latin"],
   weight: ["600", "700", "800"],
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -155,7 +163,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} ${syne.variable} bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${syne.variable} ${playfair.variable} bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300`}
         suppressHydrationWarning
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>

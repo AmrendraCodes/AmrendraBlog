@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -28,35 +27,46 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] font-sans overflow-x-hidden">
-      {/* Hero Section */}
-      <section className="pt-24 pb-8 md:pt-32 md:pb-12 px-4 sm:px-6 max-w-5xl mx-auto text-center border-b border-[var(--card-border)]">
-        <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-6 md:mb-8 leading-[1.1]">
-          Let&apos;s <span className="gradient-text">Connect</span>
-        </h2>
-        <p className="text-base sm:text-xl md:text-2xl text-[var(--text-body)] font-medium max-w-2xl mx-auto leading-relaxed px-2">
-          Whether you have a question about my work, a project idea, or just want to say hi, I&apos;d love to hear from you.
+
+      {/* ═══════════ HERO ═══════════ */}
+      <section className="pt-32 pb-20 md:pt-40 md:pb-28 px-6 max-w-4xl mx-auto text-center">
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#6366F1] dark:text-[#818CF8] mb-6">
+          Get In Touch
+        </p>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] mb-8 text-[var(--text-heading)]">
+          Let&apos;s{" "}
+          <span
+            className="gradient-text italic pr-3"
+            style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
+          >
+            Connect
+          </span>
+        </h1>
+        <p className="text-base sm:text-lg md:text-xl text-[var(--text-body)] font-normal max-w-xl mx-auto leading-relaxed">
+          Whether you have a question about my work, a project idea, or just
+          want to say hi — I&apos;d love to hear from you.
         </p>
       </section>
 
-      {/* Main Content */}
-      <section className="py-12 md:py-16 px-4 sm:px-6">
+      {/* ═══════════ MAIN CONTENT ═══════════ */}
+      <section className="px-6 pb-20 md:pb-28">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-28 items-start">
 
-            {/* Left Side: Contact Info */}
-            <div className="space-y-10 md:space-y-12 lg:sticky lg:top-32">
+            {/* ─── Left Side: Contact Info ─── */}
+            <div className="space-y-12 lg:sticky lg:top-32">
               <div>
-                <h2 className="text-2xl sm:text-3xl font-black text-[var(--text-heading)] mb-6 flex items-center gap-4">
-                  <span className="w-10 h-1.5 bg-gradient-to-r from-[#6366F1] to-[#a855f7] rounded-full"></span>
+                <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-heading)] mb-4 flex items-center gap-3">
+                  <span className="w-8 h-[2px] bg-gradient-to-r from-[#6366F1] to-[#a855f7] rounded-full"></span>
                   Contact Info
                 </h2>
-                <p className="text-[var(--text-body)] text-lg leading-relaxed mb-8">
+                <p className="text-[var(--text-body)] text-base leading-relaxed">
                   I&apos;m currently based in India and open to freelance opportunities,
-                  collaborations, or full-time roles in Frontend Development & Tech Content.
+                  collaborations, or full-time roles in Frontend Development &amp; Tech Content.
                 </p>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-0">
                 {[
                   { label: "Email Me", value: "amrendra1999official@gmail.com", link: "mailto:amrendra1999official@gmail.com" },
                   { label: "Follow on X", value: "@codewithamrendr", link: "https://x.com/codewithamrendr" },
@@ -68,33 +78,47 @@ export default function ContactPage() {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group block p-5 rounded-2xl bg-[var(--card-bg)] border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:border-[#6366F1]/30 hover:shadow-[var(--shadow-3d)] hover:-translate-y-1 transition-all duration-300 no-underline"
+                    className="group flex items-center justify-between py-5 border-b border-[var(--card-border)] hover:border-[#6366F1]/40 transition-all duration-300 no-underline"
                   >
-                    <div className="text-[10px] font-black text-[#6366F1] uppercase tracking-widest mb-1">{item.label}</div>
-                    <div className="text-lg font-bold text-[var(--text-heading)] group-hover:text-[#6366F1] dark:group-hover:text-[#818CF8] transition-colors">{item.value}</div>
+                    <div>
+                      <div className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-[0.18em] mb-1">
+                        {item.label}
+                      </div>
+                      <div className="text-base font-semibold text-[var(--text-heading)] group-hover:text-[#6366F1] dark:group-hover:text-[#818CF8] transition-colors">
+                        {item.value}
+                      </div>
+                    </div>
+                    <svg className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[#6366F1] dark:group-hover:text-[#818CF8] transition-all duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
+                    </svg>
                   </a>
                 ))}
               </div>
 
-              <div className="p-8 rounded-3xl bg-[var(--card-bg)] border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] text-[var(--text-heading)] relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#6366F1]/10 rounded-full blur-3xl"></div>
-                <h3 className="text-xl font-bold mb-4 relative z-10 text-[var(--text-heading)]">Current Response Time</h3>
-                <p className="text-[var(--text-body)] relative z-10 leading-relaxed font-medium">
-                  I usually respond to all emails within 24-48 business hours.
-                  For urgent technical queries, DM me on X (Twitter).
+              {/* Response Time — flatter style */}
+              <div className="pl-5 border-l-2 border-[#6366F1]/30">
+                <h3 className="text-sm font-bold text-[var(--text-heading)] mb-2">Current Response Time</h3>
+                <p className="text-sm text-[var(--text-body)] leading-relaxed">
+                  I usually respond within 24–48 business hours.
+                  For urgent queries, DM me on X (Twitter).
                 </p>
               </div>
             </div>
 
-            {/* Right Side: Contact Form - Refined & Centered Layout */}
-            <div className="w-full max-w-150 mx-auto lg:mx-0">
-              <div className="bg-[var(--card-bg)] p-8 md:p-10 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)]">
-                <h2 className="text-2xl sm:text-3xl font-black text-[var(--text-heading)] mb-8">Send a Message</h2>
+            {/* ─── Right Side: Contact Form ─── */}
+            <div className="w-full">
+              <div className="bg-[var(--card-bg)] p-8 md:p-12 rounded-2xl border border-[var(--card-border)]">
+                <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-heading)] mb-10">
+                  Send a Message
+                </h2>
 
-                <form onSubmit={handleSubmit} className="space-y-7">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div className="flex flex-col gap-3">
-                      <label htmlFor="name" className="text-[11px] font-black text-[var(--text-muted)] uppercase tracking-[0.15em] ml-1">Your Name</label>
+                <form onSubmit={handleSubmit} className="space-y-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    {/* Name */}
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="name" className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-[0.18em]">
+                        Your Name
+                      </label>
                       <input
                         required
                         type="text"
@@ -103,11 +127,14 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="John Doe"
-                        className="w-full px-5 py-4 rounded-2xl bg-[var(--background)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] focus:outline-none focus:border-[#6366F1] focus:shadow-[var(--shadow-glow)] transition-all text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]"
+                        className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#6366F1] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
                       />
                     </div>
-                    <div className="flex flex-col gap-3">
-                      <label htmlFor="email" className="text-[11px] font-black text-[var(--text-muted)] uppercase tracking-[0.15em] ml-1">Email Address</label>
+                    {/* Email */}
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="email" className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-[0.18em]">
+                        Email Address
+                      </label>
                       <input
                         required
                         type="email"
@@ -116,13 +143,16 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="name@example.com"
-                        className="w-full px-5 py-4 rounded-2xl bg-[var(--background)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] focus:outline-none focus:border-[#6366F1] focus:shadow-[var(--shadow-glow)] transition-all text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]"
+                        className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#6366F1] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
                       />
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-3">
-                    <label htmlFor="subject" className="text-[11px] font-black text-[var(--text-muted)] uppercase tracking-[0.15em] ml-1">Subject</label>
+                  {/* Subject */}
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="subject" className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-[0.18em]">
+                      Subject
+                    </label>
                     <input
                       required
                       type="text"
@@ -131,12 +161,15 @@ export default function ContactPage() {
                       value={formData.subject}
                       onChange={handleChange}
                       placeholder="Project Inquiry"
-                      className="w-full px-5 py-4 rounded-2xl bg-[var(--background)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] focus:outline-none focus:border-[#6366F1] focus:shadow-[var(--shadow-glow)] transition-all text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]"
+                      className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#6366F1] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
                     />
                   </div>
 
-                  <div className="flex flex-col gap-3">
-                    <label htmlFor="message" className="text-[11px] font-black text-[var(--text-muted)] uppercase tracking-[0.15em] ml-1">Your Message</label>
+                  {/* Message */}
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="message" className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-[0.18em]">
+                      Your Message
+                    </label>
                     <textarea
                       required
                       id="message"
@@ -144,30 +177,31 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={handleChange}
                       placeholder="Tell me about your project..."
-                      className="w-full px-5 py-4 rounded-2xl bg-[var(--background)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] focus:outline-none focus:border-[#6366F1] focus:shadow-[var(--shadow-glow)] transition-all text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)] min-h-[160px] resize-none"
+                      className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#6366F1] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 min-h-[140px] resize-none text-base"
                     ></textarea>
                   </div>
 
+                  {/* Submit Button */}
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className={`w-full py-4 rounded-2xl font-black text-white transition-all duration-300 flex items-center justify-center gap-3 hover:scale-105 active:scale-95 cursor-pointer ${status === "success"
-                      ? "bg-green-600 shadow-[0_0_20px_rgba(22,163,74,0.4)]"
-                      : "bg-gradient-to-br from-[#6366F1] to-[#a855f7] shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)]"
+                    className={`w-full py-4 rounded-xl font-bold text-white transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer ${status === "success"
+                      ? "bg-green-600/90"
+                      : "bg-gradient-to-r from-[#6366F1]/90 to-[#a855f7]/90 hover:from-[#6366F1] hover:to-[#a855f7] hover:scale-[1.02] active:scale-[0.98]"
                       }`}
                   >
                     {status === "sending" ? "Sending..." : status === "success" ? "Message Sent!" : "Send Message"}
-                    <svg className={`w-5 h-5 ${status === "sending" ? "animate-spin" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className={`w-4 h-4 ${status === "sending" ? "animate-spin" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       {status === "success" ? (
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       ) : (
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                       )}
                     </svg>
                   </button>
 
                   {status === "success" && (
-                    <p className="text-center text-sm font-bold text-green-600 animate-in fade-in slide-in-from-top-2">
+                    <p className="text-center text-sm font-semibold text-green-500">
                       Thank you! I&apos;ll get back to you soon.
                     </p>
                   )}
@@ -178,8 +212,51 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Footer-like Space */}
-      <div className="py-6 md:py-10"></div>
+      {/* ═══════════ STATS / TRUST BAR ═══════════ */}
+      <section className="border-t border-[var(--card-border)] py-20 md:py-28 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-8 text-center">
+            {[
+              { number: "50+", label: "Articles Published" },
+              { number: "10K+", label: "Monthly Readers" },
+              { number: "8", label: "Categories Covered" },
+            ].map((stat, i) => (
+              <div key={i} className="flex flex-col items-center gap-2">
+                <span className="text-5xl sm:text-6xl font-extrabold gradient-text tracking-tight leading-none">
+                  {stat.number}
+                </span>
+                <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--text-muted)] mt-1">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════ TRUST BADGES ═══════════ */}
+      <section className="border-t border-[var(--card-border)] py-16 md:py-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)] mb-10">
+            Recognized On
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+            {["Dev.to", "Hashnode", "Medium", "Product Hunt", "GitHub"].map((name) => (
+              <div
+                key={name}
+                className="flex items-center justify-center px-6 py-3 rounded-xl border border-[var(--card-border)] opacity-40 hover:opacity-70 transition-opacity duration-300 min-w-[110px]"
+              >
+                <span className="text-sm font-bold text-[var(--text-muted)] tracking-wide">
+                  {name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom Space */}
+      <div className="py-8"></div>
     </div>
   );
 }
