@@ -25,7 +25,7 @@ export default function CaseStudiesSection({ caseStudies }) {
   if (!caseStudies || caseStudies.length === 0) return null;
 
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-12 md:py-16">
       <motion.div
         className="max-w-7xl mx-auto px-6 lg:px-16"
         initial="hidden"

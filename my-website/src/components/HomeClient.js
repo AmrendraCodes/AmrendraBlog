@@ -117,7 +117,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       </section>
 
       {/* ═══════════ FEATURED ARTICLES ═══════════ */}
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-16">
         <motion.div
           className="max-w-7xl mx-auto px-6 lg:px-16"
           initial="hidden"
@@ -214,7 +214,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       <CaseStudiesSection caseStudies={caseStudies} />
 
       {/* ═══════════ ABOUT THE BLOGGER ═══════════ */}
-      <section className="py-16 md:py-24 bg-[var(--section-alt-bg)]">
+      <section className="py-12 md:py-16 bg-[var(--section-alt-bg)]">
         <motion.div
           className="max-w-5xl mx-auto px-6 lg:px-16 flex flex-col md:flex-row items-center gap-12"
           initial="hidden"
@@ -282,7 +282,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       </section>
 
       {/* ═══════════ NEWSLETTER SECTION ═══════════ */}
-      <section className="py-16 md:py-24 px-6">
+      <section className="py-12 md:py-16 px-6">
         <motion.div
           className="relative max-w-3xl mx-auto rounded-3xl p-8 sm:p-12 text-center overflow-hidden border border-[var(--card-border)] bg-[var(--card-bg)]"
           initial="hidden"
@@ -328,7 +328,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       </section>
 
       {/* ═══════════ TESTIMONIAL SECTION ═══════════ */}
-      <section className="py-16 md:py-24 bg-[var(--section-alt-bg)] border-t border-b border-[var(--card-border)]">
+      <section className="py-12 md:py-16 bg-[var(--section-alt-bg)] border-t border-b border-[var(--card-border)]">
         <motion.div
           className="max-w-4xl mx-auto px-6 text-center"
           initial="hidden"
@@ -356,7 +356,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       </section>
 
       {/* ═══════════ SOCIAL / CONNECT SECTION ═══════════ */}
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-16">
         <motion.div
           className="max-w-5xl mx-auto px-6 lg:px-16"
           initial="hidden"

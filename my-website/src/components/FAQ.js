@@ -142,7 +142,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-[var(--section-alt-bg)] border-t border-[var(--card-border)]">
+    <section className="py-12 md:py-16 bg-[var(--section-alt-bg)] border-t border-[var(--card-border)]">
       <motion.div
         className="max-w-3xl mx-auto px-6 lg:px-16"
         initial="hidden"

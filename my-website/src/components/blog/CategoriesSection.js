@@ -102,8 +102,10 @@ export default function CategoriesSection({ categoryCounts = {}, headingLevel = 
   
   const HeadingTag = headingLevel;
 
+  const isH1 = headingLevel === "h1";
+
   return (
-    <section className="pt-28 pb-16 md:pt-36 md:pb-24 px-6 lg:px-16 bg-[var(--background)]" aria-labelledby="categories-heading">
+    <section className={`${isH1 ? "pt-28 pb-16 md:pt-36 md:pb-24" : "py-12 md:py-16"} px-6 lg:px-16 bg-[var(--background)]`} aria-labelledby="categories-heading">
       <motion.div
         className="max-w-7xl mx-auto"
         initial="hidden"
