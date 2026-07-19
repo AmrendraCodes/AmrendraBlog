@@ -7,8 +7,8 @@ category: "Development"
 categorySlug: "development"
 excerpt: "Learn how to build a responsive Light and Dark Theme Toggle using HTML, CSS, and JavaScript. Includes complete source code, localStorage support, and best practices."
 description: "Learn how to build a responsive Light and Dark Theme Toggle using HTML, CSS, and JavaScript. Includes complete source code, localStorage support, and best practices."
-image: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?q=80&w=1200&auto=format&fit=crop"
-featuredImage: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?q=80&w=1200&auto=format&fit=crop"
+image: "/images/how-to-build-light-dark-theme-toggle-javascript.png"
+featuredImage: "/images/how-to-build-light-dark-theme-toggle-javascript.png"
 author: "Amrendra Kumar"
 tags:
   - JavaScript
