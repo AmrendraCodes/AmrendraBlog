@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-center px-6 bg-[var(--background)]">
       <div className="relative">
-        <h1 className="text-[10rem] md:text-[14rem] font-black text-[var(--card-border)] leading-none select-none">
+        <h1 className="text-[6rem] sm:text-[8rem] md:text-[10rem] lg:text-[14rem] font-black text-[var(--card-border)] leading-none select-none">
           404
         </h1>
         <div className="absolute inset-0 flex flex-col items-center justify-center">

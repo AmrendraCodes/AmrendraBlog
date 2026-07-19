@@ -38,8 +38,8 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       <section className="relative min-h-[100vh] flex flex-col items-center justify-center px-6 pt-28 md:pt-32 lg:pt-36 pb-16 overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 grid-bg" />
-        <div className="absolute top-[10%] left-[15%] w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.12)_0%,transparent_70%)] blur-3xl animate-[float_10s_ease-in-out_infinite]" />
-        <div className="absolute top-[30%] right-[10%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.1)_0%,transparent_70%)] blur-3xl animate-[float_12s_ease-in-out_infinite_reverse]" />
+        <div className="absolute top-[10%] left-[15%] w-[280px] sm:w-[400px] md:w-[500px] h-[280px] sm:h-[400px] md:h-[500px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.12)_0%,transparent_70%)] blur-3xl animate-[float_10s_ease-in-out_infinite]" />
+        <div className="absolute top-[30%] right-[10%] w-[320px] sm:w-[450px] md:w-[600px] h-[320px] sm:h-[450px] md:h-[600px] rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.1)_0%,transparent_70%)] blur-3xl animate-[float_12s_ease-in-out_infinite_reverse]" />
 
         <motion.div
           className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center"
@@ -142,7 +142,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
               variants={staggerItem}
               whileHover={{ y: -5, rotateX: 1, rotateY: -1 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="group relative rounded-3xl overflow-hidden border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-3d)] transition-shadow duration-500 min-h-[420px] lg:col-span-2 lg:row-span-2"
+              className="group relative rounded-3xl overflow-hidden border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-3d)] transition-shadow duration-500 min-h-[320px] sm:min-h-[380px] lg:min-h-[420px] lg:col-span-2 lg:row-span-2"
             >
               <Image
                 src={featuredPosts[0].image}

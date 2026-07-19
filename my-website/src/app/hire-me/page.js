@@ -79,7 +79,7 @@ export default function HireMePage() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] font-sans overflow-x-hidden">
       {/* Hero Section */}
-      <section className="pt-24 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 max-w-6xl mx-auto text-center border-b border-[var(--card-border)]">
+      <section className="pt-28 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 max-w-6xl mx-auto text-center border-b border-[var(--card-border)]">
         <div className="inline-block px-4 py-1.5 mb-6 text-[10px] sm:text-xs font-bold tracking-[0.2em] text-[#6366F1] dark:text-[#818CF8] uppercase bg-[#6366F1]/10 dark:bg-[#6366F1]/15 border border-[#6366F1]/20 rounded-full">
           Let's collaborate
         </div>

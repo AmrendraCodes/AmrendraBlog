@@ -325,7 +325,7 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
                 />
                 <button
                   type="submit"
-                  className="w-full py-2.5 bg-white text-[#6366F1] font-extrabold rounded-xl hover:bg-indigo-50 transition-colors shadow-md text-sm cursor-pointer"
+                  className="w-full py-3 bg-white text-[#6366F1] font-extrabold rounded-xl hover:bg-indigo-50 transition-colors shadow-md text-sm cursor-pointer"
                 >
                   Subscribe Now
                 </button>

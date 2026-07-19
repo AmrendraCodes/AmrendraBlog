@@ -85,7 +85,7 @@ export default function ShareButtons({ title, slug }) {
         <button
           key={label}
           onClick={onClick}
-          className={`w-9 h-9 rounded-full bg-[var(--section-alt-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--text-muted)] transition-all duration-200 cursor-pointer ${hoverClass}`}
+          className={`w-10 h-10 rounded-full bg-[var(--section-alt-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--text-muted)] transition-all duration-200 cursor-pointer ${hoverClass}`}
           aria-label={label}
           title={label}
         >

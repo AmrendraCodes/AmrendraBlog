@@ -103,7 +103,7 @@ export default function Footer() {
               />
               <button
                 type="submit"
-                className="bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white cursor-pointer border-none rounded-lg flex justify-center items-center w-8 h-8 transition-all duration-300 absolute top-1/2 right-2 -translate-y-1/2 hover:opacity-90 hover:scale-110 shadow-[var(--shadow-glow)]"
+                className="bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white cursor-pointer border-none rounded-lg flex justify-center items-center w-10 h-10 transition-all duration-300 absolute top-1/2 right-1.5 -translate-y-1/2 hover:opacity-90 hover:scale-110 shadow-[var(--shadow-glow)]"
                 aria-label="Subscribe"
               >
                 <Send size={14} />
@@ -125,7 +125,7 @@ export default function Footer() {
             {/* Back to Top */}
             <button
               onClick={scrollToTop}
-              className="w-9 h-9 rounded-full bg-[var(--card-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--text-muted)] hover:text-[#6366F1] hover:border-[#6366F1]/30 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
+              className="w-10 h-10 rounded-full bg-[var(--card-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--text-muted)] hover:text-[#6366F1] hover:border-[#6366F1]/30 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
               aria-label="Back to top"
             >
               <ArrowUp size={14} />

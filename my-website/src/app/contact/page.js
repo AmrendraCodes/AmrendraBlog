@@ -51,7 +51,7 @@ export default function ContactPage() {
       {/* ═══════════ MAIN CONTENT ═══════════ */}
       <section className="px-6 pb-20 md:pb-28">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-28 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-28 items-start">
 
             {/* ─── Left Side: Contact Info ─── */}
             <div className="space-y-12 lg:sticky lg:top-32">

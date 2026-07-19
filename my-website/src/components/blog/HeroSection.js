@@ -33,7 +33,7 @@ export default function HeroSection() {
         {/* Heading */}
         <motion.h1
           variants={fadeUp}
-          className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-[var(--text-heading)] leading-[1.1] mb-8 tracking-tight"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-[var(--text-heading)] leading-[1.1] mb-8 tracking-tight"
         >
           Insights, Ideas &amp; <br className="hidden md:block" />
           <span className="gradient-text">Industry Trends</span>

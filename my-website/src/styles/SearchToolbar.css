@@ -47,11 +47,7 @@
   transform: translateY(-1px);
 }
 
-/* Dark Mode */
-:is(.dark) .search-toolbar__inner {
-  background: var(--card-bg);
-  border-color: var(--card-border);
-}
+
 
 :is(.dark) .search-toolbar__inner:focus-within {
   border-color: rgba(99, 102, 241, 0.4);
@@ -71,9 +67,7 @@
   color: #6366F1;
 }
 
-:is(.dark) .search-toolbar__icon {
-  color: var(--text-muted);
-}
+
 
 :is(.dark) .search-toolbar__inner:focus-within .search-toolbar__icon {
   color: #818CF8;
@@ -97,13 +91,9 @@
   font-weight: 400;
 }
 
-:is(.dark) .search-toolbar__input {
-  color: var(--foreground);
-}
 
-:is(.dark) .search-toolbar__input::placeholder {
-  color: var(--text-muted);
-}
+
+
 
 /* Clear Button */
 .search-toolbar__clear {
@@ -147,9 +137,7 @@
   animation: resultsFade 0.25s ease;
 }
 
-:is(.dark) .search-toolbar__results {
-  color: var(--text-muted);
-}
+
 
 @keyframes resultsFade {
   from {
@@ -174,10 +162,7 @@
   animation: emptyFade 0.4s ease-out;
 }
 
-:is(.dark) .search-empty-state {
-  background: var(--card-bg);
-  border-color: var(--card-border);
-}
+
 
 @keyframes emptyFade {
   from {
@@ -202,10 +187,7 @@
   color: var(--text-muted);
 }
 
-:is(.dark) .search-empty-state__icon {
-  background: rgba(99, 102, 241, 0.1);
-  color: var(--text-muted);
-}
+
 
 .search-empty-state__title {
   font-size: 1.25rem;
@@ -214,9 +196,7 @@
   margin: 0 0 0.5rem;
 }
 
-:is(.dark) .search-empty-state__title {
-  color: var(--text-heading);
-}
+
 
 .search-empty-state__desc {
   font-size: 0.95rem;
@@ -225,6 +205,4 @@
   line-height: 1.6;
 }
 
-:is(.dark) .search-empty-state__desc {
-  color: var(--text-body);
-}
+

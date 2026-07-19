@@ -58,10 +58,10 @@ export default function Header() {
     <>
       <div className={`fixed top-5 left-0 w-full z-[100] flex justify-center p-0 pointer-events-none transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-[150%]"}`}>
         <header
-          className={`pointer-events-auto z-[100] transition-all duration-300 flex items-center justify-between rounded-full relative w-[95%] mx-auto md:grid md:grid-cols-[1fr_auto_1fr] md:w-[85%] md:gap-4 lg:w-[70%] lg:max-w-[1200px] lg:py-3 lg:px-8 border ${
+          className={`pointer-events-auto z-[100] transition-all duration-300 flex items-center justify-between rounded-full relative w-[96%] mx-auto md:grid md:grid-cols-[1fr_auto_1fr] md:w-[88%] md:gap-3 lg:w-[70%] lg:max-w-[1200px] lg:py-3 lg:px-8 lg:gap-4 border ${
             isScrolled
-              ? 'bg-white/70 dark:bg-[#111214]/80 backdrop-blur-xl shadow-[var(--shadow-float)] py-3 px-8 border-slate-200/50 dark:border-[#2A2B2E]/80'
-              : 'bg-white/40 dark:bg-[#08090A]/50 backdrop-blur-md shadow-[var(--shadow-card)] py-3 px-5 border-slate-200/20 dark:border-[#2A2B2E]/40'
+              ? 'bg-white/70 dark:bg-[#111214]/80 backdrop-blur-xl shadow-[var(--shadow-float)] py-2.5 px-4 sm:py-3 sm:px-6 md:px-8 border-slate-200/50 dark:border-[#2A2B2E]/80'
+              : 'bg-white/40 dark:bg-[#08090A]/50 backdrop-blur-md shadow-[var(--shadow-card)] py-2.5 px-3.5 sm:py-3 sm:px-5 border-slate-200/20 dark:border-[#2A2B2E]/40'
           }`}
           role="navigation"
           aria-label="Main navigation"
@@ -84,14 +84,14 @@ export default function Header() {
           </div>
 
           <div className="hidden md:flex items-center justify-center">
-            <nav className="flex items-center gap-5 lg:gap-9 whitespace-nowrap" aria-label="Primary navigation">
+            <nav className="flex items-center gap-3 lg:gap-7 xl:gap-9 whitespace-nowrap" aria-label="Primary navigation">
               {navLinks.map((link) => {
                 const isActive = link.href === '/' ? pathname === '/' : pathname?.startsWith(link.href);
                 return (
                   <Link
                     key={link.name}
                     href={link.href}
-                    className={`relative text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-3.5 py-1.5 rounded-full ${
+                    className={`relative text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-2.5 lg:px-3.5 py-1.5 rounded-full ${
                       isActive
                         ? "text-[#6366F1] bg-[#6366F1]/10 dark:bg-[#6366F1]/15"
                         : "text-slate-600 dark:text-slate-400 hover:text-[#6366F1] dark:hover:text-[#818CF8] hover:bg-[#6366F1]/5 dark:hover:bg-[#6366F1]/10"
@@ -141,7 +141,7 @@ export default function Header() {
             <div className="bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white rounded-full flex justify-center items-center w-8 h-8 shadow-[0_0_20px_rgba(99,102,241,0.4)]">
               <Sparkles size={18} />
             </div>
-            <span className="text-[22px] font-extrabold flex items-center text-slate-900 dark:text-white">
+            <span className="text-lg sm:text-[22px] font-extrabold flex items-center text-slate-900 dark:text-white">
               Code with <span className="bg-gradient-to-r from-[#6366F1] to-[#a855f7] text-transparent bg-clip-text ml-1.5">Amrendra</span>
             </span>
           </div>

@@ -44,8 +44,8 @@ export default function AboutPage() {
       <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 px-6 overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 grid-bg" />
-        <div className="absolute top-[5%] left-[10%] w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.1)_0%,transparent_70%)] blur-3xl animate-[float_10s_ease-in-out_infinite]" />
-        <div className="absolute top-[20%] right-[5%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.08)_0%,transparent_70%)] blur-3xl animate-[float_12s_ease-in-out_infinite_reverse]" />
+        <div className="absolute top-[5%] left-[10%] w-[280px] sm:w-[400px] md:w-[500px] h-[280px] sm:h-[400px] md:h-[500px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.1)_0%,transparent_70%)] blur-3xl animate-[float_10s_ease-in-out_infinite]" />
+        <div className="absolute top-[20%] right-[5%] w-[320px] sm:w-[450px] md:w-[600px] h-[320px] sm:h-[450px] md:h-[600px] rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.08)_0%,transparent_70%)] blur-3xl animate-[float_12s_ease-in-out_infinite_reverse]" />
 
         <motion.div
           className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center"
