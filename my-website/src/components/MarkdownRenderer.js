@@ -32,8 +32,17 @@ function createHeadingComponent(level) {
   const Tag = `h${level}`;
 
   const HeadingComponent = ({ children, id, ...props }) => {
+    let sizeClasses = "";
+    if (level === 2) {
+      sizeClasses = "text-2xl sm:text-3xl font-extrabold text-[var(--text-heading)] mt-12 mb-5 leading-tight border-b border-[var(--card-border)]/30 pb-2 block w-full";
+    } else if (level === 3) {
+      sizeClasses = "text-xl sm:text-2xl font-bold text-[var(--text-heading)] mt-10 mb-4 leading-snug block";
+    } else if (level === 4) {
+      sizeClasses = "text-lg sm:text-xl font-bold text-[var(--text-heading)] mt-8 mb-3 leading-normal block";
+    }
+
     return (
-      <Tag id={id} className="group relative scroll-mt-24" {...props}>
+      <Tag id={id} className={`group relative scroll-mt-24 ${sizeClasses}`} {...props}>
         {id && (
           <a
             href={`#${id}`}
