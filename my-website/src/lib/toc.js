@@ -28,7 +28,7 @@ function slugify(text) {
 export function extractTocHeadings(markdownContent) {
   if (!markdownContent) return [];
 
-  const headingRegex = /^(#{2,4})\s+(.+)$/gm;
+  const headingRegex = /^(#{2})\s+(.+)$/gm;
   const headings = [];
   let match;
 
