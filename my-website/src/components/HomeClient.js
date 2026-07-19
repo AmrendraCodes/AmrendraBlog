@@ -49,7 +49,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
         >
           {/* Floating Badge */}
           <motion.div variants={staggerItem}>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-xs font-bold uppercase tracking-[0.12em] text-[#6366F1] dark:text-[#818CF8] mb-6 shadow-sm backdrop-blur-sm">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-xs font-bold uppercase tracking-[0.12em] text-[#4F46E5] dark:text-[#818CF8] mb-6 shadow-sm backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-[#6366F1] animate-pulse" />
               Developer Blog
             </span>
@@ -164,7 +164,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
                 <div className="flex items-center text-slate-300 text-sm font-medium">
                   <span>{featuredPosts[0].date} • {featuredPosts[0].readingTime}</span>
                 </div>
-                <Link href={featuredPosts[0].href} className="absolute inset-0 z-20"><span className="sr-only">Read more</span></Link>
+                <Link href={featuredPosts[0].href} className="absolute inset-0 z-20"><span className="sr-only">Read more about {featuredPosts[0].title}</span></Link>
               </div>
             </motion.article>
 

@@ -74,7 +74,6 @@ export default function Header() {
                 height={36} 
                 className="w-9 h-9 object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-sm" 
                 priority 
-                unoptimized
               />
               <span className="text-[20px] font-extrabold tracking-tight flex items-center text-slate-900 dark:text-white ml-1.5 sm:ml-2">
                 <span className="bg-gradient-to-r from-[#6366F1] to-[#a855f7] text-transparent bg-clip-text">CWA</span>

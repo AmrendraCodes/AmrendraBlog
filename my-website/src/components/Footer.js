@@ -25,7 +25,6 @@ export default function Footer() {
                 width={200} 
                 height={64} 
                 className="w-auto h-12 md:h-14 object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-sm" 
-                unoptimized
               />
             </Link>
             <p className="text-[var(--text-body)] max-w-xs text-sm leading-relaxed">
