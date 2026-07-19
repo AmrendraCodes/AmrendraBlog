@@ -38,7 +38,7 @@ export default function CategoriesPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[var(--background)] pt-24 md:pt-28 lg:pt-32">
+    <div className="min-h-screen bg-[var(--background)]">
       <CategoriesSection categoryCounts={categoryCounts} headingLevel="h1" />
     </div>
   );

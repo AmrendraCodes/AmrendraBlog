@@ -19,13 +19,13 @@ const fadeUp = {
 
 export default function HeroSection() {
   return (
-    <section className="relative py-24 px-6 lg:px-16 overflow-hidden bg-[var(--background)] flex flex-col items-center justify-center text-center min-h-[50vh] md:min-h-[60vh]">
+    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 px-6 lg:px-16 overflow-hidden bg-[var(--background)] flex flex-col items-center justify-center text-center">
       {/* Decorative Gradients */}
       <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[radial-gradient(ellipse,rgba(99,102,241,0.15)_0%,transparent_70%)] blur-3xl rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-[radial-gradient(ellipse,rgba(168,85,247,0.1)_0%,transparent_70%)] blur-3xl rounded-full pointer-events-none" />
 
       <motion.div
-        className="relative z-10 max-w-4xl mx-auto flex flex-col items-center mt-12 md:mt-0"
+        className="relative z-10 max-w-4xl mx-auto flex flex-col items-center mt-4 md:mt-0"
         initial="hidden"
         animate="visible"
         variants={stagger}

@@ -35,10 +35,10 @@ export default function CaseStudiesPage() {
   const allTechStacks = getAllCaseStudyTechStacks();
 
   return (
-    <div className="bg-[var(--background)] min-h-screen pt-24 md:pt-28 lg:pt-32">
+    <div className="bg-[var(--background)] min-h-screen">
       {/* Page Header */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-16 mb-12">
-        <div className="relative py-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 mb-12 pt-28 md:pt-36 lg:pt-40">
+        <div className="relative py-4">
           {/* Background glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#6366F1]/8 blur-[100px] rounded-full pointer-events-none" />
 

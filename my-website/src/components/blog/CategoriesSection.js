@@ -103,7 +103,7 @@ export default function CategoriesSection({ categoryCounts = {}, headingLevel = 
   const HeadingTag = headingLevel;
 
   return (
-    <section className="py-16 md:py-24 px-6 lg:px-16 bg-[var(--background)]" aria-labelledby="categories-heading">
+    <section className="pt-28 pb-16 md:pt-36 md:pb-24 px-6 lg:px-16 bg-[var(--background)]" aria-labelledby="categories-heading">
       <motion.div
         className="max-w-7xl mx-auto"
         initial="hidden"

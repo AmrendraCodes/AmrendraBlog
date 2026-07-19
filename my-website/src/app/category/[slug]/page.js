@@ -67,10 +67,10 @@ export default async function CategoryPage({ params }) {
   ]);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950 pt-24 md:pt-28 lg:pt-32">
+    <div className="min-h-screen bg-[var(--background)]">
       <JsonLd data={categorySchema} />
       <JsonLd data={breadcrumbSchema} />
-      <section className="max-w-6xl mx-auto px-6 py-16">
+      <section className="max-w-6xl mx-auto px-6 pt-28 pb-16 md:pt-36 md:pb-24">
         <div className="mb-12">
           <Link href="/categories" className="text-blue-600 hover:text-blue-700 text-sm font-semibold mb-4 inline-flex items-center gap-2 transition-colors">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
