@@ -1,0 +1,98 @@
+import { getAllPosts } from "@/lib/posts";
+import { getAllCaseStudies } from "@/lib/case-studies";
+import { siteMetadata } from "@/config/seo";
+
+/**
+ * Next.js Dynamic Sitemap Generator
+ * Automatically maps static pages, dynamic blog posts, case studies, and categories.
+ */
+export default async function sitemap() {
+  const baseUrl = siteMetadata.siteUrl;
+
+  // 1. Static Pages
+  const staticPages = [
+    {
+      url: `${baseUrl}`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/categories`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/case-studies`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/hire-me`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/privacy`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/terms`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+  ];
+
+  // 2. Dynamic Blog Posts
+  const posts = getAllPosts() || [];
+  const blogUrls = posts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: post.date ? new Date(post.date) : new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.7,
+  }));
+
+  // 3. Dynamic Case Studies
+  const caseStudies = getAllCaseStudies() || [];
+  const caseStudyUrls = caseStudies.map((study) => ({
+    url: `${baseUrl}/case-studies/${study.slug}`,
+    lastModified: study.publishedAt ? new Date(study.publishedAt) : new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.7,
+  }));
+
+  // 4. Dynamic Categories
+  const categorySlugs = [...new Set(posts.map((post) => post.categorySlug).filter(Boolean))];
+  const categoryUrls = categorySlugs.map((slug) => ({
+    url: `${baseUrl}/category/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.5,
+  }));
+
+  return [...staticPages, ...blogUrls, ...caseStudyUrls, ...categoryUrls];
+}

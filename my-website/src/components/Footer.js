@@ -120,7 +120,6 @@ export default function Footer() {
           <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6" suppressHydrationWarning>
             <Link href="/privacy" className="text-[var(--text-muted)] text-[13px] font-medium no-underline transition-colors duration-300 hover:text-[var(--foreground)]">Privacy</Link>
             <Link href="/terms" className="text-[var(--text-muted)] text-[13px] font-medium no-underline transition-colors duration-300 hover:text-[var(--foreground)]">Terms</Link>
-            <a href="/sitemap.xml" className="text-[var(--text-muted)] text-[13px] font-medium no-underline transition-colors duration-300 hover:text-[var(--foreground)]">Sitemap</a>
 
             {/* Back to Top */}
             <button
