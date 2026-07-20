@@ -17,7 +17,7 @@
   --color-accent-glow: rgba(99, 102, 241, 0.15);
   --color-text-primary: #F4F4F5;
   --color-text-secondary: #A1A1AA;
-  --color-text-muted: #52525B;
+  --color-text-muted: #A1A1AA;
 
   /* ─── Shadows & 3D Depth ─── */
   --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
@@ -42,7 +42,7 @@
   --card-bg: #ffffff;
   --card-border: #e2e8f0;
   --card-bg-hover: #f8fafc;
-  --text-muted: #64748b;
+  --text-muted: #57606a;
   --text-heading: #0f172a;
   --text-body: #475569;
   --section-alt-bg: #f8fafc;
@@ -62,7 +62,7 @@
   --card-bg: #111214;
   --card-border: #2A2B2E;
   --card-bg-hover: #1A1B1E;
-  --text-muted: #71717A;
+  --text-muted: #a1a1aa;
   --text-heading: #F4F4F5;
   --text-body: #A1A1AA;
   --section-alt-bg: #0D0E10;
