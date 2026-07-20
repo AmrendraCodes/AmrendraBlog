@@ -169,7 +169,7 @@ export default async function PostPage({ params }) {
               fill
               priority
               sizes="(max-width: 1400px) 100vw, 1400px"
-              className="absolute inset-0 object-contain bg-[#08090A] group-hover:scale-105 transition-transform duration-700 ease-out"
+              className="absolute inset-0 object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
             />
           </div>
         </div>
