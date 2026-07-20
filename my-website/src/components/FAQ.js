@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 
 const faqData = [
@@ -110,26 +110,25 @@ function FAQItem({ question, answer, isOpen, onToggle, index }) {
         </span>
       </button>
 
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            id={`faq-answer-${index}`}
-            role="region"
-            aria-labelledby={`faq-question-${index}`}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="px-6 pb-5 pt-0">
-              <div className="w-full h-px bg-gradient-to-r from-transparent via-[#6366F1]/20 to-transparent mb-4" />
-              <p className="text-[var(--text-body)] text-[15px] sm:text-base leading-relaxed">
-                {answer}
-              </p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <motion.div
+        id={`faq-answer-${index}`}
+        role="region"
+        aria-labelledby={`faq-question-${index}`}
+        initial={false}
+        animate={{
+          height: isOpen ? 'auto' : 0,
+          opacity: isOpen ? 1 : 0
+        }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        className="overflow-hidden"
+      >
+        <div className="px-6 pb-5 pt-0">
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-[#6366F1]/20 to-transparent mb-4" />
+          <p className="text-[var(--text-body)] text-[15px] sm:text-base leading-relaxed">
+            {answer}
+          </p>
+        </div>
+      </motion.div>
     </motion.div>
   );
 }
