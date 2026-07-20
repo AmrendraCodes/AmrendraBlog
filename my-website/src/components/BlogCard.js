@@ -11,7 +11,7 @@ export default function BlogCard({ post }) {
     <motion.article 
       whileHover={{ y: -8, rotateX: 2, rotateY: -2 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="group bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-3d)] transition-shadow duration-500"
+      className="group relative bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-3d)] transition-shadow duration-500"
     >
       {/* Thumbnail */}
       <div className="relative h-64 overflow-hidden rounded-t-3xl">
@@ -43,7 +43,7 @@ export default function BlogCard({ post }) {
         </div>
 
         <h3 className="text-xl lg:text-2xl font-bold text-[var(--text-heading)] mb-3 leading-snug group-hover:text-[#6366F1] dark:group-hover:text-[#818CF8] transition-colors line-clamp-2">
-          <Link href={postLink}>
+          <Link href={postLink} className="before:absolute before:inset-0 before:z-10 no-underline text-inherit">
             {post.title}
           </Link>
         </h3>
@@ -77,12 +77,12 @@ export default function BlogCard({ post }) {
             <span className="text-[13px] font-bold text-[var(--text-heading)]">{post.author || "Amrendra kumar"}</span>
           </div>
 
-          <Link
-            href={postLink}
-            className="w-10 h-10 rounded-full bg-[var(--section-alt-bg)] flex items-center justify-center text-[var(--foreground)] group-hover:bg-[#6366F1] group-hover:text-white transition-all duration-300"
+          <span
+            className="w-10 h-10 rounded-full bg-[var(--section-alt-bg)] flex items-center justify-center text-[var(--foreground)] group-hover:bg-[#6366F1] group-hover:text-white transition-all duration-300 relative z-20"
+            aria-hidden="true"
           >
             <ArrowUpRight size={18} />
-          </Link>
+          </span>
         </div>
       </div>
     </motion.article>
