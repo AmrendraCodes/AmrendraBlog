@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "../components/Header";
 import SmoothScroll from "../components/SmoothScroll";
 import dynamic from 'next/dynamic';
+import WhatsAppButton from "../components/WhatsAppButton";
 
 const Footer = dynamic(() => import('../components/Footer'), { ssr: true });
 
@@ -176,6 +177,7 @@ export default function RootLayout({ children }) {
               {children}
             </main>
             <Footer />
+            <WhatsAppButton />
           </SmoothScroll>
         </ThemeProvider>
       </body>
