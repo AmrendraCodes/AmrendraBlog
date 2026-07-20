@@ -1,23 +1,29 @@
 'use client';
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Github, Twitter, Linkedin, Instagram, Sparkles, Send, ArrowUp } from "lucide-react";
 
 export default function Footer() {
+  const [currentYear, setCurrentYear] = useState(2026);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer className="relative z-10 bg-[var(--background)] pt-16 pb-8 border-t border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-float)] mt-24" suppressHydrationWarning>
+    <footer className="relative z-10 bg-[var(--background)] pt-16 pb-8 border-t border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-float)] mt-24">
       {/* Subtle gradient accent line at top */}
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#6366F1]/50 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-16" suppressHydrationWarning>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-14" suppressHydrationWarning>
+      <div className="max-w-7xl mx-auto px-6 lg:px-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
           {/* Brand Column */}
-          <div className="flex flex-col gap-6" suppressHydrationWarning>
+          <div className="flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-3 no-underline group mb-2">
               <Image 
                 src="/logo-wide.png" 
@@ -112,11 +118,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-[var(--card-border)] flex flex-col md:flex-row justify-between items-center gap-4 pt-8" suppressHydrationWarning>
-          <p className="text-[var(--text-muted)] text-[13px] font-medium text-center md:text-left" suppressHydrationWarning>
-            &copy; {new Date().getFullYear()} Code with Amrendra. Built with Next.js &amp; ❤️
+        <div className="border-t border-[var(--card-border)] flex flex-col md:flex-row justify-between items-center gap-4 pt-8">
+          <p className="text-[var(--text-muted)] text-[13px] font-medium text-center md:text-left">
+            &copy; {currentYear} Code with Amrendra. Built with Next.js &amp; ❤️
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6" suppressHydrationWarning>
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
             <Link href="/privacy" className="text-[var(--text-muted)] text-[13px] font-medium no-underline transition-colors duration-300 hover:text-[var(--foreground)]">Privacy</Link>
             <Link href="/terms" className="text-[var(--text-muted)] text-[13px] font-medium no-underline transition-colors duration-300 hover:text-[var(--foreground)]">Terms</Link>
 
