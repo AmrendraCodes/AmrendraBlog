@@ -20,7 +20,7 @@ export default function BlogDetailClient({ content, headings, title, slug }) {
       <ReadingProgress />
 
       {/* Layout Container */}
-      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14 flex justify-center gap-8 lg:gap-12">
+      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14 grid grid-cols-1 xl:grid-cols-[250px_1fr_250px] gap-8 lg:gap-12">
         
         {/* Desktop TOC — Sticky Sidebar on the Left */}
         <div className="hidden xl:block w-[250px] shrink-0">
@@ -28,7 +28,7 @@ export default function BlogDetailClient({ content, headings, title, slug }) {
         </div>
 
         {/* Main Content strictly centered */}
-        <div className="w-full max-w-[900px] min-w-0">
+        <div className="w-full max-w-[900px] min-w-0 mx-auto">
           <motion.article 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -68,6 +68,9 @@ export default function BlogDetailClient({ content, headings, title, slug }) {
             </div>
           </motion.article>
         </div>
+
+        {/* Dummy right sidebar placeholder to keep content centered */}
+        <div className="hidden xl:block w-[250px] shrink-0 pointer-events-none" aria-hidden="true" />
       </div>
 
       {/* Back to Top */}
