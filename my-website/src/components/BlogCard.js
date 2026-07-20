@@ -6,6 +6,7 @@ import { ArrowUpRight, Calendar, User, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function BlogCard({ post }) {
+  const postLink = post.link || `/blog/${post.slug}`;
   return (
     <motion.article 
       whileHover={{ y: -8, rotateX: 2, rotateY: -2 }}
@@ -42,7 +43,7 @@ export default function BlogCard({ post }) {
         </div>
 
         <h3 className="text-xl lg:text-2xl font-bold text-[var(--text-heading)] mb-3 leading-snug group-hover:text-[#6366F1] dark:group-hover:text-[#818CF8] transition-colors line-clamp-2">
-          <Link href={`/blog/${post.slug}`}>
+          <Link href={postLink}>
             {post.title}
           </Link>
         </h3>
@@ -51,10 +52,23 @@ export default function BlogCard({ post }) {
           {post.excerpt || "Discover the latest trends and insights in the world of technology and modern web development architectures."}
         </p>
 
+        {post.tags && post.tags.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mb-5 relative z-20">
+            {post.tags.slice(0, 3).map((tag) => (
+              <span
+                key={tag}
+                className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)] bg-[var(--section-alt-bg)] border border-[var(--card-border)] px-2.5 py-1 rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+
         <div className="flex items-center justify-between pt-6 border-t border-[var(--card-border)]">
           <div className="flex items-center space-x-3">
             <Image 
-              src="/Profile photo.jpeg" 
+              src={post.authorImage || "/Profile photo.jpeg"} 
               alt={post.author || "Amrendra kumar"} 
               width={32} 
               height={32} 
@@ -64,7 +78,7 @@ export default function BlogCard({ post }) {
           </div>
 
           <Link
-            href={`/blog/${post.slug}`}
+            href={postLink}
             className="w-10 h-10 rounded-full bg-[var(--section-alt-bg)] flex items-center justify-center text-[var(--foreground)] group-hover:bg-[#6366F1] group-hover:text-white transition-all duration-300"
           >
             <ArrowUpRight size={18} />

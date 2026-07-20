@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import SearchToolbar from './SearchToolbar';
 import '@/styles/SearchToolbar.css';
+import BlogCard from '@/components/BlogCard';
 
 // ─── Custom hook: useDebounce ──────────────────────────────
 function useDebounce(value, delay = 300) {
@@ -340,84 +341,12 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
 }
 
 // ─── ArticleGrid — renders the blog cards ──────────────────
-import { motion } from 'framer-motion';
 
 const ArticleGrid = memo(function ArticleGrid({ articles }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative">
       {articles.map((article, index) => (
-        <motion.article
-          key={article.link || index}
-          whileHover={{ y: -8, rotateX: 2, rotateY: -2 }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          className="group relative bg-[var(--card-bg)] rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:border-[#6366F1]/30 hover:shadow-[var(--shadow-3d)] overflow-hidden transition-all duration-300 flex flex-col isolate"
-        >
-          <div className="relative aspect-16/10 overflow-hidden">
-            <div className="absolute top-4 left-4 z-[1]">
-              <span className="inline-block px-3 py-1 bg-[#6366F1] text-white text-[11px] font-bold uppercase tracking-wider rounded-full shadow-sm">
-                {article.category}
-              </span>
-            </div>
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors z-10" />
-            <Image
-              src={article.image}
-              alt={article.title}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out"
-            />
-          </div>
-
-          <div className="p-6 flex flex-col grow">
-            <h3 className="font-extrabold text-[var(--text-heading)] mb-3 line-clamp-2 group-hover:text-[#6366F1] dark:group-hover:text-[#818CF8] transition-colors leading-snug text-xl">
-              <Link href={article.link} className="before:absolute before:inset-0 z-10 no-underline text-inherit">
-                {article.title}
-              </Link>
-            </h3>
-            <p className="text-[var(--text-body)] mb-4 line-clamp-2 text-sm leading-relaxed grow">
-              {article.excerpt || article.description}
-            </p>
-
-            {article.tags && article.tags.length > 0 && (
-              <div className="flex flex-wrap gap-1.5 mb-5 relative z-20">
-                {article.tags.slice(0, 3).map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)] bg-[var(--section-alt-bg)] border border-[var(--card-border)] px-2.5 py-1 rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
-
-            <div className="mt-auto pt-5 border-t border-[var(--card-border)] flex items-center justify-between relative z-20">
-              <div className="flex items-center gap-3">
-                <Image
-                  src={article.authorImage || "/Profile photo.jpeg"}
-                  alt={article.author}
-                  width={32}
-                  height={32}
-                  className="w-8 h-8 rounded-full object-cover ring-1 ring-[var(--card-border)]"
-                />
-                <div className="flex flex-col">
-                  <span className="text-[13px] font-bold text-[var(--text-heading)]">
-                    {article.author}
-                  </span>
-                  <span className="text-[11px] text-[var(--text-muted)] font-medium mt-0.5">
-                    {article.date}
-                  </span>
-                </div>
-              </div>
-              {article.readTime && (
-                <div className="flex items-center gap-1 text-[11px] text-[var(--text-muted)] font-medium">
-                  <Clock size={12} />
-                  {article.readTime}
-                </div>
-              )}
-            </div>
-          </div>
-        </motion.article>
+        <BlogCard key={article.link || index} post={article} />
       ))}
     </div>
   );
