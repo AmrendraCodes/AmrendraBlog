@@ -67,7 +67,7 @@ export default function Header() {
     <>
       <div className={`fixed top-5 left-0 w-full z-[100] flex justify-center p-0 pointer-events-none transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-[150%]"}`}>
         <header
-          className={`pointer-events-auto z-[100] transition-all duration-300 flex items-center justify-between rounded-full relative w-[96%] mx-auto md:grid md:grid-cols-[1fr_auto_1fr] md:w-[88%] md:gap-3 lg:w-[70%] lg:max-w-[1200px] lg:py-3 lg:px-8 lg:gap-4 border ${
+          className={`pointer-events-auto z-[100] transition-all duration-300 flex items-center justify-between rounded-full relative w-[96%] mx-auto md:w-[92%] lg:w-[85%] xl:w-[75%] max-w-[1240px] py-2.5 px-4 sm:py-3 sm:px-6 border ${
             isScrolled
               ? 'bg-white/70 dark:bg-[#111214]/80 backdrop-blur-xl shadow-[var(--shadow-float)] py-2.5 px-4 sm:py-3 sm:px-6 md:px-8 border-slate-200/50 dark:border-[#2A2B2E]/80'
               : 'bg-white/40 dark:bg-[#08090A]/50 backdrop-blur-md shadow-[var(--shadow-card)] py-2.5 px-3.5 sm:py-3 sm:px-5 border-slate-200/20 dark:border-[#2A2B2E]/40'
@@ -116,7 +116,7 @@ export default function Header() {
             <ThemeToggle />
             <Link
               href="/hire-me"
-              className="hidden md:inline-flex items-center justify-center bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-semibold text-[0.95rem] py-1.5 px-5 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[var(--shadow-glow)] hover:-translate-y-1 hover:shadow-[var(--shadow-float)] hover:scale-105 active:scale-95"
+              className="hidden md:inline-flex items-center justify-center whitespace-nowrap shrink-0 bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-bold text-[0.875rem] py-2 px-5 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[var(--shadow-glow)] hover:-translate-y-1 hover:shadow-[var(--shadow-float)] hover:scale-105 active:scale-95"
             >
               Get Started
             </Link>
