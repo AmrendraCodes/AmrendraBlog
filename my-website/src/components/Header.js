@@ -108,17 +108,18 @@ export default function Header() {
                       onMouseEnter={() => setIsServicesOpen(true)}
                       onMouseLeave={() => setIsServicesOpen(false)}
                     >
-                      <Link
-                        href={link.href}
-                        className={`relative inline-flex items-center gap-1 text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-2.5 lg:px-3.5 py-1.5 rounded-full ${
-                          isActive
+                      <button
+                        type="button"
+                        onClick={() => setIsServicesOpen(!isServicesOpen)}
+                        className={`relative inline-flex items-center gap-1 text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-2.5 lg:px-3.5 py-1.5 rounded-full cursor-pointer border-none bg-transparent ${
+                          isActive || isServicesOpen
                             ? "text-[#6366F1] bg-[#6366F1]/10 dark:bg-[#6366F1]/15"
                             : "text-slate-600 dark:text-slate-400 hover:text-[#6366F1] dark:hover:text-[#818CF8] hover:bg-[#6366F1]/5 dark:hover:bg-[#6366F1]/10"
                         }`}
                       >
                         <span>{link.name}</span>
                         <ChevronDown size={14} className={`transition-transform duration-300 ${isServicesOpen ? "rotate-180 text-[#6366F1]" : ""}`} />
-                      </Link>
+                      </button>
 
                       {isServicesOpen && (
                         <ServicesDropdown onClose={() => setIsServicesOpen(false)} />
