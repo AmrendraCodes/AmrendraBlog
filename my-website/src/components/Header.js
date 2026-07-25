@@ -2,9 +2,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X, Sparkles, ChevronDown } from "lucide-react";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
+import ServicesDropdown from "./ServicesDropdown";
+import { SERVICES_DATA } from "@/lib/services";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -20,6 +22,8 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -95,6 +99,34 @@ export default function Header() {
             <nav className="flex items-center gap-3 lg:gap-7 xl:gap-9 whitespace-nowrap" aria-label="Primary navigation">
               {navLinks.map((link) => {
                 const isActive = link.href === '/' ? pathname === '/' : pathname?.startsWith(link.href);
+
+                if (link.name === "Services") {
+                  return (
+                    <div
+                      key={link.name}
+                      className="relative group"
+                      onMouseEnter={() => setIsServicesOpen(true)}
+                      onMouseLeave={() => setIsServicesOpen(false)}
+                    >
+                      <Link
+                        href={link.href}
+                        className={`relative inline-flex items-center gap-1 text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-2.5 lg:px-3.5 py-1.5 rounded-full ${
+                          isActive
+                            ? "text-[#6366F1] bg-[#6366F1]/10 dark:bg-[#6366F1]/15"
+                            : "text-slate-600 dark:text-slate-400 hover:text-[#6366F1] dark:hover:text-[#818CF8] hover:bg-[#6366F1]/5 dark:hover:bg-[#6366F1]/10"
+                        }`}
+                      >
+                        <span>{link.name}</span>
+                        <ChevronDown size={14} className={`transition-transform duration-300 ${isServicesOpen ? "rotate-180 text-[#6366F1]" : ""}`} />
+                      </Link>
+
+                      {isServicesOpen && (
+                        <ServicesDropdown onClose={() => setIsServicesOpen(false)} />
+                      )}
+                    </div>
+                  );
+                }
+
                 return (
                   <Link
                     key={link.name}
@@ -163,14 +195,58 @@ export default function Header() {
           </button>
         </div>
 
-        <nav className="flex-1 p-8 flex flex-col gap-6" aria-label="Mobile navigation">
+        <nav className="flex-1 p-6 overflow-y-auto flex flex-col gap-4" aria-label="Mobile navigation">
           {navLinks.map((link) => {
             const isActive = link.href === '/' ? pathname === '/' : pathname?.startsWith(link.href);
+
+            if (link.name === "Services") {
+              return (
+                <div key={link.name} className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <Link
+                      href={link.href}
+                      className={`text-[1.35rem] font-extrabold no-underline transition-colors duration-300 leading-tight py-2.5 px-4 rounded-xl flex-1 ${
+                        isActive
+                          ? "text-[#6366F1] bg-[#6366F1]/10 dark:bg-[#6366F1]/15"
+                          : "text-slate-900 dark:text-slate-50 hover:text-[#6366F1] dark:hover:text-[#818CF8]"
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {link.name}
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                      className="p-2 text-slate-700 dark:text-slate-200 hover:text-[#6366F1] cursor-pointer"
+                      aria-label="Toggle Services sub-menu"
+                    >
+                      <ChevronDown size={22} className={`transition-transform duration-300 ${isMobileServicesOpen ? "rotate-180 text-[#6366F1]" : ""}`} />
+                    </button>
+                  </div>
+
+                  {isMobileServicesOpen && (
+                    <div className="flex flex-col gap-1 pl-4 pt-1 border-l-2 border-[#6366F1]/30 ml-4">
+                      {SERVICES_DATA.map((s) => (
+                        <Link
+                          key={s.slug}
+                          href={`/services/${s.slug}`}
+                          onClick={() => setIsMenuOpen(false)}
+                          className="text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-[#6366F1] dark:hover:text-[#818CF8] py-2 px-3 rounded-lg block"
+                        >
+                          {s.title}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
             return (
               <Link
                 key={link.name}
                 href={link.href}
-                className={`text-[1.5rem] font-extrabold no-underline transition-colors duration-300 leading-tight py-3.5 px-6 rounded-2xl block w-full ${
+                className={`text-[1.35rem] font-extrabold no-underline transition-colors duration-300 leading-tight py-2.5 px-4 rounded-xl block w-full ${
                   isActive
                     ? "text-[#6366F1] bg-[#6366F1]/10 dark:bg-[#6366F1]/15"
                     : "text-slate-900 dark:text-slate-50 hover:text-[#6366F1] dark:hover:text-[#818CF8] hover:bg-[#6366F1]/5 dark:hover:bg-[#6366F1]/10"
@@ -181,15 +257,13 @@ export default function Header() {
               </Link>
             );
           })}
-          <div className="flex flex-col gap-3 mt-auto mb-8">
-            <Link href="/hire-me" className="inline-flex items-center justify-center bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-bold text-[1.1rem] py-4 px-8 rounded-full border-none cursor-pointer w-full transition-opacity duration-300 hover:opacity-90 shadow-lg shadow-indigo-500/20" onClick={() => setIsMenuOpen(false)}>
+          <div className="flex flex-col gap-3 mt-auto pt-6 mb-4">
+            <Link href="/hire-me" className="inline-flex items-center justify-center bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-bold text-[1.1rem] py-3.5 px-8 rounded-full border-none cursor-pointer w-full transition-opacity duration-300 hover:opacity-90 shadow-lg shadow-indigo-500/20" onClick={() => setIsMenuOpen(false)}>
               Get Started
             </Link>
           </div>
         </nav>
       </div>
-
-      {/* Spacer removed as per prompt to rely on correct pt- utility classes on the hero section */}
     </>
   );
 }
