@@ -8,6 +8,7 @@ import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { name: "Home", href: "/" },
+  { name: "Services", href: "/services" },
   { name: "Blog", href: "/blog" },
   { name: "Case Studies", href: "/case-studies" },
   { name: "About", href: "/about" },
@@ -51,6 +52,15 @@ export default function Header() {
     } else {
       document.body.style.overflow = "unset";
     }
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape" && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isMenuOpen]);
 
   return (
@@ -124,12 +134,12 @@ export default function Header() {
       </div>
 
       <div
-        className={`fixed inset-0 bg-slate-900/25 dark:bg-black/50 backdrop-blur-sm z-[60] transition-all duration-300 ${isMenuOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}
+        className={`fixed inset-0 bg-slate-900/25 dark:bg-black/50 backdrop-blur-sm z-[105] transition-all duration-300 ${isMenuOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}
         onClick={() => setIsMenuOpen(false)}
       />
 
       <div
-        className={`fixed top-0 right-0 bottom-0 w-[min(100%,24rem)] bg-white dark:bg-[#111214] z-[70] transition-transform duration-500 flex flex-col border-l border-slate-200/50 dark:border-[#2A2B2E] box-border ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed top-0 right-0 bottom-0 w-[min(100%,24rem)] bg-white dark:bg-[#111214] z-[110] transition-transform duration-500 flex flex-col border-l border-slate-200/50 dark:border-[#2A2B2E] box-border ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
         role="dialog"
         aria-modal="true"
         inert={!isMenuOpen}

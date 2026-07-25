@@ -1,10 +1,11 @@
 import { getAllPosts } from "@/lib/posts";
 import { getAllCaseStudies } from "@/lib/case-studies";
+import { SERVICES_DATA } from "@/lib/services";
 import { siteMetadata } from "@/config/seo";
 
 /**
  * Next.js Dynamic Sitemap Generator
- * Automatically maps static pages, dynamic blog posts, case studies, and categories.
+ * Automatically maps static pages, services, dynamic blog posts, case studies, and categories.
  */
 export default async function sitemap() {
   const baseUrl = siteMetadata.siteUrl;
@@ -16,6 +17,12 @@ export default async function sitemap() {
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/services`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/blog`,
@@ -67,7 +74,15 @@ export default async function sitemap() {
     },
   ];
 
-  // 2. Dynamic Blog Posts
+  // 2. Services Detail Pages
+  const serviceUrls = SERVICES_DATA.map((service) => ({
+    url: `${baseUrl}/services/${service.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.85,
+  }));
+
+  // 3. Dynamic Blog Posts
   const posts = getAllPosts() || [];
   const blogUrls = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
@@ -76,7 +91,7 @@ export default async function sitemap() {
     priority: 0.7,
   }));
 
-  // 3. Dynamic Case Studies
+  // 4. Dynamic Case Studies
   const caseStudies = getAllCaseStudies() || [];
   const caseStudyUrls = caseStudies.map((study) => ({
     url: `${baseUrl}/case-studies/${study.slug}`,
@@ -85,7 +100,7 @@ export default async function sitemap() {
     priority: 0.7,
   }));
 
-  // 4. Dynamic Categories
+  // 5. Dynamic Categories
   const categorySlugs = [...new Set(posts.map((post) => post.categorySlug).filter(Boolean))];
   const categoryUrls = categorySlugs.map((slug) => ({
     url: `${baseUrl}/category/${slug}`,
@@ -94,5 +109,5 @@ export default async function sitemap() {
     priority: 0.5,
   }));
 
-  return [...staticPages, ...blogUrls, ...caseStudyUrls, ...categoryUrls];
+  return [...staticPages, ...serviceUrls, ...blogUrls, ...caseStudyUrls, ...categoryUrls];
 }
