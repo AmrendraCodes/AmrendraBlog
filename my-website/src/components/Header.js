@@ -108,7 +108,7 @@ export default function Header() {
               href="/hire-me"
               className="hidden md:inline-flex items-center justify-center bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-semibold text-[0.95rem] py-1.5 px-5 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[var(--shadow-glow)] hover:-translate-y-1 hover:shadow-[var(--shadow-float)] hover:scale-105 active:scale-95"
             >
-              Hire Me
+              Get Started
             </Link>
             <button
               type="button"
@@ -173,7 +173,7 @@ export default function Header() {
           })}
           <div className="flex flex-col gap-3 mt-auto mb-8">
             <Link href="/hire-me" className="inline-flex items-center justify-center bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-bold text-[1.1rem] py-4 px-8 rounded-full border-none cursor-pointer w-full transition-opacity duration-300 hover:opacity-90 shadow-lg shadow-indigo-500/20" onClick={() => setIsMenuOpen(false)}>
-              Hire Me
+              Get Started
             </Link>
           </div>
         </nav>
