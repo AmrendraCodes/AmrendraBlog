@@ -11,24 +11,24 @@ import { getWebsiteSchema, getPersonSchema } from "@/lib/schema";
 import HomeClient from "@/components/HomeClient";
 
 export const metadata = {
-  title: "Code with Amrendra — Enterprise Software & AI Engineering",
-  description: "High-performance Web applications, autonomous AI agent solutions, SaaS architecture, and enterprise AWS cloud engineering.",
+  title: "Code with Amrendra | AI Development Services & Cloud",
+  description: "Code with Amrendra delivers AI Development Services, custom software, SaaS & cloud engineering for modern businesses. Book a free consultation today.",
   openGraph: {
-    title: 'Code with Amrendra — Enterprise Software & AI Engineering',
-    description: 'High-performance Web applications, autonomous AI agent solutions, SaaS architecture, and enterprise AWS cloud engineering.',
+    title: 'Code with Amrendra | AI Development Services & Cloud',
+    description: 'Code with Amrendra delivers AI Development Services, custom software, SaaS & cloud engineering for modern businesses. Book a free consultation today.',
     url: '/',
     images: [
       {
         url: '/images/og-default.png',
         width: 1200,
         height: 630,
-        alt: 'Code with Amrendra — Next-Gen Software & AI Engineering',
+        alt: 'Code with Amrendra | AI Development Services & Cloud',
       },
     ],
   },
   twitter: {
-    title: 'Code with Amrendra — Enterprise Software & AI Engineering',
-    description: 'High-performance Web applications, autonomous AI agent solutions, SaaS architecture, and enterprise AWS cloud engineering.',
+    title: 'Code with Amrendra | AI Development Services & Cloud',
+    description: 'Code with Amrendra delivers AI Development Services, custom software, SaaS & cloud engineering for modern businesses. Book a free consultation today.',
     images: ['/images/og-default.png'],
   },
   alternates: {

@@ -10,54 +10,53 @@ export default function PricingSection() {
   const tiers = [
     {
       name: 'Starter Sprint',
-      badge: 'Rapid Launch',
-      priceProject: '$2,499',
-      priceMonthly: '$1,999',
-      period: 'per project',
-      description: 'Ideal for early-stage startups needing a high-performance web product or MVP built fast.',
+      badge: 'Fixed Scope',
+      priceProject: '$60',
+      priceMonthly: '$49',
+      period: 'flat rate',
+      description: 'Perfect for validating an idea or shipping a single, well-defined feature fast.',
       features: [
-        'Production Next.js 16 / React 19 App',
-        'Custom Tailored Dark/Light Design',
-        'Core Web Vitals 95+ Performance',
-        'SEO Meta & Schema Structured Data',
-        '1 Month Post-Launch Support',
+        '2–3 week delivery timeline',
+        '1 dedicated senior full-stack engineer',
+        'Weekly progress calls + live demo',
+        'Clean, documented, production-ready code',
+        'Best suited for MVPs and single-feature builds',
       ],
-      cta: 'Start Sprint Project',
+      cta: 'Start My Sprint',
       popular: false,
     },
     {
       name: 'Engineering Retainer',
       badge: 'Most Popular',
-      priceProject: '$4,999',
-      priceMonthly: '$3,999',
+      priceProject: '$99',
+      priceMonthly: '$120',
       period: '/ month',
-      description: 'Dedicated senior frontend & full-stack engineering team to scale your SaaS platform continuously.',
+      description: 'A dedicated engineering team on standby — built for startups that need to keep shipping every single month.',
       features: [
-        'Dedicated Senior Engineer (React, AWS, Node)',
-        'Autonomous AI Agent & Workflow Integration',
-        'High-Velocity Bi-Weekly Sprints',
-        'Continuous Performance & Security Audits',
-        'Priority Slack & Async Communication',
-        'Zero Lock-In Contract (Cancel Anytime)',
+        'Continuous development capacity, no restarts each sprint',
+        '1 senior engineer + AI-assisted automation support',
+        'Priority bug fixes and same-week turnarounds',
+        'Monthly architecture and performance review',
+        'Flexible scope — reprioritize anytime',
       ],
-      cta: 'Build With Us',
+      cta: 'Talk to Our Team',
       popular: true,
     },
     {
       name: 'Enterprise Architecture',
-      badge: 'Custom Scale',
-      priceProject: 'Custom',
-      priceMonthly: 'Custom',
-      period: 'tailored quote',
-      description: 'Full-scale cloud, microservice, and AI infrastructure for enterprise platforms and high-traffic applications.',
+      badge: 'Custom',
+      priceProject: '$249',
+      priceMonthly: '$249',
+      period: '/ month',
+      description: 'For complex, high-stakes platforms that need a full engineering pod — not just a developer.',
       features: [
-        'Multi-Region AWS Cloud Infrastructure',
-        'Custom LLM Fine-Tuning & RAG Pipelines',
-        'SOC2 / ISO 27001 Security Hardening',
-        '24/7 SLA Uptime Guarantee',
-        'Dedicated Solutions Architect',
+        'Multi-engineer pod tailored to your roadmap',
+        'Full DevOps, security, and compliance coverage',
+        'Dedicated technical architecture lead',
+        'SLA-backed uptime and support commitments',
+        'Ideal for enterprise SaaS and regulated industries',
       ],
-      cta: 'Talk to Engineering Team',
+      cta: 'Schedule a Consultation',
       popular: false,
     },
   ];
@@ -84,7 +83,7 @@ export default function PricingSection() {
               : 'text-[#9CA3AF] hover:text-white'
           }`}
         >
-          Monthly Engineering Retainer
+          Monthly Retainer
           <span className="text-[10px] bg-[#34D399]/20 text-[#34D399] px-2 py-0.5 rounded-full">Save 20%</span>
         </button>
       </div>
@@ -156,6 +155,11 @@ export default function PricingSection() {
           </div>
         ))}
       </div>
+
+      {/* Trust Footnote Line */}
+      <p className="text-xs text-[#9CA3AF] text-center mt-8 font-medium">
+        No credit card required to talk. Cancel or switch plans anytime.
+      </p>
     </div>
   );
 }

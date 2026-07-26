@@ -8,62 +8,62 @@ const faqData = [
   {
     question: 'What topics do you write about?',
     answer:
-      'I publish practical articles on React, Next.js, JavaScript, TypeScript, AI Agents, SaaS architecture, AWS, DevOps, performance optimization, and modern software engineering. Every article is based on real-world development experience.',
+      'We cover full-stack engineering (React, Next.js, Node), AI agent development, autonomous LLM workflows, AWS cloud architecture, DevOps automation, and modern SaaS product engineering.',
   },
   {
     question: 'Is this blog suitable for beginners?',
     answer:
-      "Yes. Whether you're just starting frontend development or already building production applications, you'll find beginner-friendly guides alongside advanced engineering content.",
+      'Yes — our content spans beginner tutorials through advanced architecture guides, so developers at any level can follow along.',
   },
   {
-    question: 'Do you share AI Agent tutorials?',
+    question: 'Do you share AI agent tutorials?',
     answer:
-      "Absolutely. You'll find tutorials covering AI Agents, LLM workflows, prompt engineering, automation, MCP, RAG, AI integrations, and practical use cases for developers.",
+      'Yes, we regularly publish walkthroughs on building autonomous AI agents and integrating them into production applications.',
   },
   {
     question: 'Do you write about React and Next.js?',
     answer:
-      'Yes. React and Next.js are major topics on this blog. I regularly publish guides on performance optimization, Server Components, authentication, state management, deployment, SEO, and best practices.',
+      'Absolutely — React and Next.js development are core to our engineering stack and covered extensively in our guides.',
   },
   {
     question: 'Can I learn AWS from this blog?',
     answer:
-      'Yes. I share practical AWS tutorials covering EC2, S3, CloudFront, Lambda, IAM, CI/CD, Docker deployments, and scalable cloud architecture for modern applications.',
+      'Yes, we publish practical AWS cloud and DevOps automation tutorials based on real production deployments.',
   },
   {
     question: 'Are your tutorials based on real projects?',
     answer:
-      'Yes. Most articles are inspired by production challenges, client work, personal projects, and real engineering workflows rather than theoretical examples.',
+      "Yes — every tutorial is grounded in patterns we've used on live client engagements, not just theoretical examples.",
   },
   {
     question: 'How often do you publish new articles?',
     answer:
-      'New articles are published regularly on frontend development, AI engineering, SaaS architecture, cloud technologies, and developer productivity.',
+      'We publish new engineering and AI development content on a regular weekly schedule.',
   },
   {
     question: 'Do you provide source code and GitHub examples?',
     answer:
-      'Whenever possible, tutorials include complete code examples, reusable snippets, GitHub repositories, and implementation walkthroughs to help you build faster.',
+      'Yes, most tutorials link to a companion GitHub repository with full source code.',
   },
   {
     question: 'Can I subscribe for new articles?',
     answer:
-      'Yes. Join the Developer Weekly Journal to receive the latest tutorials, engineering insights, AI trends, and development resources directly in your inbox.',
+      'Yes — subscribe through our newsletter to get new posts and case studies delivered directly to your inbox.',
   },
   {
     question: 'Can businesses or startups work with you?',
     answer:
-      'Yes. I collaborate with startups, SaaS companies, and engineering teams on technical content, frontend development, developer education, cloud architecture, and AI-focused projects.',
+      'Yes — beyond content, we offer full AI Development Services, Custom Software Development Services, and Cloud Software Development Services for businesses ready to build or scale.',
   },
   {
     question: 'What makes this blog different from other developer blogs?',
     answer:
-      'The focus is on practical implementation instead of theory. Every article aims to solve real engineering problems with clear explanations, production-ready examples, and actionable insights.',
+      'We combine hands-on engineering experience with AI-native workflows, giving readers both practical tutorials and real production insight.',
   },
   {
     question: 'Who is behind Code with Amrendra?',
     answer:
-      'Code with Amrendra is a developer-focused platform where I share practical knowledge on frontend engineering, AI, SaaS architecture, AWS, DevOps, and modern software development to help developers build better products.',
+      'Code with Amrendra is an engineering-led team specializing in AI Development Services, full-stack web engineering, and cloud software architecture for modern businesses.',
   },
 ];
 

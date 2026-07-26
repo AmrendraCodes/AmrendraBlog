@@ -94,38 +94,26 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
               className="flex gap-10 whitespace-nowrap min-w-max"
             >
               {[
-                'Web Development',
+                'Web Development Services',
                 'Digital Marketing',
                 'UI/UX & Product Design',
                 'SEO & Content Strategy',
-                'AI & Automation',
+                'AI Automation Development Services',
                 'Cloud & DevOps',
-                'Custom Software Development',
-                'E-Commerce Solutions',
-                'Brand Strategy & Growth',
-                'Performance Marketing',
               ].concat([
-                'Web Development',
+                'Web Development Services',
                 'Digital Marketing',
                 'UI/UX & Product Design',
                 'SEO & Content Strategy',
-                'AI & Automation',
+                'AI Automation Development Services',
                 'Cloud & DevOps',
-                'Custom Software Development',
-                'E-Commerce Solutions',
-                'Brand Strategy & Growth',
-                'Performance Marketing',
               ]).concat([
-                'Web Development',
+                'Web Development Services',
                 'Digital Marketing',
                 'UI/UX & Product Design',
                 'SEO & Content Strategy',
-                'AI & Automation',
+                'AI Automation Development Services',
                 'Cloud & DevOps',
-                'Custom Software Development',
-                'E-Commerce Solutions',
-                'Brand Strategy & Growth',
-                'Performance Marketing',
               ]).map((service, i) => (
                 <span
                   key={i}
@@ -146,13 +134,13 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       <section className="py-24 px-6 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
-            The Engineering Advantage
+            THE ENGINEERING DIFFERENCE
           </span>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
             Stop Settling for Bloated Legacy Software
           </h2>
           <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
-            Traditional software development is plagued by slow release cycles, technical debt, and fragile architectures. We build sleek, AI-native platforms engineered for performance and scalability.
+            Traditional software development is plagued by slow release cycles, technical debt, and fragile architecture. Code with Amrendra builds clean, AI-native platforms engineered for performance and scalability — so your product never buckles under real-world growth.
           </p>
         </div>
 
@@ -171,16 +159,16 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
             </div>
             <ul className="space-y-4 text-xs text-[#9CA3AF]">
               <li className="flex items-center gap-3">
-                <span className="text-red-400 font-bold group-hover:scale-125 transition-transform">✕</span> 6–12 month lengthy delivery timelines
+                <span className="text-red-400 font-bold group-hover:scale-125 transition-transform">✕</span> 6-8 months build timelines
               </li>
               <li className="flex items-center gap-3">
-                <span className="text-red-400 font-bold group-hover:scale-125 transition-transform">✕</span> High latency &amp; poor Core Web Vitals
+                <span className="text-red-400 font-bold group-hover:scale-125 transition-transform">✕</span> Rigid legacy code and stacks
               </li>
               <li className="flex items-center gap-3">
-                <span className="text-red-400 font-bold group-hover:scale-125 transition-transform">✕</span> Messy spaghetti code &amp; technical debt
+                <span className="text-red-400 font-bold group-hover:scale-125 transition-transform">✕</span> Manual QA, slow bug fixes
               </li>
               <li className="flex items-center gap-3">
-                <span className="text-red-400 font-bold group-hover:scale-125 transition-transform">✕</span> Manual testing with frequent production bugs
+                <span className="text-red-400 font-bold group-hover:scale-125 transition-transform">✕</span> Vendor lock-in, unclear ownership
               </li>
             </ul>
           </div>
@@ -192,22 +180,22 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
                 ✓
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">Code with Amrendra</h3>
+                <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">Code with Amrendra — AI Development Services</h3>
                 <p className="text-xs text-[#34D399]">High-velocity, AI-native &amp; sub-second fast</p>
               </div>
             </div>
             <ul className="space-y-4 text-xs text-[#F3F4F6]">
               <li className="flex items-center gap-3">
-                <span className="text-[#10B981] font-bold group-hover:scale-125 transition-transform">✓</span> Bi-weekly rapid sprint deployments
+                <span className="text-[#10B981] font-bold group-hover:scale-125 transition-transform">✓</span> Rapid launch with AI-accelerated development sprints
               </li>
               <li className="flex items-center gap-3">
-                <span className="text-[#10B981] font-bold group-hover:scale-125 transition-transform">✓</span> Sub-second loading speed (99+ Lighthouse)
+                <span className="text-[#10B981] font-bold group-hover:scale-125 transition-transform">✓</span> Modern React, Next.js and cloud-native architecture
               </li>
               <li className="flex items-center gap-3">
-                <span className="text-[#10B981] font-bold group-hover:scale-125 transition-transform">✓</span> Type-safe, modular React 19 / TypeScript architecture
+                <span className="text-[#10B981] font-bold group-hover:scale-125 transition-transform">✓</span> Autonomous AI agents for QA, monitoring and audits
               </li>
               <li className="flex items-center gap-3">
-                <span className="text-[#10B981] font-bold group-hover:scale-125 transition-transform">✓</span> Autonomous AI agent QA &amp; 100% test coverage
+                <span className="text-[#10B981] font-bold group-hover:scale-125 transition-transform">✓</span> Full source-code ownership, transparent architecture
               </li>
             </ul>
           </div>
@@ -221,13 +209,13 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
-              Core Expertise
+              CORE SERVICES
             </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
               Enterprise Software Solutions
             </h2>
             <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
-              We specialize in modern full-stack web engineering, custom AI agent integrations, cloud architecture, and high-conversion digital experiences.
+              Code with Amrendra specializes in modern full-stack web engineering, custom AI agent integrations, cloud architecture, and high-conversion digital experiences — delivered as complete AI Development Services, Web Development Services, and SaaS Development Services under one roof.
             </p>
           </div>
 
@@ -236,37 +224,37 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
               {
                 icon: Code2,
                 title: 'Full-Stack Web Engineering',
-                desc: 'Custom React 19 & Next.js 16 web applications engineered for extreme speed, SEO, and flawless responsiveness.',
+                desc: 'End-to-end Web Development Services using React, Next.js, and TypeScript — built for speed, SEO, and long-term maintainability across every device.',
                 tag: 'Next.js • React • TS',
               },
               {
                 icon: Bot,
                 title: 'AI & Autonomous LLM Agents',
-                desc: 'Integrate intelligent AI workflows, custom RAG pipelines, and automated agentic decision systems into your product.',
+                desc: 'Custom AI Agent Development Services that automate workflows, support decision-making, and integrate large language models directly into your product — a core pillar of our AI Automation Development Services.',
                 tag: 'OpenAI • LangChain • RAG',
               },
               {
                 icon: Globe,
                 title: 'SaaS Product Architecture',
-                desc: 'End-to-end SaaS engineering including multi-tenant databases, subscription billing (Stripe), and auth infrastructure.',
+                desc: 'From MVP to multi-tenant scale, our SaaS Development Services cover data modeling, billing, authentication, and infrastructure designed for reliable, high-conversion growth.',
                 tag: 'SaaS • Stripe • Auth0',
               },
               {
                 icon: Cloud,
                 title: 'AWS Cloud & DevOps Automation',
-                desc: 'Serverless ECS, Lambda, Docker containers, and CI/CD pipelines configured for auto-scaling and security.',
+                desc: 'Fully managed Cloud Software Development Services — CI/CD pipelines, infrastructure-as-code, container orchestration, and 24/7 monitoring on AWS.',
                 tag: 'AWS • Docker • Terraform',
               },
               {
                 icon: Layers,
                 title: 'API Engineering & Integration',
-                desc: 'High-throughput REST and GraphQL APIs connecting complex third-party tools, databases, and microservices.',
+                desc: 'Secure, well-documented API design and third-party integrations that connect your software architecture to the tools your business already relies on.',
                 tag: 'REST • GraphQL • Node',
               },
               {
                 icon: Zap,
                 title: 'Performance Audit & Optimization',
-                desc: 'Transform slow, legacy codebases into lightning-fast platforms with Core Web Vitals optimization.',
+                desc: 'Comprehensive Web Performance audits covering Core Web Vitals, frontend rendering, and backend bottlenecks — so every product we touch loads fast and scales cleanly.',
                 tag: '99+ Lighthouse Guarantee',
               },
             ].map((service, index) => {
@@ -311,13 +299,13 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       <section className="py-24 px-6 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
-            Interactive Product Preview
+            INTERACTIVE PRODUCT PREVIEW
           </span>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
             See Our Engineering Pipeline in Action
           </h2>
           <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
-            Test drive our interactive autonomous engineering console below to explore how we monitor performance, test AI workflows, and automate deployments.
+            Test-drive Code with Amrendra's interactive autonomous engineering console below to see how we monitor performance, test AI workflows, and automate deployments in real time.
           </p>
         </div>
 
@@ -331,13 +319,13 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
-              Technology Ecosystem
+              ENGINEERING ECOSYSTEM
             </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
               Connected Engineering Architecture
             </h2>
             <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
-              Our central engineering core unifies front-end frameworks, serverless cloud infrastructure, AI models, and databases into a seamless ecosystem.
+              Code with Amrendra's central engineering core unifies frameworks, serverless infrastructure, AI models, and databases into a seamless ecosystem — the technical backbone behind every AI Development Services and Cloud Software Development Services engagement.
             </p>
           </div>
 
@@ -351,13 +339,13 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       <section className="py-24 px-6 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
-            How We Execute
+            HOW WE EXECUTE
           </span>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
             Our 4-Step Engineering Process
           </h2>
           <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
-            From architecture blueprinting to production launch, we maintain complete transparency and continuous bi-weekly sprint deliverables.
+            From architecture blueprint to production launch, Code with Amrendra maintains complete transparency and continuous weekly sprint deliverables.
           </p>
         </div>
 
@@ -366,22 +354,22 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
             {
               step: '01',
               title: 'Discovery & Architecture',
-              desc: 'We analyze your requirements, define database schemas, and blueprint a high-performance system architecture.',
+              desc: 'We map business goals into a technical architecture blueprint before a single line of code is written.',
             },
             {
               step: '02',
               title: 'High-Velocity Sprints',
-              desc: 'Our engineers build your product in rapid 2-week iterations with continuous staging previews.',
+              desc: 'Agile development cycles with weekly demos, keeping your custom software development project moving fast without sacrificing quality.',
             },
             {
               step: '03',
               title: 'Autonomous QA & Audit',
-              desc: 'Rigorous automated testing for security, accessibility, Core Web Vitals, and cross-browser stability.',
+              desc: 'AI-assisted testing agents catch regressions early, backed by manual senior engineering review.',
             },
             {
               step: '04',
               title: 'Cloud Deployment & SLA',
-              desc: 'Zero-downtime deployment to AWS/Vercel edge infrastructure with 24/7 SLA monitoring.',
+              desc: 'Production deployment on AWS with monitoring, uptime SLAs, and ongoing performance support.',
             },
           ].map((item, idx) => (
             <div
@@ -408,15 +396,18 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
             <div>
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
-                Selected Work
+                SELECTED WORK
               </span>
               <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 tracking-tight">
                 Case Studies &amp; Proven Results
               </h2>
+              <p className="text-xs sm:text-sm text-[#9CA3AF] mt-2">
+                Real Projects, Real Impact — find out how Code with Amrendra's design decisions, architecture, and reasonable automation created measurable business outcomes.
+              </p>
             </div>
             <Link
               href="/case-studies"
-              className="mt-4 md:mt-0 inline-flex items-center gap-2 text-xs font-bold text-[#10B981] hover:underline"
+              className="mt-4 md:mt-0 flex-shrink-0 inline-flex items-center gap-2 text-xs font-bold text-[#10B981] hover:underline"
             >
               <span>View All Case Studies</span>
               <ArrowRight size={14} />
@@ -433,13 +424,13 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       <section className="py-24 px-6 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
-            Direct Comparison
+            DIRECT COMPARISON
           </span>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
             How Our Engineering Stacks Up
           </h2>
           <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
-            Compare our enterprise standards against traditional development agencies and off-the-shelf templates.
+            Compare Code with Amrendra's enterprise standards against traditional development agencies and off-the-shelf templates.
           </p>
         </div>
 
@@ -453,13 +444,13 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
-              Flexible Engagement
+              PRICING, MADE SIMPLE
             </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
-              Transparent Project &amp; Retainer Plans
+              Straightforward Pricing for Every Stage of Growth
             </h2>
             <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
-              Choose between rapid fixed-scope sprint projects or dedicated monthly engineering retainers.
+              Whether you need a focused build or an ongoing engineering partner, choose a plan that fits — no hidden fees, no long-term lock-in.
             </p>
           </div>
 
@@ -475,16 +466,16 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#10B981]/10 rounded-full blur-3xl pointer-events-none" />
 
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#34D399] bg-[#10B981]/20 px-4 py-1.5 rounded-full border border-[#10B981]/40 mb-6 inline-block">
-            Ready to Build?
+            READY TO SCALE
           </span>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white mb-6 tracking-tight max-w-3xl mx-auto">
             Your Site &amp; SaaS Is Running Right Now. <br />
-            <span className="text-[#10B981]">Is It Performing At Its Peak?</span>
+            <span className="text-[#10B981]">Is It Performing at Its Peak?</span>
           </h2>
 
           <p className="text-base sm:text-lg text-[#9CA3AF] max-w-xl mx-auto mb-10 leading-relaxed">
-            Partner with Code with Amrendra to engineer high-velocity web platforms, AI workflows, and cloud architectures.
+            Partner with Code with Amrendra to engineer high-velocity web platforms, automate workflows with AI, and unlock cloud performance across your entire stack.
           </p>
 
           <MagneticButton>
@@ -492,7 +483,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
               href="/contact"
               className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-gradient-to-r from-[#10B981] to-[#059669] text-white font-extrabold text-base transition-all duration-300 shadow-[0_0_40px_rgba(16,185,129,0.5)] hover:shadow-[0_0_60px_rgba(16,185,129,0.7)] active:scale-95"
             >
-              <span>Get started today</span>
+              <span>Get Started Today</span>
               <ArrowRight size={20} />
             </Link>
           </MagneticButton>

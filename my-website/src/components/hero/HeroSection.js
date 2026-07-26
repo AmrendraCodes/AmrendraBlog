@@ -39,7 +39,7 @@ export default function HeroSection() {
         {/* Eyebrow Label */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#10B981]/30 bg-[#10B981]/10 text-xs font-mono font-bold uppercase tracking-widest text-[#34D399] mb-6 backdrop-blur-md shadow-[0_0_20px_rgba(16,185,129,0.25)]">
           <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-          Next-Gen Software &amp; AI Engineering
+          BEST-JUST SOFTWARE &amp; AI ENGINEERING
         </div>
 
         {/* Main Headline */}
@@ -47,16 +47,16 @@ export default function HeroSection() {
           className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6 text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          Engineering Digital Products{' '}
           <span className="bg-gradient-to-r from-[#10B981] via-[#34D399] to-[#00E599] text-transparent bg-clip-text drop-shadow-[0_0_35px_rgba(16,185,129,0.4)]">
-            Built for What Comes Next.
-          </span>
+            Custom AI Development Services
+          </span>{' '}
+          for Businesses Built to Scale.
         </h1>
 
         {/* Subtitle Description Card (High Readability Backdrop) */}
-        <div className="max-w-2xl mb-10 px-6 py-4 rounded-2xl bg-[#060907]/85 border border-[#1E2E25] backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-          <p className="text-base sm:text-lg text-[#F3F4F6] leading-relaxed font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-            We design and build scalable web platforms, autonomous AI workflows, SaaS architectures, and cloud solutions that help modern businesses move faster.
+        <div className="max-w-3xl mb-10 px-6 sm:px-8 py-4.5 rounded-2xl bg-[#060907]/85 border border-[#1E2E25] backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+          <p className="text-base sm:text-lg text-[#F3F4F6] leading-relaxed font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] [text-wrap:balance]">
+            Code with Amrendra delivers AI Development Services, Custom Software, SaaS Architecture &amp; Cloud Solutions that help modern businesses build faster.
           </p>
         </div>
 
@@ -67,7 +67,7 @@ export default function HeroSection() {
               href="/contact"
               className="group inline-flex items-center justify-center gap-3 px-9 py-4 rounded-2xl bg-gradient-to-r from-[#10B981] to-[#059669] text-white font-bold text-base transition-all duration-300 shadow-[0_0_30px_rgba(16,185,129,0.4)] hover:shadow-[0_0_50px_rgba(16,185,129,0.6)] w-full sm:w-auto"
             >
-              <span>Get started</span>
+              <span>Start Free Consultation</span>
               <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </MagneticButton>
@@ -77,7 +77,7 @@ export default function HeroSection() {
               href="/services"
               className="inline-flex items-center justify-center gap-2.5 px-9 py-4 rounded-2xl border border-[#1E2E25] bg-[#0A0F0C]/80 text-[#F3F4F6] font-bold text-base transition-all duration-300 hover:border-[#10B981]/50 hover:bg-[#111C16] w-full sm:w-auto backdrop-blur-md"
             >
-              Explore Services
+              Explore Our AI Services
             </Link>
           </MagneticButton>
         </div>

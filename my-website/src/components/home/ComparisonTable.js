@@ -5,13 +5,13 @@ import { Check, X, Sparkles } from 'lucide-react';
 
 export default function ComparisonTable() {
   const comparisonItems = [
-    { feature: 'Sub-Second Page Performance & Core Web Vitals', us: true, agency: false, template: false },
-    { feature: 'Autonomous AI Agent & LLM Workflow Integration', us: true, agency: 'Partial', template: false },
-    { feature: 'Enterprise Security & ISO-Compliant Architecture', us: true, agency: true, template: false },
-    { feature: 'Serverless AWS Cloud & Infrastructure Automation', us: true, agency: 'Extra Cost', template: false },
-    { feature: 'Zero Technical Debt & Clean Modular Codebase', us: true, agency: false, template: false },
-    { feature: 'Dedicated Engineering Sprint Delivery (< 4 Weeks)', us: true, agency: false, template: true },
-    { feature: 'Ongoing Performance Optimization & SLA Monitoring', us: true, agency: 'Expensive Retainer', template: false },
+    { feature: 'Sub-Second Page Load on Core Web Vitals', us: 'Yes', agency: 'Rare', template: 'No' },
+    { feature: 'AI Agent & LLM Integration Ready', us: 'Yes', agency: 'Rare', template: 'No' },
+    { feature: 'Enterprise Security & SEO Compliance', us: 'Yes', agency: 'Varies', template: 'No' },
+    { feature: 'Serverless AWS Cloud & DevOps Automation', us: 'Yes', agency: 'Varies', template: 'No' },
+    { feature: 'Full Source Code & Database Ownership', us: 'Yes', agency: 'Varies', template: 'No' },
+    { feature: 'Dedicated Engineering Sprint Delivery (< 2 Weeks)', us: 'Yes', agency: 'Rare', template: 'No' },
+    { feature: 'Ongoing Performance Optimization & SLA Monitoring', us: 'Yes', agency: 'Varies', template: 'No' },
   ];
 
   return (
@@ -33,7 +33,7 @@ export default function ComparisonTable() {
                 Traditional Agency
               </th>
               <th className="pb-4 pt-2 text-center text-xs font-semibold text-[#9CA3AF] w-[15%]">
-                Standard Template
+                Off-the-Shelf Template
               </th>
             </tr>
           </thead>
