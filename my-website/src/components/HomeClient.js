@@ -67,45 +67,59 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       <HeroSection />
 
       {/* ═══════════════════════════════════════════════════════════
-         2. CLIENT & TECH STACK TICKER MARQUEE
+         2. CLIENT & SERVICES TICKER MARQUEE
          ═══════════════════════════════════════════════════════════ */}
       <section className="py-6 border-b border-[#1E2E25] bg-[#0A0F0C] overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 mb-3 text-center">
           <span className="text-[11px] font-mono uppercase tracking-widest text-[#9CA3AF]">
-            Engineered With Modern Enterprise Stack
+            Our Core Services &amp; Digital Solutions
           </span>
         </div>
         <div className="relative w-full overflow-hidden flex items-center">
-          <div className="flex gap-12 animate-[ticker-scroll_30s_linear_infinite] whitespace-nowrap">
+          <div 
+            className="flex gap-12 whitespace-nowrap min-w-max hover:[animation-play-state:paused]"
+            style={{ animation: 'ticker-scroll-reverse 25s linear infinite' }}
+          >
             {[
-              'React 19',
-              'Next.js 16',
-              'TypeScript',
-              'AWS Cloud Services',
-              'OpenAI Agents',
-              'PostgreSQL',
-              'Node.js',
-              'Docker Containerization',
-              'TailwindCSS v4',
-              'Three.js WebGL',
-              'Prisma ORM',
-              'GraphQL API',
+              'Web Development',
+              'Digital Marketing',
+              'UI/UX & Product Design',
+              'SEO & Content Strategy',
+              'AI & Automation',
+              'Cloud & DevOps',
+              'Custom Software Development',
+              'E-Commerce Solutions',
+              'Brand Strategy & Growth',
+              'Performance Marketing',
             ].concat([
-              'React 19',
-              'Next.js 16',
-              'TypeScript',
-              'AWS Cloud Services',
-              'OpenAI Agents',
-              'PostgreSQL',
-              'Node.js',
-              'Docker Containerization',
-            ]).map((tech, i) => (
+              'Web Development',
+              'Digital Marketing',
+              'UI/UX & Product Design',
+              'SEO & Content Strategy',
+              'AI & Automation',
+              'Cloud & DevOps',
+              'Custom Software Development',
+              'E-Commerce Solutions',
+              'Brand Strategy & Growth',
+              'Performance Marketing',
+            ]).concat([
+              'Web Development',
+              'Digital Marketing',
+              'UI/UX & Product Design',
+              'SEO & Content Strategy',
+              'AI & Automation',
+              'Cloud & DevOps',
+              'Custom Software Development',
+              'E-Commerce Solutions',
+              'Brand Strategy & Growth',
+              'Performance Marketing',
+            ]).map((service, i) => (
               <span
                 key={i}
                 className="inline-flex items-center gap-2 text-sm font-mono font-semibold text-[#9CA3AF] hover:text-[#10B981] transition-colors cursor-default"
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
-                {tech}
+                {service}
               </span>
             ))}
           </div>

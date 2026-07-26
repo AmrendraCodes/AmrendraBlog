@@ -69,7 +69,7 @@ export default function Hero3DScene({ activeCard = 'web' }) {
       color: 0x10B981,
       wireframe: true,
       transparent: true,
-      opacity: 0.28,
+      opacity: 0.18,
     });
 
     const primaryMesh = new THREE.Mesh(torusKnotGeo, wireframeMat);

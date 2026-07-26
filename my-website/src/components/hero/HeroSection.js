@@ -35,8 +35,11 @@ export default function HeroSection() {
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
 
+      {/* Dark Readability Overlay over 3D Canvas */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#060907]/70 via-[#060907]/50 to-[#060907] pointer-events-none" />
+
       {/* Central Ambient Glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[radial-gradient(circle,rgba(16,185,129,0.2)_0%,transparent_70%)] blur-3xl pointer-events-none transition-all duration-700" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[radial-gradient(circle,rgba(16,185,129,0.15)_0%,transparent_70%)] blur-3xl pointer-events-none transition-all duration-700" />
 
       <div className="relative z-10 max-w-4xl mx-auto w-full flex flex-col items-center text-center">
         {/* Eyebrow Label */}
@@ -47,7 +50,7 @@ export default function HeroSection() {
 
         {/* Main Headline */}
         <h1
-          className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6 text-white"
+          className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6 text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
           Engineering Digital Products{' '}
@@ -56,13 +59,15 @@ export default function HeroSection() {
           </span>
         </h1>
 
-        {/* Subtitle Description */}
-        <p className="text-base sm:text-xl text-[#9CA3AF] max-w-2xl mb-10 leading-relaxed font-normal">
-          We design and build scalable web platforms, autonomous AI workflows, SaaS architectures, and cloud solutions that help modern businesses move faster.
-        </p>
+        {/* Subtitle Description Card (High Readability Backdrop) */}
+        <div className="max-w-2xl mb-10 px-6 py-4 rounded-2xl bg-[#060907]/85 border border-[#1E2E25] backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+          <p className="text-base sm:text-lg text-[#F3F4F6] leading-relaxed font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+            We design and build scalable web platforms, autonomous AI workflows, SaaS architectures, and cloud solutions that help modern businesses move faster.
+          </p>
+        </div>
 
         {/* Primary & Secondary CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-14">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
           <MagneticButton className="w-full sm:w-auto">
             <Link
               href="/contact"
@@ -81,22 +86,6 @@ export default function HeroSection() {
               Explore Services
             </Link>
           </MagneticButton>
-        </div>
-
-        {/* Feature Badges Bar */}
-        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 pt-4 border-t border-[#1E2E25]/60 text-xs text-[#9CA3AF]">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0A0F0C]/60 border border-[#1E2E25]">
-            <Zap size={14} className="text-[#10B981]" />
-            <span>Sub-Second Performance</span>
-          </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0A0F0C]/60 border border-[#1E2E25]">
-            <Sparkles size={14} className="text-[#34D399]" />
-            <span>AI Agent Workflows</span>
-          </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0A0F0C]/60 border border-[#1E2E25]">
-            <ShieldCheck size={14} className="text-[#10B981]" />
-            <span>Enterprise React 19 &amp; TS</span>
-          </div>
         </div>
       </div>
     </section>
