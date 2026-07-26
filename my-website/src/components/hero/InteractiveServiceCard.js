@@ -1,0 +1,74 @@
+'use client';
+
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
+
+export default function InteractiveServiceCard({ service, isActive, onSelect }) {
+  const Icon = service.icon;
+
+  return (
+    <div
+      onClick={() => onSelect(service.id)}
+      className={`relative rounded-3xl p-6 cursor-pointer transition-all duration-300 backdrop-blur-xl ${
+        isActive
+          ? 'bg-[#0A0F0C]/90 border-2 border-[#10B981] shadow-[0_10px_30px_rgba(16,185,129,0.25)]'
+          : 'bg-[#07110F]/70 border border-[#1E2E25] hover:border-[#10B981]/50'
+      }`}
+    >
+      {/* Glow highlight background */}
+      {isActive && (
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.12),transparent_70%)] rounded-3xl pointer-events-none" />
+      )}
+
+      <div className="relative z-10">
+        {/* Header: Icon & Category Tag */}
+        <div className="flex items-center justify-between mb-4">
+          <div
+            className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 ${
+              isActive
+                ? 'bg-[#10B981] text-white shadow-[0_0_20px_rgba(16,185,129,0.4)]'
+                : 'bg-[#111C16] text-[#34D399] border border-[#1E2E25]'
+            }`}
+          >
+            <Icon size={22} />
+          </div>
+
+          <span
+            className={`text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${
+              isActive
+                ? 'bg-[#10B981]/20 text-[#34D399] border-[#10B981]/40'
+                : 'bg-white/5 text-[#9CA3AF] border-white/10'
+            }`}
+          >
+            {service.tag}
+          </span>
+        </div>
+
+        {/* Title & Description */}
+        <div>
+          <h3
+            className={`text-lg font-bold mb-2 transition-colors ${
+              isActive ? 'text-[#10B981]' : 'text-white'
+            }`}
+          >
+            {service.title}
+          </h3>
+          <p className="text-xs text-[#9CA3AF] leading-relaxed line-clamp-2">
+            {service.description}
+          </p>
+        </div>
+
+        {/* Footer Badge */}
+        <div className="mt-4 pt-3 border-t border-[#1E2E25] flex items-center justify-between text-xs font-bold">
+          <span className={isActive ? 'text-[#34D399]' : 'text-[#9CA3AF]'}>
+            {isActive ? 'Active Showcase' : 'Explore Service'}
+          </span>
+          <ArrowRight
+            size={14}
+            className={isActive ? 'text-[#10B981]' : 'text-[#9CA3AF]'}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}

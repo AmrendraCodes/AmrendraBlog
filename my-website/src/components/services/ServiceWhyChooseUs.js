@@ -51,7 +51,7 @@ export default function ServiceWhyChooseUs() {
     <section className="py-20 bg-[var(--section-alt-bg)] border-b border-[var(--card-border)]">
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-extrabold uppercase tracking-widest text-[#6366F1] dark:text-[#818CF8] bg-[#6366F1]/10 px-3.5 py-1.5 rounded-full border border-[#6366F1]/20 mb-4 inline-block">
+          <span className="text-xs font-extrabold uppercase tracking-widest text-[#10B981] dark:text-[#34D399] bg-[#10B981]/10 px-3.5 py-1.5 rounded-full border border-[#10B981]/20 mb-4 inline-block">
             WHY CODE WITH AMRENDRA
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[var(--text-heading)] tracking-tight mt-3 mb-4">
@@ -70,9 +70,9 @@ export default function ServiceWhyChooseUs() {
                 key={idx}
                 direction="up"
                 delay={idx * 0.05}
-                className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 transition-all duration-300 hover:border-[#6366F1]/40 hover:-translate-y-1"
+                className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 transition-all duration-300 hover:border-[#10B981]/40 hover:-translate-y-1"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#6366F1]/10 border border-[#6366F1]/20 text-[#6366F1] flex items-center justify-center mb-4">
+                <div className="w-10 h-10 rounded-xl bg-[#10B981]/10 border border-[#10B981]/20 text-[#10B981] flex items-center justify-center mb-4">
                   <Icon size={20} />
                 </div>
                 <h3 className="text-base font-bold text-[var(--text-heading)] mb-2">

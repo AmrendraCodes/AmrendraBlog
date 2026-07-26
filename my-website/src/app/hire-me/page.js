@@ -80,13 +80,13 @@ export default function HireMePage() {
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] font-sans overflow-x-hidden">
       {/* Hero Section */}
       <section className="pt-28 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 max-w-6xl mx-auto text-center border-b border-[var(--card-border)]">
-        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] sm:text-xs font-bold tracking-[0.2em] text-[#6366F1] dark:text-[#818CF8] uppercase bg-[#6366F1]/10 dark:bg-[#6366F1]/15 border border-[#6366F1]/20 rounded-full">
+        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] sm:text-xs font-bold tracking-[0.2em] text-[#10B981] dark:text-[#34D399] uppercase bg-[#10B981]/10 dark:bg-[#10B981]/15 border border-[#10B981]/20 rounded-full">
           Let's collaborate
         </div>
         <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tighter mb-6 leading-[1.1]">
           <span className="text-[var(--text-heading)]">Hire Me for Your</span>
           <br />
-          <span className="gradient-text">Next Project</span>
+          <span className="bg-gradient-to-r from-[#10B981] to-[#34D399] text-transparent bg-clip-text">Next Project</span>
         </h1>
         <p className="text-base sm:text-lg md:text-xl text-[var(--text-body)] max-w-2xl mx-auto leading-relaxed">
           I'm available for freelance projects, collaborations, and consulting. Let's build something amazing together!
@@ -96,14 +96,14 @@ export default function HireMePage() {
       {/* Services Section */}
       <section className="py-16 md:py-24 px-4 sm:px-6 max-w-6xl mx-auto">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--text-heading)] mb-10 md:mb-16 text-center">
-          <span className="gradient-text">Services I Offer</span>
+          <span className="bg-gradient-to-r from-[#10B981] to-[#34D399] text-transparent bg-clip-text">Services I Offer</span>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-[var(--card-bg)] border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] rounded-3xl p-6 md:p-8 hover:border-[#6366F1]/30 transition-all duration-300 hover:shadow-[var(--shadow-3d)] hover:-translate-y-1"
+              className="bg-[var(--card-bg)] border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] rounded-3xl p-6 md:p-8 hover:border-[#10B981]/30 transition-all duration-300 hover:shadow-[var(--shadow-3d)] hover:-translate-y-1"
             >
               <div className="text-5xl mb-4">{service.emoji}</div>
               <h3 className="text-2xl font-bold text-[var(--text-heading)] mb-3">
@@ -134,9 +134,9 @@ export default function HireMePage() {
         </h2>
 
         {isSubmitted ? (
-          <div className="bg-[#6366F1]/5 border border-[#6366F1]/20 rounded-3xl p-8 md:p-12 text-center shadow-[var(--shadow-card)]">
+          <div className="bg-[#10B981]/5 border border-[#10B981]/20 rounded-3xl p-8 md:p-12 text-center shadow-[var(--shadow-card)]">
             <div className="flex justify-center mb-6">
-              <div className="w-16 h-16 md:w-20 md:h-20 bg-[#6366F1] rounded-full flex items-center justify-center shadow-[var(--shadow-glow)]">
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-[#10B981] rounded-full flex items-center justify-center shadow-[0_0_25px_rgba(16,185,129,0.3)]">
                 <Check size={32} className="text-white" />
               </div>
             </div>

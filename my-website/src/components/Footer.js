@@ -18,7 +18,7 @@ export default function Footer() {
   return (
     <footer className="relative z-10 bg-[var(--background)] pt-16 pb-8 border-t border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-float)] mt-24">
       {/* Subtle gradient accent line at top */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#6366F1]/50 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#10B981]/50 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
@@ -34,7 +34,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-[var(--text-body)] max-w-xs text-sm leading-relaxed">
-              Empowering developers and creators with the latest insights into modern technology and creative design.
+              Engineering enterprise software, Next-Gen Web platforms, autonomous AI agent solutions, and scalable cloud architectures.
             </p>
             <div className="flex items-center gap-3">
               {[
@@ -49,7 +49,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="text-[var(--text-muted)] bg-[var(--card-bg)] border border-[var(--card-border)] rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-[#6366F1] hover:text-white hover:border-[#6366F1] hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(99,102,241,0.3)]"
+                  className="text-[var(--text-muted)] bg-[var(--card-bg)] border border-[var(--card-border)] rounded-full flex justify-center items-center w-10 h-10 transition-all duration-300 hover:bg-[#10B981] hover:text-white hover:border-[#10B981] hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(16,185,129,0.4)]"
                 >
                   <Icon size={16} />
                 </a>
@@ -69,7 +69,7 @@ export default function Footer() {
                 { name: "Contact", href: "/contact" }
               ].map((link) => (
                 <li key={link.name} className="flex">
-                  <Link href={link.href} className="text-[var(--text-body)] text-sm font-medium no-underline transition-colors duration-300 hover:text-[#6366F1] dark:hover:text-[#818CF8]">
+                  <Link href={link.href} className="text-[var(--text-body)] text-sm font-medium no-underline transition-colors duration-300 hover:text-[#10B981] dark:hover:text-[#34D399]">
                     {link.name}
                   </Link>
                 </li>
@@ -88,7 +88,7 @@ export default function Footer() {
                 { name: "DevOps", href: "/category/devops" }
               ].map((link) => (
                 <li key={link.name} className="flex">
-                  <Link href={link.href} className="text-[var(--text-body)] text-sm font-medium no-underline transition-colors duration-300 hover:text-[#6366F1] dark:hover:text-[#818CF8]">
+                  <Link href={link.href} className="text-[var(--text-body)] text-sm font-medium no-underline transition-colors duration-300 hover:text-[#10B981] dark:hover:text-[#34D399]">
                     {link.name}
                   </Link>
                 </li>
@@ -105,11 +105,11 @@ export default function Footer() {
                 type="email"
                 placeholder="Your email"
                 aria-label="Email address for newsletter"
-                className="text-[var(--foreground)] bg-[var(--card-bg)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] rounded-xl outline-none w-full py-3 pr-12 pl-4 text-sm transition-all duration-300 focus:border-[#6366F1] focus:shadow-[var(--shadow-glow)] placeholder:text-[var(--text-muted)]"
+                className="text-[var(--foreground)] bg-[var(--card-bg)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] rounded-xl outline-none w-full py-3 pr-12 pl-4 text-sm transition-all duration-300 focus:border-[#10B981] focus:shadow-[0_0_20px_rgba(16,185,129,0.2)] placeholder:text-[var(--text-muted)]"
               />
               <button
                 type="submit"
-                className="bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white cursor-pointer border-none rounded-lg flex justify-center items-center w-10 h-10 transition-all duration-300 absolute top-1/2 right-1.5 -translate-y-1/2 hover:opacity-90 hover:scale-110 shadow-[var(--shadow-glow)]"
+                className="bg-gradient-to-br from-[#10B981] to-[#059669] text-white cursor-pointer border-none rounded-lg flex justify-center items-center w-10 h-10 transition-all duration-300 absolute top-1/2 right-1.5 -translate-y-1/2 hover:opacity-90 hover:scale-110 shadow-[0_0_20px_rgba(16,185,129,0.3)]"
                 aria-label="Subscribe"
               >
                 <Send size={14} />
@@ -130,7 +130,7 @@ export default function Footer() {
             {/* Back to Top */}
             <button
               onClick={scrollToTop}
-              className="w-10 h-10 rounded-full bg-[var(--card-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--text-muted)] hover:text-[#6366F1] hover:border-[#6366F1]/30 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
+              className="w-10 h-10 rounded-full bg-[var(--card-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--text-muted)] hover:text-[#10B981] hover:border-[#10B981]/30 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
               aria-label="Back to top"
             >
               <ArrowUp size={14} />

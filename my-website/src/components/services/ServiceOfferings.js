@@ -49,7 +49,7 @@ export default function ServiceOfferings({ offerings = [], serviceTitle }) {
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         {/* Section Title */}
         <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-extrabold uppercase tracking-widest text-[#6366F1] dark:text-[#818CF8] bg-[#6366F1]/10 px-3.5 py-1.5 rounded-full border border-[#6366F1]/20 mb-4 inline-block">
+          <span className="text-xs font-extrabold uppercase tracking-widest text-[#10B981] dark:text-[#34D399] bg-[#10B981]/10 px-3.5 py-1.5 rounded-full border border-[#10B981]/20 mb-4 inline-block">
             CORE CAPABILITIES
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[var(--text-heading)] tracking-tight mt-3 mb-4">
@@ -67,12 +67,12 @@ export default function ServiceOfferings({ offerings = [], serviceTitle }) {
             return (
               <StaggerItem
                 key={idx}
-                className="group bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 transition-all duration-300 hover:border-[#6366F1]/40 hover:shadow-[var(--shadow-hover)] hover:-translate-y-1"
+                className="group bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 transition-all duration-300 hover:border-[#10B981]/40 hover:shadow-[var(--shadow-hover)] hover:-translate-y-1"
               >
-                <div className="w-12 h-12 rounded-xl bg-[#6366F1]/10 border border-[#6366F1]/20 text-[#6366F1] dark:text-[#818CF8] flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-[#6366F1] group-hover:text-white transition-all duration-300">
+                <div className="w-12 h-12 rounded-xl bg-[#10B981]/10 border border-[#10B981]/20 text-[#10B981] dark:text-[#34D399] flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-[#10B981] group-hover:text-white transition-all duration-300">
                   <IconComponent size={22} />
                 </div>
-                <h3 className="text-lg font-bold text-[var(--text-heading)] mb-2 group-hover:text-[#6366F1] transition-colors">
+                <h3 className="text-lg font-bold text-[var(--text-heading)] mb-2 group-hover:text-[#10B981] transition-colors">
                   {item.title}
                 </h3>
                 <p className="text-xs sm:text-sm text-[var(--text-body)] leading-relaxed">

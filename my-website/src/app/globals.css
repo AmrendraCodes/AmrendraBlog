@@ -8,31 +8,37 @@
 
 @theme {
   /* ─── Color Tokens ─── */
-  --color-bg-primary: #08090A;
-  --color-bg-secondary: #111214;
-  --color-bg-elevated: #1A1B1E;
-  --color-border-subtle: #2A2B2E;
-  --color-accent: #6366F1;
-  --color-accent-hover: #818CF8;
-  --color-accent-glow: rgba(99, 102, 241, 0.15);
-  --color-text-primary: #F4F4F5;
-  --color-text-secondary: #A1A1AA;
-  --color-text-muted: #A1A1AA;
+  --color-bg-primary: #060907;
+  --color-bg-secondary: #0A0F0C;
+  --color-bg-elevated: #111C16;
+  --color-border-subtle: #1E2E25;
+  --color-accent: #10B981;
+  --color-accent-hover: #34D399;
+  --color-accent-glow: rgba(16, 185, 129, 0.2);
+  --color-text-primary: #F3F4F6;
+  --color-text-secondary: #9CA3AF;
+  --color-text-muted: #6B7280;
 
   /* ─── Shadows & 3D Depth ─── */
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
-  --shadow-hover: 0 4px 24px rgba(0, 0, 0, 0.4), 0 8px 40px rgba(0, 0, 0, 0.3);
-  --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.15);
-  --shadow-3d: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 20px 40px -20px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255, 255, 255, 0.05);
-  --shadow-float: 0 20px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.05);
-  --shadow-inner-glow: inset 0 1px 0 0 rgba(255,255,255,0.08), inset 0 0 0 1px rgba(255,255,255,0.02);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 4px 24px rgba(16, 185, 129, 0.15), 0 8px 40px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 50px rgba(16, 185, 129, 0.25);
+  --shadow-3d: 0 10px 30px -10px rgba(0, 0, 0, 0.6), 0 20px 40px -20px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  --shadow-float: 0 20px 50px -12px rgba(16, 185, 129, 0.2), 0 0 0 1px rgba(16,185,129,0.15);
+  --shadow-inner-glow: inset 0 1px 0 0 rgba(255,255,255,0.1), inset 0 0 0 1px rgba(16,185,129,0.1);
 
   /* ─── Custom Animations & Keyframes ─── */
-  --animate-ticker-scroll: ticker-scroll 25s linear infinite;
+  --animate-ticker-scroll: ticker-scroll 30s linear infinite;
+  --animate-pulse-glow: pulse-glow 4s ease-in-out infinite;
 
   @keyframes ticker-scroll {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
   }
 }
 
@@ -40,12 +46,12 @@
 :root {
   --background: #ffffff;
   --foreground: #0f172a;
-  --accent-primary: #6366F1;
-  --accent-primary-hover: #818CF8;
+  --accent-primary: #10B981;
+  --accent-primary-hover: #059669;
   --accent-cyan: #06b6d4;
-  --accent-purple: #7c3aed;
-  --accent-pink: #ec4899;
-  --glass-bg: rgba(255, 255, 255, 0.8);
+  --accent-emerald: #10B981;
+  --accent-mint: #34D399;
+  --glass-bg: rgba(255, 255, 255, 0.85);
   --glass-border: rgba(15, 23, 42, 0.08);
   --card-bg: #ffffff;
   --card-border: #e2e8f0;
@@ -54,8 +60,8 @@
   --text-heading: #0f172a;
   --text-body: #475569;
   --section-alt-bg: #f8fafc;
-  --hero-gradient-from: #6366F1;
-  --hero-gradient-to: #a855f7;
+  --hero-gradient-from: #10B981;
+  --hero-gradient-to: #059669;
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-display: var(--font-syne), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), monospace;
@@ -63,19 +69,19 @@
 
 /* ─── Dark Theme Variables ─── */
 .dark {
-  --background: #08090A;
-  --foreground: #F4F4F5;
-  --glass-bg: rgba(17, 18, 20, 0.8);
-  --glass-border: rgba(255, 255, 255, 0.06);
-  --card-bg: #111214;
-  --card-border: #2A2B2E;
-  --card-bg-hover: #1A1B1E;
-  --text-muted: #a1a1aa;
-  --text-heading: #F4F4F5;
-  --text-body: #A1A1AA;
-  --section-alt-bg: #0D0E10;
-  --hero-gradient-from: #6366F1;
-  --hero-gradient-to: #a855f7;
+  --background: #060907;
+  --foreground: #F3F4F6;
+  --glass-bg: rgba(10, 15, 12, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --card-bg: #0A0F0C;
+  --card-border: #1E2E25;
+  --card-bg-hover: #111C16;
+  --text-muted: #9CA3AF;
+  --text-heading: #F3F4F6;
+  --text-body: #9CA3AF;
+  --section-alt-bg: #080D0A;
+  --hero-gradient-from: #10B981;
+  --hero-gradient-to: #34D399;
 }
 
 /* ─── Base ─── */
@@ -315,7 +321,7 @@ body {
   position: absolute;
   top: 0;
   left: 1rem;
-  background: #6366F1;
+  background: #10B981;
   color: white;
   font-size: 0.65rem;
   font-weight: 700;

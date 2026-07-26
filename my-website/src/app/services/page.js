@@ -89,11 +89,11 @@ export default function ServicesPage() {
       {/* ─── Hero Section ─── */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 border-b border-[var(--card-border)] overflow-hidden bg-gradient-to-b from-[var(--background)] via-[var(--card-bg)] to-[var(--background)]">
         {/* Glow Spheres */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-[#6366F1]/20 via-[#a855f7]/15 to-transparent rounded-full blur-[120px] pointer-events-none -z-10" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-[#10B981]/20 via-[#34D399]/15 to-transparent rounded-full blur-[120px] pointer-events-none -z-10" />
 
         <div className="max-w-7xl mx-auto px-6 lg:px-16 text-center">
           <AnimatedSection direction="up" delay={0.05}>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#6366F1]/10 border border-[#6366F1]/20 text-[#6366F1] dark:text-[#818CF8] text-xs font-extrabold uppercase tracking-wider mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#10B981]/10 border border-[#10B981]/20 text-[#10B981] dark:text-[#34D399] text-xs font-extrabold uppercase tracking-wider mb-6">
               <Sparkles size={14} />
               <span>END-TO-END DIGITAL CAPABILITIES</span>
             </div>
@@ -101,7 +101,7 @@ export default function ServicesPage() {
 
           <AnimatedSection direction="up" delay={0.1}>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[var(--text-heading)] tracking-tight leading-[1.1] mb-6 max-w-4xl mx-auto">
-              We <span className="bg-gradient-to-r from-[#6366F1] to-[#a855f7] text-transparent bg-clip-text">Build, Grow &amp; Scale</span> Your Digital Presence
+              We <span className="bg-gradient-to-r from-[#10B981] to-[#34D399] text-transparent bg-clip-text">Build, Grow &amp; Scale</span> Your Digital Presence
             </h1>
           </AnimatedSection>
 
@@ -114,14 +114,14 @@ export default function ServicesPage() {
           <AnimatedSection direction="up" delay={0.2} className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2.5 bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-bold text-base py-4 px-9 rounded-full shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-105 active:scale-95 w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2.5 bg-gradient-to-br from-[#10B981] to-[#059669] text-white font-bold text-base py-4 px-9 rounded-full shadow-[0_0_25px_rgba(16,185,129,0.3)] transition-all duration-300 hover:scale-105 active:scale-95 w-full sm:w-auto"
             >
               <span>Get Started</span>
               <ArrowRight size={18} />
             </Link>
             <a
               href="#all-services"
-              className="inline-flex items-center justify-center gap-2 bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-heading)] font-semibold text-base py-4 px-8 rounded-full hover:border-[#6366F1] hover:text-[#6366F1] transition-all duration-300 w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-heading)] font-semibold text-base py-4 px-8 rounded-full hover:border-[#10B981] hover:text-[#10B981] transition-all duration-300 w-full sm:w-auto"
             >
               <Compass size={18} />
               <span>Explore Services</span>
@@ -134,7 +134,7 @@ export default function ServicesPage() {
       <section className="py-20 bg-[var(--section-alt-bg)] border-b border-[var(--card-border)] relative">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-[#6366F1] dark:text-[#818CF8] bg-[#6366F1]/10 px-3.5 py-1.5 rounded-full border border-[#6366F1]/20 mb-4 inline-block">
+            <span className="text-xs font-extrabold uppercase tracking-widest text-[#10B981] dark:text-[#34D399] bg-[#10B981]/10 px-3.5 py-1.5 rounded-full border border-[#10B981]/20 mb-4 inline-block">
               OUR SERVICE ARCHITECTURE
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[var(--text-heading)] tracking-tight mt-3 mb-4">
@@ -147,13 +147,13 @@ export default function ServicesPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* BUILD Card */}
-            <AnimatedSection direction="up" delay={0.1} className="bg-[var(--card-bg)] border border-[#6366F1]/30 rounded-3xl p-8 shadow-[var(--shadow-card)] relative overflow-hidden flex flex-col justify-between">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-[#6366F1]/10 rounded-full blur-xl pointer-events-none" />
+            <AnimatedSection direction="up" delay={0.1} className="bg-[var(--card-bg)] border border-[#10B981]/30 rounded-3xl p-8 shadow-[var(--shadow-card)] relative overflow-hidden flex flex-col justify-between">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-[#10B981]/10 rounded-full blur-xl pointer-events-none" />
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-[#6366F1]/10 text-[#6366F1] border border-[#6366F1]/20 flex items-center justify-center mb-6">
+                <div className="w-12 h-12 rounded-2xl bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/20 flex items-center justify-center mb-6">
                   <Code2 size={24} />
                 </div>
-                <div className="inline-block px-3 py-1 rounded-full bg-[#6366F1]/10 text-[#6366F1] font-bold text-xs uppercase tracking-wider mb-4">
+                <div className="inline-block px-3 py-1 rounded-full bg-[#10B981]/10 text-[#10B981] font-bold text-xs uppercase tracking-wider mb-4">
                   PILLAR 01
                 </div>
                 <h3 className="text-2xl font-black text-[var(--text-heading)] mb-3">
@@ -165,11 +165,11 @@ export default function ServicesPage() {
               </div>
 
               <div className="pt-6 border-t border-[var(--card-border)] space-y-2">
-                <Link href="/services/web-development" className="flex items-center justify-between text-xs font-bold text-[var(--text-heading)] hover:text-[#6366F1] transition-colors py-1.5">
+                <Link href="/services/web-development" className="flex items-center justify-between text-xs font-bold text-[var(--text-heading)] hover:text-[#10B981] transition-colors py-1.5">
                   <span>• Web Development</span>
                   <ArrowRight size={14} />
                 </Link>
-                <Link href="/services/ui-ux-product-design" className="flex items-center justify-between text-xs font-bold text-[var(--text-heading)] hover:text-[#6366F1] transition-colors py-1.5">
+                <Link href="/services/ui-ux-product-design" className="flex items-center justify-between text-xs font-bold text-[var(--text-heading)] hover:text-[#10B981] transition-colors py-1.5">
                   <span>• UI/UX &amp; Product Design</span>
                   <ArrowRight size={14} />
                 </Link>

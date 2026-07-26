@@ -52,7 +52,7 @@ export default function TableOfContents({ headings, isMobile = false }) {
               {isActive && (
                 <motion.div
                   layoutId="activeIndicator"
-                  className="absolute left-[-1px] top-0 bottom-0 w-0.5 bg-[#6366F1]"
+                  className="absolute left-[-1px] top-0 bottom-0 w-0.5 bg-[#10B981]"
                   initial={false}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
@@ -65,7 +65,7 @@ export default function TableOfContents({ headings, isMobile = false }) {
                   ${indent}
                   ${
                     isActive
-                      ? "text-[#6366F1] dark:text-[#818CF8] bg-[#6366F1]/5 font-bold"
+                      ? "text-[#10B981] dark:text-[#34D399] bg-[#10B981]/5 font-bold"
                       : "text-[var(--text-muted)] hover:text-[var(--text-heading)] hover:bg-white/5"
                   }
                 `}
@@ -89,14 +89,14 @@ export default function TableOfContents({ headings, isMobile = false }) {
           aria-controls="toc-mobile-content"
         >
           <span className="flex items-center gap-2">
-            <List size={18} className="text-[#6366F1]" />
+            <List size={18} className="text-[#10B981]" />
             Table of Contents
           </span>
           <motion.div
             animate={{ rotate: mobileOpen ? 180 : 0 }}
             transition={{ duration: 0.3 }}
           >
-            <ChevronDown size={18} className="text-[#6366F1]" />
+            <ChevronDown size={18} className="text-[#10B981]" />
           </motion.div>
         </button>
 
@@ -123,7 +123,7 @@ export default function TableOfContents({ headings, isMobile = false }) {
     <aside className="w-full shrink-0" id="toc-desktop">
       <div className="sticky top-32 max-h-[calc(100vh-10rem)] overflow-y-auto pr-2 scrollbar-thin pb-10">
         <div className="flex items-center gap-2 mb-6 px-3">
-          <List size={18} className="text-[#6366F1]" />
+          <List size={18} className="text-[#10B981]" />
           <h2 className="text-sm font-bold uppercase tracking-widest text-[var(--text-heading)]">
             On This Page
           </h2>

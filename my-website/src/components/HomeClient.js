@@ -1,13 +1,46 @@
 'use client';
 
-import Link from "next/link";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { ArrowRight, TerminalSquare, Github, Linkedin, Twitter, Youtube } from "lucide-react";
-import CaseStudiesSection from "./CaseStudiesSection";
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import {
+  ArrowRight,
+  Sparkles,
+  Code2,
+  Cpu,
+  Server,
+  Database,
+  Cloud,
+  ShieldCheck,
+  Zap,
+  Layers,
+  Globe,
+  TerminalSquare,
+  CheckCircle2,
+  ChevronRight,
+  Star,
+  Lock,
+  BarChart3,
+  Building2,
+  Stethoscope,
+  ShoppingCart,
+  Bot,
+  HelpCircle,
+} from 'lucide-react';
+
+import dynamic from 'next/dynamic';
+import CaseStudiesSection from './CaseStudiesSection';
+import HeroSection from './hero/HeroSection';
+
+// Dynamic Heavy Components for Performance
+const DevShowcase = dynamic(() => import('@/components/home/DevShowcase'), { ssr: false });
+const TechEcosystem3D = dynamic(() => import('@/components/home/TechEcosystem3D'), { ssr: false });
+const ComparisonTable = dynamic(() => import('@/components/home/ComparisonTable'), { ssr: false });
+const PricingSection = dynamic(() => import('@/components/home/PricingSection'), { ssr: false });
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 32 },
+  hidden: { opacity: 0, y: 30 },
   visible: (delay = 0) => ({
     opacity: 1,
     y: 0,
@@ -15,389 +48,422 @@ const fadeUp = {
   }),
 };
 
-const stagger = {
+const staggerContainer = {
   hidden: {},
   visible: {
     transition: { staggerChildren: 0.1 },
   },
 };
 
-const staggerItem = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-  },
-};
-
 export default function HomeClient({ featuredPosts, caseStudies }) {
   return (
-    <>
-      {/* ═══════════ HERO SECTION ═══════════ */}
-      <section className="relative min-h-[100vh] flex flex-col items-center justify-center px-6 pt-28 md:pt-32 lg:pt-36 pb-16 overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 grid-bg" />
-        <div className="absolute top-[10%] left-[15%] w-[280px] sm:w-[400px] md:w-[500px] h-[280px] sm:h-[400px] md:h-[500px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.12)_0%,transparent_70%)] blur-3xl animate-[float_10s_ease-in-out_infinite]" />
-        <div className="absolute top-[30%] right-[10%] w-[320px] sm:w-[450px] md:w-[600px] h-[320px] sm:h-[450px] md:h-[600px] rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.1)_0%,transparent_70%)] blur-3xl animate-[float_12s_ease-in-out_infinite_reverse]" />
+    <div className="relative min-h-screen bg-[#060907] text-[#F3F4F6] overflow-x-hidden">
+      {/* ═══════════════════════════════════════════════════════════
+         1. FULL 3D INTERACTIVE HERO SECTION
+         ═══════════════════════════════════════════════════════════ */}
+      <HeroSection />
 
-        <motion.div
-          className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center"
-          initial="hidden"
-          animate="visible"
-          variants={stagger}
-        >
-          {/* Floating Badge */}
-          <motion.div variants={staggerItem}>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-xs font-bold uppercase tracking-[0.12em] text-[#4F46E5] dark:text-[#818CF8] mb-6 shadow-sm backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-[#6366F1] animate-pulse" />
-              Developer Blog
-            </span>
-          </motion.div>
-
-          {/* Hero Heading */}
-          <motion.h1
-            variants={staggerItem}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6 text-[var(--text-heading)]"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            Developer Notes on{' '}
-            <span className="gradient-text">Frontend, SaaS</span>
-            {' '}&amp; Growth
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            variants={staggerItem}
-            className="text-base sm:text-lg md:text-xl text-[var(--text-body)] max-w-2xl mx-auto mb-10 leading-relaxed"
-          >
-            Personal insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div variants={staggerItem} className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-            <Link
-              href="/blog"
-              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-bold text-base transition-all duration-300 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)] hover:-translate-y-1 hover:scale-105 w-full sm:w-auto"
-            >
-              Read Latest Articles
-              <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href="/categories"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[var(--card-bg)] shadow-[var(--shadow-card)] text-[var(--foreground)] font-bold text-base transition-all duration-300 hover:shadow-[var(--shadow-3d)] hover:border-[#6366F1]/50 hover:-translate-y-1 w-full sm:w-auto"
-            >
-              Explore Categories
-            </Link>
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* ═══════════ TICKER SECTION ═══════════ */}
-      <section className="relative py-4 border-t border-b border-[var(--card-border)] overflow-hidden bg-[var(--card-bg)] flex items-center" aria-hidden="true">
-        {/* Ticker Container with fades */}
-        <div className="w-full overflow-hidden relative">
-          {/* Gradient Fades */}
-          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[var(--card-bg)] to-transparent pointer-events-none z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[var(--card-bg)] to-transparent pointer-events-none z-10" />
-
-          {/* Scrolling Track */}
-          <div className="ticker-track">
-            {[...Array(2)].map((_, i) => (
-              <div key={i} className="flex shrink-0">
-                {["Mobile Development", "DevOps", "Digital Marketing", "UI/UX Patterns", "AI Learning", "Animations"].map((item) => (
-                  <span key={item} className="ticker-item text-lg sm:text-xl font-extrabold uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--foreground)] transition-colors whitespace-nowrap">
-                    ✦ {item}
-                  </span>
-                ))}
-              </div>
+      {/* ═══════════════════════════════════════════════════════════
+         2. CLIENT & TECH STACK TICKER MARQUEE
+         ═══════════════════════════════════════════════════════════ */}
+      <section className="py-6 border-b border-[#1E2E25] bg-[#0A0F0C] overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 mb-3 text-center">
+          <span className="text-[11px] font-mono uppercase tracking-widest text-[#9CA3AF]">
+            Engineered With Modern Enterprise Stack
+          </span>
+        </div>
+        <div className="relative w-full overflow-hidden flex items-center">
+          <div className="flex gap-12 animate-[ticker-scroll_30s_linear_infinite] whitespace-nowrap">
+            {[
+              'React 19',
+              'Next.js 16',
+              'TypeScript',
+              'AWS Cloud Services',
+              'OpenAI Agents',
+              'PostgreSQL',
+              'Node.js',
+              'Docker Containerization',
+              'TailwindCSS v4',
+              'Three.js WebGL',
+              'Prisma ORM',
+              'GraphQL API',
+            ].concat([
+              'React 19',
+              'Next.js 16',
+              'TypeScript',
+              'AWS Cloud Services',
+              'OpenAI Agents',
+              'PostgreSQL',
+              'Node.js',
+              'Docker Containerization',
+            ]).map((tech, i) => (
+              <span
+                key={i}
+                className="inline-flex items-center gap-2 text-sm font-mono font-semibold text-[#9CA3AF] hover:text-[#10B981] transition-colors cursor-default"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
+                {tech}
+              </span>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══════════ FEATURED ARTICLES ═══════════ */}
-      <section className="py-12 md:py-16">
-        <motion.div
-          className="max-w-7xl mx-auto px-6 lg:px-16"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={stagger}
-        >
-          {/* Section Header */}
-          <motion.div variants={staggerItem} className="mb-12">
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3 text-[var(--text-heading)]">
-              Featured <span className="gradient-text">Articles</span>
-            </h2>
-            <p className="text-[var(--text-body)] text-lg max-w-lg">
-              Deep dives into architecture, scaling, and engineering workflows.
-            </p>
-          </motion.div>
+      {/* ═══════════════════════════════════════════════════════════
+         3. PROBLEM STATEMENT & VALUE PROPOSITION
+         ═══════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 max-w-7xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
+            The Engineering Advantage
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
+            Stop Settling for Bloated Legacy Software
+          </h2>
+          <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
+            Traditional software development is plagued by slow release cycles, technical debt, and fragile architectures. We build sleek, AI-native platforms engineered for performance and scalability.
+          </p>
+        </div>
 
-          {/* Featured Bento Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Hero Article */}
-            <motion.article
-              variants={staggerItem}
-              whileHover={{ y: -5, rotateX: 1, rotateY: -1 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="group relative rounded-3xl overflow-hidden border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-3d)] transition-shadow duration-500 min-h-[320px] sm:min-h-[380px] lg:min-h-[420px] lg:col-span-2 lg:row-span-2"
-            >
-              <Image
-                src={featuredPosts[0].image}
-                alt={featuredPosts[0].title}
-                fill
-                priority={true}
-                fetchPriority="high"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#08090A] via-[#08090A]/60 to-transparent" />
-              <div className="absolute bottom-0 left-0 p-8 flex flex-col justify-end h-full w-full z-10">
-                <span className="bg-[#6366F1] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider w-fit mb-4 shadow-sm">
-                  {featuredPosts[0].category}
-                </span>
-                <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-3 leading-snug">
-                  {featuredPosts[0].title}
-                </h3>
-                <div className="flex items-center text-slate-300 text-sm font-medium">
-                  <span>{featuredPosts[0].date} • {featuredPosts[0].readingTime}</span>
-                </div>
-                <Link href={featuredPosts[0].href} className="absolute inset-0 z-20"><span className="sr-only">Read more about {featuredPosts[0].title}</span></Link>
+        {/* Bento Grid Split: Legacy vs Code with Amrendra */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Legacy Side */}
+          <div className="rounded-3xl bg-[#0A0F0C] border border-red-500/20 p-8 shadow-xl relative overflow-hidden">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center font-bold text-lg">
+                ✕
               </div>
-            </motion.article>
-
-            {/* Supporting Articles */}
-            <div className="flex flex-col gap-6">
-              {featuredPosts.slice(1, 4).map((post, index) => (
-                <motion.article
-                  key={index}
-                  variants={staggerItem}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  className="flex flex-col sm:flex-row gap-5 group items-center bg-[var(--card-bg)] p-4 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:border-[#6366F1]/30 hover:shadow-[var(--shadow-3d)] transition-all duration-300 relative h-full"
-                >
-                  <div className="relative w-full sm:w-32 h-40 sm:h-32 shrink-0 rounded-2xl overflow-hidden">
-                    <Image src={post.image} alt={post.title} fill sizes="150px" className="object-cover transition-transform duration-500 group-hover:scale-110" />
-                  </div>
-                  <div className="flex flex-col justify-center min-w-0">
-                    <span className="text-[#6366F1] dark:text-[#818CF8] text-[11px] font-extrabold uppercase tracking-wider mb-2">
-                      {post.category}
-                    </span>
-                    <h3 className="text-lg sm:text-xl font-bold text-[var(--text-heading)] mb-2 leading-tight group-hover:text-[#6366F1] dark:group-hover:text-[#818CF8] transition-colors line-clamp-2">
-                      <Link href={post.href} className="before:absolute before:inset-0 z-10">
-                        {post.title}
-                      </Link>
-                    </h3>
-                    <div className="text-[var(--text-muted)] text-[13px] font-medium">
-                      <span>{post.date} • {post.readingTime}</span>
-                    </div>
-                  </div>
-                </motion.article>
-              ))}
-            </div>
-          </div>
-
-          {/* View All Button */}
-          <motion.div variants={staggerItem} className="flex justify-center mt-12">
-            <Link
-              href="/blog"
-              className="group inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] font-bold transition-all duration-300 hover:-translate-y-1 hover:border-[#6366F1]/30 hover:shadow-lg"
-            >
-              View All Posts <ArrowRight size={18} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* ═══════════ CASE STUDIES ═══════════ */}
-      <CaseStudiesSection caseStudies={caseStudies} />
-
-      {/* ═══════════ ABOUT THE BLOGGER ═══════════ */}
-      <section className="py-12 md:py-16 bg-[var(--section-alt-bg)]">
-        <motion.div
-          className="max-w-5xl mx-auto px-6 lg:px-16 flex flex-col md:flex-row items-center gap-12"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={stagger}
-        >
-          {/* Profile Image with Gradient Ring */}
-          <motion.div variants={staggerItem} className="shrink-0">
-            <div className="relative">
-              <div className="absolute -inset-1.5 rounded-2xl bg-gradient-to-br from-[#6366F1] to-[#a855f7] opacity-60 blur-sm" />
-              <div className="relative w-52 h-52 md:w-64 md:h-64 rounded-2xl overflow-hidden border-2 border-[var(--card-border)]">
-                <Image
-                  src="/Profile photo.jpeg"
-                  alt="Amrendra - Technical Content Writer"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  className="object-cover"
-                />
+              <div>
+                <h3 className="text-lg font-bold text-white">Traditional Development Agencies</h3>
+                <p className="text-xs text-[#9CA3AF]">Slow, expensive, &amp; maintenance-heavy</p>
               </div>
             </div>
-          </motion.div>
-
-          {/* About Content */}
-          <div className="flex flex-col gap-5 text-center md:text-left">
-            <motion.h2 variants={staggerItem} className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[var(--text-heading)]">
-              Hi, I&apos;m <span className="gradient-text">Amrendra</span>
-            </motion.h2>
-            <motion.p variants={staggerItem} className="text-lg text-[var(--text-body)] leading-relaxed max-w-xl">
-              Software engineer, cloud architect, and technical writer sharing practical insights on frontend engineering, AI systems, scalable SaaS platforms, and DevOps automation.
-            </motion.p>
-
-            {/* Stats Row */}
-            <motion.div variants={staggerItem} className="flex flex-wrap items-center justify-center md:justify-start gap-6 text-sm font-bold text-[var(--text-muted)]">
-              <span>15+ Articles</span>
-              <span className="w-1 h-1 rounded-full bg-[var(--text-muted)]" />
-              <span>8 Categories</span>
-              <span className="w-1 h-1 rounded-full bg-[var(--text-muted)]" />
-              <span>Growing Readers</span>
-            </motion.div>
-
-            {/* Tech Stack Badges */}
-            <motion.div variants={staggerItem} className="flex flex-wrap gap-3 justify-center md:justify-start">
-              {["React & Next.js", "AWS & Terraform", "Python & AI Agents", "Node.js & Go"].map((tech) => (
-                <span
-                  key={tech}
-                  className="px-4 py-2 rounded-full text-sm font-semibold bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-body)] hover:border-[#6366F1]/30 hover:text-[#6366F1] dark:hover:text-[#818CF8] transition-all duration-300"
-                >
-                  {tech}
-                </span>
-              ))}
-            </motion.div>
-
-            <motion.div variants={staggerItem}>
-              <Link
-                href="/about"
-                className="group inline-flex items-center gap-2 px-7 py-3 rounded-full bg-[#6366F1] text-white font-bold transition-all duration-300 hover:shadow-[0_8px_30px_rgba(99,102,241,0.4)] hover:-translate-y-0.5"
-              >
-                More About Me
-                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-            </motion.div>
+            <ul className="space-y-4 text-xs text-[#9CA3AF]">
+              <li className="flex items-center gap-3">
+                <span className="text-red-400 font-bold">✕</span> 6–12 month lengthy delivery timelines
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="text-red-400 font-bold">✕</span> High latency &amp; poor Core Web Vitals
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="text-red-400 font-bold">✕</span> Messy spaghetti code &amp; technical debt
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="text-red-400 font-bold">✕</span> Manual testing with frequent production bugs
+              </li>
+            </ul>
           </div>
-        </motion.div>
-      </section>
 
-      {/* ═══════════ NEWSLETTER SECTION ═══════════ */}
-      <section className="py-12 md:py-16 px-6">
-        <motion.div
-          className="relative max-w-3xl mx-auto rounded-3xl p-8 sm:p-12 text-center overflow-hidden border border-[var(--card-border)] bg-[var(--card-bg)]"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={stagger}
-        >
-          {/* Radial glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.08)_0%,transparent_70%)] pointer-events-none" />
-
-          <motion.div variants={staggerItem} className="relative z-10 flex flex-col items-center">
-            <div className="w-16 h-16 rounded-2xl bg-[#6366F1]/10 dark:bg-[#6366F1]/15 border border-[#6366F1]/20 flex items-center justify-center text-[#6366F1] dark:text-[#818CF8] mb-6 rotate-[-8deg] shadow-[0_10px_30px_rgba(99,102,241,0.1)]">
-              <TerminalSquare size={32} />
+          {/* Code with Amrendra Side */}
+          <div className="rounded-3xl bg-gradient-to-br from-[#111C16] to-[#0A0F0C] border-2 border-[#10B981] p-8 shadow-[0_0_40px_rgba(16,185,129,0.2)] relative overflow-hidden">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-[#10B981] text-white flex items-center justify-center font-bold text-lg">
+                ✓
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white">Code with Amrendra</h3>
+                <p className="text-xs text-[#34D399]">High-velocity, AI-native &amp; sub-second fast</p>
+              </div>
             </div>
-
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-3 text-[var(--text-heading)]">
-              Join the <span className="gradient-text">Developer Weekly Journal</span>
-            </h2>
-
-            <p className="text-[var(--text-body)] text-lg max-w-lg mx-auto mb-8 leading-relaxed">
-              Get practical engineering insights, AI workflows, cloud architecture tips, and developer resources every week.
-            </p>
-
-            <form className="w-full max-w-md flex flex-col sm:flex-row gap-3 mx-auto" action="#">
-              <input
-                type="email"
-                placeholder="name@company.com"
-                aria-label="Email address for weekly journal"
-                className="flex-1 px-5 py-4 rounded-2xl bg-[var(--background)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] text-[var(--foreground)] outline-none text-base transition-all duration-300 focus:border-[#6366F1] focus:shadow-[var(--shadow-glow)] placeholder:text-[var(--text-muted)]"
-                required
-              />
-              <button
-                type="submit"
-                className="px-8 py-4 rounded-2xl bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-bold border-none cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-glow)] hover:scale-105 shrink-0"
-              >
-                Subscribe
-              </button>
-            </form>
-
-            <p className="text-xs text-[var(--text-muted)] mt-4">No spam. Unsubscribe anytime.</p>
-          </motion.div>
-        </motion.div>
+            <ul className="space-y-4 text-xs text-[#F3F4F6]">
+              <li className="flex items-center gap-3">
+                <span className="text-[#10B981] font-bold">✓</span> Bi-weekly rapid sprint deployments
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="text-[#10B981] font-bold">✓</span> Sub-second loading speed (99+ Lighthouse)
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="text-[#10B981] font-bold">✓</span> Type-safe, modular React 19 / TypeScript architecture
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="text-[#10B981] font-bold">✓</span> Autonomous AI agent QA &amp; 100% test coverage
+              </li>
+            </ul>
+          </div>
+        </div>
       </section>
 
-      {/* ═══════════ TESTIMONIAL SECTION ═══════════ */}
-      <section className="py-12 md:py-16 bg-[var(--section-alt-bg)] border-t border-b border-[var(--card-border)]">
-        <motion.div
-          className="max-w-4xl mx-auto px-6 text-center"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={stagger}
-        >
-          <motion.blockquote variants={staggerItem} className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--text-heading)] leading-snug mb-8 italic" style={{ fontFamily: 'Georgia, serif' }}>
-            &ldquo;One of the most practical and well-designed engineering blogs I follow. The insights on architecture are unparalleled.&rdquo;
-          </motion.blockquote>
-          <motion.div variants={staggerItem} className="flex items-center justify-center gap-4">
-            <Image
-              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop"
-              alt="Sarah J."
-              width={48}
-              height={48}
-              className="rounded-full object-cover ring-2 ring-[var(--card-border)]"
-            />
-            <div className="text-left">
-              <span className="block font-bold text-[var(--text-heading)]">Sarah Jenkins</span>
-              <span className="block text-sm text-[var(--text-muted)]">Lead Frontend Engineer</span>
-            </div>
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* ═══════════ SOCIAL / CONNECT SECTION ═══════════ */}
-      <section className="py-12 md:py-16">
-        <motion.div
-          className="max-w-5xl mx-auto px-6 lg:px-16"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={stagger}
-        >
-          {/* Header */}
-          <motion.div variants={staggerItem} className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3 text-[var(--text-heading)]">
-              Let&apos;s <span className="gradient-text">Connect</span>
+      {/* ═══════════════════════════════════════════════════════════
+         4. CORE SERVICES OVERVIEW (3D TILT CARDS)
+         ═══════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 bg-[#080D0A] border-y border-[#1E2E25] relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
+              Core Expertise
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
+              Enterprise Software Solutions
             </h2>
-            <p className="text-[var(--text-body)] text-lg">
-              Find me around the web where I build in public.
+            <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
+              We specialize in modern full-stack web engineering, custom AI agent integrations, cloud architecture, and high-conversion digital experiences.
             </p>
-          </motion.div>
+          </div>
 
-          {/* Social Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { name: "GitHub", href: "https://github.com/AmrendraCodes", icon: Github, label: "Visit Amrendra GitHub Profile" },
-              { name: "Twitter / X", href: "https://x.com/codewithamrendr", icon: Twitter, label: "Visit Amrendra Twitter Profile" },
-              { name: "LinkedIn", href: "https://www.linkedin.com/in/amrendra-reactdev/", icon: Linkedin, label: "Visit Amrendra LinkedIn Profile" },
-              { name: "YouTube", href: "https://www.youtube.com/@codewithamrendra", icon: Youtube, label: "Visit Amrendra YouTube Channel" },
-            ].map(({ name, href, icon: Icon, label }) => (
-              <motion.a
-                key={name}
-                variants={staggerItem}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="group flex flex-col items-center justify-center gap-3 p-6 md:p-8 rounded-2xl bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] transition-all duration-300 hover:-translate-y-1 hover:border-[#6366F1]/40 hover:shadow-[0_0_40px_rgba(99,102,241,0.1)] no-underline"
-              >
-                <Icon size={28} className="text-[var(--text-muted)] group-hover:text-[#6366F1] dark:group-hover:text-[#818CF8] transition-colors duration-300" />
-                <span className="font-bold text-base">{name}</span>
-              </motion.a>
-            ))}
+              {
+                icon: Code2,
+                title: 'Full-Stack Web Engineering',
+                desc: 'Custom React 19 & Next.js 16 web applications engineered for extreme speed, SEO, and flawless responsiveness.',
+                tag: 'Next.js • React • TS',
+              },
+              {
+                icon: Sparkles,
+                title: 'AI & Autonomous LLM Agents',
+                desc: 'Integrate intelligent AI workflows, custom RAG pipelines, and automated agentic decision systems into your product.',
+                tag: 'OpenAI • LangChain • RAG',
+              },
+              {
+                icon: Globe,
+                title: 'SaaS Product Architecture',
+                desc: 'End-to-end SaaS engineering including multi-tenant databases, subscription billing (Stripe), and auth infrastructure.',
+                tag: 'SaaS • Stripe • Auth0',
+              },
+              {
+                icon: Cloud,
+                title: 'AWS Cloud & DevOps Automation',
+                desc: 'Serverless ECS, Lambda, Docker containers, and CI/CD pipelines configured for auto-scaling and security.',
+                tag: 'AWS • Docker • Terraform',
+              },
+              {
+                icon: Layers,
+                title: 'API Engineering & Integration',
+                desc: 'High-throughput REST and GraphQL APIs connecting complex third-party tools, databases, and microservices.',
+                tag: 'REST • GraphQL • Node',
+              },
+              {
+                icon: Zap,
+                title: 'Performance Audit & Optimization',
+                desc: 'Transform slow, legacy codebases into lightning-fast platforms with Core Web Vitals optimization.',
+                tag: '99+ Lighthouse Guarantee',
+              },
+            ].map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <div
+                  key={index}
+                  className="group relative rounded-3xl bg-[#0A0F0C] border border-[#1E2E25] p-8 transition-all duration-300 hover:border-[#10B981]/60 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(16,185,129,0.15)] flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="w-14 h-14 rounded-2xl bg-[#111C16] border border-[#10B981]/30 text-[#10B981] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#10B981] group-hover:text-white transition-all duration-300">
+                      <Icon size={26} />
+                    </div>
+                    <span className="text-[10px] font-mono text-[#34D399] uppercase tracking-wider block mb-2">
+                      {service.tag}
+                    </span>
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#10B981] transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-xs text-[#9CA3AF] leading-relaxed mb-6">
+                      {service.desc}
+                    </p>
+                  </div>
+                  <Link
+                    href="/services"
+                    className="inline-flex items-center gap-2 text-xs font-bold text-[#10B981] group-hover:translate-x-1 transition-transform"
+                  >
+                    <span>Learn More</span>
+                    <ChevronRight size={14} />
+                  </Link>
+                </div>
+              );
+            })}
           </div>
-        </motion.div>
+        </div>
       </section>
-    </>
+
+      {/* ═══════════════════════════════════════════════════════════
+         5. INTERACTIVE LIVE PRODUCT / WORKFLOW SHOWCASE
+         ═══════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 max-w-7xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
+            Interactive Product Preview
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
+            See Our Engineering Pipeline in Action
+          </h2>
+          <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
+            Test drive our interactive autonomous engineering console below to explore how we monitor performance, test AI workflows, and automate deployments.
+          </p>
+        </div>
+
+        <DevShowcase />
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+         6. INTERACTIVE TECHNOLOGY ECOSYSTEM GRAPH
+         ═══════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 bg-[#080D0A] border-y border-[#1E2E25]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
+              Technology Ecosystem
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
+              Connected Engineering Architecture
+            </h2>
+            <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
+              Our central engineering core unifies front-end frameworks, serverless cloud infrastructure, AI models, and databases into a seamless ecosystem.
+            </p>
+          </div>
+
+          <TechEcosystem3D />
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+         7. DEVELOPMENT PROCESS TIMELINE
+         ═══════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 max-w-7xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
+            How We Execute
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
+            Our 4-Step Engineering Process
+          </h2>
+          <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
+            From architecture blueprinting to production launch, we maintain complete transparency and continuous bi-weekly sprint deliverables.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {[
+            {
+              step: '01',
+              title: 'Discovery & Architecture',
+              desc: 'We analyze your requirements, define database schemas, and blueprint a high-performance system architecture.',
+            },
+            {
+              step: '02',
+              title: 'High-Velocity Sprints',
+              desc: 'Our engineers build your product in rapid 2-week iterations with continuous staging previews.',
+            },
+            {
+              step: '03',
+              title: 'Autonomous QA & Audit',
+              desc: 'Rigorous automated testing for security, accessibility, Core Web Vitals, and cross-browser stability.',
+            },
+            {
+              step: '04',
+              title: 'Cloud Deployment & SLA',
+              desc: 'Zero-downtime deployment to AWS/Vercel edge infrastructure with 24/7 SLA monitoring.',
+            },
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              className="rounded-3xl bg-[#0A0F0C] border border-[#1E2E25] p-6 hover:border-[#10B981]/50 transition-all duration-300 flex flex-col justify-between"
+            >
+              <div>
+                <span className="text-3xl font-extrabold font-mono text-[#10B981] block mb-4">
+                  {item.step}
+                </span>
+                <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                <p className="text-xs text-[#9CA3AF] leading-relaxed">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+         8. FEATURED CASE STUDIES & WORK SHOWCASE
+         ═══════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 bg-[#080D0A] border-y border-[#1E2E25]">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
+            <div>
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
+                Selected Work
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 tracking-tight">
+                Case Studies &amp; Proven Results
+              </h2>
+            </div>
+            <Link
+              href="/case-studies"
+              className="mt-4 md:mt-0 inline-flex items-center gap-2 text-xs font-bold text-[#10B981] hover:underline"
+            >
+              <span>View All Case Studies</span>
+              <ArrowRight size={14} />
+            </Link>
+          </div>
+
+          <CaseStudiesSection caseStudies={caseStudies} />
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+         9. FEATURE COMPARISON MATRIX ("STACKS UP")
+         ═══════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 max-w-7xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
+            Direct Comparison
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
+            How Our Engineering Stacks Up
+          </h2>
+          <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
+            Compare our enterprise standards against traditional development agencies and off-the-shelf templates.
+          </p>
+        </div>
+
+        <ComparisonTable />
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+         10. ENGAGEMENT MODELS & PRICING
+         ═══════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 bg-[#080D0A] border-y border-[#1E2E25]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
+              Flexible Engagement
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
+              Transparent Project &amp; Retainer Plans
+            </h2>
+            <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
+              Choose between rapid fixed-scope sprint projects or dedicated monthly engineering retainers.
+            </p>
+          </div>
+
+          <PricingSection />
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+         11. FINAL HIGH-IMPACT CTA BANNER
+         ═══════════════════════════════════════════════════════════ */}
+      <section className="py-24 px-6 max-w-6xl mx-auto">
+        <div className="relative rounded-3xl bg-gradient-to-br from-[#111C16] via-[#0A0F0C] to-[#060907] border-2 border-[#10B981] p-10 sm:p-16 text-center shadow-[0_0_60px_rgba(16,185,129,0.25)] overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#10B981]/10 rounded-full blur-3xl pointer-events-none" />
+
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#34D399] bg-[#10B981]/20 px-4 py-1.5 rounded-full border border-[#10B981]/40 mb-6 inline-block">
+            Ready to Build?
+          </span>
+
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-white mb-6 tracking-tight max-w-3xl mx-auto">
+            Your Site &amp; SaaS Is Running Right Now. <br />
+            <span className="text-[#10B981]">Is It Performing At Its Peak?</span>
+          </h2>
+
+          <p className="text-base sm:text-lg text-[#9CA3AF] max-w-xl mx-auto mb-10 leading-relaxed">
+            Partner with Code with Amrendra to engineer high-velocity web platforms, AI workflows, and cloud architectures.
+          </p>
+
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-gradient-to-r from-[#10B981] to-[#059669] text-white font-extrabold text-base transition-all duration-300 shadow-[0_0_40px_rgba(16,185,129,0.5)] hover:shadow-[0_0_60px_rgba(16,185,129,0.7)] hover:scale-105 active:scale-95"
+          >
+            <span>Start Your Project Today</span>
+            <ArrowRight size={20} />
+          </Link>
+        </div>
+      </section>
+    </div>
   );
 }

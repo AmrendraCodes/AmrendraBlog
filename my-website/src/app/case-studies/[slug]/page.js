@@ -70,7 +70,7 @@ export default async function CaseStudyPage({ params }) {
       {/* ─── Hero Section ─── */}
       <div className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
         {/* Background glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] bg-[#6366F1]/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] bg-[#10B981]/10 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-[900px] mx-auto text-center flex flex-col items-center">
@@ -78,7 +78,7 @@ export default async function CaseStudyPage({ params }) {
             {/* Back Link */}
             <Link
               href="/case-studies"
-              className="group inline-flex items-center gap-2 text-sm font-semibold text-[var(--text-muted)] hover:text-[#6366F1] dark:hover:text-[#818CF8] transition-colors mb-8 no-underline"
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-[var(--text-muted)] hover:text-[#10B981] dark:hover:text-[#34D399] transition-colors mb-8 no-underline"
             >
               <ArrowLeft size={16} className="transition-transform duration-300 group-hover:-translate-x-1" />
               Back to all case studies
@@ -87,7 +87,7 @@ export default async function CaseStudyPage({ params }) {
             {/* Metric Badge */}
             {study.metricHighlight && (
               <div className="mb-6">
-                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#6366F1] to-[#a855f7] text-white text-xs font-bold tracking-wider shadow-lg shadow-[#6366F1]/25">
+                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#10B981] to-[#059669] text-white text-xs font-bold tracking-wider shadow-lg shadow-[#10B981]/25">
                   {study.metricHighlight}
                 </span>
               </div>
@@ -106,15 +106,15 @@ export default async function CaseStudyPage({ params }) {
             {/* Meta Pills */}
             <div className="flex flex-wrap items-center justify-center gap-3 text-sm font-medium mb-8">
               <div className="flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-[var(--text-body)]">
-                <User size={16} className="text-[#818CF8]" />
+                <User size={16} className="text-[#34D399]" />
                 <span>{study.role}</span>
               </div>
               <div className="flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-[var(--text-body)]">
-                <Briefcase size={16} className="text-[#818CF8]" />
+                <Briefcase size={16} className="text-[#34D399]" />
                 <span>{study.client}</span>
               </div>
               <div className="flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-[var(--text-body)]">
-                <Clock size={16} className="text-[#818CF8]" />
+                <Clock size={16} className="text-[#34D399]" />
                 <span>{study.duration}</span>
               </div>
             </div>
@@ -126,7 +126,7 @@ export default async function CaseStudyPage({ params }) {
                   href={study.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-bold text-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(99,102,241,0.4)] no-underline"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-br from-[#10B981] to-[#059669] text-white font-bold text-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(16,185,129,0.4)] no-underline"
                 >
                   <ExternalLink size={16} />
                   View Live
@@ -137,7 +137,7 @@ export default async function CaseStudyPage({ params }) {
                   href={study.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] font-bold text-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#6366F1]/30 hover:shadow-lg no-underline"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] font-bold text-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#10B981]/30 hover:shadow-lg no-underline"
                 >
                   <Github size={16} />
                   Source Code
@@ -147,7 +147,7 @@ export default async function CaseStudyPage({ params }) {
           </div>
 
           {/* Cover Image */}
-          <div className="max-w-[900px] mx-auto relative aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-[#6366F1]/10 border border-white/10 group mt-4">
+          <div className="max-w-[900px] mx-auto relative aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-[#10B981]/10 border border-white/10 group mt-4">
             <Image
               src={study.coverImage}
               alt={study.title}
@@ -171,11 +171,11 @@ export default async function CaseStudyPage({ params }) {
               prose-h2:text-2xl prose-h2:sm:text-3xl prose-h2:mt-16 prose-h2:mb-6 prose-h2:pb-4 prose-h2:border-b prose-h2:border-[var(--card-border)]
               prose-p:text-[var(--text-body)] prose-p:leading-relaxed
               prose-strong:text-[var(--text-heading)]
-              prose-a:text-[#6366F1] dark:prose-a:text-[#818CF8] prose-a:font-semibold
-              prose-code:text-[#818CF8] prose-code:bg-[#6366F1]/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm prose-code:font-semibold
+              prose-a:text-[#10B981] dark:prose-a:text-[#34D399] prose-a:font-semibold
+              prose-code:text-[#34D399] prose-code:bg-[#10B981]/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm prose-code:font-semibold
               prose-pre:bg-[#111214] prose-pre:border prose-pre:border-[var(--card-border)] prose-pre:rounded-2xl
               prose-li:text-[var(--text-body)]
-              prose-blockquote:border-l-[#6366F1] prose-blockquote:bg-[#6366F1]/5 prose-blockquote:rounded-r-xl prose-blockquote:py-2 prose-blockquote:px-6
+              prose-blockquote:border-l-[#10B981] prose-blockquote:bg-[#10B981]/5 prose-blockquote:rounded-r-xl prose-blockquote:py-2 prose-blockquote:px-6
             ">
               <MarkdownRenderer content={study.content} />
             </div>

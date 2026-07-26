@@ -8,14 +8,14 @@ export default function ServiceCta() {
   return (
     <section className="py-24 bg-gradient-to-b from-[var(--background)] via-[var(--card-bg)] to-[var(--background)] relative overflow-hidden">
       {/* Glow background accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-gradient-to-r from-[#6366F1]/20 to-[#a855f7]/20 rounded-full blur-[100px] pointer-events-none -z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-gradient-to-r from-[#10B981]/20 to-[#34D399]/20 rounded-full blur-[100px] pointer-events-none -z-10" />
 
       <div className="max-w-5xl mx-auto px-6 lg:px-16 text-center">
         <AnimatedSection direction="up" className="bg-gradient-to-br from-[var(--card-bg)] via-[var(--background)] to-[var(--card-bg)] border border-[var(--card-border)] rounded-3xl p-10 sm:p-16 shadow-[var(--shadow-float)] relative overflow-hidden">
           {/* Subtle top border gradient */}
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#6366F1] to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#10B981] to-transparent" />
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6366F1]/10 border border-[#6366F1]/20 text-[#6366F1] dark:text-[#818CF8] text-xs font-extrabold uppercase tracking-wider mb-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#10B981]/10 border border-[#10B981]/20 text-[#10B981] dark:text-[#34D399] text-xs font-extrabold uppercase tracking-wider mb-6">
             <Sparkles size={14} />
             <span>LET&apos;S BUILD SOMETHING GREAT</span>
           </div>
@@ -31,14 +31,14 @@ export default function ServiceCta() {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2.5 bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-bold text-base py-4 px-9 rounded-full shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-105 active:scale-95 w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2.5 bg-gradient-to-br from-[#10B981] to-[#059669] text-white font-bold text-base py-4 px-9 rounded-full shadow-[0_0_25px_rgba(16,185,129,0.3)] transition-all duration-300 hover:scale-105 active:scale-95 w-full sm:w-auto"
             >
               <span>Get Started</span>
               <ArrowRight size={18} />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-heading)] font-semibold text-base py-4 px-8 rounded-full hover:border-[#6366F1] hover:text-[#6366F1] transition-all duration-300 w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-heading)] font-semibold text-base py-4 px-8 rounded-full hover:border-[#10B981] hover:text-[#10B981] transition-all duration-300 w-full sm:w-auto"
             >
               <Mail size={18} />
               <span>Contact Us</span>

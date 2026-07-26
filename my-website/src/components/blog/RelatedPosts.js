@@ -12,7 +12,7 @@ export default function RelatedPosts({ posts }) {
   return (
     <section className="mt-16 pt-10 border-t border-[var(--card-border)]/50">
       <h2 className="text-3xl font-extrabold text-[var(--text-heading)] mb-10 flex items-center tracking-tight">
-        <span className="w-2.5 h-8 bg-gradient-to-b from-[#6366F1] to-[#a855f7] rounded-full mr-4 shadow-sm" />
+        <span className="w-2.5 h-8 bg-gradient-to-b from-[#10B981] to-[#34D399] rounded-full mr-4 shadow-sm" />
         Read Next
       </h2>
 
@@ -21,7 +21,7 @@ export default function RelatedPosts({ posts }) {
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="group bg-[var(--section-alt-bg)]/40 backdrop-blur-md border border-white/5 rounded-2xl overflow-hidden hover:border-[#6366F1]/40 hover:shadow-2xl hover:shadow-[#6366F1]/5 transition-all duration-300 no-underline flex flex-col relative"
+            className="group bg-[var(--section-alt-bg)]/40 backdrop-blur-md border border-white/5 rounded-2xl overflow-hidden hover:border-[#10B981]/40 hover:shadow-2xl hover:shadow-[#10B981]/5 transition-all duration-300 no-underline flex flex-col relative"
           >
             {/* Image */}
             <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl">
@@ -37,7 +37,7 @@ export default function RelatedPosts({ posts }) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute top-3 left-3 z-10">
-                <span className="inline-block px-3 py-1.5 bg-[#6366F1]/90 backdrop-blur-sm text-white text-[10px] font-extrabold uppercase tracking-widest rounded-full shadow-lg">
+                <span className="inline-block px-3 py-1.5 bg-[#10B981]/90 backdrop-blur-sm text-white text-[10px] font-extrabold uppercase tracking-widest rounded-full shadow-lg">
                   {post.category}
                 </span>
               </div>
@@ -45,12 +45,12 @@ export default function RelatedPosts({ posts }) {
 
             {/* Content */}
             <div className="p-5 flex flex-col grow">
-              <h3 className="text-base font-bold text-[var(--text-heading)] line-clamp-2 group-hover:text-[#818CF8] transition-colors mb-3 leading-snug">
+              <h3 className="text-base font-bold text-[var(--text-heading)] line-clamp-2 group-hover:text-[#34D399] transition-colors mb-3 leading-snug">
                 {post.title}
               </h3>
               {post.readTime && (
                 <span className="text-[12px] text-[var(--text-muted)] font-semibold mt-auto flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#6366F1]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
                   {post.readTime}
                 </span>
               )}

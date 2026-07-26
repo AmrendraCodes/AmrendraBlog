@@ -73,8 +73,8 @@ export default function Header() {
         <header
           className={`pointer-events-auto z-[100] transition-all duration-300 flex items-center justify-between rounded-full relative w-[96%] mx-auto md:w-[92%] lg:w-[85%] xl:w-[75%] max-w-[1240px] py-2.5 px-4 sm:py-3 sm:px-6 border ${
             isScrolled
-              ? 'bg-white/70 dark:bg-[#111214]/80 backdrop-blur-xl shadow-[var(--shadow-float)] py-2.5 px-4 sm:py-3 sm:px-6 md:px-8 border-slate-200/50 dark:border-[#2A2B2E]/80'
-              : 'bg-white/40 dark:bg-[#08090A]/50 backdrop-blur-md shadow-[var(--shadow-card)] py-2.5 px-3.5 sm:py-3 sm:px-5 border-slate-200/20 dark:border-[#2A2B2E]/40'
+              ? 'bg-white text-slate-900 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.25)] py-2.5 px-4 sm:py-3 sm:px-6 md:px-8 border-white/80'
+              : 'bg-white/95 text-slate-900 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.15)] py-2.5 px-3.5 sm:py-3 sm:px-5 border-white/60'
           }`}
           role="navigation"
           aria-label="Main navigation"
@@ -89,8 +89,8 @@ export default function Header() {
                 className="w-9 h-9 object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-sm" 
                 priority 
               />
-              <span className="text-[20px] font-extrabold tracking-tight flex items-center text-slate-900 dark:text-white ml-1.5 sm:ml-2">
-                <span className="bg-gradient-to-r from-[#6366F1] to-[#a855f7] text-transparent bg-clip-text">CWA</span>
+              <span className="text-[19px] font-extrabold tracking-tight flex items-center text-slate-900 ml-1">
+                <span className="bg-gradient-to-r from-[#059669] to-[#10B981] text-transparent bg-clip-text">Code with Amrendra</span>
               </span>
             </Link>
           </div>
@@ -111,14 +111,14 @@ export default function Header() {
                       <button
                         type="button"
                         onClick={() => setIsServicesOpen(!isServicesOpen)}
-                        className={`relative inline-flex items-center gap-1 text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-2.5 lg:px-3.5 py-1.5 rounded-full cursor-pointer border-none bg-transparent ${
+                        className={`relative inline-flex items-center gap-1 text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-3 lg:px-4 py-1.5 rounded-full cursor-pointer border-none bg-transparent ${
                           isActive || isServicesOpen
-                            ? "text-[#6366F1] bg-[#6366F1]/10 dark:bg-[#6366F1]/15"
-                            : "text-slate-600 dark:text-slate-400 hover:text-[#6366F1] dark:hover:text-[#818CF8] hover:bg-[#6366F1]/5 dark:hover:bg-[#6366F1]/10"
+                            ? "text-[#059669] bg-emerald-50 font-bold"
+                            : "text-slate-700 hover:text-[#059669] hover:bg-slate-100"
                         }`}
                       >
                         <span>{link.name}</span>
-                        <ChevronDown size={14} className={`transition-transform duration-300 ${isServicesOpen ? "rotate-180 text-[#6366F1]" : ""}`} />
+                        <ChevronDown size={14} className={`transition-transform duration-300 ${isServicesOpen ? "rotate-180 text-[#059669]" : ""}`} />
                       </button>
 
                       {isServicesOpen && (
@@ -132,10 +132,10 @@ export default function Header() {
                   <Link
                     key={link.name}
                     href={link.href}
-                    className={`relative text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-2.5 lg:px-3.5 py-1.5 rounded-full ${
+                    className={`relative text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-3 lg:px-4 py-1.5 rounded-full ${
                       isActive
-                        ? "text-[#6366F1] bg-[#6366F1]/10 dark:bg-[#6366F1]/15"
-                        : "text-slate-600 dark:text-slate-400 hover:text-[#6366F1] dark:hover:text-[#818CF8] hover:bg-[#6366F1]/5 dark:hover:bg-[#6366F1]/10"
+                        ? "text-[#059669] bg-emerald-50 font-bold"
+                        : "text-slate-700 hover:text-[#059669] hover:bg-slate-100"
                     }`}
                   >
                     {link.name}
@@ -148,10 +148,10 @@ export default function Header() {
           <div className="flex items-center justify-end gap-3 md:pr-2">
             <ThemeToggle />
             <Link
-              href="/hire-me"
-              className="hidden md:inline-flex items-center justify-center whitespace-nowrap shrink-0 bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-bold text-[0.875rem] py-2 px-5 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[var(--shadow-glow)] hover:-translate-y-1 hover:shadow-[var(--shadow-float)] hover:scale-105 active:scale-95"
+              href="/contact"
+              className="hidden md:inline-flex items-center justify-center whitespace-nowrap shrink-0 bg-gradient-to-r from-[#10B981] to-[#059669] text-white font-bold text-[0.875rem] py-2 px-5 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_0_25px_rgba(16,185,129,0.3)] hover:-translate-y-0.5 hover:shadow-[0_0_35px_rgba(16,185,129,0.5)] hover:scale-105 active:scale-95"
             >
-              Get Started
+              Start a Project
             </Link>
             <button
               type="button"
@@ -179,11 +179,11 @@ export default function Header() {
       >
         <div className="flex items-center justify-between p-6 border-b border-slate-200/50 dark:border-[#2A2B2E] gap-4">
           <div className="flex items-center gap-3 shrink-0">
-            <div className="bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white rounded-full flex justify-center items-center w-8 h-8 shadow-[0_0_20px_rgba(99,102,241,0.4)]">
+            <div className="bg-gradient-to-br from-[#10B981] to-[#059669] text-white rounded-full flex justify-center items-center w-8 h-8 shadow-[0_0_20px_rgba(16,185,129,0.4)]">
               <Sparkles size={18} />
             </div>
             <span className="text-lg sm:text-[22px] font-extrabold flex items-center text-slate-900 dark:text-white">
-              Code with <span className="bg-gradient-to-r from-[#6366F1] to-[#a855f7] text-transparent bg-clip-text ml-1.5">Amrendra</span>
+              Code with <span className="bg-gradient-to-r from-[#10B981] to-[#34D399] text-transparent bg-clip-text ml-1.5">Amrendra</span>
             </span>
           </div>
           <button
@@ -208,8 +208,8 @@ export default function Header() {
                       href={link.href}
                       className={`text-[1.35rem] font-extrabold no-underline transition-colors duration-300 leading-tight py-2.5 px-4 rounded-xl flex-1 ${
                         isActive
-                          ? "text-[#6366F1] bg-[#6366F1]/10 dark:bg-[#6366F1]/15"
-                          : "text-slate-900 dark:text-slate-50 hover:text-[#6366F1] dark:hover:text-[#818CF8]"
+                          ? "text-[#10B981] bg-[#10B981]/10 dark:bg-[#10B981]/15"
+                          : "text-slate-900 dark:text-slate-50 hover:text-[#10B981] dark:hover:text-[#34D399]"
                       }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
@@ -218,21 +218,21 @@ export default function Header() {
                     <button
                       type="button"
                       onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                      className="p-2 text-slate-700 dark:text-slate-200 hover:text-[#6366F1] cursor-pointer"
+                      className="p-2 text-slate-700 dark:text-slate-200 hover:text-[#10B981] cursor-pointer"
                       aria-label="Toggle Services sub-menu"
                     >
-                      <ChevronDown size={22} className={`transition-transform duration-300 ${isMobileServicesOpen ? "rotate-180 text-[#6366F1]" : ""}`} />
+                      <ChevronDown size={22} className={`transition-transform duration-300 ${isMobileServicesOpen ? "rotate-180 text-[#10B981]" : ""}`} />
                     </button>
                   </div>
 
                   {isMobileServicesOpen && (
-                    <div className="flex flex-col gap-1 pl-4 pt-1 border-l-2 border-[#6366F1]/30 ml-4">
+                    <div className="flex flex-col gap-1 pl-4 pt-1 border-l-2 border-[#10B981]/30 ml-4">
                       {SERVICES_DATA.map((s) => (
                         <Link
                           key={s.slug}
                           href={`/services/${s.slug}`}
                           onClick={() => setIsMenuOpen(false)}
-                          className="text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-[#6366F1] dark:hover:text-[#818CF8] py-2 px-3 rounded-lg block"
+                          className="text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-[#10B981] dark:hover:text-[#34D399] py-2 px-3 rounded-lg block"
                         >
                           {s.title}
                         </Link>
@@ -249,8 +249,8 @@ export default function Header() {
                 href={link.href}
                 className={`text-[1.35rem] font-extrabold no-underline transition-colors duration-300 leading-tight py-2.5 px-4 rounded-xl block w-full ${
                   isActive
-                    ? "text-[#6366F1] bg-[#6366F1]/10 dark:bg-[#6366F1]/15"
-                    : "text-slate-900 dark:text-slate-50 hover:text-[#6366F1] dark:hover:text-[#818CF8] hover:bg-[#6366F1]/5 dark:hover:bg-[#6366F1]/10"
+                    ? "text-[#10B981] bg-[#10B981]/10 dark:bg-[#10B981]/15"
+                    : "text-slate-900 dark:text-slate-50 hover:text-[#10B981] dark:hover:text-[#34D399] hover:bg-[#10B981]/5 dark:hover:bg-[#10B981]/10"
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -259,7 +259,7 @@ export default function Header() {
             );
           })}
           <div className="flex flex-col gap-3 mt-auto pt-6 mb-4">
-            <Link href="/hire-me" className="inline-flex items-center justify-center bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-bold text-[1.1rem] py-3.5 px-8 rounded-full border-none cursor-pointer w-full transition-opacity duration-300 hover:opacity-90 shadow-lg shadow-indigo-500/20" onClick={() => setIsMenuOpen(false)}>
+            <Link href="/hire-me" className="inline-flex items-center justify-center bg-gradient-to-br from-[#10B981] to-[#059669] text-white font-bold text-[1.1rem] py-3.5 px-8 rounded-full border-none cursor-pointer w-full transition-opacity duration-300 hover:opacity-90 shadow-lg shadow-emerald-500/20" onClick={() => setIsMenuOpen(false)}>
               Get Started
             </Link>
           </div>

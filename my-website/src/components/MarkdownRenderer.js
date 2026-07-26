@@ -20,7 +20,7 @@ const MermaidBlock = dynamic(() => import("./blog/MermaidBlock"), {
   ssr: false,
   loading: () => (
     <div className="my-6 p-8 bg-[var(--section-alt-bg)] border border-[var(--card-border)] rounded-xl flex items-center justify-center">
-      <div className="w-6 h-6 border-2 border-[#6366F1] border-t-transparent rounded-full animate-spin" />
+      <div className="w-6 h-6 border-2 border-[#10B981] border-t-transparent rounded-full animate-spin" />
     </div>
   ),
 });
@@ -46,7 +46,7 @@ function createHeadingComponent(level) {
         {id && (
           <a
             href={`#${id}`}
-            className="anchor-link absolute -left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-[var(--text-muted)] hover:text-[#6366F1] no-underline"
+            className="anchor-link absolute -left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-[var(--text-muted)] hover:text-[#10B981] no-underline"
             aria-label={`Link to ${typeof children === "string" ? children : "section"}`}
           >
             <LinkIcon size={16} />
@@ -272,7 +272,7 @@ export default function MarkdownRenderer({ content }) {
 
           return (
             <blockquote
-              className="border-l-[#6366F1] bg-[var(--section-alt-bg)] rounded-r-xl py-1 px-6"
+              className="border-l-[#10B981] bg-[var(--section-alt-bg)] rounded-r-xl py-1 px-6"
               {...props}
             >
               {children}
@@ -293,7 +293,7 @@ export default function MarkdownRenderer({ content }) {
         ),
         thead: ({ children, ...props }) => (
           <thead
-            className="bg-[#6366F1]/10 text-[var(--text-heading)] font-bold text-base"
+            className="bg-[#10B981]/10 text-[var(--text-heading)] font-bold text-base"
             {...props}
           >
             {children}

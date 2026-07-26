@@ -38,13 +38,13 @@ const playfair = Playfair_Display({
 export const metadata = {
   metadataBase: new URL('https://codewithamrendra.vercel.app'),
   title: {
-    default: "Code with Amrendra",
+    default: "Code with Amrendra — Enterprise Software & AI Engineering",
     template: "%s | Code with Amrendra"
   },
-  description: "A personal blog by Amrendra — insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.",
-  keywords: ["React", "Next.js", "AI Agents", "SaaS Architecture", "AWS", "DevOps", "Frontend Development", "Web Development", "JavaScript", "Blog"],
-  authors: [{ name: "Amrendra kumar", url: "https://codewithamrendra.vercel.app" }],
-  creator: "Amrendra kumar",
+  description: "Next-gen software engineering agency specializing in React 19, Next.js 16, autonomous AI agent solutions, SaaS architecture, and AWS cloud infrastructure.",
+  keywords: ["Software Development", "React Development", "Next.js", "AI Agents", "SaaS Development", "AWS Cloud", "Frontend Engineering", "API Integration", "Code with Amrendra"],
+  authors: [{ name: "Amrendra Kumar", url: "https://codewithamrendra.vercel.app" }],
+  creator: "Amrendra Kumar",
   publisher: "Code with Amrendra",
   robots: {
     index: true,

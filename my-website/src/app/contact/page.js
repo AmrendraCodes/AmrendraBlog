@@ -30,13 +30,13 @@ export default function ContactPage() {
 
       {/* ═══════════ HERO ═══════════ */}
       <section className="pt-32 pb-20 md:pt-40 md:pb-28 px-6 max-w-4xl mx-auto text-center">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#6366F1] dark:text-[#818CF8] mb-6">
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#10B981] dark:text-[#34D399] mb-6">
           Get In Touch
         </p>
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] mb-8 text-[var(--text-heading)]">
           Let&apos;s{" "}
           <span
-            className="gradient-text italic pr-3"
+            className="bg-gradient-to-r from-[#10B981] to-[#34D399] text-transparent bg-clip-text italic pr-3"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
           >
             Connect
@@ -57,7 +57,7 @@ export default function ContactPage() {
             <div className="space-y-12 lg:sticky lg:top-32">
               <div>
                 <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-heading)] mb-4 flex items-center gap-3">
-                  <span className="w-8 h-[2px] bg-gradient-to-r from-[#6366F1] to-[#a855f7] rounded-full"></span>
+                  <span className="w-8 h-[2px] bg-gradient-to-r from-[#10B981] to-[#34D399] rounded-full"></span>
                   Contact Info
                 </h2>
                 <p className="text-[var(--text-body)] text-base leading-relaxed">
@@ -78,17 +78,17 @@ export default function ContactPage() {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between py-5 border-b border-[var(--card-border)] hover:border-[#6366F1]/40 transition-all duration-300 no-underline"
+                    className="group flex items-center justify-between py-5 border-b border-[var(--card-border)] hover:border-[#10B981]/40 transition-all duration-300 no-underline"
                   >
                     <div>
                       <div className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-[0.18em] mb-1">
                         {item.label}
                       </div>
-                      <div className="text-base font-semibold text-[var(--text-heading)] group-hover:text-[#6366F1] dark:group-hover:text-[#818CF8] transition-colors">
+                      <div className="text-base font-semibold text-[var(--text-heading)] group-hover:text-[#10B981] dark:group-hover:text-[#34D399] transition-colors">
                         {item.value}
                       </div>
                     </div>
-                    <svg className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[#6366F1] dark:group-hover:text-[#818CF8] transition-all duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[#10B981] dark:group-hover:text-[#34D399] transition-all duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
                     </svg>
                   </a>
@@ -96,7 +96,7 @@ export default function ContactPage() {
               </div>
 
               {/* Response Time — flatter style */}
-              <div className="pl-5 border-l-2 border-[#6366F1]/30">
+              <div className="pl-5 border-l-2 border-[#10B981]/30">
                 <h3 className="text-sm font-bold text-[var(--text-heading)] mb-2">Current Response Time</h3>
                 <p className="text-sm text-[var(--text-body)] leading-relaxed">
                   I usually respond within 24–48 business hours.
@@ -127,7 +127,7 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="John Doe"
-                        className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#6366F1] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
+                        className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#10B981] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
                       />
                     </div>
                     {/* Email */}
@@ -143,7 +143,7 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="name@example.com"
-                        className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#6366F1] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
+                        className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#10B981] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
                       />
                     </div>
                   </div>
@@ -161,7 +161,7 @@ export default function ContactPage() {
                       value={formData.subject}
                       onChange={handleChange}
                       placeholder="Project Inquiry"
-                      className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#6366F1] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
+                      className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#10B981] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
                     />
                   </div>
 
@@ -177,7 +177,7 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={handleChange}
                       placeholder="Tell me about your project..."
-                      className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#6366F1] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 min-h-[140px] resize-none text-base"
+                      className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#10B981] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 min-h-[140px] resize-none text-base"
                     ></textarea>
                   </div>
 
@@ -187,7 +187,7 @@ export default function ContactPage() {
                     disabled={status === "sending"}
                     className={`w-full py-4 rounded-xl font-bold text-white transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer ${status === "success"
                       ? "bg-green-600/90"
-                      : "bg-gradient-to-r from-[#6366F1]/90 to-[#a855f7]/90 hover:from-[#6366F1] hover:to-[#a855f7] hover:scale-[1.02] active:scale-[0.98]"
+                      : "bg-gradient-to-r from-[#10B981] to-[#059669] hover:from-[#10B981] hover:to-[#059669] hover:scale-[1.02] active:scale-[0.98]"
                       }`}
                   >
                     {status === "sending" ? "Sending..." : status === "success" ? "Message Sent!" : "Send Message"}

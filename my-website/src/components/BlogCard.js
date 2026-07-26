@@ -23,7 +23,7 @@ export default function BlogCard({ post }) {
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
         <div className="absolute top-4 left-4">
-          <span className="bg-[#6366F1] text-white text-[11px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-md">
+          <span className="bg-[#10B981] text-white text-[11px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-md">
             {post.category || "Technology"}
           </span>
         </div>
@@ -42,7 +42,7 @@ export default function BlogCard({ post }) {
           </div>
         </div>
 
-        <h3 className="text-xl lg:text-2xl font-bold text-[var(--text-heading)] mb-3 leading-snug group-hover:text-[#6366F1] dark:group-hover:text-[#818CF8] transition-colors line-clamp-2">
+        <h3 className="text-xl lg:text-2xl font-bold text-[var(--text-heading)] mb-3 leading-snug group-hover:text-[#10B981] dark:group-hover:text-[#34D399] transition-colors line-clamp-2">
           <Link href={postLink} className="before:absolute before:inset-0 before:z-10 no-underline text-inherit">
             {post.title}
           </Link>
@@ -78,7 +78,7 @@ export default function BlogCard({ post }) {
           </div>
 
           <span
-            className="w-10 h-10 rounded-full bg-[var(--section-alt-bg)] flex items-center justify-center text-[var(--foreground)] group-hover:bg-[#6366F1] group-hover:text-white transition-all duration-300 relative z-20"
+            className="w-10 h-10 rounded-full bg-[var(--section-alt-bg)] flex items-center justify-center text-[var(--foreground)] group-hover:bg-[#10B981] group-hover:text-white transition-all duration-300 relative z-20"
             aria-hidden="true"
           >
             <ArrowUpRight size={18} />

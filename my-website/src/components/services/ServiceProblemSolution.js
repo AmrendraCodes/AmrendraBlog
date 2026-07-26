@@ -9,7 +9,7 @@ export default function ServiceProblemSolution({ problems = [], solutions = [], 
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         {/* Section Header */}
         <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-extrabold uppercase tracking-widest text-[#6366F1] dark:text-[#818CF8] bg-[#6366F1]/10 px-3.5 py-1.5 rounded-full border border-[#6366F1]/20 mb-4 inline-block">
+          <span className="text-xs font-extrabold uppercase tracking-widest text-[#10B981] dark:text-[#34D399] bg-[#10B981]/10 px-3.5 py-1.5 rounded-full border border-[#10B981]/20 mb-4 inline-block">
             CHALLENGES &amp; SOLUTIONS
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[var(--text-heading)] tracking-tight mt-3 mb-4">

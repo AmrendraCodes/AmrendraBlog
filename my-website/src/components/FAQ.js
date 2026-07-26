@@ -87,7 +87,7 @@ function FAQItem({ question, answer, isOpen, onToggle, index }) {
   return (
     <motion.div
       variants={staggerItem}
-      className="group rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-[var(--shadow-card)] transition-all duration-300 hover:border-[#6366F1]/30 hover:shadow-[0_0_30px_rgba(99,102,241,0.06)] overflow-hidden"
+      className="group rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-[var(--shadow-card)] transition-all duration-300 hover:border-[#10B981]/30 hover:shadow-[0_0_30px_rgba(16,185,129,0.06)] overflow-hidden"
     >
       <button
         onClick={onToggle}
@@ -102,8 +102,8 @@ function FAQItem({ question, answer, isOpen, onToggle, index }) {
         <span
           className={`shrink-0 w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${
             isOpen
-              ? 'bg-[#6366F1] text-white rotate-180'
-              : 'bg-[rgba(99,102,241,0.1)] text-[#6366F1] dark:text-[#818CF8] rotate-0'
+              ? 'bg-[#10B981] text-white rotate-180'
+              : 'bg-[#10B981]/10 text-[#10B981] dark:text-[#34D399] rotate-0'
           }`}
         >
           <ChevronDown size={18} strokeWidth={2.5} />
@@ -123,7 +123,7 @@ function FAQItem({ question, answer, isOpen, onToggle, index }) {
         className="overflow-hidden"
       >
         <div className="px-6 pb-5 pt-0">
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-[#6366F1]/20 to-transparent mb-4" />
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-[#10B981]/20 to-transparent mb-4" />
           <p className="text-[var(--text-body)] text-[15px] sm:text-base leading-relaxed">
             {answer}
           </p>
