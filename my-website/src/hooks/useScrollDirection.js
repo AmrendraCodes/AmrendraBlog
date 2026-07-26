@@ -23,12 +23,14 @@ export function useScrollDirection(threshold = 400) {
           const currentY = window.scrollY;
 
           if (currentY > lastScrollY.current + 5) {
-            setDirection("down");
+            setDirection((prev) => (prev !== "down" ? "down" : prev));
           } else if (currentY < lastScrollY.current - 5) {
-            setDirection("up");
+            setDirection((prev) => (prev !== "up" ? "up" : prev));
           }
 
-          setPastThreshold(currentY > threshold);
+          const isPast = currentY > threshold;
+          setPastThreshold((prev) => (prev !== isPast ? isPast : prev));
+
           lastScrollY.current = currentY;
           ticking = false;
         });

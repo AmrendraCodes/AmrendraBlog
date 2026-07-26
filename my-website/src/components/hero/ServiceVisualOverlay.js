@@ -15,7 +15,7 @@ export default function ServiceVisualOverlay({ activeCard }) {
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             exit={{ opacity: 0, scale: 0.8, rotate: 10 }}
             transition={{ duration: 0.5 }}
-            className="relative w-80 h-80 rounded-full border border-emerald-500/30 bg-emerald-500/5 flex items-center justify-center backdrop-blur-3xl shadow-[0_0_80px_rgba(16,185,129,0.2)]"
+            className="relative w-80 h-80 rounded-full border border-emerald-500/30 bg-emerald-500/5 flex items-center justify-center backdrop-blur-md transform-gpu shadow-[0_0_80px_rgba(16,185,129,0.2)]"
           >
             {/* Atomic Orbital Rings */}
             <div className="absolute inset-2 rounded-full border border-dashed border-emerald-400/40 animate-[spin_20s_linear_infinite]" />
@@ -36,7 +36,7 @@ export default function ServiceVisualOverlay({ activeCard }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: -20 }}
             transition={{ duration: 0.5 }}
-            className="relative w-80 h-80 rounded-full border border-emerald-500/30 bg-emerald-500/5 flex items-center justify-center backdrop-blur-3xl shadow-[0_0_80px_rgba(16,185,129,0.3)]"
+            className="relative w-80 h-80 rounded-full border border-emerald-500/30 bg-emerald-500/5 flex items-center justify-center backdrop-blur-md transform-gpu shadow-[0_0_80px_rgba(16,185,129,0.3)]"
           >
             {/* Neural Synapse Nodes */}
             <div className="absolute top-6 left-12 w-4 h-4 rounded-full bg-emerald-400 animate-ping" />
@@ -57,7 +57,7 @@ export default function ServiceVisualOverlay({ activeCard }) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.5 }}
-            className="relative w-80 h-80 rounded-full border border-emerald-500/30 bg-emerald-500/5 flex items-center justify-center backdrop-blur-3xl shadow-[0_0_80px_rgba(16,185,129,0.25)]"
+            className="relative w-80 h-80 rounded-full border border-emerald-500/30 bg-emerald-500/5 flex items-center justify-center backdrop-blur-md transform-gpu shadow-[0_0_80px_rgba(16,185,129,0.25)]"
           >
             <div className="w-20 h-20 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.5)]">
               <Cloud size={40} />
@@ -75,7 +75,7 @@ export default function ServiceVisualOverlay({ activeCard }) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.5 }}
-            className="relative w-80 h-80 rounded-full border border-mint-500/30 bg-[#34D399]/5 flex items-center justify-center backdrop-blur-3xl shadow-[0_0_80px_rgba(52,211,153,0.25)]"
+            className="relative w-80 h-80 rounded-full border border-mint-500/30 bg-[#34D399]/5 flex items-center justify-center backdrop-blur-md transform-gpu shadow-[0_0_80px_rgba(52,211,153,0.25)]"
           >
             <div className="w-20 h-20 rounded-full bg-[#34D399]/20 text-[#34D399] flex items-center justify-center shadow-[0_0_30px_rgba(52,211,153,0.5)]">
               <Globe size={40} />
@@ -93,7 +93,7 @@ export default function ServiceVisualOverlay({ activeCard }) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.5 }}
-            className="relative w-80 h-80 rounded-full border border-emerald-500/30 bg-emerald-500/5 flex items-center justify-center backdrop-blur-3xl shadow-[0_0_80px_rgba(16,185,129,0.25)]"
+            className="relative w-80 h-80 rounded-full border border-emerald-500/30 bg-emerald-500/5 flex items-center justify-center backdrop-blur-md transform-gpu shadow-[0_0_80px_rgba(16,185,129,0.25)]"
           >
             <div className="w-20 h-20 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.5)]">
               <Cpu size={40} />
@@ -111,7 +111,7 @@ export default function ServiceVisualOverlay({ activeCard }) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.5 }}
-            className="relative w-80 h-80 rounded-full border border-teal-500/30 bg-teal-500/5 flex items-center justify-center backdrop-blur-3xl shadow-[0_0_80px_rgba(20,184,166,0.25)]"
+            className="relative w-80 h-80 rounded-full border border-teal-500/30 bg-teal-500/5 flex items-center justify-center backdrop-blur-md transform-gpu shadow-[0_0_80px_rgba(20,184,166,0.25)]"
           >
             <div className="w-20 h-20 rounded-full bg-teal-500/20 text-teal-400 flex items-center justify-center shadow-[0_0_30px_rgba(20,184,166,0.5)]">
               <Layers size={40} />

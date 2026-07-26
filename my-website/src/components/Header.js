@@ -26,26 +26,32 @@ export default function Header() {
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
+    let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
+    let ticking = false;
 
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const isCurrentlyScrolled = currentScrollY > 20;
 
-      setIsScrolled(currentScrollY > 20);
+          setIsScrolled((prev) => (prev !== isCurrentlyScrolled ? isCurrentlyScrolled : prev));
 
-      // Handle visibility based on scroll direction
-      if (currentScrollY < 20) {
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        setIsVisible(false); // scrolling down
-      } else {
-        setIsVisible(true); // scrolling up
+          if (currentScrollY < 20) {
+            setIsVisible(true);
+          } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
+            setIsVisible(false);
+          } else {
+            setIsVisible(true);
+          }
+
+          lastScrollY = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
       }
-
-      lastScrollY = currentScrollY;
     };
 
-    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -83,14 +89,14 @@ export default function Header() {
             <Link href="/" className="flex items-center gap-2 md:gap-3 no-underline shrink-0 group">
               <Image 
                 src="/logo-square.png" 
-                alt="Code with Amrendra" 
+                alt="CWA Logo" 
                 width={36} 
                 height={36} 
                 className="w-9 h-9 object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-sm" 
                 priority 
               />
-              <span className="text-[19px] font-extrabold tracking-tight flex items-center text-slate-900 ml-1">
-                <span className="bg-gradient-to-r from-[#059669] to-[#10B981] text-transparent bg-clip-text">Code with Amrendra</span>
+              <span className="text-[20px] font-extrabold tracking-wider flex items-center text-slate-900 ml-1">
+                <span className="bg-gradient-to-r from-[#059669] to-[#10B981] text-transparent bg-clip-text font-black">CWA</span>
               </span>
             </Link>
           </div>
@@ -149,13 +155,13 @@ export default function Header() {
             <ThemeToggle />
             <Link
               href="/contact"
-              className="hidden md:inline-flex items-center justify-center whitespace-nowrap shrink-0 bg-gradient-to-r from-[#10B981] to-[#059669] text-white font-bold text-[0.875rem] py-2 px-5 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_0_25px_rgba(16,185,129,0.3)] hover:-translate-y-0.5 hover:shadow-[0_0_35px_rgba(16,185,129,0.5)] hover:scale-105 active:scale-95"
+              className="hidden md:inline-flex items-center justify-center whitespace-nowrap shrink-0 bg-gradient-to-r from-[#10B981] to-[#059669] text-white font-bold text-[0.875rem] py-2.5 px-6 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] hover:scale-105 active:scale-95"
             >
-              Start a Project
+              Get started
             </Link>
             <button
               type="button"
-              className="flex md:hidden items-center justify-center bg-slate-100/80 dark:bg-[#1A1B1E]/80 border border-slate-200/50 dark:border-[#2A2B2E]/50 text-slate-900 dark:text-slate-50 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-all duration-300 shrink-0 hover:bg-slate-200/80 dark:hover:bg-[#2A2B2E]/80"
+              className="flex md:hidden items-center justify-center bg-slate-100 border border-slate-200 text-slate-900 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-all duration-300 shrink-0 hover:bg-slate-200"
               onClick={() => setIsMenuOpen(true)}
               aria-label="Open menu"
               aria-expanded={isMenuOpen}
@@ -182,8 +188,8 @@ export default function Header() {
             <div className="bg-gradient-to-br from-[#10B981] to-[#059669] text-white rounded-full flex justify-center items-center w-8 h-8 shadow-[0_0_20px_rgba(16,185,129,0.4)]">
               <Sparkles size={18} />
             </div>
-            <span className="text-lg sm:text-[22px] font-extrabold flex items-center text-slate-900 dark:text-white">
-              Code with <span className="bg-gradient-to-r from-[#10B981] to-[#34D399] text-transparent bg-clip-text ml-1.5">Amrendra</span>
+            <span className="text-xl font-extrabold flex items-center text-slate-900 dark:text-white tracking-wider">
+              <span className="bg-gradient-to-r from-[#10B981] to-[#34D399] text-transparent bg-clip-text font-black">CWA</span>
             </span>
           </div>
           <button
@@ -260,7 +266,7 @@ export default function Header() {
           })}
           <div className="flex flex-col gap-3 mt-auto pt-6 mb-4">
             <Link href="/hire-me" className="inline-flex items-center justify-center bg-gradient-to-br from-[#10B981] to-[#059669] text-white font-bold text-[1.1rem] py-3.5 px-8 rounded-full border-none cursor-pointer w-full transition-opacity duration-300 hover:opacity-90 shadow-lg shadow-emerald-500/20" onClick={() => setIsMenuOpen(false)}>
-              Get Started
+              Get started
             </Link>
           </div>
         </nav>
