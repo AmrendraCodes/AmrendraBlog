@@ -55,6 +55,8 @@ export function getPersonSchema() {
     "jobTitle": "Software Engineer & Technical Writer",
     "worksFor": {
       "@type": "Organization",
+      "name": "Code With Amrendra"
+    }
   };
 }
 
