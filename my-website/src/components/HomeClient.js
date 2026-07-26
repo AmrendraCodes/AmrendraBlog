@@ -32,6 +32,9 @@ import {
 import dynamic from 'next/dynamic';
 import CaseStudiesSection from './CaseStudiesSection';
 import HeroSection from './hero/HeroSection';
+import ScrollReveal from './ui/ScrollReveal';
+import TiltCard from './ui/TiltCard';
+import MagneticButton from './ui/MagneticButton';
 
 // Dynamic Heavy Components for Performance
 const DevShowcase = dynamic(() => import('@/components/home/DevShowcase'), { ssr: false });
@@ -241,32 +244,33 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
             ].map((service, index) => {
               const Icon = service.icon;
               return (
-                <div
-                  key={index}
-                  className="group relative rounded-3xl bg-[#0A0F0C] border border-[#1E2E25] p-8 transition-all duration-300 hover:border-[#10B981]/60 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(16,185,129,0.15)] flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="w-14 h-14 rounded-2xl bg-[#111C16] border border-[#10B981]/30 text-[#10B981] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#10B981] group-hover:text-white transition-all duration-300">
-                      <Icon size={26} />
-                    </div>
-                    <span className="text-[10px] font-mono text-[#34D399] uppercase tracking-wider block mb-2">
-                      {service.tag}
-                    </span>
-                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#10B981] transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-xs text-[#9CA3AF] leading-relaxed mb-6">
-                      {service.desc}
-                    </p>
-                  </div>
-                  <Link
-                    href="/services"
-                    className="inline-flex items-center gap-2 text-xs font-bold text-[#10B981] group-hover:translate-x-1 transition-transform"
+                <ScrollReveal key={index} delay={index * 0.08} variant="fade-up">
+                  <TiltCard
+                    className="group relative rounded-3xl bg-[#0A0F0C] border border-[#1E2E25] p-8 transition-all duration-300 hover:border-[#10B981]/60 hover:shadow-[0_10px_30px_rgba(16,185,129,0.15)] flex flex-col justify-between h-full"
                   >
-                    <span>Learn More</span>
-                    <ChevronRight size={14} />
-                  </Link>
-                </div>
+                    <div>
+                      <div className="w-14 h-14 rounded-2xl bg-[#111C16] border border-[#10B981]/30 text-[#10B981] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#10B981] group-hover:text-white transition-all duration-300 shadow-sm">
+                        <Icon size={26} />
+                      </div>
+                      <span className="text-[10px] font-mono text-[#34D399] uppercase tracking-wider block mb-2">
+                        {service.tag}
+                      </span>
+                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#10B981] transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="text-xs text-[#9CA3AF] leading-relaxed mb-6">
+                        {service.desc}
+                      </p>
+                    </div>
+                    <Link
+                      href="/services"
+                      className="inline-flex items-center gap-2 text-xs font-bold text-[#10B981] group-hover:translate-x-1 transition-transform"
+                    >
+                      <span>Learn More</span>
+                      <ChevronRight size={14} />
+                    </Link>
+                  </TiltCard>
+                </ScrollReveal>
               );
             })}
           </div>
@@ -455,13 +459,15 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
             Partner with Code with Amrendra to engineer high-velocity web platforms, AI workflows, and cloud architectures.
           </p>
 
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-gradient-to-r from-[#10B981] to-[#059669] text-white font-extrabold text-base transition-all duration-300 shadow-[0_0_40px_rgba(16,185,129,0.5)] hover:shadow-[0_0_60px_rgba(16,185,129,0.7)] hover:scale-105 active:scale-95"
-          >
-            <span>Start Your Project Today</span>
-            <ArrowRight size={20} />
-          </Link>
+          <MagneticButton>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-gradient-to-r from-[#10B981] to-[#059669] text-white font-extrabold text-base transition-all duration-300 shadow-[0_0_40px_rgba(16,185,129,0.5)] hover:shadow-[0_0_60px_rgba(16,185,129,0.7)] active:scale-95"
+            >
+              <span>Get started today</span>
+              <ArrowRight size={20} />
+            </Link>
+          </MagneticButton>
         </div>
       </section>
     </div>

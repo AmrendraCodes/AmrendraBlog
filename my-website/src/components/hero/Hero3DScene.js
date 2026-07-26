@@ -5,11 +5,11 @@ import * as THREE from 'three';
 
 const STATE_THEMES = {
   web: { color: 0x10B981, lightColor: 0x34D399, particleColor: 0x059669, speed: 0.2 },
-  react: { color: 0x06B6D4, lightColor: 0x38BDF8, particleColor: 0x0284C7, speed: 0.35 },
-  ai: { color: 0x10B981, lightColor: 0x00E599, particleColor: 0x059669, speed: 0.4 },
-  cloud: { color: 0x38BDF8, lightColor: 0x818CF8, particleColor: 0x6366F1, speed: 0.25 },
+  react: { color: 0x10B981, lightColor: 0x34D399, particleColor: 0x059669, speed: 0.35 },
+  ai: { color: 0x10B981, lightColor: 0x34D399, particleColor: 0x059669, speed: 0.4 },
+  cloud: { color: 0x10B981, lightColor: 0x34D399, particleColor: 0x059669, speed: 0.25 },
   saas: { color: 0x34D399, lightColor: 0x10B981, particleColor: 0x059669, speed: 0.3 },
-  api: { color: 0x00E599, lightColor: 0x34D399, particleColor: 0x10B981, speed: 0.3 },
+  api: { color: 0x34D399, lightColor: 0x10B981, particleColor: 0x059669, speed: 0.3 },
 };
 
 export default function Hero3DScene({ activeCard = 'web' }) {
@@ -26,6 +26,9 @@ export default function Hero3DScene({ activeCard = 'web' }) {
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+
+    // Skip heavy WebGL canvas rendering on mobile screens for 60 FPS performance
+    if (window.innerWidth < 768) return;
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

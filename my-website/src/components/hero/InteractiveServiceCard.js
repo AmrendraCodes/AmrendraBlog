@@ -2,14 +2,16 @@
 
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import TiltCard from '../ui/TiltCard';
 
 export default function InteractiveServiceCard({ service, isActive, onSelect }) {
   const Icon = service.icon;
 
   return (
-    <div
+    <TiltCard
       onClick={() => onSelect(service.id)}
-      className={`relative rounded-3xl p-6 cursor-pointer transition-all duration-300 backdrop-blur-xl ${
+      glow={isActive}
+      className={`relative p-6 cursor-pointer transition-all duration-300 backdrop-blur-xl ${
         isActive
           ? 'bg-[#0A0F0C]/90 border-2 border-[#10B981] shadow-[0_10px_30px_rgba(16,185,129,0.25)]'
           : 'bg-[#07110F]/70 border border-[#1E2E25] hover:border-[#10B981]/50'
@@ -69,6 +71,6 @@ export default function InteractiveServiceCard({ service, isActive, onSelect }) 
           />
         </div>
       </div>
-    </div>
+    </TiltCard>
   );
 }

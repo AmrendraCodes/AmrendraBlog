@@ -16,6 +16,7 @@ import {
   RotateCcw,
 } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import MagneticButton from '../ui/MagneticButton';
 import InteractiveServiceCard from './InteractiveServiceCard';
 import ServiceVisualOverlay from './ServiceVisualOverlay';
 
@@ -123,20 +124,24 @@ export default function HeroSection() {
 
           {/* Primary & Secondary CTAs */}
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-10">
-            <Link
-              href="/contact"
-              className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#10B981] to-[#059669] text-white font-bold text-base transition-all duration-300 shadow-[0_0_30px_rgba(16,185,129,0.4)] hover:shadow-[0_0_50px_rgba(16,185,129,0.6)] hover:-translate-y-1 hover:scale-105 w-full sm:w-auto"
-            >
-              <span>Start a Project</span>
-              <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
+            <MagneticButton className="w-full sm:w-auto">
+              <Link
+                href="/contact"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#10B981] to-[#059669] text-white font-bold text-base transition-all duration-300 shadow-[0_0_30px_rgba(16,185,129,0.4)] hover:shadow-[0_0_50px_rgba(16,185,129,0.6)] w-full sm:w-auto"
+              >
+                <span>Get started</span>
+                <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </MagneticButton>
 
-            <Link
-              href="/services"
-              className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl border border-[#1E2E25] bg-[#0A0F0C]/80 text-[#F3F4F6] font-bold text-base transition-all duration-300 hover:border-[#10B981]/50 hover:bg-[#111C16] hover:-translate-y-1 w-full sm:w-auto backdrop-blur-md"
-            >
-              Explore Our Services
-            </Link>
+            <MagneticButton className="w-full sm:w-auto">
+              <Link
+                href="/services"
+                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl border border-[#1E2E25] bg-[#0A0F0C]/80 text-[#F3F4F6] font-bold text-base transition-all duration-300 hover:border-[#10B981]/50 hover:bg-[#111C16] w-full sm:w-auto backdrop-blur-md"
+              >
+                Explore Services
+              </Link>
+            </MagneticButton>
           </div>
 
           {/* Active State Status Indicator Pill */}

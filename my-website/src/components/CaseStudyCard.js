@@ -5,6 +5,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
+import TiltCard from "./ui/TiltCard";
+
 const staggerItem = {
   hidden: { opacity: 0, y: 24 },
   visible: {
@@ -16,12 +18,10 @@ const staggerItem = {
 
 export default function CaseStudyCard({ study }) {
   return (
-    <motion.article
-      variants={staggerItem}
-      whileHover={{ y: -8, rotateX: 2, rotateY: -2 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="group bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-3d)] transition-shadow duration-500 relative"
-    >
+    <TiltCard className="h-full">
+      <article
+        className="group bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:shadow-[0_20px_50px_rgba(16,185,129,0.2)] transition-shadow duration-500 relative h-full flex flex-col justify-between"
+      >
       {/* Cover Image */}
       <div className="relative h-56 overflow-hidden">
         <Image
@@ -77,6 +77,7 @@ export default function CaseStudyCard({ study }) {
           </span>
         </div>
       </div>
-    </motion.article>
+    </article>
+  </TiltCard>
   );
 }

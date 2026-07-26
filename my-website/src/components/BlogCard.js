@@ -5,14 +5,15 @@ import Image from "next/image";
 import { ArrowUpRight, Calendar, User, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 
+import TiltCard from "./ui/TiltCard";
+
 export default function BlogCard({ post }) {
   const postLink = post.link || `/blog/${post.slug}`;
   return (
-    <motion.article 
-      whileHover={{ y: -8, rotateX: 2, rotateY: -2 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="group relative bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-3d)] transition-shadow duration-500"
-    >
+    <TiltCard className="h-full">
+      <article 
+        className="group relative bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:shadow-[0_20px_50px_rgba(16,185,129,0.2)] transition-shadow duration-500 h-full flex flex-col justify-between"
+      >
       {/* Thumbnail */}
       <div className="relative h-64 overflow-hidden rounded-t-3xl">
         <Image
@@ -85,6 +86,7 @@ export default function BlogCard({ post }) {
           </span>
         </div>
       </div>
-    </motion.article>
+    </article>
+  </TiltCard>
   );
 }
