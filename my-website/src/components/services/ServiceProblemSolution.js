@@ -23,7 +23,7 @@ export default function ServiceProblemSolution({ problems = [], solutions = [], 
         {/* Grid Comparison */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
           {/* Problems Box */}
-          <AnimatedSection direction="left" delay={0.1} className="bg-[var(--card-bg)] border border-rose-500/20 dark:border-rose-500/30 rounded-3xl p-8 shadow-[var(--shadow-card)] flex flex-col justify-between">
+          <AnimatedSection direction="left" delay={0.1} className="group bg-[var(--card-bg)] border border-rose-500/30 dark:border-rose-500/30 hover:border-rose-500 rounded-3xl p-8 shadow-[var(--shadow-card)] hover:shadow-[0_0_35px_rgba(244,63,94,0.25)] transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-10 h-10 rounded-xl bg-rose-500/10 text-rose-500 flex items-center justify-center border border-rose-500/20">
@@ -60,7 +60,7 @@ export default function ServiceProblemSolution({ problems = [], solutions = [], 
           </AnimatedSection>
 
           {/* Solutions Box */}
-          <AnimatedSection direction="right" delay={0.2} className="bg-[var(--card-bg)] border border-emerald-500/20 dark:border-emerald-500/30 rounded-3xl p-8 shadow-[var(--shadow-card)] flex flex-col justify-between">
+          <AnimatedSection direction="right" delay={0.2} className="group bg-[var(--card-bg)] border border-emerald-500/30 dark:border-emerald-500/30 hover:border-emerald-500 rounded-3xl p-8 shadow-[var(--shadow-card)] hover:shadow-[0_0_35px_rgba(16,185,129,0.3)] transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center border border-emerald-500/20">

@@ -131,55 +131,55 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
         {/* Bento Grid Split: Legacy vs Code with Amrendra */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Legacy Side */}
-          <div className="rounded-3xl bg-[#0A0F0C] border border-red-500/20 p-8 shadow-xl relative overflow-hidden">
+          <div className="group rounded-3xl bg-[#0A0F0C] border border-red-500/30 hover:border-red-500 p-8 shadow-xl hover:shadow-[0_0_35px_rgba(239,68,68,0.3)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center font-bold text-lg">
+              <div className="w-10 h-10 rounded-xl bg-red-500/10 text-red-400 group-hover:bg-red-500/20 group-hover:text-red-300 group-hover:scale-105 flex items-center justify-center font-bold text-lg transition-all duration-300">
                 ✕
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white">Traditional Development Agencies</h3>
+                <h3 className="text-lg font-bold text-white group-hover:text-red-100 transition-colors">Traditional Development Agencies</h3>
                 <p className="text-xs text-[#9CA3AF]">Slow, expensive, &amp; maintenance-heavy</p>
               </div>
             </div>
             <ul className="space-y-4 text-xs text-[#9CA3AF]">
               <li className="flex items-center gap-3">
-                <span className="text-red-400 font-bold">✕</span> 6–12 month lengthy delivery timelines
+                <span className="text-red-400 font-bold group-hover:scale-125 transition-transform">✕</span> 6–12 month lengthy delivery timelines
               </li>
               <li className="flex items-center gap-3">
-                <span className="text-red-400 font-bold">✕</span> High latency &amp; poor Core Web Vitals
+                <span className="text-red-400 font-bold group-hover:scale-125 transition-transform">✕</span> High latency &amp; poor Core Web Vitals
               </li>
               <li className="flex items-center gap-3">
-                <span className="text-red-400 font-bold">✕</span> Messy spaghetti code &amp; technical debt
+                <span className="text-red-400 font-bold group-hover:scale-125 transition-transform">✕</span> Messy spaghetti code &amp; technical debt
               </li>
               <li className="flex items-center gap-3">
-                <span className="text-red-400 font-bold">✕</span> Manual testing with frequent production bugs
+                <span className="text-red-400 font-bold group-hover:scale-125 transition-transform">✕</span> Manual testing with frequent production bugs
               </li>
             </ul>
           </div>
 
           {/* Code with Amrendra Side */}
-          <div className="rounded-3xl bg-gradient-to-br from-[#111C16] to-[#0A0F0C] border-2 border-[#10B981] p-8 shadow-[0_0_40px_rgba(16,185,129,0.2)] relative overflow-hidden">
+          <div className="group rounded-3xl bg-gradient-to-br from-[#111C16] to-[#0A0F0C] border-2 border-[#10B981]/60 hover:border-[#10B981] p-8 shadow-[0_0_30px_rgba(16,185,129,0.2)] hover:shadow-[0_0_55px_rgba(16,185,129,0.45)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-[#10B981] text-white flex items-center justify-center font-bold text-lg">
+              <div className="w-10 h-10 rounded-xl bg-[#10B981] text-white group-hover:bg-[#059669] group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(16,185,129,0.6)] flex items-center justify-center font-bold text-lg transition-all duration-300">
                 ✓
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white">Code with Amrendra</h3>
+                <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">Code with Amrendra</h3>
                 <p className="text-xs text-[#34D399]">High-velocity, AI-native &amp; sub-second fast</p>
               </div>
             </div>
             <ul className="space-y-4 text-xs text-[#F3F4F6]">
               <li className="flex items-center gap-3">
-                <span className="text-[#10B981] font-bold">✓</span> Bi-weekly rapid sprint deployments
+                <span className="text-[#10B981] font-bold group-hover:scale-125 transition-transform">✓</span> Bi-weekly rapid sprint deployments
               </li>
               <li className="flex items-center gap-3">
-                <span className="text-[#10B981] font-bold">✓</span> Sub-second loading speed (99+ Lighthouse)
+                <span className="text-[#10B981] font-bold group-hover:scale-125 transition-transform">✓</span> Sub-second loading speed (99+ Lighthouse)
               </li>
               <li className="flex items-center gap-3">
-                <span className="text-[#10B981] font-bold">✓</span> Type-safe, modular React 19 / TypeScript architecture
+                <span className="text-[#10B981] font-bold group-hover:scale-125 transition-transform">✓</span> Type-safe, modular React 19 / TypeScript architecture
               </li>
               <li className="flex items-center gap-3">
-                <span className="text-[#10B981] font-bold">✓</span> Autonomous AI agent QA &amp; 100% test coverage
+                <span className="text-[#10B981] font-bold group-hover:scale-125 transition-transform">✓</span> Autonomous AI agent QA &amp; 100% test coverage
               </li>
             </ul>
           </div>
