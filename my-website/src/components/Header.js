@@ -39,10 +39,12 @@ export default function Header() {
 
           if (currentScrollY < 20) {
             setIsVisible(true);
-          } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
-            setIsVisible(false);
-          } else {
-            setIsVisible(true);
+          } else if (Math.abs(currentScrollY - lastScrollY) > 10) {
+            if (currentScrollY > lastScrollY && currentScrollY > 50) {
+              setIsVisible(false);
+            } else {
+              setIsVisible(true);
+            }
           }
 
           lastScrollY = currentScrollY;

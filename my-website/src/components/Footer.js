@@ -3,10 +3,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Github, Twitter, Linkedin, Instagram, Sparkles, Send, ArrowUp } from "lucide-react";
+import { Github, Twitter, Linkedin, Instagram, Sparkles, Send, ArrowUp, Check } from "lucide-react";
 
 export default function Footer() {
   const [currentYear, setCurrentYear] = useState(2026);
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [isNewsletterSubmitting, setIsNewsletterSubmitting] = useState(false);
+  const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
 
   useEffect(() => {
     setCurrentYear(new Date().getFullYear());
@@ -100,21 +103,43 @@ export default function Footer() {
           <div>
             <h4 className="text-[var(--text-heading)] mb-6 text-sm font-bold uppercase tracking-wider">Newsletter</h4>
             <p className="text-[var(--text-body)] mb-6 text-sm">Join our growing community</p>
-            <form className="flex relative" action="#">
-              <input
-                type="email"
-                placeholder="Your email"
-                aria-label="Email address for newsletter"
-                className="text-[var(--foreground)] bg-[var(--card-bg)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] rounded-xl outline-none w-full py-3 pr-12 pl-4 text-sm transition-all duration-300 focus:border-[#10B981] focus:shadow-[0_0_20px_rgba(16,185,129,0.2)] placeholder:text-[var(--text-muted)]"
-              />
-              <button
-                type="submit"
-                className="bg-gradient-to-br from-[#10B981] to-[#059669] text-white cursor-pointer border-none rounded-lg flex justify-center items-center w-10 h-10 transition-all duration-300 absolute top-1/2 right-1.5 -translate-y-1/2 hover:opacity-90 hover:scale-110 shadow-[0_0_20px_rgba(16,185,129,0.3)]"
-                aria-label="Subscribe"
+            {newsletterSubmitted ? (
+              <div className="flex items-center gap-2 p-3 rounded-xl bg-[#10B981]/15 border border-[#10B981]/30 text-[#10B981] text-xs font-bold">
+                <Check size={16} />
+                <span>Thanks for subscribing!</span>
+              </div>
+            ) : (
+              <form
+                className="flex relative"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (!newsletterEmail) return;
+                  setIsNewsletterSubmitting(true);
+                  setTimeout(() => {
+                    setIsNewsletterSubmitting(false);
+                    setNewsletterSubmitted(true);
+                  }, 800);
+                }}
               >
-                <Send size={14} />
-              </button>
-            </form>
+                <input
+                  type="email"
+                  required
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
+                  placeholder="Your email"
+                  aria-label="Email address for newsletter"
+                  className="text-[var(--foreground)] bg-[var(--card-bg)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] rounded-xl outline-none w-full py-3 pr-12 pl-4 text-sm transition-all duration-300 focus:border-[#10B981] focus:shadow-[0_0_20px_rgba(16,185,129,0.2)] placeholder:text-[var(--text-muted)]"
+                />
+                <button
+                  type="submit"
+                  disabled={isNewsletterSubmitting}
+                  className="bg-gradient-to-br from-[#10B981] to-[#059669] text-white cursor-pointer border-none rounded-lg flex justify-center items-center w-10 h-10 transition-all duration-300 absolute top-1/2 right-1.5 -translate-y-1/2 hover:opacity-90 hover:scale-110 shadow-[0_0_20px_rgba(16,185,129,0.3)] disabled:opacity-50"
+                  aria-label="Subscribe"
+                >
+                  <Send size={14} className={isNewsletterSubmitting ? "animate-pulse" : ""} />
+                </button>
+              </form>
+            )}
           </div>
         </div>
 

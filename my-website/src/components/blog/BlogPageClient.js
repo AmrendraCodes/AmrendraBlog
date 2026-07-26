@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo, useEffect, memo } from 'react';
-import { SearchX, Clock, ChevronLeft, ChevronRight, Tag } from 'lucide-react';
+import { SearchX, Clock, ChevronLeft, ChevronRight, Tag, Check } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import SearchToolbar from './SearchToolbar';
@@ -75,6 +75,10 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
   const [selectedTag, setSelectedTag] = useState('');
   const [sortBy, setSortBy] = useState('Latest');
   const [currentPage, setCurrentPage] = useState(1);
+
+  const [sidebarEmail, setSidebarEmail] = useState('');
+  const [isSidebarSubmitting, setIsSidebarSubmitting] = useState(false);
+  const [sidebarSubmitted, setSidebarSubmitted] = useState(false);
 
   const debouncedQuery = useDebounce(searchQuery, 250);
 
@@ -317,20 +321,41 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
               <p className="text-emerald-100 text-sm mb-6 relative z-10 leading-relaxed">
                 Get the latest articles and insights delivered directly to your inbox every week.
               </p>
-              <form className="relative z-10 flex flex-col gap-3">
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  className="w-full px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-emerald-200 focus:outline-none focus:ring-2 focus:ring-white/50 text-sm font-medium"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="w-full py-3 bg-white text-[#10B981] font-extrabold rounded-xl hover:bg-emerald-50 transition-colors shadow-md text-sm cursor-pointer"
+              {sidebarSubmitted ? (
+                <div className="relative z-10 flex items-center justify-center gap-2 p-3.5 rounded-xl bg-white/20 text-white font-bold text-sm">
+                  <Check size={18} />
+                  <span>Subscribed Successfully!</span>
+                </div>
+              ) : (
+                <form
+                  className="relative z-10 flex flex-col gap-3"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    if (!sidebarEmail) return;
+                    setIsSidebarSubmitting(true);
+                    setTimeout(() => {
+                      setIsSidebarSubmitting(false);
+                      setSidebarSubmitted(true);
+                    }, 800);
+                  }}
                 >
-                  Subscribe Now
-                </button>
-              </form>
+                  <input
+                    type="email"
+                    required
+                    value={sidebarEmail}
+                    onChange={(e) => setSidebarEmail(e.target.value)}
+                    placeholder="Your email address"
+                    className="w-full px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-emerald-200 focus:outline-none focus:ring-2 focus:ring-white/50 text-sm font-medium"
+                  />
+                  <button
+                    type="submit"
+                    disabled={isSidebarSubmitting}
+                    className="w-full py-3 bg-white text-[#10B981] font-extrabold rounded-xl hover:bg-emerald-50 transition-colors shadow-md text-sm cursor-pointer disabled:opacity-75"
+                  >
+                    {isSidebarSubmitting ? "Subscribing..." : "Subscribe Now"}
+                  </button>
+                </form>
+              )}
             </div>
 
           </aside>
