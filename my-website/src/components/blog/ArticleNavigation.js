@@ -18,7 +18,7 @@ export default function ArticleNavigation({ prev, next }) {
       {prev ? (
         <Link
           href={`/blog/${prev.slug}`}
-          className="group flex flex-col p-5 bg-[var(--section-alt-bg)] border border-[var(--card-border)] rounded-xl hover:border-[#6366F1]/30 hover:bg-[var(--card-bg-hover)] transition-all duration-300 no-underline"
+          className="group flex flex-col p-5 bg-[var(--section-alt-bg)] border border-[var(--card-border)] rounded-xl hover:border-[#10B981]/30 hover:bg-[var(--card-bg-hover)] transition-all duration-300 no-underline"
         >
           <span className="text-xs font-bold uppercase tracking-widest text-[var(--text-muted)] mb-2 flex items-center gap-1.5">
             <ArrowLeft
@@ -27,7 +27,7 @@ export default function ArticleNavigation({ prev, next }) {
             />
             Previous
           </span>
-          <span className="text-sm font-bold text-[var(--text-heading)] group-hover:text-[#6366F1] dark:group-hover:text-[#818CF8] transition-colors line-clamp-2">
+          <span className="text-sm font-bold text-[var(--text-heading)] group-hover:text-[#10B981] dark:group-hover:text-[#34D399] transition-colors line-clamp-2">
             {prev.title}
           </span>
           {prev.category && (
@@ -44,7 +44,7 @@ export default function ArticleNavigation({ prev, next }) {
       {next ? (
         <Link
           href={`/blog/${next.slug}`}
-          className="group flex flex-col p-5 bg-[var(--section-alt-bg)] border border-[var(--card-border)] rounded-xl hover:border-[#6366F1]/30 hover:bg-[var(--card-bg-hover)] transition-all duration-300 no-underline text-right"
+          className="group flex flex-col p-5 bg-[var(--section-alt-bg)] border border-[var(--card-border)] rounded-xl hover:border-[#10B981]/30 hover:bg-[var(--card-bg-hover)] transition-all duration-300 no-underline text-right"
         >
           <span className="text-xs font-bold uppercase tracking-widest text-[var(--text-muted)] mb-2 flex items-center gap-1.5 justify-end">
             Next
@@ -53,7 +53,7 @@ export default function ArticleNavigation({ prev, next }) {
               className="group-hover:translate-x-1 transition-transform"
             />
           </span>
-          <span className="text-sm font-bold text-[var(--text-heading)] group-hover:text-[#6366F1] dark:group-hover:text-[#818CF8] transition-colors line-clamp-2">
+          <span className="text-sm font-bold text-[var(--text-heading)] group-hover:text-[#10B981] dark:group-hover:text-[#34D399] transition-colors line-clamp-2">
             {next.title}
           </span>
           {next.category && (

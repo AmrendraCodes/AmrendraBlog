@@ -54,7 +54,7 @@ export default function CaseStudiesSection({ caseStudies }) {
         <motion.div variants={staggerItem} className="flex justify-center mt-12">
           <Link
             href="/case-studies"
-            className="group inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] font-bold transition-all duration-300 hover:-translate-y-1 hover:border-[#6366F1]/30 hover:shadow-lg"
+            className="group inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] font-bold transition-all duration-300 hover:-translate-y-1 hover:border-[#10B981]/30 hover:shadow-lg"
           >
             View All Case Studies <ArrowRight size={18} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>

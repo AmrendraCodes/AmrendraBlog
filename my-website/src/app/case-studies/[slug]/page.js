@@ -193,7 +193,7 @@ export default async function CaseStudyPage({ params }) {
                   {study.stack.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1.5 rounded-full text-sm font-semibold bg-[#6366F1]/10 dark:bg-[#6366F1]/15 text-[#6366F1] dark:text-[#818CF8] border border-[#6366F1]/20"
+                      className="px-3 py-1.5 rounded-full text-sm font-semibold bg-[#10B981]/10 dark:bg-[#10B981]/15 text-[#10B981] dark:text-[#34D399] border border-[#10B981]/20"
                     >
                       {tech}
                     </span>
@@ -203,7 +203,7 @@ export default async function CaseStudyPage({ params }) {
 
               {/* Metric Highlight */}
               {study.metricHighlight && (
-                <div className="bg-gradient-to-br from-[#6366F1]/10 to-[#a855f7]/10 rounded-2xl border border-[#6366F1]/20 p-6 text-center">
+                <div className="bg-gradient-to-br from-[#10B981]/10 to-[#059669]/10 rounded-2xl border border-[#10B981]/20 p-6 text-center">
                   <p className="text-sm font-bold uppercase tracking-wider text-[var(--text-muted)] mb-2">
                     Key Result
                   </p>
@@ -232,7 +232,7 @@ export default async function CaseStudyPage({ params }) {
               {/* Back Link */}
               <Link
                 href="/case-studies"
-                className="group flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] font-bold text-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#6366F1]/30 hover:shadow-lg no-underline"
+                className="group flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] font-bold text-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#10B981]/30 hover:shadow-lg no-underline"
               >
                 <ArrowLeft size={16} className="transition-transform duration-300 group-hover:-translate-x-1" />
                 All Case Studies

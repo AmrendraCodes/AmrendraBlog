@@ -24,7 +24,7 @@ export default function BackToTop() {
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-[#6366F1] text-white shadow-lg shadow-indigo-500/30 flex items-center justify-center cursor-pointer hover:bg-[#818CF8] hover:shadow-indigo-500/40 hover:-translate-y-0.5 transition-all duration-200"
+          className="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-[#10B981] text-white shadow-lg shadow-emerald-500/30 flex items-center justify-center cursor-pointer hover:bg-[#34D399] hover:shadow-emerald-500/40 hover:-translate-y-0.5 transition-all duration-200"
           aria-label="Back to top"
           title="Back to top"
           id="back-to-top"

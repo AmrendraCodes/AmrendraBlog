@@ -38,13 +38,13 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-indigo-100 dark:selection:bg-indigo-900/40 font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-emerald-100 dark:selection:bg-emerald-900/40 font-sans overflow-x-hidden">
 
       {/* ═══════════ HERO SECTION — Centered Layout ═══════════ */}
       <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 px-6 overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 grid-bg" />
-        <div className="absolute top-[5%] left-[10%] w-[280px] sm:w-[400px] md:w-[500px] h-[280px] sm:h-[400px] md:h-[500px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.1)_0%,transparent_70%)] blur-3xl animate-[float_10s_ease-in-out_infinite]" />
+        <div className="absolute top-[5%] left-[10%] w-[280px] sm:w-[400px] md:w-[500px] h-[280px] sm:h-[400px] md:h-[500px] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.1)_0%,transparent_70%)] blur-3xl animate-[float_10s_ease-in-out_infinite]" />
         <div className="absolute top-[20%] right-[5%] w-[320px] sm:w-[450px] md:w-[600px] h-[320px] sm:h-[450px] md:h-[600px] rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.08)_0%,transparent_70%)] blur-3xl animate-[float_12s_ease-in-out_infinite_reverse]" />
 
         <motion.div
@@ -55,8 +55,8 @@ export default function AboutPage() {
         >
           {/* Floating Badge */}
           <motion.div variants={fadeUp}>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-xs font-bold uppercase tracking-[0.12em] text-[#6366F1] dark:text-[#818CF8] mb-6 shadow-sm backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-[#6366F1] animate-pulse" />
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-xs font-bold uppercase tracking-[0.12em] text-[#10B981] dark:text-[#34D399] mb-6 shadow-sm backdrop-blur-sm">
+              <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
               Developer &amp; Content Creator
             </span>
           </motion.div>
@@ -69,7 +69,7 @@ export default function AboutPage() {
           >
             <span>{displayText.substring(0, 8)}</span>
             <span className="gradient-text">{displayText.substring(8)}</span>
-            <span className="inline-block w-1 md:w-1.5 h-[0.8em] bg-[#6366F1] ml-2 align-middle animate-[blink_1s_infinite]"></span>
+            <span className="inline-block w-1 md:w-1.5 h-[0.8em] bg-[#10B981] ml-2 align-middle animate-[blink_1s_infinite]"></span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -77,21 +77,21 @@ export default function AboutPage() {
             variants={fadeUp}
             className="text-base sm:text-lg md:text-xl text-[var(--text-body)] max-w-2xl mx-auto mb-10 leading-relaxed"
           >
-            A <span className="text-[#6366F1] dark:text-[#818CF8] font-bold">Technical Content Writer</span> and <span className="text-[#6366F1] dark:text-[#818CF8] font-bold">Frontend Developer</span> passionate about building amazing web experiences and sharing knowledge with the community.
+            A <span className="text-[#10B981] dark:text-[#34D399] font-bold">Technical Content Writer</span> and <span className="text-[#10B981] dark:text-[#34D399] font-bold">Frontend Developer</span> passionate about building amazing web experiences and sharing knowledge with the community.
           </motion.p>
 
           {/* CTA Buttons */}
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
             <Link
               href="/blog"
-              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-bold text-base transition-all duration-300 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)] hover:-translate-y-1 hover:scale-105 w-full sm:w-auto"
+              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-br from-[#10B981] to-[#059669] text-white font-bold text-base transition-all duration-300 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)] hover:-translate-y-1 hover:scale-105 w-full sm:w-auto"
             >
               <Play size={16} fill="currentColor" />
               View Articles
             </Link>
             <Link
               href="/hire-me"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[var(--card-bg)] shadow-[var(--shadow-card)] text-[var(--foreground)] font-bold text-base transition-all duration-300 hover:shadow-[var(--shadow-3d)] hover:border-[#6366F1]/50 hover:-translate-y-1 w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[var(--card-bg)] shadow-[var(--shadow-card)] text-[var(--foreground)] font-bold text-base transition-all duration-300 hover:shadow-[var(--shadow-3d)] hover:border-[#10B981]/50 hover:-translate-y-1 w-full sm:w-auto"
             >
               Get in Touch
             </Link>
@@ -114,11 +114,11 @@ export default function AboutPage() {
             className="relative flex flex-col md:flex-row items-center gap-10 md:gap-14 bg-[var(--card-bg)] rounded-3xl border border-[var(--card-border)] shadow-[var(--shadow-card)] p-8 md:p-12 overflow-hidden"
           >
             {/* Decorative glow */}
-            <div className="absolute top-0 right-0 w-[300px] h-[300px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.06)_0%,transparent_70%)] pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[300px] h-[300px] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.06)_0%,transparent_70%)] pointer-events-none" />
 
             {/* Photo */}
             <div className="shrink-0 relative">
-              <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-[#6366F1] to-[#a855f7] opacity-50 blur-md" />
+              <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-[#10B981] to-[#059669] opacity-50 blur-md" />
               <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden border-2 border-[var(--card-border)]">
                 <Image
                   src="/Profile photo.jpeg"
@@ -137,7 +137,7 @@ export default function AboutPage() {
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--text-heading)] mb-1">
                   Amrendra <span className="gradient-text">Kumar</span>
                 </h2>
-                <p className="text-[#6366F1] dark:text-[#818CF8] font-bold text-base">
+                <p className="text-[#10B981] dark:text-[#34D399] font-bold text-base">
                   Frontend Developer &amp; Technical Content Writer
                 </p>
               </div>
@@ -169,7 +169,7 @@ export default function AboutPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Visit ${label} profile`}
-                    className="w-10 h-10 rounded-xl flex items-center justify-center bg-[var(--section-alt-bg)] border border-[var(--card-border)] text-[var(--text-muted)] hover:text-[#6366F1] dark:hover:text-[#818CF8] hover:border-[#6366F1]/30 transition-all duration-300 hover:-translate-y-0.5"
+                    className="w-10 h-10 rounded-xl flex items-center justify-center bg-[var(--section-alt-bg)] border border-[var(--card-border)] text-[var(--text-muted)] hover:text-[#10B981] dark:hover:text-[#34D399] hover:border-[#10B981]/30 transition-all duration-300 hover:-translate-y-0.5"
                   >
                     <Icon size={18} />
                   </a>
@@ -245,7 +245,7 @@ export default function AboutPage() {
               className="lg:col-span-1 bg-[var(--card-bg)] p-8 md:p-10 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-3d)] transition-all duration-500"
             >
               <h3 className="text-2xl md:text-3xl font-extrabold text-[var(--text-heading)] mb-8 flex items-center gap-3">
-                <span className="w-8 h-1.5 md:h-2 bg-gradient-to-r from-[#6366F1] to-[#a855f7] rounded-full"></span>
+                <span className="w-8 h-1.5 md:h-2 bg-gradient-to-r from-[#10B981] to-[#059669] rounded-full"></span>
                 Expertise
               </h3>
               <div className="space-y-8">
@@ -260,11 +260,11 @@ export default function AboutPage() {
                   <div key={skill.name}>
                     <div className="flex items-center justify-between mb-3">
                       <h4 className="text-base font-bold text-[var(--text-heading)]">{skill.name}</h4>
-                      <span className="text-sm font-semibold text-[#6366F1] dark:text-[#818CF8]">{skill.percentage}%</span>
+                      <span className="text-sm font-semibold text-[#10B981] dark:text-[#34D399]">{skill.percentage}%</span>
                     </div>
                     <div className="w-full bg-[var(--section-alt-bg)] border border-[rgba(255,255,255,0.05)] rounded-full h-2 overflow-hidden">
                       <div
-                        className="h-full bg-gradient-to-r from-[#6366F1] to-[#a855f7] rounded-full transition-all duration-500 ease-out shadow-[var(--shadow-glow)]"
+                        className="h-full bg-gradient-to-r from-[#10B981] to-[#059669] rounded-full transition-all duration-500 ease-out shadow-[var(--shadow-glow)]"
                         style={{ width: `${skill.percentage}%` }}
                       ></div>
                     </div>
@@ -306,9 +306,9 @@ export default function AboutPage() {
                 key={title}
                 variants={fadeUp}
                 whileHover={{ y: -5 }}
-                className="flex flex-col items-center text-center gap-4 p-6 md:p-8 rounded-2xl bg-[var(--card-bg)] border border-[var(--card-border)] transition-all duration-300 hover:border-[#6366F1]/30 hover:shadow-[0_0_40px_rgba(99,102,241,0.08)]"
+                className="flex flex-col items-center text-center gap-4 p-6 md:p-8 rounded-2xl bg-[var(--card-bg)] border border-[var(--card-border)] transition-all duration-300 hover:border-[#10B981]/30 hover:shadow-[0_0_40px_rgba(16,185,129,0.08)]"
               >
-                <div className="w-14 h-14 rounded-2xl bg-[#6366F1]/10 dark:bg-[#6366F1]/15 border border-[#6366F1]/20 flex items-center justify-center text-[#6366F1] dark:text-[#818CF8]">
+                <div className="w-14 h-14 rounded-2xl bg-[#10B981]/10 dark:bg-[#10B981]/15 border border-[#10B981]/20 flex items-center justify-center text-[#10B981] dark:text-[#34D399]">
                   <Icon size={26} />
                 </div>
                 <h3 className="font-bold text-base text-[var(--text-heading)]">{title}</h3>
@@ -333,7 +333,7 @@ export default function AboutPage() {
             className="relative bg-[var(--card-bg)] border border-[var(--card-border)] rounded-3xl p-8 sm:p-12 text-center overflow-hidden"
           >
             {/* Radial glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.08)_0%,transparent_70%)] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.08)_0%,transparent_70%)] pointer-events-none" />
 
             <div className="relative z-10 flex flex-col items-center">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-4 text-[var(--text-heading)]">
@@ -344,7 +344,7 @@ export default function AboutPage() {
               </p>
               <Link
                 href="/hire-me"
-                className="group inline-flex items-center gap-2 bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-bold text-base md:text-lg py-4 md:py-5 px-8 md:px-10 rounded-2xl transition-all duration-300 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)] hover:-translate-y-1 hover:scale-105 no-underline"
+                className="group inline-flex items-center gap-2 bg-gradient-to-br from-[#10B981] to-[#059669] text-white font-bold text-base md:text-lg py-4 md:py-5 px-8 md:px-10 rounded-2xl transition-all duration-300 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)] hover:-translate-y-1 hover:scale-105 no-underline"
               >
                 Get in Touch
                 <ArrowRight size={20} className="transition-transform duration-300 group-hover:translate-x-1" />

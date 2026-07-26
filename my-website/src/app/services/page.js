@@ -177,13 +177,13 @@ export default function ServicesPage() {
             </AnimatedSection>
 
             {/* GROW Card */}
-            <AnimatedSection direction="up" delay={0.2} className="bg-[var(--card-bg)] border border-cyan-500/30 rounded-3xl p-8 shadow-[var(--shadow-card)] relative overflow-hidden flex flex-col justify-between">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-cyan-500/10 rounded-full blur-xl pointer-events-none" />
+            <AnimatedSection direction="up" delay={0.2} className="bg-[var(--card-bg)] border border-emerald-500/30 rounded-3xl p-8 shadow-[var(--shadow-card)] relative overflow-hidden flex flex-col justify-between">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/10 rounded-full blur-xl pointer-events-none" />
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 flex items-center justify-center mb-6">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center mb-6">
                   <TrendingUp size={24} />
                 </div>
-                <div className="inline-block px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 font-bold text-xs uppercase tracking-wider mb-4">
+                <div className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 font-bold text-xs uppercase tracking-wider mb-4">
                   PILLAR 02
                 </div>
                 <h3 className="text-2xl font-black text-[var(--text-heading)] mb-3">
@@ -195,11 +195,11 @@ export default function ServicesPage() {
               </div>
 
               <div className="pt-6 border-t border-[var(--card-border)] space-y-2">
-                <Link href="/services/digital-marketing" className="flex items-center justify-between text-xs font-bold text-[var(--text-heading)] hover:text-cyan-400 transition-colors py-1.5">
+                <Link href="/services/digital-marketing" className="flex items-center justify-between text-xs font-bold text-[var(--text-heading)] hover:text-emerald-400 transition-colors py-1.5">
                   <span>• Digital Marketing</span>
                   <ArrowRight size={14} />
                 </Link>
-                <Link href="/services/seo-content-strategy" className="flex items-center justify-between text-xs font-bold text-[var(--text-heading)] hover:text-cyan-400 transition-colors py-1.5">
+                <Link href="/services/seo-content-strategy" className="flex items-center justify-between text-xs font-bold text-[var(--text-heading)] hover:text-emerald-400 transition-colors py-1.5">
                   <span>• SEO &amp; Content Strategy</span>
                   <ArrowRight size={14} />
                 </Link>
@@ -243,7 +243,7 @@ export default function ServicesPage() {
       <section id="all-services" className="py-24 bg-[var(--background)] border-b border-[var(--card-border)] scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-[#6366F1] dark:text-[#818CF8] bg-[#6366F1]/10 px-3.5 py-1.5 rounded-full border border-[#6366F1]/20 mb-4 inline-block">
+            <span className="text-xs font-extrabold uppercase tracking-widest text-[#10B981] dark:text-[#34D399] bg-[#10B981]/10 px-3.5 py-1.5 rounded-full border border-[#10B981]/20 mb-4 inline-block">
               COMPLETE SERVICE OFFERINGS
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-[var(--text-heading)] tracking-tight mt-3 mb-4">

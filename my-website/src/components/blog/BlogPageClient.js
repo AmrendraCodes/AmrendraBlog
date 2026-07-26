@@ -154,8 +154,8 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
                     onClick={() => { setActiveCategory(cat); setCurrentPage(1); }}
                     className={`shrink-0 px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 border cursor-pointer ${
                       activeCategory === cat
-                        ? 'bg-[#6366F1] border-[#6366F1] text-white shadow-md shadow-indigo-500/20'
-                        : 'bg-[var(--card-bg)] border-[var(--card-border)] text-[var(--text-body)] hover:border-[#6366F1]/30 hover:text-[#6366F1] dark:hover:text-[#818CF8]'
+                        ? 'bg-[#10B981] border-[#10B981] text-white shadow-md shadow-emerald-500/20'
+                        : 'bg-[var(--card-bg)] border-[var(--card-border)] text-[var(--text-body)] hover:border-[#10B981]/30 hover:text-[#10B981] dark:hover:text-[#34D399]'
                     }`}
                   >
                     {cat}
@@ -169,7 +169,7 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] text-sm rounded-lg focus:ring-[#6366F1] focus:border-[#6366F1] block p-2 outline-none cursor-pointer font-bold"
+                  className="bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] text-sm rounded-lg focus:ring-[#10B981] focus:border-[#10B981] block p-2 outline-none cursor-pointer font-bold"
                 >
                   <option value="Latest">Latest</option>
                   <option value="Popular">Popular</option>
@@ -182,15 +182,15 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
             {/* Active Tag Filter Indicator */}
             {selectedTag && (
               <div className="flex items-center gap-2 mb-6">
-                <Tag size={14} className="text-[#6366F1]" />
+                <Tag size={14} className="text-[#10B981]" />
                 <span className="text-sm text-[var(--text-body)]">
                   Filtered by tag:
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#6366F1]/10 text-[#6366F1] dark:text-[#818CF8] text-xs font-bold rounded-full">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#10B981]/10 text-[#10B981] dark:text-[#34D399] text-xs font-bold rounded-full">
                   #{selectedTag}
                   <button
                     onClick={() => setSelectedTag('')}
-                    className="hover:text-[#6366F1] cursor-pointer bg-transparent border-none p-0 text-current"
+                    className="hover:text-[#10B981] cursor-pointer bg-transparent border-none p-0 text-current"
                     aria-label="Clear tag filter"
                   >
                     ×
@@ -202,7 +202,7 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
             {/* No results state */}
             {noResults ? (
               <div className="bg-[var(--card-bg)] rounded-2xl border border-[var(--card-border)] p-12 text-center flex flex-col items-center justify-center">
-                <div className="w-16 h-16 bg-[#6366F1]/10 text-[#6366F1] dark:text-[#818CF8] rounded-full flex items-center justify-center mb-4">
+                <div className="w-16 h-16 bg-[#10B981]/10 text-[#10B981] dark:text-[#34D399] rounded-full flex items-center justify-center mb-4">
                   <SearchX size={32} />
                 </div>
                 <h3 className="text-xl font-bold text-[var(--text-heading)] mb-2">No articles found</h3>
@@ -212,7 +212,7 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
                 <button
                   type="button"
                   onClick={handleClearFilters}
-                  className="mt-6 text-[#6366F1] dark:text-[#818CF8] font-bold hover:underline cursor-pointer bg-transparent border-none p-0"
+                  className="mt-6 text-[#10B981] dark:text-[#34D399] font-bold hover:underline cursor-pointer bg-transparent border-none p-0"
                 >
                   Clear all filters
                 </button>
@@ -227,7 +227,7 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
                     <button
                       onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
                       disabled={currentPage === 1}
-                      className="w-10 h-10 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] flex items-center justify-center text-[var(--text-muted)] hover:text-[#6366F1] hover:border-[#6366F1]/30 transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                      className="w-10 h-10 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] flex items-center justify-center text-[var(--text-muted)] hover:text-[#10B981] hover:border-[#10B981]/30 transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
                       aria-label="Previous page"
                     >
                       <ChevronLeft size={18} />
@@ -239,8 +239,8 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
                         onClick={() => setCurrentPage(page)}
                         className={`w-10 h-10 rounded-full text-sm font-bold transition-all cursor-pointer border ${
                           currentPage === page
-                            ? 'bg-[#6366F1] text-white border-[#6366F1] shadow-md shadow-indigo-500/20'
-                            : 'bg-[var(--card-bg)] border-[var(--card-border)] text-[var(--text-body)] hover:border-[#6366F1]/30 hover:text-[#6366F1]'
+                            ? 'bg-[#10B981] text-white border-[#10B981] shadow-md shadow-emerald-500/20'
+                            : 'bg-[var(--card-bg)] border-[var(--card-border)] text-[var(--text-body)] hover:border-[#10B981]/30 hover:text-[#10B981]'
                         }`}
                         aria-label={`Page ${page}`}
                         aria-current={currentPage === page ? 'page' : undefined}
@@ -252,7 +252,7 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
                     <button
                       onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
                       disabled={currentPage === totalPages}
-                      className="w-10 h-10 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] flex items-center justify-center text-[var(--text-muted)] hover:text-[#6366F1] hover:border-[#6366F1]/30 transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                      className="w-10 h-10 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] flex items-center justify-center text-[var(--text-muted)] hover:text-[#10B981] hover:border-[#10B981]/30 transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
                       aria-label="Next page"
                     >
                       <ChevronRight size={18} />
@@ -269,15 +269,15 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
             {/* Popular Posts Widget */}
             <div className="bg-[var(--card-bg)] rounded-3xl p-6 border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)]">
               <h3 className="text-lg font-extrabold text-[var(--text-heading)] mb-6 flex items-center">
-                <span className="w-2 h-6 bg-[#6366F1] rounded-full mr-3"></span>
+                <span className="w-2 h-6 bg-[#10B981] rounded-full mr-3"></span>
                 Popular Posts
               </h3>
               <div className="flex flex-col gap-5">
                 {popularPosts.map((post, i) => (
                   <Link key={i} href={post.link} className="group flex gap-4 items-center no-underline">
-                    <span className="text-3xl font-black text-[var(--card-border)] group-hover:text-[#6366F1]/30 transition-colors">0{i+1}</span>
+                    <span className="text-3xl font-black text-[var(--card-border)] group-hover:text-[#10B981]/30 transition-colors">0{i+1}</span>
                     <div>
-                      <h4 className="text-sm font-bold text-[var(--text-heading)] leading-tight group-hover:text-[#6366F1] dark:group-hover:text-[#818CF8] transition-colors line-clamp-2">
+                      <h4 className="text-sm font-bold text-[var(--text-heading)] leading-tight group-hover:text-[#10B981] dark:group-hover:text-[#34D399] transition-colors line-clamp-2">
                         {post.title}
                       </h4>
                       <span className="text-[11px] text-[var(--text-muted)] mt-1 block font-medium">{post.date}</span>
@@ -300,8 +300,8 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
                     onClick={() => handleTagClick(tag)}
                     className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-colors cursor-pointer border ${
                       selectedTag === tag
-                        ? 'bg-[#6366F1] text-white border-[#6366F1]'
-                        : 'bg-[var(--section-alt-bg)] text-[var(--text-body)] border-[var(--card-border)] hover:bg-[#6366F1] hover:text-white hover:border-[#6366F1]'
+                        ? 'bg-[#10B981] text-white border-[#10B981]'
+                        : 'bg-[var(--section-alt-bg)] text-[var(--text-body)] border-[var(--card-border)] hover:bg-[#10B981] hover:text-white hover:border-[#10B981]'
                     }`}
                   >
                     #{tag}
@@ -311,22 +311,22 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
             </div>
 
             {/* Newsletter Widget */}
-            <div className="bg-gradient-to-br from-[#6366F1] to-[#a855f7] rounded-3xl p-6 text-white shadow-[var(--shadow-float)] relative overflow-hidden">
+            <div className="bg-gradient-to-br from-[#10B981] to-[#059669] rounded-3xl p-6 text-white shadow-[var(--shadow-float)] relative overflow-hidden">
               <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>
               <h3 className="text-xl font-extrabold mb-2 relative z-10">Join the Newsletter</h3>
-              <p className="text-indigo-100 text-sm mb-6 relative z-10 leading-relaxed">
+              <p className="text-emerald-100 text-sm mb-6 relative z-10 leading-relaxed">
                 Get the latest articles and insights delivered directly to your inbox every week.
               </p>
               <form className="relative z-10 flex flex-col gap-3">
                 <input
                   type="email"
                   placeholder="Your email address"
-                  className="w-full px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-indigo-200 focus:outline-none focus:ring-2 focus:ring-white/50 text-sm font-medium"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-emerald-200 focus:outline-none focus:ring-2 focus:ring-white/50 text-sm font-medium"
                   required
                 />
                 <button
                   type="submit"
-                  className="w-full py-3 bg-white text-[#6366F1] font-extrabold rounded-xl hover:bg-indigo-50 transition-colors shadow-md text-sm cursor-pointer"
+                  className="w-full py-3 bg-white text-[#10B981] font-extrabold rounded-xl hover:bg-emerald-50 transition-colors shadow-md text-sm cursor-pointer"
                 >
                   Subscribe Now
                 </button>

@@ -23,9 +23,9 @@ const categories = [
     slug: "react",
     description: "Tutorials, architecture patterns, hooks, performance optimization, and scalable frontend systems.",
     icon: <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>,
-    gradient: "from-blue-500/10 to-cyan-500/10 dark:from-blue-500/5 dark:to-cyan-500/5",
-    accentColor: "text-blue-500",
-    glowColor: "group-hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]",
+    gradient: "from-emerald-500/10 to-teal-500/10 dark:from-emerald-500/5 dark:to-teal-500/5",
+    accentColor: "text-emerald-500",
+    glowColor: "group-hover:shadow-[0_0_30px_rgba(16,185,129,0.15)]",
   },
   { 
     name: "AI Agents",
@@ -68,18 +68,18 @@ const categories = [
     slug: "productivity",
     description: "Workflows, time management, essential tools, mental models, and optimizing developer output.",
     icon: <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>,
-    gradient: "from-sky-500/10 to-blue-500/10 dark:from-sky-500/5 dark:to-blue-500/5",
-    accentColor: "text-sky-500",
-    glowColor: "group-hover:shadow-[0_0_30px_rgba(14,165,233,0.15)]",
+    gradient: "from-emerald-500/10 to-teal-500/10 dark:from-emerald-500/5 dark:to-teal-500/5",
+    accentColor: "text-emerald-500",
+    glowColor: "group-hover:shadow-[0_0_30px_rgba(16,185,129,0.15)]",
   },
   { 
     name: "Development",
     slug: "development",
     description: "General development trends, frontend engineering, full-stack patterns, and modern web technologies.",
     icon: <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>,
-    gradient: "from-indigo-500/10 to-violet-500/10 dark:from-indigo-500/5 dark:to-violet-500/5",
-    accentColor: "text-indigo-500",
-    glowColor: "group-hover:shadow-[0_0_30px_rgba(99,102,241,0.15)]",
+    gradient: "from-emerald-500/10 to-green-500/10 dark:from-emerald-500/5 dark:to-green-500/5",
+    accentColor: "text-emerald-500",
+    glowColor: "group-hover:shadow-[0_0_30px_rgba(16,185,129,0.15)]",
   },
   { 
     name: "Design",
@@ -131,7 +131,7 @@ export default function CategoriesSection({ categoryCounts = {}, headingLevel = 
               <motion.div key={index} variants={staggerItem}>
                 <Link
                   href={`/category/${category.slug}`}
-                  className={`group block p-6 rounded-2xl border border-[var(--card-border)] bg-gradient-to-br ${category.gradient} hover:scale-[1.02] hover:border-[#6366F1]/30 ${category.glowColor} transition-all duration-300 cursor-pointer no-underline h-full`}
+                  className={`group block p-6 rounded-2xl border border-[var(--card-border)] bg-gradient-to-br ${category.gradient} hover:scale-[1.02] hover:border-[#10B981]/30 ${category.glowColor} transition-all duration-300 cursor-pointer no-underline h-full`}
                 >
                   {/* Icon + Badge Row */}
                   <div className="flex items-center justify-between w-full mb-4">
@@ -146,7 +146,7 @@ export default function CategoriesSection({ categoryCounts = {}, headingLevel = 
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl font-bold text-[var(--text-heading)] group-hover:text-[#6366F1] dark:group-hover:text-[#818CF8] transition-colors leading-snug mb-2">
+                  <h3 className="text-xl font-bold text-[var(--text-heading)] group-hover:text-[#10B981] dark:group-hover:text-[#34D399] transition-colors leading-snug mb-2">
                     {category.name}
                   </h3>
 
@@ -164,7 +164,7 @@ export default function CategoriesSection({ categoryCounts = {}, headingLevel = 
         <motion.div variants={staggerItem} className="text-center">
           <Link
             href="/categories"
-            className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] font-bold transition-all duration-300 hover:-translate-y-0.5 hover:border-[#6366F1]/30 hover:shadow-lg no-underline"
+            className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] font-bold transition-all duration-300 hover:-translate-y-0.5 hover:border-[#10B981]/30 hover:shadow-lg no-underline"
           >
             Explore All Categories
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300 group-hover:translate-x-1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>

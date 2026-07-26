@@ -48,7 +48,7 @@
   --foreground: #0f172a;
   --accent-primary: #10B981;
   --accent-primary-hover: #059669;
-  --accent-cyan: #06b6d4;
+  --accent-cyan: #10B981;
   --accent-emerald: #10B981;
   --accent-mint: #34D399;
   --glass-bg: rgba(255, 255, 255, 0.85);
@@ -135,8 +135,8 @@ body {
 /* ─── Grid Pattern Background ─── */
 .grid-bg {
   background-image:
-    linear-gradient(to right, rgba(99, 102, 241, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.03) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
@@ -178,7 +178,7 @@ body {
 
 /* ─── Glow Effect ─── */
 .glow-accent {
-  box-shadow: 0 0 40px rgba(99, 102, 241, 0.15), 0 0 80px rgba(99, 102, 241, 0.05);
+  box-shadow: 0 0 40px rgba(16, 185, 129, 0.15), 0 0 80px rgba(16, 185, 129, 0.05);
 }
 
 /* ─── Focus Ring (a11y) ─── */
@@ -252,7 +252,7 @@ body {
 
 /* ─── Selection Styling ─── */
 ::selection {
-  background: rgba(99, 102, 241, 0.3);
+  background: rgba(16, 185, 129, 0.3);
   color: var(--foreground);
 }
 

@@ -72,7 +72,7 @@ export default function ShareButtons({ title, slug }) {
       onClick: handleCopyLink,
       hoverClass: copied
         ? "text-emerald-400 border-emerald-400/30"
-        : "hover:text-[#6366F1] hover:border-[#6366F1]/30",
+        : "hover:text-[#10B981] hover:border-[#10B981]/30",
     },
   ];
 

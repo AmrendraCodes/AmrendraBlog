@@ -92,9 +92,9 @@ function parseAdmonition(children) {
 
 const admonitionConfig = {
   NOTE: {
-    borderColor: "border-blue-500",
-    bgColor: "bg-blue-500/5",
-    iconColor: "text-blue-500",
+    borderColor: "border-emerald-500",
+    bgColor: "bg-emerald-500/5",
+    iconColor: "text-emerald-500",
     icon: "ℹ️",
     title: "Note",
   },
@@ -324,7 +324,7 @@ export default function MarkdownRenderer({ content }) {
                 type="checkbox"
                 checked={checked}
                 disabled
-                className="w-4 h-4 text-blue-600 bg-slate-100 border-slate-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-slate-800 focus:ring-2 dark:bg-slate-700 dark:border-slate-600 mr-2 accent-blue-600 inline-block align-middle"
+                className="w-4 h-4 text-emerald-600 bg-slate-100 border-slate-300 rounded-sm focus:ring-emerald-500 dark:focus:ring-emerald-600 dark:ring-offset-slate-800 focus:ring-2 dark:bg-slate-700 dark:border-slate-600 mr-2 accent-emerald-600 inline-block align-middle"
                 {...props}
               />
             );

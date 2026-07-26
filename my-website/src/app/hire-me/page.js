@@ -148,7 +148,7 @@ export default function HireMePage() {
             </p>
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-[#6366F1] dark:text-[#818CF8] font-bold hover:underline transition-opacity"
+              className="inline-flex items-center gap-2 text-[#10B981] dark:text-[#34D399] font-bold hover:underline transition-opacity"
             >
               Back to Home
               <ArrowRight size={18} />
@@ -169,7 +169,7 @@ export default function HireMePage() {
                 onChange={handleChange}
                 required
                 placeholder="John Doe"
-                className="w-full px-5 py-4 rounded-2xl bg-[var(--background)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] focus:outline-none focus:border-[#6366F1] focus:shadow-[var(--shadow-glow)] transition-all text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]"
+                className="w-full px-5 py-4 rounded-2xl bg-[var(--background)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] focus:outline-none focus:border-[#10B981] focus:shadow-[var(--shadow-glow)] transition-all text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]"
               />
             </div>
 
@@ -186,7 +186,7 @@ export default function HireMePage() {
                 onChange={handleChange}
                 required
                 placeholder="john@example.com"
-                className="w-full px-5 py-4 rounded-2xl bg-[var(--background)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] focus:outline-none focus:border-[#6366F1] focus:shadow-[var(--shadow-glow)] transition-all text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]"
+                className="w-full px-5 py-4 rounded-2xl bg-[var(--background)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] focus:outline-none focus:border-[#10B981] focus:shadow-[var(--shadow-glow)] transition-all text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]"
               />
             </div>
 
@@ -200,7 +200,7 @@ export default function HireMePage() {
                 name="service"
                 value={formData.service}
                 onChange={handleChange}
-                className="w-full px-5 py-4 rounded-2xl bg-[var(--background)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] focus:outline-none focus:border-[#6366F1] focus:shadow-[var(--shadow-glow)] transition-all text-[var(--foreground)] font-medium appearance-none cursor-pointer"
+                className="w-full px-5 py-4 rounded-2xl bg-[var(--background)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] focus:outline-none focus:border-[#10B981] focus:shadow-[var(--shadow-glow)] transition-all text-[var(--foreground)] font-medium appearance-none cursor-pointer"
               >
                 <option value="web-dev">Web Development</option>
                 <option value="app-dev">App Development</option>
@@ -222,7 +222,7 @@ export default function HireMePage() {
                 required
                 placeholder="Tell me about your project, timeline, budget, and any specific requirements..."
                 rows="6"
-                className="w-full px-5 py-4 rounded-2xl bg-[var(--background)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] focus:outline-none focus:border-[#6366F1] focus:shadow-[var(--shadow-glow)] transition-all text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)] resize-none"
+                className="w-full px-5 py-4 rounded-2xl bg-[var(--background)] border border-[rgba(255,255,255,0.08)] shadow-[var(--shadow-inner-glow)] focus:outline-none focus:border-[#10B981] focus:shadow-[var(--shadow-glow)] transition-all text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)] resize-none"
               />
             </div>
 
@@ -230,7 +230,7 @@ export default function HireMePage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-gradient-to-br from-[#6366F1] to-[#a855f7] text-white font-bold text-base md:text-lg py-4 px-8 rounded-2xl transition-all duration-300 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)] hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none hover:scale-105"
+              className="w-full bg-gradient-to-br from-[#10B981] to-[#059669] text-white font-bold text-base md:text-lg py-4 px-8 rounded-2xl transition-all duration-300 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)] hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none hover:scale-105"
             >
               {isLoading ? "Sending..." : "Send Project Inquiry"}
             </button>
@@ -251,7 +251,7 @@ export default function HireMePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="mailto:amrendra1999official@gmail.com"
-              className="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-[var(--card-bg)] border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] text-[var(--text-heading)] font-bold rounded-2xl hover:border-[#6366F1]/30 hover:shadow-[var(--shadow-3d)] hover:-translate-y-1 transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-[var(--card-bg)] border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] text-[var(--text-heading)] font-bold rounded-2xl hover:border-[#10B981]/30 hover:shadow-[var(--shadow-3d)] hover:-translate-y-1 transition-all duration-300"
             >
               📧 Email Me
             </a>
@@ -259,7 +259,7 @@ export default function HireMePage() {
               href="https://x.com/codewithamrendr"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-[var(--card-bg)] border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] text-[var(--text-heading)] font-bold rounded-2xl hover:border-[#6366F1]/30 hover:shadow-[var(--shadow-3d)] hover:-translate-y-1 transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-[var(--card-bg)] border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] text-[var(--text-heading)] font-bold rounded-2xl hover:border-[#10B981]/30 hover:shadow-[var(--shadow-3d)] hover:-translate-y-1 transition-all duration-300"
             >
               𝕏 Twitter/X
             </a>
@@ -267,7 +267,7 @@ export default function HireMePage() {
               href="https://www.linkedin.com/in/amrendra-reactdev/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-[var(--card-bg)] border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] text-[var(--text-heading)] font-bold rounded-2xl hover:border-[#6366F1]/30 hover:shadow-[var(--shadow-3d)] hover:-translate-y-1 transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-[var(--card-bg)] border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] text-[var(--text-heading)] font-bold rounded-2xl hover:border-[#10B981]/30 hover:shadow-[var(--shadow-3d)] hover:-translate-y-1 transition-all duration-300"
             >
               💼 LinkedIn
             </a>
