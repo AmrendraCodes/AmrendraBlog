@@ -73,6 +73,13 @@ const SERVICES = [
 
 export default function HeroSection() {
   const [activeCard, setActiveCard] = useState('react');
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+      setIsDesktop(true);
+    }
+  }, []);
 
   // Handle card selection
   const handleSelectCard = (id) => {
@@ -83,8 +90,8 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-[92vh] flex flex-col justify-center px-6 pt-32 pb-20 overflow-hidden border-b border-[#1E2E25]">
-      {/* State-Reactive 3D WebGL Background Scene */}
-      <Hero3DScene activeCard={activeCard} />
+      {/* State-Reactive 3D WebGL Background Scene (Desktop Only for sub-second mobile LCP) */}
+      {isDesktop && <Hero3DScene activeCard={activeCard} />}
 
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />

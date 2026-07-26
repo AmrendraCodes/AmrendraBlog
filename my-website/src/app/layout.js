@@ -126,42 +126,8 @@ export default function RootLayout({ children }) {
     })
   }}
 />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                var observer = new MutationObserver(function(mutations) {
-                  for (var i = 0; i < mutations.length; i++) {
-                    var mutation = mutations[i];
-                    if (mutation.type === 'attributes' && mutation.attributeName === 'bis_skin_checked') {
-                      mutation.target.removeAttribute('bis_skin_checked');
-                    }
-                    if (mutation.addedNodes) {
-                      for (var j = 0; j < mutation.addedNodes.length; j++) {
-                        var node = mutation.addedNodes[j];
-                        if (node.nodeType === 1) {
-                          if (node.hasAttribute('bis_skin_checked')) {
-                            node.removeAttribute('bis_skin_checked');
-                          }
-                          var children = node.querySelectorAll('[bis_skin_checked]');
-                          for (var k = 0; k < children.length; k++) {
-                            children[k].removeAttribute('bis_skin_checked');
-                          }
-                        }
-                      }
-                    }
-                  }
-                });
-                observer.observe(document.documentElement, {
-                  attributes: true,
-                  childList: true,
-                  subtree: true,
-                  attributeFilter: ['bis_skin_checked']
-                });
-              })();
-            `
-          }}
-        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} ${syne.variable} ${playfair.variable} bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300 overflow-x-hidden`}
