@@ -55,8 +55,53 @@ export function getPersonSchema() {
     "jobTitle": "Software Engineer & Technical Writer",
     "worksFor": {
       "@type": "Organization",
-      "name": "Code with Amrendra"
-    }
+  };
+}
+
+/**
+ * Returns LocalBusiness / SoftwareCompany JSON-LD Schema for Google Knowledge Panel indexing.
+ */
+export function getLocalBusinessSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "SoftwareCompany"],
+    "@id": "https://codewithamrendra.vercel.app/#organization",
+    "name": "Code With Amrendra",
+    "alternateName": ["Code with Amrendra", "CWA Engineering"],
+    "url": "https://codewithamrendra.vercel.app",
+    "logo": "https://codewithamrendra.vercel.app/logo-square.png",
+    "image": "https://codewithamrendra.vercel.app/logo-square.png",
+    "telephone": "+91-6205482614",
+    "priceRange": "$$",
+    "description": "Software company specializing in Custom AI Development Services, Web Development, SaaS Architecture, and Cloud Solutions.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Moh- Guphaper, South of Devi Asthan, Kalyanpur",
+      "addressLocality": "Bihar Sharif",
+      "addressRegion": "Bihar",
+      "postalCode": "803101",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 25.1982,
+      "longitude": 85.5149
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    ],
+    "sameAs": [
+      "https://github.com/AmrendraCodes",
+      "https://x.com/codewithamrendr",
+      "https://www.linkedin.com/in/amrendra-reactdev/",
+      "https://www.youtube.com/@codewithamrendra",
+      "https://instagram.com/amrendracodes"
+    ]
   };
 }
 

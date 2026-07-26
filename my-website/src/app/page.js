@@ -7,28 +7,28 @@ const FAQ = dynamic(() => import('@/components/FAQ'));
 import { getAllPosts } from "@/lib/posts";
 import { getAllCaseStudies } from "@/lib/case-studies";
 import JsonLd from "@/components/JsonLd";
-import { getWebsiteSchema, getPersonSchema } from "@/lib/schema";
+import { getWebsiteSchema, getPersonSchema, getLocalBusinessSchema } from "@/lib/schema";
 import HomeClient from "@/components/HomeClient";
 
 export const metadata = {
-  title: "Code with Amrendra | AI Development Services & Cloud",
-  description: "Code with Amrendra delivers AI Development Services, custom software, SaaS & cloud engineering for modern businesses. Book a free consultation today.",
+  title: "Code With Amrendra | AI Development Services & Cloud",
+  description: "Code With Amrendra delivers AI Development Services, custom software, SaaS & cloud engineering for modern businesses. Book a free consultation today.",
   openGraph: {
-    title: 'Code with Amrendra | AI Development Services & Cloud',
-    description: 'Code with Amrendra delivers AI Development Services, custom software, SaaS & cloud engineering for modern businesses. Book a free consultation today.',
+    title: 'Code With Amrendra | AI Development Services & Cloud',
+    description: 'Code With Amrendra delivers AI Development Services, custom software, SaaS & cloud engineering for modern businesses. Book a free consultation today.',
     url: '/',
     images: [
       {
         url: '/images/og-default.png',
         width: 1200,
         height: 630,
-        alt: 'Code with Amrendra | AI Development Services & Cloud',
+        alt: 'Code With Amrendra | AI Development Services & Cloud',
       },
     ],
   },
   twitter: {
-    title: 'Code with Amrendra | AI Development Services & Cloud',
-    description: 'Code with Amrendra delivers AI Development Services, custom software, SaaS & cloud engineering for modern businesses. Book a free consultation today.',
+    title: 'Code With Amrendra | AI Development Services & Cloud',
+    description: 'Code With Amrendra delivers AI Development Services, custom software, SaaS & cloud engineering for modern businesses. Book a free consultation today.',
     images: ['/images/og-default.png'],
   },
   alternates: {
@@ -74,6 +74,7 @@ export default function Home() {
     <div className="min-h-screen w-full overflow-x-hidden relative bg-[var(--background)]">
       <JsonLd data={getWebsiteSchema()} />
       <JsonLd data={getPersonSchema()} />
+      <JsonLd data={getLocalBusinessSchema()} />
 
       <HomeClient featuredPosts={featuredPosts} caseStudies={caseStudies} />
 
