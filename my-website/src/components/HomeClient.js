@@ -240,7 +240,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
                 tag: 'Next.js • React • TS',
               },
               {
-                icon: Sparkles,
+                icon: Bot,
                 title: 'AI & Autonomous LLM Agents',
                 desc: 'Integrate intelligent AI workflows, custom RAG pipelines, and automated agentic decision systems into your product.',
                 tag: 'OpenAI • LangChain • RAG',
