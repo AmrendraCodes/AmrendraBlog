@@ -71,7 +71,9 @@ export default function ContactPage() {
                   { label: "Email Me", value: "amrendra1999official@gmail.com", link: "mailto:amrendra1999official@gmail.com" },
                   { label: "Follow on X", value: "@codewithamrendr", link: "https://x.com/codewithamrendr" },
                   { label: "Connect on LinkedIn", value: "Amrendra Kumar", link: "https://www.linkedin.com/in/amrendra-reactdev/" },
-                  { label: "GitHub Projects", value: "AmrendraCodes", link: "https://github.com/AmrendraCodes" }
+                  { label: "GitHub Projects", value: "AmrendraCodes", link: "https://github.com/AmrendraCodes" },
+                  { label: "Read on Dev.to", value: "codewithamrendra", link: "https://dev.to/codewithamrendra" },
+                  { label: "Substack Articles", value: "@codewithamrendra", link: "https://substack.com/@codewithamrendra" },
                 ].map((item, i) => (
                   <a
                     key={i}
@@ -240,16 +242,25 @@ export default function ContactPage() {
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)] mb-10">
             Recognized On
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
-            {["Dev.to", "Hashnode", "Medium", "Product Hunt", "GitHub"].map((name) => (
-              <div
-                key={name}
-                className="flex items-center justify-center px-6 py-3 rounded-xl border border-[var(--card-border)] opacity-40 hover:opacity-70 transition-opacity duration-300 min-w-[110px]"
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+            {[
+              { name: "Dev.to", href: "https://dev.to/codewithamrendra" },
+              { name: "Hashnode", href: "https://hashnode.com/@codewithamrendra" },
+              { name: "Medium", href: "https://medium.com/@CodewithAmrendra" },
+              { name: "Substack", href: "https://substack.com/@codewithamrendra" },
+              { name: "GitHub", href: "https://github.com/AmrendraCodes" }
+            ].map((platform) => (
+              <a
+                key={platform.name}
+                href={platform.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-center px-6 py-3.5 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] opacity-70 hover:opacity-100 hover:border-[#10B981] hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:-translate-y-1 transition-all duration-300 min-w-[120px] no-underline"
               >
-                <span className="text-sm font-bold text-[var(--text-muted)] tracking-wide">
-                  {name}
+                <span className="text-sm font-bold text-[var(--text-heading)] group-hover:text-[#10B981] dark:group-hover:text-[#34D399] tracking-wide transition-colors">
+                  {platform.name}
                 </span>
-              </div>
+              </a>
             ))}
           </div>
         </div>
