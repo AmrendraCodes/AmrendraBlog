@@ -207,13 +207,13 @@ export default function ServicesPage() {
             </AnimatedSection>
 
             {/* SCALE Card */}
-            <AnimatedSection direction="up" delay={0.3} className="bg-[var(--card-bg)] border border-pink-500/30 rounded-3xl p-8 shadow-[var(--shadow-card)] relative overflow-hidden flex flex-col justify-between">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-pink-500/10 rounded-full blur-xl pointer-events-none" />
+            <AnimatedSection direction="up" delay={0.3} className="bg-[var(--card-bg)] border border-emerald-500/30 rounded-3xl p-8 shadow-[var(--shadow-card)] relative overflow-hidden flex flex-col justify-between">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/10 rounded-full blur-xl pointer-events-none" />
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-pink-500/10 text-pink-400 border border-pink-500/20 flex items-center justify-center mb-6">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center mb-6">
                   <Scaling size={24} />
                 </div>
-                <div className="inline-block px-3 py-1 rounded-full bg-pink-500/10 text-pink-400 font-bold text-xs uppercase tracking-wider mb-4">
+                <div className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 font-bold text-xs uppercase tracking-wider mb-4">
                   PILLAR 03
                 </div>
                 <h3 className="text-2xl font-black text-[var(--text-heading)] mb-3">
@@ -225,11 +225,11 @@ export default function ServicesPage() {
               </div>
 
               <div className="pt-6 border-t border-[var(--card-border)] space-y-2">
-                <Link href="/services/ai-automation" className="flex items-center justify-between text-xs font-bold text-[var(--text-heading)] hover:text-pink-400 transition-colors py-1.5">
+                <Link href="/services/ai-automation" className="flex items-center justify-between text-xs font-bold text-[var(--text-heading)] hover:text-emerald-400 transition-colors py-1.5">
                   <span>• AI &amp; Automation</span>
                   <ArrowRight size={14} />
                 </Link>
-                <Link href="/services/cloud-devops" className="flex items-center justify-between text-xs font-bold text-[var(--text-heading)] hover:text-pink-400 transition-colors py-1.5">
+                <Link href="/services/cloud-devops" className="flex items-center justify-between text-xs font-bold text-[var(--text-heading)] hover:text-emerald-400 transition-colors py-1.5">
                   <span>• Cloud &amp; DevOps</span>
                   <ArrowRight size={14} />
                 </Link>

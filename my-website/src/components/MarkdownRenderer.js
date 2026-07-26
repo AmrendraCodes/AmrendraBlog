@@ -120,9 +120,9 @@ const admonitionConfig = {
     title: "Caution",
   },
   IMPORTANT: {
-    borderColor: "border-purple-500",
-    bgColor: "bg-purple-500/5",
-    iconColor: "text-purple-500",
+    borderColor: "border-emerald-500",
+    bgColor: "bg-emerald-500/5",
+    iconColor: "text-emerald-500",
     icon: "📌",
     title: "Important",
   },
