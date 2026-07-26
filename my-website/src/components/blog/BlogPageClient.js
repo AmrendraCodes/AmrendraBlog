@@ -290,7 +290,7 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
             {/* Tags Cloud Widget */}
             <div className="bg-[var(--card-bg)] rounded-3xl p-6 border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)]">
               <h3 className="text-lg font-extrabold text-[var(--text-heading)] mb-6 flex items-center">
-                <span className="w-2 h-6 bg-[#a855f7] rounded-full mr-3"></span>
+                <span className="w-2 h-6 bg-[#10B981] rounded-full mr-3"></span>
                 Tags Cloud
               </h3>
               <div className="flex flex-wrap gap-2">
