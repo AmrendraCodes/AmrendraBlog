@@ -67,61 +67,75 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       <HeroSection />
 
       {/* ═══════════════════════════════════════════════════════════
-         2. CLIENT & SERVICES TICKER MARQUEE
+         2. CLIENT & SERVICES TICKER MARQUEE (FULL-WIDTH SLIDING NEWS BROADCAST)
          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-6 border-b border-[#1E2E25] bg-[#0A0F0C] overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 mb-3 text-center">
-          <span className="text-[11px] font-mono uppercase tracking-widest text-[#9CA3AF]">
-            Our Core Services &amp; Digital Solutions
-          </span>
-        </div>
-        <div className="relative w-full overflow-hidden flex items-center">
-          <div 
-            className="flex gap-12 whitespace-nowrap min-w-max hover:[animation-play-state:paused]"
-            style={{ animation: 'ticker-scroll-reverse 25s linear infinite' }}
-          >
-            {[
-              'Web Development',
-              'Digital Marketing',
-              'UI/UX & Product Design',
-              'SEO & Content Strategy',
-              'AI & Automation',
-              'Cloud & DevOps',
-              'Custom Software Development',
-              'E-Commerce Solutions',
-              'Brand Strategy & Growth',
-              'Performance Marketing',
-            ].concat([
-              'Web Development',
-              'Digital Marketing',
-              'UI/UX & Product Design',
-              'SEO & Content Strategy',
-              'AI & Automation',
-              'Cloud & DevOps',
-              'Custom Software Development',
-              'E-Commerce Solutions',
-              'Brand Strategy & Growth',
-              'Performance Marketing',
-            ]).concat([
-              'Web Development',
-              'Digital Marketing',
-              'UI/UX & Product Design',
-              'SEO & Content Strategy',
-              'AI & Automation',
-              'Cloud & DevOps',
-              'Custom Software Development',
-              'E-Commerce Solutions',
-              'Brand Strategy & Growth',
-              'Performance Marketing',
-            ]).map((service, i) => (
-              <span
-                key={i}
-                className="inline-flex items-center gap-2 text-sm font-mono font-semibold text-[#9CA3AF] hover:text-[#10B981] transition-colors cursor-default"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
-                {service}
-              </span>
-            ))}
+      <section className="w-full py-3.5 border-y border-[#10B981]/30 bg-[#060907] shadow-[0_0_25px_rgba(16,185,129,0.1)] overflow-hidden relative z-20">
+        <div className="w-full px-4 sm:px-8 flex items-center gap-4">
+          
+          {/* Fixed Left News Broadcast Badge */}
+          <div className="flex-shrink-0 flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#10B981]/15 border border-[#10B981]/40 text-xs font-mono font-bold uppercase tracking-wider text-[#34D399] shadow-[0_0_15px_rgba(16,185,129,0.25)] z-20">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#10B981]"></span>
+            </span>
+            <span className="hidden sm:inline">LIVE SERVICES</span>
+            <span className="sm:hidden">SERVICES</span>
+          </div>
+
+          {/* Full Width News Ticker Track */}
+          <div className="relative flex-1 overflow-hidden flex items-center">
+            {/* Left & Right Vignette Edge Fades */}
+            <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-[#060907] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-[#060907] to-transparent z-10 pointer-events-none" />
+
+            <motion.div 
+              animate={{ x: ['-50%', '0%'] }}
+              transition={{ repeat: Infinity, ease: 'linear', duration: 25 }}
+              className="flex gap-10 whitespace-nowrap min-w-max"
+            >
+              {[
+                'Web Development',
+                'Digital Marketing',
+                'UI/UX & Product Design',
+                'SEO & Content Strategy',
+                'AI & Automation',
+                'Cloud & DevOps',
+                'Custom Software Development',
+                'E-Commerce Solutions',
+                'Brand Strategy & Growth',
+                'Performance Marketing',
+              ].concat([
+                'Web Development',
+                'Digital Marketing',
+                'UI/UX & Product Design',
+                'SEO & Content Strategy',
+                'AI & Automation',
+                'Cloud & DevOps',
+                'Custom Software Development',
+                'E-Commerce Solutions',
+                'Brand Strategy & Growth',
+                'Performance Marketing',
+              ]).concat([
+                'Web Development',
+                'Digital Marketing',
+                'UI/UX & Product Design',
+                'SEO & Content Strategy',
+                'AI & Automation',
+                'Cloud & DevOps',
+                'Custom Software Development',
+                'E-Commerce Solutions',
+                'Brand Strategy & Growth',
+                'Performance Marketing',
+              ]).map((service, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-white hover:text-[#10B981] transition-colors cursor-default"
+                >
+                  <span className="text-[#10B981] text-xs">✦</span>
+                  {service}
+                </span>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>

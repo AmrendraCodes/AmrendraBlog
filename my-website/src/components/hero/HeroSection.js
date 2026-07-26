@@ -2,13 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import {
-  ArrowRight,
-  Sparkles,
-  Zap,
-  ShieldCheck,
-  Code2,
-} from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import MagneticButton from '../ui/MagneticButton';
 
