@@ -6,6 +6,8 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  compress: true,
+  poweredByHeader: false,
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion', 'lenis', 'three', 'katex', 'highlight.js', 'react-markdown', 'gray-matter', 'mermaid'],
   },
