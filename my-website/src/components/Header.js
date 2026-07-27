@@ -104,6 +104,15 @@ export default function Header() {
 
           <div className="hidden md:flex items-center justify-center">
             <nav className="flex items-center gap-3 lg:gap-7 xl:gap-9 whitespace-nowrap" aria-label="Primary navigation">
+              {/* Crawlable Fallback Links for Search Engine Indexing (Googlebot) */}
+              <div className="sr-only">
+                {SERVICES_DATA.map((s) => (
+                  <Link key={s.slug} href={`/services/${s.slug}`}>
+                    {s.title}
+                  </Link>
+                ))}
+              </div>
+
               {navLinks.map((link) => {
                 const isActive = link.href === '/' ? pathname === '/' : pathname?.startsWith(link.href);
 

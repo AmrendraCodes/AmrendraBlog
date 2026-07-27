@@ -222,36 +222,42 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
                 title: 'Full-Stack Web Engineering',
                 desc: 'End-to-end Web Development Services using React, Next.js, and TypeScript — built for speed, SEO, and long-term maintainability across every device.',
                 tag: 'Next.js • React • TS',
+                href: '/services/web-development',
               },
               {
                 icon: Bot,
                 title: 'AI & Autonomous LLM Agents',
                 desc: 'Custom AI Agent Development Services that automate workflows, support decision-making, and integrate large language models directly into your product — a core pillar of our AI Automation Development Services.',
                 tag: 'OpenAI • LangChain • RAG',
+                href: '/services/ai-automation',
               },
               {
                 icon: Globe,
-                title: 'SaaS Product Architecture',
-                desc: 'From MVP to multi-tenant scale, our SaaS Development Services cover data modeling, billing, authentication, and infrastructure designed for reliable, high-conversion growth.',
-                tag: 'SaaS • Stripe • Auth0',
+                title: 'UI/UX & Product Architecture',
+                desc: 'From MVP to multi-tenant scale, our SaaS & Product Design Services cover user flows, interface prototyping, and high-conversion visual design.',
+                tag: 'Figma • Design System • UI',
+                href: '/services/ui-ux-product-design',
               },
               {
                 icon: Cloud,
                 title: 'AWS Cloud & DevOps Automation',
                 desc: 'Fully managed Cloud Software Development Services — CI/CD pipelines, infrastructure-as-code, container orchestration, and 24/7 monitoring on AWS.',
                 tag: 'AWS • Docker • Terraform',
+                href: '/services/cloud-devops',
               },
               {
                 icon: Layers,
-                title: 'API Engineering & Integration',
-                desc: 'Secure, well-documented API design and third-party integrations that connect your software architecture to the tools your business already relies on.',
-                tag: 'REST • GraphQL • Node',
+                title: 'SEO & Growth Strategy',
+                desc: 'Technical SEO audits, data-driven content strategy, structured schema markup, and organic search optimization to scale search visibility.',
+                tag: 'SEO • Content • Growth',
+                href: '/services/seo-content-strategy',
               },
               {
                 icon: Zap,
-                title: 'Performance Audit & Optimization',
-                desc: 'Comprehensive Web Performance audits covering Core Web Vitals, frontend rendering, and backend bottlenecks — so every product we touch loads fast and scales cleanly.',
-                tag: '99+ Lighthouse Guarantee',
+                title: 'Digital Marketing & Conversion',
+                desc: 'Comprehensive digital marketing strategies covering paid media, search acquisition, and conversion rate optimization (CRO).',
+                tag: 'Growth • PPC • CRO',
+                href: '/services/digital-marketing',
               },
             ].map((service, index) => {
               const Icon = service.icon;
@@ -268,14 +274,16 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
                         {service.tag}
                       </span>
                       <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#10B981] transition-colors">
-                        {service.title}
+                        <Link href={service.href}>
+                          {service.title}
+                        </Link>
                       </h3>
                       <p className="text-xs text-[#9CA3AF] leading-relaxed mb-6">
                         {service.desc}
                       </p>
                     </div>
                     <Link
-                      href="/services"
+                      href={service.href}
                       className="inline-flex items-center gap-2 text-xs font-bold text-[#10B981] group-hover:translate-x-1 transition-transform"
                     >
                       <span>Learn More</span>

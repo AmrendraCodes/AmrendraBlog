@@ -24,9 +24,9 @@ export default function Footer() {
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#10B981]/50 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-14">
           {/* Brand Column */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 lg:col-span-1">
             <Link href="/" className="flex items-center gap-3 no-underline group mb-2">
               <Image 
                 src="/logo-wide.png" 
@@ -63,11 +63,12 @@ export default function Footer() {
           {/* Quick Links */}
           <div>
             <h4 className="text-[var(--text-heading)] mb-6 text-sm font-bold uppercase tracking-wider">Quick Links</h4>
-            <ul className="flex flex-col gap-4 m-0 p-0 list-none">
+            <ul className="flex flex-col gap-3.5 m-0 p-0 list-none">
               {[
                 { name: "Home", href: "/" },
                 { name: "Services", href: "/services" },
                 { name: "Blog", href: "/blog" },
+                { name: "Case Studies", href: "/case-studies" },
                 { name: "About", href: "/about" },
                 { name: "Contact", href: "/contact" }
               ].map((link) => (
@@ -80,10 +81,31 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Services Column (SEO Interlinking) */}
+          <div>
+            <h4 className="text-[var(--text-heading)] mb-6 text-sm font-bold uppercase tracking-wider">Services</h4>
+            <ul className="flex flex-col gap-3 m-0 p-0 list-none">
+              {[
+                { name: "Web Development", href: "/services/web-development" },
+                { name: "Digital Marketing", href: "/services/digital-marketing" },
+                { name: "AI Automation", href: "/services/ai-automation" },
+                { name: "UI/UX Design", href: "/services/ui-ux-product-design" },
+                { name: "SEO & Content", href: "/services/seo-content-strategy" },
+                { name: "Cloud & DevOps", href: "/services/cloud-devops" }
+              ].map((link) => (
+                <li key={link.name} className="flex">
+                  <Link href={link.href} className="text-[var(--text-body)] text-xs font-medium no-underline transition-colors duration-300 hover:text-[#10B981] dark:hover:text-[#34D399]">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Categories */}
           <div>
             <h4 className="text-[var(--text-heading)] mb-6 text-sm font-bold uppercase tracking-wider">Categories</h4>
-            <ul className="flex flex-col gap-4 m-0 p-0 list-none">
+            <ul className="flex flex-col gap-3.5 m-0 p-0 list-none">
               {[
                 { name: "React", href: "/category/react" },
                 { name: "AI Agents", href: "/category/ai-agents" },
