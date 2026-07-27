@@ -1,11 +1,10 @@
-import { Inter, JetBrains_Mono, Syne, Playfair_Display } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from 'next-themes'
 import "./globals.css";
 import Header from "../components/Header";
-import SmoothScroll from "../components/SmoothScroll";
+import Footer from "../components/Footer";
 import dynamic from 'next/dynamic';
 
-const Footer = dynamic(() => import('../components/Footer'));
 const WhatsAppButton = dynamic(() => import('../components/WhatsAppButton'));
 
 const inter = Inter({
@@ -17,21 +16,6 @@ const inter = Inter({
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
-  display: "swap",
-});
-
-const syne = Syne({
-  variable: "--font-syne",
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -96,54 +80,51 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <meta name="msvalidate.01" content="6AF92BFDAFBC08EC722E3BCC05211B45" />
-       <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Amrendra Kumar",
-      "url": "https://codewithamrendra.vercel.app",
-      "image": "https://codewithamrendra.vercel.app/Profile%20photo.jpeg",
-      "jobTitle": "Frontend Developer & Technical Content Writer",
-      "description": "Personal insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.",
-      "email": "amrendra1999official@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Bihar Sharif",
-        "addressRegion": "Bihar",
-        "addressCountry": "IN"
-      },
-      "sameAs": [
-        "https://github.com/AmrendraCodes",
-        "https://x.com/AmrendraCodes",
-        "https://www.linkedin.com/in/amrendra-reactdev/",
-        "https://www.youtube.com/@codewithamrendra",
-        "https://www.instagram.com/codewithamrendra"
-      ]
-    })
-  }}
-/>
-      </head>
+      <head />
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} ${syne.variable} ${playfair.variable} bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300 overflow-x-hidden`}
+        className={`${inter.variable} ${jetbrainsMono.variable} bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300 overflow-x-hidden`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Amrendra Kumar",
+              "url": "https://codewithamrendra.vercel.app",
+              "image": "https://codewithamrendra.vercel.app/Profile%20photo.jpeg",
+              "jobTitle": "Frontend Developer & Technical Content Writer",
+              "description": "Personal insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.",
+              "email": "amrendra1999official@gmail.com",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Bihar Sharif",
+                "addressRegion": "Bihar",
+                "addressCountry": "IN"
+              },
+              "sameAs": [
+                "https://github.com/AmrendraCodes",
+                "https://x.com/AmrendraCodes",
+                "https://www.linkedin.com/in/amrendra-reactdev/",
+                "https://www.youtube.com/@codewithamrendra",
+                "https://www.instagram.com/codewithamrendra"
+              ]
+            })
+          }}
+        />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <a href="#main-content" className="skip-to-main">
             Skip to main content
           </a>
-          <SmoothScroll>
-            <Header />
-            <main id="main-content">
-              {children}
-            </main>
-            <Footer />
-            <WhatsAppButton />
-          </SmoothScroll>
+          <Header />
+          <main id="main-content">
+            {children}
+          </main>
+          <Footer />
+          <WhatsAppButton />
         </ThemeProvider>
       </body>
     </html>
   );
 }
+

@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 /**
  * MagneticButton Component
  * Gives buttons a subtle, high-end magnetic pull effect towards mouse cursor on desktop.
  * Bypasses on mobile/touch screens or when reduced motion is preferred.
+ * Uses direct DOM manipulation (ref) instead of React state to avoid re-renders on mouse move.
  */
 export default function MagneticButton({
   children,
@@ -15,20 +16,16 @@ export default function MagneticButton({
   ...props
 }) {
   const buttonRef = useRef(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const isTouchRef = useRef(true);
 
   useEffect(() => {
     const hasHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (!hasHover || prefersReducedMotion) {
-      setIsTouchDevice(true);
-    }
+    isTouchRef.current = !hasHover || prefersReducedMotion;
   }, []);
 
   const handleMouseMove = (e) => {
-    if (isTouchDevice || !buttonRef.current) return;
+    if (isTouchRef.current || !buttonRef.current) return;
 
     const { clientX, clientY } = e;
     const { left, top, width, height } = buttonRef.current.getBoundingClientRect();
@@ -36,14 +33,17 @@ export default function MagneticButton({
     const middleX = clientX - (left + width / 2);
     const middleY = clientY - (top + height / 2);
 
-    requestAnimationFrame(() => {
-      setPosition({ x: middleX * strength, y: middleY * strength });
-    });
+    const x = middleX * strength;
+    const y = middleY * strength;
+
+    buttonRef.current.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0)`;
+    buttonRef.current.style.transition = 'transform 0.1s ease-out';
   };
 
   const handleMouseLeave = () => {
-    if (!isTouchDevice) {
-      setPosition({ x: 0, y: 0 });
+    if (!isTouchRef.current && buttonRef.current) {
+      buttonRef.current.style.transform = 'translate3d(0px, 0px, 0px)';
+      buttonRef.current.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
     }
   };
 
@@ -53,10 +53,6 @@ export default function MagneticButton({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
-      style={{
-        transform: isTouchDevice ? 'none' : `translate3d(${position.x}px, ${position.y}px, 0)`,
-        transition: position.x === 0 && position.y === 0 ? 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)' : 'transform 0.1s ease-out',
-      }}
       className={`inline-block transform-gpu ${className}`}
       {...props}
     >

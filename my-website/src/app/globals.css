@@ -189,11 +189,6 @@ body {
 }
 
 /* ─── Keyframe Animations ─── */
-@keyframes ticker-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
 @keyframes ticker-scroll-reverse {
   0% { transform: translateX(-50%); }
   100% { transform: translateX(0%); }
@@ -444,4 +439,10 @@ body {
 }
 .animate-marquee-fast:hover {
   animation-play-state: paused;
+}
+
+/* ─── Render Performance Optimizations ─── */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
 }

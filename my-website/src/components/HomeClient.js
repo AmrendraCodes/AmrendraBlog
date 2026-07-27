@@ -3,30 +3,15 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import {
   ArrowRight,
-  Sparkles,
   Code2,
-  Cpu,
-  Server,
-  Database,
   Cloud,
-  ShieldCheck,
   Zap,
   Layers,
   Globe,
-  TerminalSquare,
-  CheckCircle2,
   ChevronRight,
-  Star,
-  Lock,
-  BarChart3,
-  Building2,
-  Stethoscope,
-  ShoppingCart,
   Bot,
-  HelpCircle,
 } from 'lucide-react';
 
 import dynamic from 'next/dynamic';
@@ -42,21 +27,7 @@ const TechEcosystem3D = dynamic(() => import('@/components/home/TechEcosystem3D'
 const ComparisonTable = dynamic(() => import('@/components/home/ComparisonTable'), { ssr: false });
 const PricingSection = dynamic(() => import('@/components/home/PricingSection'), { ssr: false });
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-  }),
-};
 
-const staggerContainer = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.1 },
-  },
-};
 
 export default function HomeClient({ featuredPosts, caseStudies }) {
   return (
@@ -69,7 +40,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       {/* ═══════════════════════════════════════════════════════════
          2. CLIENT & SERVICES TICKER MARQUEE (FULL-WIDTH SLIDING NEWS BROADCAST)
          ═══════════════════════════════════════════════════════════ */}
-      <section className="w-full py-3.5 border-y border-[#10B981]/30 bg-[#060907] shadow-[0_0_25px_rgba(16,185,129,0.1)] overflow-hidden relative z-20">
+      <section className="w-full py-3.5 border-y border-[#10B981]/30 bg-[#060907] shadow-[0_0_25px_rgba(16,185,129,0.1)] overflow-hidden relative z-20" aria-label="Services ticker">
         <div className="w-full px-4 sm:px-8 flex items-center gap-4">
           
           {/* Fixed Left News Broadcast Badge */}
@@ -300,7 +271,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       {/* ═══════════════════════════════════════════════════════════
          5. INTERACTIVE LIVE PRODUCT / WORKFLOW SHOWCASE
          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 max-w-7xl mx-auto">
+      <section className="py-24 px-6 max-w-7xl mx-auto content-visibility-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
             INTERACTIVE PRODUCT PREVIEW
@@ -319,7 +290,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       {/* ═══════════════════════════════════════════════════════════
          6. INTERACTIVE TECHNOLOGY ECOSYSTEM GRAPH
          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 bg-[#080D0A] border-y border-[#1E2E25]">
+      <section className="py-24 px-6 bg-[#080D0A] border-y border-[#1E2E25] content-visibility-auto">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
@@ -340,7 +311,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       {/* ═══════════════════════════════════════════════════════════
          7. DEVELOPMENT PROCESS TIMELINE
          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 max-w-7xl mx-auto">
+      <section className="py-24 px-6 max-w-7xl mx-auto content-visibility-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
             HOW WE EXECUTE
@@ -395,7 +366,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       {/* ═══════════════════════════════════════════════════════════
          8. FEATURED CASE STUDIES & WORK SHOWCASE
          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 bg-[#080D0A] border-y border-[#1E2E25]">
+      <section className="py-24 px-6 bg-[#080D0A] border-y border-[#1E2E25] content-visibility-auto">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
             <div>
@@ -425,7 +396,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       {/* ═══════════════════════════════════════════════════════════
          9. FEATURE COMPARISON MATRIX ("STACKS UP")
          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 max-w-7xl mx-auto">
+      <section className="py-24 px-6 max-w-7xl mx-auto content-visibility-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
             DIRECT COMPARISON
@@ -444,7 +415,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       {/* ═══════════════════════════════════════════════════════════
          10. ENGAGEMENT MODELS & PRICING
          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 bg-[#080D0A] border-y border-[#1E2E25]">
+      <section className="py-24 px-6 bg-[#080D0A] border-y border-[#1E2E25] content-visibility-auto">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">

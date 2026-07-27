@@ -34,7 +34,6 @@ export default function Hero3DScene({ activeCard = 'web' }) {
 
     // Scene
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x050807, 0.035);
 
     // Camera
     const camera = new THREE.PerspectiveCamera(
@@ -48,7 +47,7 @@ export default function Hero3DScene({ activeCard = 'web' }) {
     // Renderer (Capped pixel ratio to max 1.5 to reduce GPU memory & draw overhead)
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
-      antialias: true,
+      antialias: false,
       powerPreference: 'high-performance',
     });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
@@ -61,7 +60,7 @@ export default function Hero3DScene({ activeCard = 'web' }) {
     meshGroupRef.current = mainGroup;
 
     // 1. Central Abstract 3D Shapes (Optimized geometry detail)
-    const torusKnotGeo = new THREE.TorusKnotGeometry(1.4, 0.38, 80, 24);
+    const torusKnotGeo = new THREE.TorusKnotGeometry(1.4, 0.38, 64, 16);
     const wireframeMat = new THREE.MeshBasicMaterial({
       color: 0x10B981,
       wireframe: true,

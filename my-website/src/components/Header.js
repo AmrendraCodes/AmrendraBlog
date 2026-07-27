@@ -83,8 +83,8 @@ export default function Header() {
               ? 'bg-white text-slate-900 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.25)] py-2.5 px-4 sm:py-3 sm:px-6 md:px-8 border-white/80'
               : 'bg-white/95 text-slate-900 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.15)] py-2.5 px-3.5 sm:py-3 sm:px-5 border-white/60'
           }`}
-          role="navigation"
-          aria-label="Main navigation"
+          role="banner"
+          aria-label="Site header"
         >
           <div className="flex items-center justify-start">
             <Link href="/" className="flex items-center gap-2 md:gap-3 no-underline shrink-0 group">
@@ -127,6 +127,8 @@ export default function Header() {
                       <button
                         type="button"
                         onClick={() => setIsServicesOpen(!isServicesOpen)}
+                        aria-haspopup="true"
+                        aria-expanded={isServicesOpen}
                         className={`relative inline-flex items-center gap-1 text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-3 lg:px-4 py-1.5 rounded-full cursor-pointer border-none bg-transparent ${
                           isActive || isServicesOpen
                             ? "text-[#059669] bg-emerald-50 font-bold"

@@ -13,25 +13,20 @@ const Hero3DScene = dynamic(() => import('./Hero3DScene'), {
 });
 
 export default function HeroSection() {
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.innerWidth >= 768) {
-      // Defer 3D scene mount slightly so browser paints initial LCP text immediately
-      if ('requestIdleCallback' in window) {
-        const handle = requestIdleCallback(() => setIsDesktop(true), { timeout: 300 });
-        return () => cancelIdleCallback(handle);
-      } else {
-        const timer = setTimeout(() => setIsDesktop(true), 150);
-        return () => clearTimeout(timer);
-      }
-    }
+    setMounted(true);
   }, []);
 
   return (
     <section className="relative min-h-[90vh] flex flex-col justify-center px-6 pt-32 pb-20 overflow-hidden border-b border-[#1E2E25]">
       {/* State-Reactive 3D WebGL Background Scene (Desktop Only) */}
-      {isDesktop && <Hero3DScene activeCard="react" />}
+      {mounted && (
+        <div className="hidden md:block absolute inset-0">
+          <Hero3DScene activeCard="react" />
+        </div>
+      )}
 
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />

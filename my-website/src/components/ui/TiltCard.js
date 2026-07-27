@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 /**
  * TiltCard Component
  * Provides a lightweight, GPU-accelerated 3D tilt effect on mouse move for desktop.
  * Automatically disables 3D tilt on mobile/touch screens or when reduced motion is preferred.
+ * Uses direct DOM manipulation (ref) instead of React state to avoid re-renders on mouse move.
  */
 export default function TiltCard({
   children,
@@ -16,22 +17,16 @@ export default function TiltCard({
   onClick,
 }) {
   const cardRef = useRef(null);
-  const [transform, setTransform] = useState('perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)');
-  const [isHovered, setIsHovered] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const isTouchRef = useRef(true);
 
   useEffect(() => {
-    // Detect mobile touch or prefers-reduced-motion
     const hasHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (!hasHover || prefersReducedMotion) {
-      setIsTouchDevice(true);
-    }
+    isTouchRef.current = !hasHover || prefersReducedMotion;
   }, []);
 
   const handleMouseMove = (e) => {
-    if (isTouchDevice || !cardRef.current) return;
+    if (isTouchRef.current || !cardRef.current) return;
 
     const card = cardRef.current;
     const rect = card.getBoundingClientRect();
@@ -44,21 +39,23 @@ export default function TiltCard({
     const rotateX = ((y - centerY) / centerY) * -maxTilt;
     const rotateY = ((x - centerX) / centerX) * maxTilt;
 
-    requestAnimationFrame(() => {
-      setTransform(`perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(${scale}, ${scale}, ${scale})`);
-    });
+    card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(${scale}, ${scale}, ${scale})`;
+    card.style.transition = 'transform 0.1s ease-out';
+    card.style.willChange = 'transform';
   };
 
   const handleMouseEnter = () => {
-    if (!isTouchDevice) {
-      setIsHovered(true);
+    if (!isTouchRef.current && cardRef.current) {
+      cardRef.current.classList.add('shadow-[0_15px_40px_rgba(16,185,129,0.2)]', 'border-[#10B981]/40');
     }
   };
 
   const handleMouseLeave = () => {
-    if (!isTouchDevice) {
-      setIsHovered(false);
-      setTransform('perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)');
+    if (!isTouchRef.current && cardRef.current) {
+      cardRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      cardRef.current.style.transition = 'transform 0.5s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out';
+      cardRef.current.style.willChange = 'auto';
+      cardRef.current.classList.remove('shadow-[0_15px_40px_rgba(16,185,129,0.2)]', 'border-[#10B981]/40');
     }
   };
 
@@ -69,14 +66,7 @@ export default function TiltCard({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
-      style={{
-        transform: isTouchDevice ? 'none' : transform,
-        transition: isHovered ? 'transform 0.1s ease-out' : 'transform 0.5s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out',
-        willChange: isHovered ? 'transform' : 'auto',
-      }}
-      className={`relative rounded-3xl transition-all duration-300 transform-gpu ${
-        glow && isHovered ? 'shadow-[0_15px_40px_rgba(16,185,129,0.2)] border-[#10B981]/40' : ''
-      } ${className}`}
+      className={`relative rounded-3xl transition-all duration-300 transform-gpu ${className}`}
     >
       {children}
     </div>

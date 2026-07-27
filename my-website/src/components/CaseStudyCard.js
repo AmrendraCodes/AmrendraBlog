@@ -46,7 +46,7 @@ export default function CaseStudyCard({ study }) {
       {/* Content */}
       <div className="p-6">
         <h3 className="text-xl font-bold text-[var(--text-heading)] mb-2 leading-snug group-hover:text-[#10B981] dark:group-hover:text-[#34D399] transition-colors line-clamp-2">
-          <Link href={`/case-studies/${study.slug}`} className="before:absolute before:inset-0 z-10">
+          <Link href={`/case-studies/${study.slug}`} className="before:absolute before:inset-0 z-10 no-underline text-inherit">
             {study.title}
           </Link>
         </h3>
