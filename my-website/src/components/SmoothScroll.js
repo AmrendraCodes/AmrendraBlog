@@ -6,7 +6,7 @@ import Lenis from 'lenis';
 /**
  * Lenis smooth scroll wrapper.
  * Initializes smooth scrolling on mount and cleans up on unmount.
- * Respects prefers-reduced-motion automatically.
+ * Respects prefers-reduced-motion automatically and pauses when tab is hidden.
  */
 export default function SmoothScroll({ children }) {
   useEffect(() => {
@@ -23,16 +23,39 @@ export default function SmoothScroll({ children }) {
       smoothWheel: true,
     });
 
-    let rafId;
+    let rafId = null;
+    let isRunning = true;
+
     function raf(time) {
+      if (!isRunning) return;
       lenis.raf(time);
       rafId = requestAnimationFrame(raf);
     }
 
     rafId = requestAnimationFrame(raf);
 
+    // Pause RAF when document is hidden (background tab) to prevent CPU strain
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        isRunning = false;
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+      } else {
+        if (!isRunning) {
+          isRunning = true;
+          rafId = requestAnimationFrame(raf);
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     return () => {
-      cancelAnimationFrame(rafId);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      isRunning = false;
+      if (rafId) cancelAnimationFrame(rafId);
       lenis.destroy();
     };
   }, []);

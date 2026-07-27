@@ -12,8 +12,8 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import CopyButton from "./blog/CopyButton";
 import { Link as LinkIcon } from "lucide-react";
+import { useEffect } from "react";
 import Zoom from "react-medium-image-zoom";
-import "react-medium-image-zoom/dist/styles.css";
 
 // Dynamically import MermaidBlock to keep initial bundle lean
 const MermaidBlock = dynamic(() => import("./blog/MermaidBlock"), {
@@ -129,6 +129,10 @@ const admonitionConfig = {
 };
 
 export default function MarkdownRenderer({ content }) {
+  useEffect(() => {
+    import("react-medium-image-zoom/dist/styles.css");
+  }, []);
+
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm, remarkMath]}

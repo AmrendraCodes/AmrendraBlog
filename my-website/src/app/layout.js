@@ -4,9 +4,9 @@ import "./globals.css";
 import Header from "../components/Header";
 import SmoothScroll from "../components/SmoothScroll";
 import dynamic from 'next/dynamic';
-import WhatsAppButton from "../components/WhatsAppButton";
 
-const Footer = dynamic(() => import('../components/Footer'), { ssr: true });
+const Footer = dynamic(() => import('../components/Footer'));
+const WhatsAppButton = dynamic(() => import('../components/WhatsAppButton'));
 
 const inter = Inter({
   variable: "--font-inter",
@@ -126,8 +126,6 @@ export default function RootLayout({ children }) {
     })
   }}
 />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} ${syne.variable} ${playfair.variable} bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300 overflow-x-hidden`}

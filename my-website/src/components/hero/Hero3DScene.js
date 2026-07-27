@@ -45,13 +45,13 @@ export default function Hero3DScene({ activeCard = 'web' }) {
     );
     camera.position.set(0, 0, 7.5);
 
-    // Renderer
+    // Renderer (Capped pixel ratio to max 1.5 to reduce GPU memory & draw overhead)
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
       antialias: true,
       powerPreference: 'high-performance',
     });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
 
@@ -60,11 +60,8 @@ export default function Hero3DScene({ activeCard = 'web' }) {
     scene.add(mainGroup);
     meshGroupRef.current = mainGroup;
 
-    // 1. Central Abstract 3D Shapes
-    const torusKnotGeo = new THREE.TorusKnotGeometry(1.4, 0.38, 120, 32);
-    const icosahedronGeo = new THREE.IcosahedronGeometry(1.5, 2);
-    const octahedronGeo = new THREE.OctahedronGeometry(1.6, 2);
-
+    // 1. Central Abstract 3D Shapes (Optimized geometry detail)
+    const torusKnotGeo = new THREE.TorusKnotGeometry(1.4, 0.38, 80, 24);
     const wireframeMat = new THREE.MeshBasicMaterial({
       color: 0x10B981,
       wireframe: true,
@@ -85,9 +82,8 @@ export default function Hero3DScene({ activeCard = 'web' }) {
     const nodePoints = new THREE.Points(torusKnotGeo, nodesMat);
     mainGroup.add(nodePoints);
 
-    // 2. Ambient Particles System
-    const isMobile = window.innerWidth < 768;
-    const particleCount = isMobile ? 140 : 320;
+    // 2. Ambient Particles System (Optimized particle count to 120)
+    const particleCount = 120;
     const particlesGeo = new THREE.BufferGeometry();
     const particlePositions = new Float32Array(particleCount * 3);
 
@@ -100,7 +96,7 @@ export default function Hero3DScene({ activeCard = 'web' }) {
 
     const particlesMat = new THREE.PointsMaterial({
       color: 0x059669,
-      size: isMobile ? 0.05 : 0.07,
+      size: 0.06,
       transparent: true,
       opacity: 0.45,
       blending: THREE.AdditiveBlending,
@@ -129,7 +125,7 @@ export default function Hero3DScene({ activeCard = 'web' }) {
       targetMouseX = (e.clientX / innerWidth - 0.5) * 1.8;
       targetMouseY = (e.clientY / innerHeight - 0.5) * 1.8;
     };
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     const handleResize = () => {
       if (!container) return;
@@ -137,13 +133,15 @@ export default function Hero3DScene({ activeCard = 'web' }) {
       camera.updateProjectionMatrix();
       renderer.setSize(container.clientWidth, container.clientHeight);
     };
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
 
-    // Animation Loop
-    let animId;
+    // Animation Loop with Viewport Visibility Observer
+    let animId = null;
+    let isVisible = true;
     const clock = new THREE.Clock();
 
     const animate = () => {
+      if (!isVisible) return;
       animId = requestAnimationFrame(animate);
       const elapsed = clock.getElapsedTime();
       const currentTheme = STATE_THEMES[activeCardRef.current] || STATE_THEMES.web;
@@ -155,16 +153,13 @@ export default function Hero3DScene({ activeCard = 'web' }) {
       pointLight.color.lerp(new THREE.Color(currentTheme.lightColor), 0.05);
 
       if (!prefersReducedMotion) {
-        // Continuous rotation adjusted by active theme speed
         primaryMesh.rotation.x = elapsed * currentTheme.speed * 0.5;
         primaryMesh.rotation.y = elapsed * currentTheme.speed;
         nodePoints.rotation.x = elapsed * currentTheme.speed * 0.5;
         nodePoints.rotation.y = elapsed * currentTheme.speed;
-
         particleSystem.rotation.y = elapsed * 0.04;
       }
 
-      // Smooth mouse follow lerp
       currentMouseX += (targetMouseX - currentMouseX) * 0.06;
       currentMouseY += (targetMouseY - currentMouseY) * 0.06;
 
@@ -178,18 +173,35 @@ export default function Hero3DScene({ activeCard = 'web' }) {
       renderer.render(scene, camera);
     };
 
+    // Pause WebGL rendering loop when Hero section is out of viewport to save 100% CPU/GPU on scroll
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          if (!animId) animate();
+        } else {
+          if (animId) {
+            cancelAnimationFrame(animId);
+            animId = null;
+          }
+        }
+      },
+      { threshold: 0.05 }
+    );
+
+    observer.observe(container);
     animate();
 
     return () => {
+      observer.disconnect();
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
-      cancelAnimationFrame(animId);
+      if (animId) cancelAnimationFrame(animId);
       if (container && renderer.domElement && container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }
       torusKnotGeo.dispose();
-      icosahedronGeo.dispose();
-      octahedronGeo.dispose();
       wireframeMat.dispose();
       nodesMat.dispose();
       particlesGeo.dispose();

@@ -427,3 +427,21 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   GPU HARDWARE ACCELERATED MARQUEE TICKER
+   ═══════════════════════════════════════════════════════════ */
+@keyframes marquee-scroll {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.animate-marquee-fast {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 25s linear infinite;
+  will-change: transform;
+}
+.animate-marquee-fast:hover {
+  animation-play-state: paused;
+}

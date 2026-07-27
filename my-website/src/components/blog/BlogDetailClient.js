@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import dynamic from 'next/dynamic';
 import ReadingProgress from "./ReadingProgress";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
@@ -7,14 +8,17 @@ import MarkdownRenderer from "@/components/MarkdownRenderer";
 const TableOfContents = dynamic(() => import('./TableOfContents'), { ssr: true });
 const ShareButtons = dynamic(() => import('./ShareButtons'), { ssr: false });
 const BackToTop = dynamic(() => import('./BackToTop'), { ssr: false });
-import "highlight.js/styles/atom-one-dark.css";
-import "katex/dist/katex.min.css";
 import { motion } from "framer-motion";
 
 /**
  * BlogDetailClient — Client wrapper for the blog detail page.
  */
 export default function BlogDetailClient({ content, headings, title, slug }) {
+  useEffect(() => {
+    // Asynchronously load code highlight & math CSS so they do not block initial render / FCP / LCP
+    import("highlight.js/styles/atom-one-dark.css");
+    import("katex/dist/katex.min.css");
+  }, []);
   return (
     <>
       <ReadingProgress />

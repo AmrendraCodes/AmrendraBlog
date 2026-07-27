@@ -30,13 +30,13 @@ import {
 } from 'lucide-react';
 
 import dynamic from 'next/dynamic';
-import CaseStudiesSection from './CaseStudiesSection';
 import HeroSection from './hero/HeroSection';
 import ScrollReveal from './ui/ScrollReveal';
 import TiltCard from './ui/TiltCard';
 import MagneticButton from './ui/MagneticButton';
 
 // Dynamic Heavy Components for Performance
+const CaseStudiesSection = dynamic(() => import('./CaseStudiesSection'), { ssr: false });
 const DevShowcase = dynamic(() => import('@/components/home/DevShowcase'), { ssr: false });
 const TechEcosystem3D = dynamic(() => import('@/components/home/TechEcosystem3D'), { ssr: false });
 const ComparisonTable = dynamic(() => import('@/components/home/ComparisonTable'), { ssr: false });
@@ -88,11 +88,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
             <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-[#060907] to-transparent z-10 pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-[#060907] to-transparent z-10 pointer-events-none" />
 
-            <motion.div 
-              animate={{ x: ['-50%', '0%'] }}
-              transition={{ repeat: Infinity, ease: 'linear', duration: 25 }}
-              className="flex gap-10 whitespace-nowrap min-w-max"
-            >
+            <div className="animate-marquee-fast gap-10 whitespace-nowrap">
               {[
                 'Web Development Services',
                 'Digital Marketing',
@@ -117,13 +113,13 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
               ]).map((service, i) => (
                 <span
                   key={i}
-                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-white hover:text-[#10B981] transition-colors cursor-default"
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-white hover:text-[#10B981] transition-colors cursor-default pr-10"
                 >
                   <span className="text-[#10B981] text-xs">✦</span>
                   {service}
                 </span>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

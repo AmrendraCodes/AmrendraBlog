@@ -17,7 +17,14 @@ export default function HeroSection() {
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.innerWidth >= 768) {
-      setIsDesktop(true);
+      // Defer 3D scene mount slightly so browser paints initial LCP text immediately
+      if ('requestIdleCallback' in window) {
+        const handle = requestIdleCallback(() => setIsDesktop(true), { timeout: 300 });
+        return () => cancelIdleCallback(handle);
+      } else {
+        const timer = setTimeout(() => setIsDesktop(true), 150);
+        return () => clearTimeout(timer);
+      }
     }
   }, []);
 

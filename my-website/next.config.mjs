@@ -7,7 +7,7 @@ const withBundleAnalyzer = bundleAnalyzer({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion', 'lenis'],
+    optimizePackageImports: ['lucide-react', 'framer-motion', 'lenis', 'three', 'katex', 'highlight.js', 'react-markdown', 'gray-matter', 'mermaid'],
   },
   images: {
     remotePatterns: [

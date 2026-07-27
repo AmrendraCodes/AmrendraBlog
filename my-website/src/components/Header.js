@@ -4,9 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Sparkles, ChevronDown } from "lucide-react";
 import { usePathname } from "next/navigation";
+import dynamic from "next/dynamic";
 import ThemeToggle from "./ThemeToggle";
-import ServicesDropdown from "./ServicesDropdown";
 import { SERVICES_DATA } from "@/lib/services";
+
+const ServicesDropdown = dynamic(() => import("./ServicesDropdown"), { ssr: false });
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -38,13 +40,10 @@ export default function Header() {
           setIsScrolled((prev) => (prev !== isCurrentlyScrolled ? isCurrentlyScrolled : prev));
 
           if (currentScrollY < 20) {
-            setIsVisible(true);
+            setIsVisible((prev) => (!prev ? true : prev));
           } else if (Math.abs(currentScrollY - lastScrollY) > 10) {
-            if (currentScrollY > lastScrollY && currentScrollY > 50) {
-              setIsVisible(false);
-            } else {
-              setIsVisible(true);
-            }
+            const nextVisible = !(currentScrollY > lastScrollY && currentScrollY > 50);
+            setIsVisible((prev) => (prev !== nextVisible ? nextVisible : prev));
           }
 
           lastScrollY = currentScrollY;
