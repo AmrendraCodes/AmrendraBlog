@@ -1,6 +1,6 @@
 'use client';
 
-import { AlertCircle, CheckCircle2, ArrowRight } from "lucide-react";
+import { AlertCircle, CheckCircle2, ArrowRight, Check, X } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 
 export default function ServiceProblemSolution({ problems = [], solutions = [], serviceTitle }) {
@@ -23,10 +23,10 @@ export default function ServiceProblemSolution({ problems = [], solutions = [], 
         {/* Grid Comparison */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
           {/* Problems Box */}
-          <AnimatedSection direction="left" delay={0.1} className="group bg-[var(--card-bg)] border border-rose-500/30 dark:border-rose-500/30 hover:border-rose-500 rounded-3xl p-8 shadow-[var(--shadow-card)] hover:shadow-[0_0_35px_rgba(244,63,94,0.25)] transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col justify-between">
+          <AnimatedSection direction="left" delay={0.1} className="group bg-[var(--card-bg)] border border-rose-500/30 dark:border-rose-500/30 hover:border-rose-500 rounded-3xl p-6 sm:p-8 shadow-[var(--shadow-card)] hover:shadow-[0_0_35px_rgba(244,63,94,0.25)] transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 rounded-xl bg-rose-500/10 text-rose-500 flex items-center justify-center border border-rose-500/20">
+                <div className="w-10 h-10 rounded-full bg-rose-500/10 text-rose-500 flex items-center justify-center border border-rose-500/20 shrink-0">
                   <AlertCircle size={22} />
                 </div>
                 <div>
@@ -42,8 +42,8 @@ export default function ServiceProblemSolution({ problems = [], solutions = [], 
               <div className="space-y-6">
                 {problems.map((prob, idx) => (
                   <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-rose-500/5 dark:bg-rose-500/10 border border-rose-500/10">
-                    <span className="w-6 h-6 rounded-full bg-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                      ✕
+                    <span className="w-6 h-6 rounded-full bg-rose-500/20 text-rose-600 dark:text-rose-400 flex items-center justify-center shrink-0 mt-0.5">
+                      <X size={13} strokeWidth={2.5} />
                     </span>
                     <div>
                       <h4 className="text-base font-bold text-[var(--text-heading)] mb-1">
@@ -60,10 +60,10 @@ export default function ServiceProblemSolution({ problems = [], solutions = [], 
           </AnimatedSection>
 
           {/* Solutions Box */}
-          <AnimatedSection direction="right" delay={0.2} className="group bg-[var(--card-bg)] border border-emerald-500/30 dark:border-emerald-500/30 hover:border-emerald-500 rounded-3xl p-8 shadow-[var(--shadow-card)] hover:shadow-[0_0_35px_rgba(16,185,129,0.3)] transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col justify-between">
+          <AnimatedSection direction="right" delay={0.2} className="group bg-[var(--card-bg)] border border-emerald-500/30 dark:border-emerald-500/30 hover:border-emerald-500 rounded-3xl p-6 sm:p-8 shadow-[var(--shadow-card)] hover:shadow-[0_0_35px_rgba(16,185,129,0.3)] transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center border border-emerald-500/20">
+                <div className="w-10 h-10 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center border border-emerald-500/20 shrink-0">
                   <CheckCircle2 size={22} />
                 </div>
                 <div>
@@ -79,8 +79,8 @@ export default function ServiceProblemSolution({ problems = [], solutions = [], 
               <div className="space-y-6">
                 {solutions.map((sol, idx) => (
                   <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/10">
-                    <span className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                      ✓
+                    <span className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+                      <Check size={13} strokeWidth={3} />
                     </span>
                     <div>
                       <h4 className="text-base font-bold text-[var(--text-heading)] mb-1">

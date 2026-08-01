@@ -12,6 +12,8 @@ import {
   Globe,
   ChevronRight,
   Bot,
+  Check,
+  X,
 } from 'lucide-react';
 
 import dynamic from 'next/dynamic';
@@ -112,57 +114,81 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
         </div>
 
         {/* Bento Grid Split: Legacy vs Code with Amrendra */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {/* Legacy Side */}
-          <div className="group rounded-3xl bg-[#0A0F0C] border border-red-500/30 hover:border-red-500 p-8 shadow-xl hover:shadow-[0_0_35px_rgba(239,68,68,0.3)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-red-500/10 text-red-400 group-hover:bg-red-500/20 group-hover:text-red-300 group-hover:scale-105 flex items-center justify-center font-bold text-lg transition-all duration-300">
-                ✕
+          <div className="group rounded-3xl bg-[#0A0F0C] border border-red-500/30 hover:border-red-500 p-6 sm:p-8 shadow-xl hover:shadow-[0_0_35px_rgba(239,68,68,0.3)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer">
+            <div className="flex items-center gap-3.5 mb-6">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-red-500/15 text-red-400 border border-red-500/30 shrink-0 group-hover:bg-red-500/25 group-hover:scale-105 flex items-center justify-center font-bold transition-all duration-300 shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+                <X size={20} strokeWidth={2.5} />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white group-hover:text-red-100 transition-colors">Traditional Development Agencies</h3>
+                <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-red-100 transition-colors">Traditional Development Agencies</h3>
                 <p className="text-xs text-[#9CA3AF]">Slow, expensive, &amp; maintenance-heavy</p>
               </div>
             </div>
-            <ul className="space-y-4 text-xs text-[#9CA3AF]">
-              <li className="flex items-center gap-3">
-                <span className="text-red-400 font-bold group-hover:scale-125 transition-transform">✕</span> 6-8 months build timelines
+            <ul className="space-y-4 text-xs sm:text-sm text-[#9CA3AF]">
+              <li className="flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+                  <X size={12} strokeWidth={2.5} />
+                </span>
+                <span className="leading-snug">6-8 months build timelines</span>
               </li>
-              <li className="flex items-center gap-3">
-                <span className="text-red-400 font-bold group-hover:scale-125 transition-transform">✕</span> Rigid legacy code and stacks
+              <li className="flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+                  <X size={12} strokeWidth={2.5} />
+                </span>
+                <span className="leading-snug">Rigid legacy code and stacks</span>
               </li>
-              <li className="flex items-center gap-3">
-                <span className="text-red-400 font-bold group-hover:scale-125 transition-transform">✕</span> Manual QA, slow bug fixes
+              <li className="flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+                  <X size={12} strokeWidth={2.5} />
+                </span>
+                <span className="leading-snug">Manual QA, slow bug fixes</span>
               </li>
-              <li className="flex items-center gap-3">
-                <span className="text-red-400 font-bold group-hover:scale-125 transition-transform">✕</span> Vendor lock-in, unclear ownership
+              <li className="flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+                  <X size={12} strokeWidth={2.5} />
+                </span>
+                <span className="leading-snug">Vendor lock-in, unclear ownership</span>
               </li>
             </ul>
           </div>
 
           {/* Code with Amrendra Side */}
-          <div className="group rounded-3xl bg-gradient-to-br from-[#111C16] to-[#0A0F0C] border-2 border-[#10B981]/60 hover:border-[#10B981] p-8 shadow-[0_0_30px_rgba(16,185,129,0.2)] hover:shadow-[0_0_55px_rgba(16,185,129,0.45)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-[#10B981] text-white group-hover:bg-[#059669] group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(16,185,129,0.6)] flex items-center justify-center font-bold text-lg transition-all duration-300">
-                ✓
+          <div className="group rounded-3xl bg-gradient-to-br from-[#111C16] to-[#0A0F0C] border-2 border-[#10B981]/60 hover:border-[#10B981] p-6 sm:p-8 shadow-[0_0_30px_rgba(16,185,129,0.2)] hover:shadow-[0_0_55px_rgba(16,185,129,0.45)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer">
+            <div className="flex items-center gap-3.5 mb-6">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#10B981] text-white shrink-0 group-hover:bg-[#059669] group-hover:scale-105 shadow-[0_0_18px_rgba(16,185,129,0.5)] flex items-center justify-center font-bold transition-all duration-300">
+                <Check size={20} strokeWidth={3} />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">Code with Amrendra — AI Development Services</h3>
+                <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">Code with Amrendra — AI Development Services</h3>
                 <p className="text-xs text-[#34D399]">High-velocity, AI-native &amp; sub-second fast</p>
               </div>
             </div>
-            <ul className="space-y-4 text-xs text-[#F3F4F6]">
-              <li className="flex items-center gap-3">
-                <span className="text-[#10B981] font-bold group-hover:scale-125 transition-transform">✓</span> Rapid launch with AI-accelerated development sprints
+            <ul className="space-y-4 text-xs sm:text-sm text-[#F3F4F6]">
+              <li className="flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full bg-[#10B981]/20 border border-[#10B981]/40 text-[#10B981] flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+                  <Check size={12} strokeWidth={3} />
+                </span>
+                <span className="leading-snug">Rapid launch with AI-accelerated development sprints</span>
               </li>
-              <li className="flex items-center gap-3">
-                <span className="text-[#10B981] font-bold group-hover:scale-125 transition-transform">✓</span> Modern React, Next.js and cloud-native architecture
+              <li className="flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full bg-[#10B981]/20 border border-[#10B981]/40 text-[#10B981] flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+                  <Check size={12} strokeWidth={3} />
+                </span>
+                <span className="leading-snug">Modern React, Next.js and cloud-native architecture</span>
               </li>
-              <li className="flex items-center gap-3">
-                <span className="text-[#10B981] font-bold group-hover:scale-125 transition-transform">✓</span> Autonomous AI agents for QA, monitoring and audits
+              <li className="flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full bg-[#10B981]/20 border border-[#10B981]/40 text-[#10B981] flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+                  <Check size={12} strokeWidth={3} />
+                </span>
+                <span className="leading-snug">Autonomous AI agents for QA, monitoring and audits</span>
               </li>
-              <li className="flex items-center gap-3">
-                <span className="text-[#10B981] font-bold group-hover:scale-125 transition-transform">✓</span> Full source-code ownership, transparent architecture
+              <li className="flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full bg-[#10B981]/20 border border-[#10B981]/40 text-[#10B981] flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+                  <Check size={12} strokeWidth={3} />
+                </span>
+                <span className="leading-snug">Full source-code ownership, transparent architecture</span>
               </li>
             </ul>
           </div>
