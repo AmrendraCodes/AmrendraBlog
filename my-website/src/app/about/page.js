@@ -160,7 +160,7 @@ export default function AboutPage() {
                 {[
                   { href: "https://github.com/AmrendraCodes", icon: Github, label: "GitHub" },
                   { href: "https://x.com/codewithamrendr", icon: Twitter, label: "Twitter" },
-                  { href: "https://www.linkedin.com/in/amrendra-reactdev/", icon: Linkedin, label: "LinkedIn" },
+                  { href: "https://www.linkedin.com/in/amrendra1998/", icon: Linkedin, label: "LinkedIn" },
                   { href: "https://www.youtube.com/@codewithamrendra", icon: Youtube, label: "YouTube" },
                 ].map(({ href, icon: Icon, label }) => (
                   <a

@@ -48,7 +48,7 @@ export function getPersonSchema() {
     "sameAs": [
       "https://github.com/AmrendraCodes",
       "https://x.com/codewithamrendr",
-      "https://www.linkedin.com/in/amrendra-reactdev/",
+      "https://www.linkedin.com/in/amrendra1998/",
       "https://www.youtube.com/@codewithamrendra",
       "https://instagram.com/amrendracodes"
     ],
@@ -100,7 +100,7 @@ export function getLocalBusinessSchema() {
     "sameAs": [
       "https://github.com/AmrendraCodes",
       "https://x.com/codewithamrendr",
-      "https://www.linkedin.com/in/amrendra-reactdev/",
+      "https://www.linkedin.com/in/amrendra1998/",
       "https://www.youtube.com/@codewithamrendra",
       "https://instagram.com/amrendracodes"
     ]

@@ -8,7 +8,7 @@ export const siteMetadata = {
   social: {
     twitter: "@codewithamrendr",
     twitterUrl: "https://x.com/codewithamrendr",
-    linkedin: "https://www.linkedin.com/in/amrendra-reactdev/",
+    linkedin: "https://www.linkedin.com/in/amrendra1998/",
     github: "https://github.com/AmrendraCodes",
     youtube: "https://www.youtube.com/@codewithamrendra",
     instagram: "https://www.instagram.com/codewithamrendra",

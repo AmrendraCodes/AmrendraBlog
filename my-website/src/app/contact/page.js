@@ -72,7 +72,7 @@ export default function ContactPage() {
                   { label: "Location / Address", value: "Moh- Guphaper, South of Devi Asthan, Kalyanpur, Bihar Sharif, Bihar 803101", link: "https://maps.google.com/?q=Code+With+Amrendra+Bihar+Sharif" },
                   { label: "Email Me", value: "amrendra1999official@gmail.com", link: "mailto:amrendra1999official@gmail.com" },
                   { label: "Follow on X", value: "@codewithamrendr", link: "https://x.com/codewithamrendr" },
-                  { label: "Connect on LinkedIn", value: "Amrendra Kumar", link: "https://www.linkedin.com/in/amrendra-reactdev/" },
+                  { label: "Connect on LinkedIn", value: "Amrendra Kumar", link: "https://www.linkedin.com/in/amrendra1998/" },
                   { label: "GitHub Projects", value: "AmrendraCodes", link: "https://github.com/AmrendraCodes" },
                 ].map((item, i) => (
                   <a

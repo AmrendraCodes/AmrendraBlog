@@ -105,7 +105,7 @@ export default function RootLayout({ children }) {
               "sameAs": [
                 "https://github.com/AmrendraCodes",
                 "https://x.com/AmrendraCodes",
-                "https://www.linkedin.com/in/amrendra-reactdev/",
+                "https://www.linkedin.com/in/amrendra1998/",
                 "https://www.youtube.com/@codewithamrendra",
                 "https://www.instagram.com/codewithamrendra"
               ]

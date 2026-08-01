@@ -264,7 +264,7 @@ export default function HireMePage() {
               𝕏 Twitter/X
             </a>
             <a
-              href="https://www.linkedin.com/in/amrendra-reactdev/"
+              href="https://www.linkedin.com/in/amrendra1998/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-[var(--card-bg)] border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] text-[var(--text-heading)] font-bold rounded-2xl hover:border-[#10B981]/30 hover:shadow-[var(--shadow-3d)] hover:-translate-y-1 transition-all duration-300"
