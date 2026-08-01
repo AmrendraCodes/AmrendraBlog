@@ -320,7 +320,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
-              ENGINEERING ECOSYSTEM
+              ARCHITECTURE FLOWCHART PIPELINE
             </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
               Connected Engineering Architecture
