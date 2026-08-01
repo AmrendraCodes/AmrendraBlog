@@ -23,6 +23,30 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
     minimumCacheTTL: 31536000,
   },
+  async redirects() {
+    return [
+      {
+        source: '/blog',
+        destination: '/resources/blog',
+        permanent: true,
+      },
+      {
+        source: '/blog/:slug*',
+        destination: '/resources/blog/:slug*',
+        permanent: true,
+      },
+      {
+        source: '/case-studies',
+        destination: '/resources/case-studies',
+        permanent: true,
+      },
+      {
+        source: '/case-studies/:slug*',
+        destination: '/resources/case-studies/:slug*',
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

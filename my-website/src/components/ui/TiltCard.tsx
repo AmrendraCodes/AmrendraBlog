@@ -1,12 +1,20 @@
 'use client';
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, ReactNode, MouseEvent } from 'react';
+
+export interface TiltCardProps {
+  children: ReactNode;
+  className?: string;
+  maxTilt?: number;
+  scale?: number;
+  glow?: boolean;
+  onClick?: (e: MouseEvent<HTMLDivElement>) => void;
+}
 
 /**
  * TiltCard Component
  * Provides a lightweight, GPU-accelerated 3D tilt effect on mouse move for desktop.
  * Automatically disables 3D tilt on mobile/touch screens or when reduced motion is preferred.
- * Uses direct DOM manipulation (ref) instead of React state to avoid re-renders on mouse move.
  */
 export default function TiltCard({
   children,
@@ -15,8 +23,8 @@ export default function TiltCard({
   scale = 1.02,
   glow = true,
   onClick,
-}) {
-  const cardRef = useRef(null);
+}: TiltCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
   const isTouchRef = useRef(true);
 
   useEffect(() => {
@@ -25,7 +33,7 @@ export default function TiltCard({
     isTouchRef.current = !hasHover || prefersReducedMotion;
   }, []);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (isTouchRef.current || !cardRef.current) return;
 
     const card = cardRef.current;

@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import TiltCard from "./ui/TiltCard";
 
 export default function BlogCard({ post }) {
-  const postLink = post.link || `/blog/${post.slug}`;
+  const postLink = post.link || `/resources/blog/${post.slug}`;
   return (
     <TiltCard className="h-full">
       <article 

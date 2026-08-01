@@ -87,7 +87,7 @@ export default async function CategoryPage({ params }) {
         {posts.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-xl text-slate-500 dark:text-slate-400 mb-6">No articles found in this category yet.</p>
-            <Link href="/blog" className="px-8 py-3.5 bg-[#10B981] text-white rounded-full font-bold hover:bg-[#059669] transition-colors inline-flex items-center">
+            <Link href="/resources/blog" className="px-8 py-3.5 bg-[#10B981] text-white rounded-full font-bold hover:bg-[#059669] transition-colors inline-flex items-center">
               Browse All Articles
             </Link>
           </div>

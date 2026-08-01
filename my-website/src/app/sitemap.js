@@ -5,12 +5,12 @@ import { siteMetadata } from "@/config/seo";
 
 /**
  * Next.js Dynamic Sitemap Generator
- * Automatically maps static pages, services, dynamic blog posts, case studies, and categories.
+ * Automatically maps static pages, services, resources, dynamic blog posts, case studies, and categories.
  */
 export default async function sitemap() {
   const baseUrl = siteMetadata.siteUrl;
 
-  // 1. Static Pages
+  // 1. Static Pages & Key Hubs
   const staticPages = [
     {
       url: `${baseUrl}`,
@@ -25,10 +25,22 @@ export default async function sitemap() {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/blog`,
+      url: `${baseUrl}/resources`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/resources/blog`,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/resources/case-studies`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/about`,
@@ -47,12 +59,6 @@ export default async function sitemap() {
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/case-studies`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
     },
     {
       url: `${baseUrl}/hire-me`,
@@ -85,7 +91,7 @@ export default async function sitemap() {
   // 3. Dynamic Blog Posts
   const posts = getAllPosts() || [];
   const blogUrls = posts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
+    url: `${baseUrl}/resources/blog/${post.slug}`,
     lastModified: post.date ? new Date(post.date) : new Date(),
     changeFrequency: 'weekly',
     priority: 0.7,
@@ -94,7 +100,7 @@ export default async function sitemap() {
   // 4. Dynamic Case Studies
   const caseStudies = getAllCaseStudies() || [];
   const caseStudyUrls = caseStudies.map((study) => ({
-    url: `${baseUrl}/case-studies/${study.slug}`,
+    url: `${baseUrl}/resources/case-studies/${study.slug}`,
     lastModified: study.publishedAt ? new Date(study.publishedAt) : new Date(),
     changeFrequency: 'weekly',
     priority: 0.7,

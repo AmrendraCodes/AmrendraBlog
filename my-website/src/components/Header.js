@@ -7,17 +7,10 @@ import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 import ThemeToggle from "./ThemeToggle";
 import { SERVICES_DATA } from "@/lib/services";
+import { PRIMARY_NAV_ITEMS, RESOURCES_DROPDOWN_ITEMS } from "@/config/navigation";
 
 const ServicesDropdown = dynamic(() => import("./ServicesDropdown"), { ssr: false });
-
-const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "Services", href: "/services" },
-  { name: "Blog", href: "/blog" },
-  { name: "Case Studies", href: "/case-studies" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" }
-];
+const ResourcesDropdown = dynamic(() => import("./ResourcesDropdown"), { ssr: false });
 
 export default function Header() {
   const pathname = usePathname();
@@ -25,7 +18,9 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
 
   useEffect(() => {
     let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
@@ -65,14 +60,16 @@ export default function Header() {
     }
 
     const handleKeyDown = (e) => {
-      if (e.key === "Escape" && isMenuOpen) {
-        setIsMenuOpen(false);
+      if (e.key === "Escape") {
+        if (isMenuOpen) setIsMenuOpen(false);
+        if (isServicesOpen) setIsServicesOpen(false);
+        if (isResourcesOpen) setIsResourcesOpen(false);
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isMenuOpen]);
+  }, [isMenuOpen, isServicesOpen, isResourcesOpen]);
 
   return (
     <>
@@ -104,19 +101,24 @@ export default function Header() {
 
           <div className="hidden md:flex items-center justify-center">
             <nav className="flex items-center gap-3 lg:gap-7 xl:gap-9 whitespace-nowrap" aria-label="Primary navigation">
-              {/* Crawlable Fallback Links for Search Engine Indexing (Googlebot) */}
+              {/* Crawlable Fallback Links for Search Engine Indexing */}
               <div className="sr-only">
                 {SERVICES_DATA.map((s) => (
                   <Link key={s.slug} href={`/services/${s.slug}`}>
                     {s.title}
                   </Link>
                 ))}
+                {RESOURCES_DROPDOWN_ITEMS.map((item) => (
+                  <Link key={item.href} href={item.href}>
+                    {item.title}
+                  </Link>
+                ))}
               </div>
 
-              {navLinks.map((link) => {
+              {PRIMARY_NAV_ITEMS.map((link) => {
                 const isActive = link.href === '/' ? pathname === '/' : pathname?.startsWith(link.href);
 
-                if (link.name === "Services") {
+                if (link.dropdownType === "services") {
                   return (
                     <div
                       key={link.name}
@@ -141,6 +143,36 @@ export default function Header() {
 
                       {isServicesOpen && (
                         <ServicesDropdown onClose={() => setIsServicesOpen(false)} />
+                      )}
+                    </div>
+                  );
+                }
+
+                if (link.dropdownType === "resources") {
+                  return (
+                    <div
+                      key={link.name}
+                      className="relative group"
+                      onMouseEnter={() => setIsResourcesOpen(true)}
+                      onMouseLeave={() => setIsResourcesOpen(false)}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setIsResourcesOpen(!isResourcesOpen)}
+                        aria-haspopup="true"
+                        aria-expanded={isResourcesOpen}
+                        className={`relative inline-flex items-center gap-1 text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-3 lg:px-4 py-1.5 rounded-full cursor-pointer border-none bg-transparent ${
+                          isActive || isResourcesOpen
+                            ? "text-[#059669] bg-emerald-50 font-bold"
+                            : "text-slate-700 hover:text-[#059669] hover:bg-slate-100"
+                        }`}
+                      >
+                        <span>{link.name}</span>
+                        <ChevronDown size={14} className={`transition-transform duration-300 ${isResourcesOpen ? "rotate-180 text-[#059669]" : ""}`} />
+                      </button>
+
+                      {isResourcesOpen && (
+                        <ResourcesDropdown onClose={() => setIsResourcesOpen(false)} />
                       )}
                     </div>
                   );
@@ -215,10 +247,10 @@ export default function Header() {
         </div>
 
         <nav className="flex-1 p-6 overflow-y-auto flex flex-col gap-4" aria-label="Mobile navigation">
-          {navLinks.map((link) => {
+          {PRIMARY_NAV_ITEMS.map((link) => {
             const isActive = link.href === '/' ? pathname === '/' : pathname?.startsWith(link.href);
 
-            if (link.name === "Services") {
+            if (link.dropdownType === "services") {
               return (
                 <div key={link.name} className="flex flex-col gap-2">
                   <div className="flex items-center justify-between">
@@ -253,6 +285,49 @@ export default function Header() {
                           className="text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-[#10B981] dark:hover:text-[#34D399] py-2 px-3 rounded-lg block"
                         >
                           {s.title}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
+            if (link.dropdownType === "resources") {
+              return (
+                <div key={link.name} className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <Link
+                      href={link.href}
+                      className={`text-[1.35rem] font-extrabold no-underline transition-colors duration-300 leading-tight py-2.5 px-4 rounded-xl flex-1 ${
+                        isActive
+                          ? "text-[#10B981] bg-[#10B981]/10 dark:bg-[#10B981]/15"
+                          : "text-slate-900 dark:text-slate-50 hover:text-[#10B981] dark:hover:text-[#34D399]"
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {link.name}
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => setIsMobileResourcesOpen(!isMobileResourcesOpen)}
+                      className="p-2 text-slate-700 dark:text-slate-200 hover:text-[#10B981] cursor-pointer"
+                      aria-label="Toggle Resources sub-menu"
+                    >
+                      <ChevronDown size={22} className={`transition-transform duration-300 ${isMobileResourcesOpen ? "rotate-180 text-[#10B981]" : ""}`} />
+                    </button>
+                  </div>
+
+                  {isMobileResourcesOpen && (
+                    <div className="flex flex-col gap-1 pl-4 pt-1 border-l-2 border-[#10B981]/30 ml-4">
+                      {RESOURCES_DROPDOWN_ITEMS.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setIsMenuOpen(false)}
+                          className="text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-[#10B981] dark:hover:text-[#34D399] py-2 px-3 rounded-lg block"
+                        >
+                          {item.title}
                         </Link>
                       ))}
                     </div>

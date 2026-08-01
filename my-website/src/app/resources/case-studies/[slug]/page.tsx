@@ -6,18 +6,12 @@ import { ArrowLeft, ExternalLink, Github, Clock, User, Briefcase } from "lucide-
 import { notFound } from "next/navigation";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 
-/**
- * Generate static params for all case studies at build time.
- */
 export async function generateStaticParams() {
   const caseStudies = getAllCaseStudies();
   return caseStudies.map((cs) => ({ slug: cs.slug }));
 }
 
-/**
- * Generate metadata for SEO.
- */
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const study = getCaseStudyBySlug(slug);
 
@@ -29,12 +23,12 @@ export async function generateMetadata({ params }) {
     title: `${study.title} — Case Study`,
     description: study.description,
     alternates: {
-      canonical: `/case-studies/${slug}`,
+      canonical: `/resources/case-studies/${slug}`,
     },
     openGraph: {
       title: `${study.title} — Case Study`,
       description: study.description,
-      url: `${siteMetadata.siteUrl}/case-studies/${slug}`,
+      url: `${siteMetadata.siteUrl}/resources/case-studies/${slug}`,
       type: "article",
       publishedTime: study.publishedAt,
       authors: [siteMetadata.author],
@@ -57,7 +51,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function CaseStudyPage({ params }) {
+export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const study = getCaseStudyBySlug(slug);
 
@@ -67,9 +61,8 @@ export default async function CaseStudyPage({ params }) {
 
   return (
     <div className="min-h-screen bg-[var(--background)] isolate">
-      {/* ─── Hero Section ─── */}
+      {/* Hero Section */}
       <div className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
-        {/* Background glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] bg-[#10B981]/10 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -77,7 +70,7 @@ export default async function CaseStudyPage({ params }) {
 
             {/* Back Link */}
             <Link
-              href="/case-studies"
+              href="/resources/case-studies"
               className="group inline-flex items-center gap-2 text-sm font-semibold text-[var(--text-muted)] hover:text-[#10B981] dark:hover:text-[#34D399] transition-colors mb-8 no-underline"
             >
               <ArrowLeft size={16} className="transition-transform duration-300 group-hover:-translate-x-1" />
@@ -161,7 +154,7 @@ export default async function CaseStudyPage({ params }) {
         </div>
       </div>
 
-      {/* ─── Content + Sidebar ─── */}
+      {/* Content + Sidebar */}
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Main Content */}
@@ -231,7 +224,7 @@ export default async function CaseStudyPage({ params }) {
 
               {/* Back Link */}
               <Link
-                href="/case-studies"
+                href="/resources/case-studies"
                 className="group flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] font-bold text-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#10B981]/30 hover:shadow-lg no-underline"
               >
                 <ArrowLeft size={16} className="transition-transform duration-300 group-hover:-translate-x-1" />

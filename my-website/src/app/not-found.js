@@ -22,7 +22,7 @@ export default function NotFound() {
               Go Back Home
             </Link>
             <Link
-              href="/blog"
+              href="/resources/blog"
               className="px-8 py-3.5 bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] rounded-full font-bold hover:bg-[var(--card-bg-hover)] transition-all no-underline"
             >
               Read the Blog

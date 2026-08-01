@@ -2,7 +2,7 @@ import { getPostBySlug, getAllPosts, getRelatedPosts, getPrevNextPosts } from "@
 import { extractTocHeadings } from "@/lib/toc";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Clock, Calendar, User } from "lucide-react";
+import { ArrowLeft, Clock, Calendar } from "lucide-react";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/JsonLd";
 import { getBlogPostSchema, getBreadcrumbSchema } from "@/lib/schema";
@@ -12,18 +12,12 @@ import ArticleNavigation from "@/components/blog/ArticleNavigation";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import AuthorBox from "@/components/blog/AuthorBox";
 
-/**
- * Generate static params for all blog posts at build time.
- */
 export async function generateStaticParams() {
   const posts = getAllPosts();
   return posts.map((post) => ({ slug: post.slug }));
 }
 
-/**
- * Generate metadata for SEO.
- */
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
 
@@ -35,12 +29,12 @@ export async function generateMetadata({ params }) {
     title: post.title,
     description: post.description || post.excerpt,
     alternates: {
-      canonical: `/blog/${slug}`,
+      canonical: `/resources/blog/${slug}`,
     },
     openGraph: {
       title: post.title,
       description: post.description || post.excerpt,
-      url: `${siteMetadata.siteUrl}/blog/${slug}`,
+      url: `${siteMetadata.siteUrl}/resources/blog/${slug}`,
       type: "article",
       publishedTime: post.date,
       authors: [post.author || siteMetadata.author],
@@ -64,7 +58,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function PostPage({ params }) {
+export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
 
@@ -72,18 +66,14 @@ export default async function PostPage({ params }) {
     notFound();
   }
 
-  // Extract TOC headings from content
   const headings = extractTocHeadings(post.content);
-
-  // Get related posts and prev/next navigation
   const relatedPosts = getRelatedPosts(slug, 3);
   const { prev, next } = getPrevNextPosts(slug);
 
-  // Schema data
   const postSchema = getBlogPostSchema({
     title: post.title,
     description: post.description || post.excerpt,
-    slug: post.slug,
+    slug: `resources/blog/${post.slug}`,
     image: post.image,
     datePublished: post.date,
     category: post.category,
@@ -93,10 +83,11 @@ export default async function PostPage({ params }) {
 
   const breadcrumbSchema = getBreadcrumbSchema([
     { name: "Home", url: siteMetadata.siteUrl },
-    { name: "Blog", url: `${siteMetadata.siteUrl}/blog` },
+    { name: "Resources", url: `${siteMetadata.siteUrl}/resources` },
+    { name: "Blog", url: `${siteMetadata.siteUrl}/resources/blog` },
     {
       name: post.title,
-      url: `${siteMetadata.siteUrl}/blog/${post.slug}`,
+      url: `${siteMetadata.siteUrl}/resources/blog/${post.slug}`,
     },
   ]);
 
@@ -105,13 +96,21 @@ export default async function PostPage({ params }) {
       <JsonLd data={postSchema} />
       <JsonLd data={breadcrumbSchema} />
 
-      {/* ─── Hero Section ─── */}
+      {/* Hero Section */}
       <div className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
-        {/* Background glow effects */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] bg-[#10B981]/10 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-[900px] mx-auto text-center flex flex-col items-center">
+            
+            {/* Back to Blog Link */}
+            <Link
+              href="/resources/blog"
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-[var(--text-muted)] hover:text-[#10B981] dark:hover:text-[#34D399] transition-colors mb-6 no-underline"
+            >
+              <ArrowLeft size={16} className="transition-transform duration-300 group-hover:-translate-x-1" />
+              Back to all articles
+            </Link>
 
             {/* Category Badge */}
             <div className="mb-6">
@@ -135,7 +134,7 @@ export default async function PostPage({ params }) {
               </p>
             )}
 
-            {/* Meta: Author, Date, Reading Time */}
+            {/* Meta */}
             <div className="flex flex-wrap items-center justify-center gap-6 text-[var(--text-body)] text-sm font-medium mb-12">
               <div className="flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full">
                 <Image
@@ -175,7 +174,7 @@ export default async function PostPage({ params }) {
         </div>
       </div>
 
-      {/* ─── Blog Detail Client (Content + TOC + Progress + BackToTop) ─── */}
+      {/* Blog Detail Client */}
       <BlogDetailClient
         content={post.content}
         headings={headings}
@@ -183,16 +182,10 @@ export default async function PostPage({ params }) {
         slug={post.slug}
       />
 
-      {/* ─── Bottom Sections (Server Rendered) ─── */}
+      {/* Bottom Sections */}
       <div className="max-w-[900px] mx-auto px-4 sm:px-6 pb-16">
-
-        {/* Author Box */}
         <AuthorBox author={post.author} />
-
-        {/* Previous / Next Navigation */}
         <ArticleNavigation prev={prev} next={next} />
-
-        {/* Related Posts */}
         <div className="mt-20">
           <RelatedPosts posts={relatedPosts} />
         </div>
