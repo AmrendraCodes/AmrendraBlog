@@ -1,11 +1,7 @@
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from 'next-themes'
 import "./globals.css";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import dynamic from 'next/dynamic';
-
-const WhatsAppButton = dynamic(() => import('../components/WhatsAppButton'));
+import ConditionalLayout from "../components/ConditionalLayout";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -124,15 +120,7 @@ export default function RootLayout({ children }) {
           }}
         />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <a href="#main-content" className="skip-to-main">
-            Skip to main content
-          </a>
-          <Header />
-          <main id="main-content">
-            {children}
-          </main>
-          <Footer />
-          <WhatsAppButton />
+          <ConditionalLayout>{children}</ConditionalLayout>
         </ThemeProvider>
       </body>
     </html>

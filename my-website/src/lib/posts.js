@@ -1,15 +1,11 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { prisma } from "./prisma";
 
-// Path to the content/posts directory
+// Fallback path to the content/posts directory
 const postsDirectory = path.join(process.cwd(), "content", "posts");
 
-/**
- * Calculates estimated reading time from content.
- * @param {string} content - Markdown content string
- * @returns {string} e.g. "5 min read"
- */
 function calculateReadingTime(content) {
   const wordsPerMinute = 200;
   const wordCount = content.trim().split(/\s+/).length;
@@ -17,20 +13,16 @@ function calculateReadingTime(content) {
   return `${minutes} min read`;
 }
 
-/**
- * Counts words in content.
- * @param {string} content
- * @returns {number}
- */
 function countWords(content) {
-  return content.trim().split(/\s+/).length;
+  return content ? content.trim().split(/\s+/).length : 0;
 }
 
 /**
- * Reads all markdown files from content/posts/ and returns parsed post objects.
- * Results are sorted by date (newest first).
+ * Fallback loader from markdown files if DB is unavailable.
  */
-export function getAllPosts() {
+function getPostsFromFilesystem() {
+  if (!fs.existsSync(postsDirectory)) return [];
+
   const fileNames = fs
     .readdirSync(postsDirectory)
     .filter((file) => file.endsWith(".md"));
@@ -38,11 +30,10 @@ export function getAllPosts() {
   const posts = fileNames.map((fileName) => {
     const filePath = path.join(postsDirectory, fileName);
     const fileContents = fs.readFileSync(filePath, "utf8");
-
-    // Parse frontmatter and content using gray-matter
     const { data, content } = matter(fileContents);
 
     return {
+      id: data.slug || fileName.replace(/\.md$/, ""),
       title: data.title,
       slug: data.slug,
       date: data.date,
@@ -53,21 +44,71 @@ export function getAllPosts() {
       description: data.description || data.excerpt,
       image: data.image || data.featuredImage,
       featuredImage: data.featuredImage || data.image,
-      author: data.author,
+      author: data.author || "Amrendra Kumar",
       tags: data.tags || [],
       wordCount: countWords(content),
       content: content.trim(),
+      status: "PUBLISHED",
     };
   });
 
-  // Sort by date — newest first
   posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
   return posts;
 }
 
 /**
- * Returns a single post by its slug, or undefined if not found.
+ * Reads all published posts from database or fallback to filesystem.
+ * Returns posts sorted by date (newest first).
+ */
+export async function getAllPostsAsync() {
+  try {
+    const dbPosts = await prisma.blog.findMany({
+      where: { status: "PUBLISHED" },
+      include: {
+        category: true,
+        tags: { include: { tag: true } },
+      },
+      orderBy: { publishedAt: "desc" },
+    });
+
+    if (dbPosts && dbPosts.length > 0) {
+      return dbPosts.map((post) => ({
+        id: post.id,
+        title: post.title,
+        slug: post.slug,
+        date: post.publishedAt
+          ? post.publishedAt.toISOString().split("T")[0]
+          : post.createdAt.toISOString().split("T")[0],
+        readTime: post.readingTime || "5 min read",
+        category: post.category ? post.category.name : "General",
+        categorySlug: post.categorySlug || (post.category ? post.category.slug : "general"),
+        excerpt: post.excerpt || "",
+        description: post.description || post.excerpt || "",
+        image: post.featuredImage || post.ogImage,
+        featuredImage: post.featuredImage || post.ogImage,
+        author: post.authorName || "Amrendra Kumar",
+        tags: post.tags ? post.tags.map((t) => t.tag.name) : [],
+        wordCount: post.wordCount,
+        content: post.content,
+        status: post.status,
+      }));
+    }
+  } catch (error) {
+    console.warn("⚠️ Database query failed in posts.js, falling back to filesystem markdown:", error.message);
+  }
+
+  return getPostsFromFilesystem();
+}
+
+/**
+ * Synchronous version for backwards compatibility with existing SSG pages.
+ */
+export function getAllPosts() {
+  return getPostsFromFilesystem();
+}
+
+/**
+ * Returns a single post by its slug.
  */
 export function getPostBySlug(slug) {
   const posts = getAllPosts();
@@ -75,7 +116,49 @@ export function getPostBySlug(slug) {
 }
 
 /**
- * Returns all posts that match the given category slug.
+ * Async version of getPostBySlug.
+ */
+export async function getPostBySlugAsync(slug) {
+  try {
+    const post = await prisma.blog.findUnique({
+      where: { slug },
+      include: {
+        category: true,
+        tags: { include: { tag: true } },
+      },
+    });
+
+    if (post) {
+      return {
+        id: post.id,
+        title: post.title,
+        slug: post.slug,
+        date: post.publishedAt
+          ? post.publishedAt.toISOString().split("T")[0]
+          : post.createdAt.toISOString().split("T")[0],
+        readTime: post.readingTime || "5 min read",
+        category: post.category ? post.category.name : "General",
+        categorySlug: post.categorySlug || (post.category ? post.category.slug : "general"),
+        excerpt: post.excerpt || "",
+        description: post.description || post.excerpt || "",
+        image: post.featuredImage || post.ogImage,
+        featuredImage: post.featuredImage || post.ogImage,
+        author: post.authorName || "Amrendra Kumar",
+        tags: post.tags ? post.tags.map((t) => t.tag.name) : [],
+        wordCount: post.wordCount,
+        content: post.content,
+        status: post.status,
+      };
+    }
+  } catch (err) {
+    console.warn("⚠️ Database lookup failed for slug, using filesystem:", slug);
+  }
+
+  return getPostBySlug(slug);
+}
+
+/**
+ * Returns all posts matching category slug.
  */
 export function getPostsByCategory(categorySlug) {
   const posts = getAllPosts();
@@ -83,7 +166,7 @@ export function getPostsByCategory(categorySlug) {
 }
 
 /**
- * Returns an array of unique categories with their name, slug, and post count.
+ * Returns unique categories with post count.
  */
 export function getAllCategories() {
   const posts = getAllPosts();
@@ -97,8 +180,7 @@ export function getAllCategories() {
 }
 
 /**
- * Returns an array of all unique tags across all posts.
- * @returns {string[]}
+ * Returns all unique tags.
  */
 export function getAllTags() {
   const posts = getAllPosts();
@@ -106,32 +188,22 @@ export function getAllTags() {
 }
 
 /**
- * Returns related posts based on matching category and tags.
- * @param {string} slug - Current post slug to exclude
- * @param {number} limit - Max number of related posts to return
- * @returns {Array}
+ * Returns related posts.
  */
 export function getRelatedPosts(slug, limit = 3) {
   const posts = getAllPosts();
   const currentPost = posts.find((p) => p.slug === slug);
-
   if (!currentPost) return [];
 
-  // Score each post by relevance
   const scored = posts
     .filter((p) => p.slug !== slug)
     .map((post) => {
       let score = 0;
-
-      // Same category = +3
       if (post.categorySlug === currentPost.categorySlug) score += 3;
-
-      // Matching tags = +1 each
       const sharedTags = (post.tags || []).filter((tag) =>
         (currentPost.tags || []).includes(tag)
       );
       score += sharedTags.length;
-
       return { ...post, score };
     })
     .filter((p) => p.score > 0)
@@ -141,9 +213,7 @@ export function getRelatedPosts(slug, limit = 3) {
 }
 
 /**
- * Returns previous and next posts for navigation.
- * @param {string} slug - Current post slug
- * @returns {{ prev: Object|null, next: Object|null }}
+ * Prev and Next posts navigation helper.
  */
 export function getPrevNextPosts(slug) {
   const posts = getAllPosts();
@@ -154,7 +224,6 @@ export function getPrevNextPosts(slug) {
   const prev = currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
   const next = currentIndex > 0 ? posts[currentIndex - 1] : null;
 
-  // Return lightweight versions (no content)
   const slim = (post) =>
     post
       ? {
