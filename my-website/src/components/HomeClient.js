@@ -25,7 +25,7 @@ import MagneticButton from './ui/MagneticButton';
 // Dynamic Heavy Components for Performance
 const CaseStudiesSection = dynamic(() => import('./CaseStudiesSection'), { ssr: false });
 const DevShowcase = dynamic(() => import('@/components/home/DevShowcase'), { ssr: false });
-const TechEcosystem3D = dynamic(() => import('@/components/home/TechEcosystem3D'), { ssr: false });
+import WhyChooseUsSection from './home/WhyChooseUsSection';
 const ComparisonTable = dynamic(() => import('@/components/home/ComparisonTable'), { ssr: false });
 const PricingSection = dynamic(() => import('@/components/home/PricingSection'), { ssr: false });
 
@@ -33,7 +33,7 @@ const PricingSection = dynamic(() => import('@/components/home/PricingSection'),
 
 export default function HomeClient({ featuredPosts, caseStudies }) {
   return (
-    <div className="relative min-h-screen bg-[#060907] text-[#F3F4F6] overflow-x-hidden">
+    <div className="relative min-h-screen bg-white dark:bg-[#060907] text-slate-900 dark:text-[#F3F4F6] transition-colors duration-300 overflow-x-hidden">
       {/* ═══════════════════════════════════════════════════════════
          1. FULL 3D INTERACTIVE HERO SECTION
          ═══════════════════════════════════════════════════════════ */}
@@ -42,7 +42,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       {/* ═══════════════════════════════════════════════════════════
          2. CLIENT & SERVICES TICKER MARQUEE (FULL-WIDTH SLIDING NEWS BROADCAST)
          ═══════════════════════════════════════════════════════════ */}
-      <section className="w-full py-3.5 border-y border-[#10B981]/30 bg-[#060907] shadow-[0_0_25px_rgba(16,185,129,0.1)] overflow-hidden relative z-20" aria-label="Services ticker">
+      <section className="w-full py-3.5 border-y border-[#10B981]/30 bg-slate-100 dark:bg-[#060907] shadow-[0_0_25px_rgba(16,185,129,0.1)] overflow-hidden relative z-20" aria-label="Services ticker">
         <div className="w-full px-4 sm:px-8 flex items-center gap-4">
           
           {/* Fixed Left News Broadcast Badge */}
@@ -105,10 +105,10 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
             THE ENGINEERING DIFFERENCE
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mt-4 mb-6 tracking-tight">
             Stop Settling for Bloated Legacy Software
           </h2>
-          <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-600 dark:text-[#9CA3AF] leading-relaxed">
             Traditional software development is plagued by slow release cycles, technical debt, and fragile architecture. Code with Amrendra builds clean, AI-native platforms engineered for performance and scalability — so your product never buckles under real-world growth.
           </p>
         </div>
@@ -116,17 +116,17 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
         {/* Bento Grid Split: Legacy vs Code with Amrendra */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {/* Legacy Side */}
-          <div className="group rounded-3xl bg-[#0A0F0C] border border-red-500/30 hover:border-red-500 p-6 sm:p-8 shadow-xl hover:shadow-[0_0_35px_rgba(239,68,68,0.3)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer">
+          <div className="group rounded-3xl bg-slate-50 dark:bg-[#0A0F0C] border border-red-500/30 hover:border-red-500 p-6 sm:p-8 shadow-xl hover:shadow-[0_0_35px_rgba(239,68,68,0.3)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer">
             <div className="flex items-center gap-3.5 mb-6">
               <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-red-500/15 text-red-400 border border-red-500/30 shrink-0 group-hover:bg-red-500/25 group-hover:scale-105 flex items-center justify-center font-bold transition-all duration-300 shadow-[0_0_15px_rgba(239,68,68,0.2)]">
                 <X size={20} strokeWidth={2.5} />
               </div>
               <div>
-                <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-red-100 transition-colors">Traditional Development Agencies</h3>
-                <p className="text-xs text-[#9CA3AF]">Slow, expensive, &amp; maintenance-heavy</p>
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-100 transition-colors">Traditional Development Agencies</h3>
+                <p className="text-xs text-slate-500 dark:text-[#9CA3AF]">Slow, expensive, &amp; maintenance-heavy</p>
               </div>
             </div>
-            <ul className="space-y-4 text-xs sm:text-sm text-[#9CA3AF]">
+            <ul className="space-y-4 text-xs sm:text-sm text-slate-600 dark:text-[#9CA3AF]">
               <li className="flex items-start gap-3">
                 <span className="w-6 h-6 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
                   <X size={12} strokeWidth={2.5} />
@@ -155,17 +155,17 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
           </div>
 
           {/* Code with Amrendra Side */}
-          <div className="group rounded-3xl bg-gradient-to-br from-[#111C16] to-[#0A0F0C] border-2 border-[#10B981]/60 hover:border-[#10B981] p-6 sm:p-8 shadow-[0_0_30px_rgba(16,185,129,0.2)] hover:shadow-[0_0_55px_rgba(16,185,129,0.45)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer">
+          <div className="group rounded-3xl bg-gradient-to-br from-emerald-50 to-slate-50 dark:from-[#111C16] dark:to-[#0A0F0C] border-2 border-[#10B981]/60 hover:border-[#10B981] p-6 sm:p-8 shadow-[0_0_30px_rgba(16,185,129,0.2)] hover:shadow-[0_0_55px_rgba(16,185,129,0.45)] relative overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-pointer">
             <div className="flex items-center gap-3.5 mb-6">
               <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#10B981] text-white shrink-0 group-hover:bg-[#059669] group-hover:scale-105 shadow-[0_0_18px_rgba(16,185,129,0.5)] flex items-center justify-center font-bold transition-all duration-300">
                 <Check size={20} strokeWidth={3} />
               </div>
               <div>
-                <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">Code with Amrendra — AI Development Services</h3>
-                <p className="text-xs text-[#34D399]">High-velocity, AI-native &amp; sub-second fast</p>
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-[#10B981] dark:group-hover:text-emerald-300 transition-colors">Code with Amrendra — AI Development Services</h3>
+                <p className="text-xs text-emerald-600 dark:text-[#34D399]">High-velocity, AI-native &amp; sub-second fast</p>
               </div>
             </div>
-            <ul className="space-y-4 text-xs sm:text-sm text-[#F3F4F6]">
+            <ul className="space-y-4 text-xs sm:text-sm text-slate-700 dark:text-[#F3F4F6]">
               <li className="flex items-start gap-3">
                 <span className="w-6 h-6 rounded-full bg-[#10B981]/20 border border-[#10B981]/40 text-[#10B981] flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
                   <Check size={12} strokeWidth={3} />
@@ -198,16 +198,16 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       {/* ═══════════════════════════════════════════════════════════
          4. CORE SERVICES OVERVIEW (3D TILT CARDS)
          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 bg-[#080D0A] border-y border-[#1E2E25] relative">
+      <section className="py-24 px-6 bg-slate-50 dark:bg-[#080D0A] border-y border-slate-200 dark:border-[#1E2E25] transition-colors duration-300 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
               CORE SERVICES
             </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mt-4 mb-6 tracking-tight">
               Enterprise Software Solutions
             </h2>
-            <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-[#9CA3AF] leading-relaxed">
               Code with Amrendra specializes in modern full-stack web engineering, custom AI agent integrations, cloud architecture, and high-conversion digital experiences — delivered as complete AI Development Services, Web Development Services, and SaaS Development Services under one roof.
             </p>
           </div>
@@ -261,21 +261,21 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
               return (
                 <ScrollReveal key={index} delay={index * 0.08} variant="fade-up">
                   <TiltCard
-                    className="group relative rounded-3xl bg-[#0A0F0C] border border-[#1E2E25] p-8 transition-all duration-300 hover:border-[#10B981]/60 hover:shadow-[0_10px_30px_rgba(16,185,129,0.15)] flex flex-col justify-between h-full"
+                    className="group relative rounded-3xl bg-white dark:bg-[#0A0F0C] border border-slate-200 dark:border-[#1E2E25] p-8 transition-all duration-300 hover:border-[#10B981]/60 hover:shadow-[0_10px_30px_rgba(16,185,129,0.15)] flex flex-col justify-between h-full shadow-sm dark:shadow-none"
                   >
                     <div>
-                      <div className="w-14 h-14 rounded-2xl bg-[#111C16] border border-[#10B981]/30 text-[#10B981] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#10B981] group-hover:text-white transition-all duration-300 shadow-sm">
+                      <div className="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-[#111C16] border border-slate-200 dark:border-[#10B981]/30 text-[#10B981] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#10B981] group-hover:text-white transition-all duration-300 shadow-sm">
                         <Icon size={26} />
                       </div>
-                      <span className="text-[10px] font-mono text-[#34D399] uppercase tracking-wider block mb-2">
+                      <span className="text-[10px] font-mono text-emerald-600 dark:text-[#34D399] uppercase tracking-wider block mb-2">
                         {service.tag}
                       </span>
-                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#10B981] transition-colors">
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-[#10B981] transition-colors">
                         <Link href={service.href}>
                           {service.title}
                         </Link>
                       </h3>
-                      <p className="text-xs text-[#9CA3AF] leading-relaxed mb-6">
+                      <p className="text-xs text-slate-600 dark:text-[#9CA3AF] leading-relaxed mb-6">
                         {service.desc}
                       </p>
                     </div>
@@ -302,10 +302,10 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
             INTERACTIVE PRODUCT PREVIEW
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mt-4 mb-6 tracking-tight">
             See Our Engineering Pipeline in Action
           </h2>
-          <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-600 dark:text-[#9CA3AF] leading-relaxed">
             Test-drive Code with Amrendra's interactive autonomous engineering console below to see how we monitor performance, test AI workflows, and automate deployments in real time.
           </p>
         </div>
@@ -314,25 +314,9 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-         6. INTERACTIVE TECHNOLOGY ECOSYSTEM GRAPH
+         6. WHY BUSINESSES CHOOSE CODE WITH AMRENDRA
          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 bg-[#080D0A] border-y border-[#1E2E25] content-visibility-auto">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
-              ARCHITECTURE FLOWCHART PIPELINE
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
-              Connected Engineering Architecture
-            </h2>
-            <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
-              Code with Amrendra's central engineering core unifies frameworks, serverless infrastructure, AI models, and databases into a seamless ecosystem — the technical backbone behind every AI Development Services and Cloud Software Development Services engagement.
-            </p>
-          </div>
-
-          <TechEcosystem3D />
-        </div>
-      </section>
+      <WhyChooseUsSection />
 
       {/* ═══════════════════════════════════════════════════════════
          7. DEVELOPMENT PROCESS TIMELINE
@@ -342,10 +326,10 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
             HOW WE EXECUTE
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mt-4 mb-6 tracking-tight">
             Our 4-Step Engineering Process
           </h2>
-          <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-600 dark:text-[#9CA3AF] leading-relaxed">
             From architecture blueprint to production launch, Code with Amrendra maintains complete transparency and continuous weekly sprint deliverables.
           </p>
         </div>
@@ -375,14 +359,14 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
           ].map((item, idx) => (
             <div
               key={idx}
-              className="rounded-3xl bg-[#0A0F0C] border border-[#1E2E25] p-6 hover:border-[#10B981]/50 transition-all duration-300 flex flex-col justify-between"
+              className="rounded-3xl bg-white dark:bg-[#0A0F0C] border border-slate-200 dark:border-[#1E2E25] p-6 hover:border-[#10B981]/50 transition-all duration-300 flex flex-col justify-between shadow-sm dark:shadow-none"
             >
               <div>
                 <span className="text-3xl font-extrabold font-mono text-[#10B981] block mb-4">
                   {item.step}
                 </span>
-                <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-xs text-[#9CA3AF] leading-relaxed">{item.desc}</p>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{item.title}</h3>
+                <p className="text-xs text-slate-600 dark:text-[#9CA3AF] leading-relaxed">{item.desc}</p>
               </div>
             </div>
           ))}
@@ -392,17 +376,17 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       {/* ═══════════════════════════════════════════════════════════
          8. FEATURED CASE STUDIES & WORK SHOWCASE
          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 bg-[#080D0A] border-y border-[#1E2E25] content-visibility-auto">
+      <section className="py-24 px-6 bg-slate-50 dark:bg-[#080D0A] border-y border-slate-200 dark:border-[#1E2E25] transition-colors duration-300 content-visibility-auto">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
             <div>
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
                 SELECTED WORK
               </span>
-              <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 tracking-tight">
+              <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mt-4 tracking-tight">
                 Case Studies &amp; Proven Results
               </h2>
-              <p className="text-xs sm:text-sm text-[#9CA3AF] mt-2">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-[#9CA3AF] mt-2">
                 Real Projects, Real Impact — find out how Code with Amrendra's design decisions, architecture, and reasonable automation created measurable business outcomes.
               </p>
             </div>
@@ -427,10 +411,10 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
             DIRECT COMPARISON
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mt-4 mb-6 tracking-tight">
             How Our Engineering Stacks Up
           </h2>
-          <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-600 dark:text-[#9CA3AF] leading-relaxed">
             Compare Code with Amrendra's enterprise standards against traditional development agencies and off-the-shelf templates.
           </p>
         </div>
@@ -441,16 +425,16 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       {/* ═══════════════════════════════════════════════════════════
          10. ENGAGEMENT MODELS & PRICING
          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 bg-[#080D0A] border-y border-[#1E2E25] content-visibility-auto">
+      <section className="py-24 px-6 bg-slate-50 dark:bg-[#080D0A] border-y border-slate-200 dark:border-[#1E2E25] transition-colors duration-300 content-visibility-auto">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
               PRICING, MADE SIMPLE
             </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-6 tracking-tight">
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mt-4 mb-6 tracking-tight">
               Straightforward Pricing for Every Stage of Growth
             </h2>
-            <p className="text-base sm:text-lg text-[#9CA3AF] leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-[#9CA3AF] leading-relaxed">
               Whether you need a focused build or an ongoing engineering partner, choose a plan that fits — no hidden fees, no long-term lock-in.
             </p>
           </div>
@@ -463,7 +447,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
          11. FINAL HIGH-IMPACT CTA BANNER
          ═══════════════════════════════════════════════════════════ */}
       <section className="py-24 px-6 max-w-6xl mx-auto">
-        <div className="relative rounded-3xl bg-gradient-to-br from-[#111C16] via-[#0A0F0C] to-[#060907] border-2 border-[#10B981] p-10 sm:p-16 text-center shadow-[0_0_60px_rgba(16,185,129,0.25)] overflow-hidden">
+        <div className="relative rounded-3xl bg-gradient-to-br from-emerald-950/20 via-slate-900 to-slate-950 dark:from-[#111C16] dark:via-[#0A0F0C] dark:to-[#060907] border-2 border-[#10B981] p-10 sm:p-16 text-center shadow-[0_0_60px_rgba(16,185,129,0.25)] overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#10B981]/10 rounded-full blur-3xl pointer-events-none" />
 
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#34D399] bg-[#10B981]/20 px-4 py-1.5 rounded-full border border-[#10B981]/40 mb-6 inline-block">
@@ -475,7 +459,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
             <span className="text-[#10B981]">Is It Performing at Its Peak?</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-[#9CA3AF] max-w-xl mx-auto mb-10 leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-300 dark:text-[#9CA3AF] max-w-xl mx-auto mb-10 leading-relaxed">
             Partner with Code with Amrendra to engineer high-velocity web platforms, automate workflows with AI, and unlock cloud performance across your entire stack.
           </p>
 
