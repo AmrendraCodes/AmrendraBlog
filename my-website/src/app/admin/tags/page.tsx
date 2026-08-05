@@ -135,8 +135,8 @@ export default function AdminTagsPage() {
                     </td>
                   </tr>
                 ) : (
-                  tags.map((tag) => (
-                    <tr key={tag.id} className="hover:bg-[#111C16]/40 transition-colors">
+                  tags.map((tag, idx) => (
+                    <tr key={`${tag.id}-${idx}`} className="hover:bg-[#111C16]/40 transition-colors">
                       <td className="py-4 px-6 font-bold text-sm text-white">#{tag.name}</td>
                       <td className="py-4 px-4 font-mono text-xs text-[#9CA3AF]">/{tag.slug}</td>
                       <td className="py-4 px-4 text-center">

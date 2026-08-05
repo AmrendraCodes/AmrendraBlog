@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import Header from './Header';
 import Footer from './Footer';
 import WhatsAppButton from './WhatsAppButton';
+import VisitorTracker from './VisitorTracker';
 
 export default function ConditionalLayout({ children }) {
   const pathname = usePathname();
@@ -16,6 +17,7 @@ export default function ConditionalLayout({ children }) {
 
   return (
     <>
+      <VisitorTracker />
       <a href="#main-content" className="skip-to-main">
         Skip to main content
       </a>
