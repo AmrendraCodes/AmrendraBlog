@@ -16,14 +16,14 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL('https://codewithamrendra.vercel.app'),
+  metadataBase: new URL('https://codewithamrendra.in'),
   title: {
     default: "Code with Amrendra — Enterprise Software & AI Engineering",
     template: "%s | Code with Amrendra"
   },
   description: "Next-gen software engineering agency specializing in React 19, Next.js 16, autonomous AI agent solutions, SaaS architecture, and AWS cloud infrastructure.",
   keywords: ["Software Development", "React Development", "Next.js", "AI Agents", "SaaS Development", "AWS Cloud", "Frontend Engineering", "API Integration", "Code with Amrendra"],
-  authors: [{ name: "Amrendra Kumar", url: "https://codewithamrendra.vercel.app" }],
+  authors: [{ name: "Amrendra Kumar", url: "https://codewithamrendra.in" }],
   creator: "Amrendra Kumar",
   publisher: "Code with Amrendra",
   robots: {
@@ -66,7 +66,7 @@ export const metadata = {
     images: ['/images/og-default.png'],
   },
   verification: {
-    google: "3v-o-lc_-Ym9wck1txXt3ZODb6whlC089kLg_fBK578",
+    google: "J27HQQttUl1hn0c0s5prPIzO6Evg9Vd0t8p7vtE6KTU",
     other: {
       "msvalidate.01": "6AF92BFDAFBC08EC722E3BCC05211B45",
     },
@@ -98,8 +98,8 @@ export default function RootLayout({ children }) {
               "@context": "https://schema.org",
               "@type": "Person",
               "name": "Amrendra Kumar",
-              "url": "https://codewithamrendra.vercel.app",
-              "image": "https://codewithamrendra.vercel.app/Profile%20photo.jpeg",
+              "url": "https://codewithamrendra.in",
+              "image": "https://codewithamrendra.in/Profile%20photo.jpeg",
               "jobTitle": "Frontend Developer & Technical Content Writer",
               "description": "Personal insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.",
               "email": "amrendra1999official@gmail.com",

@@ -36,11 +36,11 @@ export const metadata = {
   openGraph: {
     title: "Services — Code with Amrendra",
     description: "High-performance Web Engineering, AI Integrations, UI/UX Design, Cloud Deployments, and Data-Driven SEO Growth.",
-    url: "https://codewithamrendra.vercel.app/services",
+    url: "https://codewithamrendra.in/services",
     type: "website",
   },
   alternates: {
-    canonical: "https://codewithamrendra.vercel.app/services",
+    canonical: "https://codewithamrendra.in/services",
   },
 };
 
@@ -60,11 +60,11 @@ export default function ServicesPage() {
     "@type": "CollectionPage",
     "name": "Services — Code with Amrendra",
     "description": "Professional Web Development, UI/UX Design, Digital Marketing, AI Automation, Cloud DevOps, and SEO Strategy.",
-    "url": "https://codewithamrendra.vercel.app/services",
+    "url": "https://codewithamrendra.in/services",
     "provider": {
       "@type": "Organization",
       "name": "Code with Amrendra",
-      "url": "https://codewithamrendra.vercel.app"
+      "url": "https://codewithamrendra.in"
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
@@ -75,7 +75,7 @@ export default function ServicesPage() {
           "@type": "Service",
           "name": service.title,
           "description": service.subtitle,
-          "url": `https://codewithamrendra.vercel.app/services/${service.slug}`
+          "url": `https://codewithamrendra.in/services/${service.slug}`
         },
         "position": index + 1
       }))

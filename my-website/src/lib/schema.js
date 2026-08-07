@@ -25,10 +25,10 @@ export function getWebsiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Code with Amrendra",
-    "url": "https://codewithamrendra.vercel.app",
+    "url": "https://codewithamrendra.in",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://codewithamrendra.vercel.app/blog?search={search_term_string}",
+      "target": "https://codewithamrendra.in/blog?search={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };
@@ -43,8 +43,8 @@ export function getPersonSchema() {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Amrendra Kumar",
-    "url": "https://codewithamrendra.vercel.app",
-    "image": "https://codewithamrendra.vercel.app/Profile%20photo.jpeg",
+    "url": "https://codewithamrendra.in",
+    "image": "https://codewithamrendra.in/Profile%20photo.jpeg",
     "sameAs": [
       "https://github.com/AmrendraCodes",
       "https://x.com/codewithamrendr",
@@ -67,12 +67,12 @@ export function getLocalBusinessSchema() {
   return {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "SoftwareCompany"],
-    "@id": "https://codewithamrendra.vercel.app/#organization",
+    "@id": "https://codewithamrendra.in/#organization",
     "name": "Code With Amrendra",
     "alternateName": ["Code with Amrendra", "CWA Engineering"],
-    "url": "https://codewithamrendra.vercel.app",
-    "logo": "https://codewithamrendra.vercel.app/logo-square.png",
-    "image": "https://codewithamrendra.vercel.app/logo-square.png",
+    "url": "https://codewithamrendra.in",
+    "logo": "https://codewithamrendra.in/logo-square.png",
+    "image": "https://codewithamrendra.in/logo-square.png",
     "telephone": "+91-6205482614",
     "priceRange": "$$",
     "description": "Software company specializing in Custom AI Development Services, Web Development, SaaS Architecture, and Cloud Solutions.",
@@ -145,7 +145,7 @@ export function getBlogPostSchema({ title, description, slug, image, datePublish
     "@type": "BlogPosting",
     "headline": title,
     "description": description,
-    "image": image || "https://codewithamrendra.vercel.app/images/og-default.png",
+    "image": image || "https://codewithamrendra.in/images/og-default.png",
     "datePublished": formattedDate,
     "dateModified": formattedDate,
     "wordCount": wordCount || undefined,
@@ -153,19 +153,19 @@ export function getBlogPostSchema({ title, description, slug, image, datePublish
     "author": {
       "@type": "Person",
       "name": "Amrendra Kumar",
-      "url": "https://codewithamrendra.vercel.app"
+      "url": "https://codewithamrendra.in"
     },
     "publisher": {
       "@type": "Organization",
       "name": "Code with Amrendra",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://codewithamrendra.vercel.app/Profile%20photo.jpeg"
+        "url": "https://codewithamrendra.in/Profile%20photo.jpeg"
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://codewithamrendra.vercel.app/blog/${slug}`
+      "@id": `https://codewithamrendra.in/blog/${slug}`
     },
     "articleSection": category
   };

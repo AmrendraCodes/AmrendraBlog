@@ -43,11 +43,11 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: service.metaTitle,
       description: service.metaDescription,
-      url: `https://codewithamrendra.vercel.app/services/${service.slug}`,
+      url: `https://codewithamrendra.in/services/${service.slug}`,
       type: "article",
     },
     alternates: {
-      canonical: `https://codewithamrendra.vercel.app/services/${service.slug}`,
+      canonical: `https://codewithamrendra.in/services/${service.slug}`,
     },
   };
 }
@@ -71,11 +71,11 @@ export default async function ServiceDetailPage({ params }) {
     "provider": {
       "@type": "Organization",
       "name": "Code with Amrendra",
-      "url": "https://codewithamrendra.vercel.app"
+      "url": "https://codewithamrendra.in"
     },
     "areaServed": "Worldwide",
     "serviceType": service.title,
-    "url": `https://codewithamrendra.vercel.app/services/${service.slug}`
+    "url": `https://codewithamrendra.in/services/${service.slug}`
   };
 
   const breadcrumbSchema = {
@@ -86,19 +86,19 @@ export default async function ServiceDetailPage({ params }) {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://codewithamrendra.vercel.app"
+        "item": "https://codewithamrendra.in"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Services",
-        "item": "https://codewithamrendra.vercel.app/services"
+        "item": "https://codewithamrendra.in/services"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": service.title,
-        "item": `https://codewithamrendra.vercel.app/services/${service.slug}`
+        "item": `https://codewithamrendra.in/services/${service.slug}`
       }
     ]
   };

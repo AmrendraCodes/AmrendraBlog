@@ -22,7 +22,7 @@ tags:
 
 In today's digital era, most websites offer light and dark themes for better usability. Dark mode reduces color intensity, helping protect eyes and improve visibility, while light mode works well during daytime viewing.
 
-Adding light and dark mode features using [HTML](https://codewithamrendra.vercel.app/category/frontend-development), [CSS](https://codewithamrendra.vercel.app/blog/mastering-tailwind-css), and [JavaScript](https://codewithamrendra.vercel.app/blog/how-to-learn-react) is straightforward. In this blog, we'll explore how to implement these themes using modern web development practices.
+Adding light and dark mode features using [HTML](https://codewithamrendra.in/category/frontend-development), [CSS](https://codewithamrendra.in/blog/mastering-tailwind-css), and [JavaScript](https://codewithamrendra.in/blog/how-to-learn-react) is straightforward. In this blog, we'll explore how to implement these themes using modern web development practices.
 
 ---
 

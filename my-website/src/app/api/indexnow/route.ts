@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const host = 'codewithamrendra.vercel.app';
+  const host = 'codewithamrendra.in';
   const keyLocation = `https://${host}/BingSiteAuth.xml`;
   const endpoint = 'https://api.indexnow.org/indexnow';
 
