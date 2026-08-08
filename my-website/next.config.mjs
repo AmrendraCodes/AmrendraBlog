@@ -47,6 +47,19 @@ const nextConfig = {
       },
     ];
   },
+  async rewrites() {
+    const adminUrl = process.env.ADMIN_APP_URL || 'https://code-with-amrendra-admin.vercel.app';
+    return [
+      {
+        source: '/admin',
+        destination: `${adminUrl}/login`,
+      },
+      {
+        source: '/admin/:path*',
+        destination: `${adminUrl}/:path*`,
+      },
+    ];
+  },
   async headers() {
     return [
       {
