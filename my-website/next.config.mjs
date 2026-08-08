@@ -24,7 +24,23 @@ const nextConfig = {
     minimumCacheTTL: 31536000,
   },
   async redirects() {
+    const adminUrl = process.env.ADMIN_APP_URL || 'https://amrendra-cms-blog.vercel.app';
     return [
+      {
+        source: '/admin',
+        destination: `${adminUrl}/login`,
+        permanent: false,
+      },
+      {
+        source: '/admin/login',
+        destination: `${adminUrl}/login`,
+        permanent: false,
+      },
+      {
+        source: '/admin/dashboard',
+        destination: `${adminUrl}/dashboard`,
+        permanent: false,
+      },
       {
         source: '/blog',
         destination: '/resources/blog',
@@ -46,20 +62,6 @@ const nextConfig = {
         permanent: true,
       },
     ];
-  },
-  async rewrites() {
-    const adminUrl = process.env.ADMIN_APP_URL || 'https://code-with-amrendra-admin.vercel.app';
-    return [
-      {
-        source: '/admin',
-        destination: `${adminUrl}/login`,
-      },
-      {
-        source: '/admin/:path*',
-        destination: `${adminUrl}/:path*`,
-      },
-    ];
-  },
   async headers() {
     return [
       {
