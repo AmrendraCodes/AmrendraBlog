@@ -24,7 +24,7 @@ const nextConfig = {
     minimumCacheTTL: 31536000,
   },
   async redirects() {
-    const adminUrl = process.env.ADMIN_APP_URL || 'https://amrendra-cms-blog.vercel.app';
+    const adminUrl = process.env.ADMIN_APP_URL || 'https://amrendra-cms-blog-five.vercel.app';
     return [
       {
         source: '/admin',
