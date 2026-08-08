@@ -7,9 +7,6 @@ export default function VisitorTracker() {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Skip tracking for admin panel pages
-    if (pathname?.startsWith('/admin')) return;
-
     const trackVisit = async () => {
       try {
         let slug = null;

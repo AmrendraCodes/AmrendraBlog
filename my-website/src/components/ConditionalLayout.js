@@ -1,20 +1,12 @@
 'use client';
 
 import React from 'react';
-import { usePathname } from 'next/navigation';
 import Header from './Header';
 import Footer from './Footer';
 import WhatsAppButton from './WhatsAppButton';
 import VisitorTracker from './VisitorTracker';
 
 export default function ConditionalLayout({ children }) {
-  const pathname = usePathname();
-  const isAdmin = pathname?.startsWith('/admin');
-
-  if (isAdmin) {
-    return <main id="main-content" className="min-h-screen">{children}</main>;
-  }
-
   return (
     <>
       <VisitorTracker />
@@ -28,3 +20,4 @@ export default function ConditionalLayout({ children }) {
     </>
   );
 }
+

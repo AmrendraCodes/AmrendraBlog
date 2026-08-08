@@ -1,0 +1,173 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+  AUTHOR
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+  SCHEDULED
+}
+
+enum ContactStatus {
+  UNREAD
+  READ
+  ARCHIVED
+}
+
+model User {
+  id           String    @id @default(cuid())
+  name         String?
+  email        String    @unique
+  passwordHash String
+  role         Role      @default(ADMIN)
+  avatar       String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  posts        Blog[]
+  sessions     Session[]
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  posts       Blog[]
+}
+
+model Tag {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  slug      String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  posts     BlogTag[]
+}
+
+model Blog {
+  id              String      @id @default(cuid())
+  title           String
+  slug            String      @unique
+  excerpt         String?
+  description     String?
+  content         String      @db.Text
+  featuredImage   String?
+  ogImage         String?
+  canonicalUrl    String?
+  metaTitle       String?
+  metaDescription String?
+  status          PostStatus  @default(PUBLISHED)
+  publishedAt     DateTime?   @default(now())
+  scheduledAt     DateTime?
+  readingTime     String?
+  wordCount       Int         @default(0)
+  authorId        String?
+  author          User?       @relation(fields: [authorId], references: [id])
+  authorName      String?     @default("Amrendra Kumar")
+  categoryId      String?
+  category        Category?   @relation(fields: [categoryId], references: [id])
+  categorySlug    String?
+  tags            BlogTag[]
+  views           Int         @default(0)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+}
+
+model BlogTag {
+  blogId String
+  tagId  String
+  blog   Blog   @relation(fields: [blogId], references: [id], onDelete: Cascade)
+  tag    Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([blogId, tagId])
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  fileName  String
+  publicId  String   @unique
+  url       String
+  secureUrl String
+  format    String?
+  width     Int?
+  height    Int?
+  bytes     Int?
+  folder    String?  @default("general")
+  createdAt DateTime @default(now())
+}
+
+model Visitor {
+  id        String     @id @default(cuid())
+  ip        String?
+  userAgent String?
+  browser   String?
+  os        String?
+  device    String?
+  country   String?
+  city      String?
+  createdAt DateTime   @default(now())
+  pageViews PageView[]
+}
+
+model PageView {
+  id        String   @id @default(cuid())
+  path      String
+  referrer  String?
+  visitorId String
+  visitor   Visitor  @relation(fields: [visitorId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model Contact {
+  id        String        @id @default(cuid())
+  name      String
+  email     String
+  company   String?
+  phone     String?
+  subject   String?
+  message   String        @db.Text
+  status    ContactStatus @default(UNREAD)
+  createdAt DateTime      @default(now())
+}
+
+model Newsletter {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  subscribedAt DateTime @default(now())
+}
+
+model Settings {
+  id             String   @id @default("global")
+  siteName       String   @default("Code with Amrendra")
+  logoUrl        String?
+  faviconUrl     String?
+  contactEmail   String?
+  phone          String?
+  address        String?
+  socialLinks    Json?
+  analyticsId    String?
+  cloudinaryKeys Json?
+  seoDefaults    Json?
+  updatedAt      DateTime @updatedAt
+}
