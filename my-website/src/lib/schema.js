@@ -25,7 +25,7 @@ export function getWebsiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Code with Amrendra",
-    "url": "https://codewithamrendra.in",
+    "url": "https://www.codewithamrendra.in",
     "potentialAction": {
       "@type": "SearchAction",
       "target": "https://codewithamrendra.in/blog?search={search_term_string}",
@@ -43,7 +43,7 @@ export function getPersonSchema() {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Amrendra Kumar",
-    "url": "https://codewithamrendra.in",
+    "url": "https://www.codewithamrendra.in",
     "image": "https://codewithamrendra.in/Profile%20photo.jpeg",
     "sameAs": [
       "https://github.com/AmrendraCodes",
@@ -70,7 +70,7 @@ export function getLocalBusinessSchema() {
     "@id": "https://codewithamrendra.in/#organization",
     "name": "Code With Amrendra",
     "alternateName": ["Code with Amrendra", "CWA Engineering"],
-    "url": "https://codewithamrendra.in",
+    "url": "https://www.codewithamrendra.in",
     "logo": "https://codewithamrendra.in/logo-square.png",
     "image": "https://codewithamrendra.in/logo-square.png",
     "telephone": "+91-6205482614",

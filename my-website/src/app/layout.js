@@ -17,14 +17,14 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL('https://codewithamrendra.in'),
+  metadataBase: new URL('https://www.codewithamrendra.in'),
   title: {
     default: "Code with Amrendra — Enterprise Software & AI Engineering",
     template: "%s | Code with Amrendra"
   },
   description: "Next-gen software engineering agency specializing in React 19, Next.js 16, autonomous AI agent solutions, SaaS architecture, and AWS cloud infrastructure.",
   keywords: ["Software Development", "React Development", "Next.js", "AI Agents", "SaaS Development", "AWS Cloud", "Frontend Engineering", "API Integration", "Code with Amrendra"],
-  authors: [{ name: "Amrendra Kumar", url: "https://codewithamrendra.in" }],
+  authors: [{ name: "Amrendra Kumar", url: "https://www.codewithamrendra.in" }],
   creator: "Amrendra Kumar",
   publisher: "Code with Amrendra",
   robots: {
@@ -99,8 +99,8 @@ export default function RootLayout({ children }) {
               "@context": "https://schema.org",
               "@type": "Person",
               "name": "Amrendra Kumar",
-              "url": "https://codewithamrendra.in",
-              "image": "https://codewithamrendra.in/Profile%20photo.jpeg",
+              "url": "https://www.codewithamrendra.in",
+              "image": "https://www.codewithamrendra.in/Profile%20photo.jpeg",
               "jobTitle": "Frontend Developer & Technical Content Writer",
               "description": "Personal insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.",
               "email": "amrendra1999official@gmail.com",
