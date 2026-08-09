@@ -8,21 +8,28 @@ let memoryBlogViews = {};
 
 export async function POST(request) {
   try {
-    const body = await request.json();
-    const { path, referrer, slug } = body;
+    let body = {};
+    try {
+      body = await request.json();
+    } catch (e) {
+      body = {};
+    }
+    const { path, referrer, slug } = body || {};
 
-    const userAgent = request.headers.get('user-agent') || 'Unknown';
-    const ip = request.headers.get('x-forwarded-for') || '127.0.0.1';
+    const userAgent = request.headers?.get?.('user-agent') || 'Unknown';
+    const ip = request.headers?.get?.('x-forwarded-for') || '127.0.0.1';
 
     // 1. Increment blog view if it's a blog post page
     if (slug) {
       memoryBlogViews[slug] = (memoryBlogViews[slug] || 0) + 1;
-      try {
-        await prisma.blog.update({
-          where: { slug },
-          data: { views: { increment: 1 } },
-        });
-      } catch (err) {}
+      if (process.env.DATABASE_URL) {
+        try {
+          await prisma.blog.update({
+            where: { slug },
+            data: { views: { increment: 1 } },
+          });
+        } catch (err) {}
+      }
     }
 
     // 2. Record visitor & pageview
@@ -34,30 +41,34 @@ export async function POST(request) {
       createdAt: new Date(),
     });
 
-    try {
-      let visitor = await prisma.visitor.findFirst({
-        where: { ip, userAgent },
-      });
-
-      if (!visitor) {
-        visitor = await prisma.visitor.create({
-          data: {
-            ip,
-            userAgent,
-            browser: userAgent.includes('Chrome') ? 'Chrome' : userAgent.includes('Firefox') ? 'Firefox' : 'Safari',
-            device: userAgent.includes('Mobile') ? 'Mobile' : 'Desktop',
-          },
+    if (process.env.DATABASE_URL) {
+      try {
+        let visitor = await prisma.visitor.findFirst({
+          where: { ip, userAgent },
         });
-      }
 
-      await prisma.pageView.create({
-        data: {
-          path: path || '/',
-          referrer: referrer || 'Direct',
-          visitorId: visitor.id,
-        },
-      });
-    } catch (err) {}
+        if (!visitor) {
+          visitor = await prisma.visitor.create({
+            data: {
+              ip,
+              userAgent,
+              browser: userAgent.includes('Chrome') ? 'Chrome' : userAgent.includes('Firefox') ? 'Firefox' : 'Safari',
+              device: userAgent.includes('Mobile') ? 'Mobile' : 'Desktop',
+            },
+          });
+        }
+
+        if (visitor) {
+          await prisma.pageView.create({
+            data: {
+              path: path || '/',
+              referrer: referrer || 'Direct',
+              visitorId: visitor.id,
+            },
+          });
+        }
+      } catch (err) {}
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
