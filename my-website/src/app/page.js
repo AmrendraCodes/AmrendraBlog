@@ -32,7 +32,7 @@ export const metadata = {
     images: ['/images/og-default.png'],
   },
   alternates: {
-    canonical: '/',
+    canonical: 'https://www.codewithamrendra.in',
   },
 };
 
