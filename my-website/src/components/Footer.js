@@ -227,35 +227,7 @@ export default function Footer() {
 
         </div>
 
-        {/* ─── SECTION 4 — COMPACT AI SUMMARY CARD ─── */}
-        <div className="py-10 border-b border-[#1E2E25]">
-          <div className="p-6 rounded-2xl bg-[#0A0F0C] border border-[#1E2E25] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-[#10B981]/10 border border-[#10B981]/20 flex items-center justify-center text-[#10B981] shrink-0">
-                <Bot size={18} />
-              </div>
-              <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-[#34D399]">AI SUMMARY</p>
-                <p className="text-sm font-semibold text-white mt-0.5">Let AI explore Code with Amrendra</p>
-              </div>
-            </div>
 
-            <div className="flex items-center gap-2 flex-wrap">
-              {aiSummaryLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-xl bg-[#111C16] border border-[#1E2E25] text-slate-300 transition-all duration-200 ${link.color}`}
-                >
-                  <span>{link.name}</span>
-                  <ExternalLink size={11} className="opacity-60" />
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
 
         {/* ─── SECTION 5 — BOTTOM BAR & SOCIAL LINKS ─── */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-400 font-medium">
