@@ -1,38 +1,15 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import dynamic from 'next/dynamic';
 import MagneticButton from '../ui/MagneticButton';
 
-// Dynamically import heavy WebGL 3D Scene with SSR fallback
-const Hero3DScene = dynamic(() => import('./Hero3DScene'), {
-  ssr: false,
-  loading: () => <div className="absolute inset-0 bg-white dark:bg-[#050807]" />,
-});
-
 export default function HeroSection() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-center px-6 pt-32 pb-20 overflow-hidden border-b border-slate-200 dark:border-[#1E2E25] transition-colors duration-300">
-      {/* State-Reactive 3D WebGL Background Scene (Desktop Only) */}
-      {mounted && (
-        <div className="hidden md:block absolute inset-0 opacity-80 dark:opacity-100">
-          <Hero3DScene activeCard="react" />
-        </div>
-      )}
-
+    <section className="relative min-h-[85vh] flex flex-col justify-center px-6 pt-32 pb-20 overflow-hidden border-b border-slate-200 dark:border-[#1E2E25] transition-colors duration-300">
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 grid-bg opacity-20 dark:opacity-30 pointer-events-none" />
-
-      {/* Background Overlay over 3D Canvas */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/50 to-white dark:from-[#060907]/70 dark:via-[#060907]/50 dark:to-[#060907] pointer-events-none transition-colors duration-300" />
 
       {/* Central Ambient Glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[radial-gradient(circle,rgba(16,185,129,0.15)_0%,transparent_70%)] blur-3xl pointer-events-none transition-all duration-700" />

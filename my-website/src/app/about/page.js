@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Play, Github, Linkedin, Twitter, Youtube, Code2, Cloud, Brain, Palette } from "lucide-react";
+import { ArrowRight, Play, Github, Linkedin, Twitter, Youtube, Code2, Cloud, Brain, Palette, Terminal } from "lucide-react";
 import { motion } from "framer-motion";
 
 const stagger = {
@@ -40,63 +40,173 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-emerald-100 dark:selection:bg-emerald-900/40 font-sans overflow-x-hidden">
 
-      {/* ═══════════ HERO SECTION — Centered Layout ═══════════ */}
-      <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 px-6 overflow-hidden">
+      {/* ═══════════ HERO SECTION — Developer Portfolio 2-Column Layout ═══════════ */}
+      <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 px-6 overflow-hidden border-b border-[var(--card-border)]">
         {/* Background Effects */}
-        <div className="absolute inset-0 grid-bg" />
-        <div className="absolute top-[5%] left-[10%] w-[280px] sm:w-[400px] md:w-[500px] h-[280px] sm:h-[400px] md:h-[500px] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.1)_0%,transparent_70%)] blur-3xl animate-[float_10s_ease-in-out_infinite]" />
-        <div className="absolute top-[20%] right-[5%] w-[320px] sm:w-[450px] md:w-[600px] h-[320px] sm:h-[450px] md:h-[600px] rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.08)_0%,transparent_70%)] blur-3xl animate-[float_12s_ease-in-out_infinite_reverse]" />
+        <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
+        <div className="absolute top-[5%] left-[10%] w-[280px] sm:w-[400px] md:w-[500px] h-[280px] sm:h-[400px] md:h-[500px] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.12)_0%,transparent_70%)] blur-3xl pointer-events-none animate-[float_10s_ease-in-out_infinite]" />
 
-        <motion.div
-          className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center"
-          initial="hidden"
-          animate="visible"
-          variants={stagger}
-        >
-          {/* Floating Badge */}
-          <motion.div variants={fadeUp}>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-xs font-bold uppercase tracking-[0.12em] text-[#10B981] dark:text-[#34D399] mb-6 shadow-sm backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-              Developer &amp; Content Creator
-            </span>
-          </motion.div>
-
-          {/* Hero Heading with Typing Effect */}
-          <motion.h1
-            variants={fadeUp}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6 text-[var(--text-heading)]"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            <span>{displayText.substring(0, 8)}</span>
-            <span className="gradient-text">{displayText.substring(8)}</span>
-            <span className="inline-block w-1 md:w-1.5 h-[0.8em] bg-[#10B981] ml-2 align-middle animate-[blink_1s_infinite]"></span>
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            variants={fadeUp}
-            className="text-base sm:text-lg md:text-xl text-[var(--text-body)] max-w-2xl mx-auto mb-10 leading-relaxed"
-          >
-            A <span className="text-[#10B981] dark:text-[#34D399] font-bold">Technical Content Writer</span> and <span className="text-[#10B981] dark:text-[#34D399] font-bold">Frontend Developer</span> passionate about building amazing web experiences and sharing knowledge with the community.
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-            <Link
-              href="/blog"
-              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-br from-[#10B981] to-[#059669] text-white font-bold text-base transition-all duration-300 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)] hover:-translate-y-1 hover:scale-105 w-full sm:w-auto"
+        <div className="relative z-10 max-w-7xl mx-auto w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            
+            {/* LEFT COLUMN: Main Brand Message & CTAs */}
+            <motion.div 
+              initial="hidden"
+              animate="visible"
+              variants={stagger}
+              className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left"
             >
-              <Play size={16} fill="currentColor" />
-              View Articles
-            </Link>
-            <Link
-              href="/hire-me"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[var(--card-bg)] shadow-[var(--shadow-card)] text-[var(--foreground)] font-bold text-base transition-all duration-300 hover:shadow-[var(--shadow-3d)] hover:border-[#10B981]/50 hover:-translate-y-1 w-full sm:w-auto"
+              {/* Floating Status Badge */}
+              <motion.div variants={fadeUp}>
+                <span className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-emerald-500/20 dark:border-[#10B981]/30 bg-emerald-500/10 dark:bg-[#10B981]/10 text-xs font-mono font-bold uppercase tracking-wider text-[#059669] dark:text-[#34D399] mb-6 shadow-sm backdrop-blur-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75 motion-reduce:animate-none"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]"></span>
+                  </span>
+                  DEVELOPER &amp; CONTENT CREATOR
+                </span>
+              </motion.div>
+
+              {/* Hero Heading with Typing Effect */}
+              <motion.h1
+                variants={fadeUp}
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6 text-[var(--text-heading)]"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                <span>{displayText.substring(0, 8)}</span>
+                <span className="gradient-text">{displayText.substring(8)}</span>
+                <span className="inline-block w-1.5 h-[0.8em] bg-[#10B981] ml-1.5 align-middle animate-[blink_1s_infinite] motion-reduce:animate-none"></span>
+              </motion.h1>
+
+              {/* Subtitle / Description */}
+              <motion.p
+                variants={fadeUp}
+                className="text-base sm:text-lg lg:text-xl text-[var(--text-body)] max-w-2xl mb-8 leading-relaxed font-medium"
+              >
+                A{" "}
+                <span className="text-[#10B981] dark:text-[#34D399] font-bold underline decoration-[#10B981]/40 decoration-2 underline-offset-4">
+                  Technical Content Writer
+                </span>{" "}
+                and{" "}
+                <span className="text-[#10B981] dark:text-[#34D399] font-bold underline decoration-[#10B981]/40 decoration-2 underline-offset-4">
+                  Frontend Developer
+                </span>{" "}
+                passionate about building amazing web experiences and sharing knowledge with the community.
+              </motion.p>
+
+              {/* CTA Buttons */}
+              <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-10">
+                <Link
+                  href="/blog"
+                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-2xl bg-gradient-to-r from-[#10B981] to-[#059669] text-white font-bold text-base transition-all duration-300 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)] hover:-translate-y-0.5 hover:scale-105 active:scale-95 w-full sm:w-auto"
+                >
+                  <span>View Articles</span>
+                  <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+                <Link
+                  href="/hire-me"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] font-bold text-base transition-all duration-300 hover:shadow-[var(--shadow-card)] hover:border-[#10B981]/50 hover:-translate-y-0.5 w-full sm:w-auto"
+                >
+                  Get in Touch
+                </Link>
+              </motion.div>
+
+              {/* Core Stack Badges */}
+              <motion.div variants={fadeUp} className="flex items-center gap-3 pt-4 border-t border-[var(--card-border)] text-xs font-mono text-[var(--text-muted)] flex-wrap justify-center lg:justify-start">
+                <span className="font-semibold text-[var(--text-heading)] uppercase tracking-wider">Core Tech:</span>
+                <div className="flex items-center gap-2 flex-wrap">
+                  {["React", "Next.js", "TypeScript", "TailwindCSS"].map((tech) => (
+                    <span 
+                      key={tech}
+                      className="px-3 py-1 rounded-lg bg-[var(--section-alt-bg)] border border-[var(--card-border)] font-bold text-[var(--text-heading)]"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* RIGHT COLUMN: Developer IDE Visual Card */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-5 relative w-full flex justify-center lg:justify-end mt-4 lg:mt-0"
             >
-              Get in Touch
-            </Link>
-          </motion.div>
-        </motion.div>
+              <div className="relative w-full max-w-md lg:max-w-none">
+                {/* Outer Glow */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#10B981]/30 via-[#34D399]/20 to-[#059669]/30 rounded-3xl blur-xl opacity-75 pointer-events-none" />
+
+                {/* IDE Window Card */}
+                <div className="relative rounded-2xl bg-slate-950 text-slate-100 border border-slate-800 dark:border-[#1E2E25] shadow-2xl overflow-hidden font-mono text-xs sm:text-sm">
+                  {/* Mac Header Bar */}
+                  <div className="flex items-center justify-between px-4 py-3 bg-slate-900/90 border-b border-slate-800/80">
+                    <div className="flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-full bg-red-500/80 block" />
+                      <span className="w-3 h-3 rounded-full bg-amber-500/80 block" />
+                      <span className="w-3 h-3 rounded-full bg-emerald-500/80 block" />
+                    </div>
+                    <div className="flex items-center gap-1.5 text-slate-400 text-[11px] font-bold">
+                      <Code2 size={13} className="text-[#10B981]" />
+                      <span>amrendra.ts</span>
+                    </div>
+                    <div className="w-10" />
+                  </div>
+
+                  {/* Code Body */}
+                  <div className="p-5 sm:p-6 space-y-3 text-slate-300 leading-relaxed overflow-x-auto">
+                    <div>
+                      <span className="text-purple-400 font-bold">const</span>{" "}
+                      <span className="text-yellow-300 font-bold">developer</span>{" "}
+                      <span className="text-sky-400 font-bold">=</span> &#123;
+                    </div>
+                    <div className="pl-4">
+                      <span className="text-slate-400">name:</span>{" "}
+                      <span className="text-emerald-400 font-semibold">"Amrendra"</span>,
+                    </div>
+                    <div className="pl-4">
+                      <span className="text-slate-400">role:</span>{" "}
+                      <span className="text-emerald-400 font-semibold">"Frontend Developer &amp; Writer"</span>,
+                    </div>
+                    <div className="pl-4">
+                      <span className="text-slate-400">stack:</span> [
+                      <span className="text-emerald-400">"React"</span>,{" "}
+                      <span className="text-emerald-400">"Next.js"</span>,{" "}
+                      <span className="text-emerald-400">"TypeScript"</span>],
+                    </div>
+                    <div className="pl-4">
+                      <span className="text-slate-400">status:</span>{" "}
+                      <span className="text-emerald-400 font-semibold">"Building digital products"</span>
+                    </div>
+                    <div>&#125;;</div>
+
+                    {/* Terminal Status Output */}
+                    <div className="mt-5 pt-4 border-t border-slate-800/80 flex items-center justify-between text-[11px]">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-[#10B981] animate-ping" />
+                        <span className="text-emerald-400 font-bold">Ready for new projects</span>
+                      </div>
+                      <span className="text-slate-500 font-bold">v2.4.0</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating Badges */}
+                <div className="hidden sm:flex absolute -top-3 -right-3 px-3 py-1.5 rounded-xl bg-white dark:bg-[#0A0F0C] border border-slate-200 dark:border-[#1E2E25] shadow-lg items-center gap-2 text-xs font-bold text-slate-800 dark:text-slate-200 z-20">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                  <span>React 19</span>
+                </div>
+
+                <div className="hidden sm:flex absolute -bottom-3 -left-3 px-3 py-1.5 rounded-xl bg-white dark:bg-[#0A0F0C] border border-slate-200 dark:border-[#1E2E25] shadow-lg items-center gap-2 text-xs font-bold text-slate-800 dark:text-slate-200 z-20">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                  <span>Next.js 16</span>
+                </div>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
       </section>
 
       {/* ═══════════ FOUNDER CARD SECTION ═══════════ */}
@@ -178,25 +288,6 @@ export default function AboutPage() {
             </div>
           </motion.div>
         </motion.div>
-      </section>
-
-      {/* ═══════════ EXPERTISE BADGES — Horizontal Scroll ═══════════ */}
-      <section className="py-4 border-t border-b border-[var(--card-border)] overflow-hidden bg-[var(--card-bg)]" aria-hidden="true">
-        <div className="w-full overflow-hidden relative">
-          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[var(--card-bg)] to-transparent pointer-events-none z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[var(--card-bg)] to-transparent pointer-events-none z-10" />
-          <div className="ticker-track">
-            {[...Array(2)].map((_, i) => (
-              <div key={i} className="flex shrink-0">
-                {["React & Next.js", "AI Agents", "AWS & Cloud", "Node.js & Go", "TailwindCSS", "DevOps", "UI/UX Design", "SaaS Architecture", "Digital Marketing", "TypeScript"].map((item) => (
-                  <span key={item} className="ticker-item text-lg sm:text-xl font-extrabold uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--foreground)] transition-colors whitespace-nowrap">
-                    ✦ {item}
-                  </span>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* ═══════════ MY STORY — Bento Grid ═══════════ */}
