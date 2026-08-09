@@ -40,7 +40,7 @@ export const metadata = {
     type: "website",
   },
   alternates: {
-    canonical: "https://codewithamrendra.in/services",
+    canonical: "/services",
   },
 };
 

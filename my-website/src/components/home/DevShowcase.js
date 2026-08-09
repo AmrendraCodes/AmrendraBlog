@@ -91,7 +91,7 @@ export default function DevShowcase() {
         <div className="lg:col-span-7 flex flex-col justify-between rounded-2xl bg-[#060907] border border-[#1E2E25] p-5 font-mono text-xs text-[#F3F4F6]">
           <div className="space-y-3 overflow-y-auto max-h-[260px] pr-2 custom-scrollbar">
             <div className="text-[#9CA3AF] flex items-center justify-between pb-2 border-b border-[#1E2E25]">
-              <span>// Autonomous Engineering Execution Engine</span>
+              <span>{"// Autonomous Engineering Execution Engine"}</span>
               <span className="text-[10px] text-[#10B981] bg-[#10B981]/10 px-2 py-0.5 rounded-full border border-[#10B981]/20">
                 ACTIVE STATE
               </span>

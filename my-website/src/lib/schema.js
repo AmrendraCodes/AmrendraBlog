@@ -165,7 +165,7 @@ export function getBlogPostSchema({ title, description, slug, image, datePublish
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://codewithamrendra.in/blog/${slug}`
+      "@id": `https://codewithamrendra.in/resources/blog/${slug}`
     },
     "articleSection": category
   };

@@ -47,7 +47,7 @@ export async function generateMetadata({ params }) {
       type: "article",
     },
     alternates: {
-      canonical: `https://codewithamrendra.in/services/${service.slug}`,
+      canonical: `/services/${service.slug}`,
     },
   };
 }
