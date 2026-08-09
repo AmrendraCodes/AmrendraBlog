@@ -48,7 +48,7 @@ export default function CaseStudiesSection({ caseStudies }) {
           </div>
 
           <Link
-            href="/case-studies"
+            href="/resources/case-studies"
             className="group inline-flex items-center gap-2 text-sm font-bold text-[#10B981] hover:underline shrink-0"
           >
             <span>View All Case Studies</span>

@@ -97,7 +97,7 @@ export default function AboutPage() {
               {/* CTA Buttons */}
               <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-10">
                 <Link
-                  href="/blog"
+                  href="/resources/blog"
                   className="group inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-2xl bg-gradient-to-r from-[#10B981] to-[#059669] text-white font-bold text-base transition-all duration-300 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)] hover:-translate-y-0.5 hover:scale-105 active:scale-95 w-full sm:w-auto"
                 >
                   <span>View Articles</span>

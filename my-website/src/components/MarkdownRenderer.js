@@ -139,6 +139,7 @@ export default function MarkdownRenderer({ content }) {
       rehypePlugins={[rehypeSlug, rehypeRaw, rehypeHighlight, rehypeKatex]}
       components={{
         // ─── Headings with anchor links ───
+        h1: createHeadingComponent(2),
         h2: createHeadingComponent(2),
         h3: createHeadingComponent(3),
         h4: createHeadingComponent(4),
