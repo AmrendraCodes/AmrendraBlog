@@ -73,148 +73,152 @@ export default function Header() {
 
   return (
     <>
-      <div className={`fixed top-5 left-0 w-full z-[100] flex justify-center p-0 pointer-events-none transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-[150%]"}`}>
-        <header
-          className={`pointer-events-auto z-[100] transition-all duration-300 flex items-center justify-between rounded-full relative w-[96%] mx-auto md:w-[92%] lg:w-[85%] xl:w-[75%] max-w-[1240px] py-2.5 px-4 sm:py-3 sm:px-6 border ${
-            isScrolled
-              ? 'bg-white text-slate-900 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.25)] py-2.5 px-4 sm:py-3 sm:px-6 md:px-8 border-white/80'
-              : 'bg-white/95 text-slate-900 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.15)] py-2.5 px-3.5 sm:py-3 sm:px-5 border-white/60'
-          }`}
-          role="banner"
-          aria-label="Site header"
-        >
-          <div className="flex items-center justify-start">
-            <Link href="/" className="flex items-center gap-2 md:gap-3 no-underline shrink-0 group">
-              <Image 
-                src="/logo-square.png" 
-                alt="CWA Logo" 
-                width={36} 
-                height={36} 
-                className="w-9 h-9 object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-sm" 
-                priority 
-              />
-              <span className="text-[20px] font-extrabold tracking-wider flex items-center text-slate-900 ml-1">
-                <span className="bg-gradient-to-r from-[#059669] to-[#10B981] text-transparent bg-clip-text font-black">CWA</span>
-              </span>
-            </Link>
-          </div>
+    <div
+      className={`fixed top-4 left-0 right-0 z-[100] flex justify-center px-3 sm:px-4 md:px-6 pointer-events-none transition-transform duration-300 ease-in-out ${
+        isVisible ? "translate-y-0" : "-translate-y-[150%]"
+      }`}
+    >
+      <header
+        className={`pointer-events-auto z-[100] transition-all duration-300 flex items-center justify-between rounded-full relative w-full max-w-[1240px] py-2.5 px-4 sm:py-3 sm:px-6 border box-border ${
+          isScrolled
+            ? 'bg-white/95 text-slate-900 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.25)] border-white/80 dark:bg-[#0A0F0C]/95 dark:text-slate-50 dark:border-[#1E2E25]'
+            : 'bg-white/90 text-slate-900 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.15)] border-white/60 dark:bg-[#0A0F0C]/85 dark:text-slate-50 dark:border-[#1E2E25]/60'
+        }`}
+        role="banner"
+        aria-label="Site header"
+      >
+        <div className="flex items-center justify-start shrink-0">
+          <Link href="/" className="flex items-center gap-2 md:gap-3 no-underline shrink-0 group">
+            <Image 
+              src="/logo-square.png" 
+              alt="CWA Logo" 
+              width={36} 
+              height={36} 
+              className="w-9 h-9 object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-sm" 
+              priority 
+            />
+            <span className="text-[20px] font-extrabold tracking-wider flex items-center text-slate-900 dark:text-white ml-1">
+              <span className="bg-gradient-to-r from-[#059669] to-[#10B981] dark:from-[#10B981] dark:to-[#34D399] text-transparent bg-clip-text font-black">CWA</span>
+            </span>
+          </Link>
+        </div>
 
-          <div className="hidden md:flex items-center justify-center">
-            <nav className="flex items-center gap-3 lg:gap-7 xl:gap-9 whitespace-nowrap" aria-label="Primary navigation">
-              {/* Crawlable Fallback Links for Search Engine Indexing */}
-              <div className="sr-only">
-                {SERVICES_DATA.map((s) => (
-                  <Link key={s.slug} href={`/services/${s.slug}`}>
-                    {s.title}
-                  </Link>
-                ))}
-                {RESOURCES_DROPDOWN_ITEMS.map((item) => (
-                  <Link key={item.href} href={item.href}>
-                    {item.title}
-                  </Link>
-                ))}
-              </div>
+        <div className="hidden md:flex items-center justify-center flex-1 px-4">
+          <nav className="flex items-center gap-2 lg:gap-4 xl:gap-6 whitespace-nowrap" aria-label="Primary navigation">
+            {/* Crawlable Fallback Links for Search Engine Indexing */}
+            <div className="sr-only">
+              {SERVICES_DATA.map((s) => (
+                <Link key={s.slug} href={`/services/${s.slug}`}>
+                  {s.title}
+                </Link>
+              ))}
+              {RESOURCES_DROPDOWN_ITEMS.map((item) => (
+                <Link key={item.href} href={item.href}>
+                  {item.title}
+                </Link>
+              ))}
+            </div>
 
-              {PRIMARY_NAV_ITEMS.map((link) => {
-                const isActive = link.href === '/' ? pathname === '/' : pathname?.startsWith(link.href);
+            {PRIMARY_NAV_ITEMS.map((link) => {
+              const isActive = link.href === '/' ? pathname === '/' : pathname?.startsWith(link.href);
 
-                if (link.dropdownType === "services") {
-                  return (
-                    <div
-                      key={link.name}
-                      className="relative group"
-                      onMouseEnter={() => setIsServicesOpen(true)}
-                      onMouseLeave={() => setIsServicesOpen(false)}
-                    >
-                      <button
-                        type="button"
-                        onClick={() => setIsServicesOpen(!isServicesOpen)}
-                        aria-haspopup="true"
-                        aria-expanded={isServicesOpen}
-                        className={`relative inline-flex items-center gap-1 text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-3 lg:px-4 py-1.5 rounded-full cursor-pointer border-none bg-transparent ${
-                          isActive || isServicesOpen
-                            ? "text-[#059669] bg-emerald-50 font-bold"
-                            : "text-slate-700 hover:text-[#059669] hover:bg-slate-100"
-                        }`}
-                      >
-                        <span>{link.name}</span>
-                        <ChevronDown size={14} className={`transition-transform duration-300 ${isServicesOpen ? "rotate-180 text-[#059669]" : ""}`} />
-                      </button>
-
-                      {isServicesOpen && (
-                        <ServicesDropdown onClose={() => setIsServicesOpen(false)} />
-                      )}
-                    </div>
-                  );
-                }
-
-                if (link.dropdownType === "resources") {
-                  return (
-                    <div
-                      key={link.name}
-                      className="relative group"
-                      onMouseEnter={() => setIsResourcesOpen(true)}
-                      onMouseLeave={() => setIsResourcesOpen(false)}
-                    >
-                      <button
-                        type="button"
-                        onClick={() => setIsResourcesOpen(!isResourcesOpen)}
-                        aria-haspopup="true"
-                        aria-expanded={isResourcesOpen}
-                        className={`relative inline-flex items-center gap-1 text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-3 lg:px-4 py-1.5 rounded-full cursor-pointer border-none bg-transparent ${
-                          isActive || isResourcesOpen
-                            ? "text-[#059669] bg-emerald-50 font-bold"
-                            : "text-slate-700 hover:text-[#059669] hover:bg-slate-100"
-                        }`}
-                      >
-                        <span>{link.name}</span>
-                        <ChevronDown size={14} className={`transition-transform duration-300 ${isResourcesOpen ? "rotate-180 text-[#059669]" : ""}`} />
-                      </button>
-
-                      {isResourcesOpen && (
-                        <ResourcesDropdown onClose={() => setIsResourcesOpen(false)} />
-                      )}
-                    </div>
-                  );
-                }
-
+              if (link.dropdownType === "services") {
                 return (
-                  <Link
+                  <div
                     key={link.name}
-                    href={link.href}
-                    className={`relative text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-3 lg:px-4 py-1.5 rounded-full ${
-                      isActive
-                        ? "text-[#059669] bg-emerald-50 font-bold"
-                        : "text-slate-700 hover:text-[#059669] hover:bg-slate-100"
-                    }`}
+                    className="relative group"
+                    onMouseEnter={() => setIsServicesOpen(true)}
+                    onMouseLeave={() => setIsServicesOpen(false)}
                   >
-                    {link.name}
-                  </Link>
-                );
-              })}
-            </nav>
-          </div>
+                    <button
+                      type="button"
+                      onClick={() => setIsServicesOpen(!isServicesOpen)}
+                      aria-haspopup="true"
+                      aria-expanded={isServicesOpen}
+                      className={`relative inline-flex items-center gap-1 text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-3 lg:px-4 py-1.5 rounded-full cursor-pointer border-none bg-transparent ${
+                        isActive || isServicesOpen
+                          ? "text-[#059669] dark:text-[#10B981] bg-emerald-50 dark:bg-[#10B981]/15 font-bold"
+                          : "text-slate-700 dark:text-slate-200 hover:text-[#059669] dark:hover:text-[#10B981] hover:bg-slate-100 dark:hover:bg-[#1E2E25]/60"
+                      }`}
+                    >
+                      <span>{link.name}</span>
+                      <ChevronDown size={14} className={`transition-transform duration-300 ${isServicesOpen ? "rotate-180 text-[#059669] dark:text-[#10B981]" : ""}`} />
+                    </button>
 
-          <div className="flex items-center justify-end gap-3 md:pr-2">
-            <ThemeToggle />
-            <Link
-              href="/contact"
-              className="hidden md:inline-flex items-center justify-center whitespace-nowrap shrink-0 bg-gradient-to-r from-[#10B981] to-[#059669] text-white font-bold text-[0.875rem] py-2.5 px-6 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] hover:scale-105 active:scale-95"
-            >
-              Get started
-            </Link>
-            <button
-              type="button"
-              className="flex md:hidden items-center justify-center bg-slate-100 border border-slate-200 text-slate-900 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-all duration-300 shrink-0 hover:bg-slate-200"
-              onClick={() => setIsMenuOpen(true)}
-              aria-label="Open menu"
-              aria-expanded={isMenuOpen}
-            >
-              <Menu size={20} />
-            </button>
-          </div>
-        </header>
-      </div>
+                    {isServicesOpen && (
+                      <ServicesDropdown onClose={() => setIsServicesOpen(false)} />
+                    )}
+                  </div>
+                );
+              }
+
+              if (link.dropdownType === "resources") {
+                return (
+                  <div
+                    key={link.name}
+                    className="relative group"
+                    onMouseEnter={() => setIsResourcesOpen(true)}
+                    onMouseLeave={() => setIsResourcesOpen(false)}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setIsResourcesOpen(!isResourcesOpen)}
+                      aria-haspopup="true"
+                      aria-expanded={isResourcesOpen}
+                      className={`relative inline-flex items-center gap-1 text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-3 lg:px-4 py-1.5 rounded-full cursor-pointer border-none bg-transparent ${
+                        isActive || isResourcesOpen
+                          ? "text-[#059669] dark:text-[#10B981] bg-emerald-50 dark:bg-[#10B981]/15 font-bold"
+                          : "text-slate-700 dark:text-slate-200 hover:text-[#059669] dark:hover:text-[#10B981] hover:bg-slate-100 dark:hover:bg-[#1E2E25]/60"
+                      }`}
+                    >
+                      <span>{link.name}</span>
+                      <ChevronDown size={14} className={`transition-transform duration-300 ${isResourcesOpen ? "rotate-180 text-[#059669] dark:text-[#10B981]" : ""}`} />
+                    </button>
+
+                    {isResourcesOpen && (
+                      <ResourcesDropdown onClose={() => setIsResourcesOpen(false)} />
+                    )}
+                  </div>
+                );
+              }
+
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`relative text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-3 lg:px-4 py-1.5 rounded-full ${
+                    isActive
+                      ? "text-[#059669] dark:text-[#10B981] bg-emerald-50 dark:bg-[#10B981]/15 font-bold"
+                      : "text-slate-700 dark:text-slate-200 hover:text-[#059669] dark:hover:text-[#10B981] hover:bg-slate-100 dark:hover:bg-[#1E2E25]/60"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
+
+        <div className="flex items-center justify-end gap-2 sm:gap-3 shrink-0">
+          <ThemeToggle />
+          <Link
+            href="/contact"
+            className="hidden md:inline-flex items-center justify-center whitespace-nowrap shrink-0 bg-gradient-to-r from-[#10B981] to-[#059669] text-white font-bold text-[0.875rem] py-2.5 px-6 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] hover:scale-105 active:scale-95"
+          >
+            Get started
+          </Link>
+          <button
+            type="button"
+            className="flex md:hidden items-center justify-center bg-slate-100 dark:bg-[#1A1B1E] border border-slate-200 dark:border-[#2A2B2E] text-slate-900 dark:text-slate-50 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-all duration-300 shrink-0 hover:bg-slate-200 dark:hover:bg-[#2A2B2E]"
+            onClick={() => setIsMenuOpen(true)}
+            aria-label="Open menu"
+            aria-expanded={isMenuOpen}
+          >
+            <Menu size={20} />
+          </button>
+        </div>
+      </header>
+    </div>
 
       <div
         className={`fixed inset-0 bg-slate-900/25 dark:bg-black/50 backdrop-blur-sm z-[105] transition-all duration-300 ${isMenuOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}

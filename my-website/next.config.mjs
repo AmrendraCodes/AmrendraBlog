@@ -62,6 +62,7 @@ const nextConfig = {
         permanent: true,
       },
     ];
+  },
   async headers() {
     return [
       {
