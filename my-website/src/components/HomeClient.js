@@ -24,7 +24,7 @@ import MagneticButton from './ui/MagneticButton';
 
 // Dynamic Heavy Components for Performance
 const CaseStudiesSection = dynamic(() => import('./CaseStudiesSection'), { ssr: false });
-const DevShowcase = dynamic(() => import('@/components/home/DevShowcase'), { ssr: false });
+import WhatWeBuildSection from '@/components/home/WhatWeBuildSection';
 import WhyChooseUsSection from './home/WhyChooseUsSection';
 const ComparisonTable = dynamic(() => import('@/components/home/ComparisonTable'), { ssr: false });
 const PricingSection = dynamic(() => import('@/components/home/PricingSection'), { ssr: false });
@@ -295,23 +295,9 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-         5. INTERACTIVE LIVE PRODUCT / WORKFLOW SHOWCASE
+         5. WHAT WE BUILD FOR MODERN BUSINESSES
          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 max-w-7xl mx-auto content-visibility-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
-            INTERACTIVE PRODUCT PREVIEW
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mt-4 mb-6 tracking-tight">
-            See Our Engineering Pipeline in Action
-          </h2>
-          <p className="text-base sm:text-lg text-slate-600 dark:text-[#9CA3AF] leading-relaxed">
-            Test-drive Code with Amrendra's interactive autonomous engineering console below to see how we monitor performance, test AI workflows, and automate deployments in real time.
-          </p>
-        </div>
-
-        <DevShowcase />
-      </section>
+      <WhatWeBuildSection />
 
       {/* ═══════════════════════════════════════════════════════════
          6. WHY BUSINESSES CHOOSE CODE WITH AMRENDRA
