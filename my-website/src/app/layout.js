@@ -1,5 +1,6 @@
 import { Inter, JetBrains_Mono } from "next/font/google";
-import { ThemeProvider } from 'next-themes'
+import { ThemeProvider } from 'next-themes';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import "./globals.css";
 import ConditionalLayout from "../components/ConditionalLayout";
 
@@ -122,8 +123,8 @@ export default function RootLayout({ children }) {
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ConditionalLayout>{children}</ConditionalLayout>
         </ThemeProvider>
+        <GoogleAnalytics gaId="G-F1RG71SZFQ" />
       </body>
     </html>
   );
 }
-
