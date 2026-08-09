@@ -1,17 +1,7 @@
 import { NextResponse } from 'next/server';
 
 export function middleware(request) {
-  const host = request.headers.get('host') || '';
-
-  // 1. WWW -> Non-WWW 301 Permanent Redirect
-  if (host.startsWith('www.')) {
-    const canonicalHost = host.replace(/^www\./, '');
-    const url = request.nextUrl.clone();
-    url.protocol = 'https:';
-    url.host = canonicalHost;
-    return NextResponse.redirect(url, 301);
-  }
-
+  // Let Vercel handle domain canonicalization via Vercel Dashboard -> Project Settings -> Domains
   return NextResponse.next();
 }
 
