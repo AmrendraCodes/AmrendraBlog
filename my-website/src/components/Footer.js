@@ -111,23 +111,10 @@ export default function Footer() {
               </span>
             </Link>
 
-            {/* Headline & Description */}
-            <p className="text-sm font-bold text-[#34D399] tracking-tight mb-3">
-              High-Velocity Web &amp; AI Engineering
-            </p>
-
+            {/* Description */}
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm mb-6">
               Engineering enterprise software, next-generation web platforms, autonomous AI solutions, and scalable cloud architectures.
             </p>
-
-            {/* Status Indicator */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#10B981]/10 border border-[#10B981]/20 text-xs font-medium text-slate-300 mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]"></span>
-              </span>
-              <span>Available for selected projects</span>
-            </div>
 
             {/* Contact Email */}
             <a 
