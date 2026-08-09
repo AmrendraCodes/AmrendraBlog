@@ -1,5 +1,9 @@
+# Code with Amrendra — Robots.txt
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /admin/
 
-Sitemap: https://codewithamrendra.in/sitemap.xml
+# Canonical Sitemap & Host
+Host: https://www.codewithamrendra.in
+Sitemap: https://www.codewithamrendra.in/sitemap.xml
