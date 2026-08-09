@@ -356,7 +356,7 @@ export default function Header() {
             );
           })}
           <div className="flex flex-col gap-3 mt-auto pt-6 mb-4">
-            <Link href="/hire-me" className="inline-flex items-center justify-center bg-gradient-to-br from-[#10B981] to-[#059669] text-white font-bold text-[1.1rem] py-3.5 px-8 rounded-full border-none cursor-pointer w-full transition-opacity duration-300 hover:opacity-90 shadow-lg shadow-emerald-500/20" onClick={() => setIsMenuOpen(false)}>
+            <Link href="/contact" className="inline-flex items-center justify-center bg-gradient-to-br from-[#10B981] to-[#059669] text-white font-bold text-[1.1rem] py-3.5 px-8 rounded-full border-none cursor-pointer w-full transition-opacity duration-300 hover:opacity-90 shadow-lg shadow-emerald-500/20" onClick={() => setIsMenuOpen(false)}>
               Get started
             </Link>
           </div>

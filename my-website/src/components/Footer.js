@@ -147,7 +147,6 @@ export default function Footer() {
                   { name: "Services", href: "/services" },
                   { name: "About Us", href: "/about" },
                   { name: "Contact Us", href: "/contact" },
-                  { name: "Hire Me / Consultation", href: "/hire-me" },
                   { name: "Privacy Policy", href: "/privacy" },
                   { name: "Terms of Service", href: "/terms" },
                 ].map((link) => (

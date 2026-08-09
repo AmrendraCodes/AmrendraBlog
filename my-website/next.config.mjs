@@ -61,6 +61,11 @@ const nextConfig = {
         destination: '/resources/case-studies/:slug*',
         permanent: true,
       },
+      {
+        source: '/hire-me',
+        destination: '/contact',
+        permanent: true,
+      },
     ];
   },
   async headers() {

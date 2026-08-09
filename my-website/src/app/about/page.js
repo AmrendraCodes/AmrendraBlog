@@ -104,7 +104,7 @@ export default function AboutPage() {
                   <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
                 <Link
-                  href="/hire-me"
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] font-bold text-base transition-all duration-300 hover:shadow-[var(--shadow-card)] hover:border-[#10B981]/50 hover:-translate-y-0.5 w-full sm:w-auto"
                 >
                   Get in Touch
@@ -434,7 +434,7 @@ export default function AboutPage() {
                 Whether you need a website built, want to collaborate on a project, or just want to chat about web development, I&apos;d love to hear from you!
               </p>
               <Link
-                href="/hire-me"
+                href="/contact"
                 className="group inline-flex items-center gap-2 bg-gradient-to-br from-[#10B981] to-[#059669] text-white font-bold text-base md:text-lg py-4 md:py-5 px-8 md:px-10 rounded-2xl transition-all duration-300 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)] hover:-translate-y-1 hover:scale-105 no-underline"
               >
                 Get in Touch
