@@ -25,41 +25,44 @@ export default function CaseStudiesSection({ caseStudies }) {
   if (!caseStudies || caseStudies.length === 0) return null;
 
   return (
-    <section className="py-12 md:py-16">
+    <div className="py-16 md:py-24 px-6">
       <motion.div
-        className="max-w-7xl mx-auto px-6 lg:px-16"
+        className="max-w-7xl mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-80px" }}
         variants={stagger}
       >
-        {/* Section Header */}
-        <motion.div variants={staggerItem} className="mb-12">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3 text-[var(--text-heading)]">
-            Real Projects, Real <span className="gradient-text">Impact</span>
-          </h2>
-          <p className="text-[var(--text-body)] text-lg max-w-lg">
-            End-to-end case studies on design decisions, architecture, and measurable outcomes.
-          </p>
+        {/* Clean Single Section Header */}
+        <motion.div variants={staggerItem} className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+          <div>
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3.5 py-1.5 rounded-full border border-[#10B981]/20 inline-block mb-3">
+              SELECTED WORK
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+              Real Projects, Real <span className="gradient-text">Impact</span>
+            </h2>
+            <p className="text-slate-600 dark:text-[#9CA3AF] text-base sm:text-lg max-w-2xl mt-2">
+              End-to-end case studies on design decisions, architecture, and measurable outcomes.
+            </p>
+          </div>
+
+          <Link
+            href="/case-studies"
+            className="group inline-flex items-center gap-2 text-sm font-bold text-[#10B981] hover:underline shrink-0"
+          >
+            <span>View All Case Studies</span>
+            <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
         </motion.div>
 
         {/* Case Study Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {caseStudies.map((study) => (
             <CaseStudyCard key={study.slug} study={study} />
           ))}
         </div>
-
-        {/* View All Button */}
-        <motion.div variants={staggerItem} className="flex justify-center mt-12">
-          <Link
-            href="/case-studies"
-            className="group inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] font-bold transition-all duration-300 hover:-translate-y-1 hover:border-[#10B981]/30 hover:shadow-lg"
-          >
-            View All Case Studies <ArrowRight size={18} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
-        </motion.div>
       </motion.div>
-    </section>
+    </div>
   );
 }

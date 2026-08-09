@@ -362,31 +362,11 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       {/* ═══════════════════════════════════════════════════════════
          8. FEATURED CASE STUDIES & WORK SHOWCASE
          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 bg-slate-50 dark:bg-[#080D0A] border-y border-slate-200 dark:border-[#1E2E25] transition-colors duration-300 content-visibility-auto">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
-            <div>
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">
-                SELECTED WORK
-              </span>
-              <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mt-4 tracking-tight">
-                Case Studies &amp; Proven Results
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-[#9CA3AF] mt-2">
-                Real Projects, Real Impact — find out how Code with Amrendra's design decisions, architecture, and reasonable automation created measurable business outcomes.
-              </p>
-            </div>
-            <Link
-              href="/case-studies"
-              className="mt-4 md:mt-0 flex-shrink-0 inline-flex items-center gap-2 text-xs font-bold text-[#10B981] hover:underline"
-            >
-              <span>View All Case Studies</span>
-              <ArrowRight size={14} />
-            </Link>
-          </div>
-
-          <CaseStudiesSection caseStudies={caseStudies} />
-        </div>
+      {/* ═══════════════════════════════════════════════════════════
+         8. FEATURED CASE STUDIES & WORK SHOWCASE
+         ═══════════════════════════════════════════════════════════ */}
+      <section className="bg-slate-50 dark:bg-[#080D0A] border-y border-slate-200 dark:border-[#1E2E25] transition-colors duration-300 content-visibility-auto">
+        <CaseStudiesSection caseStudies={caseStudies} />
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
