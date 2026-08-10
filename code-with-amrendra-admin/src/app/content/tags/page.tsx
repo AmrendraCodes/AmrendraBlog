@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import DashboardLayout from '@/components/layout/DashboardLayout';
-import { Plus, Search, Tags as TagIcon, Trash2, AlertCircle } from 'lucide-react';
+import { Plus, Search, Tags as TagIcon, AlertCircle } from 'lucide-react';
 import { slugify } from '@/lib/utils';
 
 export default function TagsPage() {
@@ -85,7 +85,7 @@ export default function TagsPage() {
     <DashboardLayout title="Tag Management" subtitle="Manage article tags and metadata keywords">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div className="relative flex-1 max-w-md">
-          <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500" />
+          <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
             value={search}
@@ -100,24 +100,24 @@ export default function TagsPage() {
         </button>
       </div>
 
-      <div className="admin-card overflow-hidden">
-        <div className="p-4 flex flex-wrap gap-2.5">
+      <div className="admin-card overflow-hidden bg-white">
+        <div className="p-5 flex flex-wrap gap-3">
           {loading ? (
-            <div className="py-8 text-center text-gray-500 w-full">Loading tags...</div>
+            <div className="py-8 text-center text-slate-400 font-medium w-full">Loading tags...</div>
           ) : filtered.length === 0 ? (
-            <div className="py-8 text-center text-gray-500 w-full">No tags found.</div>
+            <div className="py-8 text-center text-slate-400 font-medium w-full">No tags found.</div>
           ) : (
             filtered.map((tag) => (
               <div
                 key={tag.id}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#111726] border border-[#1f2a40] text-xs text-white"
+                className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 font-semibold shadow-xs"
               >
-                <TagIcon size={13} className="text-emerald-400" />
-                <span className="font-medium">{tag.name}</span>
-                <span className="text-[10px] text-gray-500 font-mono">#{tag.slug}</span>
+                <TagIcon size={14} className="text-indigo-600" />
+                <span>{tag.name}</span>
+                <span className="text-[10px] text-indigo-600 font-mono font-bold">#{tag.slug}</span>
                 <button
                   onClick={() => handleDelete(tag.id)}
-                  className="ml-1 text-gray-400 hover:text-red-400"
+                  className="ml-1 text-slate-400 hover:text-red-600 font-bold transition"
                   title="Remove Tag"
                 >
                   ×
@@ -129,19 +129,19 @@ export default function TagsPage() {
       </div>
 
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-          <div className="admin-card p-6 max-w-sm w-full bg-[#151c2e] border-[#1f2a40] space-y-4">
-            <h3 className="text-base font-bold text-white">Create New Tag</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
+          <div className="admin-card p-6 max-w-sm w-full bg-white border-slate-200 shadow-2xl space-y-4">
+            <h3 className="text-base font-extrabold text-slate-900">Create New Tag</h3>
 
             {error && (
-              <div className="p-3 rounded bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-center gap-2">
+              <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-xs flex items-center gap-2 font-medium">
                 <AlertCircle size={15} /> {error}
               </div>
             )}
 
             <form onSubmit={handleCreate} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">Tag Name *</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">Tag Name *</label>
                 <input
                   type="text"
                   required
@@ -153,14 +153,14 @@ export default function TagsPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">Slug *</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">Slug *</label>
                 <input
                   type="text"
                   required
                   value={slug}
                   onChange={(e) => setSlug(e.target.value)}
                   placeholder="nextjs"
-                  className="admin-input text-xs font-mono text-emerald-400"
+                  className="admin-input text-xs font-mono text-indigo-700 font-bold"
                 />
               </div>
 

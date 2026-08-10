@@ -17,7 +17,7 @@ interface DashboardLayoutProps {
 
 export default function DashboardLayout({ children, title, subtitle, user }: DashboardLayoutProps) {
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-[#0b0f19]">
+    <div className="flex flex-col md:flex-row min-h-screen bg-[#f3f5fc] text-slate-900">
       <Sidebar user={user} />
       <div className="flex-1 flex flex-col min-w-0">
         <Header title={title} subtitle={subtitle} user={user} />

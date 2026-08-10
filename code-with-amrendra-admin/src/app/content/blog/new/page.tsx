@@ -7,8 +7,6 @@ import {
   Save,
   ArrowLeft,
   Globe,
-  ImageIcon,
-  Sparkles,
   Bold,
   Italic,
   Code,
@@ -16,7 +14,6 @@ import {
   Quote,
   Heading1,
   Heading2,
-  Table,
 } from 'lucide-react';
 import { slugify } from '@/lib/utils';
 
@@ -134,7 +131,7 @@ export default function NewBlogPostPage() {
             <select
               value={status}
               onChange={(e: any) => setStatus(e.target.value)}
-              className="admin-input py-2 text-xs font-semibold w-36"
+              className="admin-input py-2 text-xs font-bold w-36 cursor-pointer"
             >
               <option value="DRAFT">Draft</option>
               <option value="PUBLISHED">Publish Now</option>
@@ -149,7 +146,7 @@ export default function NewBlogPostPage() {
         </div>
 
         {error && (
-          <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-medium">
+          <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-xs font-semibold shadow-xs">
             {error}
           </div>
         )}
@@ -160,7 +157,7 @@ export default function NewBlogPostPage() {
             {/* Title & Slug */}
             <div className="admin-card p-6 space-y-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">
+                <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-2">
                   Article Title *
                 </label>
                 <input
@@ -175,21 +172,21 @@ export default function NewBlogPostPage() {
 
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <label className="block text-xs font-semibold text-gray-400">
+                  <label className="block text-xs font-bold text-slate-600">
                     URL Slug
                   </label>
-                  <label className="flex items-center gap-1.5 text-[11px] text-gray-400 cursor-pointer">
+                  <label className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-500 cursor-pointer">
                     <input
                       type="checkbox"
                       checked={autoSlug}
                       onChange={(e) => setAutoSlug(e.target.checked)}
-                      className="rounded border-[#1f2a40] text-emerald-500"
+                      className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
                     />
                     <span>Auto-generate</span>
                   </label>
                 </div>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs font-mono">
+                  <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-mono select-none">
                     /resources/blog/
                   </span>
                   <input
@@ -197,13 +194,13 @@ export default function NewBlogPostPage() {
                     required
                     value={slug}
                     onChange={(e) => setSlug(e.target.value)}
-                    className="admin-input pl-32 font-mono text-xs text-emerald-400"
+                    className="admin-input pl-32 font-mono text-xs text-indigo-700 font-bold"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1.5">
+                <label className="block text-xs font-bold text-slate-600 mb-1.5">
                   Excerpt / Summary
                 </label>
                 <textarea
@@ -218,32 +215,32 @@ export default function NewBlogPostPage() {
 
             {/* Content Editor with Formatting Toolbar */}
             <div className="admin-card p-6 space-y-3">
-              <div className="flex items-center justify-between border-b border-[#1f2a40] pb-3">
-                <label className="block text-xs font-bold uppercase tracking-wider text-gray-300">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-500">
                   Article Content (Markdown) *
                 </label>
                 {/* Toolbar */}
                 <div className="flex items-center gap-1">
-                  <button type="button" onClick={() => handleInsertSyntax('# ')} className="p-1.5 rounded hover:bg-[#1f2a40] text-gray-400 hover:text-white" title="H1 Heading">
-                    <Heading1 size={14} />
+                  <button type="button" onClick={() => handleInsertSyntax('# ')} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition" title="H1 Heading">
+                    <Heading1 size={15} />
                   </button>
-                  <button type="button" onClick={() => handleInsertSyntax('## ')} className="p-1.5 rounded hover:bg-[#1f2a40] text-gray-400 hover:text-white" title="H2 Heading">
-                    <Heading2 size={14} />
+                  <button type="button" onClick={() => handleInsertSyntax('## ')} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition" title="H2 Heading">
+                    <Heading2 size={15} />
                   </button>
-                  <button type="button" onClick={() => handleInsertSyntax('**Bold Text**')} className="p-1.5 rounded hover:bg-[#1f2a40] text-gray-400 hover:text-white" title="Bold">
-                    <Bold size={14} />
+                  <button type="button" onClick={() => handleInsertSyntax('**Bold Text**')} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition" title="Bold">
+                    <Bold size={15} />
                   </button>
-                  <button type="button" onClick={() => handleInsertSyntax('*Italic Text*')} className="p-1.5 rounded hover:bg-[#1f2a40] text-gray-400 hover:text-white" title="Italic">
-                    <Italic size={14} />
+                  <button type="button" onClick={() => handleInsertSyntax('*Italic Text*')} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition" title="Italic">
+                    <Italic size={15} />
                   </button>
-                  <button type="button" onClick={() => handleInsertSyntax('```js\n// code here\n```')} className="p-1.5 rounded hover:bg-[#1f2a40] text-gray-400 hover:text-white" title="Code Block">
-                    <Code size={14} />
+                  <button type="button" onClick={() => handleInsertSyntax('```js\n// code here\n```')} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition" title="Code Block">
+                    <Code size={15} />
                   </button>
-                  <button type="button" onClick={() => handleInsertSyntax('- Bullet point')} className="p-1.5 rounded hover:bg-[#1f2a40] text-gray-400 hover:text-white" title="List">
-                    <List size={14} />
+                  <button type="button" onClick={() => handleInsertSyntax('- Bullet point')} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition" title="List">
+                    <List size={15} />
                   </button>
-                  <button type="button" onClick={() => handleInsertSyntax('> Blockquote')} className="p-1.5 rounded hover:bg-[#1f2a40] text-gray-400 hover:text-white" title="Quote">
-                    <Quote size={14} />
+                  <button type="button" onClick={() => handleInsertSyntax('> Blockquote')} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition" title="Quote">
+                    <Quote size={15} />
                   </button>
                 </div>
               </div>
@@ -260,14 +257,14 @@ export default function NewBlogPostPage() {
 
             {/* SEO Configuration Block */}
             <div className="admin-card p-6 space-y-4">
-              <div className="flex items-center gap-2 border-b border-[#1f2a40] pb-3 text-emerald-400">
+              <div className="flex items-center gap-2 border-b border-slate-100 pb-3 text-indigo-600">
                 <Globe size={18} />
-                <h3 className="text-sm font-bold text-white">SEO & Social Meta Configuration</h3>
+                <h3 className="text-sm font-extrabold text-slate-900">SEO & Social Meta Configuration</h3>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-gray-300 mb-1">SEO Meta Title</label>
+                  <label className="block text-xs font-bold text-slate-600 mb-1">SEO Meta Title</label>
                   <input
                     type="text"
                     value={metaTitle}
@@ -277,7 +274,7 @@ export default function NewBlogPostPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-gray-300 mb-1">Canonical URL</label>
+                  <label className="block text-xs font-bold text-slate-600 mb-1">Canonical URL</label>
                   <input
                     type="text"
                     value={canonicalUrl}
@@ -289,7 +286,7 @@ export default function NewBlogPostPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">SEO Meta Description</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">SEO Meta Description</label>
                 <textarea
                   rows={2}
                   value={metaDescription}
@@ -300,15 +297,15 @@ export default function NewBlogPostPage() {
               </div>
 
               {/* Google Search Live Preview */}
-              <div className="p-4 rounded-xl bg-[#0e1322] border border-[#192234]">
-                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-2">Google SERP Live Preview</div>
-                <div className="text-blue-400 text-sm font-medium hover:underline truncate">
+              <div className="p-4 rounded-xl bg-indigo-50/50 border border-indigo-100 shadow-xs">
+                <div className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-2">Google SERP Live Preview</div>
+                <div className="text-indigo-600 text-sm font-bold hover:underline truncate">
                   {metaTitle || title || 'Article Title Preview'}
                 </div>
-                <div className="text-emerald-400 text-[11px] font-mono mt-0.5 truncate">
+                <div className="text-emerald-700 text-[11px] font-mono mt-0.5 truncate">
                   https://codewithamrendra.in/resources/blog/{slug || 'url-slug'}
                 </div>
-                <div className="text-gray-400 text-xs mt-1 line-clamp-2">
+                <div className="text-slate-600 text-xs mt-1 line-clamp-2">
                   {metaDescription || excerpt || 'Search description preview snippet will appear here...'}
                 </div>
               </div>
@@ -319,14 +316,14 @@ export default function NewBlogPostPage() {
           <div className="space-y-6">
             {/* Category & Taxonomy */}
             <div className="admin-card p-5 space-y-4">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400">Taxonomy & Author</h3>
+              <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Taxonomy & Author</h3>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">Category</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">Category</label>
                 <select
                   value={categoryId}
                   onChange={(e) => setCategoryId(e.target.value)}
-                  className="admin-input text-xs cursor-pointer"
+                  className="admin-input text-xs cursor-pointer font-medium"
                 >
                   <option value="">Select Category</option>
                   {categories.map((c) => (
@@ -336,7 +333,7 @@ export default function NewBlogPostPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">Author Name</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">Author Name</label>
                 <input
                   type="text"
                   value={authorName}
@@ -346,7 +343,7 @@ export default function NewBlogPostPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">Tags (Comma-separated)</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">Tags (Comma-separated)</label>
                 <input
                   type="text"
                   value={tagsInput}
@@ -359,7 +356,7 @@ export default function NewBlogPostPage() {
 
             {/* Featured Image */}
             <div className="admin-card p-5 space-y-3">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400">Featured Image</h3>
+              <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Featured Image</h3>
               <input
                 type="text"
                 value={featuredImage}
@@ -368,7 +365,7 @@ export default function NewBlogPostPage() {
                 className="admin-input text-xs font-mono"
               />
               {featuredImage && (
-                <div className="rounded-lg overflow-hidden border border-[#1f2a40] aspect-video relative">
+                <div className="rounded-xl overflow-hidden border border-slate-200 aspect-video relative shadow-xs">
                   <img src={featuredImage} alt="Featured Preview" className="w-full h-full object-cover" />
                 </div>
               )}

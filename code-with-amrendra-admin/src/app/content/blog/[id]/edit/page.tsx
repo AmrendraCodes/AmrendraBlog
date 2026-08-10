@@ -7,7 +7,6 @@ import {
   Save,
   ArrowLeft,
   Globe,
-  ImageIcon,
   Bold,
   Italic,
   Code,
@@ -15,9 +14,7 @@ import {
   Quote,
   Heading1,
   Heading2,
-  Trash2,
 } from 'lucide-react';
-import { slugify } from '@/lib/utils';
 
 export default function EditBlogPostPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -139,7 +136,7 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
   if (loading) {
     return (
       <DashboardLayout title="Edit Blog Post" subtitle="Loading post data...">
-        <div className="py-20 text-center text-gray-500">Loading editor...</div>
+        <div className="py-20 text-center text-slate-400 font-medium">Loading editor...</div>
       </DashboardLayout>
     );
   }
@@ -156,7 +153,7 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
             <select
               value={status}
               onChange={(e: any) => setStatus(e.target.value)}
-              className="admin-input py-2 text-xs font-semibold w-36"
+              className="admin-input py-2 text-xs font-bold w-36 cursor-pointer"
             >
               <option value="DRAFT">Draft</option>
               <option value="PUBLISHED">Published</option>
@@ -171,7 +168,7 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
         </div>
 
         {error && (
-          <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs">
+          <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-xs font-semibold shadow-xs">
             {error}
           </div>
         )}
@@ -180,7 +177,7 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
           <div className="lg:col-span-2 space-y-6">
             <div className="admin-card p-6 space-y-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">
+                <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-2">
                   Article Title *
                 </label>
                 <input
@@ -193,9 +190,9 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-400 mb-1">URL Slug</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">URL Slug</label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs font-mono">
+                  <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-mono select-none">
                     /resources/blog/
                   </span>
                   <input
@@ -203,13 +200,13 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
                     required
                     value={slug}
                     onChange={(e) => setSlug(e.target.value)}
-                    className="admin-input pl-32 font-mono text-xs text-emerald-400"
+                    className="admin-input pl-32 font-mono text-xs text-indigo-700 font-bold"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">Excerpt</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">Excerpt</label>
                 <textarea
                   rows={2}
                   value={excerpt}
@@ -220,16 +217,16 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
             </div>
 
             <div className="admin-card p-6 space-y-3">
-              <div className="flex items-center justify-between border-b border-[#1f2a40] pb-3">
-                <label className="block text-xs font-bold uppercase tracking-wider text-gray-300">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-500">
                   Article Content (Markdown)
                 </label>
                 <div className="flex items-center gap-1">
-                  <button type="button" onClick={() => handleInsertSyntax('# ')} className="p-1 rounded hover:bg-[#1f2a40] text-gray-400 hover:text-white"><Heading1 size={14} /></button>
-                  <button type="button" onClick={() => handleInsertSyntax('## ')} className="p-1 rounded hover:bg-[#1f2a40] text-gray-400 hover:text-white"><Heading2 size={14} /></button>
-                  <button type="button" onClick={() => handleInsertSyntax('**Bold**')} className="p-1 rounded hover:bg-[#1f2a40] text-gray-400 hover:text-white"><Bold size={14} /></button>
-                  <button type="button" onClick={() => handleInsertSyntax('*Italic*')} className="p-1 rounded hover:bg-[#1f2a40] text-gray-400 hover:text-white"><Italic size={14} /></button>
-                  <button type="button" onClick={() => handleInsertSyntax('```js\n// code\n```')} className="p-1 rounded hover:bg-[#1f2a40] text-gray-400 hover:text-white"><Code size={14} /></button>
+                  <button type="button" onClick={() => handleInsertSyntax('# ')} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition"><Heading1 size={15} /></button>
+                  <button type="button" onClick={() => handleInsertSyntax('## ')} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition"><Heading2 size={15} /></button>
+                  <button type="button" onClick={() => handleInsertSyntax('**Bold**')} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition"><Bold size={15} /></button>
+                  <button type="button" onClick={() => handleInsertSyntax('*Italic*')} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition"><Italic size={15} /></button>
+                  <button type="button" onClick={() => handleInsertSyntax('```js\n// code\n```')} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition"><Code size={15} /></button>
                 </div>
               </div>
               <textarea
@@ -242,22 +239,22 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
             </div>
 
             <div className="admin-card p-6 space-y-4">
-              <div className="flex items-center gap-2 border-b border-[#1f2a40] pb-3 text-emerald-400">
+              <div className="flex items-center gap-2 border-b border-slate-100 pb-3 text-indigo-600">
                 <Globe size={18} />
-                <h3 className="text-sm font-bold text-white">SEO Meta Settings</h3>
+                <h3 className="text-sm font-extrabold text-slate-900">SEO Meta Settings</h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-gray-300 mb-1">SEO Title</label>
+                  <label className="block text-xs font-bold text-slate-600 mb-1">SEO Title</label>
                   <input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} className="admin-input text-xs" />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-gray-300 mb-1">Canonical URL</label>
+                  <label className="block text-xs font-bold text-slate-600 mb-1">Canonical URL</label>
                   <input type="text" value={canonicalUrl} onChange={(e) => setCanonicalUrl(e.target.value)} className="admin-input text-xs font-mono" />
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">SEO Meta Description</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">SEO Meta Description</label>
                 <textarea rows={2} value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} className="admin-input text-xs" />
               </div>
             </div>
@@ -265,10 +262,10 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
 
           <div className="space-y-6">
             <div className="admin-card p-5 space-y-4">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400">Taxonomy & Author</h3>
+              <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Taxonomy & Author</h3>
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">Category</label>
-                <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)} className="admin-input text-xs cursor-pointer">
+                <label className="block text-xs font-bold text-slate-600 mb-1">Category</label>
+                <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)} className="admin-input text-xs cursor-pointer font-medium">
                   <option value="">Select Category</option>
                   {categories.map((c) => (
                     <option key={c.id} value={c.id}>{c.name}</option>
@@ -276,20 +273,20 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">Author</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">Author</label>
                 <input type="text" value={authorName} onChange={(e) => setAuthorName(e.target.value)} className="admin-input text-xs" />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">Tags</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">Tags</label>
                 <input type="text" value={tagsInput} onChange={(e) => setTagsInput(e.target.value)} className="admin-input text-xs" />
               </div>
             </div>
 
             <div className="admin-card p-5 space-y-3">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400">Featured Image</h3>
+              <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Featured Image</h3>
               <input type="text" value={featuredImage} onChange={(e) => setFeaturedImage(e.target.value)} className="admin-input text-xs font-mono" />
               {featuredImage && (
-                <div className="rounded-lg overflow-hidden border border-[#1f2a40] aspect-video relative">
+                <div className="rounded-xl overflow-hidden border border-slate-200 aspect-video relative shadow-xs">
                   <img src={featuredImage} alt="Featured Preview" className="w-full h-full object-cover" />
                 </div>
               )}

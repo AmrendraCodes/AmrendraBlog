@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import DashboardLayout from '@/components/layout/DashboardLayout';
-import { Globe, Save, Search, Share2, Check, ExternalLink } from 'lucide-react';
+import { Save, Search, Share2, Check } from 'lucide-react';
 
 export default function SeoManagementPage() {
   const [defaultTitle, setDefaultTitle] = useState('Code with Amrendra | Software Engineering & Tech Blog');
@@ -72,8 +72,8 @@ export default function SeoManagementPage() {
         {/* Header CTA */}
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-base font-bold text-white">Global SEO & Indexing Rules</h2>
-            <p className="text-xs text-gray-400">Rules applied across public website pages unless overridden per post</p>
+            <h2 className="text-base font-extrabold text-slate-900">Global SEO & Indexing Rules</h2>
+            <p className="text-xs text-slate-500 font-medium">Rules applied across public website pages unless overridden per post</p>
           </div>
 
           <button type="submit" disabled={saving} className="admin-btn-primary text-xs">
@@ -86,21 +86,21 @@ export default function SeoManagementPage() {
           {/* Settings Column */}
           <div className="space-y-6">
             <div className="admin-card p-6 space-y-4">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400">Metadata Defaults</h3>
+              <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Metadata Defaults</h3>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">Default Site Title</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">Default Site Title</label>
                 <input
                   type="text"
                   required
                   value={defaultTitle}
                   onChange={(e) => setDefaultTitle(e.target.value)}
-                  className="admin-input text-xs"
+                  className="admin-input text-xs font-medium"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">Default Meta Description</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">Default Meta Description</label>
                 <textarea
                   rows={3}
                   required
@@ -111,7 +111,7 @@ export default function SeoManagementPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">Default Open Graph (OG) Image URL</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">Default Open Graph (OG) Image URL</label>
                 <input
                   type="text"
                   value={defaultOgImage}
@@ -122,15 +122,15 @@ export default function SeoManagementPage() {
             </div>
 
             <div className="admin-card p-6 space-y-4">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400">Robots & Sitemap Configuration</h3>
+              <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Robots & Sitemap Configuration</h3>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-gray-300 mb-1">Robots Directive</label>
+                  <label className="block text-xs font-bold text-slate-600 mb-1">Robots Directive</label>
                   <select
                     value={robots}
                     onChange={(e) => setRobots(e.target.value)}
-                    className="admin-input text-xs cursor-pointer"
+                    className="admin-input text-xs cursor-pointer font-medium"
                   >
                     <option value="index, follow">index, follow (Default)</option>
                     <option value="noindex, nofollow">noindex, nofollow</option>
@@ -139,7 +139,7 @@ export default function SeoManagementPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-gray-300 mb-1">Canonical Domain</label>
+                  <label className="block text-xs font-bold text-slate-600 mb-1">Canonical Domain</label>
                   <input
                     type="text"
                     value={canonicalDomain}
@@ -150,12 +150,12 @@ export default function SeoManagementPage() {
               </div>
 
               <div className="pt-2">
-                <label className="flex items-center gap-2 text-xs text-gray-300 cursor-pointer">
+                <label className="flex items-center gap-2 text-xs font-medium text-slate-600 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={sitemapEnabled}
                     onChange={(e) => setSitemapEnabled(e.target.checked)}
-                    className="rounded border-[#1f2a40] text-emerald-500"
+                    className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
                   />
                   <span>Automatically update /sitemap.xml when blog articles are published</span>
                 </label>
@@ -167,19 +167,19 @@ export default function SeoManagementPage() {
           <div className="space-y-6">
             {/* Google Search SERP Preview */}
             <div className="admin-card p-6 space-y-3">
-              <div className="flex items-center gap-2 text-blue-400">
+              <div className="flex items-center gap-2 text-indigo-600">
                 <Search size={18} />
-                <h3 className="text-xs font-bold uppercase tracking-wider text-white">Google Search Result Preview</h3>
+                <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-900">Google Search Result Preview</h3>
               </div>
 
-              <div className="p-4 rounded-xl bg-[#0e1322] border border-[#192234] space-y-1">
-                <div className="text-blue-400 text-base font-semibold hover:underline cursor-pointer truncate">
+              <div className="p-4 rounded-xl bg-indigo-50/50 border border-indigo-100 space-y-1 shadow-xs">
+                <div className="text-indigo-600 text-base font-bold hover:underline cursor-pointer truncate">
                   {defaultTitle}
                 </div>
-                <div className="text-emerald-400 text-xs font-mono truncate">
+                <div className="text-emerald-700 text-xs font-mono truncate font-semibold">
                   {canonicalDomain}
                 </div>
-                <div className="text-gray-400 text-xs leading-relaxed line-clamp-2 mt-1">
+                <div className="text-slate-600 text-xs leading-relaxed line-clamp-2 mt-1">
                   {defaultDescription}
                 </div>
               </div>
@@ -187,13 +187,13 @@ export default function SeoManagementPage() {
 
             {/* Social Card Preview */}
             <div className="admin-card p-6 space-y-3">
-              <div className="flex items-center gap-2 text-cyan-400">
+              <div className="flex items-center gap-2 text-indigo-600">
                 <Share2 size={18} />
-                <h3 className="text-xs font-bold uppercase tracking-wider text-white">Social Card Preview (Twitter / LinkedIn)</h3>
+                <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-900">Social Card Preview (Twitter / LinkedIn)</h3>
               </div>
 
-              <div className="rounded-xl overflow-hidden bg-[#0e1322] border border-[#192234]">
-                <div className="aspect-video bg-[#151c2e] relative overflow-hidden flex items-center justify-center text-gray-600">
+              <div className="rounded-xl overflow-hidden bg-white border border-slate-200 shadow-xs">
+                <div className="aspect-video bg-slate-100 relative overflow-hidden flex items-center justify-center text-slate-400">
                   {defaultOgImage ? (
                     <img src={defaultOgImage} alt="OG Preview" className="w-full h-full object-cover" />
                   ) : (
@@ -201,9 +201,9 @@ export default function SeoManagementPage() {
                   )}
                 </div>
                 <div className="p-4 space-y-1">
-                  <div className="text-[10px] font-mono text-gray-500 uppercase">{canonicalDomain.replace('https://', '')}</div>
-                  <div className="text-sm font-bold text-white truncate">{defaultTitle}</div>
-                  <div className="text-xs text-gray-400 line-clamp-2">{defaultDescription}</div>
+                  <div className="text-[10px] font-mono text-slate-400 font-bold uppercase">{canonicalDomain.replace('https://', '')}</div>
+                  <div className="text-sm font-bold text-slate-900 truncate">{defaultTitle}</div>
+                  <div className="text-xs text-slate-500 line-clamp-2">{defaultDescription}</div>
                 </div>
               </div>
             </div>

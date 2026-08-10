@@ -77,17 +77,17 @@ export default function Sidebar({ user }: SidebarProps) {
   ];
 
   const sidebarContent = (
-    <div className="flex flex-col h-full bg-[#0e1322] border-r border-[#1f2a40]">
+    <div className="flex flex-col h-full bg-white border-r border-slate-200/80 shadow-sm">
       {/* Brand Header */}
-      <div className="p-4 flex items-center justify-between border-b border-[#192234]">
+      <div className="p-4 flex items-center justify-between border-b border-slate-100">
         <Link href="/dashboard" className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-extrabold text-lg">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-700 text-white font-black text-xl flex items-center justify-center shadow-md shadow-indigo-500/20 flex-shrink-0">
             C
           </div>
           {!collapsed && (
             <div>
-              <div className="font-extrabold text-white text-sm tracking-tight">CODE WITH AMRENDRA</div>
-              <div className="text-[10px] text-emerald-400 font-mono font-medium tracking-wider uppercase">
+              <div className="font-extrabold text-slate-900 text-sm tracking-tight leading-none">CODE WITH AMRENDRA</div>
+              <div className="text-[10px] text-indigo-600 font-mono font-bold tracking-wider uppercase mt-1">
                 ADMIN CMS
               </div>
             </div>
@@ -95,7 +95,7 @@ export default function Sidebar({ user }: SidebarProps) {
         </Link>
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="hidden md:flex p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-[#151c2e] transition"
+          className="hidden md:flex p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition"
           title={collapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
         >
           {collapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
@@ -109,7 +109,7 @@ export default function Sidebar({ user }: SidebarProps) {
             return (
               <div key={idx} className="space-y-1">
                 {!collapsed && (
-                  <div className="px-3 py-1 text-[10px] font-bold tracking-wider text-gray-500 uppercase font-mono">
+                  <div className="px-3 py-1 text-[10px] font-bold tracking-wider text-slate-400 uppercase font-mono">
                     {entry.group}
                   </div>
                 )}
@@ -120,14 +120,14 @@ export default function Sidebar({ user }: SidebarProps) {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition ${
+                      className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition ${
                         isActive
-                          ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-semibold'
-                          : 'text-gray-400 hover:text-white hover:bg-[#151c2e]'
+                          ? 'bg-indigo-50/90 text-indigo-600 border border-indigo-100 shadow-xs'
+                          : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                       }`}
                       title={collapsed ? item.label : undefined}
                     >
-                      <Icon size={18} className={isActive ? 'text-emerald-400' : 'text-gray-400'} />
+                      <Icon size={18} className={isActive ? 'text-indigo-600' : 'text-slate-400'} />
                       {!collapsed && <span>{item.label}</span>}
                     </Link>
                   );
@@ -142,14 +142,14 @@ export default function Sidebar({ user }: SidebarProps) {
             <Link
               key={entry.href}
               href={entry.href}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition ${
+              className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition ${
                 isActive
-                  ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-semibold'
-                  : 'text-gray-400 hover:text-white hover:bg-[#151c2e]'
+                  ? 'bg-indigo-50/90 text-indigo-600 border border-indigo-100 shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
               }`}
               title={collapsed ? entry.label : undefined}
             >
-              <Icon size={18} className={isActive ? 'text-emerald-400' : 'text-gray-400'} />
+              <Icon size={18} className={isActive ? 'text-indigo-600' : 'text-slate-400'} />
               {!collapsed && <span>{entry.label}</span>}
             </Link>
           );
@@ -157,22 +157,22 @@ export default function Sidebar({ user }: SidebarProps) {
       </nav>
 
       {/* User Profile & Logout */}
-      <div className="p-3 border-t border-[#192234] bg-[#0b0f19]">
+      <div className="p-3 border-t border-slate-100 bg-slate-50/60">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-3 overflow-hidden">
-            <div className="w-8 h-8 rounded-full bg-emerald-500 text-slate-900 font-bold flex items-center justify-center text-xs flex-shrink-0">
+            <div className="w-8 h-8 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-xs flex-shrink-0 shadow-xs">
               {user?.name?.[0] || 'A'}
             </div>
             {!collapsed && (
               <div className="overflow-hidden">
-                <div className="text-xs font-semibold text-white truncate">{user?.name || 'Amrendra Kumar'}</div>
-                <div className="text-[10px] text-gray-400 truncate">{user?.email || 'admin@codewithamrendra.com'}</div>
+                <div className="text-xs font-bold text-slate-800 truncate">{user?.name || 'Amrendra Kumar'}</div>
+                <div className="text-[10px] text-slate-500 truncate">{user?.email || 'admin@codewithamrendra.com'}</div>
               </div>
             )}
           </div>
           <button
             onClick={handleLogout}
-            className="p-1.5 text-gray-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition"
+            className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition"
             title="Logout"
           >
             <LogOut size={16} />
@@ -185,16 +185,16 @@ export default function Sidebar({ user }: SidebarProps) {
   return (
     <>
       {/* Mobile Bar Trigger */}
-      <div className="md:hidden flex items-center justify-between p-4 bg-[#0e1322] border-b border-[#1f2a40]">
+      <div className="md:hidden flex items-center justify-between p-4 bg-white border-b border-slate-200">
         <Link href="/dashboard" className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded bg-emerald-500 text-slate-900 font-extrabold flex items-center justify-center text-sm">
+          <div className="w-8 h-8 rounded-lg bg-indigo-600 text-white font-extrabold flex items-center justify-center text-sm">
             C
           </div>
-          <span className="font-extrabold text-white text-sm">CODE WITH AMRENDRA</span>
+          <span className="font-extrabold text-slate-900 text-sm">CODE WITH AMRENDRA</span>
         </Link>
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="p-2 text-gray-300 hover:text-white bg-[#151c2e] rounded-lg"
+          className="p-2 text-slate-600 hover:text-slate-900 bg-slate-100 rounded-lg"
         >
           {mobileOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -208,7 +208,7 @@ export default function Sidebar({ user }: SidebarProps) {
       {/* Mobile Drawer */}
       {mobileOpen && (
         <div className="fixed inset-0 z-50 flex md:hidden">
-          <div className="fixed inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
+          <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs" onClick={() => setMobileOpen(false)} />
           <div className="relative w-72 max-w-full h-full z-10">{sidebarContent}</div>
         </div>
       )}

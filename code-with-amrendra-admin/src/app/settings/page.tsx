@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import DashboardLayout from '@/components/layout/DashboardLayout';
-import { Settings as SettingsIcon, Save, Check, Globe, Shield, Database, Key } from 'lucide-react';
+import { Save, Check, Shield } from 'lucide-react';
 
 export default function SettingsPage() {
   const [activeTab, setActiveTab] = useState<'general' | 'website' | 'seo' | 'security' | 'api'>('general');
@@ -79,7 +79,7 @@ export default function SettingsPage() {
     <DashboardLayout title="System Settings" subtitle="Configure site defaults, contact info, and security">
       <form onSubmit={handleSave} className="space-y-6">
         {/* Navigation Tabs */}
-        <div className="flex border-b border-[#1f2a40] space-x-6 overflow-x-auto">
+        <div className="flex border-b border-slate-200 space-x-6 overflow-x-auto">
           {[
             { id: 'general', label: 'General' },
             { id: 'website', label: 'Website & Contact' },
@@ -91,10 +91,10 @@ export default function SettingsPage() {
               key={tab.id}
               type="button"
               onClick={() => setActiveTab(tab.id as any)}
-              className={`pb-3 text-xs font-semibold tracking-wide border-b-2 transition ${
+              className={`pb-3 text-xs tracking-wide border-b-2 transition ${
                 activeTab === tab.id
-                  ? 'border-emerald-500 text-emerald-400 font-bold'
-                  : 'border-transparent text-gray-400 hover:text-white'
+                  ? 'border-indigo-600 text-indigo-600 font-bold'
+                  : 'border-transparent text-slate-500 font-semibold hover:text-slate-900'
               }`}
             >
               {tab.label}
@@ -104,10 +104,10 @@ export default function SettingsPage() {
 
         {/* Tab Contents */}
         {activeTab === 'general' && (
-          <div className="admin-card p-6 space-y-4 max-w-2xl">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400">General Information</h3>
+          <div className="admin-card p-6 space-y-4 max-w-2xl bg-white">
+            <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">General Information</h3>
             <div>
-              <label className="block text-xs font-semibold text-gray-300 mb-1">Brand Site Name</label>
+              <label className="block text-xs font-bold text-slate-600 mb-1">Brand Site Name</label>
               <input
                 type="text"
                 value={siteName}
@@ -116,7 +116,7 @@ export default function SettingsPage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-300 mb-1">Public Website URL</label>
+              <label className="block text-xs font-bold text-slate-600 mb-1">Public Website URL</label>
               <input
                 type="text"
                 value={siteUrl}
@@ -125,17 +125,17 @@ export default function SettingsPage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-300 mb-1">Default Timezone</label>
-              <input type="text" disabled value="Asia/Kolkata (IST +05:30)" className="admin-input text-xs font-mono opacity-60 cursor-not-allowed" />
+              <label className="block text-xs font-bold text-slate-600 mb-1">Default Timezone</label>
+              <input type="text" disabled value="Asia/Kolkata (IST +05:30)" className="admin-input text-xs font-mono opacity-60 cursor-not-allowed bg-slate-50" />
             </div>
           </div>
         )}
 
         {activeTab === 'website' && (
-          <div className="admin-card p-6 space-y-4 max-w-2xl">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400">Contact & Address Details</h3>
+          <div className="admin-card p-6 space-y-4 max-w-2xl bg-white">
+            <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Contact & Address Details</h3>
             <div>
-              <label className="block text-xs font-semibold text-gray-300 mb-1">Contact Email</label>
+              <label className="block text-xs font-bold text-slate-600 mb-1">Contact Email</label>
               <input
                 type="email"
                 value={contactEmail}
@@ -144,7 +144,7 @@ export default function SettingsPage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-300 mb-1">Phone Number</label>
+              <label className="block text-xs font-bold text-slate-600 mb-1">Phone Number</label>
               <input
                 type="text"
                 value={phone}
@@ -153,7 +153,7 @@ export default function SettingsPage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-300 mb-1">Office Location / Address</label>
+              <label className="block text-xs font-bold text-slate-600 mb-1">Office Location / Address</label>
               <input
                 type="text"
                 value={address}
@@ -165,10 +165,10 @@ export default function SettingsPage() {
         )}
 
         {activeTab === 'seo' && (
-          <div className="admin-card p-6 space-y-4 max-w-2xl">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400">Social Links & Telemetry</h3>
+          <div className="admin-card p-6 space-y-4 max-w-2xl bg-white">
+            <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Social Links & Telemetry</h3>
             <div>
-              <label className="block text-xs font-semibold text-gray-300 mb-1">Google Analytics Tracking ID</label>
+              <label className="block text-xs font-bold text-slate-600 mb-1">Google Analytics Tracking ID</label>
               <input
                 type="text"
                 value={analyticsId}
@@ -178,28 +178,28 @@ export default function SettingsPage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-300 mb-1">GitHub Profile URL</label>
+              <label className="block text-xs font-bold text-slate-600 mb-1">GitHub Profile URL</label>
               <input type="text" value={github} onChange={(e) => setGithub(e.target.value)} className="admin-input text-xs font-mono" />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-300 mb-1">Twitter / X Profile URL</label>
+              <label className="block text-xs font-bold text-slate-600 mb-1">Twitter / X Profile URL</label>
               <input type="text" value={twitter} onChange={(e) => setTwitter(e.target.value)} className="admin-input text-xs font-mono" />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-300 mb-1">LinkedIn Profile URL</label>
+              <label className="block text-xs font-bold text-slate-600 mb-1">LinkedIn Profile URL</label>
               <input type="text" value={linkedin} onChange={(e) => setLinkedin(e.target.value)} className="admin-input text-xs font-mono" />
             </div>
           </div>
         )}
 
         {activeTab === 'security' && (
-          <div className="admin-card p-6 space-y-4 max-w-2xl">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400">Authentication & Session Security</h3>
-            <div className="p-4 rounded-xl bg-[#0e1322] border border-[#192234] text-xs text-gray-300 space-y-2">
-              <div className="flex items-center gap-2 text-emerald-400 font-bold">
+          <div className="admin-card p-6 space-y-4 max-w-2xl bg-white">
+            <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Authentication & Session Security</h3>
+            <div className="p-4 rounded-xl bg-indigo-50/50 border border-indigo-100 text-xs text-slate-700 space-y-2">
+              <div className="flex items-center gap-2 text-indigo-600 font-bold">
                 <Shield size={16} /> HTTP-Only Session Cookies Enabled
               </div>
-              <p className="text-gray-400 text-xs">
+              <p className="text-slate-600 text-xs font-medium">
                 Admin credentials and session keys are secured using strict server-side httpOnly cookies with bcrypt password hashing. Secrets are hidden from browser client scripts.
               </p>
             </div>
@@ -207,15 +207,15 @@ export default function SettingsPage() {
         )}
 
         {activeTab === 'api' && (
-          <div className="admin-card p-6 space-y-4 max-w-2xl">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400">Integrations & External APIs</h3>
+          <div className="admin-card p-6 space-y-4 max-w-2xl bg-white">
+            <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Integrations & External APIs</h3>
             <div>
-              <label className="block text-xs font-semibold text-gray-300 mb-1">Cloudinary Storage Key</label>
-              <input type="password" disabled value="••••••••••••••••" className="admin-input text-xs font-mono opacity-60 cursor-not-allowed" />
+              <label className="block text-xs font-bold text-slate-600 mb-1">Cloudinary Storage Key</label>
+              <input type="password" disabled value="••••••••••••••••" className="admin-input text-xs font-mono opacity-60 cursor-not-allowed bg-slate-50" />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-300 mb-1">Resend Email API Key</label>
-              <input type="password" disabled value="••••••••••••••••" className="admin-input text-xs font-mono opacity-60 cursor-not-allowed" />
+              <label className="block text-xs font-bold text-slate-600 mb-1">Resend Email API Key</label>
+              <input type="password" disabled value="••••••••••••••••" className="admin-input text-xs font-mono opacity-60 cursor-not-allowed bg-slate-50" />
             </div>
           </div>
         )}

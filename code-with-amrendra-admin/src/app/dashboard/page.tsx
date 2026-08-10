@@ -12,9 +12,7 @@ import {
   Globe,
   Edit,
   Trash2,
-  ExternalLink,
   CheckCircle2,
-  Clock,
   FileEdit,
   TrendingUp,
 } from 'lucide-react';
@@ -62,16 +60,16 @@ export default function DashboardPage() {
       subtitle="Manage your content, SEO and website from one place."
     >
       {/* Welcome Banner */}
-      <div className="mb-8 p-6 rounded-2xl bg-gradient-to-r from-emerald-500/15 via-[#151c2e] to-[#0e1322] border border-emerald-500/20 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="mb-8 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-750 to-indigo-900 text-white shadow-xl shadow-indigo-600/15 flex flex-col md:flex-row md:items-center justify-between gap-6 border border-indigo-500/30">
         <div>
-          <h2 className="text-2xl font-extrabold text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
             Welcome back, Amrendra 👋
           </h2>
-          <p className="text-xs text-gray-300 mt-1">
-            Code with Amrendra CMS is active. All system metrics and content workflows are online.
+          <p className="text-xs sm:text-sm text-indigo-100/90 mt-1.5 font-medium max-w-xl">
+            Code with Amrendra CMS is active. All system metrics and content publishing workflows are online.
           </p>
         </div>
-        <Link href="/content/blog/new" className="admin-btn-primary self-start md:self-auto">
+        <Link href="/content/blog/new" className="bg-white text-indigo-700 hover:bg-slate-50 font-bold px-5 py-3 rounded-xl shadow-md transition transform hover:-translate-y-0.5 self-start md:self-auto flex items-center gap-2 text-xs sm:text-sm">
           <Plus size={16} />
           <span>New Blog Post</span>
         </Link>
@@ -79,78 +77,78 @@ export default function DashboardPage() {
 
       {/* Statistics Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
-        <div className="admin-card p-4">
-          <div className="text-gray-400 text-xs font-semibold flex items-center justify-between">
+        <div className="admin-card p-4 sm:p-5">
+          <div className="text-slate-500 text-xs font-bold flex items-center justify-between">
             <span>Total Posts</span>
-            <FileText size={16} className="text-emerald-400" />
+            <FileText size={16} className="text-indigo-600" />
           </div>
-          <div className="text-2xl font-black text-white mt-2">
+          <div className="text-2xl font-black text-slate-900 mt-2">
             {loading ? '...' : stats?.totalBlogs || 0}
           </div>
-          <div className="text-[10px] text-emerald-400 mt-1 flex items-center gap-1 font-mono">
+          <div className="text-[10px] text-emerald-600 mt-1 flex items-center gap-1 font-semibold">
             <TrendingUp size={10} /> Live Articles
           </div>
         </div>
 
-        <div className="admin-card p-4">
-          <div className="text-gray-400 text-xs font-semibold flex items-center justify-between">
+        <div className="admin-card p-4 sm:p-5">
+          <div className="text-slate-500 text-xs font-bold flex items-center justify-between">
             <span>Published</span>
-            <CheckCircle2 size={16} className="text-emerald-400" />
+            <CheckCircle2 size={16} className="text-emerald-600" />
           </div>
-          <div className="text-2xl font-black text-emerald-400 mt-2">
+          <div className="text-2xl font-black text-emerald-600 mt-2">
             {loading ? '...' : stats?.publishedBlogs || 0}
           </div>
-          <div className="text-[10px] text-gray-400 mt-1 font-mono">Public on Site</div>
+          <div className="text-[10px] text-slate-400 mt-1 font-medium">Public on Site</div>
         </div>
 
-        <div className="admin-card p-4">
-          <div className="text-gray-400 text-xs font-semibold flex items-center justify-between">
+        <div className="admin-card p-4 sm:p-5">
+          <div className="text-slate-500 text-xs font-bold flex items-center justify-between">
             <span>Drafts</span>
-            <FileEdit size={16} className="text-amber-400" />
+            <FileEdit size={16} className="text-amber-500" />
           </div>
-          <div className="text-2xl font-black text-amber-400 mt-2">
+          <div className="text-2xl font-black text-amber-600 mt-2">
             {loading ? '...' : stats?.draftBlogs || 0}
           </div>
-          <div className="text-[10px] text-gray-400 mt-1 font-mono">Work in Progress</div>
+          <div className="text-[10px] text-slate-400 mt-1 font-medium">Work in Progress</div>
         </div>
 
-        <div className="admin-card p-4">
-          <div className="text-gray-400 text-xs font-semibold flex items-center justify-between">
+        <div className="admin-card p-4 sm:p-5">
+          <div className="text-slate-500 text-xs font-bold flex items-center justify-between">
             <span>Categories</span>
-            <FolderTree size={16} className="text-blue-400" />
+            <FolderTree size={16} className="text-blue-600" />
           </div>
-          <div className="text-2xl font-black text-white mt-2">
+          <div className="text-2xl font-black text-slate-900 mt-2">
             {loading ? '...' : stats?.totalCategories || 0}
           </div>
-          <div className="text-[10px] text-gray-400 mt-1 font-mono">Taxonomy</div>
+          <div className="text-[10px] text-slate-400 mt-1 font-medium">Taxonomy</div>
         </div>
 
-        <div className="admin-card p-4">
-          <div className="text-gray-400 text-xs font-semibold flex items-center justify-between">
+        <div className="admin-card p-4 sm:p-5">
+          <div className="text-slate-500 text-xs font-bold flex items-center justify-between">
             <span>Media Files</span>
-            <ImageIcon size={16} className="text-purple-400" />
+            <ImageIcon size={16} className="text-purple-600" />
           </div>
-          <div className="text-2xl font-black text-white mt-2">
+          <div className="text-2xl font-black text-slate-900 mt-2">
             {loading ? '...' : stats?.totalMedia || 0}
           </div>
-          <div className="text-[10px] text-gray-400 mt-1 font-mono">Assets & Images</div>
+          <div className="text-[10px] text-slate-400 mt-1 font-medium">Assets & Images</div>
         </div>
 
-        <div className="admin-card p-4">
-          <div className="text-gray-400 text-xs font-semibold flex items-center justify-between">
+        <div className="admin-card p-4 sm:p-5">
+          <div className="text-slate-500 text-xs font-bold flex items-center justify-between">
             <span>Total Views</span>
-            <Eye size={16} className="text-cyan-400" />
+            <Eye size={16} className="text-cyan-600" />
           </div>
-          <div className="text-2xl font-black text-cyan-400 mt-2">
+          <div className="text-2xl font-black text-cyan-600 mt-2">
             {loading ? '...' : stats?.totalPageViews || 0}
           </div>
-          <div className="text-[10px] text-cyan-400 mt-1 font-mono">Tracked Analytics</div>
+          <div className="text-[10px] text-cyan-700 mt-1 font-semibold">Tracked Analytics</div>
         </div>
       </div>
 
       {/* Quick Actions Bar */}
       <div className="mb-8">
-        <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Quick Actions</h3>
+        <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-3">Quick Actions</h3>
         <div className="flex flex-wrap gap-3">
           <Link href="/content/blog/new" className="admin-btn-primary text-xs">
             <Plus size={14} /> Create Blog Post
@@ -172,52 +170,52 @@ export default function DashboardPage() {
 
       {/* Recent Content Table */}
       <div className="admin-card overflow-hidden">
-        <div className="p-4 sm:p-5 border-b border-[#1f2a40] flex items-center justify-between">
+        <div className="p-4 sm:p-6 border-b border-slate-100 flex items-center justify-between bg-white">
           <div>
-            <h3 className="text-base font-bold text-white">Recent Blog Posts</h3>
-            <p className="text-xs text-gray-400">Latest published and draft articles</p>
+            <h3 className="text-base font-extrabold text-slate-900">Recent Blog Posts</h3>
+            <p className="text-xs text-slate-500 font-medium">Latest published and draft articles</p>
           </div>
-          <Link href="/content/blog" className="text-xs text-emerald-400 hover:underline font-medium">
+          <Link href="/content/blog" className="text-xs text-indigo-600 hover:text-indigo-800 font-bold hover:underline">
             View All Posts →
           </Link>
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-gray-300">
-            <thead className="bg-[#111726] text-gray-400 font-mono uppercase text-[10px] border-b border-[#1f2a40]">
+          <table className="w-full text-left text-xs text-slate-700">
+            <thead className="bg-slate-50/80 text-slate-500 font-bold uppercase text-[10px] border-b border-slate-200/80">
               <tr>
-                <th className="py-3 px-4">Title</th>
-                <th className="py-3 px-4">Author</th>
-                <th className="py-3 px-4">Category</th>
-                <th className="py-3 px-4">Status</th>
-                <th className="py-3 px-4">Updated</th>
-                <th className="py-3 px-4 text-right">Actions</th>
+                <th className="py-3.5 px-5">Title</th>
+                <th className="py-3.5 px-4">Author</th>
+                <th className="py-3.5 px-4">Category</th>
+                <th className="py-3.5 px-4">Status</th>
+                <th className="py-3.5 px-4">Updated</th>
+                <th className="py-3.5 px-5 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#192234]">
+            <tbody className="divide-y divide-slate-100 bg-white">
               {loading ? (
                 <tr>
-                  <td colSpan={6} className="py-8 text-center text-gray-500">
+                  <td colSpan={6} className="py-8 text-center text-slate-400 font-medium">
                     Loading recent content...
                   </td>
                 </tr>
               ) : recentPosts.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="py-8 text-center text-gray-500">
+                  <td colSpan={6} className="py-8 text-center text-slate-400 font-medium">
                     No recent blog posts found.
                   </td>
                 </tr>
               ) : (
                 recentPosts.map((post) => (
-                  <tr key={post.id} className="hover:bg-[#1c263e]/50 transition">
-                    <td className="py-3.5 px-4 font-semibold text-white max-w-xs truncate">
+                  <tr key={post.id} className="hover:bg-indigo-50/40 transition">
+                    <td className="py-3.5 px-5 font-bold text-slate-900 max-w-xs truncate">
                       {post.title}
                     </td>
-                    <td className="py-3.5 px-4 text-gray-300">
+                    <td className="py-3.5 px-4 text-slate-600 font-medium">
                       {post.authorName || 'Amrendra Kumar'}
                     </td>
                     <td className="py-3.5 px-4">
-                      <span className="px-2 py-0.5 rounded bg-[#1f2a40] text-gray-300 text-[10px] font-mono">
+                      <span className="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-[10px] font-bold font-mono">
                         {post.category?.name || 'General'}
                       </span>
                     </td>
@@ -230,24 +228,24 @@ export default function DashboardPage() {
                         <span className="badge-draft">Draft</span>
                       )}
                     </td>
-                    <td className="py-3.5 px-4 text-gray-400 font-mono">
+                    <td className="py-3.5 px-4 text-slate-500 font-mono text-[11px]">
                       {formatDate(post.updatedAt)}
                     </td>
-                    <td className="py-3.5 px-4 text-right">
+                    <td className="py-3.5 px-5 text-right">
                       <div className="flex items-center justify-end gap-2">
                         <Link
                           href={`/content/blog/${post.id}/edit`}
-                          className="p-1.5 rounded hover:bg-[#1f2a40] text-gray-300 hover:text-white"
+                          className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-600 hover:text-indigo-600 transition"
                           title="Edit Post"
                         >
-                          <Edit size={14} />
+                          <Edit size={15} />
                         </Link>
                         <button
                           onClick={() => setDeleteId(post.id)}
-                          className="p-1.5 rounded hover:bg-red-500/10 text-gray-400 hover:text-red-400"
+                          className="p-1.5 rounded-lg hover:bg-red-50 text-slate-400 hover:text-red-600 transition"
                           title="Delete Post"
                         >
-                          <Trash2 size={14} />
+                          <Trash2 size={15} />
                         </button>
                       </div>
                     </td>
@@ -259,12 +257,12 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Confirmation Modal */}
+      {/* Delete Confirmation Modal */}
       {deleteId && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-          <div className="admin-card p-6 max-w-sm w-full bg-[#151c2e] border-[#1f2a40]">
-            <h4 className="text-base font-bold text-white mb-2">Delete Blog Post?</h4>
-            <p className="text-xs text-gray-400 mb-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
+          <div className="admin-card p-6 max-w-sm w-full bg-white shadow-2xl border-slate-200">
+            <h4 className="text-base font-extrabold text-slate-900 mb-2">Delete Blog Post?</h4>
+            <p className="text-xs text-slate-500 mb-6 font-medium">
               Are you sure you want to delete this blog post? This action cannot be undone.
             </p>
             <div className="flex items-center justify-end gap-3">

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import DashboardLayout from '@/components/layout/DashboardLayout';
-import { FileCode, Edit, ExternalLink, Globe, CheckCircle } from 'lucide-react';
+import { FileCode, Edit } from 'lucide-react';
 
 export default function PagesManagementPage() {
   const [pages] = useState([
@@ -16,41 +16,41 @@ export default function PagesManagementPage() {
 
   return (
     <DashboardLayout title="Page Management" subtitle="Configure core pages and website layout sections">
-      <div className="admin-card overflow-hidden">
-        <div className="p-4 border-b border-[#1f2a40] flex items-center justify-between">
-          <h3 className="text-sm font-bold text-white">Public Website Pages</h3>
-          <span className="text-xs text-gray-400">Total: {pages.length} Pages</span>
+      <div className="admin-card overflow-hidden bg-white">
+        <div className="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between">
+          <h3 className="text-sm font-extrabold text-slate-900">Public Website Pages</h3>
+          <span className="text-xs text-slate-500 font-medium">Total: {pages.length} Pages</span>
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-gray-300">
-            <thead className="bg-[#111726] text-gray-400 font-mono uppercase text-[10px] border-b border-[#1f2a40]">
+          <table className="w-full text-left text-xs text-slate-700">
+            <thead className="bg-slate-50/80 text-slate-500 font-bold uppercase text-[10px] border-b border-slate-200/80">
               <tr>
-                <th className="py-3.5 px-4">Page Title</th>
+                <th className="py-3.5 px-5">Page Title</th>
                 <th className="py-3.5 px-4">URL Route</th>
                 <th className="py-3.5 px-4">Type</th>
                 <th className="py-3.5 px-4">Status</th>
                 <th className="py-3.5 px-4">Last Updated</th>
-                <th className="py-3.5 px-4 text-right">Actions</th>
+                <th className="py-3.5 px-5 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#192234]">
+            <tbody className="divide-y divide-slate-100 bg-white">
               {pages.map((p) => (
-                <tr key={p.id} className="hover:bg-[#1c263e]/50 transition">
-                  <td className="py-3.5 px-4 font-bold text-white flex items-center gap-2.5">
-                    <FileCode size={16} className="text-emerald-400" />
+                <tr key={p.id} className="hover:bg-indigo-50/40 transition">
+                  <td className="py-3.5 px-5 font-bold text-slate-900 flex items-center gap-2.5">
+                    <FileCode size={16} className="text-indigo-600" />
                     <span>{p.title}</span>
                   </td>
-                  <td className="py-3.5 px-4 font-mono text-emerald-400">{p.slug}</td>
-                  <td className="py-3.5 px-4 text-gray-400">{p.type}</td>
+                  <td className="py-3.5 px-4 font-mono text-indigo-600 font-bold">{p.slug}</td>
+                  <td className="py-3.5 px-4 text-slate-500 font-medium">{p.type}</td>
                   <td className="py-3.5 px-4">
                     <span className="badge-published">Live</span>
                   </td>
-                  <td className="py-3.5 px-4 text-gray-400 font-mono">{p.updatedAt}</td>
-                  <td className="py-3.5 px-4 text-right">
+                  <td className="py-3.5 px-4 text-slate-500 font-mono text-[11px]">{p.updatedAt}</td>
+                  <td className="py-3.5 px-5 text-right">
                     <button
                       onClick={() => alert(`Configuring metadata for page: ${p.title}`)}
-                      className="p-1.5 rounded hover:bg-[#1f2a40] text-gray-300 hover:text-white"
+                      className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-600 hover:text-indigo-600 transition"
                       title="Edit Page"
                     >
                       <Edit size={15} />

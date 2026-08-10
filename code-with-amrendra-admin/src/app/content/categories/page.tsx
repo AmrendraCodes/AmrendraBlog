@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import DashboardLayout from '@/components/layout/DashboardLayout';
-import { Plus, Search, FolderTree, Trash2, Edit, AlertCircle } from 'lucide-react';
+import { Plus, Search, FolderTree, Trash2, AlertCircle } from 'lucide-react';
 import { slugify } from '@/lib/utils';
 
 export default function CategoriesPage() {
@@ -91,7 +91,7 @@ export default function CategoriesPage() {
     <DashboardLayout title="Category Management" subtitle="Organize blog articles into categories">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div className="relative flex-1 max-w-md">
-          <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500" />
+          <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
             value={search}
@@ -109,34 +109,34 @@ export default function CategoriesPage() {
       {/* Category List */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {loading ? (
-          <div className="col-span-full py-12 text-center text-gray-500">Loading categories...</div>
+          <div className="col-span-full py-12 text-center text-slate-400 font-medium">Loading categories...</div>
         ) : filtered.length === 0 ? (
-          <div className="col-span-full py-12 text-center text-gray-500">No categories found.</div>
+          <div className="col-span-full py-12 text-center text-slate-400 font-medium">No categories found.</div>
         ) : (
           filtered.map((cat) => (
-            <div key={cat.id} className="admin-card p-5 flex flex-col justify-between">
+            <div key={cat.id} className="admin-card p-5 flex flex-col justify-between bg-white">
               <div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-lg bg-blue-500/15 text-blue-400 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold">
                       <FolderTree size={16} />
                     </div>
-                    <h3 className="font-bold text-white text-sm">{cat.name}</h3>
+                    <h3 className="font-bold text-slate-900 text-sm">{cat.name}</h3>
                   </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#1f2a40] text-gray-400">
+                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-slate-100 text-slate-600">
                     {cat._count?.posts || 0} posts
                   </span>
                 </div>
-                <div className="text-[11px] font-mono text-emerald-400 mt-2">/{cat.slug}</div>
+                <div className="text-[11px] font-mono font-bold text-indigo-600 mt-2">/{cat.slug}</div>
                 {cat.description && (
-                  <p className="text-xs text-gray-400 mt-2 line-clamp-2">{cat.description}</p>
+                  <p className="text-xs text-slate-500 mt-2 line-clamp-2">{cat.description}</p>
                 )}
               </div>
 
-              <div className="flex items-center justify-end gap-2 mt-4 pt-3 border-t border-[#192234]">
+              <div className="flex items-center justify-end gap-2 mt-4 pt-3 border-t border-slate-100">
                 <button
                   onClick={() => handleDelete(cat.id)}
-                  className="p-1.5 rounded hover:bg-red-500/10 text-gray-400 hover:text-red-400 text-xs flex items-center gap-1"
+                  className="p-1.5 rounded-lg hover:bg-red-50 text-slate-400 hover:text-red-600 text-xs flex items-center gap-1 transition"
                 >
                   <Trash2 size={14} /> Delete
                 </button>
@@ -148,19 +148,19 @@ export default function CategoriesPage() {
 
       {/* Create Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-          <div className="admin-card p-6 max-w-md w-full bg-[#151c2e] border-[#1f2a40] space-y-4">
-            <h3 className="text-base font-bold text-white">Create New Category</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
+          <div className="admin-card p-6 max-w-md w-full bg-white border-slate-200 shadow-2xl space-y-4">
+            <h3 className="text-base font-extrabold text-slate-900">Create New Category</h3>
 
             {error && (
-              <div className="p-3 rounded bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-center gap-2">
+              <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-xs flex items-center gap-2 font-medium">
                 <AlertCircle size={15} /> {error}
               </div>
             )}
 
             <form onSubmit={handleCreate} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">Category Name *</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">Category Name *</label>
                 <input
                   type="text"
                   required
@@ -172,19 +172,19 @@ export default function CategoriesPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">Slug *</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">Slug *</label>
                 <input
                   type="text"
                   required
                   value={slug}
                   onChange={(e) => setSlug(e.target.value)}
                   placeholder="engineering"
-                  className="admin-input text-xs font-mono text-emerald-400"
+                  className="admin-input text-xs font-mono text-indigo-700 font-bold"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">Description</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">Description</label>
                 <textarea
                   rows={2}
                   value={description}

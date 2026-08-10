@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import DashboardLayout from '@/components/layout/DashboardLayout';
-import { Users, Plus, ShieldCheck, Shield, Edit, Trash2, AlertCircle } from 'lucide-react';
+import { Plus, AlertCircle } from 'lucide-react';
 
 export default function UsersPage() {
   const [users, setUsers] = useState<any[]>([]);
@@ -68,8 +68,8 @@ export default function UsersPage() {
     <DashboardLayout title="Users & Roles" subtitle="Manage admin accounts and role-based permissions">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <h2 className="text-sm font-bold text-white">Admin Accounts</h2>
-          <p className="text-xs text-gray-400">Roles: Super Admin (Full access), Editor (Content + Media + SEO), Author (Own posts)</p>
+          <h2 className="text-sm font-extrabold text-slate-900">Admin Accounts</h2>
+          <p className="text-xs text-slate-500 font-medium">Roles: Super Admin (Full access), Editor (Content + Media + SEO), Author (Own posts)</p>
         </div>
 
         <button onClick={() => setShowModal(true)} className="admin-btn-primary text-xs">
@@ -78,42 +78,42 @@ export default function UsersPage() {
       </div>
 
       <div className="admin-card overflow-hidden">
-        <table className="w-full text-left text-xs text-gray-300">
-          <thead className="bg-[#111726] text-gray-400 font-mono uppercase text-[10px] border-b border-[#1f2a40]">
+        <table className="w-full text-left text-xs text-slate-700">
+          <thead className="bg-slate-50/80 text-slate-500 font-bold uppercase text-[10px] border-b border-slate-200/80">
             <tr>
-              <th className="py-3.5 px-4">User</th>
+              <th className="py-3.5 px-5">User</th>
               <th className="py-3.5 px-4">Email Address</th>
               <th className="py-3.5 px-4">Assigned Role</th>
-              <th className="py-3.5 px-4">Permissions</th>
+              <th className="py-3.5 px-5">Permissions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#192234]">
+          <tbody className="divide-y divide-slate-100 bg-white">
             {loading ? (
               <tr>
-                <td colSpan={4} className="py-12 text-center text-gray-500">Loading accounts...</td>
+                <td colSpan={4} className="py-12 text-center text-slate-400 font-medium">Loading accounts...</td>
               </tr>
             ) : (
               users.map((u) => (
-                <tr key={u.id} className="hover:bg-[#1c263e]/50 transition">
-                  <td className="py-3.5 px-4 font-bold text-white flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center text-xs">
+                <tr key={u.id} className="hover:bg-indigo-50/40 transition">
+                  <td className="py-3.5 px-5 font-bold text-slate-900 flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-xs shadow-xs">
                       {u.name?.[0] || 'A'}
                     </div>
                     <span>{u.name || 'Admin User'}</span>
                   </td>
-                  <td className="py-3.5 px-4 font-mono text-gray-300">{u.email}</td>
+                  <td className="py-3.5 px-4 font-mono text-slate-600 font-medium">{u.email}</td>
                   <td className="py-3.5 px-4">
                     <span className={`px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase ${
                       u.role === 'ADMIN'
-                        ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
+                        ? 'bg-indigo-50 text-indigo-600 border border-indigo-100'
                         : u.role === 'EDITOR'
-                        ? 'bg-blue-500/15 text-blue-400 border border-blue-500/30'
-                        : 'bg-purple-500/15 text-purple-400 border border-purple-500/30'
+                        ? 'bg-blue-50 text-blue-600 border border-blue-100'
+                        : 'bg-purple-50 text-purple-600 border border-purple-100'
                     }`}>
                       {u.role === 'ADMIN' ? 'Super Admin' : u.role}
                     </span>
                   </td>
-                  <td className="py-3.5 px-4 text-gray-400">
+                  <td className="py-3.5 px-5 text-slate-500 font-medium">
                     {u.role === 'ADMIN'
                       ? 'Full system access & user management'
                       : u.role === 'EDITOR'
@@ -128,19 +128,19 @@ export default function UsersPage() {
       </div>
 
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-          <div className="admin-card p-6 max-w-md w-full bg-[#151c2e] border-[#1f2a40] space-y-4">
-            <h3 className="text-base font-bold text-white">Create Admin Account</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
+          <div className="admin-card p-6 max-w-md w-full bg-white border-slate-200 shadow-2xl space-y-4">
+            <h3 className="text-base font-extrabold text-slate-900">Create Admin Account</h3>
 
             {error && (
-              <div className="p-3 rounded bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-center gap-2">
+              <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-xs flex items-center gap-2 font-medium">
                 <AlertCircle size={15} /> {error}
               </div>
             )}
 
             <form onSubmit={handleCreate} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">Full Name</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">Full Name</label>
                 <input
                   type="text"
                   required
@@ -152,7 +152,7 @@ export default function UsersPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">Email Address *</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">Email Address *</label>
                 <input
                   type="email"
                   required
@@ -164,7 +164,7 @@ export default function UsersPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">Password *</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">Password *</label>
                 <input
                   type="password"
                   required
@@ -176,11 +176,11 @@ export default function UsersPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">Role & Permissions</label>
+                <label className="block text-xs font-bold text-slate-600 mb-1">Role & Permissions</label>
                 <select
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
-                  className="admin-input text-xs cursor-pointer"
+                  className="admin-input text-xs cursor-pointer font-medium"
                 >
                   <option value="ADMIN">Super Admin (Full Access)</option>
                   <option value="EDITOR">Editor (Content + Media + SEO)</option>

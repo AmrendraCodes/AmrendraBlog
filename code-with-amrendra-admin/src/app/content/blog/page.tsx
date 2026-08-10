@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import DashboardLayout from '@/components/layout/DashboardLayout';
-import { Plus, Search, Filter, Edit, Trash2, ExternalLink, RefreshCw } from 'lucide-react';
+import { Plus, Search, Edit, Trash2, RefreshCw } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 
 export default function BlogListPage() {
@@ -57,7 +57,7 @@ export default function BlogListPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div className="flex items-center gap-3 flex-1 max-w-lg">
           <div className="relative flex-1">
-            <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500" />
+            <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
               type="text"
               value={search}
@@ -71,7 +71,7 @@ export default function BlogListPage() {
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              className="admin-input cursor-pointer pr-8 text-xs font-medium"
+              className="admin-input cursor-pointer pr-8 text-xs font-semibold"
             >
               <option value="">All Statuses</option>
               <option value="PUBLISHED">Published</option>
@@ -90,45 +90,45 @@ export default function BlogListPage() {
       {/* Blog Table */}
       <div className="admin-card overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-gray-300">
-            <thead className="bg-[#111726] text-gray-400 font-mono uppercase text-[10px] border-b border-[#1f2a40]">
+          <table className="w-full text-left text-xs text-slate-700">
+            <thead className="bg-slate-50/80 text-slate-500 font-bold uppercase text-[10px] border-b border-slate-200/80">
               <tr>
-                <th className="py-3.5 px-4">Title</th>
+                <th className="py-3.5 px-5">Title</th>
                 <th className="py-3.5 px-4">Category</th>
                 <th className="py-3.5 px-4">Author</th>
                 <th className="py-3.5 px-4">Status</th>
                 <th className="py-3.5 px-4">Views</th>
                 <th className="py-3.5 px-4">Date</th>
-                <th className="py-3.5 px-4 text-right">Actions</th>
+                <th className="py-3.5 px-5 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#192234]">
+            <tbody className="divide-y divide-slate-100 bg-white">
               {loading ? (
                 <tr>
-                  <td colSpan={7} className="py-12 text-center text-gray-500">
-                    <RefreshCw size={20} className="animate-spin mx-auto mb-2 text-emerald-400" />
+                  <td colSpan={7} className="py-12 text-center text-slate-400 font-medium">
+                    <RefreshCw size={20} className="animate-spin mx-auto mb-2 text-indigo-600" />
                     Loading blog posts...
                   </td>
                 </tr>
               ) : posts.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="py-12 text-center text-gray-500">
+                  <td colSpan={7} className="py-12 text-center text-slate-400 font-medium">
                     No blog posts match your criteria.
                   </td>
                 </tr>
               ) : (
                 posts.map((post) => (
-                  <tr key={post.id} className="hover:bg-[#1c263e]/50 transition">
-                    <td className="py-3.5 px-4">
-                      <div className="font-bold text-white max-w-sm truncate">{post.title}</div>
-                      <div className="text-[10px] text-gray-500 font-mono truncate">/{post.slug}</div>
+                  <tr key={post.id} className="hover:bg-indigo-50/40 transition">
+                    <td className="py-3.5 px-5">
+                      <div className="font-bold text-slate-900 max-w-sm truncate">{post.title}</div>
+                      <div className="text-[10px] text-slate-400 font-mono truncate mt-0.5">/{post.slug}</div>
                     </td>
                     <td className="py-3.5 px-4">
-                      <span className="px-2 py-0.5 rounded bg-[#1f2a40] text-gray-300 text-[10px] font-mono">
+                      <span className="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-[10px] font-bold font-mono">
                         {post.category?.name || 'General'}
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 text-gray-300">
+                    <td className="py-3.5 px-4 text-slate-600 font-medium">
                       {post.authorName || 'Amrendra Kumar'}
                     </td>
                     <td className="py-3.5 px-4">
@@ -140,24 +140,24 @@ export default function BlogListPage() {
                         <span className="badge-draft">Draft</span>
                       )}
                     </td>
-                    <td className="py-3.5 px-4 text-cyan-400 font-mono font-semibold">
+                    <td className="py-3.5 px-4 text-indigo-600 font-mono font-bold">
                       {post.views || 0}
                     </td>
-                    <td className="py-3.5 px-4 text-gray-400 font-mono">
+                    <td className="py-3.5 px-4 text-slate-500 font-mono text-[11px]">
                       {formatDate(post.updatedAt)}
                     </td>
-                    <td className="py-3.5 px-4 text-right">
+                    <td className="py-3.5 px-5 text-right">
                       <div className="flex items-center justify-end gap-2">
                         <Link
                           href={`/content/blog/${post.id}/edit`}
-                          className="p-1.5 rounded hover:bg-[#1f2a40] text-gray-300 hover:text-white"
+                          className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-600 hover:text-indigo-600 transition"
                           title="Edit Post"
                         >
                           <Edit size={15} />
                         </Link>
                         <button
                           onClick={() => setDeleteId(post.id)}
-                          className="p-1.5 rounded hover:bg-red-500/10 text-gray-400 hover:text-red-400"
+                          className="p-1.5 rounded-lg hover:bg-red-50 text-slate-400 hover:text-red-600 transition"
                           title="Delete Post"
                         >
                           <Trash2 size={15} />
@@ -174,10 +174,10 @@ export default function BlogListPage() {
 
       {/* Delete Confirmation Modal */}
       {deleteId && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-          <div className="admin-card p-6 max-w-sm w-full bg-[#151c2e] border-[#1f2a40]">
-            <h4 className="text-base font-bold text-white mb-2">Confirm Delete</h4>
-            <p className="text-xs text-gray-400 mb-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
+          <div className="admin-card p-6 max-w-sm w-full bg-white shadow-2xl border-slate-200">
+            <h4 className="text-base font-extrabold text-slate-900 mb-2">Confirm Delete</h4>
+            <p className="text-xs text-slate-500 mb-6 font-medium">
               Are you sure you want to permanently remove this blog post from the database?
             </p>
             <div className="flex items-center justify-end gap-3">
