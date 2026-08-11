@@ -9,7 +9,21 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion', 'lenis', 'three', 'katex', 'highlight.js', 'react-markdown', 'gray-matter', 'mermaid'],
+    optimizePackageImports: [
+      'lucide-react',
+      'framer-motion',
+      'lenis',
+      'three',
+      'katex',
+      'highlight.js',
+      'react-markdown',
+      'gray-matter',
+      'mermaid',
+      'next-themes',
+      '@next/third-parties',
+      'clsx',
+      'tailwind-merge',
+    ],
   },
   images: {
     remotePatterns: [

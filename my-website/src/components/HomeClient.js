@@ -198,7 +198,7 @@ export default function HomeClient({ featuredPosts, caseStudies }) {
       {/* ═══════════════════════════════════════════════════════════
          4. CORE SERVICES OVERVIEW (3D TILT CARDS)
          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24 px-6 bg-slate-50 dark:bg-[#080D0A] border-y border-slate-200 dark:border-[#1E2E25] transition-colors duration-300 relative">
+      <section className="py-24 px-6 bg-slate-50 dark:bg-[#080D0A] border-y border-slate-200 dark:border-[#1E2E25] transition-colors duration-300 relative content-visibility-auto">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/20">

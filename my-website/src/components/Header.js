@@ -94,6 +94,7 @@ export default function Header() {
               alt="CWA Logo" 
               width={36} 
               height={36} 
+              sizes="36px"
               className="w-9 h-9 object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-sm" 
               priority 
             />
