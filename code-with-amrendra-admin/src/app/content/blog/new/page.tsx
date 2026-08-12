@@ -44,18 +44,25 @@ export default function NewBlogPostPage() {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    let active = true;
+
     async function loadCategories() {
       try {
         const res = await fetch('/api/categories');
         const json = await res.json();
-        if (json.success) {
+        if (active && json.success) {
           setCategories(json.data.categories);
         }
       } catch (err) {
         console.error('Failed to load categories:', err);
       }
     }
+
     loadCategories();
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   const handleTitleChange = (val: string) => {

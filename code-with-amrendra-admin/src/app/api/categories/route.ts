@@ -2,22 +2,14 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getAuthSession } from '@/lib/auth';
 import { categorySchema } from '@/schemas/category';
+import { revalidatePath } from 'next/cache';
 
 export async function GET() {
   try {
-    let categories = [];
-    try {
-      categories = await prisma.category.findMany({
-        include: { _count: { select: { posts: true } } },
-        orderBy: { name: 'asc' },
-      });
-    } catch {
-      categories = [
-        { id: 'cat-1', name: 'Engineering', slug: 'engineering', description: 'Deep tech and systems architecture', _count: { posts: 12 } },
-        { id: 'cat-2', name: 'Design', slug: 'design', description: 'UI/UX design principles', _count: { posts: 5 } },
-        { id: 'cat-3', name: 'Tutorials', slug: 'tutorials', description: 'Step-by-step dev tutorials', _count: { posts: 18 } },
-      ];
-    }
+    const categories = await prisma.category.findMany({
+      include: { _count: { select: { posts: true } } },
+      orderBy: { name: 'asc' },
+    });
 
     return NextResponse.json({ success: true, data: { categories } });
   } catch (error) {
@@ -51,14 +43,9 @@ export async function POST(request: Request) {
 
     const { name, slug, description } = parsed.data;
 
-    let existing = null;
-    try {
-      existing = await prisma.category.findFirst({
-        where: { OR: [{ name }, { slug }] },
-      });
-    } catch {
-      // DB fallback
-    }
+    const existing = await prisma.category.findFirst({
+      where: { OR: [{ name }, { slug }] },
+    });
 
     if (existing) {
       return NextResponse.json(
@@ -67,14 +54,14 @@ export async function POST(request: Request) {
       );
     }
 
-    let category = null;
+    const category = await prisma.category.create({
+      data: { name, slug, description },
+    });
+
     try {
-      category = await prisma.category.create({
-        data: { name, slug, description },
-      });
-    } catch {
-      category = { id: `cat-${Date.now()}`, name, slug, description };
-    }
+      revalidatePath('/resources/blog');
+      revalidatePath(`/category/${slug}`);
+    } catch {}
 
     return NextResponse.json({ success: true, data: { category } }, { status: 201 });
   } catch (error) {
@@ -106,11 +93,29 @@ export async function DELETE(request: Request) {
       );
     }
 
-    try {
-      await prisma.category.delete({ where: { id } });
-    } catch {
-      // DB fallback
+    // Check if category has associated blogs before deleting
+    const postCount = await prisma.blog.count({ where: { categoryId: id } });
+    if (postCount > 0) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: 'CATEGORY_IN_USE',
+            message: `Cannot delete category: ${postCount} blog post(s) are currently assigned to it. Please reassign or delete those posts first.`,
+          },
+        },
+        { status: 400 }
+      );
     }
+
+    const category = await prisma.category.findUnique({ where: { id } });
+
+    await prisma.category.delete({ where: { id } });
+
+    try {
+      revalidatePath('/resources/blog');
+      if (category?.slug) revalidatePath(`/category/${category.slug}`);
+    } catch {}
 
     return NextResponse.json({ success: true, data: { message: 'Category deleted successfully' } });
   } catch (error) {

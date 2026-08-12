@@ -1,5 +1,5 @@
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -7,34 +7,31 @@ generator client {
   provider = "prisma-client-js"
 }
 
-enum Role {
-  ADMIN
-  EDITOR
-}
-
-enum PostStatus {
-  DRAFT
-  PUBLISHED
-  SCHEDULED
-}
-
-enum ContactStatus {
-  UNREAD
-  READ
-  ARCHIVED
-}
-
 model User {
-  id           String    @id @default(cuid())
-  name         String?
-  email        String    @unique
-  passwordHash String
-  role         Role      @default(ADMIN)
-  avatar       String?
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  posts        Blog[]
-  sessions     Session[]
+  id                  String               @id @default(cuid())
+  name                String?
+  email               String               @unique
+  passwordHash        String
+  role                String               @default("ADMIN")
+  avatar              String?
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  posts               Blog[]
+  sessions            Session[]
+  passwordResetTokens PasswordResetToken[]
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
 }
 
 model Session {
@@ -65,32 +62,32 @@ model Tag {
 }
 
 model Blog {
-  id              String      @id @default(cuid())
+  id              String    @id @default(cuid())
   title           String
-  slug            String      @unique
+  slug            String    @unique
   excerpt         String?
   description     String?
-  content         String      @db.Text
+  content         String
   featuredImage   String?
   ogImage         String?
   canonicalUrl    String?
   metaTitle       String?
   metaDescription String?
-  status          PostStatus  @default(PUBLISHED)
-  publishedAt     DateTime?   @default(now())
+  status          String    @default("PUBLISHED")
+  publishedAt     DateTime? @default(now())
   scheduledAt     DateTime?
   readingTime     String?
-  wordCount       Int         @default(0)
+  wordCount       Int       @default(0)
   authorId        String?
-  author          User?       @relation(fields: [authorId], references: [id])
-  authorName      String?     @default("Amrendra Kumar")
+  author          User?     @relation(fields: [authorId], references: [id])
+  authorName      String?   @default("Amrendra Kumar")
   categoryId      String?
-  category        Category?   @relation(fields: [categoryId], references: [id])
+  category        Category? @relation(fields: [categoryId], references: [id])
   categorySlug    String?
   tags            BlogTag[]
-  views           Int         @default(0)
-  createdAt       DateTime    @default(now())
-  updatedAt       DateTime    @updatedAt
+  views           Int       @default(0)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 }
 
 model BlogTag {
@@ -139,15 +136,15 @@ model PageView {
 }
 
 model Contact {
-  id        String        @id @default(cuid())
+  id        String   @id @default(cuid())
   name      String
   email     String
   company   String?
   phone     String?
   subject   String?
-  message   String        @db.Text
-  status    ContactStatus @default(UNREAD)
-  createdAt DateTime      @default(now())
+  message   String
+  status    String   @default("UNREAD")
+  createdAt DateTime @default(now())
 }
 
 model Newsletter {
@@ -164,9 +161,9 @@ model Settings {
   contactEmail   String?
   phone          String?
   address        String?
-  socialLinks    Json?
+  socialLinks    String?
   analyticsId    String?
-  cloudinaryKeys Json?
-  seoDefaults    Json?
+  cloudinaryKeys String?
+  seoDefaults    String?
   updatedAt      DateTime @updatedAt
 }

@@ -1,13 +1,16 @@
 import Link from 'next/link';
-import { getAllPosts } from '@/lib/posts';
+import { getAllPostsAsync } from '@/lib/posts';
 import BlogCard from '@/components/BlogCard';
 import JsonLd from '@/components/JsonLd';
 import { getCollectionPageSchema, getBreadcrumbSchema } from '@/lib/schema';
 
+export const revalidate = 0;
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const formattedName = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-  const posts = getAllPosts().filter(
+  const allPosts = await getAllPostsAsync();
+  const posts = allPosts.filter(
     (p) => (p.categorySlug || '').toLowerCase() === slug.toLowerCase()
   );
 
@@ -45,7 +48,8 @@ export async function generateMetadata({ params }) {
 
 export default async function CategoryPage({ params }) {
   const { slug } = await params;
-  const posts = getAllPosts().filter(
+  const allPosts = await getAllPostsAsync();
+  const posts = allPosts.filter(
     (p) => (p.categorySlug || '').toLowerCase() === slug.toLowerCase()
   );
 

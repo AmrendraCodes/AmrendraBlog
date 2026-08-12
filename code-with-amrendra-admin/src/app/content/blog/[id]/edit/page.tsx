@@ -44,6 +44,8 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
   const [error, setError] = useState('');
 
   useEffect(() => {
+    let active = true;
+
     async function loadData() {
       try {
         const [catRes, postRes] = await Promise.all([
@@ -52,10 +54,10 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
         ]);
 
         const catJson = await catRes.json();
-        if (catJson.success) setCategories(catJson.data.categories);
+        if (active && catJson.success) setCategories(catJson.data.categories);
 
         const postJson = await postRes.json();
-        if (postJson.success) {
+        if (active && postJson.success) {
           const p = postJson.data.post;
           setTitle(p.title || '');
           setSlug(p.slug || '');
@@ -65,15 +67,15 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
           setStatus(p.status || 'DRAFT');
           setCategoryId(p.categoryId || '');
           setAuthorName(p.authorName || 'Amrendra Kumar');
-          if (p.tags) {
-            setTagsInput(p.tags.map((t: any) => t.tag?.name || t).join(', '));
-          }
           setMetaTitle(p.metaTitle || p.title || '');
           setMetaDescription(p.metaDescription || p.excerpt || '');
           setCanonicalUrl(p.canonicalUrl || '');
           setOgTitle(p.ogTitle || p.metaTitle || p.title || '');
           setOgDescription(p.ogDescription || p.metaDescription || '');
           setOgImage(p.ogImage || p.featuredImage || '');
+          if (p.tags) {
+            setTagsInput(p.tags.map((t: any) => t.tag?.name || t).join(', '));
+          }
         }
       } catch (err) {
         console.error('Failed to load post data:', err);

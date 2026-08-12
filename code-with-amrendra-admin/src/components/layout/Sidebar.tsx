@@ -166,7 +166,7 @@ export default function Sidebar({ user }: SidebarProps) {
             {!collapsed && (
               <div className="overflow-hidden">
                 <div className="text-xs font-bold text-slate-800 truncate">{user?.name || 'Amrendra Kumar'}</div>
-                <div className="text-[10px] text-slate-500 truncate">{user?.email || 'admin@codewithamrendra.com'}</div>
+                <div className="text-[10px] text-slate-500 truncate">{user?.email || 'codewithamrendra@outlook.com'}</div>
               </div>
             )}
           </div>

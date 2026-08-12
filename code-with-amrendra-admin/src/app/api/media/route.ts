@@ -36,27 +36,14 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('search') || '';
 
-    let media: any[] = [];
-    try {
-      const where: any = {};
-      if (search) {
-        where.fileName = { contains: search, mode: 'insensitive' };
-      }
-      media = await prisma.media.findMany({
-        where,
-        orderBy: { createdAt: 'desc' },
-      });
-    } catch {
-      // Memory fallback
+    const where: any = {};
+    if (search) {
+      where.fileName = { contains: search };
     }
-
-    if (!media || media.length === 0) {
-      media = memoryMedia;
-      if (search) {
-        const q = search.toLowerCase();
-        media = media.filter((m) => m.fileName.toLowerCase().includes(q));
-      }
-    }
+    const media = await prisma.media.findMany({
+      where,
+      orderBy: { createdAt: 'desc' },
+    });
 
     return NextResponse.json({ success: true, data: { media } });
   } catch (error) {

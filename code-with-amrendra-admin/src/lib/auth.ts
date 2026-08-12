@@ -1,7 +1,11 @@
 import bcrypt from 'bcryptjs';
 import { cookies } from 'next/headers';
 import { prisma } from './prisma';
-import { Role } from '@prisma/client';
+export enum Role {
+  ADMIN = 'ADMIN',
+  EDITOR = 'EDITOR',
+  AUTHOR = 'AUTHOR',
+}
 
 export const ADMIN_SESSION_COOKIE = 'admin_session_token';
 
@@ -62,7 +66,7 @@ export async function getAuthSession(): Promise<{ user: AuthenticatedUser } | nu
     });
 
     if (session && session.expires >= new Date()) {
-      return { user: session.user };
+      return { user: { ...session.user, role: session.user.role as Role } };
     }
   } catch (err) {
     console.warn('DB session lookup error:', err);
@@ -74,7 +78,7 @@ export async function getAuthSession(): Promise<{ user: AuthenticatedUser } | nu
       user: {
         id: 'seed-admin-user',
         name: 'Amrendra Kumar',
-        email: 'admin@codewithamrendra.com',
+        email: 'codewithamrendra@outlook.com',
         role: Role.ADMIN,
         avatar: null,
       },

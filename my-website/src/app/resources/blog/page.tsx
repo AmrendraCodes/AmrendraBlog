@@ -1,9 +1,11 @@
 import HeroSection from "@/components/blog/HeroSection";
 import BlogPageClient from "@/components/blog/BlogPageClient";
-import { getAllPosts, getAllTags } from "@/lib/posts";
+import { getAllPostsAsync, getAllTagsAsync } from "@/lib/posts";
 import JsonLd from "@/components/JsonLd";
 import { getCollectionPageSchema } from "@/lib/schema";
 import { siteMetadata } from "@/config/seo";
+
+export const revalidate = 0;
 
 export const metadata = {
   title: "Blog & Technical Articles | Code with Amrendra",
@@ -31,9 +33,9 @@ export const metadata = {
   },
 };
 
-export default function BlogPage() {
-  const posts = getAllPosts();
-  const allTags = getAllTags();
+export default async function BlogPage() {
+  const posts = await getAllPostsAsync();
+  const allTags = await getAllTagsAsync();
 
   const articles = posts.map((post) => ({
     title: post.title,

@@ -1,15 +1,11 @@
 import { PrismaClient } from '@prisma/client';
 
 const globalForPrisma = globalThis;
-
 let prismaClientInstance = null;
 
-function getPrismaClient() {
-  // If DATABASE_URL is not set (e.g. running locally without DB), defer Prisma safely
-  if (!process.env.DATABASE_URL) {
-    return null;
-  }
+const dbUrl = process.env.DATABASE_URL || 'file:D:/Projects/AmrendraBlog/code-with-amrendra-admin/prisma/dev.db';
 
+function getPrismaClient() {
   if (prismaClientInstance) return prismaClientInstance;
   if (globalForPrisma.prisma) {
     prismaClientInstance = globalForPrisma.prisma;
@@ -18,6 +14,11 @@ function getPrismaClient() {
 
   try {
     prismaClientInstance = new PrismaClient({
+      datasources: {
+        db: {
+          url: dbUrl,
+        },
+      },
       log: ['error'],
     });
     if (process.env.NODE_ENV !== 'production') {
@@ -25,11 +26,11 @@ function getPrismaClient() {
     }
     return prismaClientInstance;
   } catch (err) {
+    console.warn('PrismaClient init error:', err);
     return null;
   }
 }
 
-// Safe dummy proxy for local dev when DATABASE_URL is not present
 const dummyModelProxy = new Proxy(
   {},
   {

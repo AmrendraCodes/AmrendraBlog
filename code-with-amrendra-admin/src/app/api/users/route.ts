@@ -30,7 +30,7 @@ export async function GET() {
         {
           id: 'seed-admin-user',
           name: 'Amrendra Kumar',
-          email: 'admin@codewithamrendra.com',
+          email: 'codewithamrendra@outlook.com',
           role: 'ADMIN',
           avatar: null,
           createdAt: new Date().toISOString(),

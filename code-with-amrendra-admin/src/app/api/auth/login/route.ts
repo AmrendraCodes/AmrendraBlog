@@ -28,7 +28,7 @@ export async function POST(request: Request) {
 
     if (!user) {
       // Fallback for seed admin credential if DB is not yet populated
-      if (email.toLowerCase() === 'admin@codewithamrendra.com' && password === 'admin123') {
+      if (email.toLowerCase() === 'codewithamrendra@outlook.com' && password === 'Admin@1234') {
         const token = 'session_seed_' + Date.now();
         const response = NextResponse.json({
           success: true,
@@ -36,7 +36,7 @@ export async function POST(request: Request) {
             user: {
               id: 'seed-admin-user',
               name: 'Amrendra Kumar',
-              email: 'admin@codewithamrendra.com',
+              email: 'codewithamrendra@outlook.com',
               role: 'ADMIN',
             },
           },

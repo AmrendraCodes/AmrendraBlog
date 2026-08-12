@@ -8,7 +8,7 @@ const postsDirectory = path.join(process.cwd(), "content", "posts");
 
 function calculateReadingTime(content) {
   const wordsPerMinute = 200;
-  const wordCount = content.trim().split(/\s+/).length;
+  const wordCount = content ? content.trim().split(/\s+/).length : 0;
   const minutes = Math.max(1, Math.ceil(wordCount / wordsPerMinute));
   return `${minutes} min read`;
 }
@@ -57,8 +57,8 @@ function getPostsFromFilesystem() {
 }
 
 /**
- * Reads all published posts from database or fallback to filesystem.
- * Returns posts sorted by date (newest first).
+ * Async loader — reads all published posts from database or fallback to filesystem.
+ * Returns posts sorted by published date (newest first).
  */
 export async function getAllPostsAsync() {
   try {
@@ -79,12 +79,12 @@ export async function getAllPostsAsync() {
         date: post.publishedAt
           ? post.publishedAt.toISOString().split("T")[0]
           : post.createdAt.toISOString().split("T")[0],
-        readTime: post.readingTime || "5 min read",
+        readTime: post.readingTime || calculateReadingTime(post.content),
         category: post.category ? post.category.name : "General",
         categorySlug: post.categorySlug || (post.category ? post.category.slug : "general"),
         excerpt: post.excerpt || "",
         description: post.description || post.excerpt || "",
-        image: post.featuredImage || post.ogImage,
+        image: post.featuredImage || post.ogImage || "/images/og-blog.png",
         featuredImage: post.featuredImage || post.ogImage,
         author: post.authorName || "Amrendra Kumar",
         tags: post.tags ? post.tags.map((t) => t.tag.name) : [],
@@ -94,29 +94,21 @@ export async function getAllPostsAsync() {
       }));
     }
   } catch (error) {
-    console.warn("⚠️ Database query failed in posts.js, falling back to filesystem markdown:", error.message);
+    console.warn("⚠️ Database query failed in posts.js, falling back to filesystem markdown:", error?.message || error);
   }
 
   return getPostsFromFilesystem();
 }
 
 /**
- * Synchronous version for backwards compatibility with existing SSG pages.
+ * Synchronous version for static generation fallback.
  */
 export function getAllPosts() {
   return getPostsFromFilesystem();
 }
 
 /**
- * Returns a single post by its slug.
- */
-export function getPostBySlug(slug) {
-  const posts = getAllPosts();
-  return posts.find((p) => p.slug === slug);
-}
-
-/**
- * Async version of getPostBySlug.
+ * Returns a single post by its slug (Async).
  */
 export async function getPostBySlugAsync(slug) {
   try {
@@ -136,12 +128,12 @@ export async function getPostBySlugAsync(slug) {
         date: post.publishedAt
           ? post.publishedAt.toISOString().split("T")[0]
           : post.createdAt.toISOString().split("T")[0],
-        readTime: post.readingTime || "5 min read",
+        readTime: post.readingTime || calculateReadingTime(post.content),
         category: post.category ? post.category.name : "General",
         categorySlug: post.categorySlug || (post.category ? post.category.slug : "general"),
         excerpt: post.excerpt || "",
         description: post.description || post.excerpt || "",
-        image: post.featuredImage || post.ogImage,
+        image: post.featuredImage || post.ogImage || "/images/og-blog.png",
         featuredImage: post.featuredImage || post.ogImage,
         author: post.authorName || "Amrendra Kumar",
         tags: post.tags ? post.tags.map((t) => t.tag.name) : [],
@@ -151,23 +143,65 @@ export async function getPostBySlugAsync(slug) {
       };
     }
   } catch (err) {
-    console.warn("⚠️ Database lookup failed for slug, using filesystem:", slug);
+    console.warn("⚠️ Database lookup failed for slug, using filesystem:", slug, err?.message || err);
   }
 
   return getPostBySlug(slug);
 }
 
 /**
- * Returns all posts matching category slug.
+ * Returns a single post by its slug (Sync fallback).
  */
+export function getPostBySlug(slug) {
+  const posts = getAllPosts();
+  return posts.find((p) => p.slug === slug);
+}
+
+/**
+ * Returns all posts matching category slug (Async).
+ */
+export async function getPostsByCategoryAsync(categorySlug) {
+  const posts = await getAllPostsAsync();
+  return posts.filter((p) => p.categorySlug === categorySlug);
+}
+
 export function getPostsByCategory(categorySlug) {
   const posts = getAllPosts();
   return posts.filter((p) => p.categorySlug === categorySlug);
 }
 
 /**
- * Returns unique categories with post count.
+ * Returns unique categories with post count (Async).
  */
+export async function getAllCategoriesAsync() {
+  try {
+    const dbCategories = await prisma.category.findMany({
+      include: {
+        posts: { where: { status: "PUBLISHED" } },
+      },
+    });
+
+    if (dbCategories && dbCategories.length > 0) {
+      return dbCategories.map((c) => ({
+        slug: c.slug,
+        name: c.name,
+        count: c.posts ? c.posts.length : 0,
+      }));
+    }
+  } catch (err) {
+    console.warn("⚠️ Database categories lookup failed:", err?.message || err);
+  }
+
+  const posts = getAllPosts();
+  const categorySlugs = [...new Set(posts.map((p) => p.categorySlug))];
+
+  return categorySlugs.map((slug) => ({
+    slug,
+    name: posts.find((p) => p.categorySlug === slug)?.category || slug,
+    count: posts.filter((p) => p.categorySlug === slug).length,
+  }));
+}
+
 export function getAllCategories() {
   const posts = getAllPosts();
   const categorySlugs = [...new Set(posts.map((p) => p.categorySlug))];
@@ -180,16 +214,54 @@ export function getAllCategories() {
 }
 
 /**
- * Returns all unique tags.
+ * Returns all unique tags (Async).
  */
+export async function getAllTagsAsync() {
+  try {
+    const dbTags = await prisma.tag.findMany({
+      select: { name: true },
+    });
+    if (dbTags && dbTags.length > 0) {
+      return dbTags.map((t) => t.name).sort();
+    }
+  } catch (err) {
+    console.warn("⚠️ Database tags lookup failed:", err?.message || err);
+  }
+
+  const posts = getAllPosts();
+  return [...new Set(posts.flatMap((p) => p.tags || []))].sort();
+}
+
 export function getAllTags() {
   const posts = getAllPosts();
   return [...new Set(posts.flatMap((p) => p.tags || []))].sort();
 }
 
 /**
- * Returns related posts.
+ * Returns related posts (Async).
  */
+export async function getRelatedPostsAsync(slug, limit = 3) {
+  const posts = await getAllPostsAsync();
+  const currentPost = posts.find((p) => p.slug === slug);
+  if (!currentPost) return [];
+
+  const scored = posts
+    .filter((p) => p.slug !== slug)
+    .map((post) => {
+      let score = 0;
+      if (post.categorySlug === currentPost.categorySlug) score += 3;
+      const sharedTags = (post.tags || []).filter((tag) =>
+        (currentPost.tags || []).includes(tag)
+      );
+      score += sharedTags.length;
+      return { ...post, score };
+    })
+    .filter((p) => p.score > 0)
+    .sort((a, b) => b.score - a.score);
+
+  return scored.slice(0, limit);
+}
+
 export function getRelatedPosts(slug, limit = 3) {
   const posts = getAllPosts();
   const currentPost = posts.find((p) => p.slug === slug);
@@ -213,8 +285,30 @@ export function getRelatedPosts(slug, limit = 3) {
 }
 
 /**
- * Prev and Next posts navigation helper.
+ * Prev and Next posts navigation helper (Async).
  */
+export async function getPrevNextPostsAsync(slug) {
+  const posts = await getAllPostsAsync();
+  const currentIndex = posts.findIndex((p) => p.slug === slug);
+
+  if (currentIndex === -1) return { prev: null, next: null };
+
+  const prev = currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
+  const next = currentIndex > 0 ? posts[currentIndex - 1] : null;
+
+  const slim = (post) =>
+    post
+      ? {
+          title: post.title,
+          slug: post.slug,
+          category: post.category,
+          image: post.image,
+        }
+      : null;
+
+  return { prev: slim(prev), next: slim(next) };
+}
+
 export function getPrevNextPosts(slug) {
   const posts = getAllPosts();
   const currentIndex = posts.findIndex((p) => p.slug === slug);

@@ -39,7 +39,25 @@ export default function MediaLibraryPage() {
   };
 
   useEffect(() => {
-    fetchMedia();
+    let active = true;
+
+    const load = async () => {
+      try {
+        const res = await fetch('/api/media');
+        const json = await res.json();
+        if (active && json.success) setMedia(json.data.media);
+      } catch (err) {
+        console.error('Fetch media error:', err);
+      } finally {
+        if (active) setLoading(false);
+      }
+    };
+
+    load();
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   const handleCopyUrl = (urlStr: string, id: string) => {

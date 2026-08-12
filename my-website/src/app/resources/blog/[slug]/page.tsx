@@ -1,4 +1,4 @@
-import { getPostBySlug, getAllPosts, getRelatedPosts, getPrevNextPosts } from "@/lib/posts";
+import { getPostBySlugAsync, getAllPostsAsync, getRelatedPostsAsync, getPrevNextPostsAsync } from "@/lib/posts";
 import { extractTocHeadings } from "@/lib/toc";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,14 +12,17 @@ import ArticleNavigation from "@/components/blog/ArticleNavigation";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import AuthorBox from "@/components/blog/AuthorBox";
 
+export const dynamicParams = true;
+export const revalidate = 0;
+
 export async function generateStaticParams() {
-  const posts = getAllPosts();
+  const posts = await getAllPostsAsync();
   return posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlugAsync(slug);
 
   if (!post) {
     return { title: "Post Not Found" };
@@ -60,15 +63,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlugAsync(slug);
 
   if (!post) {
     notFound();
   }
 
   const headings = extractTocHeadings(post.content);
-  const relatedPosts = getRelatedPosts(slug, 3);
-  const { prev, next } = getPrevNextPosts(slug);
+  const relatedPosts = await getRelatedPostsAsync(slug, 3);
+  const { prev, next } = await getPrevNextPostsAsync(slug);
 
   const postSchema = getBlogPostSchema({
     title: post.title,
