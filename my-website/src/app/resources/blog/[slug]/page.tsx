@@ -11,8 +11,6 @@ import BlogDetailClient from "@/components/blog/BlogDetailClient";
 import ArticleNavigation from "@/components/blog/ArticleNavigation";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import AuthorBox from "@/components/blog/AuthorBox";
-import AIArticleToolbar from "@/components/ai/AIArticleToolbar";
-import AIChatWidget from "@/components/ai/AIChatWidget";
 
 export async function generateStaticParams() {
   const posts = getAllPosts();
@@ -176,10 +174,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         </div>
       </div>
 
-      {/* AI Article Toolbar & Assistant */}
-      <div className="max-w-[900px] mx-auto px-4 sm:px-6 pt-8">
-        <AIArticleToolbar article={post} />
-      </div>
 
       {/* Blog Detail Client */}
       <BlogDetailClient
@@ -198,8 +192,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         </div>
       </div>
 
-      {/* Floating AI Chat Assistant */}
-      <AIChatWidget articleContext={post} />
     </div>
   );
 }

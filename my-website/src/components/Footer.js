@@ -27,13 +27,6 @@ export default function Footer() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const aiSummaryLinks = [
-    { name: "Google", href: "https://www.google.com/search?udm=50&q=Summarise+the+main+points+from+https://codewithamrendra.in/", color: "hover:text-blue-400 hover:border-blue-500/30" },
-    { name: "ChatGPT", href: "https://chat.openai.com/?q=Give+me+summary+of+https://codewithamrendra.in/", color: "hover:text-emerald-400 hover:border-emerald-500/30" },
-    { name: "Claude", href: "https://claude.ai/new/?q=Give+me+summary+of+https://codewithamrendra.in/", color: "hover:text-amber-400 hover:border-amber-500/30" },
-    { name: "Perplexity", href: "https://www.perplexity.ai/?q=Give+me+summary+of+https://codewithamrendra.in/", color: "hover:text-cyan-400 hover:border-cyan-500/30" },
-    { name: "Grok", href: "https://grok.com/?q=Give+me+summary+of+https://codewithamrendra.in/", color: "hover:text-purple-400 hover:border-purple-500/30" },
-  ];
 
   return (
     <footer className="relative z-10 bg-[#060907] text-slate-300 pt-20 pb-8 border-t border-[#1E2E25] transition-colors duration-300 mt-28 overflow-hidden">
