@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 const globalForPrisma = globalThis;
 let prismaClientInstance = null;
 
-const dbUrl = process.env.DATABASE_URL || 'file:D:/Projects/AmrendraBlog/code-with-amrendra-admin/prisma/dev.db';
+const dbUrl = process.env.DATABASE_URL;
 
 function getPrismaClient() {
   if (prismaClientInstance) return prismaClientInstance;
