@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getAuthSession } from '@/lib/auth';
 
-let memorySettings = {
+const defaultSettings = {
   siteName: 'Code with Amrendra',
   contactEmail: 'contact@codewithamrendra.in',
   phone: '+91 9876543210',
@@ -19,16 +19,32 @@ let memorySettings = {
 
 export async function GET() {
   try {
-    let settings = null;
-    try {
-      settings = await prisma.settings.findUnique({ where: { id: 'global' } });
-    } catch {
-      // Fallback
+    const settings = await prisma.settings.findUnique({ where: { id: 'global' } });
+
+    if (!settings) {
+      return NextResponse.json({
+        success: true,
+        data: { settings: defaultSettings },
+      });
     }
+
+    let parsedSocialLinks = defaultSettings.socialLinks;
+    if (settings.socialLinks) {
+      try {
+        parsedSocialLinks = typeof settings.socialLinks === 'string' ? JSON.parse(settings.socialLinks) : settings.socialLinks;
+      } catch (parseErr) {
+        console.error('Failed to parse socialLinks JSON from DB:', parseErr);
+      }
+    }
+
+    const formattedSettings = {
+      ...settings,
+      socialLinks: parsedSocialLinks,
+    };
 
     return NextResponse.json({
       success: true,
-      data: { settings: settings || memorySettings },
+      data: { settings: formattedSettings },
     });
   } catch (error) {
     console.error('Fetch settings error:', error);
@@ -50,32 +66,42 @@ export async function PUT(request: Request) {
     }
 
     const body = await request.json();
-    try {
-      await prisma.settings.upsert({
-        where: { id: 'global' },
-        create: {
-          id: 'global',
-          siteName: body.siteName || 'Code with Amrendra',
-          contactEmail: body.contactEmail,
-          phone: body.phone,
-          address: body.address,
-          analyticsId: body.analyticsId,
-          socialLinks: body.socialLinks || {},
-        },
-        update: {
-          siteName: body.siteName,
-          contactEmail: body.contactEmail,
-          phone: body.phone,
-          address: body.address,
-          analyticsId: body.analyticsId,
-          socialLinks: body.socialLinks || {},
-        },
-      });
-    } catch {
-      memorySettings = { ...memorySettings, ...body };
+    const socialLinksString = JSON.stringify(body.socialLinks || {});
+
+    const updated = await prisma.settings.upsert({
+      where: { id: 'global' },
+      create: {
+        id: 'global',
+        siteName: body.siteName || 'Code with Amrendra',
+        contactEmail: body.contactEmail,
+        phone: body.phone,
+        address: body.address,
+        analyticsId: body.analyticsId,
+        socialLinks: socialLinksString,
+      },
+      update: {
+        siteName: body.siteName,
+        contactEmail: body.contactEmail,
+        phone: body.phone,
+        address: body.address,
+        analyticsId: body.analyticsId,
+        socialLinks: socialLinksString,
+      },
+    });
+
+    let returnedSocialLinks = body.socialLinks || {};
+    if (updated.socialLinks) {
+      try {
+        returnedSocialLinks = typeof updated.socialLinks === 'string' ? JSON.parse(updated.socialLinks) : updated.socialLinks;
+      } catch {}
     }
 
-    return NextResponse.json({ success: true, data: { settings: body } });
+    const returnedSettings = {
+      ...updated,
+      socialLinks: returnedSocialLinks,
+    };
+
+    return NextResponse.json({ success: true, data: { settings: returnedSettings } });
   } catch (error) {
     console.error('Update settings error:', error);
     return NextResponse.json(

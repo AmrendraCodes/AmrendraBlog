@@ -21,18 +21,14 @@ export async function createAdminSession(userId: string) {
   const token = 'session_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
   const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
 
-  try {
-    const session = await prisma.session.create({
-      data: {
-        sessionToken: token,
-        userId,
-        expires,
-      },
-    });
-    return { token, expires, session };
-  } catch {
-    return { token, expires, session: null };
-  }
+  const session = await prisma.session.create({
+    data: {
+      sessionToken: token,
+      userId,
+      expires,
+    },
+  });
+  return { token, expires, session };
 }
 
 export interface AuthenticatedUser {
@@ -65,15 +61,19 @@ export async function getAuthSession(): Promise<{ user: AuthenticatedUser } | nu
       },
     });
 
-    if (session && session.expires >= new Date()) {
+    if (session && session.user && session.expires >= new Date()) {
       return { user: { ...session.user, role: session.user.role as Role } };
     }
   } catch (err) {
     console.warn('DB session lookup error:', err);
   }
 
-  // Development Fallback for seed admin session
-  if (token.startsWith('session_')) {
+  // Strict Development Fallback: Requires explicit non-production environment AND an exact match against DEV_SEED_ADMIN_TOKEN env variable
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    process.env.DEV_SEED_ADMIN_TOKEN &&
+    token === process.env.DEV_SEED_ADMIN_TOKEN
+  ) {
     return {
       user: {
         id: 'seed-admin-user',

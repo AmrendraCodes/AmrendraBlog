@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { verifyPassword, createAdminSession, ADMIN_SESSION_COOKIE } from '@/lib/auth';
+import { verifyPassword, hashPassword, createAdminSession, ADMIN_SESSION_COOKIE } from '@/lib/auth';
 import { loginSchema } from '@/schemas/auth';
 
 export async function POST(request: Request) {
@@ -27,17 +27,35 @@ export async function POST(request: Request) {
     }
 
     if (!user) {
-      // Fallback for seed admin credential if DB is not yet populated
-      if (email.toLowerCase() === 'codewithamrendra@outlook.com' && password === 'Admin@1234') {
-        const token = 'session_seed_' + Date.now();
+      // Seed admin fallback for initial setup (before real user exists in DB)
+      if (
+        email.toLowerCase() === 'codewithamrendra@outlook.com' &&
+        password === 'Admin@1234'
+      ) {
+        // Ensure the seed admin user exists in the database
+        const seedPasswordHash = await hashPassword('Admin@1234');
+        const seedUser = await prisma.user.upsert({
+          where: { email: 'codewithamrendra@outlook.com' },
+          update: {},
+          create: {
+            id: 'seed-admin-user',
+            name: 'Amrendra Kumar',
+            email: 'codewithamrendra@outlook.com',
+            passwordHash: seedPasswordHash,
+            role: 'ADMIN',
+          },
+        });
+
+        // Create a real session in the database
+        const { token } = await createAdminSession(seedUser.id);
         const response = NextResponse.json({
           success: true,
           data: {
             user: {
-              id: 'seed-admin-user',
-              name: 'Amrendra Kumar',
-              email: 'codewithamrendra@outlook.com',
-              role: 'ADMIN',
+              id: seedUser.id,
+              name: seedUser.name,
+              email: seedUser.email,
+              role: seedUser.role,
             },
           },
         });

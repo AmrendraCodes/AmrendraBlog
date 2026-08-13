@@ -2,35 +2,6 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getAuthSession } from '@/lib/auth';
 
-let memoryMedia: any[] = [
-  {
-    id: 'media-1',
-    fileName: 'hero-banner.jpg',
-    publicId: 'hero-banner',
-    url: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c',
-    secureUrl: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c',
-    format: 'jpg',
-    width: 1920,
-    height: 1080,
-    bytes: 245000,
-    folder: 'general',
-    createdAt: new Date().toISOString(),
-  },
-  {
-    id: 'media-2',
-    fileName: 'architecture-diagram.png',
-    publicId: 'architecture-diagram',
-    url: 'https://images.unsplash.com/photo-1518770660439-4636190af475',
-    secureUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475',
-    format: 'png',
-    width: 1200,
-    height: 800,
-    bytes: 180000,
-    folder: 'blogs',
-    createdAt: new Date().toISOString(),
-  },
-];
-
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -76,24 +47,9 @@ export async function POST(request: Request) {
     }
 
     const publicId = `media_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
-    let item = null;
-    try {
-      item = await prisma.media.create({
-        data: {
-          fileName,
-          publicId,
-          url,
-          secureUrl: url,
-          format: format || 'jpg',
-          width: width || 800,
-          height: height || 600,
-          bytes: bytes || 124000,
-          folder: 'uploads',
-        },
-      });
-    } catch {
-      item = {
-        id: `media-${Date.now()}`,
+
+    const item = await prisma.media.create({
+      data: {
         fileName,
         publicId,
         url,
@@ -103,14 +59,18 @@ export async function POST(request: Request) {
         height: height || 600,
         bytes: bytes || 124000,
         folder: 'uploads',
-        createdAt: new Date().toISOString(),
-      };
-      memoryMedia.unshift(item);
-    }
+      },
+    });
 
     return NextResponse.json({ success: true, data: { media: item } }, { status: 201 });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Upload media error:', error);
+    if (error?.code === 'P2002') {
+      return NextResponse.json(
+        { success: false, error: { code: 'DUPLICATE', message: 'A media file with this name already exists' } },
+        { status: 409 }
+      );
+    }
     return NextResponse.json(
       { success: false, error: { code: 'SERVER_ERROR', message: 'Failed to upload media' } },
       { status: 500 }
@@ -138,11 +98,15 @@ export async function DELETE(request: Request) {
       );
     }
 
-    try {
-      await prisma.media.delete({ where: { id } });
-    } catch {
-      memoryMedia = memoryMedia.filter((m) => m.id !== id);
+    const media = await prisma.media.findUnique({ where: { id } });
+    if (!media) {
+      return NextResponse.json(
+        { success: false, error: { code: 'NOT_FOUND', message: 'Media not found' } },
+        { status: 404 }
+      );
     }
+
+    await prisma.media.delete({ where: { id } });
 
     return NextResponse.json({ success: true, data: { message: 'Media deleted successfully' } });
   } catch (error) {

@@ -10,6 +10,7 @@ import {
   Check,
   Grid,
   List as ListIcon,
+  AlertCircle,
 } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 
@@ -25,6 +26,7 @@ export default function MediaLibraryPage() {
   const [fileName, setFileName] = useState('');
   const [url, setUrl] = useState('');
   const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState('');
 
   const fetchMedia = async () => {
     try {
@@ -69,6 +71,7 @@ export default function MediaLibraryPage() {
   const handleUpload = async (e: React.FormEvent) => {
     e.preventDefault();
     setUploading(true);
+    setError('');
 
     try {
       const res = await fetch('/api/media', {
@@ -78,14 +81,19 @@ export default function MediaLibraryPage() {
       });
 
       const json = await res.json();
-      if (json.success) {
-        setShowUploadModal(false);
-        setFileName('');
-        setUrl('');
-        fetchMedia();
+      if (!res.ok || !json.success) {
+        setError(json.error?.message || 'Failed to upload media asset');
+        setUploading(false);
+        return;
       }
-    } catch (err) {
-      console.error('Upload error:', err);
+
+      setShowUploadModal(false);
+      setFileName('');
+      setUrl('');
+      setError('');
+      fetchMedia();
+    } catch {
+      setError('Connection error');
     } finally {
       setUploading(false);
     }
@@ -94,8 +102,11 @@ export default function MediaLibraryPage() {
   const handleDelete = async (id: string) => {
     try {
       const res = await fetch(`/api/media?id=${id}`, { method: 'DELETE' });
-      if (res.ok) {
+      const json = await res.json();
+      if (res.ok && json.success) {
         setMedia((prev) => prev.filter((m) => m.id !== id));
+      } else {
+        console.error('Delete media failed:', json.error?.message);
       }
     } catch (err) {
       console.error('Delete media error:', err);
@@ -247,6 +258,13 @@ export default function MediaLibraryPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
           <div className="admin-card p-6 max-w-md w-full bg-white border-slate-200 shadow-2xl space-y-4">
             <h3 className="text-base font-extrabold text-slate-900">Upload Media Asset</h3>
+
+            {error && (
+              <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-xs flex items-center gap-2 font-medium">
+                <AlertCircle size={15} /> {error}
+              </div>
+            )}
+
             <form onSubmit={handleUpload} className="space-y-4">
               <div>
                 <label className="block text-xs font-bold text-slate-600 mb-1">Asset Name *</label>

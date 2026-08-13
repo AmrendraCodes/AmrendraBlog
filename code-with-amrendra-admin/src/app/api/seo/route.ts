@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getAuthSession } from '@/lib/auth';
 
-let defaultSeoConfig = {
+const defaultSeoConfig = {
   defaultTitle: 'Code with Amrendra | Full-Stack Software Engineering',
   defaultDescription: 'Articles, guides, and engineering insights on modern web development, architecture, AI, and systems by Amrendra Kumar.',
   defaultOgImage: 'https://codewithamrendra.in/images/og-default.png',
@@ -13,14 +13,17 @@ let defaultSeoConfig = {
 
 export async function GET() {
   try {
-    let settings = null;
-    try {
-      settings = await prisma.settings.findUnique({ where: { id: 'global' } });
-    } catch {
-      // Fallback
+    const settings = await prisma.settings.findUnique({ where: { id: 'global' } });
+
+    let seo = defaultSeoConfig;
+    if (settings?.seoDefaults) {
+      try {
+        seo = typeof settings.seoDefaults === 'string' ? JSON.parse(settings.seoDefaults) : settings.seoDefaults;
+      } catch (parseErr) {
+        console.error('Failed to parse seoDefaults JSON from DB:', parseErr);
+      }
     }
 
-    const seo = (settings?.seoDefaults as any) || defaultSeoConfig;
     return NextResponse.json({ success: true, data: { seo } });
   } catch (error) {
     console.error('Fetch SEO settings error:', error);
@@ -42,17 +45,27 @@ export async function PUT(request: Request) {
     }
 
     const body = await request.json();
-    try {
-      await prisma.settings.upsert({
-        where: { id: 'global' },
-        create: { id: 'global', seoDefaults: body },
-        update: { seoDefaults: body },
-      });
-    } catch {
-      defaultSeoConfig = { ...defaultSeoConfig, ...body };
+    const seoDefaultsString = JSON.stringify(body);
+
+    const updated = await prisma.settings.upsert({
+      where: { id: 'global' },
+      create: {
+        id: 'global',
+        seoDefaults: seoDefaultsString,
+      },
+      update: {
+        seoDefaults: seoDefaultsString,
+      },
+    });
+
+    let returnedSeo = body;
+    if (updated.seoDefaults) {
+      try {
+        returnedSeo = typeof updated.seoDefaults === 'string' ? JSON.parse(updated.seoDefaults) : updated.seoDefaults;
+      } catch {}
     }
 
-    return NextResponse.json({ success: true, data: { seo: body } });
+    return NextResponse.json({ success: true, data: { seo: returnedSeo } });
   } catch (error) {
     console.error('Update SEO settings error:', error);
     return NextResponse.json(

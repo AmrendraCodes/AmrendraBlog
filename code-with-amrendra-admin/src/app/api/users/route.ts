@@ -12,39 +12,17 @@ export async function GET() {
       );
     }
 
-    let users = [];
-    try {
-      users = await prisma.user.findMany({
-        select: {
-          id: true,
-          name: true,
-          email: true,
-          role: true,
-          avatar: true,
-          createdAt: true,
-        },
-        orderBy: { createdAt: 'desc' },
-      });
-    } catch {
-      users = [
-        {
-          id: 'seed-admin-user',
-          name: 'Amrendra Kumar',
-          email: 'codewithamrendra@outlook.com',
-          role: 'ADMIN',
-          avatar: null,
-          createdAt: new Date().toISOString(),
-        },
-        {
-          id: 'editor-1',
-          name: 'Technical Editor',
-          email: 'editor@codewithamrendra.com',
-          role: 'EDITOR',
-          avatar: null,
-          createdAt: new Date().toISOString(),
-        },
-      ];
-    }
+    const users = await prisma.user.findMany({
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        avatar: true,
+        createdAt: true,
+      },
+      orderBy: { createdAt: 'desc' },
+    });
 
     return NextResponse.json({ success: true, data: { users } });
   } catch (error) {
@@ -76,38 +54,44 @@ export async function POST(request: Request) {
       );
     }
 
-    const passwordHash = await hashPassword(password);
-    let user = null;
+    const existingUser = await prisma.user.findUnique({
+      where: { email: email.toLowerCase() },
+    });
 
-    try {
-      user = await prisma.user.create({
-        data: {
-          name: name || 'Admin User',
-          email: email.toLowerCase(),
-          passwordHash,
-          role: role || 'EDITOR',
-        },
-        select: {
-          id: true,
-          name: true,
-          email: true,
-          role: true,
-          createdAt: true,
-        },
-      });
-    } catch {
-      user = {
-        id: `user-${Date.now()}`,
-        name,
-        email,
-        role: role || 'EDITOR',
-        createdAt: new Date().toISOString(),
-      };
+    if (existingUser) {
+      return NextResponse.json(
+        { success: false, error: { code: 'DUPLICATE', message: 'A user with this email already exists' } },
+        { status: 409 }
+      );
     }
 
+    const passwordHash = await hashPassword(password);
+
+    const user = await prisma.user.create({
+      data: {
+        name: name || 'Admin User',
+        email: email.toLowerCase(),
+        passwordHash,
+        role: role || 'EDITOR',
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        createdAt: true,
+      },
+    });
+
     return NextResponse.json({ success: true, data: { user } }, { status: 201 });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Create user error:', error);
+    if (error?.code === 'P2002') {
+      return NextResponse.json(
+        { success: false, error: { code: 'DUPLICATE', message: 'A user with this email already exists' } },
+        { status: 409 }
+      );
+    }
     return NextResponse.json(
       { success: false, error: { code: 'SERVER_ERROR', message: 'Failed to create user' } },
       { status: 500 }

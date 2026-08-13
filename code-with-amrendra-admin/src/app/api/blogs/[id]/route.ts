@@ -2,8 +2,50 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getAuthSession } from '@/lib/auth';
 import { blogSchema } from '@/schemas/blog';
-import { calculateReadingTime, countWords } from '@/lib/utils';
+import { calculateReadingTime, countWords, slugify } from '@/lib/utils';
 import { revalidatePath } from 'next/cache';
+
+async function resolveOrCreateTag(rawTagInput: string) {
+  const cleanedName = rawTagInput.trim().replace(/\s+/g, ' ');
+  if (!cleanedName) return null;
+
+  const tagSlug = slugify(cleanedName);
+
+  // 1. Primary lookup by normalized slug or exact name
+  let tag = await prisma.tag.findFirst({
+    where: {
+      OR: [
+        { slug: tagSlug },
+        { name: cleanedName },
+        { id: cleanedName },
+      ],
+    },
+  });
+
+  // 2. Create tag if it doesn't exist
+  if (!tag) {
+    try {
+      tag = await prisma.tag.create({
+        data: {
+          name: cleanedName,
+          slug: tagSlug,
+        },
+      });
+    } catch {
+      // 3. Fallback on race-condition or unique constraint clash: lookup by slug
+      tag = await prisma.tag.findFirst({
+        where: {
+          OR: [
+            { slug: tagSlug },
+            { name: cleanedName },
+          ],
+        },
+      });
+    }
+  }
+
+  return tag;
+}
 
 export async function GET(
   request: Request,
@@ -96,6 +138,35 @@ export async function PUT(
       },
     });
 
+    // Explicitly clear existing BlogTag join records for this post
+    await prisma.blogTag.deleteMany({
+      where: { blogId: id },
+    });
+
+    // Connect/create updated tags with normalized slug matching
+    if (data.tags && Array.isArray(data.tags)) {
+      for (const rawTag of data.tags) {
+        if (typeof rawTag !== 'string') continue;
+        const tag = await resolveOrCreateTag(rawTag);
+
+        if (tag) {
+          await prisma.blogTag.upsert({
+            where: {
+              blogId_tagId: {
+                blogId: id,
+                tagId: tag.id,
+              },
+            },
+            create: {
+              blogId: id,
+              tagId: tag.id,
+            },
+            update: {},
+          });
+        }
+      }
+    }
+
     // Revalidate live website cache
     try {
       revalidatePath('/resources/blog');
@@ -104,7 +175,16 @@ export async function PUT(
       // Ignore cache warning
     }
 
-    return NextResponse.json({ success: true, data: { post: updatedPost } });
+    const fullPost = await prisma.blog.findUnique({
+      where: { id },
+      include: {
+        category: true,
+        tags: { include: { tag: true } },
+        author: true,
+      },
+    });
+
+    return NextResponse.json({ success: true, data: { post: fullPost || updatedPost } });
   } catch (error: any) {
     console.error('Update post error:', error);
     if (error?.code === 'P2002') {
@@ -136,6 +216,17 @@ export async function DELETE(
     const { id } = await params;
 
     const post = await prisma.blog.findUnique({ where: { id } });
+    if (!post) {
+      return NextResponse.json(
+        { success: false, error: { code: 'NOT_FOUND', message: 'Blog post not found' } },
+        { status: 404 }
+      );
+    }
+
+    // Explicitly delete BlogTag records before deleting blog
+    await prisma.blogTag.deleteMany({
+      where: { blogId: id },
+    });
 
     await prisma.blog.delete({
       where: { id },

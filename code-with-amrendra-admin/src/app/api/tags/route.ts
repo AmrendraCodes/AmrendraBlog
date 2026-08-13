@@ -5,20 +5,9 @@ import { tagSchema } from '@/schemas/tag';
 
 export async function GET() {
   try {
-    let tags = [];
-    try {
-      tags = await prisma.tag.findMany({
-        orderBy: { name: 'asc' },
-      });
-    } catch {
-      tags = [
-        { id: 'tag-1', name: 'Next.js', slug: 'nextjs' },
-        { id: 'tag-2', name: 'React', slug: 'react' },
-        { id: 'tag-3', name: 'TypeScript', slug: 'typescript' },
-        { id: 'tag-4', name: 'Node.js', slug: 'nodejs' },
-        { id: 'tag-5', name: 'Prisma', slug: 'prisma' },
-      ];
-    }
+    const tags = await prisma.tag.findMany({
+      orderBy: { name: 'asc' },
+    });
 
     return NextResponse.json({ success: true, data: { tags } });
   } catch (error) {
@@ -52,34 +41,30 @@ export async function POST(request: Request) {
 
     const { name, slug } = parsed.data;
 
-    let existing = null;
-    try {
-      existing = await prisma.tag.findFirst({
-        where: { OR: [{ name }, { slug }] },
-      });
-    } catch {
-      // DB fallback
-    }
+    const existing = await prisma.tag.findFirst({
+      where: { OR: [{ name }, { slug }] },
+    });
 
     if (existing) {
       return NextResponse.json(
-        { success: false, error: { code: 'DUPLICATE', message: 'Tag name or slug already exists' } },
-        { status: 400 }
+        { success: false, error: { code: 'DUPLICATE', message: 'A tag with this name or slug already exists' } },
+        { status: 409 }
       );
     }
 
-    let tag = null;
-    try {
-      tag = await prisma.tag.create({
-        data: { name, slug },
-      });
-    } catch {
-      tag = { id: `tag-${Date.now()}`, name, slug };
-    }
+    const tag = await prisma.tag.create({
+      data: { name, slug },
+    });
 
     return NextResponse.json({ success: true, data: { tag } }, { status: 201 });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Create tag error:', error);
+    if (error?.code === 'P2002') {
+      return NextResponse.json(
+        { success: false, error: { code: 'DUPLICATE', message: 'A tag with this name or slug already exists' } },
+        { status: 409 }
+      );
+    }
     return NextResponse.json(
       { success: false, error: { code: 'SERVER_ERROR', message: 'Failed to create tag' } },
       { status: 500 }
@@ -107,11 +92,15 @@ export async function DELETE(request: Request) {
       );
     }
 
-    try {
-      await prisma.tag.delete({ where: { id } });
-    } catch {
-      // DB fallback
+    const tag = await prisma.tag.findUnique({ where: { id } });
+    if (!tag) {
+      return NextResponse.json(
+        { success: false, error: { code: 'NOT_FOUND', message: 'Tag not found' } },
+        { status: 404 }
+      );
     }
+
+    await prisma.tag.delete({ where: { id } });
 
     return NextResponse.json({ success: true, data: { message: 'Tag deleted successfully' } });
   } catch (error) {
