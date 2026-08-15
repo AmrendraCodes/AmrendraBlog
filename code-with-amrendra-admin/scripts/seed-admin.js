@@ -4,9 +4,10 @@ const bcrypt = require('bcryptjs');
 const prisma = new PrismaClient();
 
 async function main() {
-  const email = 'codewithamrendra@outlook.com';
-  const temporaryPassword = 'AdminPassword@2026';
-  const passwordHash = await bcrypt.hash(temporaryPassword, 10);
+  const email = (process.env.ADMIN_EMAIL || 'codewithamrendra@outlook.com').trim().toLowerCase();
+  const name = process.env.ADMIN_NAME || 'Amrendra Kumar';
+  const password = process.env.ADMIN_PASSWORD || 'AdminPassword@2026';
+  const passwordHash = await bcrypt.hash(password, 10);
 
   const admin = await prisma.user.upsert({
     where: { email },
@@ -15,7 +16,7 @@ async function main() {
       role: 'ADMIN',
     },
     create: {
-      name: 'Amrendra Kumar',
+      name,
       email,
       passwordHash,
       role: 'ADMIN',
@@ -23,17 +24,16 @@ async function main() {
   });
 
   console.log('----------------------------------------------------');
-  console.log('✅ Admin User Successfully Seeded!');
+  console.log('✅ Admin User Successfully Seeded/Updated in Database!');
   console.log(`👤 Name:     ${admin.name}`);
   console.log(`📧 Email:    ${admin.email}`);
-  console.log(`🔑 Password: ${temporaryPassword}`);
   console.log(`🛡️  Role:     ${admin.role}`);
   console.log('----------------------------------------------------');
 }
 
 main()
   .catch((e) => {
-    console.error('❌ Seeding failed:', e);
+    console.error('❌ Seeding failed:', e.message || e);
     process.exit(1);
   })
   .finally(async () => {
