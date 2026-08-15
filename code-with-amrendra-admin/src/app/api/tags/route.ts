@@ -3,6 +3,8 @@ import { prisma } from '@/lib/prisma';
 import { getAuthSession } from '@/lib/auth';
 import { tagSchema } from '@/schemas/tag';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const tags = await prisma.tag.findMany({

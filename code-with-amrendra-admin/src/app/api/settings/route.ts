@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getAuthSession } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 const defaultSettings = {
   siteName: 'Code with Amrendra',
   contactEmail: 'contact@codewithamrendra.in',

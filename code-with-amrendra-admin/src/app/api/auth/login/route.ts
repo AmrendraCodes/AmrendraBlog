@@ -3,6 +3,8 @@ import { prisma } from '@/lib/prisma';
 import { verifyPassword, hashPassword, createAdminSession, ADMIN_SESSION_COOKIE } from '@/lib/auth';
 import { loginSchema } from '@/schemas/auth';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();

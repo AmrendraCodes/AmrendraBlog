@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { destroyAdminSession, ADMIN_SESSION_COOKIE } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST() {
   await destroyAdminSession();
   const response = NextResponse.json({ success: true, data: { message: 'Logged out successfully' } });

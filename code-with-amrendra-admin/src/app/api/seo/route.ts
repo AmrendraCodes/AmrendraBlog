@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getAuthSession } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 const defaultSeoConfig = {
   defaultTitle: 'Code with Amrendra | Full-Stack Software Engineering',
   defaultDescription: 'Articles, guides, and engineering insights on modern web development, architecture, AI, and systems by Amrendra Kumar.',

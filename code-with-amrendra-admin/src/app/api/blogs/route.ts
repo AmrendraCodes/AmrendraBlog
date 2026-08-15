@@ -5,6 +5,8 @@ import { blogSchema } from '@/schemas/blog';
 import { calculateReadingTime, countWords, slugify } from '@/lib/utils';
 import { revalidatePath } from 'next/cache';
 
+export const dynamic = 'force-dynamic';
+
 async function resolveOrCreateTag(rawTagInput: string) {
   const cleanedName = rawTagInput.trim().replace(/\s+/g, ' ');
   if (!cleanedName) return null;

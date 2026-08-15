@@ -4,6 +4,8 @@ import { getAuthSession } from '@/lib/auth';
 import { categorySchema } from '@/schemas/category';
 import { revalidatePath } from 'next/cache';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const categories = await prisma.category.findMany({
