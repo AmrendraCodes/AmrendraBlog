@@ -1,18 +1,19 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { getAllPostsAsync } from '@/lib/posts';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
   const diagnostics = {
     hasDatabaseUrl: Boolean(process.env.DATABASE_URL),
-    databaseUrlMasked: process.env.DATABASE_URL ? process.env.DATABASE_URL.replace(/:([^:@]+)@/, ':****@') : null,
+    databaseUrlMasked: process.env.DATABASE_URL ? process.env.DATABASE_URL.replace(/:([^:@]+)@/, ':****@') : 'MISSING',
     nodeEnv: process.env.NODE_ENV,
     timestamp: new Date().toISOString(),
   };
 
   try {
+    const { prisma } = await import('@/lib/prisma');
+    const { getAllPostsAsync } = await import('@/lib/posts');
+
     const rawDbPosts = await prisma.blog.findMany({
       where: { status: 'PUBLISHED' },
       select: {
@@ -34,7 +35,11 @@ export async function GET() {
       rawDbCount: rawDbPosts.length,
       rawDbPosts,
       getAllPostsCount: allPostsAsync.length,
-      getAllPostsFirst3: allPostsAsync.slice(0, 3).map(p => ({ title: p.title, slug: p.slug, date: p.date })),
+      getAllPostsFirst3: allPostsAsync.slice(0, 3).map((p) => ({
+        title: p.title,
+        slug: p.slug,
+        date: p.date,
+      })),
     });
   } catch (error) {
     return NextResponse.json({
@@ -46,6 +51,6 @@ export async function GET() {
         code: error?.code,
         stack: error?.stack,
       },
-    }, { status: 200 });
+    });
   }
 }
