@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/lib/posts";
+import { getAllPostsAsync } from "@/lib/posts";
 import { getAllCaseStudies } from "@/lib/case-studies";
 import { SERVICES_DATA } from "@/lib/services";
 import { siteMetadata } from "@/config/seo";

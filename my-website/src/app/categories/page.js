@@ -1,6 +1,8 @@
 import Link from "next/link";
 import CategoriesSection from "@/components/blog/CategoriesSection";
-import { getAllPosts } from "@/lib/posts";
+import { getAllPostsAsync } from "@/lib/posts";
+
+export const revalidate = 0;
 
 export const metadata = {
   title: "Categories | Code with Amrendra",
@@ -28,8 +30,8 @@ export const metadata = {
   },
 };
 
-export default function CategoriesPage() {
-  const allPosts = getAllPosts();
+export default async function CategoriesPage() {
+  const allPosts = await getAllPostsAsync();
   const categoryCounts = {};
   allPosts.forEach((post) => {
     if (post.categorySlug) {

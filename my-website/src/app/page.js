@@ -4,11 +4,13 @@ import { ArrowRight, TerminalSquare, Github, Linkedin, Twitter, Youtube, Chevron
 import dynamic from 'next/dynamic';
 const CategoriesSection = dynamic(() => import('@/components/blog/CategoriesSection'));
 const FAQ = dynamic(() => import('@/components/FAQ'));
-import { getAllPosts } from "@/lib/posts";
+import { getAllPostsAsync } from "@/lib/posts";
 import { getAllCaseStudies } from "@/lib/case-studies";
 import JsonLd from "@/components/JsonLd";
 import { getWebsiteSchema, getPersonSchema, getLocalBusinessSchema } from "@/lib/schema";
 import HomeClient from "@/components/HomeClient";
+
+export const revalidate = 0;
 
 export const metadata = {
   title: "Code With Amrendra | AI Development Services & Cloud",
@@ -37,9 +39,9 @@ export const metadata = {
 };
 
 
-export default function Home() {
-  // Fetch posts from markdown files and pick top 5 for featured section
-  const allPosts = getAllPosts();
+export default async function Home() {
+  // Fetch posts from database (or markdown fallback) and pick top 5 for featured section
+  const allPosts = await getAllPostsAsync();
   const featuredPosts = allPosts.slice(0, 5).map((post) => ({
     title: post.title,
     description: post.excerpt,
