@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, TerminalSquare, Github, Linkedin, Twitter, Youtube, ChevronDown } from "lucide-react";
-import dynamic from 'next/dynamic';
-const CategoriesSection = dynamic(() => import('@/components/blog/CategoriesSection'));
-const FAQ = dynamic(() => import('@/components/FAQ'));
+import nextDynamic from 'next/dynamic';
+const CategoriesSection = nextDynamic(() => import('@/components/blog/CategoriesSection'));
+const FAQ = nextDynamic(() => import('@/components/FAQ'));
 import { getAllPostsAsync } from "@/lib/posts";
 import { getAllCaseStudies } from "@/lib/case-studies";
 import JsonLd from "@/components/JsonLd";
