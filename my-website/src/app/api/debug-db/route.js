@@ -46,6 +46,6 @@ export async function GET() {
         code: error?.code,
         stack: error?.stack,
       },
-    }, { status: 500 });
+    }, { status: 200 });
   }
 }
