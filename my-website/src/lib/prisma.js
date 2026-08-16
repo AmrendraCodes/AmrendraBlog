@@ -12,6 +12,10 @@ function getPrismaClient() {
     return prismaClientInstance;
   }
 
+  if (!dbUrl) {
+    return null;
+  }
+
   try {
     prismaClientInstance = new PrismaClient({
       datasources: {

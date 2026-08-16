@@ -172,7 +172,12 @@ export async function PUT(
     // Revalidate live website cache
     try {
       revalidatePath('/resources/blog');
+      revalidatePath('/blog');
+      revalidatePath('/');
+      revalidatePath('/categories');
+      if (categorySlug) revalidatePath(`/category/${categorySlug}`);
       revalidatePath(`/resources/blog/${updatedPost.slug}`);
+      revalidatePath(`/blog/${updatedPost.slug}`);
     } catch {
       // Ignore cache warning
     }
@@ -237,7 +242,14 @@ export async function DELETE(
     // Revalidate live website cache
     try {
       revalidatePath('/resources/blog');
-      if (post?.slug) revalidatePath(`/resources/blog/${post.slug}`);
+      revalidatePath('/blog');
+      revalidatePath('/');
+      revalidatePath('/categories');
+      if (post?.categorySlug) revalidatePath(`/category/${post.categorySlug}`);
+      if (post?.slug) {
+        revalidatePath(`/resources/blog/${post.slug}`);
+        revalidatePath(`/blog/${post.slug}`);
+      }
     } catch {
       // Ignore cache warning
     }

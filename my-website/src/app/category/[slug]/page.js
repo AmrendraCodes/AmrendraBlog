@@ -4,6 +4,7 @@ import BlogCard from '@/components/BlogCard';
 import JsonLd from '@/components/JsonLd';
 import { getCollectionPageSchema, getBreadcrumbSchema } from '@/lib/schema';
 
+export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export async function generateMetadata({ params }) {

@@ -5,6 +5,7 @@ import JsonLd from "@/components/JsonLd";
 import { getCollectionPageSchema } from "@/lib/schema";
 import { siteMetadata } from "@/config/seo";
 
+export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export const metadata = {

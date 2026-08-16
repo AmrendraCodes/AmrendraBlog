@@ -184,7 +184,12 @@ export async function POST(request: Request) {
 
     try {
       revalidatePath('/resources/blog');
+      revalidatePath('/blog');
+      revalidatePath('/');
+      revalidatePath('/categories');
+      if (categorySlug) revalidatePath(`/category/${categorySlug}`);
       revalidatePath(`/resources/blog/${createdPost.slug}`);
+      revalidatePath(`/blog/${createdPost.slug}`);
     } catch {}
 
     const fullPost = await prisma.blog.findUnique({

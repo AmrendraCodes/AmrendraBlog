@@ -10,6 +10,7 @@ import JsonLd from "@/components/JsonLd";
 import { getWebsiteSchema, getPersonSchema, getLocalBusinessSchema } from "@/lib/schema";
 import HomeClient from "@/components/HomeClient";
 
+export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export const metadata = {

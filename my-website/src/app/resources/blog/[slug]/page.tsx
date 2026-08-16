@@ -12,6 +12,7 @@ import ArticleNavigation from "@/components/blog/ArticleNavigation";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import AuthorBox from "@/components/blog/AuthorBox";
 
+export const dynamic = 'force-dynamic';
 export const dynamicParams = true;
 export const revalidate = 0;
 

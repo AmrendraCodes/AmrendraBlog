@@ -68,7 +68,7 @@ export async function getAllPostsAsync() {
         category: true,
         tags: { include: { tag: true } },
       },
-      orderBy: { publishedAt: "desc" },
+      orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
     });
 
     if (dbPosts && dbPosts.length > 0) {

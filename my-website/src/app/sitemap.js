@@ -83,7 +83,7 @@ export default async function sitemap() {
   }));
 
   // 3. Dynamic Blog Posts
-  const posts = getAllPosts() || [];
+  const posts = (await getAllPostsAsync()) || [];
   const blogUrls = posts.map((post) => ({
     url: `${baseUrl}/resources/blog/${post.slug}`,
     lastModified: post.date ? new Date(post.date) : new Date(),
