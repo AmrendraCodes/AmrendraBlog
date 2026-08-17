@@ -29,15 +29,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: "Post Not Found" };
   }
 
+  const metaTitle = post.metaTitle || post.title;
+  const metaDesc = post.metaDescription || post.description || post.excerpt;
+  const ogAlt = post.ogImageAlt || post.imageAlt || post.title;
+
   return {
-    title: post.title,
-    description: post.description || post.excerpt,
+    title: metaTitle,
+    description: metaDesc,
     alternates: {
       canonical: `/resources/blog/${slug}`,
     },
     openGraph: {
-      title: post.title,
-      description: post.description || post.excerpt,
+      title: metaTitle,
+      description: metaDesc,
       url: `${siteMetadata.siteUrl}/resources/blog/${slug}`,
       type: "article",
       publishedTime: post.date,
@@ -48,14 +52,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
           url: post.image || siteMetadata.ogImage,
           width: 1200,
           height: 630,
-          alt: post.title,
+          alt: ogAlt,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
-      description: post.description || post.excerpt,
+      title: metaTitle,
+      description: metaDesc,
       images: [post.image || siteMetadata.ogImage],
       creator: siteMetadata.social.twitter,
     },

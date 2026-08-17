@@ -108,6 +108,10 @@ async function seed() {
     const wordCount = countWords(content);
     const tagList = Array.isArray(data.tags) ? data.tags : [];
 
+    const metaTitle = data.metaTitle || title;
+    const metaDescription = data.metaDescription || data.description || excerpt;
+    const description = data.description || excerpt;
+
     // 1. Upsert Category
     const category = await prisma.category.upsert({
       where: { slug: categorySlug },
@@ -125,12 +129,12 @@ async function seed() {
       update: {
         title,
         excerpt,
-        description: excerpt,
+        description,
         content,
         featuredImage,
         ogImage: featuredImage,
-        metaTitle: title,
-        metaDescription: excerpt,
+        metaTitle,
+        metaDescription,
         status: 'PUBLISHED',
         publishedAt,
         readingTime: readTime,
@@ -143,12 +147,12 @@ async function seed() {
         title,
         slug,
         excerpt,
-        description: excerpt,
+        description,
         content,
         featuredImage,
         ogImage: featuredImage,
-        metaTitle: title,
-        metaDescription: excerpt,
+        metaTitle,
+        metaDescription,
         status: 'PUBLISHED',
         publishedAt,
         readingTime: readTime,
