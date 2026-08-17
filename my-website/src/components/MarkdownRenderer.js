@@ -145,10 +145,33 @@ export default function MarkdownRenderer({ content }) {
         h4: createHeadingComponent(4),
 
         // ─── Links: Next.js Link for internal, standard a for external ───
-        a: ({ href, children, ...props }) => {
-          if (href && (href.startsWith("/") || href.startsWith("#"))) {
+        a: ({ href, children, className, ...props }) => {
+          const isInternal =
+            href &&
+            (href.startsWith("/") ||
+              href.startsWith("#") ||
+              href.includes("codewithamrendra.in"));
+
+          let targetHref = href;
+          if (href && href.includes("codewithamrendra.in")) {
+            try {
+              const urlObj = new URL(href);
+              targetHref = urlObj.pathname + urlObj.search + urlObj.hash;
+            } catch {
+              targetHref = href;
+            }
+          }
+
+          const linkClasses =
+            "text-[#10B981] dark:text-[#34D399] font-semibold underline decoration-[#10B981]/50 hover:decoration-[#10B981] hover:text-[#059669] dark:hover:text-[#6EE7B7] transition-all cursor-pointer";
+
+          if (isInternal) {
             return (
-              <Link href={href} {...props}>
+              <Link
+                href={targetHref || "/"}
+                className={`${linkClasses} ${className || ""}`}
+                {...props}
+              >
                 {children}
               </Link>
             );
@@ -158,6 +181,7 @@ export default function MarkdownRenderer({ content }) {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
+              className={`${linkClasses} ${className || ""}`}
               {...props}
             >
               {children}

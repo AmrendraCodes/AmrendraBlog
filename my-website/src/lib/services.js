@@ -609,7 +609,7 @@ export const SERVICES_DATA = [
     ],
 
     relatedServiceSlugs: ["web-development", "digital-marketing", "seo-content-strategy"],
-    relatedBlogSlugs: ["minimalist-ui", "future-of-user-interfaces", "typography-rules"],
+    relatedBlogSlugs: ["how-to-build-a-light-and-dark-theme-switch-using-javascript", "minimalist-ui", "future-of-user-interfaces"],
     relatedCaseStudySlugs: ["shopease-store-redesign", "medicare-dashboard"],
   },
 

@@ -17,7 +17,7 @@ export default function ArticleNavigation({ prev, next }) {
       {/* Previous Post */}
       {prev ? (
         <Link
-          href={`/blog/${prev.slug}`}
+          href={`/resources/blog/${prev.slug}`}
           className="group flex flex-col p-5 bg-[var(--section-alt-bg)] border border-[var(--card-border)] rounded-xl hover:border-[#10B981]/30 hover:bg-[var(--card-bg-hover)] transition-all duration-300 no-underline"
         >
           <span className="text-xs font-bold uppercase tracking-widest text-[var(--text-muted)] mb-2 flex items-center gap-1.5">
@@ -43,7 +43,7 @@ export default function ArticleNavigation({ prev, next }) {
       {/* Next Post */}
       {next ? (
         <Link
-          href={`/blog/${next.slug}`}
+          href={`/resources/blog/${next.slug}`}
           className="group flex flex-col p-5 bg-[var(--section-alt-bg)] border border-[var(--card-border)] rounded-xl hover:border-[#10B981]/30 hover:bg-[var(--card-bg-hover)] transition-all duration-300 no-underline text-right"
         >
           <span className="text-xs font-bold uppercase tracking-widest text-[var(--text-muted)] mb-2 flex items-center gap-1.5 justify-end">

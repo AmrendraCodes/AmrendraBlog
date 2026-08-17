@@ -5,8 +5,8 @@ date: "July 19, 2026"
 readTime: "6 min read"
 category: "Development"
 categorySlug: "development"
-excerpt: "Learn how to build a responsive Light and Dark Theme Toggle using HTML, CSS, and JavaScript. Includes complete source code, localStorage support, and best practices."
-description: "Learn how to build a responsive Light and Dark Theme Toggle using HTML, CSS, and JavaScript. Includes complete source code, localStorage support, and best practices."
+excerpt: "Learn how to build a production-ready Light and Dark Theme Toggle using HTML, CSS, and JavaScript with localStorage persistence, system preference detection, and zero FOUC."
+description: "Learn how to build a production-ready Light and Dark Theme Toggle using HTML, CSS, and JavaScript with localStorage persistence, system preference detection, and zero FOUC."
 image: "/images/how-to-build-light-dark-theme-toggle-javascript.png"
 featuredImage: "/images/how-to-build-light-dark-theme-toggle-javascript.png"
 author: "Amrendra Kumar"
@@ -16,41 +16,34 @@ tags:
   - HTML
   - Frontend
   - Web Development
+  - UI/UX
 ---
 
 # How to Build a Light & Dark Theme Toggle Using JavaScript
 
-In today's digital era, most websites offer light and dark themes for better usability. Dark mode reduces color intensity, helping protect eyes and improve visibility, while light mode works well during daytime viewing.
+In today's digital era, offering a dark mode isn't just a nice-to-have; it's a core expectation for user accessibility and comfort, and a small but meaningful part of good [UI/UX and product design](https://www.codewithamrendra.in/services/ui-ux-product-design).
+ 
+While adding a basic light and dark mode feature using [HTML](https://www.codewithamrendra.in/category/development), [CSS](https://www.codewithamrendra.in/resources/blog/mastering-tailwind-css), and [JavaScript](https://www.codewithamrendra.in/resources/blog/how-to-learn-react) seems straightforward, many developers run into the same annoying problem: **The Flash of Unstyled Content (FOUC)**. This happens when a user who prefers dark mode visits your site, but the page flashes blindingly white for a split second before the JavaScript loads and applies the dark theme.
+ 
+In this guide, we will explore how to build a production-ready theme toggle that respects system preferences (`prefers-color-scheme`), saves user choices in `localStorage`, uses modern CSS variables, and—most importantly—prevents that dreaded white flash on page load. This is the kind of frontend detail we obsess over as part of our [web development services](https://www.codewithamrendra.in/services/web-development) at [Code with Amrendra](https://www.codewithamrendra.in/).
+ 
+---
 
-Adding light and dark mode features using [HTML](https://codewithamrendra.in/category/frontend-development), [CSS](https://codewithamrendra.in/blog/mastering-tailwind-css), and [JavaScript](https://codewithamrendra.in/blog/how-to-learn-react) is straightforward. In this blog, we'll explore how to implement these themes using modern web development practices.
+## The Modern Workflow for Theme Switching
+ 
+Before jumping into the code, it is important to understand the modern architecture of a theme switcher. Instead of overriding specific classes on elements, we use a scalable approach:
+ 
+1. **CSS Custom Properties (Variables)** — We define our colors in variables.
+2. **Data Attributes** — We toggle a `data-theme="dark"` attribute on the root `<html>` element.
+3. **Local Storage** — We save the user's manual preference so it persists across sessions.
+4. **System Preferences** — We fall back to the OS-level theme if the user hasn't made a manual choice.
 
 ---
 
-## Why Light/Dark Mode Matters
-
-Light/Dark mode is essential for professionals who spend long hours reading or working on websites. Several factors are improved when you provide theme choices:
-
-*   **Reduces Eye Strain:** Dark mode helps reduce eye strain, especially in low-light environments.
-*   **Saves Battery:** Devices with OLED or AMOLED screens consume significantly less power rendering dark pixels.
-*   **Accessibility:** Some users rely on high-contrast dark themes for better readability.
-*   **User Preference:** Letting users customize their viewing experience builds a more engaging user experience.
-
----
-
-## Understanding Basic Concepts
-
-Before jumping into the code, it is important to understand the workflow of a theme switcher:
-
-1.  **Themes:** Custom CSS rules (typically defined via variables or utility classes) that specify the background colors, text colors, and borders for each theme state.
-2.  **Toggle Function:** A JavaScript event handler attached to a button that listens for click events and toggles the active theme state.
-3.  **Class Manipulation:** Changing the className of a high-level element like `<body>` or `<html>` so all descendant elements update their styling accordingly.
-
----
-
-## Required HTML Structure
-
-We will start with a basic HTML structure containing a title, a description, and a button element to act as our theme switcher.
-
+## Step 1: The HTML and Accessibility
+ 
+We will start with a basic HTML structure. Notice the `<button>` element. It's crucial to use semantic HTML and include an `aria-label` so screen readers understand what the button does. Accessible, semantic markup like this is a core principle we follow across every [UI/UX and product design](https://www.codewithamrendra.in/services/ui-ux-product-design) engagement.
+ 
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -59,316 +52,193 @@ We will start with a basic HTML structure containing a title, a description, and
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Light/Dark Mode Toggle</title>
     <link rel="stylesheet" href="styles.css">
+ 
+    <!-- We will put our anti-FOUC script here later -->
 </head>
 <body>
     <div class="container">
         <h1>Welcome to My Website</h1>
         <p>Toggle between light and dark mode for a better experience.</p>
-        <button id="theme-toggle">🌙 Dark Mode</button>
+ 
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" aria-label="Toggle Dark Mode">
+            <span class="icon">🌓</span>
+        </button>
     </div>
+ 
+    <!-- Main JavaScript at the bottom -->
     <script src="script.js"></script>
 </body>
 </html>
 ```
 
-### Key Elements of HTML
-*   The `<button>` with id `theme-toggle` triggers the theme switch.
-*   The `<body>` element will have the theme class toggled dynamically.
-
 ---
-
-## Adding CSS for Light and Dark Themes
-
-Next, we write the CSS rules. We set CSS transition effects to make background color shifts feel smooth.
-
+ 
+## Step 2: CSS Custom Properties (Variables)
+ 
+Next, we write the CSS rules. Instead of hardcoding background colors everywhere, we define them at the `:root` level. When the `data-theme="dark"` attribute is added to the HTML tag, the variables swap out globally.
+ 
 ```css
+/* Base styles and Light Mode (Default) */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --button-bg: #eeeeee;
+    --button-text: #333333;
+}
+ 
+/* Dark Mode Overrides */
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #f0f0f0;
+    --button-bg: #333333;
+    --button-text: #ffffff;
+}
+ 
+/* Let the browser know this page supports both */
+html {
+    color-scheme: light dark;
+}
+ 
 body {
-    background-color: #ffffff;
-    color: #333333;
-    transition: background-color 0.3s, color 0.3s;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-family: Arial, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth fade */
+    margin: 0;
+    padding: 0;
 }
-
-body.dark-mode {
-    background-color: #121212;
-    color: #f0f0f0;
-}
-
+ 
 .container {
     max-width: 800px;
     margin: 50px auto;
-    padding: 20px;
     text-align: center;
 }
-
+ 
 button {
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 24px;
     cursor: pointer;
     border: none;
     border-radius: 5px;
-    background-color: #007BFF;
-    color: white;
-}
-
-button:hover {
-    background-color: #0056b3;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    transition: background-color 0.3s ease;
 }
 ```
 
 ---
-
-## Writing a JavaScript Toggle Function
-
-Now, we add JavaScript behavior to make the button interactive. We find the button by its ID and listen for a `"click"` event.
-
-```javascript
-const toggleButton = document.getElementById('theme-toggle');
-const body = document.body;
-
-toggleButton.addEventListener('click', () => {
-  body.classList.toggle('dark-mode');
-});
-```
-
----
-
-## Adding a Toggle Button with Custom Style
-
-To enhance the visual design of the button, we can apply custom button styles:
-
-```css
-#theme-toggle {
-  padding: 10px 20px;
-  cursor: pointer;
-  background-color: #eee;
-  border: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-#theme-toggle:hover {
-  background-color: #ddd;
-}
-```
-
-### Style Highlights
-*   **Padding:** Provides a touch-friendly target size.
-*   **Cursor Pointer:** Indicates clear hover interactivity.
-*   **Transitions:** Delivers a smooth animation feedback loop.
-
----
-
-## Using Icons for Better Clarity
-
-Using emojis or SVG icons (🌞/🌙) makes the button highly intuitive. Let's rewrite the button element to use icons dynamically:
-
+ 
+## Step 3: Preventing the White Flash (FOUC)
+ 
+This is the most critical step that many tutorials miss.
+ 
+If you wait for your main `script.js` to load at the bottom of the `<body>`, the browser will render the page in light mode first, then read `localStorage`, and then flip to dark mode. This causes a nasty flash.
+ 
+To fix this, we place a tiny, render-blocking script directly in the `<head>` of our HTML document. This executes instantly before the `<body>` is painted.
+ 
+Add this inside your `<head>` tag in the HTML:
+ 
 ```html
-<button id="theme-toggle">🌞</button>
-```
-
-```javascript
-const toggleButton = document.getElementById('theme-toggle');
-let isDarkMode = false;
-
-toggleButton.addEventListener('click', () => {
-  isDarkMode = !isDarkMode;
-  document.body.classList.toggle('dark-theme');
-  toggleButton.textContent = isDarkMode ? '🌙' : '🌞';
-});
-```
-
----
-
-## Final Code Integration
-
-Let's integrate all the methods into a single, cohesive, production-ready example including a toggle slider switch.
-
-### HTML Layout
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toggle Button Example</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="toggle-container">
-        <button id="themeToggle" class="toggle-btn">
-            <span class="toggle-thumb"></span>
-            <span class="icons">
-                <span class="moon">🌙</span>
-                <span class="sun">☀️</span>
-            </span>
-        </button>
-        <span id="toggleLabel" class="toggle-label">Dark Mode</span>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
-```
-
-### CSS Styling
-```css
-.toggle-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: Arial, sans-serif;
-}
-
-.toggle-btn {
-    position: relative;
-    width: 60px;
-    height: 30px;
-    border-radius: 15px;
-    background: #ddd;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    transition: all 0.3s ease;
-}
-
-.toggle-btn.active {
-    background: #4CAF50;
-}
-
-.toggle-thumb {
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: white;
-    transition: all 0.3s ease;
-}
-
-.toggle-btn.active .toggle-thumb {
-    left: calc(100% - 27px);
-}
-
-.icons {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 5px;
-    box-sizing: border-box;
-}
-
-.moon, .sun {
-    font-size: 14px;
-    opacity: 0.7;
-}
-
-.toggle-btn.active .moon {
-    opacity: 0;
-}
-
-.toggle-btn:not(.active) .sun {
-    opacity: 0;
-}
-
-.toggle-label {
-    font-size: 14px;
-    color: #333;
-}
-
-body.dark-mode {
-    background-color: #222;
-    color: #fff;
-}
-
-body.dark-mode .toggle-label {
-    color: #fff;
-}
-```
-
-### JavaScript Implementation
-```javascript
-document.addEventListener('DOMContentLoaded', function() {
-    const toggleBtn = document.getElementById('themeToggle');
-    const toggleLabel = document.getElementById('toggleLabel');
-    
-    // Check for saved user preference or use system preference
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    const currentTheme = localStorage.getItem('theme');
-    
-    // Set initial state
-    if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
-        document.body.classList.add('dark-mode');
-        toggleBtn.classList.add('active');
-        toggleLabel.textContent = 'Light Mode';
-    } else {
-        document.body.classList.remove('dark-mode');
-        toggleBtn.classList.remove('active');
-        toggleLabel.textContent = 'Dark Mode';
-    }
-    
-    // Toggle button click handler
-    toggleBtn.addEventListener('click', function() {
-        this.classList.toggle('active');
-        
-        if (this.classList.contains('active')) {
-            document.body.classList.add('dark-mode');
-            localStorage.setItem('theme', 'dark');
-            toggleLabel.textContent = 'Light Mode';
-        } else {
-            document.body.classList.remove('dark-mode');
-            localStorage.setItem('theme', 'light');
-            toggleLabel.textContent = 'Dark Mode';
+<script>
+    // Execute immediately to prevent FOUC
+    (function() {
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+ 
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
         }
-    });
-    
-    // Listen for system preference changes
-    prefersDarkScheme.addListener(e => {
-        const newTheme = e.matches ? 'dark' : 'light';
+    })();
+</script>
+```
+
+> [!TIP]
+> Placing this inline script in `<head>` ensures that the DOM receives `data-theme="dark"` before initial painting, completely eliminating Flash of Unstyled Content (FOUC) without adding external network latency.
+
+---
+ 
+## Step 4: The JavaScript Toggle Logic
+ 
+Now, in your `script.js` file (loaded at the bottom of the body), we handle the button click event. This script will read the current state, flip it, update the HTML attribute, and save the new preference to `localStorage`.
+ 
+```javascript
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+ 
+    themeToggleBtn.addEventListener('click', () => {
+        // Check current theme
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+ 
+        // Update the DOM
+        htmlElement.setAttribute('data-theme', newTheme);
+ 
+        // Save to localStorage
         localStorage.setItem('theme', newTheme);
-        
-        if (newTheme === 'dark') {
-            document.body.classList.add('dark-mode');
-            toggleBtn.classList.add('active');
-            toggleLabel.textContent = 'Light Mode';
-        } else {
-            document.body.classList.remove('dark-mode');
-            toggleBtn.classList.remove('active');
-            toggleLabel.textContent = 'Dark Mode';
+ 
+        // Update Accessibility Label
+        themeToggleBtn.setAttribute(
+            'aria-label',
+            newTheme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'
+        );
+    });
+ 
+    // Optional: Listen for system theme changes while the user is on the page
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        // Only update automatically if the user hasn't set a manual preference
+        if (!localStorage.getItem('theme')) {
+            const newSystemTheme = e.matches ? 'dark' : 'light';
+            htmlElement.setAttribute('data-theme', newSystemTheme);
         }
     });
 });
 ```
 
 ---
-
-## Conclusion
-
-Creating a Light/Dark toggle switch using HTML, CSS, and JavaScript is a simple yet effective way to improve the user experience on your website. Implementing preference persistence with `localStorage` and respecting system preferences with `prefers-color-scheme` ensures that your website behaves naturally for all visitors.
-
-Feel free to customize the design to match your branding! If you have any questions or want to share your implementations, let me know in the comments below.
+ 
+## Bonus: The Future of CSS with `light-dark()`
+ 
+Modern web development is moving incredibly fast. If you are building for modern browsers, you can now skip CSS variables entirely and use the new `light-dark()` CSS function.
+ 
+As long as you have `color-scheme: light dark;` defined, you can write CSS like this:
+ 
+```css
+body {
+    background-color: light-dark(#ffffff, #121212);
+    color: light-dark(#333333, #f0f0f0);
+}
+```
+ 
+This automatically applies the first color in light mode and the second color in dark mode, drastically reducing the amount of CSS you have to write.
 
 ---
+ 
+## Conclusion & Related Resources
+ 
+Creating a Light/Dark toggle switch using HTML, CSS, and JavaScript is essential for modern user experience. By utilizing `data-theme` attributes, `localStorage`, and placing an initialization script in your `<head>`, you guarantee that your website respects the user's eyes without any jarring flashes of light. Details like this also feed directly into [SEO and content strategy](https://www.codewithamrendra.in/services/seo-content-strategy), since performance and Core Web Vitals are ranking factors.
+ 
+If you are scaling up your application, explore these related guides and services:
 
+*   **Tailwind CSS Workflow**: Check out my complete guide on [Mastering Tailwind CSS](https://www.codewithamrendra.in/resources/blog/mastering-tailwind-css) for utility-first styling.
+*   **Next.js Architecture**: Learn global state management in [Building Scalable Next.js Applications](https://www.codewithamrendra.in/resources/blog/scalable-nextjs).
+*   **React Foundations**: Learn modern state and component patterns in [How to Learn React](https://www.codewithamrendra.in/resources/blog/how-to-learn-react).
+*   **Professional Services**: If you'd rather have custom frontend architecture built for your business, explore our [Web Development Services](https://www.codewithamrendra.in/services/web-development), [UI/UX & Product Design](https://www.codewithamrendra.in/services/ui-ux-product-design), or browse our [Real-World Case Studies](https://www.codewithamrendra.in/resources/case-studies).
+
+---
+ 
 ## FAQs
-
+ 
 ### 1. Can I implement dark mode without using JavaScript?
-
+ 
 > [!NOTE]
-> Yes, you can use the CSS `@media (prefers-color-scheme: dark)` media query to automatically detect and apply the user's system theme. However, using JavaScript is required if you want to let users manually override their system theme choice.
-
-### 2. Is localStorage the only way to save theme preferences?
-
-No, you can also use cookies or server-side session databases to remember the user's theme choice. `localStorage` is preferred for static websites because it requires no backend communication.
-
-### 3. Will the theme reset after the user refreshes the page?
-
-If you check `localStorage` on page load (before rendering body content, to prevent white flash), the user's selected theme will persist even after a refresh or browser restart.
-
-### 4. Can I animate the transition between light and dark modes?
-
-Yes! You can add CSS transitions to `background-color`, `color`, and `border-color` properties to create a smooth fade effect between themes.
+> Yes. You can use the CSS `@media (prefers-color-scheme: dark)` media query to automatically detect and apply the user's system theme. However, JavaScript is required if you want to provide a button that allows users to manually override their system settings.
+ 
+### 2. Why does my screen flash white before turning dark?
+ 
+This is called a Flash of Unstyled Content (FOUC). It happens because your JavaScript is executing after the browser has already rendered the page in its default (light) state. Move your `localStorage` check into a `<script>` tag inside your HTML `<head>` to fix this.
+ 
+### 3. Is localStorage the best way to save theme preferences?
+ 
+For static websites and single-page applications, `localStorage` is perfect. However, if you are using Server-Side Rendering (SSR) with a framework like Next.js, it is often better to use a Cookie. Cookies can be read by the server before the HTML is even sent to the browser, entirely preventing FOUC without inline head scripts.

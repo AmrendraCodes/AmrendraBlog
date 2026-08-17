@@ -20,7 +20,7 @@ export default function RelatedPosts({ posts }) {
         {posts.map((post) => (
           <Link
             key={post.slug}
-            href={`/blog/${post.slug}`}
+            href={`/resources/blog/${post.slug}`}
             className="group bg-[var(--section-alt-bg)]/40 backdrop-blur-md border border-white/5 rounded-2xl overflow-hidden hover:border-[#10B981]/40 hover:shadow-2xl hover:shadow-[#10B981]/5 transition-all duration-300 no-underline flex flex-col relative"
           >
             {/* Image */}
