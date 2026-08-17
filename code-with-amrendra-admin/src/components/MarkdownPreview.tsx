@@ -237,7 +237,7 @@ export default function MarkdownPreview({ content }: MarkdownPreviewProps) {
     // Standard paragraph
     if (trimmed.length > 0) {
       renderedElements.push(
-        <p key={`p-${i}`} className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed mb-3">
+        <p key={`p-${i}`} className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
           {renderInlineFormatted(trimmed)}
         </p>
       );
@@ -250,7 +250,7 @@ export default function MarkdownPreview({ content }: MarkdownPreviewProps) {
         <span>Article Content Live Preview</span>
         <span className="text-slate-400 font-normal">Formatted & Interlinked View</span>
       </div>
-      <div className="space-y-1">{renderedElements}</div>
+      <div className="space-y-2">{renderedElements}</div>
     </div>
   );
 }

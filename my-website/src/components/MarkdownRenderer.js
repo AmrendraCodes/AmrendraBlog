@@ -144,6 +144,49 @@ export default function MarkdownRenderer({ content }) {
         h3: createHeadingComponent(3),
         h4: createHeadingComponent(4),
 
+        // ─── Paragraphs with comfortable readability spacing ───
+        p: ({ children, ...props }) => (
+          <p
+            className="text-[var(--text-body)] text-base sm:text-[17px] lg:text-[18px] leading-[1.85] mb-7 last:mb-0"
+            {...props}
+          >
+            {children}
+          </p>
+        ),
+
+        // ─── Lists & List Items ───
+        ul: ({ children, ...props }) => (
+          <ul
+            className="list-disc pl-6 my-6 space-y-2.5 text-[var(--text-body)] text-base sm:text-[17px] lg:text-[18px] leading-[1.8]"
+            {...props}
+          >
+            {children}
+          </ul>
+        ),
+        ol: ({ children, ...props }) => (
+          <ol
+            className="list-decimal pl-6 my-6 space-y-2.5 text-[var(--text-body)] text-base sm:text-[17px] lg:text-[18px] leading-[1.8]"
+            {...props}
+          >
+            {children}
+          </ol>
+        ),
+        li: ({ children, ...props }) => (
+          <li
+            className="pl-1 my-1 leading-[1.8] text-[var(--text-body)] marker:text-[#10B981]"
+            {...props}
+          >
+            {children}
+          </li>
+        ),
+
+        // ─── Strong / Bold ───
+        strong: ({ children, ...props }) => (
+          <strong className="font-bold text-[var(--text-heading)]" {...props}>
+            {children}
+          </strong>
+        ),
+
         // ─── Links: Next.js Link for internal, standard a for external ───
         a: ({ href, children, className, ...props }) => {
           const isInternal =

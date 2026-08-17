@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @custom-variant dark (&:is(.dark *));
 
 /* ═══════════════════════════════════════════════════════════
@@ -460,3 +461,68 @@ button, a, input, select, textarea {
   content-visibility: auto;
   contain-intrinsic-size: 0 500px;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   BLOG CMS & ARTICLE PROSE TYPOGRAPHY & SPACING
+   ═══════════════════════════════════════════════════════════ */
+#article-content,
+.prose {
+  font-size: 1.125rem;
+  line-height: 1.85;
+}
+
+#article-content p,
+.prose p {
+  margin-top: 0;
+  margin-bottom: 1.75rem !important;
+  line-height: 1.85 !important;
+  color: var(--text-body);
+}
+
+#article-content p:last-child,
+.prose p:last-child {
+  margin-bottom: 0 !important;
+}
+
+#article-content ul,
+#article-content ol,
+.prose ul,
+.prose ol {
+  margin-top: 1.25rem;
+  margin-bottom: 1.75rem !important;
+  padding-left: 1.5rem;
+}
+
+#article-content li,
+.prose li {
+  margin-top: 0.35rem;
+  margin-bottom: 0.5rem !important;
+  line-height: 1.8;
+}
+
+#article-content h2,
+.prose h2 {
+  margin-top: 2.75rem !important;
+  margin-bottom: 1.25rem !important;
+}
+
+#article-content h3,
+.prose h3 {
+  margin-top: 2.25rem !important;
+  margin-bottom: 1rem !important;
+}
+
+#article-content blockquote,
+.prose blockquote {
+  margin-top: 1.75rem !important;
+  margin-bottom: 1.75rem !important;
+}
+
+#article-content pre,
+.prose pre,
+#article-content .code-block-wrapper,
+.prose .code-block-wrapper {
+  margin-top: 1.75rem !important;
+  margin-bottom: 1.75rem !important;
+}
+
