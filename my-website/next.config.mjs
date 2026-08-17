@@ -109,7 +109,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://www.facebook.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https: https://www.facebook.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https: https://www.facebook.com https://connect.facebook.net; frame-ancestors 'none';",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://www.facebook.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https: https://www.facebook.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https: https://www.facebook.com https://connect.facebook.net; frame-src 'self' https://www.facebook.com https://web.facebook.com https://connect.facebook.net https://www.googletagmanager.com https://www.youtube.com https://youtube.com; frame-ancestors 'none';",
           },
         ],
       },
