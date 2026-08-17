@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "jsx": "preserve",
+    "paths": {
+      "@/*": ["./code-with-amrendra-admin/src/*"]
+    }
+  },
+  "include": [
+    "code-with-amrendra-admin/**/*.ts",
+    "code-with-amrendra-admin/**/*.tsx",
+    "code-with-amrendra-admin/next-env.d.ts",
+    "my-website/**/*.ts",
+    "my-website/**/*.tsx"
+  ],
+  "exclude": [
+    "**/node_modules"
+  ]
+}

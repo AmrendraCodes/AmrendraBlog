@@ -80,7 +80,7 @@ export default function ForgotPasswordPage() {
           <Globe size={15} className="text-slate-400" />
           <select
             value={language}
-            onChange={(e) => setLanguage(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setLanguage(e.target.value)}
             className="bg-transparent text-slate-700 font-medium outline-none cursor-pointer"
           >
             <option value="en" className="bg-white text-slate-700">English (US)</option>
@@ -102,7 +102,7 @@ export default function ForgotPasswordPage() {
               </div>
               <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Reset your password</h1>
               <p className="text-xs sm:text-sm text-slate-500 mt-1.5 leading-relaxed">
-                Enter your registered email address and we'll send you a secure password reset link.
+                Enter your registered email address and we&apos;ll send you a secure password reset link.
               </p>
             </div>
 
@@ -114,18 +114,15 @@ export default function ForgotPasswordPage() {
               </div>
             )}
 
-            {/* Success Message Card */}
+            {/* Success Message Banner */}
             {message ? (
               <div className="space-y-6">
-                <div className="p-4 rounded-2xl bg-emerald-50/80 border border-emerald-200/80 text-emerald-800 text-xs font-medium space-y-2">
-                  <div className="flex items-center gap-2 font-bold text-emerald-700 text-sm">
-                    <CheckCircle2 size={18} />
-                    <span>Reset Link Dispatched</span>
+                <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-xs sm:text-sm flex items-start gap-3 shadow-xs">
+                  <CheckCircle2 size={20} className="text-emerald-600 flex-shrink-0 mt-0.5" />
+                  <div className="space-y-1">
+                    <p className="font-bold text-emerald-900">Check your inbox</p>
+                    <p className="text-emerald-700 leading-relaxed text-xs">{message}</p>
                   </div>
-                  <p className="leading-relaxed text-emerald-700/90">{message}</p>
-                  <p className="text-[11px] text-emerald-600 pt-1">
-                    Please check your inbox and spam folder. The link will expire in 30 minutes.
-                  </p>
                 </div>
 
                 <Link
@@ -149,7 +146,7 @@ export default function ForgotPasswordPage() {
                       type="email"
                       required
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                       placeholder="Enter your registered email"
                       className="w-full bg-slate-50/60 border border-slate-200 text-slate-800 font-medium rounded-xl py-3 pl-11 pr-4 text-sm placeholder:text-slate-400 focus:outline-none focus:border-indigo-600 focus:bg-white focus:ring-2 focus:ring-indigo-600/15 shadow-xs transition"
                     />

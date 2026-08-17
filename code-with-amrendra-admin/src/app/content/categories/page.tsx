@@ -74,7 +74,7 @@ export default function CategoriesPage() {
     try {
       const res = await fetch(`/api/categories?id=${id}`, { method: 'DELETE' });
       if (res.ok) {
-        setCategories((prev) => prev.filter((c) => c.id !== id));
+        setCategories((prev: any[]) => prev.filter((c: any) => c.id !== id));
       }
     } catch (err) {
       console.error('Delete category error:', err);
@@ -82,7 +82,7 @@ export default function CategoriesPage() {
   };
 
   const filtered = categories.filter(
-    (c) =>
+    (c: any) =>
       c.name.toLowerCase().includes(search.toLowerCase()) ||
       c.slug.toLowerCase().includes(search.toLowerCase())
   );
@@ -95,7 +95,7 @@ export default function CategoriesPage() {
           <input
             type="text"
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
             placeholder="Search categories..."
             className="admin-input pl-10"
           />
@@ -165,7 +165,7 @@ export default function CategoriesPage() {
                   type="text"
                   required
                   value={name}
-                  onChange={(e) => handleNameChange(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleNameChange(e.target.value)}
                   placeholder="e.g. Engineering"
                   className="admin-input text-xs"
                 />
@@ -177,7 +177,7 @@ export default function CategoriesPage() {
                   type="text"
                   required
                   value={slug}
-                  onChange={(e) => setSlug(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSlug(e.target.value)}
                   placeholder="engineering"
                   className="admin-input text-xs font-mono text-indigo-700 font-bold"
                 />
@@ -188,7 +188,7 @@ export default function CategoriesPage() {
                 <textarea
                   rows={2}
                   value={description}
-                  onChange={(e) => setDescription(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
                   placeholder="Category description..."
                   className="admin-input text-xs"
                 />

@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma';
 import { getAuthSession } from '@/lib/auth';
 import { blogSchema } from '@/schemas/blog';
 import { calculateReadingTime, countWords, slugify } from '@/lib/utils';
+import { formatArticleMarkdown } from '@/lib/formatter';
 import { revalidatePath } from 'next/cache';
 
 export const dynamic = 'force-dynamic';
@@ -126,8 +127,16 @@ export async function POST(request: Request) {
     }
 
     const data = parsed.data;
-    const readTime = calculateReadingTime(data.content);
-    const wordCount = countWords(data.content);
+
+    // Automatically format markdown & apply smart interlinking
+    const formatRes = formatArticleMarkdown(data.content, {
+      currentSlug: data.slug,
+      articleTitle: data.title,
+    });
+    const finalContent = formatRes.formattedContent || data.content;
+
+    const readTime = calculateReadingTime(finalContent);
+    const wordCount = countWords(finalContent);
 
     let categorySlug = null;
     if (data.categoryId) {
@@ -141,7 +150,7 @@ export async function POST(request: Request) {
         slug: data.slug,
         excerpt: data.excerpt || null,
         description: data.description || data.excerpt || null,
-        content: data.content,
+        content: finalContent,
         featuredImage: data.featuredImage || null,
         ogImage: data.ogImage || data.featuredImage || null,
         canonicalUrl: data.canonicalUrl || null,

@@ -61,7 +61,7 @@ export default function BlogListPage() {
             <input
               type="text"
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
               placeholder="Search posts by title..."
               className="admin-input pl-10"
             />
@@ -70,7 +70,7 @@ export default function BlogListPage() {
           <div className="relative">
             <select
               value={status}
-              onChange={(e) => setStatus(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setStatus(e.target.value)}
               className="admin-input cursor-pointer pr-8 text-xs font-semibold"
             >
               <option value="">All Statuses</option>

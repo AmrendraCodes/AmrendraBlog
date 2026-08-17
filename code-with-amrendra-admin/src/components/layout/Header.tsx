@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import { ExternalLink, Search, ShieldCheck } from 'lucide-react';
 
 interface HeaderProps {

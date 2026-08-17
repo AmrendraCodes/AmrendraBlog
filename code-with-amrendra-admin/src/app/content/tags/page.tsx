@@ -72,14 +72,14 @@ export default function TagsPage() {
     try {
       const res = await fetch(`/api/tags?id=${id}`, { method: 'DELETE' });
       if (res.ok) {
-        setTags((prev) => prev.filter((t) => t.id !== id));
+        setTags((prev: any[]) => prev.filter((t: any) => t.id !== id));
       }
     } catch (err) {
       console.error('Delete tag error:', err);
     }
   };
 
-  const filtered = tags.filter((t) => t.name.toLowerCase().includes(search.toLowerCase()));
+  const filtered = tags.filter((t: any) => t.name.toLowerCase().includes(search.toLowerCase()));
 
   return (
     <DashboardLayout title="Tag Management" subtitle="Manage article tags and metadata keywords">
@@ -89,7 +89,7 @@ export default function TagsPage() {
           <input
             type="text"
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
             placeholder="Search tags..."
             className="admin-input pl-10"
           />
@@ -107,7 +107,7 @@ export default function TagsPage() {
           ) : filtered.length === 0 ? (
             <div className="py-8 text-center text-slate-400 font-medium w-full">No tags found.</div>
           ) : (
-            filtered.map((tag) => (
+            filtered.map((tag: any) => (
               <div
                 key={tag.id}
                 className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 font-semibold shadow-xs"
@@ -146,7 +146,7 @@ export default function TagsPage() {
                   type="text"
                   required
                   value={name}
-                  onChange={(e) => handleNameChange(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleNameChange(e.target.value)}
                   placeholder="e.g. Next.js"
                   className="admin-input text-xs"
                 />
@@ -158,7 +158,7 @@ export default function TagsPage() {
                   type="text"
                   required
                   value={slug}
-                  onChange={(e) => setSlug(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSlug(e.target.value)}
                   placeholder="nextjs"
                   className="admin-input text-xs font-mono text-indigo-700 font-bold"
                 />
