@@ -38,84 +38,19 @@ export interface FormatResult {
 
 export const BASE_INTERLINK_TARGETS: InterlinkTarget[] = [
   {
-    keywords: ['Tailwind CSS', 'Mastering Tailwind CSS', 'Tailwind', 'utility-first styling', 'utility-first CSS'],
-    url: '/resources/blog/mastering-tailwind-css',
-    title: 'Mastering Tailwind CSS',
-  },
-  {
-    keywords: ['How to Learn React', 'Learn React', 'React tutorial', 'React Foundations', 'React fundamentals'],
+    keywords: ['How to Learn React', 'Learn React', 'React tutorial', 'React Foundations', 'React fundamentals', 'React in 2026'],
     url: '/resources/blog/how-to-learn-react',
-    title: 'How to Learn React',
+    title: 'How to Learn React in 2026: The Complete Beginner\'s Guide',
   },
   {
-    keywords: ['React Component Systems', 'Component Systems', 'Reusable React Components', 'Reusable Components'],
-    url: '/resources/blog/react-component-systems',
-    title: 'Building Reusable React Component Systems',
-  },
-  {
-    keywords: ['Building Scalable Next.js Applications', 'Scalable Next.js', 'Next.js Architecture', 'Next.js applications', 'Next.js App Router', 'Next.js'],
-    url: '/resources/blog/scalable-nextjs',
-    title: 'Building Scalable Next.js Applications',
-  },
-  {
-    keywords: ['The Ultimate Guide to SEO in the AI Era', 'SEO in the AI Era', 'SEO and AI', 'AI Search Optimization', 'Search Engine Optimization'],
-    url: '/resources/blog/seo-ai-era',
-    title: 'The Ultimate Guide to SEO in the AI Era',
-  },
-  {
-    keywords: ['Why Minimalist UI is Back', 'Minimalist UI', 'Minimalist Design System', 'Minimalist User Interface'],
-    url: '/resources/blog/minimalist-ui',
-    title: 'Why Minimalist UI is Back',
-  },
-  {
-    keywords: ['Designing for the Next Billion Users', 'Next Billion Users', 'Minimalist Approach'],
-    url: '/resources/blog/minimalist-design',
-    title: 'Designing for the Next Billion Users',
-  },
-  {
-    keywords: ['Typography Rules Every Designer Should Know', 'Typography Rules', 'Typography in Design', 'Web Typography'],
-    url: '/resources/blog/typography-rules',
-    title: 'Typography Rules Every Designer Should Know',
-  },
-  {
-    keywords: ['Automating CI/CD Pipelines with GitHub Actions & Docker', 'GitHub Actions & Docker', 'GitHub Actions', 'CI/CD Pipelines', 'CI/CD pipeline'],
-    url: '/resources/blog/github-actions-docker',
-    title: 'Automating CI/CD Pipelines with GitHub Actions & Docker',
-  },
-  {
-    keywords: ['Creating Autonomous AI Agents with Modern LLM Workflows', 'Autonomous AI Agents', 'AI Agents', 'LLM Workflows', 'Autonomous Agents'],
-    url: '/resources/blog/autonomous-ai-agents',
-    title: 'Creating Autonomous AI Agents',
-  },
-  {
-    keywords: ['AWS Infrastructure Best Practices for Startups', 'AWS Infrastructure', 'AWS Best Practices', 'Cloud Infrastructure'],
-    url: '/resources/blog/aws-infrastructure-startups',
-    title: 'AWS Infrastructure Best Practices for Startups',
-  },
-  {
-    keywords: ['Designing Multi-Tenant SaaS Platforms for Scale', 'Multi-Tenant SaaS', 'SaaS Architecture', 'Designing SaaS Platforms'],
-    url: '/resources/blog/saas-architecture-scale',
-    title: 'Designing Multi-Tenant SaaS Platforms for Scale',
-  },
-  {
-    keywords: ['The Anatomy of a High-Converting Landing Page', 'High-Converting Landing Page', 'Landing Page Optimization', 'Landing Page'],
-    url: '/resources/blog/high-converting-landing-page',
-    title: 'The Anatomy of a High-Converting Landing Page',
-  },
-  {
-    keywords: ['The Future of Web Development', 'Future of Web Development', 'Web Development Trends in 2026'],
-    url: '/resources/blog/future-of-web-dev',
-    title: 'The Future of Web Development',
-  },
-  {
-    keywords: ['The Future of User Interfaces', 'Glassmorphism and Beyond', 'Glassmorphism'],
-    url: '/resources/blog/future-of-user-interfaces',
-    title: 'The Future of User Interfaces',
-  },
-  {
-    keywords: ['Light & Dark Theme Toggle', 'Light and Dark Theme Switch', 'Dark Mode Toggle', 'Theme Switching'],
+    keywords: ['Light & Dark Theme Toggle', 'Light and Dark Theme Switch', 'Dark Mode Toggle', 'Theme Switching', 'Theme Switch JavaScript'],
     url: '/resources/blog/how-to-build-a-light-and-dark-theme-switch-using-javascript',
     title: 'How to Build a Light & Dark Theme Toggle Using JavaScript',
+  },
+  {
+    keywords: ['Microservices vs Modular Monolith', 'Modular Monolith', 'Microservices', 'Architecture Evolution', 'Modular Monolith vs Microservices'],
+    url: '/resources/blog/microservices-vs-modular-monolith-2026',
+    title: 'Microservices vs Modular Monolith in 2026: Which Architecture Actually Scales?',
   },
   // Site Services & High-Value Pages
   {

@@ -176,7 +176,7 @@ export const SERVICES_DATA = [
     ],
 
     relatedServiceSlugs: ["ui-ux-product-design", "cloud-devops", "seo-content-strategy"],
-    relatedBlogSlugs: ["high-converting-landing-page", "scalable-nextjs", "react-component-systems"],
+    relatedBlogSlugs: ["how-to-learn-react", "how-to-build-a-light-and-dark-theme-switch-using-javascript"],
     relatedCaseStudySlugs: ["shopease-store-redesign", "fintrack-finance-app"],
   },
 
@@ -327,7 +327,7 @@ export const SERVICES_DATA = [
     ],
 
     relatedServiceSlugs: ["seo-content-strategy", "web-development", "ui-ux-product-design"],
-    relatedBlogSlugs: ["seo-ai-era", "high-converting-landing-page"],
+    relatedBlogSlugs: ["microservices-vs-modular-monolith-2026", "how-to-learn-react"],
     relatedCaseStudySlugs: ["shopease-store-redesign"],
   },
 
@@ -468,7 +468,7 @@ export const SERVICES_DATA = [
     ],
 
     relatedServiceSlugs: ["web-development", "cloud-devops", "digital-marketing"],
-    relatedBlogSlugs: ["autonomous-ai-agents", "seo-ai-era"],
+    relatedBlogSlugs: ["microservices-vs-modular-monolith-2026", "how-to-learn-react"],
     relatedCaseStudySlugs: ["medicare-dashboard", "fintrack-finance-app"],
   },
 
@@ -609,7 +609,7 @@ export const SERVICES_DATA = [
     ],
 
     relatedServiceSlugs: ["web-development", "digital-marketing", "seo-content-strategy"],
-    relatedBlogSlugs: ["how-to-build-a-light-and-dark-theme-switch-using-javascript", "minimalist-ui", "future-of-user-interfaces"],
+    relatedBlogSlugs: ["how-to-build-a-light-and-dark-theme-switch-using-javascript", "how-to-learn-react"],
     relatedCaseStudySlugs: ["shopease-store-redesign", "medicare-dashboard"],
   },
 
@@ -750,7 +750,7 @@ export const SERVICES_DATA = [
     ],
 
     relatedServiceSlugs: ["web-development", "ai-automation", "seo-content-strategy"],
-    relatedBlogSlugs: ["aws-infrastructure-startups", "github-actions-docker", "saas-architecture-scale"],
+    relatedBlogSlugs: ["microservices-vs-modular-monolith-2026", "how-to-learn-react"],
     relatedCaseStudySlugs: ["fintrack-finance-app", "medicare-dashboard"],
   },
 
@@ -891,7 +891,7 @@ export const SERVICES_DATA = [
     ],
 
     relatedServiceSlugs: ["digital-marketing", "web-development", "ui-ux-product-design"],
-    relatedBlogSlugs: ["seo-ai-era", "high-converting-landing-page"],
+    relatedBlogSlugs: ["microservices-vs-modular-monolith-2026", "how-to-build-a-light-and-dark-theme-switch-using-javascript"],
     relatedCaseStudySlugs: ["shopease-store-redesign"],
   },
 ];

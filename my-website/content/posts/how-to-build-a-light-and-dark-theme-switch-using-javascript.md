@@ -23,7 +23,7 @@ tags:
 
 In today's digital era, offering a dark mode isn't just a nice-to-have; it's a core expectation for user accessibility and comfort, and a small but meaningful part of good [UI/UX and product design](https://www.codewithamrendra.in/services/ui-ux-product-design).
 
-While adding a basic light and dark mode feature using [HTML](https://www.codewithamrendra.in/category/development), [CSS](https://www.codewithamrendra.in/resources/blog/mastering-tailwind-css), and [JavaScript](https://www.codewithamrendra.in/resources/blog/how-to-learn-react) seems straightforward, many developers run into the same annoying problem: **The Flash of Unstyled Content (FOUC)**.
+While adding a basic light and dark mode feature using [HTML](https://www.codewithamrendra.in/category/development), [CSS](https://www.codewithamrendra.in/category/development), and [JavaScript](https://www.codewithamrendra.in/resources/blog/how-to-learn-react) seems straightforward, many developers run into the same annoying problem: **The Flash of Unstyled Content (FOUC)**.
 
 This happens when a user who prefers dark mode visits your site, but the page flashes blindingly white for a split second before the JavaScript loads and applies the dark theme.
 
@@ -233,8 +233,7 @@ Details like this also feed directly into [SEO and content strategy](https://www
 
 If you are scaling up your application, explore these related guides and services:
 
-*   **Tailwind CSS Workflow**: Check out my complete guide on [Mastering Tailwind CSS](https://www.codewithamrendra.in/resources/blog/mastering-tailwind-css) for utility-first styling.
-*   **Next.js Architecture**: Learn global state management in [Building Scalable Next.js Applications](https://www.codewithamrendra.in/resources/blog/scalable-nextjs).
+*   **Architecture & Scaling**: Learn how to balance system complexity in [Microservices vs Modular Monolith in 2026](https://www.codewithamrendra.in/resources/blog/microservices-vs-modular-monolith-2026).
 *   **React Foundations**: Learn modern state and component patterns in [How to Learn React](https://www.codewithamrendra.in/resources/blog/how-to-learn-react).
 *   **Professional Services**: If you'd rather have custom frontend architecture built for your business, explore our [Web Development Services](https://www.codewithamrendra.in/services/web-development), [UI/UX & Product Design](https://www.codewithamrendra.in/services/ui-ux-product-design), or browse our [Real-World Case Studies](https://www.codewithamrendra.in/resources/case-studies).
 

@@ -8,17 +8,9 @@ import ServiceCard from "./ServiceCard";
 export default function ServiceRelated({ relatedServices = [], relatedBlogSlugs = [], relatedCaseStudySlugs = [] }) {
   // Map of static blog titles for interlinking
   const BLOG_TITLES = {
-    "high-converting-landing-page": "How to Build a High-Converting Landing Page",
-    "scalable-nextjs": "Building Scalable Web Applications with Next.js",
-    "react-component-systems": "Mastering React Component Systems & State",
-    "seo-ai-era": "SEO Strategies in the Age of Artificial Intelligence",
-    "autonomous-ai-agents": "The Rise of Autonomous AI Agents in Web Apps",
-    "minimalist-ui": "Minimalist UI Design Principles for Modern Web",
-    "future-of-user-interfaces": "The Future of User Interfaces & Dynamic Web",
-    "typography-rules": "Typography Rules Every Frontend Developer Should Know",
-    "aws-infrastructure-startups": "AWS Infrastructure Best Practices for Startups",
-    "github-actions-docker": "Automating Deployments with GitHub Actions & Docker",
-    "saas-architecture-scale": "Architecting Multi-Tenant SaaS Apps at Scale",
+    "how-to-build-a-light-and-dark-theme-switch-using-javascript": "How to Build a Light & Dark Theme Toggle Using JavaScript",
+    "microservices-vs-modular-monolith-2026": "Microservices vs Modular Monolith in 2026: Which Architecture Actually Scales?",
+    "how-to-learn-react": "How to Learn React in 2026: The Complete Beginner's Guide",
   };
 
   // Map of static case study titles for interlinking
@@ -78,7 +70,7 @@ export default function ServiceRelated({ relatedServices = [], relatedBlogSlugs 
                 {relatedBlogSlugs.map((slug) => (
                   <Link
                     key={slug}
-                    href={`/blog/${slug}`}
+                    href={`/resources/blog/${slug}`}
                     className="group flex items-center justify-between p-4 rounded-xl bg-[var(--background)] border border-[var(--card-border)] hover:border-[#10B981]/50 transition-all duration-300"
                   >
                     <span className="text-sm font-semibold text-[var(--text-heading)] group-hover:text-[#10B981] transition-colors line-clamp-1 pr-4">
