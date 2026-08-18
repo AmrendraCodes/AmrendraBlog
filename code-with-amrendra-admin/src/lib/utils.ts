@@ -35,3 +35,22 @@ export function formatDate(dateStr: string | Date | null | undefined): string {
     year: 'numeric',
   });
 }
+
+export async function safeJson(res: Response): Promise<any> {
+  try {
+    const contentType = res.headers.get('content-type') || '';
+    if (contentType.includes('application/json')) {
+      return await res.json();
+    }
+    const text = await res.text();
+    return {
+      success: false,
+      error: { message: `Server returned non-JSON response (${res.status}): ${text.substring(0, 60)}` },
+    };
+  } catch (err: any) {
+    return {
+      success: false,
+      error: { message: err?.message || 'Failed to parse server response' },
+    };
+  }
+}

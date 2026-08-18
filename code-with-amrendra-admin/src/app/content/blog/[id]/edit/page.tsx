@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
+import { slugify, safeJson } from '@/lib/utils';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import MarkdownPreview from '@/components/MarkdownPreview';
 import {
@@ -75,10 +76,10 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
           fetch(`/api/blogs/${id}`),
         ]);
 
-        const catJson = await catRes.json();
+        const catJson = await safeJson(catRes);
         if (active && catJson.success) setCategories(catJson.data.categories);
 
-        const postJson = await postRes.json();
+        const postJson = await safeJson(postRes);
         if (active && postJson.success) {
           const p = postJson.data.post;
           setTitle(p.title || '');
@@ -130,7 +131,7 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
         }),
       });
 
-      const json = await res.json();
+      const json = await safeJson(res);
       if (res.ok && json.success) {
         setContent(json.data.formattedContent);
         setFormatStats(json.data.stats);
@@ -165,16 +166,16 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
           categoryId: categoryId || undefined,
           authorName,
           tags: tagsArray,
-          metaTitle,
-          metaDescription,
+          metaTitle: metaTitle || title,
+          metaDescription: metaDescription || excerpt,
           canonicalUrl,
-          ogTitle,
-          ogDescription,
-          ogImage,
+          ogTitle: ogTitle || metaTitle || title,
+          ogDescription: ogDescription || metaDescription || excerpt,
+          ogImage: ogImage || featuredImage,
         }),
       });
 
-      const json = await res.json();
+      const json = await safeJson(res);
       if (!res.ok || !json.success) {
         setError(json.error?.message || 'Failed to update blog post');
         setSaving(false);

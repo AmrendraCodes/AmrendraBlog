@@ -23,7 +23,7 @@ import {
   CheckCircle2,
   Link2,
 } from 'lucide-react';
-import { slugify } from '@/lib/utils';
+import { slugify, safeJson } from '@/lib/utils';
 
 export default function NewBlogPostPage() {
   const router = useRouter();
@@ -72,7 +72,7 @@ export default function NewBlogPostPage() {
     async function loadCategories() {
       try {
         const res = await fetch('/api/categories');
-        const json = await res.json();
+        const json = await safeJson(res);
         if (active && json.success) {
           setCategories(json.data.categories);
         }
@@ -117,7 +117,7 @@ export default function NewBlogPostPage() {
         }),
       });
 
-      const json = await res.json();
+      const json = await safeJson(res);
       if (res.ok && json.success) {
         setContent(json.data.formattedContent);
         setFormatStats(json.data.stats);
@@ -184,7 +184,7 @@ export default function NewBlogPostPage() {
         }),
       });
 
-      const json = await res.json();
+      const json = await safeJson(res);
       if (!res.ok || !json.success) {
         setError(json.error?.message || 'Failed to save blog post');
         setSaving(false);
