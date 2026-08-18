@@ -17,7 +17,7 @@ interface DashboardLayoutProps {
 
 export default function DashboardLayout({ children, title, subtitle, user }: DashboardLayoutProps) {
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-[#f3f5fc] text-slate-900 relative overflow-hidden">
+    <div className="flex flex-col md:flex-row min-h-screen bg-[#f3f5fc] text-slate-900 relative">
       {/* Background Watermark Logo */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden flex items-center justify-center z-0">
         <Image

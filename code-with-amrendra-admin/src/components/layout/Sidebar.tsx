@@ -201,7 +201,7 @@ export default function Sidebar({ user }: SidebarProps) {
       </div>
 
       {/* Desktop Sidebar */}
-      <aside className={`hidden md:block h-screen sticky top-0 transition-all duration-200 ${collapsed ? 'w-20' : 'w-64'}`}>
+      <aside className={`hidden md:block h-screen sticky top-0 self-start z-30 flex-shrink-0 transition-all duration-200 ${collapsed ? 'w-20' : 'w-64'}`}>
         {sidebarContent}
       </aside>
 
