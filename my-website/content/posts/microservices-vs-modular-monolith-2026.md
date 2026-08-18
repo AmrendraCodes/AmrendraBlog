@@ -11,8 +11,9 @@ image: "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea?q=80&w=800&
 featuredImage: "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea?q=80&w=800&auto=format&fit=crop"
 author: "Amrendra kumar"
 tags:
-  - Microservices
-  - Modular Monolith
+  - AWS Infrastructure
+  - DevOps
+  - SaaS Architecture
 ---
 
 Choosing between a modular monolith and microservices is one of the most important architectural decisions for modern software teams. While microservices remain popular for large-scale distributed systems, they also introduce operational complexity that many applications do not need.
