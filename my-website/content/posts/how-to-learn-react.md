@@ -12,9 +12,7 @@ featuredImage: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=8
 author: "Amrendra Kumar"
 tags:
   - React
-  - JavaScript
   - Frontend Development
-  - Web Development
 ---
 
 React remains the most popular UI library in the JavaScript ecosystem. Whether you're building a portfolio site, a SaaS dashboard, or a full-scale enterprise application, React gives you the tools to create fast, interactive, and maintainable user interfaces.
