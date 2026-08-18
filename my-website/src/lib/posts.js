@@ -53,6 +53,7 @@ function getPostsFromFilesystem() {
       wordCount: countWords(content),
       content: content.trim(),
       status: "PUBLISHED",
+      views: data.views || 0,
     };
   });
 
@@ -99,6 +100,7 @@ export async function getAllPostsAsync() {
         wordCount: post.wordCount,
         content: post.content,
         status: post.status,
+        views: post.views || 0,
       }));
     }
   } catch (error) {

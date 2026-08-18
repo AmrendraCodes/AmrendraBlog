@@ -58,7 +58,7 @@ function filterAndSortArticles(articles, query, category, selectedTag, sortBy) {
   if (sortBy === 'Latest') {
     result.sort((a, b) => new Date(b.date) - new Date(a.date));
   } else if (sortBy === 'Popular') {
-    result.sort((a, b) => a.title.length - b.title.length);
+    result.sort((a, b) => (b.views || 0) - (a.views || 0) || new Date(b.date) - new Date(a.date));
   } else if (sortBy === 'Category') {
     result.sort((a, b) => a.category.localeCompare(b.category));
   }
@@ -90,8 +90,12 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
     return propTags || [...new Set(articles.flatMap(a => a.tags || []))];
   }, [articles, propTags]);
 
-  // Mock popular posts
-  const popularPosts = useMemo(() => [...articles].reverse().slice(0, 3), [articles]);
+  // Popular posts sorted by views
+  const popularPosts = useMemo(() => {
+    return [...articles]
+      .sort((a, b) => (b.views || 0) - (a.views || 0) || new Date(b.date) - new Date(a.date))
+      .slice(0, 3);
+  }, [articles]);
 
   const filteredArticles = useMemo(
     () => filterAndSortArticles(articles, debouncedQuery, activeCategory, selectedTag, sortBy),

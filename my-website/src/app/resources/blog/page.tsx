@@ -49,6 +49,7 @@ export default async function BlogPage() {
     readTime: post.readTime,
     image: post.image,
     link: `/resources/blog/${post.slug}`,
+    views: post.views || 0,
   }));
 
   return (
