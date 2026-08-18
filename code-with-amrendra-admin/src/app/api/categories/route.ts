@@ -128,3 +128,72 @@ export async function DELETE(request: Request) {
     );
   }
 }
+
+export async function PUT(request: Request) {
+  try {
+    const session = await getAuthSession();
+    if (!session) {
+      return NextResponse.json(
+        { success: false, error: { code: 'UNAUTHORIZED', message: 'Not authenticated' } },
+        { status: 401 }
+      );
+    }
+
+    const body = await request.json();
+    const { id, name, slug, description } = body;
+
+    if (!id || !name || !slug) {
+      return NextResponse.json(
+        { success: false, error: { code: 'VALIDATION_ERROR', message: 'Category ID, name, and slug are required' } },
+        { status: 400 }
+      );
+    }
+
+    const existing = await prisma.category.findFirst({
+      where: {
+        AND: [
+          { id: { not: id } },
+          { OR: [{ name }, { slug }] },
+        ],
+      },
+    });
+
+    if (existing) {
+      return NextResponse.json(
+        { success: false, error: { code: 'DUPLICATE', message: 'Another category already uses this name or slug' } },
+        { status: 409 }
+      );
+    }
+
+    const oldCategory = await prisma.category.findUnique({ where: { id } });
+
+    const updated = await prisma.category.update({
+      where: { id },
+      data: { name, slug, description },
+    });
+
+    // Also update any blogs that stored categorySlug
+    if (oldCategory && oldCategory.slug !== slug) {
+      await prisma.blog.updateMany({
+        where: { categoryId: id },
+        data: { categorySlug: slug },
+      });
+    }
+
+    try {
+      revalidatePath('/resources/blog');
+      revalidatePath(`/category/${slug}`);
+      if (oldCategory?.slug && oldCategory.slug !== slug) {
+        revalidatePath(`/category/${oldCategory.slug}`);
+      }
+    } catch {}
+
+    return NextResponse.json({ success: true, data: { category: updated } });
+  } catch (error: any) {
+    console.error('Update category error:', error);
+    return NextResponse.json(
+      { success: false, error: { code: 'SERVER_ERROR', message: error?.message || 'Failed to update category' } },
+      { status: 500 }
+    );
+  }
+}

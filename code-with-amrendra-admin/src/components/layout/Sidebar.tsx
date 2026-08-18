@@ -19,6 +19,7 @@ import {
   X,
   FileCode,
   Globe,
+  Mail,
   LucideIcon,
 } from 'lucide-react';
 
@@ -69,6 +70,7 @@ export default function Sidebar({ user }: SidebarProps) {
         { label: 'Tags', href: '/content/tags', icon: TagIcon },
       ],
     },
+    { label: 'Inquiries', href: '/inquiries', icon: Mail },
     { label: 'Media Library', href: '/media', icon: ImageIcon },
     { label: 'SEO Management', href: '/seo', icon: Globe },
     { label: 'Analytics', href: '/analytics', icon: BarChart3 },

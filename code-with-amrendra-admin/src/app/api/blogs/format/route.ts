@@ -1,11 +1,19 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { getAuthSession } from '@/lib/auth';
 import { formatArticleMarkdown, InterlinkTarget } from '@/lib/formatter';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
   try {
+    const session = await getAuthSession();
+    if (!session) {
+      return NextResponse.json(
+        { success: false, error: { message: 'Not authenticated' } },
+        { status: 401 }
+      );
+    }
     const body = await request.json();
     const { content, slug, title } = body;
 

@@ -113,3 +113,54 @@ export async function DELETE(request: Request) {
     );
   }
 }
+
+export async function PUT(request: Request) {
+  try {
+    const session = await getAuthSession();
+    if (!session) {
+      return NextResponse.json(
+        { success: false, error: { code: 'UNAUTHORIZED', message: 'Not authenticated' } },
+        { status: 401 }
+      );
+    }
+
+    const body = await request.json();
+    const { id, name, slug } = body;
+
+    if (!id || !name || !slug) {
+      return NextResponse.json(
+        { success: false, error: { code: 'VALIDATION_ERROR', message: 'Tag ID, name, and slug are required' } },
+        { status: 400 }
+      );
+    }
+
+    const existing = await prisma.tag.findFirst({
+      where: {
+        AND: [
+          { id: { not: id } },
+          { OR: [{ name }, { slug }] },
+        ],
+      },
+    });
+
+    if (existing) {
+      return NextResponse.json(
+        { success: false, error: { code: 'DUPLICATE', message: 'Another tag already uses this name or slug' } },
+        { status: 409 }
+      );
+    }
+
+    const updated = await prisma.tag.update({
+      where: { id },
+      data: { name, slug },
+    });
+
+    return NextResponse.json({ success: true, data: { tag: updated } });
+  } catch (error: any) {
+    console.error('Update tag error:', error);
+    return NextResponse.json(
+      { success: false, error: { code: 'SERVER_ERROR', message: error?.message || 'Failed to update tag' } },
+      { status: 500 }
+    );
+  }
+}

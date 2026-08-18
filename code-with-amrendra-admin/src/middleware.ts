@@ -11,6 +11,7 @@ export function middleware(request: NextRequest) {
   const isProtectedRoute =
     pathname.startsWith('/dashboard') ||
     pathname.startsWith('/content') ||
+    pathname.startsWith('/inquiries') ||
     pathname.startsWith('/media') ||
     pathname.startsWith('/seo') ||
     pathname.startsWith('/analytics') ||
@@ -36,6 +37,7 @@ export const config = {
   matcher: [
     '/dashboard/:path*',
     '/content/:path*',
+    '/inquiries/:path*',
     '/media/:path*',
     '/seo/:path*',
     '/analytics/:path*',
