@@ -15,10 +15,9 @@ imageAlt: "How Much Does a Next.js Website Cost in 2026? A complete breakdown of
 ogImageAlt: "How Much Does a Next.js Website Cost in 2026? A complete breakdown of development, hosting, and scaling costs."
 author: "Amrendra Kumar"
 tags:
-  - Next.js
-  - Web Development
   - React
-  - Pricing
+  - Frontend Development
+  - Development
   - SaaS Architecture
 ---
 
