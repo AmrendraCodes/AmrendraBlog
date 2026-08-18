@@ -11,12 +11,9 @@ image: "/images/how-to-build-light-dark-theme-toggle-javascript.png"
 featuredImage: "/images/how-to-build-light-dark-theme-toggle-javascript.png"
 author: "Amrendra Kumar"
 tags:
-  - JavaScript
-  - CSS
-  - HTML
-  - Frontend
-  - Web Development
-  - UI/UX
+  - Frontend Development
+  - Development
+  - Design
 ---
 
 # How to Build a Light & Dark Theme Toggle Using JavaScript
