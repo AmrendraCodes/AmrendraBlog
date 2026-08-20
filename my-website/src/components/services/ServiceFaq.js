@@ -15,7 +15,7 @@ export default function ServiceFaq({ faqs = [], serviceTitle }) {
     <section className="py-20 bg-[var(--background)] border-b border-[var(--card-border)]">
       <div className="max-w-4xl mx-auto px-6 lg:px-16">
         <AnimatedSection direction="up" className="text-center mb-16">
-          <span className="text-xs font-extrabold uppercase tracking-widest text-[#10B981] dark:text-[#34D399] bg-[#10B981]/10 px-3.5 py-1.5 rounded-full border border-[#10B981]/20 mb-4 inline-block">
+          <span className="text-xs font-extrabold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 mb-4 inline-block">
             QUESTIONS &amp; ANSWERS
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[var(--text-heading)] tracking-tight mt-3 mb-4">
@@ -37,7 +37,7 @@ export default function ServiceFaq({ faqs = [], serviceTitle }) {
                 key={idx}
                 direction="up"
                 delay={idx * 0.05}
-                className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl overflow-hidden transition-all duration-300 hover:border-[#10B981]/40"
+                className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl overflow-hidden transition-all duration-300 hover:border-[#F59E0B]/40"
               >
                 <h3>
                   <button
@@ -46,16 +46,16 @@ export default function ServiceFaq({ faqs = [], serviceTitle }) {
                     onClick={() => toggleFaq(idx)}
                     aria-expanded={isOpen}
                     aria-controls={contentId}
-                    className="w-full text-left p-6 flex items-center justify-between gap-4 font-bold text-base sm:text-lg text-[var(--text-heading)] cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#10B981]/50 rounded-2xl"
+                    className="w-full text-left p-6 flex items-center justify-between gap-4 font-bold text-base sm:text-lg text-[var(--text-heading)] cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#F59E0B]/50 rounded-2xl"
                   >
                     <span className="flex items-center gap-3">
-                      <HelpCircle size={20} className="text-[#10B981] shrink-0" />
+                      <HelpCircle size={20} className="text-[#F59E0B] shrink-0" />
                       <span>{faq.question}</span>
                     </span>
                     <ChevronDown
                       size={20}
                       className={`text-[var(--text-muted)] shrink-0 transition-transform duration-300 ${
-                        isOpen ? "rotate-180 text-[#10B981]" : ""
+                        isOpen ? "rotate-180 text-[#F59E0B]" : ""
                       }`}
                     />
                   </button>

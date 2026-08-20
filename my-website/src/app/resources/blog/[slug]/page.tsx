@@ -110,7 +110,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
       {/* Hero Section */}
       <div className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] bg-[#10B981]/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] bg-[#F59E0B]/10 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-[900px] mx-auto text-center flex flex-col items-center">
@@ -118,7 +118,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             {/* Back to Blog Link */}
             <Link
               href="/resources/blog"
-              className="group inline-flex items-center gap-2 text-sm font-semibold text-[var(--text-muted)] hover:text-[#10B981] dark:hover:text-[#34D399] transition-colors mb-6 no-underline"
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-[var(--text-muted)] hover:text-[#F59E0B] transition-colors mb-6 no-underline"
             >
               <ArrowLeft size={16} className="transition-transform duration-300 group-hover:-translate-x-1" />
               Back to all articles
@@ -128,7 +128,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             <div className="mb-6">
               <Link
                 href={`/category/${post.categorySlug}`}
-                className="bg-white/5 backdrop-blur-md border border-[#10B981]/30 text-[#34D399] text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-lg hover:bg-white/10 hover:border-[#10B981]/50 transition-all no-underline"
+                className="bg-[#F59E0B]/10 backdrop-blur-md border border-[#F59E0B]/30 text-[#0B1F3A] dark:text-[#F59E0B] text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-sm hover:bg-[#F59E0B]/20 hover:border-[#F59E0B]/50 transition-all no-underline"
               >
                 {post.category}
               </Link>
@@ -159,18 +159,18 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 <span className="font-semibold text-[var(--text-heading)]">{post.author}</span>
               </div>
               <div className="flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full">
-                <Calendar size={16} className="text-[#34D399]" />
+                <Calendar size={16} className="text-[#F59E0B]" />
                 <span>{post.date}</span>
               </div>
               <div className="flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full">
-                <Clock size={16} className="text-[#34D399]" />
+                <Clock size={16} className="text-[#F59E0B]" />
                 <span>{post.readTime}</span>
               </div>
             </div>
           </div>
 
           {/* Featured Image */}
-          <div className="max-w-[900px] mx-auto relative aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-[#10B981]/10 border border-white/10 group mt-4">
+          <div className="max-w-[900px] mx-auto relative aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-[#0B1F3A]/20 border border-white/10 group mt-4">
             <Image
               src={
                 post.image ||

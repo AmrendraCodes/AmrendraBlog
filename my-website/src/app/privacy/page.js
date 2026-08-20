@@ -10,7 +10,7 @@ export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950">
       <section className="max-w-3xl mx-auto px-6 py-16 pt-24 md:pt-32">
-        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-[#10B981] dark:text-[#34D399] uppercase bg-[#10B981]/10 dark:bg-[#10B981]/20 rounded-full">
+        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-[#0B1F3A] dark:text-[#F59E0B] uppercase bg-[#F59E0B]/10 dark:bg-[#F59E0B]/20 rounded-full border border-[#F59E0B]/30">
           Legal
         </div>
         <h1 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-slate-50 mb-8 tracking-tight">Privacy Policy</h1>

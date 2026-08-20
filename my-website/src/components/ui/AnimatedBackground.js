@@ -44,22 +44,22 @@ export default function AnimatedBackground({ interactive = true }) {
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 grid-bg opacity-30" />
 
-      {/* Primary Emerald Glowing Orb */}
+      {/* Primary Saffron Glowing Orb */}
       <div
         style={{
           transform: isTouchDevice ? 'none' : `translate3d(${mousePos.x * 0.8}px, ${mousePos.y * 0.8}px, 0)`,
           transition: 'transform 0.4s ease-out',
         }}
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.15)_0%,transparent_70%)] blur-3xl transform-gpu"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.12)_0%,transparent_70%)] blur-3xl transform-gpu"
       />
 
-      {/* Secondary Mint Glowing Orb */}
+      {/* Secondary Dark Blue / Navy Glowing Orb */}
       <div
         style={{
           transform: isTouchDevice ? 'none' : `translate3d(${-mousePos.x * 0.6}px, ${-mousePos.y * 0.6}px, 0)`,
           transition: 'transform 0.4s ease-out',
         }}
-        className="absolute bottom-1/4 right-10 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(52,211,153,0.1)_0%,transparent_70%)] blur-3xl transform-gpu"
+        className="absolute bottom-1/4 right-10 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(11,31,58,0.25)_0%,transparent_70%)] blur-3xl transform-gpu"
       />
     </div>
   );

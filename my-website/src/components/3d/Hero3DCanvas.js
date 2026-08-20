@@ -39,9 +39,9 @@ export default function Hero3DCanvas() {
     // 1. Central Geometric Mesh (3D Wireframe TorusKnot)
     const geometry = new THREE.TorusKnotGeometry(1.6, 0.45, 128, 32);
     
-    // Wireframe Material with Emerald Glow
+    // Wireframe Material with Saffron Glow
     const wireframeMaterial = new THREE.MeshBasicMaterial({
-      color: 0x10B981,
+      color: 0xF59E0B,
       wireframe: true,
       transparent: true,
       opacity: 0.25,
@@ -51,7 +51,7 @@ export default function Hero3DCanvas() {
 
     // Outer Solid Glass-like Points / Nodes
     const pointsMaterial = new THREE.PointsMaterial({
-      color: 0x34D399,
+      color: 0xFBBF24,
       size: 0.04,
       transparent: true,
       opacity: 0.7,
@@ -73,7 +73,7 @@ export default function Hero3DCanvas() {
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
 
     const particlesMaterial = new THREE.PointsMaterial({
-      color: 0x059669,
+      color: 0xD97706,
       size: 0.06,
       transparent: true,
       opacity: 0.4,
@@ -86,7 +86,7 @@ export default function Hero3DCanvas() {
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
 
-    const pointLight = new THREE.PointLight(0x10B981, 3, 20);
+    const pointLight = new THREE.PointLight(0xF59E0B, 3, 20);
     pointLight.position.set(4, 4, 6);
     scene.add(pointLight);
 

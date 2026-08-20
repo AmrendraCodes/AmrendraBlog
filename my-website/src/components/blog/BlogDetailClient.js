@@ -58,12 +58,12 @@ export default function BlogDetailClient({ content, headings, title, slug }) {
                 prose-h3:text-[20px] sm:prose-h3:text-[24px] lg:prose-h3:text-[28px] prose-h3:leading-[1.3]
                 prose-p:text-[var(--text-body)] prose-p:text-base sm:prose-p:text-[17px] lg:prose-p:text-[18px] prose-p:leading-[1.9]
                 prose-strong:text-[var(--text-heading)]
-                prose-a:text-[#10B981] hover:prose-a:text-[#34D399] prose-a:font-semibold prose-a:no-underline hover:prose-a:underline
+                prose-a:text-[#0B1F3A] dark:text-[#F59E0B] hover:prose-a:text-[#F59E0B] prose-a:font-semibold prose-a:no-underline hover:prose-a:underline
                 prose-img:rounded-2xl prose-img:shadow-xl
-                prose-code:text-[#34D399] prose-code:bg-[#10B981]/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm prose-code:font-medium prose-code:before:content-none prose-code:after:content-none
-                prose-pre:bg-[#0d1117]/80 prose-pre:backdrop-blur-md prose-pre:border prose-pre:border-[var(--card-border)] prose-pre:rounded-xl prose-pre:text-sm prose-pre:shadow-2xl
-                prose-blockquote:border-l-4 prose-blockquote:border-l-[#10B981] prose-blockquote:bg-gradient-to-r prose-blockquote:from-[#10B981]/10 prose-blockquote:to-transparent prose-blockquote:rounded-r-xl prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:not-italic prose-blockquote:shadow-sm
-                prose-li:text-[var(--text-body)] prose-li:text-base sm:prose-li:text-[17px] lg:prose-li:text-[18px] prose-li:leading-[1.9] prose-li:marker:text-[#10B981]
+                prose-code:text-[#0B1F3A] dark:text-[#F59E0B] prose-code:bg-[#F59E0B]/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm prose-code:font-medium prose-code:before:content-none prose-code:after:content-none
+                prose-pre:bg-[#071324] prose-pre:backdrop-blur-md prose-pre:border prose-pre:border-[var(--card-border)] prose-pre:rounded-xl prose-pre:text-sm prose-pre:shadow-2xl
+                prose-blockquote:border-l-4 prose-blockquote:border-l-[#F59E0B] prose-blockquote:bg-gradient-to-r prose-blockquote:from-[#F59E0B]/10 prose-blockquote:to-transparent prose-blockquote:rounded-r-xl prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:not-italic prose-blockquote:shadow-sm
+                prose-li:text-[var(--text-body)] prose-li:text-base sm:prose-li:text-[17px] lg:prose-li:text-[18px] prose-li:leading-[1.9] prose-li:marker:text-[#F59E0B]
                 prose-hr:border-[var(--card-border)]/50
                 prose-th:text-[var(--text-heading)] prose-td:text-[var(--text-body)]"
               id="article-content"

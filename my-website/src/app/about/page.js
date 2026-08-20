@@ -38,13 +38,13 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-emerald-100 dark:selection:bg-emerald-900/40 font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-amber-100 dark:selection:bg-amber-900/40 font-sans overflow-x-hidden">
 
       {/* ═══════════ HERO SECTION — Developer Portfolio 2-Column Layout ═══════════ */}
       <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 px-6 overflow-hidden border-b border-[var(--card-border)]">
         {/* Background Effects */}
         <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
-        <div className="absolute top-[5%] left-[10%] w-[280px] sm:w-[400px] md:w-[500px] h-[280px] sm:h-[400px] md:h-[500px] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.12)_0%,transparent_70%)] blur-3xl pointer-events-none animate-[float_10s_ease-in-out_infinite]" />
+        <div className="absolute top-[5%] left-[10%] w-[280px] sm:w-[400px] md:w-[500px] h-[280px] sm:h-[400px] md:h-[500px] rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.12)_0%,transparent_70%)] blur-3xl pointer-events-none animate-[float_10s_ease-in-out_infinite]" />
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -58,10 +58,10 @@ export default function AboutPage() {
             >
               {/* Floating Status Badge */}
               <motion.div variants={fadeUp}>
-                <span className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-emerald-500/20 dark:border-[#10B981]/30 bg-emerald-500/10 dark:bg-[#10B981]/10 text-xs font-mono font-bold uppercase tracking-wider text-[#059669] dark:text-[#34D399] mb-6 shadow-sm backdrop-blur-sm">
+                <span className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[#F59E0B]/30 bg-[#F59E0B]/10 text-xs font-mono font-bold uppercase tracking-wider text-[#0B1F3A] dark:text-[#F59E0B] mb-6 shadow-sm backdrop-blur-sm">
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75 motion-reduce:animate-none"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F59E0B] opacity-75 motion-reduce:animate-none"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F59E0B]"></span>
                   </span>
                   DEVELOPER &amp; CONTENT CREATOR
                 </span>
@@ -75,7 +75,7 @@ export default function AboutPage() {
               >
                 <span>{displayText.substring(0, 8)}</span>
                 <span className="gradient-text">{displayText.substring(8)}</span>
-                <span className="inline-block w-1.5 h-[0.8em] bg-[#10B981] ml-1.5 align-middle animate-[blink_1s_infinite] motion-reduce:animate-none"></span>
+                <span className="inline-block w-1.5 h-[0.8em] bg-[#F59E0B] ml-1.5 align-middle animate-[blink_1s_infinite] motion-reduce:animate-none"></span>
               </motion.h1>
 
               {/* Subtitle / Description */}
@@ -84,11 +84,11 @@ export default function AboutPage() {
                 className="text-base sm:text-lg lg:text-xl text-[var(--text-body)] max-w-2xl mb-8 leading-relaxed font-medium"
               >
                 A{" "}
-                <span className="text-[#10B981] dark:text-[#34D399] font-bold underline decoration-[#10B981]/40 decoration-2 underline-offset-4">
+                <span className="text-[#0B1F3A] dark:text-[#F59E0B] font-bold underline decoration-[#F59E0B]/40 decoration-2 underline-offset-4">
                   Technical Content Writer
                 </span>{" "}
                 and{" "}
-                <span className="text-[#10B981] dark:text-[#34D399] font-bold underline decoration-[#10B981]/40 decoration-2 underline-offset-4">
+                <span className="text-[#0B1F3A] dark:text-[#F59E0B] font-bold underline decoration-[#F59E0B]/40 decoration-2 underline-offset-4">
                   Frontend Developer
                 </span>{" "}
                 passionate about building amazing web experiences and sharing knowledge with the community.
@@ -98,14 +98,14 @@ export default function AboutPage() {
               <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-10">
                 <Link
                   href="/resources/blog"
-                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-2xl bg-gradient-to-r from-[#10B981] to-[#059669] text-white font-bold text-base transition-all duration-300 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)] hover:-translate-y-0.5 hover:scale-105 active:scale-95 w-full sm:w-auto"
+                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-2xl bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base transition-all duration-300 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)] hover:-translate-y-0.5 hover:scale-105 active:scale-95 w-full sm:w-auto"
                 >
                   <span>View Articles</span>
                   <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] font-bold text-base transition-all duration-300 hover:shadow-[var(--shadow-card)] hover:border-[#10B981]/50 hover:-translate-y-0.5 w-full sm:w-auto"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] font-bold text-base transition-all duration-300 hover:shadow-[var(--shadow-card)] hover:border-[#F59E0B]/50 hover:text-[#F59E0B] hover:-translate-y-0.5 w-full sm:w-auto"
                 >
                   Get in Touch
                 </Link>
@@ -136,10 +136,10 @@ export default function AboutPage() {
             >
               <div className="relative w-full max-w-md lg:max-w-none">
                 {/* Outer Glow */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#10B981]/30 via-[#34D399]/20 to-[#059669]/30 rounded-3xl blur-xl opacity-75 pointer-events-none" />
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#0B1F3A]/30 via-[#F59E0B]/20 to-[#D97706]/30 rounded-3xl blur-xl opacity-75 pointer-events-none" />
 
                 {/* IDE Window Card */}
-                <div className="relative rounded-2xl bg-slate-950 text-slate-100 border border-slate-800 dark:border-[#1E2E25] shadow-2xl overflow-hidden font-mono text-xs sm:text-sm">
+                <div className="relative rounded-2xl bg-slate-950 text-slate-100 border border-slate-800 dark:border-[#1E293B] shadow-2xl overflow-hidden font-mono text-xs sm:text-sm">
                   {/* Mac Header Bar */}
                   <div className="flex items-center justify-between px-4 py-3 bg-slate-900/90 border-b border-slate-800/80">
                     <div className="flex items-center gap-2">
@@ -148,7 +148,7 @@ export default function AboutPage() {
                       <span className="w-3 h-3 rounded-full bg-emerald-500/80 block" />
                     </div>
                     <div className="flex items-center gap-1.5 text-slate-400 text-[11px] font-bold">
-                      <Code2 size={13} className="text-[#10B981]" />
+                      <Code2 size={13} className="text-[#F59E0B]" />
                       <span>amrendra.ts</span>
                     </div>
                     <div className="w-10" />
@@ -163,29 +163,29 @@ export default function AboutPage() {
                     </div>
                     <div className="pl-4">
                       <span className="text-slate-400">name:</span>{" "}
-                      <span className="text-emerald-400 font-semibold">"Amrendra"</span>,
+                      <span className="text-[#F59E0B] font-semibold">"Amrendra"</span>,
                     </div>
                     <div className="pl-4">
                       <span className="text-slate-400">role:</span>{" "}
-                      <span className="text-emerald-400 font-semibold">"Frontend Developer &amp; Writer"</span>,
+                      <span className="text-[#F59E0B] font-semibold">"Frontend Developer &amp; Writer"</span>,
                     </div>
                     <div className="pl-4">
                       <span className="text-slate-400">stack:</span> [
-                      <span className="text-emerald-400">"React"</span>,{" "}
-                      <span className="text-emerald-400">"Next.js"</span>,{" "}
-                      <span className="text-emerald-400">"TypeScript"</span>],
+                      <span className="text-[#F59E0B]">"React"</span>,{" "}
+                      <span className="text-[#F59E0B]">"Next.js"</span>,{" "}
+                      <span className="text-[#F59E0B]">"TypeScript"</span>],
                     </div>
                     <div className="pl-4">
                       <span className="text-slate-400">status:</span>{" "}
-                      <span className="text-emerald-400 font-semibold">"Building digital products"</span>
+                      <span className="text-[#F59E0B] font-semibold">"Building digital products"</span>
                     </div>
                     <div>&#125;;</div>
 
                     {/* Terminal Status Output */}
                     <div className="mt-5 pt-4 border-t border-slate-800/80 flex items-center justify-between text-[11px]">
                       <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-[#10B981] animate-ping" />
-                        <span className="text-emerald-400 font-bold">Ready for new projects</span>
+                        <span className="w-2 h-2 rounded-full bg-[#F59E0B] animate-ping" />
+                        <span className="text-[#F59E0B] font-bold">Ready for new projects</span>
                       </div>
                       <span className="text-slate-500 font-bold">v2.4.0</span>
                     </div>
@@ -193,13 +193,13 @@ export default function AboutPage() {
                 </div>
 
                 {/* Floating Badges */}
-                <div className="hidden sm:flex absolute -top-3 -right-3 px-3 py-1.5 rounded-xl bg-white dark:bg-[#0A0F0C] border border-slate-200 dark:border-[#1E2E25] shadow-lg items-center gap-2 text-xs font-bold text-slate-800 dark:text-slate-200 z-20">
+                <div className="hidden sm:flex absolute -top-3 -right-3 px-3 py-1.5 rounded-xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] shadow-lg items-center gap-2 text-xs font-bold text-slate-800 dark:text-slate-200 z-20">
                   <span className="w-2 h-2 rounded-full bg-cyan-400" />
                   <span>React 19</span>
                 </div>
 
-                <div className="hidden sm:flex absolute -bottom-3 -left-3 px-3 py-1.5 rounded-xl bg-white dark:bg-[#0A0F0C] border border-slate-200 dark:border-[#1E2E25] shadow-lg items-center gap-2 text-xs font-bold text-slate-800 dark:text-slate-200 z-20">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                <div className="hidden sm:flex absolute -bottom-3 -left-3 px-3 py-1.5 rounded-xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] shadow-lg items-center gap-2 text-xs font-bold text-slate-800 dark:text-slate-200 z-20">
+                  <span className="w-2 h-2 rounded-full bg-[#F59E0B]" />
                   <span>Next.js 16</span>
                 </div>
               </div>
@@ -224,11 +224,11 @@ export default function AboutPage() {
             className="relative flex flex-col md:flex-row items-center gap-10 md:gap-14 bg-[var(--card-bg)] rounded-3xl border border-[var(--card-border)] shadow-[var(--shadow-card)] p-8 md:p-12 overflow-hidden"
           >
             {/* Decorative glow */}
-            <div className="absolute top-0 right-0 w-[300px] h-[300px] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.06)_0%,transparent_70%)] pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[300px] h-[300px] rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.06)_0%,transparent_70%)] pointer-events-none" />
 
             {/* Photo */}
             <div className="shrink-0 relative">
-              <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-[#10B981] to-[#059669] opacity-50 blur-md" />
+              <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-[#0B1F3A] to-[#F59E0B] opacity-50 blur-md" />
               <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden border-2 border-[var(--card-border)]">
                 <Image
                   src="/Profile photo.jpeg"
@@ -247,7 +247,7 @@ export default function AboutPage() {
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--text-heading)] mb-1">
                   Amrendra <span className="gradient-text">Kumar</span>
                 </h2>
-                <p className="text-[#10B981] dark:text-[#34D399] font-bold text-base">
+                <p className="text-[#0B1F3A] dark:text-[#F59E0B] font-bold text-base">
                   Frontend Developer &amp; Technical Content Writer
                 </p>
               </div>
@@ -279,7 +279,7 @@ export default function AboutPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Visit ${label} profile`}
-                    className="w-10 h-10 rounded-xl flex items-center justify-center bg-[var(--section-alt-bg)] border border-[var(--card-border)] text-[var(--text-muted)] hover:text-[#10B981] dark:hover:text-[#34D399] hover:border-[#10B981]/30 transition-all duration-300 hover:-translate-y-0.5"
+                    className="w-10 h-10 rounded-xl flex items-center justify-center bg-[var(--section-alt-bg)] border border-[var(--card-border)] text-[var(--text-muted)] hover:text-[#F59E0B] dark:hover:text-[#F59E0B] hover:border-[#F59E0B]/30 transition-all duration-300 hover:-translate-y-0.5"
                   >
                     <Icon size={18} />
                   </a>
@@ -336,7 +336,7 @@ export default function AboutPage() {
               className="lg:col-span-1 bg-[var(--card-bg)] p-8 md:p-10 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-3d)] transition-all duration-500"
             >
               <h3 className="text-2xl md:text-3xl font-extrabold text-[var(--text-heading)] mb-8 flex items-center gap-3">
-                <span className="w-8 h-1.5 md:h-2 bg-gradient-to-r from-[#10B981] to-[#059669] rounded-full"></span>
+                <span className="w-8 h-1.5 md:h-2 bg-gradient-to-r from-[#0B1F3A] to-[#F59E0B] rounded-full"></span>
                 Expertise
               </h3>
               <div className="space-y-8">
@@ -351,11 +351,11 @@ export default function AboutPage() {
                   <div key={skill.name}>
                     <div className="flex items-center justify-between mb-3">
                       <h4 className="text-base font-bold text-[var(--text-heading)]">{skill.name}</h4>
-                      <span className="text-sm font-semibold text-[#10B981] dark:text-[#34D399]">{skill.percentage}%</span>
+                      <span className="text-sm font-semibold text-[#0B1F3A] dark:text-[#F59E0B]">{skill.percentage}%</span>
                     </div>
                     <div className="w-full bg-[var(--section-alt-bg)] border border-[rgba(255,255,255,0.05)] rounded-full h-2 overflow-hidden">
                       <div
-                        className="h-full bg-gradient-to-r from-[#10B981] to-[#059669] rounded-full transition-all duration-500 ease-out shadow-[var(--shadow-glow)]"
+                        className="h-full bg-gradient-to-r from-[#0B1F3A] to-[#F59E0B] rounded-full transition-all duration-500 ease-out shadow-[var(--shadow-glow)]"
                         style={{ width: `${skill.percentage}%` }}
                       ></div>
                     </div>
@@ -397,9 +397,9 @@ export default function AboutPage() {
                 key={title}
                 variants={fadeUp}
                 whileHover={{ y: -5 }}
-                className="flex flex-col items-center text-center gap-4 p-6 md:p-8 rounded-2xl bg-[var(--card-bg)] border border-[var(--card-border)] transition-all duration-300 hover:border-[#10B981]/30 hover:shadow-[0_0_40px_rgba(16,185,129,0.08)]"
+                className="flex flex-col items-center text-center gap-4 p-6 md:p-8 rounded-2xl bg-[var(--card-bg)] border border-[var(--card-border)] transition-all duration-300 hover:border-[#F59E0B]/30 hover:shadow-[0_0_40px_rgba(245,158,11,0.08)]"
               >
-                <div className="w-14 h-14 rounded-2xl bg-[#10B981]/10 dark:bg-[#10B981]/15 border border-[#10B981]/20 flex items-center justify-center text-[#10B981] dark:text-[#34D399]">
+                <div className="w-14 h-14 rounded-2xl bg-[#F59E0B]/10 dark:bg-[#F59E0B]/15 border border-[#F59E0B]/20 flex items-center justify-center text-[#0B1F3A] dark:text-[#F59E0B]">
                   <Icon size={26} />
                 </div>
                 <h3 className="font-bold text-base text-[var(--text-heading)]">{title}</h3>
@@ -424,7 +424,7 @@ export default function AboutPage() {
             className="relative bg-[var(--card-bg)] border border-[var(--card-border)] rounded-3xl p-8 sm:p-12 text-center overflow-hidden"
           >
             {/* Radial glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.08)_0%,transparent_70%)] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.08)_0%,transparent_70%)] pointer-events-none" />
 
             <div className="relative z-10 flex flex-col items-center">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-4 text-[var(--text-heading)]">
@@ -435,7 +435,7 @@ export default function AboutPage() {
               </p>
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2 bg-gradient-to-br from-[#10B981] to-[#059669] text-white font-bold text-base md:text-lg py-4 md:py-5 px-8 md:px-10 rounded-2xl transition-all duration-300 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)] hover:-translate-y-1 hover:scale-105 no-underline"
+                className="group inline-flex items-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base md:text-lg py-4 md:py-5 px-8 md:px-10 rounded-2xl transition-all duration-300 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)] hover:-translate-y-1 hover:scale-105 no-underline"
               >
                 Get in Touch
                 <ArrowRight size={20} className="transition-transform duration-300 group-hover:translate-x-1" />

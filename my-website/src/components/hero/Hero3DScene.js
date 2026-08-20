@@ -4,12 +4,12 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 const STATE_THEMES = {
-  web: { color: 0x10B981, lightColor: 0x34D399, particleColor: 0x059669, speed: 0.2 },
-  react: { color: 0x10B981, lightColor: 0x34D399, particleColor: 0x059669, speed: 0.35 },
-  ai: { color: 0x10B981, lightColor: 0x34D399, particleColor: 0x059669, speed: 0.4 },
-  cloud: { color: 0x10B981, lightColor: 0x34D399, particleColor: 0x059669, speed: 0.25 },
-  saas: { color: 0x34D399, lightColor: 0x10B981, particleColor: 0x059669, speed: 0.3 },
-  api: { color: 0x34D399, lightColor: 0x10B981, particleColor: 0x059669, speed: 0.3 },
+  web: { color: 0xF59E0B, lightColor: 0xFBBF24, particleColor: 0xD97706, speed: 0.2 },
+  react: { color: 0xF59E0B, lightColor: 0xFBBF24, particleColor: 0xD97706, speed: 0.35 },
+  ai: { color: 0xF59E0B, lightColor: 0xFBBF24, particleColor: 0xD97706, speed: 0.4 },
+  cloud: { color: 0xF59E0B, lightColor: 0xFBBF24, particleColor: 0xD97706, speed: 0.25 },
+  saas: { color: 0xFBBF24, lightColor: 0xF59E0B, particleColor: 0xD97706, speed: 0.3 },
+  api: { color: 0xFBBF24, lightColor: 0xF59E0B, particleColor: 0xD97706, speed: 0.3 },
 };
 
 export default function Hero3DScene({ activeCard = 'web' }) {
@@ -62,7 +62,7 @@ export default function Hero3DScene({ activeCard = 'web' }) {
     // 1. Central Abstract 3D Shapes (Optimized geometry detail)
     const torusKnotGeo = new THREE.TorusKnotGeometry(1.4, 0.38, 64, 16);
     const wireframeMat = new THREE.MeshBasicMaterial({
-      color: 0x10B981,
+      color: 0xF59E0B,
       wireframe: true,
       transparent: true,
       opacity: 0.18,
@@ -73,7 +73,7 @@ export default function Hero3DScene({ activeCard = 'web' }) {
 
     // Inner Glowing Nodes
     const nodesMat = new THREE.PointsMaterial({
-      color: 0x34D399,
+      color: 0xFBBF24,
       size: 0.045,
       transparent: true,
       opacity: 0.75,
@@ -94,7 +94,7 @@ export default function Hero3DScene({ activeCard = 'web' }) {
     particlesGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
 
     const particlesMat = new THREE.PointsMaterial({
-      color: 0x059669,
+      color: 0xD97706,
       size: 0.06,
       transparent: true,
       opacity: 0.45,
@@ -108,7 +108,7 @@ export default function Hero3DScene({ activeCard = 'web' }) {
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
     scene.add(ambientLight);
 
-    const pointLight = new THREE.PointLight(0x10B981, 4, 18);
+    const pointLight = new THREE.PointLight(0xF59E0B, 4, 18);
     pointLight.position.set(3.5, 3.5, 5);
     scene.add(pointLight);
     pointLightRef.current = pointLight;

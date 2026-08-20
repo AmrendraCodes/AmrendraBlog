@@ -81,8 +81,8 @@ export default function Header() {
       <header
         className={`pointer-events-auto z-[100] transition-all duration-300 flex items-center justify-between rounded-full relative w-full max-w-[1240px] py-2.5 px-4 sm:py-3 sm:px-6 border box-border ${
           isScrolled
-            ? 'bg-white/95 text-slate-900 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.25)] border-white/80 dark:bg-[#0A0F0C]/95 dark:text-slate-50 dark:border-[#1E2E25]'
-            : 'bg-white/90 text-slate-900 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.15)] border-white/60 dark:bg-[#0A0F0C]/85 dark:text-slate-50 dark:border-[#1E2E25]/60'
+            ? 'bg-white/95 text-slate-900 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.25)] border-white/80 dark:bg-[#0B1F3A]/95 dark:text-slate-50 dark:border-[#1E293B]'
+            : 'bg-white/90 text-slate-900 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.15)] border-white/60 dark:bg-[#0B1F3A]/85 dark:text-slate-50 dark:border-[#1E293B]/60'
         }`}
         role="banner"
         aria-label="Site header"

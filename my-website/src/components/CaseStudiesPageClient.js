@@ -44,8 +44,8 @@ export default function CaseStudiesPageClient({ caseStudies, allTechStacks }) {
             onClick={() => setActiveFilter(tech)}
             className={`px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-300 cursor-pointer ${
               activeFilter === tech
-                ? "bg-[#10B981] text-white border-[#10B981] shadow-[0_0_20px_rgba(16,185,129,0.3)]"
-                : "bg-[var(--card-bg)] border-[var(--card-border)] text-[var(--text-body)] hover:border-[#10B981]/40 hover:text-[#10B981] dark:hover:text-[#34D399]"
+                ? "bg-[#F59E0B] text-[#0B1F3A] border-[#F59E0B] shadow-[0_0_20px_rgba(245,158,11,0.3)] font-bold"
+                : "bg-[var(--card-bg)] border-[var(--card-border)] text-[var(--text-body)] hover:border-[#F59E0B]/50 hover:text-[#F59E0B]"
             }`}
           >
             {tech}
@@ -74,7 +74,7 @@ export default function CaseStudiesPageClient({ caseStudies, allTechStacks }) {
           </p>
           <button
             onClick={() => setActiveFilter("All")}
-            className="mt-4 px-6 py-2.5 rounded-full bg-[#10B981] text-white font-bold text-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] cursor-pointer"
+            className="mt-4 px-6 py-2.5 rounded-full bg-[#F59E0B] text-[#0B1F3A] font-bold text-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] cursor-pointer"
           >
             Show All
           </button>

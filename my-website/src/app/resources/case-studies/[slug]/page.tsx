@@ -63,7 +63,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
     <div className="min-h-screen bg-[var(--background)] isolate">
       {/* Hero Section */}
       <div className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] bg-[#10B981]/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] bg-[#F59E0B]/10 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-[900px] mx-auto text-center flex flex-col items-center">
@@ -71,7 +71,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             {/* Back Link */}
             <Link
               href="/resources/case-studies"
-              className="group inline-flex items-center gap-2 text-sm font-semibold text-[var(--text-muted)] hover:text-[#10B981] dark:hover:text-[#34D399] transition-colors mb-8 no-underline"
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-[var(--text-muted)] hover:text-[#F59E0B] transition-colors mb-8 no-underline"
             >
               <ArrowLeft size={16} className="transition-transform duration-300 group-hover:-translate-x-1" />
               Back to all case studies
@@ -80,7 +80,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             {/* Metric Badge */}
             {study.metricHighlight && (
               <div className="mb-6">
-                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#10B981] to-[#059669] text-white text-xs font-bold tracking-wider shadow-lg shadow-[#10B981]/25">
+                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#F59E0B] text-[#0B1F3A] text-xs font-bold tracking-wider shadow-lg shadow-[#F59E0B]/25">
                   {study.metricHighlight}
                 </span>
               </div>
@@ -99,15 +99,15 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             {/* Meta Pills */}
             <div className="flex flex-wrap items-center justify-center gap-3 text-sm font-medium mb-8">
               <div className="flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-[var(--text-body)]">
-                <User size={16} className="text-[#34D399]" />
+                <User size={16} className="text-[#F59E0B]" />
                 <span>{study.role}</span>
               </div>
               <div className="flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-[var(--text-body)]">
-                <Briefcase size={16} className="text-[#34D399]" />
+                <Briefcase size={16} className="text-[#F59E0B]" />
                 <span>{study.client}</span>
               </div>
               <div className="flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-[var(--text-body)]">
-                <Clock size={16} className="text-[#34D399]" />
+                <Clock size={16} className="text-[#F59E0B]" />
                 <span>{study.duration}</span>
               </div>
             </div>
@@ -119,7 +119,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                   href={study.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-br from-[#10B981] to-[#059669] text-white font-bold text-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(16,185,129,0.4)] no-underline"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(245,158,11,0.4)] no-underline"
                 >
                   <ExternalLink size={16} />
                   View Live
@@ -130,7 +130,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                   href={study.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] font-bold text-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#10B981]/30 hover:shadow-lg no-underline"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] font-bold text-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#F59E0B]/50 hover:text-[#F59E0B] hover:shadow-lg no-underline"
                 >
                   <Github size={16} />
                   Source Code
@@ -140,7 +140,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </div>
 
           {/* Cover Image */}
-          <div className="max-w-[900px] mx-auto relative aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-[#10B981]/10 border border-white/10 group mt-4">
+          <div className="max-w-[900px] mx-auto relative aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-[#0B1F3A]/20 border border-white/10 group mt-4">
             <Image
               src={study.coverImage}
               alt={study.title}
@@ -164,11 +164,11 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               prose-h2:text-2xl prose-h2:sm:text-3xl prose-h2:mt-16 prose-h2:mb-6 prose-h2:pb-4 prose-h2:border-b prose-h2:border-[var(--card-border)]
               prose-p:text-[var(--text-body)] prose-p:leading-relaxed
               prose-strong:text-[var(--text-heading)]
-              prose-a:text-[#10B981] dark:prose-a:text-[#34D399] prose-a:font-semibold
-              prose-code:text-[#34D399] prose-code:bg-[#10B981]/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm prose-code:font-semibold
-              prose-pre:bg-[#111214] prose-pre:border prose-pre:border-[var(--card-border)] prose-pre:rounded-2xl
+              prose-a:text-[#0B1F3A] dark:prose-a:text-[#F59E0B] prose-a:font-semibold
+              prose-code:text-[#0B1F3A] dark:prose-code:text-[#F59E0B] prose-code:bg-[#F59E0B]/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm prose-code:font-semibold
+              prose-pre:bg-[#071324] prose-pre:border prose-pre:border-[var(--card-border)] prose-pre:rounded-2xl
               prose-li:text-[var(--text-body)]
-              prose-blockquote:border-l-[#10B981] prose-blockquote:bg-[#10B981]/5 prose-blockquote:rounded-r-xl prose-blockquote:py-2 prose-blockquote:px-6
+              prose-blockquote:border-l-[#F59E0B] prose-blockquote:bg-[#F59E0B]/5 prose-blockquote:rounded-r-xl prose-blockquote:py-2 prose-blockquote:px-6
             ">
               <MarkdownRenderer content={study.content} />
             </div>
@@ -186,7 +186,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                   {study.stack.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1.5 rounded-full text-sm font-semibold bg-[#10B981]/10 dark:bg-[#10B981]/15 text-[#10B981] dark:text-[#34D399] border border-[#10B981]/20"
+                      className="px-3 py-1.5 rounded-full text-sm font-semibold bg-[#F59E0B]/10 dark:bg-[#F59E0B]/15 text-[#0B1F3A] dark:text-[#F59E0B] border border-[#F59E0B]/30"
                     >
                       {tech}
                     </span>
@@ -196,7 +196,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
               {/* Metric Highlight */}
               {study.metricHighlight && (
-                <div className="bg-gradient-to-br from-[#10B981]/10 to-[#059669]/10 rounded-2xl border border-[#10B981]/20 p-6 text-center">
+                <div className="bg-gradient-to-br from-[#F59E0B]/15 to-[#0B1F3A]/15 rounded-2xl border border-[#F59E0B]/30 p-6 text-center">
                   <p className="text-sm font-bold uppercase tracking-wider text-[var(--text-muted)] mb-2">
                     Key Result
                   </p>
@@ -225,7 +225,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               {/* Back Link */}
               <Link
                 href="/resources/case-studies"
-                className="group flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] font-bold text-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#10B981]/30 hover:shadow-lg no-underline"
+                className="group flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] font-bold text-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#F59E0B]/40 hover:text-[#F59E0B] hover:shadow-lg no-underline"
               >
                 <ArrowLeft size={16} className="transition-transform duration-300 group-hover:-translate-x-1" />
                 All Case Studies

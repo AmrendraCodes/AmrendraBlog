@@ -36,7 +36,7 @@ export default function CaseStudiesSection({ caseStudies }) {
         {/* Clean Single Section Header */}
         <motion.div variants={staggerItem} className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
           <div>
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981] bg-[#10B981]/10 px-3.5 py-1.5 rounded-full border border-[#10B981]/20 inline-block mb-3">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 inline-block mb-3">
               SELECTED WORK
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
@@ -49,7 +49,7 @@ export default function CaseStudiesSection({ caseStudies }) {
 
           <Link
             href="/resources/case-studies"
-            className="group inline-flex items-center gap-2 text-sm font-bold text-[#10B981] hover:underline shrink-0"
+            className="group inline-flex items-center gap-2 text-sm font-bold text-[#0B1F3A] dark:text-[#F59E0B] hover:underline shrink-0"
           >
             <span>View All Case Studies</span>
             <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />

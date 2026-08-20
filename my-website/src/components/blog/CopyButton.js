@@ -38,7 +38,7 @@ export default function CopyButton({ text }) {
       title={copied ? "Copied!" : "Copy code"}
     >
       {copied ? (
-        <Check size={14} className="text-emerald-400" />
+        <Check size={14} className="text-[#F59E0B]" />
       ) : (
         <Copy size={14} />
       )}

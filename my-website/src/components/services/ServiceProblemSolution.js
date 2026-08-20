@@ -9,7 +9,7 @@ export default function ServiceProblemSolution({ problems = [], solutions = [], 
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         {/* Section Header */}
         <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-extrabold uppercase tracking-widest text-[#10B981] dark:text-[#34D399] bg-[#10B981]/10 px-3.5 py-1.5 rounded-full border border-[#10B981]/20 mb-4 inline-block">
+          <span className="text-xs font-extrabold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 mb-4 inline-block">
             CHALLENGES &amp; SOLUTIONS
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[var(--text-heading)] tracking-tight mt-3 mb-4">
@@ -60,10 +60,10 @@ export default function ServiceProblemSolution({ problems = [], solutions = [], 
           </AnimatedSection>
 
           {/* Solutions Box */}
-          <AnimatedSection direction="right" delay={0.2} className="group bg-[var(--card-bg)] border border-emerald-500/30 dark:border-emerald-500/30 hover:border-emerald-500 rounded-3xl p-6 sm:p-8 shadow-[var(--shadow-card)] hover:shadow-[0_0_35px_rgba(16,185,129,0.3)] transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col justify-between">
+          <AnimatedSection direction="right" delay={0.2} className="group bg-[var(--card-bg)] border border-[#F59E0B]/30 dark:border-[#F59E0B]/30 hover:border-[#F59E0B] rounded-3xl p-6 sm:p-8 shadow-[var(--shadow-card)] hover:shadow-[0_0_35px_rgba(245,158,11,0.25)] transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center border border-emerald-500/20 shrink-0">
+                <div className="w-10 h-10 rounded-full bg-[#F59E0B]/10 text-[#0B1F3A] dark:text-[#F59E0B] flex items-center justify-center border border-[#F59E0B]/30 shrink-0">
                   <CheckCircle2 size={22} />
                 </div>
                 <div>
@@ -78,8 +78,8 @@ export default function ServiceProblemSolution({ problems = [], solutions = [], 
 
               <div className="space-y-6">
                 {solutions.map((sol, idx) => (
-                  <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/10">
-                    <span className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+                  <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-[#F59E0B]/5 dark:bg-[#F59E0B]/10 border border-[#F59E0B]/15">
+                    <span className="w-6 h-6 rounded-full bg-[#F59E0B]/20 text-[#0B1F3A] dark:text-[#F59E0B] flex items-center justify-center shrink-0 mt-0.5 font-bold">
                       <Check size={13} strokeWidth={3} />
                     </span>
                     <div>

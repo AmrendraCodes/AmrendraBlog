@@ -77,7 +77,7 @@ export default async function CategoryPage({ params }) {
       <JsonLd data={breadcrumbSchema} />
       <section className="max-w-6xl mx-auto px-6 pt-28 pb-16 md:pt-36 md:pb-24">
         <div className="mb-12">
-          <Link href="/categories" className="text-[#10B981] hover:text-[#059669] dark:text-[#34D399] text-sm font-semibold mb-4 inline-flex items-center gap-2 transition-colors">
+          <Link href="/categories" className="text-[#0B1F3A] hover:text-[#F59E0B] dark:text-[#F59E0B] text-sm font-semibold mb-4 inline-flex items-center gap-2 transition-colors">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
             All Categories
           </Link>
@@ -92,7 +92,7 @@ export default async function CategoryPage({ params }) {
         {posts.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-xl text-slate-500 dark:text-slate-400 mb-6">No articles found in this category yet.</p>
-            <Link href="/resources/blog" className="px-8 py-3.5 bg-[#10B981] text-white rounded-full font-bold hover:bg-[#059669] transition-colors inline-flex items-center">
+            <Link href="/resources/blog" className="px-8 py-3.5 bg-[#F59E0B] text-[#0B1F3A] font-bold rounded-full hover:bg-[#D97706] transition-colors inline-flex items-center shadow-md">
               Browse All Articles
             </Link>
           </div>

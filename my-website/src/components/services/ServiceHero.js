@@ -101,7 +101,7 @@ export default function ServiceHero({ service }) {
 
               <div className="mt-6 pt-4 border-t border-[var(--card-border)] flex items-center justify-between text-xs text-[var(--text-muted)] font-mono">
                 <span>STATUS: PRODUCTION READY</span>
-                <span className="text-emerald-500 font-bold">● ONLINE</span>
+                <span className="text-[#F59E0B] font-bold">● ONLINE</span>
               </div>
             </div>
           </AnimatedSection>

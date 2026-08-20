@@ -20,7 +20,7 @@ const MermaidBlock = dynamic(() => import("./blog/MermaidBlock"), {
   ssr: false,
   loading: () => (
     <div className="my-6 p-8 bg-[var(--section-alt-bg)] border border-[var(--card-border)] rounded-xl flex items-center justify-center">
-      <div className="w-6 h-6 border-2 border-[#10B981] border-t-transparent rounded-full animate-spin" />
+      <div className="w-6 h-6 border-2 border-[#F59E0B] border-t-transparent rounded-full animate-spin" />
     </div>
   ),
 });
@@ -46,7 +46,7 @@ function createHeadingComponent(level) {
         {id && (
           <a
             href={`#${id}`}
-            className="anchor-link absolute -left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-[var(--text-muted)] hover:text-[#10B981] no-underline"
+            className="anchor-link absolute -left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-[var(--text-muted)] hover:text-[#F59E0B] no-underline"
             aria-label={`Link to ${typeof children === "string" ? children : "section"}`}
           >
             <LinkIcon size={16} />
@@ -92,16 +92,16 @@ function parseAdmonition(children) {
 
 const admonitionConfig = {
   NOTE: {
-    borderColor: "border-emerald-500",
-    bgColor: "bg-emerald-500/5",
-    iconColor: "text-emerald-500",
+    borderColor: "border-[#0B1F3A] dark:border-[#F59E0B]",
+    bgColor: "bg-[#0B1F3A]/5 dark:bg-[#F59E0B]/10",
+    iconColor: "text-[#0B1F3A] dark:text-[#F59E0B]",
     icon: "ℹ️",
     title: "Note",
   },
   TIP: {
-    borderColor: "border-emerald-500",
-    bgColor: "bg-emerald-500/5",
-    iconColor: "text-emerald-500",
+    borderColor: "border-[#F59E0B]",
+    bgColor: "bg-[#F59E0B]/10",
+    iconColor: "text-[#F59E0B]",
     icon: "💡",
     title: "Tip",
   },
@@ -120,9 +120,9 @@ const admonitionConfig = {
     title: "Caution",
   },
   IMPORTANT: {
-    borderColor: "border-emerald-500",
-    bgColor: "bg-emerald-500/5",
-    iconColor: "text-emerald-500",
+    borderColor: "border-[#0B1F3A] dark:border-[#F59E0B]",
+    bgColor: "bg-[#0B1F3A]/5 dark:bg-[#F59E0B]/10",
+    iconColor: "text-[#0B1F3A] dark:text-[#F59E0B]",
     icon: "📌",
     title: "Important",
   },
@@ -173,7 +173,7 @@ export default function MarkdownRenderer({ content }) {
         ),
         li: ({ children, ...props }) => (
           <li
-            className="pl-1 my-1 leading-[1.8] text-[var(--text-body)] marker:text-[#10B981]"
+            className="pl-1 my-1 leading-[1.8] text-[var(--text-body)] marker:text-[#F59E0B]"
             {...props}
           >
             {children}
@@ -206,7 +206,7 @@ export default function MarkdownRenderer({ content }) {
           }
 
           const linkClasses =
-            "text-[#10B981] dark:text-[#34D399] font-semibold underline decoration-[#10B981]/50 hover:decoration-[#10B981] hover:text-[#059669] dark:hover:text-[#6EE7B7] transition-all cursor-pointer";
+            "text-[#0B1F3A] dark:text-[#F59E0B] font-semibold underline decoration-[#F59E0B]/50 hover:decoration-[#F59E0B] hover:text-[#F59E0B] dark:hover:text-[#FBBF24] transition-all cursor-pointer";
 
           if (isInternal) {
             return (
@@ -344,7 +344,7 @@ export default function MarkdownRenderer({ content }) {
 
           return (
             <blockquote
-              className="border-l-[#10B981] bg-[var(--section-alt-bg)] rounded-r-xl py-1 px-6"
+              className="border-l-[#F59E0B] bg-[var(--section-alt-bg)] rounded-r-xl py-1 px-6"
               {...props}
             >
               {children}
@@ -365,7 +365,7 @@ export default function MarkdownRenderer({ content }) {
         ),
         thead: ({ children, ...props }) => (
           <thead
-            className="bg-[#10B981]/10 text-[var(--text-heading)] font-bold text-base"
+            className="bg-[#F59E0B]/10 text-[var(--text-heading)] font-bold text-base"
             {...props}
           >
             {children}
@@ -396,7 +396,7 @@ export default function MarkdownRenderer({ content }) {
                 type="checkbox"
                 checked={checked}
                 disabled
-                className="w-4 h-4 text-emerald-600 bg-slate-100 border-slate-300 rounded-sm focus:ring-emerald-500 dark:focus:ring-emerald-600 dark:ring-offset-slate-800 focus:ring-2 dark:bg-slate-700 dark:border-slate-600 mr-2 accent-emerald-600 inline-block align-middle"
+                className="w-4 h-4 text-[#F59E0B] bg-slate-100 border-slate-300 rounded-sm focus:ring-[#F59E0B] dark:focus:ring-[#F59E0B] dark:ring-offset-slate-800 focus:ring-2 dark:bg-slate-700 dark:border-slate-600 mr-2 accent-[#F59E0B] inline-block align-middle"
                 {...props}
               />
             );

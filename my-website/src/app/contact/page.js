@@ -30,13 +30,13 @@ export default function ContactPage() {
 
       {/* ═══════════ HERO ═══════════ */}
       <section className="pt-32 pb-20 md:pt-40 md:pb-28 px-6 max-w-4xl mx-auto text-center">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#10B981] dark:text-[#34D399] mb-6">
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#0B1F3A] dark:text-[#F59E0B] mb-6">
           Get In Touch
         </p>
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] mb-8 text-[var(--text-heading)]">
           Let&apos;s{" "}
           <span
-            className="bg-gradient-to-r from-[#10B981] to-[#34D399] text-transparent bg-clip-text italic pr-3"
+            className="bg-gradient-to-r from-[#0B1F3A] via-[#1E3A8A] to-[#F59E0B] dark:from-white dark:via-[#F8FAFC] dark:to-[#F59E0B] text-transparent bg-clip-text italic pr-3"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
           >
             Connect
@@ -57,7 +57,7 @@ export default function ContactPage() {
             <div className="space-y-12 lg:sticky lg:top-32">
               <div>
                 <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-heading)] mb-4 flex items-center gap-3">
-                  <span className="w-8 h-[2px] bg-gradient-to-r from-[#10B981] to-[#34D399] rounded-full"></span>
+                  <span className="w-8 h-[2px] bg-gradient-to-r from-[#0B1F3A] to-[#F59E0B] rounded-full"></span>
                   Contact Info
                 </h2>
                 <p className="text-[var(--text-body)] text-base leading-relaxed">
@@ -80,17 +80,17 @@ export default function ContactPage() {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between py-5 border-b border-[var(--card-border)] hover:border-[#10B981]/40 transition-all duration-300 no-underline"
+                    className="group flex items-center justify-between py-5 border-b border-[var(--card-border)] hover:border-[#F59E0B]/40 transition-all duration-300 no-underline"
                   >
                     <div>
                       <div className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-[0.18em] mb-1">
                         {item.label}
                       </div>
-                      <div className="text-base font-semibold text-[var(--text-heading)] group-hover:text-[#10B981] dark:group-hover:text-[#34D399] transition-colors">
+                      <div className="text-base font-semibold text-[var(--text-heading)] group-hover:text-[#F59E0B] transition-colors">
                         {item.value}
                       </div>
                     </div>
-                    <svg className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[#10B981] dark:group-hover:text-[#34D399] transition-all duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[#F59E0B] transition-all duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
                     </svg>
                   </a>
@@ -98,7 +98,7 @@ export default function ContactPage() {
               </div>
 
               {/* Response Time — flatter style */}
-              <div className="pl-5 border-l-2 border-[#10B981]/30">
+              <div className="pl-5 border-l-2 border-[#F59E0B]/40">
                 <h3 className="text-sm font-bold text-[var(--text-heading)] mb-2">Current Response Time</h3>
                 <p className="text-sm text-[var(--text-body)] leading-relaxed">
                   I usually respond within 24–48 business hours.
@@ -129,7 +129,7 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="John Doe"
-                        className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#10B981] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
+                        className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#F59E0B] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
                       />
                     </div>
                     {/* Email */}
@@ -145,7 +145,7 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="name@example.com"
-                        className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#10B981] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
+                        className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#F59E0B] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
                       />
                     </div>
                   </div>
@@ -163,7 +163,7 @@ export default function ContactPage() {
                       value={formData.subject}
                       onChange={handleChange}
                       placeholder="Project Inquiry"
-                      className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#10B981] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
+                      className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#F59E0B] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
                     />
                   </div>
 
@@ -179,7 +179,7 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={handleChange}
                       placeholder="Tell me about your project..."
-                      className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#10B981] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 min-h-[140px] resize-none text-base"
+                      className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#F59E0B] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 min-h-[140px] resize-none text-base"
                     ></textarea>
                   </div>
 
@@ -187,9 +187,9 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className={`w-full py-4 rounded-xl font-bold text-white transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer ${status === "success"
-                      ? "bg-green-600/90"
-                      : "bg-gradient-to-r from-[#10B981] to-[#059669] hover:from-[#10B981] hover:to-[#059669] hover:scale-[1.02] active:scale-[0.98]"
+                    className={`w-full py-4 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer ${status === "success"
+                      ? "bg-[#F59E0B] text-[#0B1F3A]"
+                      : "bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] hover:scale-[1.02] active:scale-[0.98] shadow-md"
                       }`}
                   >
                     {status === "sending" ? "Sending..." : status === "success" ? "Message Sent!" : "Send Message"}
@@ -203,7 +203,7 @@ export default function ContactPage() {
                   </button>
 
                   {status === "success" && (
-                    <p className="text-center text-sm font-semibold text-green-500">
+                    <p className="text-center text-sm font-semibold text-[#F59E0B]">
                       Thank you! I&apos;ll get back to you soon.
                     </p>
                   )}
@@ -255,9 +255,9 @@ export default function ContactPage() {
                 href={platform.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-center px-6 py-3.5 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] opacity-70 hover:opacity-100 hover:border-[#10B981] hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:-translate-y-1 transition-all duration-300 min-w-[120px] no-underline"
+                className="group flex items-center justify-center px-6 py-3.5 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] opacity-70 hover:opacity-100 hover:border-[#F59E0B] hover:shadow-[0_0_20px_rgba(245,158,11,0.25)] hover:-translate-y-1 transition-all duration-300 min-w-[120px] no-underline"
               >
-                <span className="text-sm font-bold text-[var(--text-heading)] group-hover:text-[#10B981] dark:group-hover:text-[#34D399] tracking-wide transition-colors">
+                <span className="text-sm font-bold text-[var(--text-heading)] group-hover:text-[#F59E0B] tracking-wide transition-colors">
                   {platform.name}
                 </span>
               </a>

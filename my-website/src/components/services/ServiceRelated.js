@@ -28,7 +28,7 @@ export default function ServiceRelated({ relatedServices = [], relatedBlogSlugs 
           <div className="mb-20">
             <AnimatedSection direction="up" className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-12 gap-4">
               <div>
-                <span className="text-xs font-extrabold uppercase tracking-widest text-[#10B981] dark:text-[#34D399] bg-[#10B981]/10 px-3.5 py-1.5 rounded-full border border-[#10B981]/20 mb-3 inline-block">
+                <span className="text-xs font-extrabold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 mb-3 inline-block">
                   COMPLEMENTARY SERVICES
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-black text-[var(--text-heading)] tracking-tight">
@@ -37,7 +37,7 @@ export default function ServiceRelated({ relatedServices = [], relatedBlogSlugs 
               </div>
               <Link
                 href="/services"
-                className="inline-flex items-center gap-2 text-sm font-bold text-[#10B981] dark:text-[#34D399] hover:underline shrink-0"
+                className="inline-flex items-center gap-2 text-sm font-bold text-[#0B1F3A] dark:text-[#F59E0B] hover:underline shrink-0"
               >
                 <span>View All Services</span>
                 <ArrowRight size={16} />
@@ -58,7 +58,7 @@ export default function ServiceRelated({ relatedServices = [], relatedBlogSlugs 
           {relatedBlogSlugs.length > 0 && (
             <AnimatedSection direction="left" className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-7">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-[#10B981]/10 text-[#10B981] flex items-center justify-center border border-[#10B981]/20">
+                <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-[#112240] text-[#0B1F3A] dark:text-[#F59E0B] flex items-center justify-center border border-slate-200 dark:border-[#1E293B]">
                   <BookOpen size={20} />
                 </div>
                 <h3 className="text-lg font-bold text-[var(--text-heading)]">
@@ -71,12 +71,12 @@ export default function ServiceRelated({ relatedServices = [], relatedBlogSlugs 
                   <Link
                     key={slug}
                     href={`/resources/blog/${slug}`}
-                    className="group flex items-center justify-between p-4 rounded-xl bg-[var(--background)] border border-[var(--card-border)] hover:border-[#10B981]/50 transition-all duration-300"
+                    className="group flex items-center justify-between p-4 rounded-xl bg-[var(--background)] border border-[var(--card-border)] hover:border-[#F59E0B]/50 transition-all duration-300"
                   >
-                    <span className="text-sm font-semibold text-[var(--text-heading)] group-hover:text-[#10B981] transition-colors line-clamp-1 pr-4">
+                    <span className="text-sm font-semibold text-[var(--text-heading)] group-hover:text-[#F59E0B] transition-colors line-clamp-1 pr-4">
                       {BLOG_TITLES[slug] || slug.replace(/-/g, ' ')}
                     </span>
-                    <ArrowRight size={16} className="text-[var(--text-muted)] group-hover:text-[#10B981] group-hover:translate-x-1 transition-all shrink-0" />
+                    <ArrowRight size={16} className="text-[var(--text-muted)] group-hover:text-[#F59E0B] group-hover:translate-x-1 transition-all shrink-0" />
                   </Link>
                 ))}
               </div>
@@ -87,7 +87,7 @@ export default function ServiceRelated({ relatedServices = [], relatedBlogSlugs 
           {relatedCaseStudySlugs.length > 0 && (
             <AnimatedSection direction="right" className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-7">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-[#10B981]/10 text-[#10B981] flex items-center justify-center border border-[#10B981]/20">
+                <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-[#112240] text-[#0B1F3A] dark:text-[#F59E0B] flex items-center justify-center border border-slate-200 dark:border-[#1E293B]">
                   <Layers size={20} />
                 </div>
                 <h3 className="text-lg font-bold text-[var(--text-heading)]">
@@ -99,13 +99,13 @@ export default function ServiceRelated({ relatedServices = [], relatedBlogSlugs 
                 {relatedCaseStudySlugs.map((slug) => (
                   <Link
                     key={slug}
-                    href={`/case-studies/${slug}`}
-                    className="group flex items-center justify-between p-4 rounded-xl bg-[var(--background)] border border-[var(--card-border)] hover:border-[#10B981]/50 transition-all duration-300"
+                    href={`/resources/case-studies/${slug}`}
+                    className="group flex items-center justify-between p-4 rounded-xl bg-[var(--background)] border border-[var(--card-border)] hover:border-[#F59E0B]/50 transition-all duration-300"
                   >
-                    <span className="text-sm font-semibold text-[var(--text-heading)] group-hover:text-[#10B981] transition-colors line-clamp-1 pr-4">
+                    <span className="text-sm font-semibold text-[var(--text-heading)] group-hover:text-[#F59E0B] transition-colors line-clamp-1 pr-4">
                       {CASE_STUDY_TITLES[slug] || slug.replace(/-/g, ' ')}
                     </span>
-                    <ArrowRight size={16} className="text-[var(--text-muted)] group-hover:text-[#10B981] group-hover:translate-x-1 transition-all shrink-0" />
+                    <ArrowRight size={16} className="text-[var(--text-muted)] group-hover:text-[#F59E0B] group-hover:translate-x-1 transition-all shrink-0" />
                   </Link>
                 ))}
               </div>

@@ -54,7 +54,7 @@ export default function TiltCard({
 
   const handleMouseEnter = () => {
     if (!isTouchRef.current && cardRef.current) {
-      cardRef.current.classList.add('shadow-[0_15px_40px_rgba(16,185,129,0.2)]', 'border-[#10B981]/40');
+      cardRef.current.classList.add('shadow-[0_15px_40px_rgba(245,158,11,0.2)]', 'border-[#F59E0B]/50');
     }
   };
 
@@ -63,7 +63,7 @@ export default function TiltCard({
       cardRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
       cardRef.current.style.transition = 'transform 0.5s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out';
       cardRef.current.style.willChange = 'auto';
-      cardRef.current.classList.remove('shadow-[0_15px_40px_rgba(16,185,129,0.2)]', 'border-[#10B981]/40');
+      cardRef.current.classList.remove('shadow-[0_15px_40px_rgba(245,158,11,0.2)]', 'border-[#F59E0B]/50');
     }
   };
 
