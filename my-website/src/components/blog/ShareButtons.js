@@ -71,8 +71,8 @@ export default function ShareButtons({ title, slug }) {
       icon: copied ? Check : Link2,
       onClick: handleCopyLink,
       hoverClass: copied
-        ? "text-emerald-400 border-emerald-400/30"
-        : "hover:text-[#10B981] hover:border-[#10B981]/30",
+        ? "text-[#F59E0B] border-[#F59E0B]/30"
+        : "hover:text-[#F59E0B] hover:border-[#F59E0B]/30",
     },
   ];
 

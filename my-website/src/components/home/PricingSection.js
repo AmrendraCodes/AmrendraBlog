@@ -64,13 +64,13 @@ export default function PricingSection() {
   return (
     <div className="flex flex-col items-center">
       {/* Billing Cycle Toggle */}
-      <div className="inline-flex items-center gap-2 p-1.5 rounded-full bg-slate-100 dark:bg-[#0A0F0C] border border-slate-200 dark:border-[#1E2E25] mb-12">
+      <div className="inline-flex items-center gap-2 p-1.5 rounded-full bg-slate-100 dark:bg-[#071324] border border-slate-200 dark:border-[#1E293B] mb-12">
         <button
           onClick={() => setBillingCycle('project')}
           className={`px-5 py-2 rounded-full text-xs font-bold transition-all duration-300 ${
             billingCycle === 'project'
-              ? 'bg-[#10B981] text-white shadow-[0_0_20px_rgba(16,185,129,0.4)]'
-              : 'text-slate-600 dark:text-[#9CA3AF] hover:text-slate-900 dark:hover:text-white'
+              ? 'bg-[#F59E0B] text-[#0B1F3A] shadow-[0_0_20px_rgba(245,158,11,0.35)]'
+              : 'text-slate-600 dark:text-[#94A3B8] hover:text-[#0B1F3A] dark:hover:text-white'
           }`}
         >
           Project-Based
@@ -79,12 +79,12 @@ export default function PricingSection() {
           onClick={() => setBillingCycle('monthly')}
           className={`px-5 py-2 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-1.5 ${
             billingCycle === 'monthly'
-              ? 'bg-[#10B981] text-white shadow-[0_0_20px_rgba(16,185,129,0.4)]'
-              : 'text-slate-600 dark:text-[#9CA3AF] hover:text-slate-900 dark:hover:text-white'
+              ? 'bg-[#F59E0B] text-[#0B1F3A] shadow-[0_0_20px_rgba(245,158,11,0.35)]'
+              : 'text-slate-600 dark:text-[#94A3B8] hover:text-[#0B1F3A] dark:hover:text-white'
           }`}
         >
           Monthly Retainer
-          <span className="text-[10px] bg-[#34D399]/20 text-emerald-700 dark:text-[#34D399] px-2 py-0.5 rounded-full font-bold">Save 20%</span>
+          <span className="text-[10px] bg-[#F59E0B]/20 text-[#0B1F3A] dark:text-[#F59E0B] px-2 py-0.5 rounded-full font-bold">Save 20%</span>
         </button>
       </div>
 
@@ -95,12 +95,12 @@ export default function PricingSection() {
             key={idx}
             className={`relative rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 ${
               tier.popular
-                ? 'bg-gradient-to-b from-emerald-50/80 to-slate-50 dark:from-[#111C16] dark:to-[#0A0F0C] border-2 border-[#10B981] shadow-[0_10px_40px_rgba(16,185,129,0.25)]'
-                : 'bg-white dark:bg-[#0A0F0C] border border-slate-200 dark:border-[#1E2E25] hover:border-[#10B981]/50 shadow-sm dark:shadow-xl'
+                ? 'bg-gradient-to-b from-amber-500/5 to-white dark:from-[#112240] dark:to-[#0B1F3A] border-2 border-[#F59E0B] shadow-[0_10px_40px_rgba(245,158,11,0.2)]'
+                : 'bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] hover:border-[#F59E0B]/50 shadow-sm'
             }`}
           >
             {tier.popular && (
-              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-[#10B981] text-white text-[11px] font-extrabold uppercase tracking-widest shadow-md flex items-center gap-1">
+              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-[#F59E0B] text-[#0B1F3A] text-[11px] font-extrabold uppercase tracking-widest shadow-md flex items-center gap-1">
                 <Sparkles size={12} />
                 {tier.badge}
               </div>
@@ -108,30 +108,30 @@ export default function PricingSection() {
 
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold text-slate-900 dark:text-[#F3F4F6]">{tier.name}</h3>
+                <h3 className="text-lg font-bold text-[#0B1F3A] dark:text-white">{tier.name}</h3>
                 {!tier.popular && (
-                  <span className="text-[10px] font-mono text-[#10B981] bg-[#10B981]/10 px-2.5 py-1 rounded-full border border-[#10B981]/20">
+                  <span className="text-[10px] font-mono text-[#D97706] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-2.5 py-1 rounded-full border border-[#F59E0B]/30 font-bold">
                     {tier.badge}
                   </span>
                 )}
               </div>
 
               <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                <span className="text-4xl font-extrabold text-[#0B1F3A] dark:text-white tracking-tight">
                   {billingCycle === 'project' ? tier.priceProject : tier.priceMonthly}
                 </span>
-                <span className="text-xs text-slate-500 dark:text-[#9CA3AF] font-medium">{tier.period}</span>
+                <span className="text-xs text-slate-500 dark:text-[#94A3B8] font-medium">{tier.period}</span>
               </div>
 
-              <p className="text-xs text-slate-600 dark:text-[#9CA3AF] leading-relaxed mb-6 border-b border-slate-200 dark:border-[#1E2E25] pb-6">
+              <p className="text-xs text-[#475569] dark:text-[#94A3B8] leading-relaxed mb-6 border-b border-slate-200 dark:border-[#1E293B] pb-6">
                 {tier.description}
               </p>
 
               {/* Feature List */}
               <ul className="space-y-3 mb-8">
                 {tier.features.map((feat, fIdx) => (
-                  <li key={fIdx} className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-[#F3F4F6]">
-                    <span className="mt-0.5 flex-shrink-0 w-4 h-4 rounded-full bg-[#10B981]/20 text-[#10B981] flex items-center justify-center">
+                  <li key={fIdx} className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-[#F8FAFC]">
+                    <span className="mt-0.5 flex-shrink-0 w-4 h-4 rounded-full bg-[#F59E0B]/20 text-[#D97706] dark:text-[#F59E0B] flex items-center justify-center font-bold">
                       <Check size={10} strokeWidth={3} />
                     </span>
                     <span>{feat}</span>
@@ -145,8 +145,8 @@ export default function PricingSection() {
               href="/contact"
               className={`w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl font-bold text-xs transition-all duration-300 ${
                 tier.popular
-                  ? 'bg-gradient-to-r from-[#10B981] to-[#059669] text-white shadow-lg hover:shadow-emerald-500/40 hover:scale-[1.02]'
-                  : 'bg-slate-100 dark:bg-[#111C16] text-slate-900 dark:text-[#F3F4F6] border border-slate-200 dark:border-[#1E2E25] hover:border-[#10B981] hover:text-[#10B981]'
+                  ? 'bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] shadow-lg shadow-amber-500/30 hover:scale-[1.02]'
+                  : 'bg-slate-100 dark:bg-[#112240] text-[#0B1F3A] dark:text-white border border-slate-200 dark:border-[#1E293B] hover:border-[#F59E0B] hover:text-[#F59E0B]'
               }`}
             >
               <span>{tier.cta}</span>
@@ -157,7 +157,7 @@ export default function PricingSection() {
       </div>
 
       {/* Trust Footnote Line */}
-      <p className="text-xs text-slate-500 dark:text-[#9CA3AF] text-center mt-8 font-medium">
+      <p className="text-xs text-slate-500 dark:text-[#94A3B8] text-center mt-8 font-medium">
         No credit card required to talk. Cancel or switch plans anytime.
       </p>
     </div>

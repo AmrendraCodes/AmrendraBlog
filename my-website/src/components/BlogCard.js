@@ -12,7 +12,7 @@ export default function BlogCard({ post }) {
   return (
     <TiltCard className="h-full">
       <article 
-        className="group relative bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:shadow-[0_20px_50px_rgba(16,185,129,0.2)] transition-shadow duration-500 h-full flex flex-col justify-between"
+        className="group relative bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[var(--card-border)] shadow-[var(--shadow-card)] hover:shadow-[0_20px_50px_rgba(11,31,58,0.08),0_4px_20px_rgba(245,158,11,0.15)] transition-shadow duration-500 h-full flex flex-col justify-between"
       >
       {/* Thumbnail */}
       <div className="relative h-64 overflow-hidden rounded-t-3xl">
@@ -24,7 +24,7 @@ export default function BlogCard({ post }) {
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
         <div className="absolute top-4 left-4">
-          <span className="bg-[#10B981] text-white text-[11px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-md">
+          <span className="bg-[#F59E0B] text-[#0B1F3A] text-[11px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-md">
             {post.category || "Technology"}
           </span>
         </div>
@@ -34,16 +34,16 @@ export default function BlogCard({ post }) {
       <div className="p-7">
         <div className="flex items-center space-x-4 text-[var(--text-muted)] text-[12px] font-medium mb-4">
           <div className="flex items-center">
-            <Calendar size={14} className="mr-1.5" />
+            <Calendar size={14} className="mr-1.5 text-[#F59E0B]" />
             <span>{post.date || "Feb 27, 2026"}</span>
           </div>
           <div className="flex items-center">
-            <Clock size={14} className="mr-1.5" />
+            <Clock size={14} className="mr-1.5 text-[#F59E0B]" />
             <span>{post.readTime || "5 min read"}</span>
           </div>
         </div>
 
-        <h3 className="text-xl lg:text-2xl font-bold text-[var(--text-heading)] mb-3 leading-snug group-hover:text-[#10B981] dark:group-hover:text-[#34D399] transition-colors line-clamp-2">
+        <h3 className="text-xl lg:text-2xl font-bold text-[var(--text-heading)] mb-3 leading-snug group-hover:text-[#F59E0B] transition-colors line-clamp-2">
           <Link href={postLink} className="before:absolute before:inset-0 before:z-10 no-underline text-inherit">
             {post.title}
           </Link>
@@ -79,7 +79,7 @@ export default function BlogCard({ post }) {
           </div>
 
           <span
-            className="w-10 h-10 rounded-full bg-[var(--section-alt-bg)] flex items-center justify-center text-[var(--foreground)] group-hover:bg-[#10B981] group-hover:text-white transition-all duration-300 relative z-20"
+            className="w-10 h-10 rounded-full bg-[var(--section-alt-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--foreground)] group-hover:bg-[#F59E0B] group-hover:text-[#0B1F3A] group-hover:border-[#F59E0B] transition-all duration-300 relative z-20"
             aria-hidden="true"
           >
             <ArrowUpRight size={18} />

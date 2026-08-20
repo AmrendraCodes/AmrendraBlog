@@ -99,7 +99,7 @@ export default function Header() {
               priority 
             />
             <span className="text-[20px] font-extrabold tracking-wider flex items-center text-slate-900 dark:text-white ml-1">
-              <span className="bg-gradient-to-r from-[#059669] to-[#10B981] dark:from-[#10B981] dark:to-[#34D399] text-transparent bg-clip-text font-black">CWA</span>
+              <span className="bg-gradient-to-r from-[#0B1F3A] to-[#F59E0B] dark:from-[#F59E0B] dark:to-[#FBBF24] text-transparent bg-clip-text font-black">CWA</span>
             </span>
           </Link>
         </div>
@@ -138,12 +138,12 @@ export default function Header() {
                       aria-expanded={isServicesOpen}
                       className={`relative inline-flex items-center gap-1 text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-3 lg:px-4 py-1.5 rounded-full cursor-pointer border-none bg-transparent ${
                         isActive || isServicesOpen
-                          ? "text-[#059669] dark:text-[#10B981] bg-emerald-50 dark:bg-[#10B981]/15 font-bold"
-                          : "text-slate-700 dark:text-slate-200 hover:text-[#059669] dark:hover:text-[#10B981] hover:bg-slate-100 dark:hover:bg-[#1E2E25]/60"
+                          ? "text-[#0B1F3A] dark:text-[#F59E0B] bg-amber-500/10 font-bold"
+                          : "text-slate-700 dark:text-slate-200 hover:text-[#F59E0B] dark:hover:text-[#F59E0B] hover:bg-slate-100 dark:hover:bg-[#112240]"
                       }`}
                     >
                       <span>{link.name}</span>
-                      <ChevronDown size={14} className={`transition-transform duration-300 ${isServicesOpen ? "rotate-180 text-[#059669] dark:text-[#10B981]" : ""}`} />
+                      <ChevronDown size={14} className={`transition-transform duration-300 ${isServicesOpen ? "rotate-180 text-[#F59E0B]" : ""}`} />
                     </button>
 
                     {isServicesOpen && (
@@ -168,12 +168,12 @@ export default function Header() {
                       aria-expanded={isResourcesOpen}
                       className={`relative inline-flex items-center gap-1 text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-3 lg:px-4 py-1.5 rounded-full cursor-pointer border-none bg-transparent ${
                         isActive || isResourcesOpen
-                          ? "text-[#059669] dark:text-[#10B981] bg-emerald-50 dark:bg-[#10B981]/15 font-bold"
-                          : "text-slate-700 dark:text-slate-200 hover:text-[#059669] dark:hover:text-[#10B981] hover:bg-slate-100 dark:hover:bg-[#1E2E25]/60"
+                          ? "text-[#0B1F3A] dark:text-[#F59E0B] bg-amber-500/10 font-bold"
+                          : "text-slate-700 dark:text-slate-200 hover:text-[#F59E0B] dark:hover:text-[#F59E0B] hover:bg-slate-100 dark:hover:bg-[#112240]"
                       }`}
                     >
                       <span>{link.name}</span>
-                      <ChevronDown size={14} className={`transition-transform duration-300 ${isResourcesOpen ? "rotate-180 text-[#059669] dark:text-[#10B981]" : ""}`} />
+                      <ChevronDown size={14} className={`transition-transform duration-300 ${isResourcesOpen ? "rotate-180 text-[#F59E0B]" : ""}`} />
                     </button>
 
                     {isResourcesOpen && (
@@ -189,8 +189,8 @@ export default function Header() {
                   href={link.href}
                   className={`relative text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-3 lg:px-4 py-1.5 rounded-full ${
                     isActive
-                      ? "text-[#059669] dark:text-[#10B981] bg-emerald-50 dark:bg-[#10B981]/15 font-bold"
-                      : "text-slate-700 dark:text-slate-200 hover:text-[#059669] dark:hover:text-[#10B981] hover:bg-slate-100 dark:hover:bg-[#1E2E25]/60"
+                      ? "text-[#0B1F3A] dark:text-[#F59E0B] bg-amber-500/10 font-bold"
+                      : "text-slate-700 dark:text-slate-200 hover:text-[#F59E0B] dark:hover:text-[#F59E0B] hover:bg-slate-100 dark:hover:bg-[#112240]"
                   }`}
                 >
                   {link.name}
@@ -204,13 +204,13 @@ export default function Header() {
           <ThemeToggle />
           <Link
             href="/contact"
-            className="hidden md:inline-flex items-center justify-center whitespace-nowrap shrink-0 bg-gradient-to-r from-[#10B981] to-[#059669] text-white font-bold text-[0.875rem] py-2.5 px-6 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] hover:scale-105 active:scale-95"
+            className="hidden md:inline-flex items-center justify-center whitespace-nowrap shrink-0 bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-[0.875rem] py-2.5 px-6 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(245,158,11,0.5)] hover:scale-105 active:scale-95"
           >
             Get started
           </Link>
           <button
             type="button"
-            className="flex md:hidden items-center justify-center bg-slate-100 dark:bg-[#1A1B1E] border border-slate-200 dark:border-[#2A2B2E] text-slate-900 dark:text-slate-50 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-all duration-300 shrink-0 hover:bg-slate-200 dark:hover:bg-[#2A2B2E]"
+            className="flex md:hidden items-center justify-center bg-slate-100 dark:bg-[#112240] border border-slate-200 dark:border-[#1E293B] text-slate-900 dark:text-slate-50 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-all duration-300 shrink-0 hover:bg-slate-200 dark:hover:bg-[#1E3A8A]"
             onClick={() => setIsMenuOpen(true)}
             aria-label="Open menu"
             aria-expanded={isMenuOpen}
@@ -222,29 +222,29 @@ export default function Header() {
     </div>
 
       <div
-        className={`fixed inset-0 bg-slate-900/25 dark:bg-black/50 backdrop-blur-sm z-[105] transition-all duration-300 ${isMenuOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}
+        className={`fixed inset-0 bg-slate-900/25 dark:bg-black/60 backdrop-blur-sm z-[105] transition-all duration-300 ${isMenuOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}
         onClick={() => setIsMenuOpen(false)}
       />
 
       <div
-        className={`fixed top-0 right-0 bottom-0 w-[min(100%,24rem)] bg-white dark:bg-[#111214] z-[110] transition-transform duration-500 flex flex-col border-l border-slate-200/50 dark:border-[#2A2B2E] box-border ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed top-0 right-0 bottom-0 w-[min(100%,24rem)] bg-white dark:bg-[#0B1F3A] z-[110] transition-transform duration-500 flex flex-col border-l border-slate-200/50 dark:border-[#1E293B] box-border ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
         role="dialog"
         aria-modal="true"
         inert={!isMenuOpen}
       >
-        <div className="flex items-center justify-between p-6 border-b border-slate-200/50 dark:border-[#2A2B2E] gap-4">
+        <div className="flex items-center justify-between p-6 border-b border-slate-200/50 dark:border-[#1E293B] gap-4">
           <div className="flex items-center gap-3 shrink-0">
-            <div className="bg-gradient-to-br from-[#10B981] to-[#059669] text-white rounded-full flex justify-center items-center w-8 h-8 shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+            <div className="bg-[#F59E0B] text-[#0B1F3A] rounded-full flex justify-center items-center w-8 h-8 shadow-[0_0_20px_rgba(245,158,11,0.4)]">
               <Sparkles size={18} />
             </div>
             <span className="text-xl font-extrabold flex items-center text-slate-900 dark:text-white tracking-wider">
-              <span className="bg-gradient-to-r from-[#10B981] to-[#34D399] text-transparent bg-clip-text font-black">CWA</span>
+              <span className="bg-gradient-to-r from-[#0B1F3A] to-[#F59E0B] dark:from-[#F59E0B] dark:to-[#FBBF24] text-transparent bg-clip-text font-black">CWA</span>
             </span>
           </div>
           <button
             type="button"
             onClick={() => setIsMenuOpen(false)}
-            className="flex items-center justify-center bg-slate-100/80 dark:bg-[#1A1B1E]/80 border border-slate-200/50 dark:border-[#2A2B2E]/50 text-slate-900 dark:text-slate-50 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-all duration-300 hover:bg-slate-200/80 dark:hover:bg-[#2A2B2E]/80"
+            className="flex items-center justify-center bg-slate-100/80 dark:bg-[#112240] border border-slate-200/50 dark:border-[#1E293B] text-slate-900 dark:text-slate-50 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-all duration-300 hover:bg-slate-200/80 dark:hover:bg-[#1E3A8A]"
             aria-label="Close menu"
           >
             <X size={20} />
@@ -263,8 +263,8 @@ export default function Header() {
                       href={link.href}
                       className={`text-[1.35rem] font-extrabold no-underline transition-colors duration-300 leading-tight py-2.5 px-4 rounded-xl flex-1 ${
                         isActive
-                          ? "text-[#10B981] bg-[#10B981]/10 dark:bg-[#10B981]/15"
-                          : "text-slate-900 dark:text-slate-50 hover:text-[#10B981] dark:hover:text-[#34D399]"
+                          ? "text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 dark:bg-[#F59E0B]/15 font-bold"
+                          : "text-slate-900 dark:text-slate-50 hover:text-[#F59E0B] dark:hover:text-[#F59E0B]"
                       }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
@@ -273,21 +273,21 @@ export default function Header() {
                     <button
                       type="button"
                       onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                      className="p-2 text-slate-700 dark:text-slate-200 hover:text-[#10B981] cursor-pointer"
+                      className="p-2 text-slate-700 dark:text-slate-200 hover:text-[#F59E0B] cursor-pointer"
                       aria-label="Toggle Services sub-menu"
                     >
-                      <ChevronDown size={22} className={`transition-transform duration-300 ${isMobileServicesOpen ? "rotate-180 text-[#10B981]" : ""}`} />
+                      <ChevronDown size={22} className={`transition-transform duration-300 ${isMobileServicesOpen ? "rotate-180 text-[#F59E0B]" : ""}`} />
                     </button>
                   </div>
 
                   {isMobileServicesOpen && (
-                    <div className="flex flex-col gap-1 pl-4 pt-1 border-l-2 border-[#10B981]/30 ml-4">
+                    <div className="flex flex-col gap-1 pl-4 pt-1 border-l-2 border-[#F59E0B]/30 ml-4">
                       {SERVICES_DATA.map((s) => (
                         <Link
                           key={s.slug}
                           href={`/services/${s.slug}`}
                           onClick={() => setIsMenuOpen(false)}
-                          className="text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-[#10B981] dark:hover:text-[#34D399] py-2 px-3 rounded-lg block"
+                          className="text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-[#F59E0B] dark:hover:text-[#F59E0B] py-2 px-3 rounded-lg block"
                         >
                           {s.title}
                         </Link>
@@ -306,8 +306,8 @@ export default function Header() {
                       href={link.href}
                       className={`text-[1.35rem] font-extrabold no-underline transition-colors duration-300 leading-tight py-2.5 px-4 rounded-xl flex-1 ${
                         isActive
-                          ? "text-[#10B981] bg-[#10B981]/10 dark:bg-[#10B981]/15"
-                          : "text-slate-900 dark:text-slate-50 hover:text-[#10B981] dark:hover:text-[#34D399]"
+                          ? "text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 dark:bg-[#F59E0B]/15 font-bold"
+                          : "text-slate-900 dark:text-slate-50 hover:text-[#F59E0B] dark:hover:text-[#F59E0B]"
                       }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
@@ -316,21 +316,21 @@ export default function Header() {
                     <button
                       type="button"
                       onClick={() => setIsMobileResourcesOpen(!isMobileResourcesOpen)}
-                      className="p-2 text-slate-700 dark:text-slate-200 hover:text-[#10B981] cursor-pointer"
+                      className="p-2 text-slate-700 dark:text-slate-200 hover:text-[#F59E0B] cursor-pointer"
                       aria-label="Toggle Resources sub-menu"
                     >
-                      <ChevronDown size={22} className={`transition-transform duration-300 ${isMobileResourcesOpen ? "rotate-180 text-[#10B981]" : ""}`} />
+                      <ChevronDown size={22} className={`transition-transform duration-300 ${isMobileResourcesOpen ? "rotate-180 text-[#F59E0B]" : ""}`} />
                     </button>
                   </div>
 
                   {isMobileResourcesOpen && (
-                    <div className="flex flex-col gap-1 pl-4 pt-1 border-l-2 border-[#10B981]/30 ml-4">
+                    <div className="flex flex-col gap-1 pl-4 pt-1 border-l-2 border-[#F59E0B]/30 ml-4">
                       {RESOURCES_DROPDOWN_ITEMS.map((item) => (
                         <Link
                           key={item.href}
                           href={item.href}
                           onClick={() => setIsMenuOpen(false)}
-                          className="text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-[#10B981] dark:hover:text-[#34D399] py-2 px-3 rounded-lg block"
+                          className="text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-[#F59E0B] dark:hover:text-[#F59E0B] py-2 px-3 rounded-lg block"
                         >
                           {item.title}
                         </Link>
@@ -347,8 +347,8 @@ export default function Header() {
                 href={link.href}
                 className={`text-[1.35rem] font-extrabold no-underline transition-colors duration-300 leading-tight py-2.5 px-4 rounded-xl block w-full ${
                   isActive
-                    ? "text-[#10B981] bg-[#10B981]/10 dark:bg-[#10B981]/15"
-                    : "text-slate-900 dark:text-slate-50 hover:text-[#10B981] dark:hover:text-[#34D399] hover:bg-[#10B981]/5 dark:hover:bg-[#10B981]/10"
+                    ? "text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 dark:bg-[#F59E0B]/15 font-bold"
+                    : "text-slate-900 dark:text-slate-50 hover:text-[#F59E0B] dark:hover:text-[#F59E0B] hover:bg-[#F59E0B]/5 dark:hover:bg-[#F59E0B]/10"
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -357,7 +357,7 @@ export default function Header() {
             );
           })}
           <div className="flex flex-col gap-3 mt-auto pt-6 mb-4">
-            <Link href="/contact" className="inline-flex items-center justify-center bg-gradient-to-br from-[#10B981] to-[#059669] text-white font-bold text-[1.1rem] py-3.5 px-8 rounded-full border-none cursor-pointer w-full transition-opacity duration-300 hover:opacity-90 shadow-lg shadow-emerald-500/20" onClick={() => setIsMenuOpen(false)}>
+            <Link href="/contact" className="inline-flex items-center justify-center bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-[1.1rem] py-3.5 px-8 rounded-full border-none cursor-pointer w-full transition-opacity duration-300 shadow-lg shadow-amber-500/20" onClick={() => setIsMenuOpen(false)}>
               Get started
             </Link>
           </div>

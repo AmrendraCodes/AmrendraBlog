@@ -15,7 +15,7 @@ export default function WhatsAppButton() {
   return (
     <div className="fixed bottom-[calc(5rem+env(safe-area-inset-bottom,0px))] right-[calc(1.5rem+env(safe-area-inset-right,0px))] z-40 group flex items-center">
       {/* Tooltip on Hover */}
-      <span className="absolute right-14 bg-slate-900/95 dark:bg-slate-800/95 text-white text-xs font-semibold py-1.5 px-3 rounded-lg shadow-lg opacity-0 translate-x-2 pointer-events-none group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 whitespace-nowrap border border-slate-700/30 backdrop-blur-sm">
+      <span className="absolute right-14 bg-[#0B1F3A] text-white text-xs font-semibold py-1.5 px-3 rounded-lg shadow-lg opacity-0 translate-x-2 pointer-events-none group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 whitespace-nowrap border border-[#1E293B] backdrop-blur-sm">
         Chat with us on WhatsApp
       </span>
 

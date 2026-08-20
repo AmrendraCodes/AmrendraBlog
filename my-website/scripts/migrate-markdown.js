@@ -75,7 +75,11 @@ async function main() {
     const tagRecordIds = [];
     for (const tagName of tagsList) {
       const tagSlug = tagName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-      let tag = await prisma.tag.findUnique({ where: { slug: tagSlug } });
+      let tag = await prisma.tag.findFirst({
+        where: {
+          OR: [{ slug: tagSlug }, { name: tagName }],
+        },
+      });
       if (!tag) {
         tag = await prisma.tag.create({
           data: { name: tagName, slug: tagSlug },

@@ -40,19 +40,17 @@
 }
 
 .search-toolbar__inner:focus-within {
-  border-color: rgba(16, 185, 129, 0.5);
+  border-color: rgba(245, 158, 11, 0.6);
   box-shadow:
-    0 0 0 3px rgba(16, 185, 129, 0.1),
-    0 8px 24px rgba(0, 0, 0, 0.08);
+    0 0 0 3px rgba(245, 158, 11, 0.15),
+    0 8px 24px rgba(11, 31, 58, 0.08);
   transform: translateY(-1px);
 }
 
-
-
 :is(.dark) .search-toolbar__inner:focus-within {
-  border-color: rgba(16, 185, 129, 0.4);
+  border-color: rgba(245, 158, 11, 0.5);
   box-shadow:
-    0 0 0 3px rgba(16, 185, 129, 0.08),
+    0 0 0 3px rgba(245, 158, 11, 0.12),
     0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
@@ -64,13 +62,11 @@
 }
 
 .search-toolbar__inner:focus-within .search-toolbar__icon {
-  color: #10B981;
+  color: #F59E0B;
 }
 
-
-
 :is(.dark) .search-toolbar__inner:focus-within .search-toolbar__icon {
-  color: #34D399;
+  color: #F59E0B;
 }
 
 /* Input Field */
@@ -91,10 +87,6 @@
   font-weight: 400;
 }
 
-
-
-
-
 /* Clear Button */
 .search-toolbar__clear {
   display: flex;
@@ -104,7 +96,7 @@
   height: 1.75rem;
   border-radius: 50%;
   border: none;
-  background: rgba(16, 185, 129, 0.08);
+  background: rgba(245, 158, 11, 0.1);
   color: var(--text-muted);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -118,7 +110,7 @@
 }
 
 :is(.dark) .search-toolbar__clear {
-  background: rgba(16, 185, 129, 0.1);
+  background: rgba(245, 158, 11, 0.15);
   color: var(--text-muted);
 }
 
@@ -136,8 +128,6 @@
   margin: 0.75rem 0 0;
   animation: resultsFade 0.25s ease;
 }
-
-
 
 @keyframes resultsFade {
   from {
@@ -162,8 +152,6 @@
   animation: emptyFade 0.4s ease-out;
 }
 
-
-
 @keyframes emptyFade {
   from {
     opacity: 0;
@@ -183,11 +171,9 @@
   height: 4rem;
   margin: 0 auto 1.5rem;
   border-radius: 50%;
-  background: rgba(16, 185, 129, 0.08);
+  background: rgba(245, 158, 11, 0.1);
   color: var(--text-muted);
 }
-
-
 
 .search-empty-state__title {
   font-size: 1.25rem;
@@ -196,13 +182,9 @@
   margin: 0 0 0.5rem;
 }
 
-
-
 .search-empty-state__desc {
   font-size: 0.95rem;
   color: var(--text-body);
   margin: 0;
   line-height: 1.6;
 }
-
-

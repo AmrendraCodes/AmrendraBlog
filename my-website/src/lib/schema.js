@@ -172,6 +172,57 @@ export function getBlogPostSchema({ title, description, slug, image, datePublish
 }
 
 /**
+ * Returns FAQPage JSON-LD Schema for rich search snippets.
+ * @param {Array<{question: string, answer: string}>} faqList
+ */
+export function getFAQSchema(faqList) {
+  if (!Array.isArray(faqList) || faqList.length === 0) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqList.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+}
+
+/**
+ * Automatically extracts FAQs from markdown/text content if present.
+ * Looks for FAQ headings or Q&A patterns.
+ * @param {string} content
+ * @returns {Array<{question: string, answer: string}>}
+ */
+export function extractFaqsFromContent(content) {
+  if (!content) return [];
+  const faqs = [];
+
+  // Match: **Question?** Answer... or ### Question? Answer...
+  const faqSectionRegex = /##\s*(?:FAQ|Frequently Asked Questions)[\s\S]*?(?=(?:##\s+|$))/i;
+  const faqSectionMatch = content.match(faqSectionRegex);
+
+  const targetText = faqSectionMatch ? faqSectionMatch[0] : content;
+
+  // Match questions in markdown: ### Question or **Question?**
+  const qaRegex = /(?:###|\*\*)\s*([^\n\?]+\?)\s*(?:\*\*)?\s*\n+([\s\S]*?)(?=(?:###|\*\*|\n##|\n---|$))/gi;
+  let match;
+  while ((match = qaRegex.exec(targetText)) !== null) {
+    const question = match[1].replace(/\*\*/g, '').trim();
+    const answer = match[2].replace(/\*\*/g, '').replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1').trim();
+    if (question && answer && question.includes('?')) {
+      faqs.push({ question, answer });
+    }
+  }
+
+  return faqs;
+}
+
+/**
  * Returns BreadcrumbList JSON-LD Schema.
  * @param {Array<{name: string, url: string}>} items
  */

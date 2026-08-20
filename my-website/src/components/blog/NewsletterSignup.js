@@ -25,10 +25,10 @@ export default function NewsletterSignup() {
   };
 
   return (
-    <section className="py-24 px-6 lg:px-16 bg-slate-900 text-white relative overflow-hidden">
+    <section className="py-24 px-6 lg:px-16 bg-[#0B1F3A] text-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-full pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#10B981]/20 rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#F59E0B]/15 rounded-full blur-[120px]" />
       </div>
 
       <div className="max-w-3xl mx-auto text-center relative z-10">
@@ -47,22 +47,22 @@ export default function NewsletterSignup() {
                 if (status !== 'idle') setStatus('idle');
               }}
               placeholder="Your email address"
-              className="grow px-5 py-3 rounded-full bg-slate-800 border border-slate-700 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#10B981]"
+              className="grow px-5 py-3 rounded-full bg-[#071324] border border-[#1E293B] text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#F59E0B]"
               required
             />
             <button
               type="submit"
               disabled={status === 'loading' || status === 'success'}
-              className="px-6 py-3 bg-[#10B981] text-white rounded-full font-semibold hover:bg-[#059669] transition-colors disabled:opacity-70 whitespace-nowrap"
+              className="px-6 py-3 bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] rounded-full font-bold transition-all disabled:opacity-70 whitespace-nowrap shadow-md cursor-pointer"
             >
               {status === 'loading' ? 'Subscribing...' : 'Subscribe — it\'s free'}
             </button>
           </div>
           
           <div className="h-6 mt-3 text-sm font-medium">
-            {status === 'success' && <p className="text-emerald-400">You're in! Check your inbox for a welcome note.</p>}
+            {status === 'success' && <p className="text-[#F59E0B]">You're in! Check your inbox for a welcome note.</p>}
             {status === 'error' && <p className="text-rose-400">Something went wrong — try again or email us directly.</p>}
-            {status === 'duplicate' && <p className="text-[#34D399]">Looks like you're already subscribed. Great taste.</p>}
+            {status === 'duplicate' && <p className="text-[#F59E0B]">Looks like you're already subscribed. Great taste.</p>}
           </div>
         </form>
 

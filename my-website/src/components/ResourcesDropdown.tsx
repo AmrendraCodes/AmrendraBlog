@@ -22,13 +22,13 @@ export default function ResourcesDropdown({ onClose }: ResourcesDropdownProps) {
       role="menu"
       aria-label="Resources menu"
     >
-      <div className="bg-white dark:bg-[#0A0F0C] border border-slate-200 dark:border-[#1E2E25] rounded-3xl p-6 shadow-[0_30px_90px_rgba(0,0,0,0.25)] dark:shadow-[0_30px_90px_rgba(0,0,0,0.85)] relative overflow-hidden">
+      <div className="bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] rounded-3xl p-6 shadow-[0_20px_50px_rgba(11,31,58,0.18)] relative overflow-hidden">
         {/* Top vibrant accent gradient line */}
-        <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#10B981] via-[#34D399] to-[#059669]" />
+        <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#0B1F3A] via-[#F59E0B] to-[#D97706]" />
 
-        <div className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-[#9CA3AF] mb-4 px-2 flex items-center justify-between">
-          <span>Knowledge & Insights</span>
-          <span className="bg-[#10B981]/10 text-[#10B981] dark:text-[#34D399] px-2.5 py-0.5 rounded-full text-[10px]">
+        <div className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-[#94A3B8] mb-4 px-2 flex items-center justify-between">
+          <span>Knowledge &amp; Insights</span>
+          <span className="bg-[#F59E0B]/10 text-[#F59E0B] px-2.5 py-0.5 rounded-full text-[10px] font-bold border border-[#F59E0B]/20">
             Updated Weekly
           </span>
         </div>
@@ -42,27 +42,27 @@ export default function ResourcesDropdown({ onClose }: ResourcesDropdownProps) {
                 href={item.href}
                 onClick={onClose}
                 role="menuitem"
-                className="group flex flex-col justify-between p-4 rounded-2xl border border-slate-100 dark:border-[#1E2E25]/60 bg-slate-50/50 dark:bg-[#111C16]/40 hover:border-[#10B981]/40 hover:bg-slate-100/90 dark:hover:bg-[#111C16] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#10B981]"
+                className="group flex flex-col justify-between p-4 rounded-2xl border border-slate-100 dark:border-[#1E293B] bg-slate-50/50 dark:bg-[#112240]/60 hover:border-[#F59E0B]/40 hover:bg-slate-100/90 dark:hover:bg-[#112240] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F59E0B]"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-white dark:bg-[#111C16] border border-slate-200 dark:border-[#1E2E25] text-[#10B981] dark:text-[#34D399] flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-[#10B981] group-hover:text-white transition-all duration-300 shadow-sm">
+                    <div className="w-10 h-10 rounded-xl bg-white dark:bg-[#112240] border border-slate-200 dark:border-[#1E293B] text-[#0B1F3A] dark:text-[#F59E0B] flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-[#F59E0B] group-hover:text-[#0B1F3A] transition-all duration-300 shadow-sm">
                       <Icon size={20} />
                     </div>
                     <ChevronRight 
                       size={16} 
-                      className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#10B981] dark:text-[#34D399] shrink-0" 
+                      className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#F59E0B] shrink-0" 
                     />
                   </div>
-                  <h3 className="text-base font-bold text-slate-900 dark:text-[#F3F4F6] group-hover:text-[#10B981] dark:group-hover:text-[#34D399] transition-colors mb-1">
+                  <h3 className="text-base font-bold text-slate-900 dark:text-[#F8FAFC] group-hover:text-[#F59E0B] dark:group-hover:text-[#F59E0B] transition-colors mb-1">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-slate-500 dark:text-[#9CA3AF] leading-relaxed line-clamp-2">
+                  <p className="text-xs text-slate-500 dark:text-[#94A3B8] leading-relaxed line-clamp-2">
                     {item.subtitle}
                   </p>
                 </div>
 
-                <div className="pt-3 mt-3 border-t border-slate-200/60 dark:border-[#1E2E25]/60 flex items-center justify-between text-xs font-semibold text-[#10B981] dark:text-[#34D399]">
+                <div className="pt-3 mt-3 border-t border-slate-200/60 dark:border-[#1E293B] flex items-center justify-between text-xs font-semibold text-[#0B1F3A] dark:text-[#F59E0B]">
                   <span>{item.ctaText}</span>
                   <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </div>
@@ -72,14 +72,14 @@ export default function ResourcesDropdown({ onClose }: ResourcesDropdownProps) {
         </div>
 
         {/* Footer Strip */}
-        <div className="pt-4 border-t border-slate-200/80 dark:border-[#1E2E25] flex items-center justify-between">
-          <span className="text-xs font-medium text-slate-500 dark:text-[#9CA3AF]">
+        <div className="pt-4 border-t border-slate-200/80 dark:border-[#1E293B] flex items-center justify-between">
+          <span className="text-xs font-medium text-slate-500 dark:text-[#94A3B8]">
             Explore our complete engineering hub
           </span>
           <Link
             href="/resources"
             onClick={onClose}
-            className="inline-flex items-center gap-1.5 font-bold text-xs text-[#10B981] dark:text-[#34D399] hover:underline bg-[#10B981]/10 px-3 py-1.5 rounded-full border border-[#10B981]/20 hover:bg-[#10B981]/20 transition-all"
+            className="inline-flex items-center gap-1.5 font-bold text-xs text-[#0B1F3A] dark:text-[#F59E0B] hover:underline bg-[#F59E0B]/10 px-3 py-1.5 rounded-full border border-[#F59E0B]/20 hover:bg-[#F59E0B]/20 transition-all"
           >
             <span>Overview Page</span>
             <ArrowRight size={13} />

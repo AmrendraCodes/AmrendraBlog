@@ -87,7 +87,7 @@ function FAQItem({ question, answer, isOpen, onToggle, index }) {
   return (
     <motion.div
       variants={staggerItem}
-      className="group rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-[var(--shadow-card)] transition-all duration-300 hover:border-[#10B981]/30 hover:shadow-[0_0_30px_rgba(16,185,129,0.06)] overflow-hidden"
+      className="group rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-[var(--shadow-card)] transition-all duration-300 hover:border-[#F59E0B]/40 hover:shadow-[0_0_30px_rgba(245,158,11,0.08)] overflow-hidden"
     >
       <button
         onClick={onToggle}
@@ -96,14 +96,14 @@ function FAQItem({ question, answer, isOpen, onToggle, index }) {
         aria-controls={`faq-answer-${index}`}
         id={`faq-question-${index}`}
       >
-        <span className="text-base sm:text-lg font-bold text-[var(--text-heading)] leading-snug pr-2">
+        <span className="text-base sm:text-lg font-bold text-[var(--text-heading)] leading-snug pr-2 group-hover:text-[#F59E0B] transition-colors">
           {question}
         </span>
         <span
           className={`shrink-0 w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${
             isOpen
-              ? 'bg-[#10B981] text-white rotate-180'
-              : 'bg-[#10B981]/10 text-[#10B981] dark:text-[#34D399] rotate-0'
+              ? 'bg-[#F59E0B] text-[#0B1F3A] rotate-180'
+              : 'bg-[#F59E0B]/10 text-[#0B1F3A] dark:text-[#F59E0B] rotate-0'
           }`}
         >
           <ChevronDown size={18} strokeWidth={2.5} />
@@ -123,7 +123,7 @@ function FAQItem({ question, answer, isOpen, onToggle, index }) {
         className="overflow-hidden"
       >
         <div className="px-6 pb-5 pt-0">
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-[#10B981]/20 to-transparent mb-4" />
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-[#F59E0B]/30 to-transparent mb-4" />
           <p className="text-[var(--text-body)] text-[15px] sm:text-base leading-relaxed">
             {answer}
           </p>

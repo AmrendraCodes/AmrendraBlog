@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, Clock, Calendar } from "lucide-react";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/JsonLd";
-import { getBlogPostSchema, getBreadcrumbSchema } from "@/lib/schema";
+import { getBlogPostSchema, getBreadcrumbSchema, getFAQSchema, extractFaqsFromContent } from "@/lib/schema";
 import { siteMetadata } from "@/config/seo";
 import BlogDetailClient from "@/components/blog/BlogDetailClient";
 import ArticleNavigation from "@/components/blog/ArticleNavigation";
@@ -99,10 +99,14 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     },
   ]);
 
+  const faqs = extractFaqsFromContent(post.content);
+  const faqSchema = faqs.length > 0 ? getFAQSchema(faqs) : null;
+
   return (
     <div className="min-h-screen bg-[var(--background)] isolate">
       <JsonLd data={postSchema} />
       <JsonLd data={breadcrumbSchema} />
+      {faqSchema && <JsonLd data={faqSchema} />}
 
       {/* Hero Section */}
       <div className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">

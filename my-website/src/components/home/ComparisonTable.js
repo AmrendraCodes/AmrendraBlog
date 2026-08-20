@@ -15,24 +15,24 @@ export default function ComparisonTable() {
   ];
 
   return (
-    <div className="w-full max-w-5xl mx-auto rounded-3xl bg-white dark:bg-[#0A0F0C] border border-slate-200 dark:border-[#1E2E25] p-6 sm:p-8 shadow-sm dark:shadow-2xl overflow-hidden backdrop-blur-xl transition-colors duration-300">
+    <div className="w-full max-w-5xl mx-auto rounded-3xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] p-6 sm:p-8 shadow-sm overflow-hidden backdrop-blur-xl transition-colors duration-300">
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse min-w-[640px]">
           <thead>
-            <tr className="border-b border-slate-200 dark:border-[#1E2E25]">
-              <th className="pb-4 pt-2 text-sm font-bold text-slate-900 dark:text-[#F3F4F6] w-[45%]">
+            <tr className="border-b border-slate-200 dark:border-[#1E293B]">
+              <th className="pb-4 pt-2 text-sm font-bold text-[#0B1F3A] dark:text-[#F8FAFC] w-[45%]">
                 Capability / Standard
               </th>
-              <th className="pb-4 pt-2 text-center text-sm font-extrabold text-[#10B981] bg-[#10B981]/10 rounded-t-xl border-t border-x border-[#10B981]/30 w-[25%]">
+              <th className="pb-4 pt-2 text-center text-sm font-extrabold text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/15 rounded-t-xl border-t border-x border-[#F59E0B]/40 w-[25%]">
                 <div className="flex items-center justify-center gap-1.5 py-1">
-                  <Sparkles size={14} />
+                  <Sparkles size={14} className="text-[#F59E0B]" />
                   Code with Amrendra
                 </div>
               </th>
-              <th className="pb-4 pt-2 text-center text-xs font-semibold text-slate-500 dark:text-[#9CA3AF] w-[15%]">
+              <th className="pb-4 pt-2 text-center text-xs font-semibold text-slate-500 dark:text-[#94A3B8] w-[15%]">
                 Traditional Agency
               </th>
-              <th className="pb-4 pt-2 text-center text-xs font-semibold text-slate-500 dark:text-[#9CA3AF] w-[15%]">
+              <th className="pb-4 pt-2 text-center text-xs font-semibold text-slate-500 dark:text-[#94A3B8] w-[15%]">
                 Off-the-Shelf Template
               </th>
             </tr>
@@ -41,20 +41,20 @@ export default function ComparisonTable() {
             {comparisonItems.map((item, index) => (
               <tr
                 key={index}
-                className="border-b border-slate-100 dark:border-[#1E2E25]/60 hover:bg-slate-50 dark:hover:bg-[#111C16]/40 transition-colors duration-150"
+                className="border-b border-slate-100 dark:border-[#1E293B]/60 hover:bg-slate-50 dark:hover:bg-[#112240] transition-colors duration-150"
               >
-                <td className="py-4 text-xs font-medium text-slate-800 dark:text-[#F3F4F6]">
+                <td className="py-4 text-xs font-medium text-slate-800 dark:text-[#F8FAFC]">
                   {item.feature}
                 </td>
 
                 {/* Us */}
-                <td className="py-4 text-center bg-[#10B981]/5 border-x border-[#10B981]/20">
+                <td className="py-4 text-center bg-[#F59E0B]/5 border-x border-[#F59E0B]/20">
                   {typeof item.us === 'boolean' && item.us ? (
-                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#10B981]/20 text-[#10B981]">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#F59E0B]/20 text-[#D97706] dark:text-[#F59E0B]">
                       <Check size={14} strokeWidth={3} />
                     </span>
                   ) : (
-                    <span className="text-xs font-bold text-[#10B981]">{item.us}</span>
+                    <span className="text-xs font-bold text-[#D97706] dark:text-[#F59E0B]">{item.us}</span>
                   )}
                 </td>
 
@@ -71,7 +71,7 @@ export default function ComparisonTable() {
                       </span>
                     )
                   ) : (
-                    <span className="text-[11px] text-slate-500 dark:text-[#9CA3AF] font-mono">{item.agency}</span>
+                    <span className="text-[11px] text-slate-500 dark:text-[#94A3B8] font-mono">{item.agency}</span>
                   )}
                 </td>
 
@@ -88,7 +88,7 @@ export default function ComparisonTable() {
                       </span>
                     )
                   ) : (
-                    <span className="text-[11px] text-slate-500 dark:text-[#9CA3AF] font-mono">{item.template}</span>
+                    <span className="text-[11px] text-slate-500 dark:text-[#94A3B8] font-mono">{item.template}</span>
                   )}
                 </td>
               </tr>
