@@ -108,6 +108,9 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
       }
     }
     loadData();
+    return () => {
+      active = false;
+    };
   }, [id]);
 
   const handleInsertSyntax = (prefix: string, suffix: string = '') => {
