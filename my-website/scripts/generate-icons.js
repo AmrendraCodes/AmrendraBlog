@@ -3,9 +3,10 @@ const fs = require('fs');
 const path = require('path');
 
 async function generateIcons() {
-  const input = path.join(__dirname, 'public', 'logo-square.png');
-  const appDir = path.join(__dirname, 'src', 'app');
-  const publicDir = path.join(__dirname, 'public');
+  const rootDir = path.join(__dirname, '..');
+  const input = path.join(rootDir, 'public', 'logo-square.png');
+  const appDir = path.join(rootDir, 'src', 'app');
+  const publicDir = path.join(rootDir, 'public');
 
   // Generate 48x48 for favicon.ico (We can just make it a PNG and rename it to .ico, but real ICO is better. 
   // However, modern browsers accept PNG as .ico if forced, but Google prefers valid ICO.

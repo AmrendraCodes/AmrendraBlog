@@ -4,7 +4,7 @@ export const siteMetadata = {
   author: "Amrendra Kumar",
   siteUrl: "https://www.codewithamrendra.in",
   ogImage: "/images/og-default.png",
-  profileImage: "/Profile photo.jpeg",
+  profileImage: "/profile-photo.jpeg",
   social: {
     twitter: "@codewithamrendr",
     twitterUrl: "https://x.com/codewithamrendr",

@@ -6,7 +6,7 @@ import { Menu, X, Sparkles, ChevronDown } from "lucide-react";
 import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 import ThemeToggle from "./ThemeToggle";
-import { SERVICES_DATA } from "@/lib/services";
+import { SERVICES_DATA } from "@/data/servicesData";
 import { PRIMARY_NAV_ITEMS, RESOURCES_DROPDOWN_ITEMS } from "@/config/navigation";
 
 const ServicesDropdown = dynamic(() => import("./ServicesDropdown"), { ssr: false });

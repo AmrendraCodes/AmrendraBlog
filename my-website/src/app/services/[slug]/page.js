@@ -3,7 +3,7 @@ import {
   SERVICES_DATA, 
   getServiceBySlug, 
   getRelatedServices 
-} from "@/lib/services";
+} from "@/data/servicesData";
 import ServiceHero from "@/components/services/ServiceHero";
 import ServiceProblemSolution from "@/components/services/ServiceProblemSolution";
 import ServiceOfferings from "@/components/services/ServiceOfferings";

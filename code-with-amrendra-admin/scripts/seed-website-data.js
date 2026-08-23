@@ -191,7 +191,7 @@ async function seed() {
     { fileName: 'og-default.png', url: '/images/og-default.png', format: 'png', width: 1200, height: 630 },
     { fileName: 'business-logo.png', url: '/images/business-logo.png', format: 'png', width: 512, height: 512 },
     { fileName: 'logo-square.png', url: '/logo-square.png', format: 'png', width: 512, height: 512 },
-    { fileName: 'Profile photo.jpeg', url: '/Profile photo.jpeg', format: 'jpeg', width: 500, height: 500 },
+    { fileName: 'profile-photo.jpeg', url: '/profile-photo.jpeg', format: 'jpeg', width: 500, height: 500 },
   ];
 
   for (const m of mediaFiles) {

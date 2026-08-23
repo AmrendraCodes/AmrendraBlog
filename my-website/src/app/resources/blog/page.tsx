@@ -44,7 +44,7 @@ export default async function BlogPage() {
     category: post.category,
     tags: post.tags || [],
     author: post.author,
-    authorImage: "/Profile photo.jpeg",
+    authorImage: "/profile-photo.jpeg",
     date: post.date,
     readTime: post.readTime,
     image: post.image,

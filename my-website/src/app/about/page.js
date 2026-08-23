@@ -231,7 +231,7 @@ export default function AboutPage() {
               <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-[#0B1F3A] to-[#F59E0B] opacity-50 blur-md" />
               <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden border-2 border-[var(--card-border)]">
                 <Image
-                  src="/Profile photo.jpeg"
+                  src="/profile-photo.jpeg"
                   alt="Amrendra — Technical Content Writer & Frontend Developer"
                   fill
                   sizes="(max-width: 768px) 192px, 256px"

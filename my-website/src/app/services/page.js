@@ -2,7 +2,7 @@ import Link from "next/link";
 import { 
   SERVICES_DATA, 
   SERVICES_CATEGORIES 
-} from "@/lib/services";
+} from "@/data/servicesData";
 import ServiceCard from "@/components/services/ServiceCard";
 import ServiceProcess from "@/components/services/ServiceProcess";
 import ServiceWhyChooseUs from "@/components/services/ServiceWhyChooseUs";

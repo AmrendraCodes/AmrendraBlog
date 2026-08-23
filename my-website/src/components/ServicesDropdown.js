@@ -11,7 +11,7 @@ import {
   ArrowRight,
   ChevronRight
 } from "lucide-react";
-import { SERVICES_CATEGORIES, SERVICES_DATA } from "@/lib/services";
+import { SERVICES_CATEGORIES, SERVICES_DATA } from "@/data/servicesData";
 
 const ICON_MAP = {
   Code2,

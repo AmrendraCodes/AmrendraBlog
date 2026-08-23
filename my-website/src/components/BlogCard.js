@@ -69,7 +69,7 @@ export default function BlogCard({ post }) {
         <div className="flex items-center justify-between pt-6 border-t border-[var(--card-border)]">
           <div className="flex items-center space-x-3">
             <Image 
-              src={post.authorImage || "/Profile photo.jpeg"} 
+              src={post.authorImage || "/profile-photo.jpeg"} 
               alt={post.author || "Amrendra kumar"} 
               width={32} 
               height={32} 
