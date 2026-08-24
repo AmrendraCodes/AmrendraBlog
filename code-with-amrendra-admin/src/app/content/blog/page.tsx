@@ -1,19 +1,22 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import { Plus, Search, Edit, Trash2, RefreshCw } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
+import type { Blog, Category } from '@prisma/client';
+
+export type BlogWithCategory = Blog & { category?: Category | null };
 
 export default function BlogListPage() {
-  const [posts, setPosts] = useState<any[]>([]);
+  const [posts, setPosts] = useState<BlogWithCategory[]>([]);
   const [search, setSearch] = useState('');
   const [status, setStatus] = useState('');
   const [loading, setLoading] = useState(true);
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
-  const fetchPosts = async () => {
+  const fetchPosts = useCallback(async () => {
     setLoading(true);
     try {
       const query = new URLSearchParams();
@@ -30,11 +33,11 @@ export default function BlogListPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [search, status]);
 
   useEffect(() => {
     fetchPosts();
-  }, [search, status]);
+  }, [fetchPosts]);
 
   const handleDelete = async (id: string) => {
     try {

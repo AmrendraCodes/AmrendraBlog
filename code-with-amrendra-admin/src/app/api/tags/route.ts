@@ -59,9 +59,9 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ success: true, data: { tag } }, { status: 201 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Create tag error:', error);
-    if (error?.code === 'P2002') {
+    if (typeof error === 'object' && error !== null && 'code' in error && (error as { code: string }).code === 'P2002') {
       return NextResponse.json(
         { success: false, error: { code: 'DUPLICATE', message: 'A tag with this name or slug already exists' } },
         { status: 409 }
@@ -156,10 +156,11 @@ export async function PUT(request: Request) {
     });
 
     return NextResponse.json({ success: true, data: { tag: updated } });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Failed to update tag';
     console.error('Update tag error:', error);
     return NextResponse.json(
-      { success: false, error: { code: 'SERVER_ERROR', message: error?.message || 'Failed to update tag' } },
+      { success: false, error: { code: 'SERVER_ERROR', message } },
       { status: 500 }
     );
   }

@@ -17,7 +17,8 @@ export async function POST(request) {
     const { path, referrer, slug } = body || {};
 
     const userAgent = request.headers?.get?.('user-agent') || 'Unknown';
-    const ip = request.headers?.get?.('x-forwarded-for') || '127.0.0.1';
+    const rawIp = request.headers?.get?.('x-forwarded-for') || request.headers?.get?.('x-real-ip') || '127.0.0.1';
+    const ip = rawIp.split(',')[0].trim() || '127.0.0.1';
 
     // 1. Increment blog view if it's a blog post page
     if (slug) {

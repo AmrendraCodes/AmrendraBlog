@@ -16,9 +16,9 @@ export async function generateMetadata({ params }) {
   );
 
   // Use the first post's image as the category OG image, fallback to default
-  const ogImage = posts.length > 0 ? posts[0].image : '/images/og-default.png';
+  const ogImage = (posts.length > 0 && posts[0]?.image) ? posts[0].image : '/images/og-default.png';
   const title = `${formattedName} Articles | Code with Amrendra`;
-  const description = `Browse all articles about ${formattedName} on Code with Amrendra.`;
+  const description = `Browse all articles and resources about ${formattedName} on Code with Amrendra.`;
 
   return {
     title,

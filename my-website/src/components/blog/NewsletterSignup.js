@@ -6,22 +6,34 @@ export default function NewsletterSignup() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('idle'); // idle, loading, success, error, duplicate
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email) return;
 
     setStatus('loading');
-    
-    // Simulate API call
-    setTimeout(() => {
-      if (email.includes('error')) {
-        setStatus('error');
-      } else if (email.includes('duplicate')) {
-        setStatus('duplicate');
+
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        if (data.isDuplicate) {
+          setStatus('duplicate');
+        } else {
+          setStatus('success');
+          setEmail('');
+        }
       } else {
-        setStatus('success');
+        setStatus('error');
       }
-    }, 1000);
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (

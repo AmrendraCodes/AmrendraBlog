@@ -36,21 +36,28 @@ export function formatDate(dateStr: string | Date | null | undefined): string {
   });
 }
 
-export async function safeJson(res: Response): Promise<any> {
+export interface SafeJsonResponse<T = unknown> {
+  success: boolean;
+  data?: T;
+  error?: { message: string; code?: string };
+}
+
+export async function safeJson<T = unknown>(res: Response): Promise<SafeJsonResponse<T>> {
   try {
     const contentType = res.headers.get('content-type') || '';
     if (contentType.includes('application/json')) {
-      return await res.json();
+      return (await res.json()) as SafeJsonResponse<T>;
     }
     const text = await res.text();
     return {
       success: false,
       error: { message: `Server returned non-JSON response (${res.status}): ${text.substring(0, 60)}` },
     };
-  } catch (err: any) {
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : 'Failed to parse server response';
     return {
       success: false,
-      error: { message: err?.message || 'Failed to parse server response' },
+      error: { message },
     };
   }
 }

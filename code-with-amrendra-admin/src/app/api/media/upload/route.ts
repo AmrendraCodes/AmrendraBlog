@@ -100,10 +100,11 @@ export async function POST(request: Request) {
         url: publicUrl,
       },
     }, { status: 201 });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Failed to upload file';
     console.error('File upload error:', error);
     return NextResponse.json(
-      { success: false, error: { code: 'SERVER_ERROR', message: error?.message || 'Failed to upload file' } },
+      { success: false, error: { code: 'SERVER_ERROR', message } },
       { status: 500 }
     );
   }

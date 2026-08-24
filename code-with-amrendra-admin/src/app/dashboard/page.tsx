@@ -17,10 +17,21 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
+import type { Blog, Category } from '@prisma/client';
+
+export interface DashboardStats {
+  totalBlogs: number;
+  publishedBlogs: number;
+  draftBlogs: number;
+  totalCategories: number;
+  totalMedia: number;
+  totalVisitors: number;
+  totalPageViews: number;
+}
 
 export default function DashboardPage() {
-  const [stats, setStats] = useState<any>(null);
-  const [recentPosts, setRecentPosts] = useState<any[]>([]);
+  const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [recentPosts, setRecentPosts] = useState<(Blog & { category?: Category | null })[]>([]);
   const [loading, setLoading] = useState(true);
   const [deleteId, setDeleteId] = useState<string | null>(null);
 

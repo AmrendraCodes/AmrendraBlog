@@ -122,15 +122,26 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
     setCurrentPage(1);
   };
 
-  const handleSidebarNewsletterSubmit = (e) => {
+  const handleSidebarNewsletterSubmit = async (e) => {
     e.preventDefault();
     if (!sidebarEmail || !sidebarEmail.includes('@')) return;
     setIsSidebarSubmitting(true);
-    setTimeout(() => {
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: sidebarEmail }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setSidebarSubmitted(true);
+        setSidebarEmail('');
+      }
+    } catch (err) {
+      console.error('Sidebar newsletter submit error:', err);
+    } finally {
       setIsSidebarSubmitting(false);
-      setSidebarSubmitted(true);
-      setSidebarEmail('');
-    }, 800);
+    }
   };
 
   const noResults = filteredArticles.length === 0;

@@ -23,6 +23,9 @@ import {
   Link2,
 } from 'lucide-react';
 import { slugify, safeJson } from '@/lib/utils';
+import type { Category } from '@prisma/client';
+
+export type TagItem = string | { tag?: { name: string; slug?: string }; name?: string; slug?: string };
 
 export interface BlogPostFormData {
   id?: string;
@@ -34,7 +37,7 @@ export interface BlogPostFormData {
   status?: 'DRAFT' | 'PUBLISHED' | 'SCHEDULED';
   categoryId?: string;
   authorName?: string;
-  tags?: any[];
+  tags?: TagItem[];
   metaTitle?: string;
   metaDescription?: string;
   canonicalUrl?: string;
@@ -74,7 +77,8 @@ export default function BlogForm({
   const [tagsInput, setTagsInput] = useState<string>(() => {
     if (!initialData?.tags) return mode === 'create' ? 'Next.js, React, Architecture' : '';
     return initialData.tags
-      .map((t: any) => (typeof t === 'string' ? t : t.tag?.name || t.name || t))
+      .map((t: TagItem) => (typeof t === 'string' ? t : t.tag?.name || t.name || ''))
+      .filter(Boolean)
       .join(', ');
   });
   const [autoFormatOnSave, setAutoFormatOnSave] = useState<boolean>(true);
@@ -107,7 +111,7 @@ export default function BlogForm({
   );
   const [ogImage, setOgImage] = useState<string>(initialData?.ogImage || '');
 
-  const [categories, setCategories] = useState<any[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [saving, setSaving] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
@@ -125,7 +129,8 @@ export default function BlogForm({
       if (initialData.tags) {
         setTagsInput(
           initialData.tags
-            .map((t: any) => (typeof t === 'string' ? t : t.tag?.name || t.name || t))
+            .map((t: TagItem) => (typeof t === 'string' ? t : t.tag?.name || t.name || ''))
+            .filter(Boolean)
             .join(', ')
         );
       }
@@ -145,8 +150,8 @@ export default function BlogForm({
     async function loadCategories() {
       try {
         const res = await fetch('/api/categories');
-        const json = await safeJson(res);
-        if (active && json.success) {
+        const json = await safeJson<{ categories: Category[] }>(res);
+        if (active && json.success && json.data?.categories) {
           setCategories(json.data.categories);
         }
       } catch (err) {
@@ -190,8 +195,18 @@ export default function BlogForm({
         }),
       });
 
-      const json = await safeJson(res);
-      if (res.ok && json.success) {
+      const json = await safeJson<{
+        formattedContent: string;
+        stats: {
+          h1Count: number;
+          h2Count: number;
+          h3Count: number;
+          codeElementsWrapped: number;
+          internalLinksAdded: number;
+          linksList: Array<{ keyword: string; url: string; title: string }>;
+        };
+      }>(res);
+      if (res.ok && json.success && json.data) {
         setContent(json.data.formattedContent);
         setFormatStats(json.data.stats);
 
@@ -306,7 +321,9 @@ export default function BlogForm({
 
           <select
             value={status}
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setStatus(e.target.value as any)}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+              setStatus(e.target.value as 'DRAFT' | 'PUBLISHED' | 'SCHEDULED')
+            }
             className="admin-input py-2 text-xs font-bold w-36 cursor-pointer"
           >
             <option value="DRAFT">Draft</option>
@@ -421,8 +438,8 @@ export default function BlogForm({
                   <span>Auto-generate</span>
                 </label>
               </div>
-              <div className="relative">
-                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-mono select-none">
+              <div className="flex items-center rounded-xl border border-slate-200 bg-white overflow-hidden focus-within:border-indigo-600 focus-within:ring-2 focus-within:ring-indigo-100 transition shadow-2xs">
+                <span className="bg-slate-50 border-r border-slate-200 px-3.5 py-2.5 text-slate-400 text-xs font-mono select-none flex-shrink-0 font-medium">
                   /resources/blog/
                 </span>
                 <input
@@ -430,7 +447,8 @@ export default function BlogForm({
                   required
                   value={slug}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSlug(e.target.value)}
-                  className="admin-input pl-32 font-mono text-xs text-indigo-700 font-bold"
+                  placeholder="post-slug-url"
+                  className="w-full px-3 py-2 text-xs font-mono text-indigo-700 font-bold bg-transparent outline-none border-0 placeholder:text-slate-300 placeholder:font-normal"
                 />
               </div>
             </div>
@@ -627,7 +645,7 @@ export default function BlogForm({
                 className="admin-input text-xs cursor-pointer font-medium"
               >
                 <option value="">Select Category</option>
-                {categories.map((c: any) => (
+                {categories.map((c) => (
                   <option key={c.id} value={c.id}>{c.name}</option>
                 ))}
               </select>

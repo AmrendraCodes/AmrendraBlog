@@ -17,8 +17,8 @@ export default function UsersPage() {
   const fetchUsers = async () => {
     try {
       const res = await fetch('/api/users');
-      const json = await safeJson(res);
-      if (json.success) setUsers(json.data.users);
+      const json = await safeJson<{ users: AdminUser[] }>(res);
+      if (json.success && json.data?.users) setUsers(json.data.users);
     } catch (err) {
       console.error('Fetch users error:', err);
     } finally {

@@ -10,19 +10,41 @@ export default function ContactPage() {
     message: ""
   });
   const [status, setStatus] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("sending");
-    // Simulate form submission
-    setTimeout(() => {
-      setStatus("success");
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    }, 1500);
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setStatus("success");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setStatus("error");
+        setErrorMessage(data?.error?.message || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setStatus("error");
+      setErrorMessage("Network error. Please check your connection and try again.");
+    }
   };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (status === "error") {
+      setStatus(null);
+      setErrorMessage("");
+    }
   };
 
   return (
@@ -205,6 +227,11 @@ export default function ContactPage() {
                   {status === "success" && (
                     <p className="text-center text-sm font-semibold text-[#F59E0B]">
                       Thank you! I&apos;ll get back to you soon.
+                    </p>
+                  )}
+                  {status === "error" && (
+                    <p className="text-center text-sm font-semibold text-rose-500">
+                      {errorMessage || "Failed to send message. Please try again."}
                     </p>
                   )}
                 </form>

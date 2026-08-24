@@ -21,8 +21,8 @@ export default function EditBlogPostPage({
     async function loadPost() {
       try {
         const res = await fetch(`/api/blogs/${id}`);
-        const json = await safeJson(res);
-        if (active && json.success) {
+        const json = await safeJson<{ post: BlogPostFormData }>(res);
+        if (active && json.success && json.data?.post) {
           setPost(json.data.post);
         } else if (active) {
           setError(json.error?.message || 'Failed to load blog post');

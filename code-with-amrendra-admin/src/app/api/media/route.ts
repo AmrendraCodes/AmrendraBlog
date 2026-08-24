@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getAuthSession } from '@/lib/auth';
+import type { Prisma } from '@prisma/client';
 
 export const dynamic = 'force-dynamic';
 
@@ -9,7 +10,7 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('search') || '';
 
-    const where: any = {};
+    const where: Prisma.MediaWhereInput = {};
     if (search) {
       where.fileName = { contains: search };
     }
@@ -65,9 +66,9 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ success: true, data: { media: item } }, { status: 201 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Upload media error:', error);
-    if (error?.code === 'P2002') {
+    if (typeof error === 'object' && error !== null && 'code' in error && (error as { code: string }).code === 'P2002') {
       return NextResponse.json(
         { success: false, error: { code: 'DUPLICATE', message: 'A media file with this name already exists' } },
         { status: 409 }

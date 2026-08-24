@@ -23,8 +23,8 @@ export default function CategoriesPage() {
   const fetchCategories = async () => {
     try {
       const res = await fetch('/api/categories');
-      const json = await safeJson(res);
-      if (json.success) setCategories(json.data.categories);
+      const json = await safeJson<{ categories: CategoryItem[] }>(res);
+      if (json.success && json.data?.categories) setCategories(json.data.categories);
     } catch (err) {
       console.error('Fetch categories error:', err);
     } finally {

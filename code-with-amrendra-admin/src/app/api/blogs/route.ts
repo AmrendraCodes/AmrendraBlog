@@ -5,6 +5,7 @@ import { blogSchema } from '@/schemas/blog';
 import { calculateReadingTime, countWords, slugify } from '@/lib/utils';
 import { formatArticleMarkdown } from '@/lib/formatter';
 import { revalidatePath } from 'next/cache';
+import type { Prisma } from '@prisma/client';
 
 export const dynamic = 'force-dynamic';
 
@@ -59,7 +60,7 @@ export async function GET(request: Request) {
     const page = parseInt(searchParams.get('page') || '1', 10);
     const limit = parseInt(searchParams.get('limit') || '50', 10);
 
-    const where: any = {};
+    const where: Prisma.BlogWhereInput = {};
     if (search) {
       where.OR = [
         { title: { contains: search } },
@@ -211,9 +212,9 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ success: true, data: { post: fullPost || createdPost } }, { status: 201 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Create post error:', error);
-    if (error?.code === 'P2002') {
+    if (typeof error === 'object' && error !== null && 'code' in error && (error as { code: string }).code === 'P2002') {
       return NextResponse.json(
         { success: false, error: { code: 'SLUG_EXISTS', message: 'A blog post with this URL slug already exists' } },
         { status: 400 }

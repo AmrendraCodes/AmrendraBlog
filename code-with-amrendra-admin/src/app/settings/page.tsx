@@ -4,8 +4,10 @@ import React, { useEffect, useState } from 'react';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import { Save, Check, Shield } from 'lucide-react';
 
+type SettingsTab = 'general' | 'website' | 'seo' | 'security' | 'api';
+
 export default function SettingsPage() {
-  const [activeTab, setActiveTab] = useState<'general' | 'website' | 'seo' | 'security' | 'api'>('general');
+  const [activeTab, setActiveTab] = useState<SettingsTab>('general');
 
   const [siteName, setSiteName] = useState('Code with Amrendra');
   const [siteUrl, setSiteUrl] = useState('https://codewithamrendra.in');
@@ -90,7 +92,7 @@ export default function SettingsPage() {
             <button
               key={tab.id}
               type="button"
-              onClick={() => setActiveTab(tab.id as any)}
+              onClick={() => setActiveTab(tab.id as SettingsTab)}
               className={`pb-3 text-xs tracking-wide border-b-2 transition ${
                 activeTab === tab.id
                   ? 'border-indigo-600 text-indigo-600 font-bold'

@@ -72,11 +72,11 @@ export async function POST(request: Request) {
     // Save token in DB (if DB table exists)
     try {
       // Delete any pre-existing reset tokens for this user
-      await (prisma as any).passwordResetToken.deleteMany({
+      await prisma.passwordResetToken.deleteMany({
         where: { userId: targetUserId },
       });
 
-      await (prisma as any).passwordResetToken.create({
+      await prisma.passwordResetToken.create({
         data: {
           tokenHash,
           userId: targetUserId,

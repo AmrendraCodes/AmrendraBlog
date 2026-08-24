@@ -3,20 +3,10 @@
 import React from 'react';
 import { Copy, Trash2, Check } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
-
-interface MediaItem {
-  id: string;
-  fileName: string;
-  url: string;
-  format?: string;
-  width?: number;
-  height?: number;
-  bytes?: number;
-  createdAt: string;
-}
+import type { Media } from '@prisma/client';
 
 interface MediaListProps {
-  items: MediaItem[];
+  items: Media[];
   copiedId: string | null;
   onCopyUrl: (url: string, id: string) => void;
   onDelete: (id: string) => void;

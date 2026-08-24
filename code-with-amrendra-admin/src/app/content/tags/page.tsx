@@ -4,9 +4,12 @@ import React, { useEffect, useState } from 'react';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import { Plus, Tag as TagIcon, Edit, Trash2, AlertCircle, Search } from 'lucide-react';
 import { slugify, safeJson } from '@/lib/utils';
+import type { Tag } from '@prisma/client';
+
+export type TagWithCount = Tag & { _count?: { posts: number } };
 
 export default function TagsPage() {
-  const [tags, setTags] = useState<any[]>([]);
+  const [tags, setTags] = useState<TagWithCount[]>([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -19,7 +22,7 @@ export default function TagsPage() {
   const [submitting, setSubmitting] = useState(false);
 
   // Edit Modal
-  const [editingTag, setEditingTag] = useState<any | null>(null);
+  const [editingTag, setEditingTag] = useState<TagWithCount | null>(null);
   const [editName, setEditName] = useState('');
   const [editSlug, setEditSlug] = useState('');
   const [editError, setEditError] = useState('');
@@ -28,8 +31,8 @@ export default function TagsPage() {
   const fetchTags = async () => {
     try {
       const res = await fetch('/api/tags');
-      const json = await safeJson(res);
-      if (json.success) setTags(json.data.tags);
+      const json = await safeJson<{ tags: TagWithCount[] }>(res);
+      if (json.success && json.data?.tags) setTags(json.data.tags);
     } catch (err) {
       console.error('Fetch tags error:', err);
     } finally {
@@ -76,7 +79,7 @@ export default function TagsPage() {
     }
   };
 
-  const openEditModal = (t: any) => {
+  const openEditModal = (t: TagWithCount) => {
     setEditingTag(t);
     setEditName(t.name || '');
     setEditSlug(t.slug || '');

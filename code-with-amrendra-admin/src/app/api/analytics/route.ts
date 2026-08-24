@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getAuthSession } from '@/lib/auth';
+import type { Blog, Category } from '@prisma/client';
 
 export const dynamic = 'force-dynamic';
 
@@ -21,7 +22,7 @@ export async function GET() {
     let totalVisitors = 0;
     let totalPageViews = 0;
     let totalViews = 0;
-    let recentPosts: any[] = [];
+    let recentPosts: (Blog & { category: Category | null })[] = [];
 
     try {
       totalBlogs = await prisma.blog.count();

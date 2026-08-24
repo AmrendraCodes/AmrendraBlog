@@ -189,10 +189,11 @@ export async function PUT(request: Request) {
     } catch {}
 
     return NextResponse.json({ success: true, data: { category: updated } });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Failed to update category';
     console.error('Update category error:', error);
     return NextResponse.json(
-      { success: false, error: { code: 'SERVER_ERROR', message: error?.message || 'Failed to update category' } },
+      { success: false, error: { code: 'SERVER_ERROR', message } },
       { status: 500 }
     );
   }

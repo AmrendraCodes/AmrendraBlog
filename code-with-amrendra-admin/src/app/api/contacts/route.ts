@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getAuthSession } from '@/lib/auth';
+import type { Prisma } from '@prisma/client';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,7 +19,7 @@ export async function GET(request: Request) {
     const search = searchParams.get('search') || '';
     const status = searchParams.get('status') || '';
 
-    const where: any = {};
+    const where: Prisma.ContactWhereInput = {};
     if (search) {
       where.OR = [
         { name: { contains: search, mode: 'insensitive' } },
@@ -47,10 +48,11 @@ export async function GET(request: Request) {
         unreadCount,
       },
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Failed to fetch contact inquiries';
     console.error('Fetch contacts error:', error);
     return NextResponse.json(
-      { success: false, error: { code: 'SERVER_ERROR', message: error?.message || 'Failed to fetch contact inquiries' } },
+      { success: false, error: { code: 'SERVER_ERROR', message } },
       { status: 500 }
     );
   }
@@ -82,10 +84,11 @@ export async function PUT(request: Request) {
     });
 
     return NextResponse.json({ success: true, data: { inquiry: updated } });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Failed to update contact inquiry';
     console.error('Update contact error:', error);
     return NextResponse.json(
-      { success: false, error: { code: 'SERVER_ERROR', message: error?.message || 'Failed to update contact inquiry' } },
+      { success: false, error: { code: 'SERVER_ERROR', message } },
       { status: 500 }
     );
   }
@@ -114,10 +117,11 @@ export async function DELETE(request: Request) {
     await prisma.contact.delete({ where: { id } });
 
     return NextResponse.json({ success: true, data: { message: 'Inquiry deleted successfully' } });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Failed to delete contact inquiry';
     console.error('Delete contact error:', error);
     return NextResponse.json(
-      { success: false, error: { code: 'SERVER_ERROR', message: error?.message || 'Failed to delete contact inquiry' } },
+      { success: false, error: { code: 'SERVER_ERROR', message } },
       { status: 500 }
     );
   }

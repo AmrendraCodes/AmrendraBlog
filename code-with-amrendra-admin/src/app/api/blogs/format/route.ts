@@ -58,10 +58,11 @@ export async function POST(request: Request) {
         stats: result.stats,
       },
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Failed to format content';
     console.error('Format blog error:', error);
     return NextResponse.json(
-      { success: false, error: { message: error?.message || 'Failed to format content' } },
+      { success: false, error: { message } },
       { status: 500 }
     );
   }

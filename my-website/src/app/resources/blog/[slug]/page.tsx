@@ -29,9 +29,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: "Post Not Found" };
   }
 
-  const metaTitle = post.metaTitle || post.title;
-  const metaDesc = post.metaDescription || post.description || post.excerpt;
-  const ogAlt = post.ogImageAlt || post.imageAlt || post.title;
+  const metaTitle = post.metaTitle || post.title || 'Blog Article | Code with Amrendra';
+  const metaDesc = post.metaDescription || post.description || post.excerpt || siteMetadata.description;
+  const postImage = post.image || post.featuredImage || siteMetadata.ogImage;
+  const ogAlt = post.ogImageAlt || post.imageAlt || metaTitle;
 
   return {
     title: metaTitle,
@@ -49,7 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       tags: post.tags,
       images: [
         {
-          url: post.image || siteMetadata.ogImage,
+          url: postImage,
           width: 1200,
           height: 630,
           alt: ogAlt,
@@ -60,7 +61,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       card: "summary_large_image",
       title: metaTitle,
       description: metaDesc,
-      images: [post.image || siteMetadata.ogImage],
+      images: [postImage],
       creator: siteMetadata.social.twitter,
     },
   };

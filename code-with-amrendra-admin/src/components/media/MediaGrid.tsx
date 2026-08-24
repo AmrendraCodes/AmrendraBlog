@@ -2,20 +2,10 @@
 
 import React from 'react';
 import { Copy, Trash2, Check } from 'lucide-react';
-
-interface MediaItem {
-  id: string;
-  fileName: string;
-  url: string;
-  format?: string;
-  width?: number;
-  height?: number;
-  bytes?: number;
-  createdAt: string;
-}
+import type { Media } from '@prisma/client';
 
 interface MediaGridProps {
-  items: MediaItem[];
+  items: Media[];
   copiedId: string | null;
   onCopyUrl: (url: string, id: string) => void;
   onDelete: (id: string) => void;

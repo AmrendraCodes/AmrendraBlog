@@ -4,8 +4,22 @@ import React, { useEffect, useState } from 'react';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import { BarChart3, Users, Eye, TrendingUp, Monitor, Smartphone, Tablet } from 'lucide-react';
 
+export interface AnalyticsData {
+  stats?: {
+    totalBlogs: number;
+    publishedBlogs: number;
+    draftBlogs: number;
+    totalCategories: number;
+    totalMedia: number;
+    totalVisitors: number;
+    totalPageViews: number;
+  };
+  devices?: Array<{ name: string; percentage: number }>;
+  trafficSources?: Array<{ source: string; views: number }>;
+}
+
 export default function AnalyticsPage() {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<AnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -79,7 +93,7 @@ export default function AnalyticsPage() {
         <div className="admin-card p-6 bg-white">
           <h3 className="text-sm font-extrabold text-slate-900 mb-4">Device Breakdown</h3>
           <div className="space-y-4">
-            {data?.devices?.map((dev: any) => (
+            {data?.devices?.map((dev) => (
               <div key={dev.name} className="space-y-1.5">
                 <div className="flex items-center justify-between text-xs font-semibold">
                   <span className="flex items-center gap-2 text-slate-700">
@@ -103,7 +117,7 @@ export default function AnalyticsPage() {
         <div className="admin-card p-6 bg-white">
           <h3 className="text-sm font-extrabold text-slate-900 mb-4">Top Traffic Sources</h3>
           <div className="space-y-3">
-            {data?.trafficSources?.map((src: any) => (
+            {data?.trafficSources?.map((src) => (
               <div key={src.source} className="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
                 <span className="text-xs font-bold text-slate-800">{src.source}</span>
                 <span className="text-xs font-mono text-indigo-600 font-bold">{src.views} views</span>

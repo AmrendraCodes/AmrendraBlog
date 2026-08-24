@@ -31,7 +31,7 @@ export async function GET(request: Request) {
 
     let tokenRecord = null;
     try {
-      tokenRecord = await (prisma as any).passwordResetToken.findUnique({
+      tokenRecord = await prisma.passwordResetToken.findUnique({
         where: { tokenHash },
       });
     } catch (err) {
@@ -79,16 +79,14 @@ export async function POST(request: Request) {
 
     let tokenRecord = null;
     try {
-      tokenRecord = await (prisma as any).passwordResetToken.findUnique({
+      tokenRecord = await prisma.passwordResetToken.findUnique({
         where: { tokenHash },
       });
     } catch (err) {
       console.warn('PasswordResetToken query warning in POST:', err);
     }
 
-    const isDbValid = tokenRecord && new Date(tokenRecord.expiresAt) > new Date();
-
-    if (!isDbValid) {
+    if (!tokenRecord || new Date(tokenRecord.expiresAt) <= new Date()) {
       return NextResponse.json(
         {
           success: false,
@@ -120,7 +118,7 @@ export async function POST(request: Request) {
 
     // 1. Delete used reset token (Single-use enforcement)
     try {
-      await (prisma as any).passwordResetToken.deleteMany({
+      await prisma.passwordResetToken.deleteMany({
         where: { userId },
       });
     } catch (tokenDelErr) {

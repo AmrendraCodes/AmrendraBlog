@@ -7,9 +7,10 @@ import { safeJson } from '@/lib/utils';
 import MediaUploadModal from '@/components/media/MediaUploadModal';
 import MediaGrid from '@/components/media/MediaGrid';
 import MediaList from '@/components/media/MediaList';
+import type { Media } from '@prisma/client';
 
 export default function MediaLibraryPage() {
-  const [media, setMedia] = useState<any[]>([]);
+  const [media, setMedia] = useState<Media[]>([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
@@ -19,8 +20,8 @@ export default function MediaLibraryPage() {
   const fetchMedia = async () => {
     try {
       const res = await fetch('/api/media');
-      const json = await safeJson(res);
-      if (json.success) setMedia(json.data.media);
+      const json = await safeJson<{ media: Media[] }>(res);
+      if (json.success && json.data?.media) setMedia(json.data.media);
     } catch (err) {
       console.error('Fetch media error:', err);
     } finally {
@@ -34,8 +35,8 @@ export default function MediaLibraryPage() {
     const load = async () => {
       try {
         const res = await fetch('/api/media');
-        const json = await safeJson(res);
-        if (active && json.success) setMedia(json.data.media);
+        const json = await safeJson<{ media: Media[] }>(res);
+        if (active && json.success && json.data?.media) setMedia(json.data.media);
       } catch (err) {
         console.error('Fetch media error:', err);
       } finally {

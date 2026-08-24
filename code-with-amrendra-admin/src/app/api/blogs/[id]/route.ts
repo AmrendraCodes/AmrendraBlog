@@ -201,9 +201,9 @@ export async function PUT(
     });
 
     return NextResponse.json({ success: true, data: { post: fullPost || updatedPost } });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Update post error:', error);
-    if (error?.code === 'P2002') {
+    if (typeof error === 'object' && error !== null && 'code' in error && (error as { code: string }).code === 'P2002') {
       return NextResponse.json(
         { success: false, error: { code: 'SLUG_EXISTS', message: 'A blog post with this URL slug already exists' } },
         { status: 400 }

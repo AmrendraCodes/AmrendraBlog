@@ -1,16 +1,17 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { getAuthSession, hashPassword, authorizeRole } from '@/lib/auth';
+import { getAuthSession, authorizeRole, hashPassword } from '@/lib/auth';
+import type { Prisma } from '@prisma/client';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
     const session = await getAuthSession();
-    if (!session) {
+    if (!session || !authorizeRole(session.user.role, [])) {
       return NextResponse.json(
-        { success: false, error: { code: 'UNAUTHORIZED', message: 'Not authenticated' } },
-        { status: 401 }
+        { success: false, error: { code: 'FORBIDDEN', message: 'Only Super Admins can view users' } },
+        { status: 403 }
       );
     }
 
@@ -20,17 +21,18 @@ export async function GET() {
         name: true,
         email: true,
         role: true,
-        avatar: true,
         createdAt: true,
+        _count: { select: { posts: true } },
       },
       orderBy: { createdAt: 'desc' },
     });
 
     return NextResponse.json({ success: true, data: { users } });
-  } catch (error) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Failed to fetch users';
     console.error('Fetch users error:', error);
     return NextResponse.json(
-      { success: false, error: { code: 'SERVER_ERROR', message: 'Failed to fetch users' } },
+      { success: false, error: { code: 'SERVER_ERROR', message } },
       { status: 500 }
     );
   }
@@ -41,7 +43,7 @@ export async function POST(request: Request) {
     const session = await getAuthSession();
     if (!session || !authorizeRole(session.user.role, [])) {
       return NextResponse.json(
-        { success: false, error: { code: 'FORBIDDEN', message: 'Only Super Admins can manage users' } },
+        { success: false, error: { code: 'FORBIDDEN', message: 'Only Super Admins can create users' } },
         { status: 403 }
       );
     }
@@ -49,18 +51,15 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, email, password, role } = body;
 
-    if (!email || !password) {
+    if (!name || !email || !password) {
       return NextResponse.json(
-        { success: false, error: { code: 'VALIDATION_ERROR', message: 'Email and password are required' } },
+        { success: false, error: { code: 'VALIDATION_ERROR', message: 'Name, email, and password are required' } },
         { status: 400 }
       );
     }
 
-    const existingUser = await prisma.user.findUnique({
-      where: { email: email.toLowerCase() },
-    });
-
-    if (existingUser) {
+    const existing = await prisma.user.findUnique({ where: { email: email.toLowerCase() } });
+    if (existing) {
       return NextResponse.json(
         { success: false, error: { code: 'DUPLICATE', message: 'A user with this email already exists' } },
         { status: 409 }
@@ -71,7 +70,7 @@ export async function POST(request: Request) {
 
     const user = await prisma.user.create({
       data: {
-        name: name || 'Admin User',
+        name,
         email: email.toLowerCase(),
         passwordHash,
         role: role || 'EDITOR',
@@ -86,9 +85,9 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ success: true, data: { user } }, { status: 201 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Create user error:', error);
-    if (error?.code === 'P2002') {
+    if (typeof error === 'object' && error !== null && 'code' in error && (error as { code: string }).code === 'P2002') {
       return NextResponse.json(
         { success: false, error: { code: 'DUPLICATE', message: 'A user with this email already exists' } },
         { status: 409 }
@@ -121,7 +120,7 @@ export async function PUT(request: Request) {
       );
     }
 
-    const updateData: any = {
+    const updateData: Prisma.UserUpdateInput = {
       name: name || 'Admin User',
       email: email.toLowerCase(),
       role: role || 'EDITOR',
@@ -144,9 +143,9 @@ export async function PUT(request: Request) {
     });
 
     return NextResponse.json({ success: true, data: { user: updatedUser } });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Update user error:', error);
-    if (error?.code === 'P2002') {
+    if (typeof error === 'object' && error !== null && 'code' in error && (error as { code: string }).code === 'P2002') {
       return NextResponse.json(
         { success: false, error: { code: 'DUPLICATE', message: 'Another user already uses this email' } },
         { status: 409 }
@@ -181,12 +180,11 @@ export async function DELETE(request: Request) {
 
     if (session.user.id === id) {
       return NextResponse.json(
-        { success: false, error: { code: 'CANNOT_DELETE_SELF', message: 'You cannot delete your own active admin account' } },
+        { success: false, error: { code: 'BAD_REQUEST', message: 'You cannot delete your own account' } },
         { status: 400 }
       );
     }
 
-    // Reassign or clear posts if any
     await prisma.blog.updateMany({
       where: { authorId: id },
       data: { authorId: null },
@@ -201,10 +199,11 @@ export async function DELETE(request: Request) {
     });
 
     return NextResponse.json({ success: true, data: { message: 'User deleted successfully' } });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Failed to delete user';
     console.error('Delete user error:', error);
     return NextResponse.json(
-      { success: false, error: { code: 'SERVER_ERROR', message: error?.message || 'Failed to delete user' } },
+      { success: false, error: { code: 'SERVER_ERROR', message } },
       { status: 500 }
     );
   }

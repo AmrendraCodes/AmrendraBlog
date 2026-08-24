@@ -1,38 +1,36 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import {
-  Mail,
   Search,
   CheckCircle,
-  Clock,
   Trash2,
-  ExternalLink,
   MessageSquare,
   Building,
   Phone,
   Calendar,
 } from 'lucide-react';
 import { formatDate, safeJson } from '@/lib/utils';
+import type { Contact } from '@prisma/client';
 
 export default function InquiriesPage() {
-  const [inquiries, setInquiries] = useState<any[]>([]);
+  const [inquiries, setInquiries] = useState<Contact[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
-  const [selectedInquiry, setSelectedInquiry] = useState<any | null>(null);
+  const [selectedInquiry, setSelectedInquiry] = useState<Contact | null>(null);
 
-  const fetchInquiries = async () => {
+  const fetchInquiries = useCallback(async () => {
     try {
       const query = new URLSearchParams();
       if (search) query.set('search', search);
       if (statusFilter) query.set('status', statusFilter);
 
       const res = await fetch(`/api/contacts?${query.toString()}`);
-      const json = await safeJson(res);
-      if (json.success) {
+      const json = await safeJson<{ inquiries: Contact[]; unreadCount: number }>(res);
+      if (json.success && json.data) {
         setInquiries(json.data.inquiries);
         setUnreadCount(json.data.unreadCount || 0);
       }
@@ -41,11 +39,11 @@ export default function InquiriesPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [search, statusFilter]);
 
   useEffect(() => {
     fetchInquiries();
-  }, [search, statusFilter]);
+  }, [fetchInquiries]);
 
   const handleUpdateStatus = async (id: string, newStatus: string) => {
     try {
