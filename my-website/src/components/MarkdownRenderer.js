@@ -277,6 +277,26 @@ export default function MarkdownRenderer({ content }) {
           );
         },
 
+        // ─── Inline Code and Code Blocks ───
+        code: ({ inline, className, children, ...props }) => {
+          const isInline = inline || (!className && !String(children).includes("\n"));
+          if (isInline) {
+            return (
+              <code
+                className="text-[#D97706] dark:text-[#FBBF24] bg-[#F59E0B]/10 dark:bg-[#F59E0B]/15 border border-[#F59E0B]/25 dark:border-[#F59E0B]/35 px-1.5 py-0.5 rounded-md font-mono text-[0.875em] font-semibold tracking-tight inline-block align-baseline"
+                {...props}
+              >
+                {children}
+              </code>
+            );
+          }
+          return (
+            <code className={className} {...props}>
+              {children}
+            </code>
+          );
+        },
+
         // ─── Code blocks with copy button, language label, and Mermaid ───
         pre: ({ children, ...props }) => {
           // Extract code content and language

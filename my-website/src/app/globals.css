@@ -533,3 +533,26 @@ button, a, input, select, textarea {
   margin-bottom: 1.75rem !important;
 }
 
+/* ─── High-Contrast Inline Code in Light & Dark Mode ─── */
+#article-content code:not(pre code),
+.prose code:not(pre code) {
+  color: #D97706 !important;
+  background-color: rgba(245, 158, 11, 0.1) !important;
+  border: 1px solid rgba(245, 158, 11, 0.25) !important;
+  padding: 0.15rem 0.4rem !important;
+  border-radius: 0.375rem !important;
+  font-size: 0.875em !important;
+  font-weight: 600 !important;
+  font-family: var(--font-mono), monospace !important;
+}
+
+.dark #article-content code:not(pre code),
+.dark .prose code:not(pre code),
+[data-theme="dark"] #article-content code:not(pre code),
+[data-theme="dark"] .prose code:not(pre code) {
+  color: #FBBF24 !important;
+  background-color: rgba(245, 158, 11, 0.15) !important;
+  border: 1px solid rgba(245, 158, 11, 0.35) !important;
+}
+
+

@@ -60,7 +60,7 @@ export default function BlogDetailClient({ content, headings, title, slug }) {
                 prose-strong:text-[var(--text-heading)]
                 prose-a:text-[#0B1F3A] dark:text-[#F59E0B] hover:prose-a:text-[#F59E0B] prose-a:font-semibold prose-a:no-underline hover:prose-a:underline
                 prose-img:rounded-2xl prose-img:shadow-xl
-                prose-code:text-[#0B1F3A] dark:text-[#F59E0B] prose-code:bg-[#F59E0B]/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm prose-code:font-medium prose-code:before:content-none prose-code:after:content-none
+                prose-code:text-[#D97706] dark:prose-code:text-[#FBBF24] prose-code:bg-[#F59E0B]/10 dark:prose-code:bg-[#F59E0B]/15 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm prose-code:font-semibold prose-code:before:content-none prose-code:after:content-none
                 prose-pre:bg-[#071324] prose-pre:backdrop-blur-md prose-pre:border prose-pre:border-[var(--card-border)] prose-pre:rounded-xl prose-pre:text-sm prose-pre:shadow-2xl
                 prose-blockquote:border-l-4 prose-blockquote:border-l-[#F59E0B] prose-blockquote:bg-gradient-to-r prose-blockquote:from-[#F59E0B]/10 prose-blockquote:to-transparent prose-blockquote:rounded-r-xl prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:not-italic prose-blockquote:shadow-sm
                 prose-li:text-[var(--text-body)] prose-li:text-base sm:prose-li:text-[17px] lg:prose-li:text-[18px] prose-li:leading-[1.9] prose-li:marker:text-[#F59E0B]
