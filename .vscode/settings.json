@@ -1,5 +1,7 @@
 {
   "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore",
   "typescript.tsdk": "code-with-amrendra-admin/node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true
 }
