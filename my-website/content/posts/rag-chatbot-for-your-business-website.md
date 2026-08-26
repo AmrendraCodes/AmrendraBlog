@@ -29,7 +29,7 @@ tags:
 
 ## Quick Answer
 
-A **RAG chatbot for a business website** typically costs **$15,000–$80,000** to build in 2026, with **$300–$2,000/month** in ongoing hosting and API costs. Simple single-source bots sit at the low end; multi-system, CRM-connected bots push toward $150,000+.
+A **rag chatbot for business** typically costs **$15,000–$80,000** to build in 2026, with **$300–$2,000/month** in ongoing hosting and API costs. Simple single-source bots sit at the low end; multi-system, CRM-connected bots push toward $150,000+.
 
 ---
 
