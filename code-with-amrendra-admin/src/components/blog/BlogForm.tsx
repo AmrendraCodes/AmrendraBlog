@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import MarkdownPreview from '@/components/MarkdownPreview';
+import ImageUploadField from '@/components/media/ImageUploadField';
 import {
   Save,
   ArrowLeft,
@@ -615,6 +616,16 @@ export default function BlogForm({
               />
             </div>
 
+            {/* Social Share Image (OG Image) */}
+            <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
+              <ImageUploadField
+                label="Social Share Image (og:image)"
+                value={ogImage}
+                onChange={setOgImage}
+                helpText="Custom image for social cards. If left empty, the Featured Image will be used automatically."
+              />
+            </div>
+
             {/* Google Search Live Preview */}
             <div className="p-4 rounded-xl bg-indigo-50/50 border border-indigo-100 shadow-xs">
               <div className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-2">Google SERP Live Preview</div>
@@ -674,20 +685,13 @@ export default function BlogForm({
           </div>
 
           {/* Featured Image */}
-          <div className="admin-card p-5 space-y-3">
-            <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Featured Image</h3>
-            <input
-              type="text"
+          <div className="admin-card p-5">
+            <ImageUploadField
+              label="Featured Image"
               value={featuredImage}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFeaturedImage(e.target.value)}
-              placeholder="https://images.unsplash.com/..."
-              className="admin-input text-xs font-mono"
+              onChange={setFeaturedImage}
+              helpText="Primary banner for the blog article and card listings."
             />
-            {featuredImage && (
-              <div className="rounded-xl overflow-hidden border border-slate-200 aspect-video relative shadow-xs">
-                <img src={featuredImage} alt="Featured Preview" className="w-full h-full object-cover" />
-              </div>
-            )}
           </div>
         </div>
       </div>
