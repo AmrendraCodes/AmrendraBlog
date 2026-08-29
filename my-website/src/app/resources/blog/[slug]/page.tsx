@@ -11,6 +11,7 @@ import BlogDetailClient from "@/components/blog/BlogDetailClient";
 import ArticleNavigation from "@/components/blog/ArticleNavigation";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import AuthorBox from "@/components/blog/AuthorBox";
+import BlogFaqAccordion from "@/components/blog/BlogFaqAccordion";
 
 export const dynamic = 'force-dynamic';
 export const dynamicParams = true;
