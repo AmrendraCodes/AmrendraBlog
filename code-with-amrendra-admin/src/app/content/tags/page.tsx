@@ -144,14 +144,14 @@ export default function TagsPage() {
   return (
     <DashboardLayout title="Tag Management" subtitle="Manage article tags and metadata keywords">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-        <div className="relative flex-1 max-w-md">
-          <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+        <div className="relative flex-1 max-w-md flex items-center rounded-xl border border-[var(--border-color)] bg-[var(--bg-input)] px-3.5 focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-500/15 transition shadow-2xs">
+          <Search size={16} className="text-[var(--text-dim)] shrink-0 mr-2.5" />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search tags..."
-            className="admin-input pl-10 text-xs"
+            placeholder="Search tags by name or slug..."
+            className="w-full bg-transparent border-0 outline-none text-xs sm:text-sm font-medium text-[var(--text-main)] placeholder:text-[var(--text-dim)] py-2.5"
           />
         </div>
 

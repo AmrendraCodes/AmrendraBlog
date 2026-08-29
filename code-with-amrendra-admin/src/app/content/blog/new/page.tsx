@@ -7,8 +7,8 @@ import BlogForm from '@/components/blog/BlogForm';
 export default function NewBlogPostPage() {
   return (
     <DashboardLayout
-      title="Create Blog Post"
-      subtitle="Write, auto-format, and publish your technical article"
+      title="Content Manager"
+      subtitle="Collection: blog"
     >
       <BlogForm mode="create" />
     </DashboardLayout>

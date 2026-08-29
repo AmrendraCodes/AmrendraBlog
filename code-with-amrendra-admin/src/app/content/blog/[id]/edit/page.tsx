@@ -43,8 +43,8 @@ export default function EditBlogPostPage({
 
   return (
     <DashboardLayout
-      title="Edit Blog Post"
-      subtitle="Update content, manage SEO, and sync status"
+      title="Content Manager"
+      subtitle="Collection: blog"
     >
       {loading ? (
         <div className="admin-card p-12 text-center text-slate-400 font-mono text-xs animate-pulse">

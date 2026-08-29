@@ -1,28 +1,57 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 :root {
-  --bg-main: #f3f5fc;
+  --bg-canvas: #f4f6fb;
   --bg-sidebar: #ffffff;
   --bg-card: #ffffff;
   --bg-card-hover: #f8fafc;
-  --bg-input: #ffffff;
+  --bg-input: #f8fafc;
+  --bg-input-focus: #ffffff;
   --border-color: #e2e8f0;
   --border-subtle: #f1f5f9;
-  --primary: #4f46e5;
-  --primary-hover: #4338ca;
-  --primary-light: rgba(79, 70, 229, 0.08);
-  --text-main: #1e293b;
-  --text-muted: #475569;
+  --primary: #4945ff;
+  --primary-hover: #3b37e8;
+  --primary-active: #302cb8;
+  --primary-light: rgba(73, 69, 255, 0.1);
+  --text-main: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-dim: #94a3b8;
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+  --shadow-card-hover: 0 12px 28px -4px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+}
+
+.dark {
+  --bg-canvas: #12131e;
+  --bg-sidebar: #191b29;
+  --bg-card: #1e2032;
+  --bg-card-hover: #25283f;
+  --bg-input: #151624;
+  --bg-input-focus: #1c1d2e;
+  --border-color: #2b2e46;
+  --border-subtle: #23253b;
+  --primary: #5c58ff;
+  --primary-hover: #6e6bff;
+  --primary-active: #4945ff;
+  --primary-light: rgba(92, 88, 255, 0.16);
+  --text-main: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
   --text-dim: #64748b;
+  --shadow-card: 0 4px 24px -2px rgba(0, 0, 0, 0.4), 0 2px 8px -1px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 14px 32px -4px rgba(0, 0, 0, 0.5), 0 6px 16px -2px rgba(0, 0, 0, 0.35);
 }
 
 body {
-  background-color: var(--bg-main);
+  background-color: var(--bg-canvas);
   color: var(--text-main);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 /* Custom Scrollbar */
@@ -32,105 +61,154 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-main);
+  background: var(--bg-canvas);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #94a3b8;
   border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+.dark ::-webkit-scrollbar-thumb {
+  background: #333852;
 }
 
-/* Glass & Card Utilities */
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #474e6f;
+}
+
+/* Strapi-Inspired Card Utility */
 .admin-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: 1rem;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  border-radius: 1.125rem;
+  box-shadow: var(--shadow-card);
+  transition: all 0.2s ease;
 }
 
 .admin-card:hover {
   border-color: #cbd5e1;
-  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.05), 0 4px 10px -2px rgba(0, 0, 0, 0.03);
+  box-shadow: var(--shadow-card-hover);
 }
 
+.dark .admin-card:hover {
+  border-color: #3b3f5c;
+}
+
+/* Form Input */
 .admin-input {
   background-color: var(--bg-input);
   border: 1px solid var(--border-color);
-  color: #334155;
-  font-weight: 400;
+  color: var(--text-main);
+  font-weight: 500;
   border-radius: 0.75rem;
-  padding: 0.625rem 0.875rem;
+  padding: 0.6875rem 0.9375rem;
   font-size: 0.875rem;
   outline: none;
   width: 100%;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: all 0.18s ease;
+}
+
+/* Ensure inputs with left icons have sufficient left padding */
+.admin-input.pl-9,
+.admin-input.pl-10,
+input.admin-input[class*="pl-"] {
+  padding-left: 2.75rem !important;
 }
 
 .admin-input:focus {
+  background-color: var(--bg-input-focus);
   border-color: var(--primary);
   box-shadow: 0 0 0 3px var(--primary-light);
 }
 
 .admin-input::placeholder {
-  color: #94a3b8;
+  color: var(--text-dim);
   font-weight: 400;
 }
 
+/* Date Input Native Picker Indicator */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 4px;
+  opacity: 0.65;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.9) brightness(1.2);
+}
+
+/* Primary Button */
 .admin-btn-primary {
   background-color: var(--primary);
   color: #ffffff;
   font-weight: 600;
-  padding: 0.625rem 1.25rem;
+  padding: 0.6875rem 1.25rem;
   border-radius: 0.75rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   font-size: 0.875rem;
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
-  transition: all 0.15s ease;
+  box-shadow: 0 4px 14px rgba(73, 69, 255, 0.28);
+  transition: all 0.18s ease;
   cursor: pointer;
   border: none;
+  user-select: none;
 }
 
 .admin-btn-primary:hover {
   background-color: var(--primary-hover);
-  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
+  box-shadow: 0 6px 20px rgba(73, 69, 255, 0.38);
   transform: translateY(-1px);
 }
 
 .admin-btn-primary:active {
+  background-color: var(--primary-active);
   transform: translateY(0);
 }
 
+/* Secondary Button */
 .admin-btn-secondary {
-  background-color: #ffffff;
-  color: #334155;
+  background-color: var(--bg-card);
+  color: var(--text-secondary);
   border: 1px solid var(--border-color);
   font-weight: 600;
-  padding: 0.625rem 1.25rem;
+  padding: 0.625rem 1.125rem;
   border-radius: 0.75rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   font-size: 0.875rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-  transition: all 0.15s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: all 0.18s ease;
   cursor: pointer;
+  user-select: none;
 }
 
 .admin-btn-secondary:hover {
-  background-color: #f8fafc;
+  background-color: var(--bg-card-hover);
   border-color: #cbd5e1;
-  color: #0f172a;
+  color: var(--text-main);
 }
 
+.dark .admin-btn-secondary:hover {
+  border-color: #3b3f5c;
+}
+
+/* Danger Button */
 .admin-btn-danger {
   background-color: #fef2f2;
   color: #dc2626;
@@ -142,8 +220,14 @@ body {
   align-items: center;
   gap: 0.375rem;
   font-size: 0.875rem;
-  transition: all 0.15s ease;
+  transition: all 0.18s ease;
   cursor: pointer;
+}
+
+.dark .admin-btn-danger {
+  background-color: rgba(220, 38, 38, 0.15);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.3);
 }
 
 .admin-btn-danger:hover {
@@ -152,16 +236,32 @@ body {
   color: #b91c1c;
 }
 
+.dark .admin-btn-danger:hover {
+  background-color: rgba(220, 38, 38, 0.25);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: #fca5a5;
+}
+
+/* Status Badges */
 .badge-published {
   background-color: #ecfdf5;
   color: #059669;
   border: 1px solid #a7f3d0;
   padding: 0.25rem 0.625rem;
   border-radius: 9999px;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.dark .badge-published {
+  background-color: rgba(5, 150, 105, 0.18);
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.3);
 }
 
 .badge-draft {
@@ -170,10 +270,19 @@ body {
   border: 1px solid #fde68a;
   padding: 0.25rem 0.625rem;
   border-radius: 9999px;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.dark .badge-draft {
+  background-color: rgba(217, 119, 6, 0.18);
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.3);
 }
 
 .badge-scheduled {
@@ -182,8 +291,17 @@ body {
   border: 1px solid #bfdbfe;
   padding: 0.25rem 0.625rem;
   border-radius: 9999px;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.dark .badge-scheduled {
+  background-color: rgba(37, 99, 235, 0.18);
+  color: #60a5fa;
+  border-color: rgba(96, 165, 250, 0.3);
 }
