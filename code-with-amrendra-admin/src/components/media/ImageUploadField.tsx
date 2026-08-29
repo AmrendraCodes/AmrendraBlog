@@ -41,11 +41,13 @@ export default function ImageUploadField({
 
   const {
     isUploading,
+    statusText,
     error,
     setError,
     clearError,
     previewUrl,
     clearPreview,
+    cancelUpload,
     isDragging,
     uploadFile,
     handleDragOver,
@@ -220,9 +222,19 @@ export default function ImageUploadField({
 
               {/* Uploading Overlay */}
               {isUploading && (
-                <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-xs flex flex-col items-center justify-center text-white z-10 gap-2">
+                <div className="absolute inset-0 bg-slate-900/75 backdrop-blur-xs flex flex-col items-center justify-center text-white z-10 gap-2.5 p-4 text-center">
                   <Loader2 size={28} className="animate-spin text-indigo-400" />
-                  <span className="text-xs font-semibold">Uploading & Optimizing...</span>
+                  <span className="text-xs font-semibold">{statusText || 'Uploading to Vercel Blob...'}</span>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      cancelUpload();
+                    }}
+                    className="mt-1 px-3 py-1 bg-white/20 hover:bg-white/30 text-white text-[11px] font-medium rounded-lg transition"
+                  >
+                    Cancel
+                  </button>
                 </div>
               )}
 
@@ -274,9 +286,18 @@ export default function ImageUploadField({
                 <div className="py-3 flex flex-col items-center justify-center gap-2">
                   <Loader2 size={28} className="animate-spin text-indigo-600" />
                   <div className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                    Uploading image...
+                    {statusText || 'Uploading image...'}
                   </div>
-                  <div className="text-[10px] text-slate-400">Saving to media library</div>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      cancelUpload();
+                    }}
+                    className="mt-1 px-3 py-1 bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-[11px] font-medium rounded-lg transition"
+                  >
+                    Cancel
+                  </button>
                 </div>
               ) : (
                 <>

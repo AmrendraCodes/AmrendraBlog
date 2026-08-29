@@ -35,8 +35,11 @@ import {
   Send,
   Archive,
   Image as ImageIcon,
+  UploadCloud,
+  Loader2,
 } from 'lucide-react';
 import { slugify, safeJson, calculateReadingTime, countWords, formatDate } from '@/lib/utils';
+import { compressImage } from '@/lib/image-compressor';
 import type { Category } from '@prisma/client';
 
 export type TagItem = string | { tag?: { name: string; slug?: string }; name?: string; slug?: string };
@@ -82,6 +85,7 @@ export default function BlogForm({
   const router = useRouter();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const dateInputRef = useRef<HTMLInputElement>(null);
+  const contentImageInputRef = useRef<HTMLInputElement>(null);
 
   // Form Fields
   const [title, setTitle] = useState<string>(initialData?.title || '');
@@ -118,6 +122,8 @@ export default function BlogForm({
   const [editorTab, setEditorTab] = useState<'write' | 'preview'>('write');
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [showHeadingsMenu, setShowHeadingsMenu] = useState<boolean>(false);
+  const [showImageMenu, setShowImageMenu] = useState<boolean>(false);
+  const [isUploadingContentImage, setIsUploadingContentImage] = useState<boolean>(false);
   const [showMoreMenu, setShowMoreMenu] = useState<boolean>(false);
   const [showSeoSection, setShowSeoSection] = useState<boolean>(false);
 
@@ -235,7 +241,7 @@ export default function BlogForm({
   };
 
   // Syntax insertion helper
-  const handleInsertSyntax = (prefix: string, suffix: string = '') => {
+  const handleInsertSyntax = (prefix: string, suffix: string = '', ensureNewLine: boolean = false) => {
     const textarea = textareaRef.current;
     if (!textarea) {
       setContent((prev) => `${prev}\n${prefix}${suffix}`);
@@ -247,9 +253,12 @@ export default function BlogForm({
     const previousText = textarea.value;
     const selectedText = previousText.substring(start, end);
 
+    const needsPrecedingNewline = ensureNewLine && start > 0 && previousText[start - 1] !== '\n';
+    const actualPrefix = needsPrecedingNewline ? `\n${prefix}` : prefix;
+
     const replacement = selectedText
-      ? `${prefix}${selectedText}${suffix}`
-      : `${prefix}${suffix}`;
+      ? `${actualPrefix}${selectedText}${suffix}`
+      : `${actualPrefix}${suffix}`;
 
     const newContent =
       previousText.substring(0, start) + replacement + previousText.substring(end);
@@ -258,9 +267,114 @@ export default function BlogForm({
 
     setTimeout(() => {
       textarea.focus();
-      const cursorPosition = start + prefix.length + selectedText.length;
+      const cursorPosition = selectedText
+        ? start + replacement.length
+        : start + actualPrefix.length;
       textarea.setSelectionRange(cursorPosition, cursorPosition);
     }, 0);
+  };
+
+  const handleInsertHeading = (level: number) => {
+    handleInsertSyntax('#'.repeat(level) + ' ', '', true);
+    setShowHeadingsMenu(false);
+  };
+
+  const handleInsertLink = () => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const selected = textarea.value.substring(start, end).trim();
+    const isUrl = /^https?:\/\//i.test(selected);
+
+    const targetUrl = window.prompt('Enter link destination URL:', isUrl ? selected : 'https://');
+    if (!targetUrl || targetUrl === 'https://') return;
+
+    const anchorText = isUrl
+      ? window.prompt('Enter link text:', 'Link') || 'Link'
+      : selected || 'Link text';
+
+    const markdownLink = `[${anchorText}](${targetUrl.trim()})`;
+    const before = textarea.value.substring(0, start);
+    const after = textarea.value.substring(end);
+    setContent(`${before}${markdownLink}${after}`);
+
+    setTimeout(() => {
+      textarea.focus();
+      const cursor = start + markdownLink.length;
+      textarea.setSelectionRange(cursor, cursor);
+    }, 0);
+  };
+
+  const handleContentImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploadingContentImage(true);
+    setError('');
+
+    try {
+      // 1. Auto-compress on client
+      const compression = await compressImage(file, { maxWidth: 1920, quality: 0.82 });
+      const fileToUpload = compression.file;
+
+      // 2. Upload to Vercel Blob
+      const formData = new FormData();
+      formData.append('file', fileToUpload);
+
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const json = await safeJson<{ url?: string; data?: { url?: string } }>(res);
+      if (!res.ok || !json.success) {
+        throw new Error(json.error?.message || 'Failed to upload image to Vercel Blob');
+      }
+
+      const resObj = json as unknown as { url?: string; data?: { url?: string } };
+      const uploadedUrl = json.data?.url || resObj.url || resObj.data?.url;
+      if (!uploadedUrl) {
+        throw new Error('Upload succeeded but no image URL was returned');
+      }
+
+      // 3. Insert markdown image at cursor
+      const cleanName = file.name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ');
+      handleInsertSyntax(`\n![${cleanName}](`, `${uploadedUrl})\n`);
+    } catch (err: unknown) {
+      console.error('Content image upload error:', err);
+      setError(err instanceof Error ? err.message : 'Failed to upload image into content');
+    } finally {
+      setIsUploadingContentImage(false);
+      setShowImageMenu(false);
+      if (contentImageInputRef.current) {
+        contentImageInputRef.current.value = '';
+      }
+    }
+  };
+
+  const handlePromptImageUrl = () => {
+    const url = window.prompt('Enter direct Image URL (https://...):', 'https://');
+    if (!url || !url.trim() || url === 'https://') return;
+    const alt = window.prompt('Enter Image description / alt text:', 'Image illustration') || 'Image illustration';
+    handleInsertSyntax(`\n![${alt.trim()}](`, `${url.trim()})\n`);
+    setShowImageMenu(false);
+  };
+
+  const handleTextareaKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'b') {
+      e.preventDefault();
+      handleInsertSyntax('**', '**');
+    } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'i') {
+      e.preventDefault();
+      handleInsertSyntax('*', '*');
+    } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      handleInsertLink();
+    } else if (e.key === 'Tab') {
+      e.preventDefault();
+      handleInsertSyntax('  ');
+    }
   };
 
   // Magic Format & Interlink Function
@@ -792,10 +906,7 @@ export default function BlogForm({
                         <div className="absolute left-0 mt-1 w-36 rounded-xl border border-[var(--border-color)] bg-[var(--bg-card)] shadow-xl z-50 py-1 animate-in fade-in zoom-in-95 duration-150">
                           <button
                             type="button"
-                            onClick={() => {
-                              handleInsertSyntax('# ');
-                              setShowHeadingsMenu(false);
-                            }}
+                            onClick={() => handleInsertHeading(1)}
                             className="w-full flex items-center gap-2 px-3 py-1.5 text-xs text-[var(--text-secondary)] hover:bg-[var(--bg-card-hover)] hover:text-[var(--text-main)]"
                           >
                             <Heading1 size={14} />
@@ -803,10 +914,7 @@ export default function BlogForm({
                           </button>
                           <button
                             type="button"
-                            onClick={() => {
-                              handleInsertSyntax('## ');
-                              setShowHeadingsMenu(false);
-                            }}
+                            onClick={() => handleInsertHeading(2)}
                             className="w-full flex items-center gap-2 px-3 py-1.5 text-xs text-[var(--text-secondary)] hover:bg-[var(--bg-card-hover)] hover:text-[var(--text-main)]"
                           >
                             <Heading2 size={14} />
@@ -814,10 +922,7 @@ export default function BlogForm({
                           </button>
                           <button
                             type="button"
-                            onClick={() => {
-                              handleInsertSyntax('### ');
-                              setShowHeadingsMenu(false);
-                            }}
+                            onClick={() => handleInsertHeading(3)}
                             className="w-full flex items-center gap-2 px-3 py-1.5 text-xs text-[var(--text-secondary)] hover:bg-[var(--bg-card-hover)] hover:text-[var(--text-main)]"
                           >
                             <Heading3 size={14} />
@@ -868,7 +973,7 @@ export default function BlogForm({
                     {/* Lists */}
                     <button
                       type="button"
-                      onClick={() => handleInsertSyntax('- ')}
+                      onClick={() => handleInsertSyntax('- ', '', true)}
                       className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-card)] transition cursor-pointer"
                       title="Bullet List"
                     >
@@ -876,7 +981,7 @@ export default function BlogForm({
                     </button>
                     <button
                       type="button"
-                      onClick={() => handleInsertSyntax('1. ')}
+                      onClick={() => handleInsertSyntax('1. ', '', true)}
                       className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-card)] transition cursor-pointer"
                       title="Numbered List"
                     >
@@ -888,31 +993,74 @@ export default function BlogForm({
                     {/* Code, Link, Image, Quote */}
                     <button
                       type="button"
-                      onClick={() => handleInsertSyntax('```ts\n', '\n```')}
+                      onClick={() => handleInsertSyntax('```ts\n', '\n```', true)}
                       className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-card)] transition cursor-pointer"
                       title="Code Block"
                     >
                       <Code size={15} />
                     </button>
+
+                    {/* Hidden input for content image uploads */}
+                    <input
+                      ref={contentImageInputRef}
+                      type="file"
+                      accept="image/png, image/jpeg, image/webp, image/gif, image/svg+xml"
+                      onChange={handleContentImageUpload}
+                      className="hidden"
+                    />
+
+                    {/* Image Dropdown / Button */}
+                    <div className="relative">
+                      <button
+                        type="button"
+                        onClick={() => setShowImageMenu(!showImageMenu)}
+                        disabled={isUploadingContentImage}
+                        className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-card)] transition cursor-pointer flex items-center gap-1 disabled:opacity-50"
+                        title="Insert Image (Upload or URL)"
+                      >
+                        {isUploadingContentImage ? (
+                          <Loader2 size={15} className="animate-spin text-indigo-500" />
+                        ) : (
+                          <ImageIcon size={15} />
+                        )}
+                      </button>
+
+                      {showImageMenu && (
+                        <div className="absolute left-0 mt-1 w-48 rounded-xl border border-[var(--border-color)] bg-[var(--bg-card)] shadow-xl z-50 py-1 animate-in fade-in zoom-in-95 duration-150">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              contentImageInputRef.current?.click();
+                              setShowImageMenu(false);
+                            }}
+                            className="w-full flex items-center gap-2 px-3 py-2 text-xs text-[var(--text-secondary)] hover:bg-[var(--bg-card-hover)] hover:text-[var(--text-main)] text-left cursor-pointer"
+                          >
+                            <UploadCloud size={14} className="text-indigo-500" />
+                            <span>Upload Image</span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={handlePromptImageUrl}
+                            className="w-full flex items-center gap-2 px-3 py-2 text-xs text-[var(--text-secondary)] hover:bg-[var(--bg-card-hover)] hover:text-[var(--text-main)] text-left cursor-pointer"
+                          >
+                            <Link2 size={14} className="text-slate-400" />
+                            <span>Insert Image URL</span>
+                          </button>
+                        </div>
+                      )}
+                    </div>
+
                     <button
                       type="button"
-                      onClick={() => handleInsertSyntax('![Alt text](', ')')}
+                      onClick={handleInsertLink}
                       className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-card)] transition cursor-pointer"
-                      title="Insert Image"
-                    >
-                      <ImageIcon size={15} />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => handleInsertSyntax('[Link text](', ')')}
-                      className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-card)] transition cursor-pointer"
-                      title="Insert Link"
+                      title="Insert Link (Ctrl+K)"
                     >
                       <Link2 size={15} />
                     </button>
                     <button
                       type="button"
-                      onClick={() => handleInsertSyntax('> [!NOTE]\n> ')}
+                      onClick={() => handleInsertSyntax('> [!NOTE]\n> ', '', true)}
                       className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-card)] transition cursor-pointer"
                       title="Alert / Blockquote"
                     >
@@ -948,6 +1096,7 @@ export default function BlogForm({
                       required
                       value={content}
                       onChange={(e) => setContent(e.target.value)}
+                      onKeyDown={handleTextareaKeyDown}
                       placeholder="Write your article markdown here..."
                       className="w-full p-4 bg-[var(--bg-card)] text-[var(--text-main)] font-mono text-xs sm:text-sm leading-relaxed border-0 outline-none resize-y min-h-[380px]"
                     />
@@ -1077,7 +1226,7 @@ export default function BlogForm({
                         {/* Lists */}
                         <button
                           type="button"
-                          onClick={() => handleInsertSyntax('- ')}
+                          onClick={() => handleInsertSyntax('- ', '', true)}
                           className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-card)] transition cursor-pointer"
                           title="Bullet List"
                         >
@@ -1085,7 +1234,7 @@ export default function BlogForm({
                         </button>
                         <button
                           type="button"
-                          onClick={() => handleInsertSyntax('1. ')}
+                          onClick={() => handleInsertSyntax('1. ', '', true)}
                           className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-card)] transition cursor-pointer"
                           title="Numbered List"
                         >
@@ -1097,7 +1246,7 @@ export default function BlogForm({
                         {/* Code, Link, Image, Quote */}
                         <button
                           type="button"
-                          onClick={() => handleInsertSyntax('```ts\n', '\n```')}
+                          onClick={() => handleInsertSyntax('```ts\n', '\n```', true)}
                           className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-card)] transition cursor-pointer"
                           title="Code Block"
                         >
@@ -1105,15 +1254,20 @@ export default function BlogForm({
                         </button>
                         <button
                           type="button"
-                          onClick={() => handleInsertSyntax('![Alt text](', ')')}
-                          className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-card)] transition cursor-pointer"
-                          title="Insert Image"
+                          onClick={() => contentImageInputRef.current?.click()}
+                          disabled={isUploadingContentImage}
+                          className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-card)] transition cursor-pointer flex items-center gap-1 disabled:opacity-50"
+                          title="Upload & Insert Image"
                         >
-                          <ImageIcon size={15} />
+                          {isUploadingContentImage ? (
+                            <Loader2 size={15} className="animate-spin text-indigo-500" />
+                          ) : (
+                            <ImageIcon size={15} />
+                          )}
                         </button>
                         <button
                           type="button"
-                          onClick={() => handleInsertSyntax('[Link text](', ')')}
+                          onClick={handleInsertLink}
                           className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-card)] transition cursor-pointer"
                           title="Insert Link"
                         >
@@ -1121,7 +1275,7 @@ export default function BlogForm({
                         </button>
                         <button
                           type="button"
-                          onClick={() => handleInsertSyntax('> [!NOTE]\n> ')}
+                          onClick={() => handleInsertSyntax('> [!NOTE]\n> ', '', true)}
                           className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-card)] transition cursor-pointer"
                           title="Alert / Blockquote"
                         >

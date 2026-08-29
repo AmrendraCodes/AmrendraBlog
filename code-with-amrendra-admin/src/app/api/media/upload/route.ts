@@ -1,14 +1,13 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getAuthSession } from '@/lib/auth';
-import { writeFile, mkdir } from 'fs/promises';
+import { put } from '@vercel/blob';
 import path from 'path';
-import { existsSync } from 'fs';
 
 export const dynamic = 'force-dynamic';
 
 const ALLOWED_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.webp', '.svg', '.gif'];
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15MB limit
 
 export async function POST(request: Request) {
   try {
@@ -21,7 +20,7 @@ export async function POST(request: Request) {
     }
 
     const formData = await request.formData();
-    const file = formData.get('file') as File | null;
+    const file = (formData.get('file') || formData.get('image')) as File | null;
 
     if (!file) {
       return NextResponse.json(
@@ -32,15 +31,15 @@ export async function POST(request: Request) {
 
     if (file.size > MAX_FILE_SIZE) {
       return NextResponse.json(
-        { success: false, error: { code: 'FILE_TOO_LARGE', message: 'File exceeds 10MB limit' } },
+        { success: false, error: { code: 'FILE_TOO_LARGE', message: 'File exceeds 15MB limit' } },
         { status: 400 }
       );
     }
 
-    const originalName = file.name;
+    const originalName = file.name || 'image.png';
     const ext = path.extname(originalName).toLowerCase();
 
-    if (!ALLOWED_EXTENSIONS.includes(ext)) {
+    if (!ALLOWED_EXTENSIONS.includes(ext) && !file.type.startsWith('image/')) {
       return NextResponse.json(
         {
           success: false,
@@ -53,53 +52,44 @@ export async function POST(request: Request) {
       );
     }
 
-    const baseName = path.basename(originalName, ext).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    const uniqueFileName = `${baseName || 'image'}-${Date.now()}${ext}`;
-    const publicUrl = `/images/${uniqueFileName}`;
+    const baseName = path
+      .basename(originalName, ext)
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+    const cleanFileName = `media/${baseName || 'upload'}-${Date.now()}${ext || '.png'}`;
 
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
+    // Upload to Vercel Blob
+    const blob = await put(cleanFileName, file, {
+      access: 'public',
+      addRandomSuffix: true,
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    });
 
-    // Save to admin app public/images directory
-    const adminUploadsDir = path.join(process.cwd(), 'public', 'images');
-    if (!existsSync(adminUploadsDir)) {
-      await mkdir(adminUploadsDir, { recursive: true });
-    }
-    await writeFile(path.join(adminUploadsDir, uniqueFileName), buffer);
-
-    // Also copy to main website public/images directory if present
-    const mainWebsiteDir = path.resolve(process.cwd(), '..', 'my-website', 'public', 'images');
-    if (existsSync(mainWebsiteDir)) {
-      try {
-        await writeFile(path.join(mainWebsiteDir, uniqueFileName), buffer);
-      } catch (copyErr) {
-        console.warn('Failed to mirror upload to main website:', copyErr);
-      }
-    }
-
-    const publicId = `local_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
-
+    // Save into database Media table
     const mediaItem = await prisma.media.create({
       data: {
         fileName: originalName,
-        publicId,
-        url: publicUrl,
-        secureUrl: publicUrl,
-        format: ext.replace('.', ''),
-        width: 1200,
-        height: 800,
+        publicId: blob.pathname,
+        url: blob.url,
+        secureUrl: blob.url,
+        format: ext.replace('.', '') || 'webp',
         bytes: file.size,
-        folder: 'uploads',
+        folder: 'media',
       },
     });
 
-    return NextResponse.json({
-      success: true,
-      data: {
-        media: mediaItem,
-        url: publicUrl,
+    return NextResponse.json(
+      {
+        success: true,
+        data: {
+          media: mediaItem,
+          url: blob.url,
+        },
+        url: blob.url,
       },
-    }, { status: 201 });
+      { status: 201 }
+    );
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Failed to upload file';
     console.error('File upload error:', error);

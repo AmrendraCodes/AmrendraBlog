@@ -1,6 +1,7 @@
 import { put } from '@vercel/blob';
 import { NextResponse } from 'next/server';
 import path from 'path';
+import { prisma } from '@/lib/prisma';
 
 export const dynamic = 'force-dynamic';
 
@@ -84,18 +85,39 @@ export async function POST(request: Request) {
     const blob = await put(cleanFileName, file, {
       access: 'public',
       addRandomSuffix: true,
+      token: process.env.BLOB_READ_WRITE_TOKEN,
     });
 
-    // 7. Return Uploaded Blob URL
+    // 7. Record in Media Library database for reusability
+    let mediaItem = null;
+    try {
+      mediaItem = await prisma.media.create({
+        data: {
+          fileName: originalName,
+          publicId: blob.pathname,
+          url: blob.url,
+          secureUrl: blob.url,
+          format: ext.replace('.', '') || 'webp',
+          bytes: file.size,
+          folder: 'blogs',
+        },
+      });
+    } catch (dbErr) {
+      console.warn('Could not record uploaded media to database:', dbErr);
+    }
+
+    // 8. Return Uploaded Blob URL
     return NextResponse.json(
       {
         success: true,
         url: blob.url,
         imageUrl: blob.url,
+        media: mediaItem,
         data: {
           url: blob.url,
           pathname: blob.pathname,
           contentType: blob.contentType,
+          media: mediaItem,
         },
       },
       { status: 201 }

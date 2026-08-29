@@ -1,10 +1,12 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { safeJson } from '@/lib/utils';
+import { compressImage } from '@/lib/image-compressor';
 
 export interface UseImageUploadOptions {
   maxSizeBytes?: number;
   allowedTypes?: string[];
   endpoint?: string;
+  autoCompress?: boolean;
   onSuccess?: (url: string, data?: unknown) => void;
   onError?: (errorMessage: string) => void;
 }
@@ -16,7 +18,7 @@ export interface UploadResult {
   error?: string;
 }
 
-const DEFAULT_MAX_SIZE = 5 * 1024 * 1024; // 5MB limit
+const DEFAULT_MAX_SIZE = 15 * 1024 * 1024; // 15MB limit
 const DEFAULT_ALLOWED_TYPES = [
   'image/jpeg',
   'image/png',
@@ -30,14 +32,17 @@ export function useImageUpload(options: UseImageUploadOptions = {}) {
     maxSizeBytes = DEFAULT_MAX_SIZE,
     allowedTypes = DEFAULT_ALLOWED_TYPES,
     endpoint = '/api/upload',
+    autoCompress = true,
     onSuccess,
     onError,
   } = options;
 
   const [isUploading, setIsUploading] = useState(false);
+  const [statusText, setStatusText] = useState<string>('Uploading...');
   const [error, setError] = useState<string | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   const validateFile = useCallback(
     (file: File): { valid: boolean; error?: string } => {
@@ -66,6 +71,26 @@ export function useImageUpload(options: UseImageUploadOptions = {}) {
     [allowedTypes, maxSizeBytes]
   );
 
+  const clearPreview = useCallback(() => {
+    setPreviewUrl((prev) => {
+      if (prev && prev.startsWith('blob:')) {
+        URL.revokeObjectURL(prev);
+      }
+      return null;
+    });
+  }, []);
+
+  const cancelUpload = useCallback(() => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      abortControllerRef.current = null;
+    }
+    clearPreview();
+    setIsUploading(false);
+    setStatusText('Cancelled');
+    setError(null);
+  }, [clearPreview]);
+
   const uploadFile = useCallback(
     async (file: File): Promise<UploadResult> => {
       setError(null);
@@ -79,19 +104,54 @@ export function useImageUpload(options: UseImageUploadOptions = {}) {
         return { success: false, error: errorMsg };
       }
 
-      // Generate instant local preview
+      // Generate instant local preview for immediate visual feedback
       const objectUrl = URL.createObjectURL(file);
       setPreviewUrl(objectUrl);
       setIsUploading(true);
 
+      const controller = new AbortController();
+      abortControllerRef.current = controller;
+
+      // Timeout after 45 seconds to avoid infinite spinner
+      const timeoutId = setTimeout(() => {
+        controller.abort();
+      }, 45000);
+
       try {
+        let fileToUpload = file;
+
+        // Auto-compress high-res/heavy images to lightweight WebP in milliseconds
+        if (autoCompress) {
+          setStatusText('Optimizing image...');
+          try {
+            const compression = await compressImage(file, {
+              maxWidth: 1920,
+              maxHeight: 1080,
+              quality: 0.82,
+            });
+            fileToUpload = compression.file;
+            if (compression.ratio > 0) {
+              setStatusText(`Uploading (${(compression.compressedSize / 1024).toFixed(0)} KB)...`);
+            } else {
+              setStatusText('Uploading to Vercel Blob...');
+            }
+          } catch {
+            setStatusText('Uploading to Vercel Blob...');
+          }
+        } else {
+          setStatusText('Uploading to Vercel Blob...');
+        }
+
         const formData = new FormData();
-        formData.append('file', file);
+        formData.append('file', fileToUpload);
 
         const res = await fetch(endpoint, {
           method: 'POST',
           body: formData,
+          signal: controller.signal,
         });
+
+        clearTimeout(timeoutId);
 
         const json = await safeJson<{
           url?: string;
@@ -102,7 +162,13 @@ export function useImageUpload(options: UseImageUploadOptions = {}) {
         }>(res);
 
         if (!res.ok || json.success === false) {
-          const errorMsg = json.error?.message || 'Failed to upload image file';
+          const errorMsg =
+            (typeof json.error === 'object' && json.error?.message) ||
+            (typeof json.error === 'string' && json.error) ||
+            `Upload failed (${res.status})`;
+
+          if (objectUrl.startsWith('blob:')) URL.revokeObjectURL(objectUrl);
+          setPreviewUrl(null);
           setError(errorMsg);
           onError?.(errorMsg);
           setIsUploading(false);
@@ -125,8 +191,11 @@ export function useImageUpload(options: UseImageUploadOptions = {}) {
           resObj.media?.secureUrl ||
           resObj.media?.url ||
           '';
+
         if (!uploadedUrl) {
-          const errorMsg = 'Upload succeeded but no image URL was returned';
+          const errorMsg = 'Upload succeeded but no image URL was returned by the server.';
+          if (objectUrl.startsWith('blob:')) URL.revokeObjectURL(objectUrl);
+          setPreviewUrl(null);
           setError(errorMsg);
           onError?.(errorMsg);
           setIsUploading(false);
@@ -140,20 +209,31 @@ export function useImageUpload(options: UseImageUploadOptions = {}) {
 
         setPreviewUrl(null);
         setIsUploading(false);
+        abortControllerRef.current = null;
         onSuccess?.(uploadedUrl, resObj.data?.media || resObj.media);
         return { success: true, url: uploadedUrl, media: resObj.data?.media || resObj.media };
       } catch (err: unknown) {
+        clearTimeout(timeoutId);
         if (objectUrl.startsWith('blob:')) {
           URL.revokeObjectURL(objectUrl);
         }
-        const errorMsg = err instanceof Error ? err.message : 'Network error during image upload';
+        setPreviewUrl(null);
+
+        const isAbort = (err as Error)?.name === 'AbortError';
+        const errorMsg = isAbort
+          ? 'Upload timed out or was cancelled. Please try again.'
+          : err instanceof Error
+          ? err.message
+          : 'Network error during image upload';
+
         setError(errorMsg);
         onError?.(errorMsg);
         setIsUploading(false);
+        abortControllerRef.current = null;
         return { success: false, error: errorMsg };
       }
     },
-    [validateFile, onSuccess, onError]
+    [validateFile, autoCompress, onSuccess, onError, endpoint]
   );
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
@@ -184,23 +264,17 @@ export function useImageUpload(options: UseImageUploadOptions = {}) {
   );
 
   const clearError = useCallback(() => setError(null), []);
-  const clearPreview = useCallback(() => {
-    setPreviewUrl((prev) => {
-      if (prev && prev.startsWith('blob:')) {
-        URL.revokeObjectURL(prev);
-      }
-      return null;
-    });
-  }, []);
 
   return {
     isUploading,
+    statusText,
     error,
     setError,
     clearError,
     previewUrl,
     setPreviewUrl,
     clearPreview,
+    cancelUpload,
     isDragging,
     uploadFile,
     validateFile,

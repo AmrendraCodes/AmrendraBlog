@@ -32,6 +32,8 @@ export default function MarkdownPreview({ content }: MarkdownPreviewProps) {
     let keyIdx = 0;
 
     while (remaining.length > 0) {
+      // 0. Check for markdown image ![alt](url)
+      const imgMatch = remaining.match(/^(.*?)!\[([^\]]*)\]\(([^)]+)\)([\s\S]*)$/);
       // 1. Check for markdown link [text](url)
       const linkMatch = remaining.match(/^(.*?)\[([^\]]+)\]\(([^)]+)\)([\s\S]*)$/);
       // 2. Check for inline code `code`
@@ -43,6 +45,7 @@ export default function MarkdownPreview({ content }: MarkdownPreviewProps) {
 
       // Find which pattern occurs first
       const matches = [
+        { type: 'image', match: imgMatch, index: imgMatch ? imgMatch[1].length : Infinity },
         { type: 'link', match: linkMatch, index: linkMatch ? linkMatch[1].length : Infinity },
         { type: 'code', match: codeMatch, index: codeMatch ? codeMatch[1].length : Infinity },
         { type: 'bold', match: boldMatch, index: boldMatch ? boldMatch[1].length : Infinity },
@@ -60,7 +63,17 @@ export default function MarkdownPreview({ content }: MarkdownPreviewProps) {
         parts.push(<span key={keyIdx++}>{before}</span>);
       }
 
-      if (first.type === 'link') {
+      if (first.type === 'image') {
+        parts.push(
+          <img
+            key={keyIdx++}
+            src={captured2}
+            alt={captured1 || 'Illustration'}
+            className="my-3 rounded-xl max-h-[400px] object-cover shadow-xs border border-slate-200 dark:border-slate-800"
+          />
+        );
+        remaining = after || '';
+      } else if (first.type === 'link') {
         const isExternal = captured2.startsWith('http');
         parts.push(
           <a
@@ -230,6 +243,28 @@ export default function MarkdownPreview({ content }: MarkdownPreviewProps) {
         <li key={`li-${i}`} className="ml-5 list-disc text-xs text-slate-700 dark:text-slate-300 leading-relaxed mb-1">
           {renderInlineFormatted(listContent)}
         </li>
+      );
+      continue;
+    }
+
+    // Standalone image block: ![alt](url)
+    const imgBlockMatch = trimmed.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+    if (imgBlockMatch) {
+      const [, alt, url] = imgBlockMatch;
+      renderedElements.push(
+        <figure key={`img-block-${i}`} className="my-5 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900/5 shadow-xs">
+          <img
+            src={url}
+            alt={alt || 'Content image'}
+            className="w-full max-h-[500px] object-cover"
+            loading="lazy"
+          />
+          {alt && (
+            <figcaption className="py-2 px-4 text-center text-xs text-slate-500 dark:text-slate-400 italic bg-slate-50 dark:bg-slate-900/40 border-t border-slate-200/60 dark:border-slate-800/60">
+              {alt}
+            </figcaption>
+          )}
+        </figure>
       );
       continue;
     }
