@@ -4,6 +4,7 @@ import { safeJson } from '@/lib/utils';
 export interface UseImageUploadOptions {
   maxSizeBytes?: number;
   allowedTypes?: string[];
+  endpoint?: string;
   onSuccess?: (url: string, data?: unknown) => void;
   onError?: (errorMessage: string) => void;
 }
@@ -28,6 +29,7 @@ export function useImageUpload(options: UseImageUploadOptions = {}) {
   const {
     maxSizeBytes = DEFAULT_MAX_SIZE,
     allowedTypes = DEFAULT_ALLOWED_TYPES,
+    endpoint = '/api/upload',
     onSuccess,
     onError,
   } = options;
@@ -86,14 +88,20 @@ export function useImageUpload(options: UseImageUploadOptions = {}) {
         const formData = new FormData();
         formData.append('file', file);
 
-        const res = await fetch('/api/media/upload', {
+        const res = await fetch(endpoint, {
           method: 'POST',
           body: formData,
         });
 
-        const json = await safeJson<{ url?: string; media?: { url?: string; secureUrl?: string } }>(res);
+        const json = await safeJson<{
+          url?: string;
+          imageUrl?: string;
+          data?: { url?: string; media?: { url?: string; secureUrl?: string } };
+          media?: { url?: string; secureUrl?: string };
+          error?: string | { message?: string };
+        }>(res);
 
-        if (!res.ok || !json.success) {
+        if (!res.ok || json.success === false) {
           const errorMsg = json.error?.message || 'Failed to upload image file';
           setError(errorMsg);
           onError?.(errorMsg);
@@ -101,7 +109,22 @@ export function useImageUpload(options: UseImageUploadOptions = {}) {
           return { success: false, error: errorMsg };
         }
 
-        const uploadedUrl = json.data?.url || json.data?.media?.secureUrl || json.data?.media?.url || '';
+        const resObj = json as unknown as {
+          url?: string;
+          imageUrl?: string;
+          data?: { url?: string; media?: { url?: string; secureUrl?: string } };
+          media?: { url?: string; secureUrl?: string };
+        };
+
+        const uploadedUrl =
+          resObj.data?.url ||
+          resObj.url ||
+          resObj.imageUrl ||
+          resObj.data?.media?.secureUrl ||
+          resObj.data?.media?.url ||
+          resObj.media?.secureUrl ||
+          resObj.media?.url ||
+          '';
         if (!uploadedUrl) {
           const errorMsg = 'Upload succeeded but no image URL was returned';
           setError(errorMsg);
@@ -117,8 +140,8 @@ export function useImageUpload(options: UseImageUploadOptions = {}) {
 
         setPreviewUrl(null);
         setIsUploading(false);
-        onSuccess?.(uploadedUrl, json.data?.media);
-        return { success: true, url: uploadedUrl, media: json.data?.media };
+        onSuccess?.(uploadedUrl, resObj.data?.media || resObj.media);
+        return { success: true, url: uploadedUrl, media: resObj.data?.media || resObj.media };
       } catch (err: unknown) {
         if (objectUrl.startsWith('blob:')) {
           URL.revokeObjectURL(objectUrl);

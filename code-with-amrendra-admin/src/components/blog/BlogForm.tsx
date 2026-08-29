@@ -49,6 +49,7 @@ export interface BlogPostFormData {
   description?: string;
   content?: string;
   featuredImage?: string;
+  imageUrl?: string;
   status?: 'DRAFT' | 'PUBLISHED' | 'SCHEDULED';
   publishedAt?: string | Date;
   scheduledAt?: string | Date;
@@ -88,7 +89,9 @@ export default function BlogForm({
   const [autoSlug, setAutoSlug] = useState<boolean>(mode === 'create');
   const [excerpt, setExcerpt] = useState<string>(initialData?.excerpt || initialData?.description || '');
   const [content, setContent] = useState<string>(initialData?.content || '');
-  const [featuredImage, setFeaturedImage] = useState<string>(initialData?.featuredImage || '');
+  const [featuredImage, setFeaturedImage] = useState<string>(
+    initialData?.featuredImage || initialData?.imageUrl || ''
+  );
   const [status, setStatus] = useState<'DRAFT' | 'PUBLISHED' | 'SCHEDULED'>(
     initialData?.status || 'DRAFT'
   );
@@ -157,7 +160,9 @@ export default function BlogForm({
         setExcerpt(initialData.excerpt || initialData.description || '');
       }
       if (initialData.content !== undefined) setContent(initialData.content || '');
-      if (initialData.featuredImage !== undefined) setFeaturedImage(initialData.featuredImage || '');
+      if (initialData.featuredImage !== undefined || initialData.imageUrl !== undefined) {
+        setFeaturedImage(initialData.featuredImage || initialData.imageUrl || '');
+      }
       if (initialData.status) setStatus(initialData.status);
       if (initialData.publishedAt) {
         setPublishedDate(new Date(initialData.publishedAt).toISOString().split('T')[0]);
@@ -358,6 +363,7 @@ export default function BlogForm({
         description: excerpt.trim(),
         content,
         featuredImage,
+        imageUrl: featuredImage,
         status: targetStatus,
         publishedAt: publishedDate ? new Date(publishedDate).toISOString() : undefined,
         categoryId: categoryId || undefined,
@@ -647,8 +653,9 @@ export default function BlogForm({
                   label=""
                   value={featuredImage}
                   onChange={setFeaturedImage}
-                  helpText="Upload cover asset or paste direct image URL"
+                  helpText="Upload cover image to Vercel Blob or paste direct image URL"
                   aspectRatio="video"
+                  endpoint="/api/upload"
                 />
               </div>
 
@@ -1248,6 +1255,7 @@ export default function BlogForm({
                       value={ogImage}
                       onChange={setOgImage}
                       helpText="Image for Twitter & LinkedIn social cards. If empty, Featured Image is used automatically."
+                      endpoint="/api/upload"
                     />
                   </div>
 

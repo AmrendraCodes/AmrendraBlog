@@ -22,6 +22,7 @@ interface ImageUploadFieldProps {
   placeholder?: string;
   aspectRatio?: 'video' | 'square' | 'auto';
   allowUrlInput?: boolean;
+  endpoint?: string;
 }
 
 export default function ImageUploadField({
@@ -32,6 +33,7 @@ export default function ImageUploadField({
   placeholder = 'https://images.unsplash.com/...',
   aspectRatio = 'video',
   allowUrlInput = true,
+  endpoint = '/api/upload',
 }: ImageUploadFieldProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [inputMode, setInputMode] = useState<'upload' | 'url'>('upload');
@@ -50,6 +52,7 @@ export default function ImageUploadField({
     handleDragLeave,
     handleDrop,
   } = useImageUpload({
+    endpoint,
     onSuccess: (uploadedUrl) => {
       onChange(uploadedUrl);
     },

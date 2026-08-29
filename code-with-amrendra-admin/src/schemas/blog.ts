@@ -7,6 +7,7 @@ export const blogSchema = z.object({
   description: z.string().optional(),
   content: z.string().min(10, 'Content must be at least 10 characters'),
   featuredImage: z.string().optional(),
+  imageUrl: z.string().optional(),
   ogImage: z.string().optional(),
   canonicalUrl: z.string().optional(),
   metaTitle: z.string().optional(),
