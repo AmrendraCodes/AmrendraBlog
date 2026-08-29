@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import MarkdownPreview from '@/components/MarkdownPreview';
 import ImageUploadField from '@/components/media/ImageUploadField';
 import StatusBadge from '@/components/ui/StatusBadge';
+import TableOfContentsField from './TableOfContentsField';
+import FaqSchemaField from './FaqSchemaField';
 import {
   Save,
   ArrowLeft,
@@ -375,6 +377,40 @@ export default function BlogForm({
       e.preventDefault();
       handleInsertSyntax('  ');
     }
+  };
+
+  const handleInsertTocToContent = (tocMarkdown: string) => {
+    const textarea = textareaRef.current;
+    if (!textarea) {
+      setContent((prev) => `${tocMarkdown}\n\n${prev}`);
+      return;
+    }
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const prev = textarea.value;
+    const next = prev.substring(0, start) + tocMarkdown + prev.substring(end);
+    setContent(next);
+    setTimeout(() => {
+      textarea.focus();
+      textarea.setSelectionRange(start + tocMarkdown.length, start + tocMarkdown.length);
+    }, 0);
+  };
+
+  const handleInsertFaqMarkdown = (faqMarkdown: string) => {
+    const textarea = textareaRef.current;
+    if (!textarea) {
+      setContent((prev) => `${prev}\n\n${faqMarkdown}`);
+      return;
+    }
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const prev = textarea.value;
+    const next = prev.substring(0, start) + faqMarkdown + prev.substring(end);
+    setContent(next);
+    setTimeout(() => {
+      textarea.focus();
+      textarea.setSelectionRange(start + faqMarkdown.length, start + faqMarkdown.length);
+    }, 0);
   };
 
   // Magic Format & Interlink Function
@@ -1430,6 +1466,22 @@ export default function BlogForm({
                   </div>
                 </div>
               )}
+            </div>
+
+            {/* ROW 6: TABLE OF CONTENTS (Strapi-styled) */}
+            <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--bg-card)] p-5 shadow-xs">
+              <TableOfContentsField
+                content={content}
+                onInsertToc={handleInsertTocToContent}
+              />
+            </div>
+
+            {/* ROW 7: FAQ SCHEMA & FAQ_BLOG (Strapi-styled) */}
+            <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--bg-card)] p-5 shadow-xs">
+              <FaqSchemaField
+                content={content}
+                onInsertFaqMarkdown={handleInsertFaqMarkdown}
+              />
             </div>
           </div>
         </div>

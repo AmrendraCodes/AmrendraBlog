@@ -212,9 +212,8 @@ export default function MarkdownPreview({ content }: MarkdownPreviewProps) {
 
     if (trimmed.startsWith('## ')) {
       renderedElements.push(
-        <h2 key={`h2-${i}`} className="text-lg font-extrabold text-slate-900 dark:text-white mt-6 mb-2 flex items-center gap-2">
-          <span className="text-indigo-600 dark:text-indigo-400 font-mono text-sm">##</span>
-          <span>{renderInlineFormatted(trimmed.replace(/^##\s+/, ''))}</span>
+        <h2 key={`h2-${i}`} className="text-xl font-extrabold text-slate-900 dark:text-white mt-6 mb-2 tracking-tight">
+          {renderInlineFormatted(trimmed.replace(/^##\s+/, ''))}
         </h2>
       );
       continue;
@@ -222,10 +221,18 @@ export default function MarkdownPreview({ content }: MarkdownPreviewProps) {
 
     if (trimmed.startsWith('### ')) {
       renderedElements.push(
-        <h3 key={`h3-${i}`} className="text-sm font-bold text-slate-800 dark:text-slate-200 mt-4 mb-1 flex items-center gap-1.5">
-          <span className="text-slate-400 font-mono text-xs">###</span>
-          <span>{renderInlineFormatted(trimmed.replace(/^###\s+/, ''))}</span>
+        <h3 key={`h3-${i}`} className="text-base font-bold text-slate-800 dark:text-slate-200 mt-4 mb-2">
+          {renderInlineFormatted(trimmed.replace(/^###\s+/, ''))}
         </h3>
+      );
+      continue;
+    }
+
+    if (trimmed.startsWith('#### ')) {
+      renderedElements.push(
+        <h4 key={`h4-${i}`} className="text-sm font-semibold text-slate-700 dark:text-slate-300 mt-3 mb-1">
+          {renderInlineFormatted(trimmed.replace(/^####\s+/, ''))}
+        </h4>
       );
       continue;
     }
@@ -234,6 +241,67 @@ export default function MarkdownPreview({ content }: MarkdownPreviewProps) {
     if (trimmed === '---' || trimmed === '***') {
       renderedElements.push(<hr key={`hr-${i}`} className="my-6 border-slate-200 dark:border-slate-800" />);
       continue;
+    }
+
+    // Standard Blockquote (> quote text)
+    if (trimmed.startsWith('> ') && !trimmed.startsWith('> [!')) {
+      renderedElements.push(
+        <blockquote key={`quote-${i}`} className="my-4 pl-4 border-l-4 border-indigo-500 italic text-slate-700 dark:text-slate-300 text-xs sm:text-sm bg-slate-100/60 dark:bg-slate-800/40 py-2.5 px-3 rounded-r-xl">
+          {renderInlineFormatted(trimmed.replace(/^>\s+/, ''))}
+        </blockquote>
+      );
+      continue;
+    }
+
+    // Markdown Table
+    if (trimmed.startsWith('|') && trimmed.endsWith('|')) {
+      const tableLines: string[] = [];
+      while (i < lines.length && lines[i].trim().startsWith('|') && lines[i].trim().endsWith('|')) {
+        tableLines.push(lines[i].trim());
+        i++;
+      }
+      i--; // adjust loop counter
+
+      if (tableLines.length >= 2) {
+        const parseRow = (rowStr: string) =>
+          rowStr
+            .split('|')
+            .slice(1, -1)
+            .map((c) => c.trim());
+
+        const headerRow = parseRow(tableLines[0]);
+        // Table line 1 is usually separator like | --- | --- |
+        const bodyLines = tableLines[1]?.includes('---') ? tableLines.slice(2) : tableLines.slice(1);
+        const bodyRows = bodyLines.map(parseRow);
+
+        renderedElements.push(
+          <div key={`table-${i}`} className="my-5 overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs">
+            <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-800 text-xs">
+              <thead className="bg-slate-100 dark:bg-slate-800/80">
+                <tr>
+                  {headerRow.map((h, hIdx) => (
+                    <th key={hIdx} className="px-3.5 py-2.5 text-left font-bold text-slate-900 dark:text-white">
+                      {renderInlineFormatted(h)}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-200/70 dark:divide-slate-800/70 bg-white dark:bg-slate-900/40">
+                {bodyRows.map((row, rIdx) => (
+                  <tr key={rIdx} className="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition">
+                    {row.map((cell, cIdx) => (
+                      <td key={cIdx} className="px-3.5 py-2 text-slate-700 dark:text-slate-300">
+                        {renderInlineFormatted(cell)}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        );
+        continue;
+      }
     }
 
     // Bullet points / numbered lists
