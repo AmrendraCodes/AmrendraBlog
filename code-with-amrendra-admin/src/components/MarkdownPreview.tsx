@@ -16,8 +16,14 @@ export default function MarkdownPreview({ content }: MarkdownPreviewProps) {
     );
   }
 
+  // Normalize dividers to prevent setext heading interpretation and match live site
+  const normalizedContent = content.replace(
+    /([^\n\r])[ \t]*\r?\n[ \t]*((?:-[ \t]*){3,}|(?:=[ \t]*){3,}|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,})[ \t]*(\r?\n|$)/g,
+    '$1\n\n$2\n\n'
+  );
+
   // Parse markdown into structured blocks
-  const lines = content.split('\n');
+  const lines = normalizedContent.split('\n');
   const renderedElements: React.ReactNode[] = [];
   let inCodeBlock = false;
   let codeLanguage = '';

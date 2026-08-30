@@ -18,6 +18,30 @@ function countWords(content) {
 }
 
 /**
+ * Pre-processes markdown to prevent accidental CommonMark setext headings.
+ * Automatically ensures dividers (---, ===, etc.) have blank lines before and after.
+ */
+export function normalizeMarkdown(raw) {
+  if (!raw || typeof raw !== "string") return "";
+
+  const codeBlocks = [];
+  let processed = raw.replace(/```[\s\S]*?```/g, (match) => {
+    const placeholder = `__CODE_BLOCK_${codeBlocks.length}__`;
+    codeBlocks.push(match);
+    return placeholder;
+  });
+
+  processed = processed.replace(
+    /([^\n\r])[ \t]*\r?\n[ \t]*((?:-[ \t]*){3,}|(?:=[ \t]*){3,}|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,})[ \t]*(\r?\n|$)/g,
+    "$1\n\n$2\n\n"
+  );
+
+  processed = processed.replace(/__CODE_BLOCK_(\d+)__/g, (_, idx) => codeBlocks[parseInt(idx, 10)]);
+
+  return processed;
+}
+
+/**
  * Fallback loader from markdown files if DB is unavailable.
  */
 function getPostsFromFilesystem() {
@@ -51,7 +75,7 @@ function getPostsFromFilesystem() {
       author: data.author || "Amrendra Kumar",
       tags: data.tags || [],
       wordCount: countWords(content),
-      content: content.trim(),
+      content: normalizeMarkdown(content),
       status: "PUBLISHED",
       views: data.views || 0,
     };
@@ -98,7 +122,7 @@ export async function getAllPostsAsync() {
         author: post.authorName || "Amrendra Kumar",
         tags: post.tags ? post.tags.map((t) => t.tag.name) : [],
         wordCount: post.wordCount,
-        content: post.content,
+        content: normalizeMarkdown(post.content),
         status: post.status,
         views: post.views || 0,
       }));
@@ -152,7 +176,7 @@ export async function getPostBySlugAsync(slug) {
         author: post.authorName || "Amrendra Kumar",
         tags: post.tags ? post.tags.map((t) => t.tag.name) : [],
         wordCount: post.wordCount,
-        content: post.content,
+        content: normalizeMarkdown(post.content),
         status: post.status,
       };
     }

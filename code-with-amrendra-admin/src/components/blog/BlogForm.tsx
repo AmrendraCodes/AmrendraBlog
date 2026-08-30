@@ -39,6 +39,7 @@ import {
   Image as ImageIcon,
   UploadCloud,
   Loader2,
+  Minus,
 } from 'lucide-react';
 import { slugify, safeJson, calculateReadingTime, countWords, formatDate } from '@/lib/utils';
 import { compressImage } from '@/lib/image-compressor';
@@ -281,6 +282,10 @@ export default function BlogForm({
     setShowHeadingsMenu(false);
   };
 
+  const handleInsertDivider = () => {
+    handleInsertSyntax('\n---\n\n', '', true);
+  };
+
   const handleInsertLink = () => {
     const textarea = textareaRef.current;
     if (!textarea) return;
@@ -506,12 +511,18 @@ export default function BlogForm({
       const endpoint = mode === 'create' ? '/api/blogs' : `/api/blogs/${postId}`;
       const method = mode === 'create' ? 'POST' : 'PUT';
 
+      // Automatically normalize dividers so they never become Setext headings
+      const normalizedContent = content.replace(
+        /([^\n\r])[ \t]*\r?\n[ \t]*((?:-[ \t]*){3,}|(?:=[ \t]*){3,}|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,})[ \t]*(\r?\n|$)/g,
+        '$1\n\n$2\n\n'
+      );
+
       const payload = {
         title,
         slug: slug.trim(),
         excerpt: excerpt.trim(),
         description: excerpt.trim(),
-        content,
+        content: normalizedContent,
         featuredImage,
         imageUrl: featuredImage,
         status: targetStatus,
@@ -1102,6 +1113,14 @@ export default function BlogForm({
                     >
                       <Quote size={15} />
                     </button>
+                    <button
+                      type="button"
+                      onClick={handleInsertDivider}
+                      className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-card)] transition cursor-pointer"
+                      title="Horizontal Divider (---)"
+                    >
+                      <Minus size={15} />
+                    </button>
                   </div>
 
                   {/* Right Side: Preview Mode Toggle */}
@@ -1316,6 +1335,14 @@ export default function BlogForm({
                           title="Alert / Blockquote"
                         >
                           <Quote size={15} />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={handleInsertDivider}
+                          className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-card)] transition cursor-pointer"
+                          title="Horizontal Divider (---)"
+                        >
+                          <Minus size={15} />
                         </button>
                       </div>
 

@@ -145,10 +145,13 @@ export function formatArticleMarkdown(
     return placeholder;
   });
 
-  // 1.5 Horizontal Rule Normalization
-  // Ensure horizontal rules (---, ***, ___) have blank lines before and after them
-  // so CommonMark does not treat preceding text as Setext H2 headings
-  content = content.replace(/([^\n\r])[ \t]*\r?\n[ \t]*(-{3,}|\*{3,}|_{3,})[ \t]*(\r?\n|$)/g, '$1\n\n$2\n\n');
+  // 1.5 Horizontal Rule & Divider Normalization
+  // Ensure horizontal rules / dividers (---, ===, ***, ___, - - -, * * *) have blank lines before and after them
+  // so CommonMark does not treat preceding text as Setext H1/H2 headings
+  content = content.replace(
+    /([^\n\r])[ \t]*\r?\n[ \t]*((?:-[ \t]*){3,}|(?:=[ \t]*){3,}|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,})[ \t]*(\r?\n|$)/g,
+    '$1\n\n$2\n\n'
+  );
 
   // 2. Heading Structure Fixes
   const lines = content.split('\n');

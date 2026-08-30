@@ -144,8 +144,11 @@ function normalizeMarkdown(raw) {
     return placeholder;
   });
 
-  // Ensure horizontal rules (---, ***, ___) have a blank line before and after
-  processed = processed.replace(/([^\n\r])[ \t]*\r?\n[ \t]*(-{3,}|\*{3,}|_{3,})[ \t]*(\r?\n|$)/g, "$1\n\n$2\n\n");
+  // Ensure horizontal rules / dividers (---, ===, ***, ___, - - -, * * *) have blank lines before and after them
+  processed = processed.replace(
+    /([^\n\r])[ \t]*\r?\n[ \t]*((?:-[ \t]*){3,}|(?:=[ \t]*){3,}|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,})[ \t]*(\r?\n|$)/g,
+    "$1\n\n$2\n\n"
+  );
 
   // Restore code blocks
   processed = processed.replace(/__CODE_BLOCK_(\d+)__/g, (_, idx) => codeBlocks[parseInt(idx, 10)]);
