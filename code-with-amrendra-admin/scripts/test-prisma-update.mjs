@@ -10,7 +10,7 @@ async function test() {
         faqs: [
           { question: 'What is Web Dev in 2026?', answer: 'It is AI-assisted and edge-first.' }
         ]
-      } as any,
+      },
     });
     console.log('Updated result:', updated);
   } catch (err) {
