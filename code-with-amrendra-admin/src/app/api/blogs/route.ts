@@ -176,7 +176,8 @@ export async function POST(request: Request) {
         authorName: data.authorName || session.user.name || 'Amrendra Kumar',
         categoryId: data.categoryId || null,
         categorySlug,
-      },
+        faqs: data.faqs && data.faqs.length > 0 ? (data.faqs as any) : null,
+      } as any,
     });
 
     // Process & connect tags with robust slug matching

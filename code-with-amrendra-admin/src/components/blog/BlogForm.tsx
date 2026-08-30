@@ -6,7 +6,7 @@ import MarkdownPreview from '@/components/MarkdownPreview';
 import ImageUploadField from '@/components/media/ImageUploadField';
 import StatusBadge from '@/components/ui/StatusBadge';
 import TableOfContentsField from './TableOfContentsField';
-import FaqSchemaField from './FaqSchemaField';
+import FaqSchemaField, { type FaqItem } from './FaqSchemaField';
 import {
   Save,
   ArrowLeft,
@@ -68,6 +68,7 @@ export interface BlogPostFormData {
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
+  faqs?: FaqItem[];
   createdAt?: string | Date;
   updatedAt?: string | Date;
 }
@@ -154,6 +155,7 @@ export default function BlogForm({
     initialData?.ogDescription || ''
   );
   const [ogImage, setOgImage] = useState<string>(initialData?.ogImage || '');
+  const [faqs, setFaqs] = useState<FaqItem[]>(initialData?.faqs || []);
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [saving, setSaving] = useState<boolean>(false);
@@ -192,6 +194,7 @@ export default function BlogForm({
       if (initialData.ogTitle !== undefined) setOgTitle(initialData.ogTitle || '');
       if (initialData.ogDescription !== undefined) setOgDescription(initialData.ogDescription || '');
       if (initialData.ogImage !== undefined) setOgImage(initialData.ogImage || '');
+      if (initialData.faqs && Array.isArray(initialData.faqs)) setFaqs(initialData.faqs);
     }
   }, [initialData]);
 
@@ -536,6 +539,7 @@ export default function BlogForm({
         ogTitle: ogTitle || metaTitle || title,
         ogDescription: ogDescription || metaDescription || excerpt,
         ogImage: ogImage || featuredImage,
+        faqs: faqs.filter((f) => f.question.trim() && f.answer.trim()),
       };
 
       const res = await fetch(endpoint, {
@@ -1507,6 +1511,8 @@ export default function BlogForm({
             <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--bg-card)] p-5 shadow-xs">
               <FaqSchemaField
                 content={content}
+                initialFaqs={faqs}
+                onFaqsChange={setFaqs}
                 onInsertFaqMarkdown={handleInsertFaqMarkdown}
               />
             </div>

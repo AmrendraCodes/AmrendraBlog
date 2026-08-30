@@ -18,6 +18,16 @@ export const blogSchema = z.object({
   categoryId: z.string().optional(),
   authorName: z.string().optional().default('Amrendra Kumar'),
   tags: z.array(z.string()).optional().default([]),
+  faqs: z
+    .array(
+      z.object({
+        id: z.string().optional(),
+        question: z.string(),
+        answer: z.string(),
+      })
+    )
+    .optional()
+    .default([]),
 });
 
 export type BlogInput = z.infer<typeof blogSchema>;

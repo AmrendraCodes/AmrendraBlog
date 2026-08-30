@@ -189,7 +189,8 @@ export async function PUT(
         authorName: data.authorName || 'Amrendra Kumar',
         categoryId: data.categoryId || null,
         categorySlug,
-      },
+        faqs: data.faqs !== undefined ? (data.faqs as any) : undefined,
+      } as any,
     });
 
     // Explicitly clear existing BlogTag join records for this post

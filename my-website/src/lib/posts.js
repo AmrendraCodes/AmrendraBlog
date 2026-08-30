@@ -78,6 +78,7 @@ function getPostsFromFilesystem() {
       content: normalizeMarkdown(content),
       status: "PUBLISHED",
       views: data.views || 0,
+      faqs: data.faqs || null,
     };
   });
 
@@ -125,6 +126,7 @@ export async function getAllPostsAsync() {
         content: normalizeMarkdown(post.content),
         status: post.status,
         views: post.views || 0,
+        faqs: post.faqs || null,
       }));
     }
   } catch (error) {
@@ -178,6 +180,7 @@ export async function getPostBySlugAsync(slug) {
         wordCount: post.wordCount,
         content: normalizeMarkdown(post.content),
         status: post.status,
+        faqs: post.faqs || null,
       };
     }
   } catch (err) {

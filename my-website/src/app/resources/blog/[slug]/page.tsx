@@ -101,7 +101,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     },
   ]);
 
-  const faqs = extractFaqsFromContent(post.content);
+  // Prioritize explicit FAQs from Admin CMS, fallback to markdown extraction
+  const faqs = (post.faqs && Array.isArray(post.faqs) && post.faqs.length > 0)
+    ? post.faqs
+    : extractFaqsFromContent(post.content);
   const faqSchema = faqs.length > 0 ? getFAQSchema(faqs) : null;
 
   return (
@@ -196,6 +199,13 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         title={post.title}
         slug={post.slug}
       />
+
+      {/* FAQ Accordion Section */}
+      {faqs && faqs.length > 0 && (
+        <div className="max-w-[900px] mx-auto px-4 sm:px-6">
+          <BlogFaqAccordion faqs={faqs} />
+        </div>
+      )}
 
       {/* Bottom Sections */}
       <div className="max-w-[900px] mx-auto px-4 sm:px-6 pb-16">

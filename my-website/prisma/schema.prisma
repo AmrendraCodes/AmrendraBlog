@@ -85,6 +85,7 @@ model Blog {
   categoryId      String?
   category        Category? @relation(fields: [categoryId], references: [id])
   categorySlug    String?
+  faqs            Json?
   tags            BlogTag[]
   views           Int       @default(0)
   createdAt       DateTime  @default(now())
