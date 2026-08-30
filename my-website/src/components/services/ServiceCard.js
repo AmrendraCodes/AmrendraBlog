@@ -37,7 +37,10 @@ export default function ServiceCard({ service }) {
       {/* Top subtle glow bar */}
       <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-[#F59E0B]/0 group-hover:via-[#F59E0B]/60 to-transparent transition-all duration-500" />
 
-      <div>
+      {/* Clickable Overlay Link */}
+      <Link href={`/services/${service.slug}`} className="absolute inset-0 z-0" aria-label={`View ${service.title}`} />
+
+      <div className="relative z-10">
         {/* Header Row */}
         <div className="flex items-center justify-between gap-4 mb-6">
           <div className="flex items-center gap-3">
@@ -80,7 +83,7 @@ export default function ServiceCard({ service }) {
       </div>
 
       {/* Footer Link */}
-      <div className="pt-4 border-t border-[var(--card-border)]">
+      <div className="pt-4 border-t border-[var(--card-border)] relative z-10">
         <Link
           href={`/services/${service.slug}`}
           className="inline-flex items-center justify-between w-full text-sm font-bold text-[#0B1F3A] dark:text-[#F59E0B] group-hover:text-[#F59E0B] transition-colors"

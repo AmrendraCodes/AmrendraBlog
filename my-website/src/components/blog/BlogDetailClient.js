@@ -7,7 +7,6 @@ import MarkdownRenderer from "@/components/MarkdownRenderer";
 
 const TableOfContents = dynamic(() => import('./TableOfContents'), { ssr: true });
 const ShareButtons = dynamic(() => import('./ShareButtons'), { ssr: false });
-const BackToTop = dynamic(() => import('./BackToTop'), { ssr: false });
 import { motion } from "framer-motion";
 
 /**
@@ -76,9 +75,6 @@ export default function BlogDetailClient({ content, headings, title, slug }) {
         {/* Dummy right sidebar placeholder to keep content centered */}
         <div className="hidden xl:block w-[250px] shrink-0 pointer-events-none" aria-hidden="true" />
       </div>
-
-      {/* Back to Top */}
-      <BackToTop />
     </>
   );
 }

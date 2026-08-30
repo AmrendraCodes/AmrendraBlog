@@ -175,7 +175,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           </div>
 
           {/* Featured Image */}
-          <div className="max-w-[900px] mx-auto relative aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-[#0B1F3A]/20 border border-white/10 group mt-4">
+          <div className="max-w-[900px] mx-auto relative aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-[#0B1F3A]/20 border border-white/10 group mt-4 bg-slate-900">
             <Image
               src={
                 post.image ||
@@ -184,6 +184,9 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               alt={post.title}
               fill
               priority
+              unoptimized={Boolean(
+                post.image && (post.image.includes('blob.vercel-storage.com') || post.image.includes('vercel-storage.com'))
+              )}
               sizes="(max-width: 1400px) 100vw, 1400px"
               className="absolute inset-0 object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
             />

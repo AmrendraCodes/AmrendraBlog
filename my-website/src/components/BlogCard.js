@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Calendar, User, Clock } from "lucide-react";
@@ -9,17 +10,26 @@ import TiltCard from "./ui/TiltCard";
 
 export default function BlogCard({ post }) {
   const postLink = post.link || `/resources/blog/${post.slug}`;
+  const rawImage = post.image?.trim();
+  const isExternalBlob = Boolean(
+    rawImage && (rawImage.includes('blob.vercel-storage.com') || rawImage.includes('vercel-storage.com'))
+  );
+  const defaultFallback = "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=800&auto=format&fit=crop";
+  const [imgSrc, setImgSrc] = useState(rawImage || defaultFallback);
+
   return (
     <TiltCard className="h-full">
       <article 
         className="group relative bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[var(--card-border)] shadow-[var(--shadow-card)] hover:shadow-[0_20px_50px_rgba(11,31,58,0.08),0_4px_20px_rgba(245,158,11,0.15)] transition-shadow duration-500 h-full flex flex-col justify-between"
       >
       {/* Thumbnail */}
-      <div className="relative h-64 overflow-hidden rounded-t-3xl">
+      <div className="relative h-64 overflow-hidden rounded-t-3xl bg-slate-900">
         <Image
-          src={post.image || `https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=800&auto=format&fit=crop`}
-          alt={post.title}
+          src={imgSrc}
+          alt={post.title?.trim() || "Blog Post"}
           fill
+          unoptimized={isExternalBlob && imgSrc === rawImage}
+          onError={() => setImgSrc(defaultFallback)}
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />

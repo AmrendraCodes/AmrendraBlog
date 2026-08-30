@@ -12,7 +12,7 @@ export default function PricingSection() {
       name: 'Starter Sprint',
       badge: 'Fixed Scope',
       priceProject: '$60',
-      priceMonthly: '$49',
+      priceMonthly: '$48',
       period: 'flat rate',
       description: 'Perfect for validating an idea or shipping a single, well-defined feature fast.',
       features: [
@@ -28,9 +28,9 @@ export default function PricingSection() {
     {
       name: 'Engineering Retainer',
       badge: 'Most Popular',
-      priceProject: '$99',
-      priceMonthly: '$120',
-      period: '/ month',
+      priceProject: '$149',
+      priceMonthly: '$119',
+      period: 'per sprint',
       description: 'A dedicated engineering team on standby — built for startups that need to keep shipping every single month.',
       features: [
         'Continuous development capacity, no restarts each sprint',
@@ -45,9 +45,9 @@ export default function PricingSection() {
     {
       name: 'Enterprise Architecture',
       badge: 'Custom',
-      priceProject: '$249',
-      priceMonthly: '$249',
-      period: '/ month',
+      priceProject: '$299',
+      priceMonthly: '$239',
+      period: 'custom scope',
       description: 'Custom engineering teams, dedicated PM, strict SLA uptime guarantees, and on-demand cloud DevOps.',
       features: [
         'Multi-engineer team + dedicated project manager',
@@ -120,7 +120,9 @@ export default function PricingSection() {
                 <span className="text-4xl font-extrabold text-[#0B1F3A] dark:text-white tracking-tight">
                   {billingCycle === 'project' ? tier.priceProject : tier.priceMonthly}
                 </span>
-                <span className="text-xs text-slate-500 dark:text-[#94A3B8] font-medium">{tier.period}</span>
+                <span className="text-xs text-slate-500 dark:text-[#94A3B8] font-medium">
+                  {billingCycle === 'project' ? tier.period : '/ month'}
+                </span>
               </div>
 
               <p className="text-xs text-[#475569] dark:text-[#94A3B8] leading-relaxed mb-6 border-b border-slate-200 dark:border-[#1E293B] pb-6">

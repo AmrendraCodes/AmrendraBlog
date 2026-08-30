@@ -151,17 +151,12 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
       {/* Search Header Banner */}
       <SearchToolbar
         searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        activeCategory={activeCategory}
-        setActiveCategory={setActiveCategory}
-        categories={categories}
-        allTags={allTags}
-        selectedTag={selectedTag}
-        setSelectedTag={setSelectedTag}
-        sortBy={sortBy}
-        setSortBy={setSortBy}
-        totalResults={filteredArticles.length}
-        setCurrentPage={setCurrentPage}
+        onSearchChange={(query) => {
+          setSearchQuery(query);
+          setCurrentPage(1);
+        }}
+        resultCount={filteredArticles.length}
+        totalCount={articles.length}
       />
 
       {/* Main Articles Listing Section */}

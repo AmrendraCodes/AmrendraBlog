@@ -41,16 +41,22 @@ export const metadata = {
 
 
 export default async function Home() {
-  // Fetch posts from database (or markdown fallback) and pick top 5 for featured section
+  // Fetch posts from database (or markdown fallback) and pick top 3 for featured section
   const allPosts = await getAllPostsAsync();
-  const featuredPosts = allPosts.slice(0, 5).map((post) => ({
+  const featuredPosts = allPosts.slice(0, 3).map((post) => ({
     title: post.title,
-    description: post.excerpt,
+    excerpt: post.excerpt || post.description || "",
+    description: post.excerpt || post.description || "",
     category: post.category,
     date: post.date,
+    readTime: post.readTime,
     readingTime: post.readTime,
     image: post.image,
-    href: `/blog/${post.slug}`,
+    slug: post.slug,
+    link: `/resources/blog/${post.slug}`,
+    tags: post.tags || [],
+    author: post.author || "Amrendra Kumar",
+    authorImage: "/profile-photo.jpeg",
   }));
 
   // Compute category counts server-side and pass to client component

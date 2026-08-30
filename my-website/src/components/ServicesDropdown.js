@@ -22,7 +22,7 @@ const ICON_MAP = {
   FileSearch,
 };
 
-export default function ServicesDropdown({ onClose }) {
+export default function ServicesDropdown({ onClose, onMouseEnter, onMouseLeave }) {
   // Group services by category
   const buildServices = SERVICES_DATA.filter((s) => s.category === "BUILD");
   const growServices = SERVICES_DATA.filter((s) => s.category === "GROW");
@@ -48,8 +48,9 @@ export default function ServicesDropdown({ onClose }) {
 
   return (
     <div 
-      className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-[min(96vw,920px)] z-[130] pointer-events-auto"
-      onMouseLeave={onClose}
+      className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[min(94vw,900px)] z-[130] pointer-events-auto before:content-[''] before:absolute before:inset-x-0 before:-top-5 before:h-5 before:pointer-events-auto"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave || onClose}
     >
       <div className="bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] rounded-3xl p-8 shadow-[0_20px_50px_rgba(11,31,58,0.2)] relative overflow-hidden">
         {/* Top vibrant accent gradient line */}

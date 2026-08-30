@@ -8,17 +8,20 @@ import { RESOURCES_DROPDOWN_ITEMS } from "@/config/navigation";
 
 interface ResourcesDropdownProps {
   onClose: () => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 }
 
-export default function ResourcesDropdown({ onClose }: ResourcesDropdownProps) {
+export default function ResourcesDropdown({ onClose, onMouseEnter, onMouseLeave }: ResourcesDropdownProps) {
   return (
     <motion.div 
       initial={{ opacity: 0, y: 10, scale: 0.98 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: 8, scale: 0.98 }}
       transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-      className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-[min(94vw,560px)] z-[130] pointer-events-auto"
-      onMouseLeave={onClose}
+      className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[min(94vw,560px)] z-[130] pointer-events-auto before:content-[''] before:absolute before:inset-x-0 before:-top-5 before:h-5 before:pointer-events-auto"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave || onClose}
       role="menu"
       aria-label="Resources menu"
     >

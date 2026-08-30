@@ -4,6 +4,7 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import WhatsAppButton from './WhatsAppButton';
+import BackToTop from './blog/BackToTop';
 import VisitorTracker from './VisitorTracker';
 
 export default function ConditionalLayout({ children }) {
@@ -16,6 +17,7 @@ export default function ConditionalLayout({ children }) {
       <Header />
       <main id="main-content">{children}</main>
       <Footer />
+      <BackToTop />
       <WhatsAppButton />
     </>
   );

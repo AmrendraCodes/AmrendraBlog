@@ -53,7 +53,7 @@ export default function ServiceHero({ service }) {
                 <ArrowRight size={18} />
               </Link>
               <Link
-                href="https://wa.me/919128522306?text=Hi%20Amrendra,%20I'd%20like%20to%20discuss%20your%20services."
+                href="https://wa.me/916205482614?text=Hi%20Amrendra,%20I'd%20like%20to%20discuss%20your%20services."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-heading)] font-semibold text-base py-3.5 px-7 rounded-full hover:border-[#F59E0B] hover:text-[#F59E0B] transition-all duration-300 w-full sm:w-auto"

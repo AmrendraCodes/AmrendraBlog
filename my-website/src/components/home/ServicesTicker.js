@@ -14,7 +14,6 @@ const TICKER_SERVICES = [
 const REPEATED_SERVICES = [
   ...TICKER_SERVICES,
   ...TICKER_SERVICES,
-  ...TICKER_SERVICES,
 ];
 
 export default function ServicesTicker() {
@@ -44,7 +43,7 @@ export default function ServicesTicker() {
             {REPEATED_SERVICES.map((service, i) => (
               <span
                 key={i}
-                className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-[#0B1F3A] dark:text-white hover:text-[#F59E0B] dark:hover:text-[#F59E0B] transition-colors cursor-default pr-10"
+                className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-[#0B1F3A] dark:text-white hover:text-[#F59E0B] dark:hover:text-[#F59E0B] transition-colors cursor-default"
               >
                 <span className="text-[#F59E0B] text-xs">✦</span>
                 {service}

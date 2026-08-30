@@ -111,6 +111,9 @@ export default function ResourcesPage() {
                   {/* Subtle Card Header Gradient */}
                   <div className="absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-[#0B1F3A] via-[#F59E0B] to-[#D97706] opacity-80 group-hover:opacity-100 transition-opacity" />
 
+                  {/* Clickable Overlay Link */}
+                  <Link href={card.href} className="absolute inset-0 z-0" aria-label={`View ${card.title}`} />
+
                   <div>
                     {/* Top Row: Icon + Badge */}
                     <div className="flex items-center justify-between mb-8">
@@ -123,17 +126,19 @@ export default function ResourcesPage() {
                     </div>
 
                     {/* Card Title */}
-                    <h2 className="text-3xl font-extrabold text-[var(--text-heading)] mb-4 group-hover:text-[#F59E0B] transition-colors leading-tight">
-                      {card.title}
+                    <h2 className="text-3xl font-extrabold text-[var(--text-heading)] mb-4 group-hover:text-[#F59E0B] transition-colors leading-tight relative z-10">
+                      <Link href={card.href} className="hover:underline">
+                        {card.title}
+                      </Link>
                     </h2>
 
                     {/* Card Description */}
-                    <p className="text-[var(--text-body)] text-base leading-relaxed mb-8 font-medium">
+                    <p className="text-[var(--text-body)] text-base leading-relaxed mb-8 font-medium relative z-10">
                       {card.description}
                     </p>
 
                     {/* Key Highlights List */}
-                    <ul className="space-y-3 mb-10 border-t border-b border-[var(--card-border)] py-6 list-none p-0">
+                    <ul className="space-y-3 mb-10 border-t border-b border-[var(--card-border)] py-6 list-none p-0 relative z-10">
                       {card.features.map((feat) => (
                         <li key={feat} className="flex items-center gap-3 text-sm text-[var(--text-muted)]">
                           <span className="w-2 h-2 rounded-full bg-[#F59E0B] shrink-0" />
@@ -144,7 +149,7 @@ export default function ResourcesPage() {
                   </div>
 
                   {/* CTA Button Link */}
-                  <div className="pt-2">
+                  <div className="pt-2 relative z-10">
                     <Link
                       href={card.href}
                       className="group/btn inline-flex items-center justify-center gap-3 w-full bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base py-4 px-8 rounded-2xl border-none cursor-pointer transition-all duration-300 shadow-[0_4px_20px_rgba(245,158,11,0.3)] hover:shadow-[0_8px_30px_rgba(245,158,11,0.5)] hover:-translate-y-0.5 no-underline active:scale-98"

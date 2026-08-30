@@ -24,7 +24,7 @@ export default function RelatedPosts({ posts }) {
             className="group bg-[var(--section-alt-bg)]/40 backdrop-blur-md border border-white/5 rounded-2xl overflow-hidden hover:border-[#F59E0B]/40 hover:shadow-2xl hover:shadow-[#F59E0B]/5 transition-all duration-300 no-underline flex flex-col relative"
           >
             {/* Image */}
-            <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl bg-slate-900">
               <Image
                 src={
                   post.image ||
@@ -32,6 +32,9 @@ export default function RelatedPosts({ posts }) {
                 }
                 alt={post.title}
                 fill
+                unoptimized={Boolean(
+                  post.image && (post.image.includes('blob.vercel-storage.com') || post.image.includes('vercel-storage.com'))
+                )}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
               />

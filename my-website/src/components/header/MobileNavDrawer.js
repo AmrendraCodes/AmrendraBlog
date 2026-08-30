@@ -63,32 +63,33 @@ export default function MobileNavDrawer({
               return (
                 <div key={link.name} className="flex flex-col gap-2">
                   <div className="flex items-center justify-between">
-                    <Link
-                      href={link.href}
-                      className={`text-[1.35rem] font-extrabold no-underline transition-colors duration-300 leading-tight py-2.5 px-4 rounded-xl flex-1 ${
-                        isActive
-                          ? 'text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 dark:bg-[#F59E0B]/15 font-bold'
-                          : 'text-slate-900 dark:text-slate-50 hover:text-[#F59E0B] dark:hover:text-[#F59E0B]'
-                      }`}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {link.name}
-                    </Link>
                     <button
                       type="button"
                       onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                      className="p-2 text-slate-700 dark:text-slate-200 hover:text-[#F59E0B] cursor-pointer"
-                      aria-label="Toggle Services sub-menu"
+                      className={`text-[1.35rem] font-extrabold text-left transition-colors duration-300 leading-tight py-2.5 px-4 rounded-xl flex-1 flex items-center justify-between cursor-pointer border-none bg-transparent ${
+                        isActive || isMobileServicesOpen
+                          ? 'text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 dark:bg-[#F59E0B]/15 font-bold'
+                          : 'text-slate-900 dark:text-slate-50 hover:text-[#F59E0B] dark:hover:text-[#F59E0B]'
+                      }`}
+                      aria-expanded={isMobileServicesOpen}
                     >
+                      <span>{link.name}</span>
                       <ChevronDown
                         size={22}
-                        className={`transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180 text-[#F59E0B]' : ''}`}
+                        className={`transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180 text-[#F59E0B]' : 'text-slate-400'}`}
                       />
                     </button>
                   </div>
 
                   {isMobileServicesOpen && (
                     <div className="flex flex-col gap-1 pl-4 pt-1 border-l-2 border-[#F59E0B]/30 ml-4">
+                      <Link
+                        href="/services"
+                        onClick={() => setIsMenuOpen(false)}
+                        className="text-sm font-bold text-[#F59E0B] hover:underline py-2 px-3 rounded-lg block"
+                      >
+                        → View All Services Overview
+                      </Link>
                       {SERVICES_DATA.map((s) => (
                         <Link
                           key={s.slug}
@@ -109,32 +110,33 @@ export default function MobileNavDrawer({
               return (
                 <div key={link.name} className="flex flex-col gap-2">
                   <div className="flex items-center justify-between">
-                    <Link
-                      href={link.href}
-                      className={`text-[1.35rem] font-extrabold no-underline transition-colors duration-300 leading-tight py-2.5 px-4 rounded-xl flex-1 ${
-                        isActive
-                          ? 'text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 dark:bg-[#F59E0B]/15 font-bold'
-                          : 'text-slate-900 dark:text-slate-50 hover:text-[#F59E0B] dark:hover:text-[#F59E0B]'
-                      }`}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {link.name}
-                    </Link>
                     <button
                       type="button"
                       onClick={() => setIsMobileResourcesOpen(!isMobileResourcesOpen)}
-                      className="p-2 text-slate-700 dark:text-slate-200 hover:text-[#F59E0B] cursor-pointer"
-                      aria-label="Toggle Resources sub-menu"
+                      className={`text-[1.35rem] font-extrabold text-left transition-colors duration-300 leading-tight py-2.5 px-4 rounded-xl flex-1 flex items-center justify-between cursor-pointer border-none bg-transparent ${
+                        isActive || isMobileResourcesOpen
+                          ? 'text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 dark:bg-[#F59E0B]/15 font-bold'
+                          : 'text-slate-900 dark:text-slate-50 hover:text-[#F59E0B] dark:hover:text-[#F59E0B]'
+                      }`}
+                      aria-expanded={isMobileResourcesOpen}
                     >
+                      <span>{link.name}</span>
                       <ChevronDown
                         size={22}
-                        className={`transition-transform duration-300 ${isMobileResourcesOpen ? 'rotate-180 text-[#F59E0B]' : ''}`}
+                        className={`transition-transform duration-300 ${isMobileResourcesOpen ? 'rotate-180 text-[#F59E0B]' : 'text-slate-400'}`}
                       />
                     </button>
                   </div>
 
                   {isMobileResourcesOpen && (
                     <div className="flex flex-col gap-1 pl-4 pt-1 border-l-2 border-[#F59E0B]/30 ml-4">
+                      <Link
+                        href="/resources"
+                        onClick={() => setIsMenuOpen(false)}
+                        className="text-sm font-bold text-[#F59E0B] hover:underline py-2 px-3 rounded-lg block"
+                      >
+                        → View All Resources Overview
+                      </Link>
                       {RESOURCES_DROPDOWN_ITEMS.map((item) => (
                         <Link
                           key={item.href}

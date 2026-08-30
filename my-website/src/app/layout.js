@@ -1,4 +1,4 @@
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Syne, Playfair_Display } from "next/font/google";
 import { ThemeProvider } from 'next-themes';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
@@ -13,6 +13,18 @@ const inter = Inter({
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const syne = Syne({
+  variable: "--font-syne",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
   display: "swap",
 });
@@ -95,7 +107,7 @@ export default function RootLayout({ children }) {
       </head>
       <body
         suppressHydrationWarning
-        className={`${inter.variable} ${jetbrainsMono.variable} bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300 overflow-x-hidden`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${syne.variable} ${playfair.variable} bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300 overflow-x-hidden`}
       >
         <script
           type="application/ld+json"
@@ -105,7 +117,7 @@ export default function RootLayout({ children }) {
               "@type": "Person",
               "name": "Amrendra Kumar",
               "url": "https://www.codewithamrendra.in",
-              "image": "https://www.codewithamrendra.in/Profile%20photo.jpeg",
+              "image": "https://www.codewithamrendra.in/profile-photo.jpeg",
               "jobTitle": "Frontend Developer & Technical Content Writer",
               "description": "Personal insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.",
               "email": "amrendra1999official@gmail.com",

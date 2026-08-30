@@ -12,7 +12,7 @@ import { siteMetadata } from "@/config/seo";
  */
 export default function ShareButtons({ title, slug }) {
   const [copied, setCopied] = useState(false);
-  const url = `${siteMetadata.siteUrl}/blog/${slug}`;
+  const url = `${siteMetadata.siteUrl}/resources/blog/${slug}`;
 
   const handleCopyLink = async () => {
     try {
