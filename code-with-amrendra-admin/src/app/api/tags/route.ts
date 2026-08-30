@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { getAuthSession } from '@/lib/auth';
+import { getAuthSession, authorizeRole, Role } from '@/lib/auth';
 import { tagSchema } from '@/schemas/tag';
 
 export const dynamic = 'force-dynamic';
@@ -31,7 +31,22 @@ export async function POST(request: Request) {
       );
     }
 
-    const body = await request.json();
+    if (!authorizeRole(session.user.role, [Role.EDITOR])) {
+      return NextResponse.json(
+        { success: false, error: { code: 'FORBIDDEN', message: 'You do not have permission to manage tags' } },
+        { status: 403 }
+      );
+    }
+
+    let body: unknown;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, error: { code: 'VALIDATION_ERROR', message: 'Invalid JSON request payload' } },
+        { status: 400 }
+      );
+    }
     const parsed = tagSchema.safeParse(body);
 
     if (!parsed.success) {
@@ -84,6 +99,13 @@ export async function DELETE(request: Request) {
       );
     }
 
+    if (!authorizeRole(session.user.role, [Role.EDITOR])) {
+      return NextResponse.json(
+        { success: false, error: { code: 'FORBIDDEN', message: 'You do not have permission to manage tags' } },
+        { status: 403 }
+      );
+    }
+
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
 
@@ -124,8 +146,23 @@ export async function PUT(request: Request) {
       );
     }
 
-    const body = await request.json();
-    const { id, name, slug } = body;
+    if (!authorizeRole(session.user.role, [Role.EDITOR])) {
+      return NextResponse.json(
+        { success: false, error: { code: 'FORBIDDEN', message: 'You do not have permission to manage tags' } },
+        { status: 403 }
+      );
+    }
+
+    let body: any;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, error: { code: 'VALIDATION_ERROR', message: 'Invalid JSON request payload' } },
+        { status: 400 }
+      );
+    }
+    const { id, name, slug } = body || {};
 
     if (!id || !name || !slug) {
       return NextResponse.json(

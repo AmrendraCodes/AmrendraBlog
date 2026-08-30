@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { getAuthSession } from '@/lib/auth';
+import { getAuthSession, authorizeRole, Role } from '@/lib/auth';
 import type { Prisma } from '@prisma/client';
 
 export const dynamic = 'force-dynamic';
@@ -12,6 +12,13 @@ export async function GET(request: Request) {
       return NextResponse.json(
         { success: false, error: { code: 'UNAUTHORIZED', message: 'Not authenticated' } },
         { status: 401 }
+      );
+    }
+
+    if (!authorizeRole(session.user.role, [Role.EDITOR])) {
+      return NextResponse.json(
+        { success: false, error: { code: 'FORBIDDEN', message: 'You do not have permission to view contact inquiries' } },
+        { status: 403 }
       );
     }
 
@@ -68,8 +75,23 @@ export async function PUT(request: Request) {
       );
     }
 
-    const body = await request.json();
-    const { id, status } = body;
+    if (!authorizeRole(session.user.role, [Role.EDITOR])) {
+      return NextResponse.json(
+        { success: false, error: { code: 'FORBIDDEN', message: 'You do not have permission to update contact inquiries' } },
+        { status: 403 }
+      );
+    }
+
+    let body: any;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, error: { code: 'VALIDATION_ERROR', message: 'Invalid JSON request payload' } },
+        { status: 400 }
+      );
+    }
+    const { id, status } = body || {};
 
     if (!id || !status) {
       return NextResponse.json(
@@ -101,6 +123,13 @@ export async function DELETE(request: Request) {
       return NextResponse.json(
         { success: false, error: { code: 'UNAUTHORIZED', message: 'Not authenticated' } },
         { status: 401 }
+      );
+    }
+
+    if (!authorizeRole(session.user.role, [])) {
+      return NextResponse.json(
+        { success: false, error: { code: 'FORBIDDEN', message: 'Only administrators can delete contact inquiries' } },
+        { status: 403 }
       );
     }
 

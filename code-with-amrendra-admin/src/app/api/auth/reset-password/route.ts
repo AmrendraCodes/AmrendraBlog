@@ -58,7 +58,21 @@ export async function GET(request: Request) {
 // Reset Password Execution API (POST)
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    let body: unknown;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: 'VALIDATION_ERROR',
+            message: 'Invalid JSON request payload',
+          },
+        },
+        { status: 400 }
+      );
+    }
     const parsed = resetPasswordSchema.safeParse(body);
 
     if (!parsed.success) {

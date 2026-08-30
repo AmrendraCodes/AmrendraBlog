@@ -67,8 +67,23 @@ export async function PUT(request: Request) {
       );
     }
 
-    const body = await request.json();
-    const socialLinksString = JSON.stringify(body.socialLinks || {});
+    if (session.user.role !== 'ADMIN') {
+      return NextResponse.json(
+        { success: false, error: { code: 'FORBIDDEN', message: 'Only administrators can modify system settings' } },
+        { status: 403 }
+      );
+    }
+
+    let body: any;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, error: { code: 'VALIDATION_ERROR', message: 'Invalid JSON request payload' } },
+        { status: 400 }
+      );
+    }
+    const socialLinksString = JSON.stringify(body?.socialLinks || {});
 
     const updated = await prisma.settings.upsert({
       where: { id: 'global' },

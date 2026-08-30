@@ -8,12 +8,24 @@ generator client {
   binaryTargets = ["native", "rhel-openssl-3.0.x", "rhel-openssl-1.0.x", "debian-openssl-3.0.x"]
 }
 
+enum Role {
+  ADMIN
+  EDITOR
+  AUTHOR
+}
+
+enum BlogStatus {
+  DRAFT
+  PUBLISHED
+  SCHEDULED
+}
+
 model User {
   id                  String               @id @default(cuid())
   name                String?
   email               String               @unique
   passwordHash        String
-  role                String               @default("ADMIN")
+  role                Role                 @default(ADMIN)
   avatar              String?
   createdAt           DateTime             @default(now())
   updatedAt           DateTime             @updatedAt
@@ -74,8 +86,8 @@ model Blog {
   canonicalUrl    String?
   metaTitle       String?
   metaDescription String?
-  status          String    @default("PUBLISHED")
-  publishedAt     DateTime? @default(now())
+  status          BlogStatus @default(PUBLISHED)
+  publishedAt     DateTime?  @default(now())
   scheduledAt     DateTime?
   readingTime     String?
   wordCount       Int       @default(0)

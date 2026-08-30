@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { prisma } from './prisma';
 export enum Role {
   ADMIN = 'ADMIN',
@@ -18,7 +18,7 @@ export async function verifyPassword(password: string, hash: string): Promise<bo
 }
 
 export async function createAdminSession(userId: string) {
-  const token = 'session_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
+  const token = `cwa_${Date.now()}_${Math.random().toString(36).substring(2, 15)}_${Math.random().toString(36).substring(2, 15)}`;
   const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
 
   const session = await prisma.session.create({
@@ -40,8 +40,28 @@ export interface AuthenticatedUser {
 }
 
 export async function getAuthSession(): Promise<{ user: AuthenticatedUser } | null> {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(ADMIN_SESSION_COOKIE)?.value;
+  let token: string | undefined;
+
+  // 1. Try to read Bearer token from request Authorization header
+  try {
+    const headersList = await headers();
+    const authHeader = headersList.get('authorization');
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      token = authHeader.substring(7).trim();
+    }
+  } catch {
+    // Headers lookup fallback
+  }
+
+  // 2. Fall back to secure HTTP-only session cookie
+  if (!token) {
+    try {
+      const cookieStore = await cookies();
+      token = cookieStore.get(ADMIN_SESSION_COOKIE)?.value;
+    } catch {
+      // Cookies lookup fallback
+    }
+  }
 
   if (!token) return null;
 

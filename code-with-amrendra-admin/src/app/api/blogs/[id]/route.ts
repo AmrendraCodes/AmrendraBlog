@@ -5,6 +5,7 @@ import { blogSchema } from '@/schemas/blog';
 import { calculateReadingTime, countWords, slugify } from '@/lib/utils';
 import { formatArticleMarkdown } from '@/lib/formatter';
 import { revalidatePath } from 'next/cache';
+import { BlogStatus } from '@prisma/client';
 
 export const dynamic = 'force-dynamic';
 
@@ -180,7 +181,7 @@ export async function PUT(
         canonicalUrl: data.canonicalUrl || null,
         metaTitle: data.metaTitle || data.title,
         metaDescription: data.metaDescription || data.excerpt || null,
-        status: data.status || 'PUBLISHED',
+        status: (data.status as BlogStatus) || BlogStatus.PUBLISHED,
         publishedAt: data.status === 'PUBLISHED' ? new Date() : null,
         scheduledAt: data.scheduledAt ? new Date(data.scheduledAt) : null,
         readingTime: readTime,

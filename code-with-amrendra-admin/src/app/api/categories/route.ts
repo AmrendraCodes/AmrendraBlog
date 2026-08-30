@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { getAuthSession } from '@/lib/auth';
+import { getAuthSession, authorizeRole, Role } from '@/lib/auth';
 import { categorySchema } from '@/schemas/category';
 import { revalidatePath } from 'next/cache';
 
@@ -33,7 +33,22 @@ export async function POST(request: Request) {
       );
     }
 
-    const body = await request.json();
+    if (!authorizeRole(session.user.role, [Role.EDITOR])) {
+      return NextResponse.json(
+        { success: false, error: { code: 'FORBIDDEN', message: 'You do not have permission to manage categories' } },
+        { status: 403 }
+      );
+    }
+
+    let body: unknown;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, error: { code: 'VALIDATION_ERROR', message: 'Invalid JSON request payload' } },
+        { status: 400 }
+      );
+    }
     const parsed = categorySchema.safeParse(body);
 
     if (!parsed.success) {
@@ -82,6 +97,13 @@ export async function DELETE(request: Request) {
       return NextResponse.json(
         { success: false, error: { code: 'UNAUTHORIZED', message: 'Not authenticated' } },
         { status: 401 }
+      );
+    }
+
+    if (!authorizeRole(session.user.role, [Role.EDITOR])) {
+      return NextResponse.json(
+        { success: false, error: { code: 'FORBIDDEN', message: 'You do not have permission to manage categories' } },
+        { status: 403 }
       );
     }
 
@@ -139,8 +161,23 @@ export async function PUT(request: Request) {
       );
     }
 
-    const body = await request.json();
-    const { id, name, slug, description } = body;
+    if (!authorizeRole(session.user.role, [Role.EDITOR])) {
+      return NextResponse.json(
+        { success: false, error: { code: 'FORBIDDEN', message: 'You do not have permission to manage categories' } },
+        { status: 403 }
+      );
+    }
+
+    let body: any;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, error: { code: 'VALIDATION_ERROR', message: 'Invalid JSON request payload' } },
+        { status: 400 }
+      );
+    }
+    const { id, name, slug, description } = body || {};
 
     if (!id || !name || !slug) {
       return NextResponse.json(

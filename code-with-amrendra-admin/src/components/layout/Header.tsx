@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { ExternalLink, Search, ShieldCheck } from 'lucide-react';
-import LanguageSelect from '@/components/ui/LanguageSelect';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 
 interface HeaderProps {
@@ -56,11 +55,8 @@ export default function Header({ title = 'Dashboard', subtitle, user }: HeaderPr
           <ExternalLink size={13} />
         </a>
 
-        {/* Theme & Language Controls */}
+        {/* Theme Control */}
         <ThemeToggle variant="compact" />
-        <div className="hidden sm:block">
-          <LanguageSelect />
-        </div>
 
         {/* Role Badge */}
         <div className="hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-900/50 text-indigo-600 dark:text-indigo-400 text-xs font-mono font-bold">
