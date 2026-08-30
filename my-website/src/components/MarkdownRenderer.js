@@ -128,10 +128,37 @@ const admonitionConfig = {
   },
 };
 
+/**
+ * Pre-processes markdown to prevent accidental CommonMark setext headings.
+ * When text is directly followed by `---` with no blank line, CommonMark interprets it as an H2 heading.
+ * Normalizing guarantees proper paragraph and horizontal rule rendering.
+ */
+function normalizeMarkdown(raw) {
+  if (!raw || typeof raw !== "string") return "";
+
+  // Protect code blocks from regex modifications
+  const codeBlocks = [];
+  let processed = raw.replace(/```[\s\S]*?```/g, (match) => {
+    const placeholder = `__CODE_BLOCK_${codeBlocks.length}__`;
+    codeBlocks.push(match);
+    return placeholder;
+  });
+
+  // Ensure horizontal rules (---, ***, ___) have a blank line before and after
+  processed = processed.replace(/([^\n\r])[ \t]*\r?\n[ \t]*(-{3,}|\*{3,}|_{3,})[ \t]*(\r?\n|$)/g, "$1\n\n$2\n\n");
+
+  // Restore code blocks
+  processed = processed.replace(/__CODE_BLOCK_(\d+)__/g, (_, idx) => codeBlocks[parseInt(idx, 10)]);
+
+  return processed;
+}
+
 export default function MarkdownRenderer({ content }) {
   useEffect(() => {
     import("react-medium-image-zoom/dist/styles.css");
   }, []);
+
+  const normalizedContent = normalizeMarkdown(content);
 
   return (
     <ReactMarkdown
@@ -430,7 +457,7 @@ export default function MarkdownRenderer({ content }) {
         ),
       }}
     >
-      {content}
+      {normalizedContent}
     </ReactMarkdown>
   );
 }

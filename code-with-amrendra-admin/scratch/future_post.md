@@ -25,7 +25,10 @@ AI is excellent at producing a first draft: components, API routes, database que
 AI's impact isn't limited to writing source code. Agents are starting to automate parts of larger workflows: reading support requests, classifying issues, drafting responses, updating records, summarizing business data.
 
 The industry is still early here, though. The real opportunity isn't replacing an entire SaaS product with one AI agent, it's automating specific repetitive tasks inside existing products. A business rarely needs an "AI-first application"; it usually just needs AI to remove five repetitive steps from an existing process. We covered this shift in more depth in [AI agents replacing SaaS seats](https://www.codewithamrendra.in/resources/blog/ai-agents-replacing-saas-seats), and it's where practical AI automation tends to beat AI hype.
+
 ---
+
+
 ## Edge Computing Is Important - But It Isn't Magic
 
 Edge platforms execute suitable workloads closer to users, which can meaningfully cut latency for geographically spread traffic. But there's a common misconception: moving code to the edge doesn't automatically make the whole application faster.
@@ -71,7 +74,9 @@ Modern doesn't automatically mean better, a managed edge platform can be the wro
 3. **Ignoring performance while adding features.** Core Web Vitals measure real user experience, and a technically impressive site that loads slowly still loses users, which is why [SEO and content strategy](https://www.codewithamrendra.in/services/seo-content-strategy) can't be separated from technical performance.
 4. **Treating design as an afterthought.** A fast app with a confusing interface is still a bad product. Performance and UX have to move together, which is why architecture and [UI/UX product design](https://www.codewithamrendra.in/services/ui-ux-product-design) should be planned as one conversation, not two.
 5. **Using AI only for code generation.** AI can also support customer support, onboarding, documentation, and internal search. A RAG chatbot connected to your own docs, for example, is often more valuable than another AI-generated component, see [building a RAG chatbot for a business website](https://www.codewithamrendra.in/resources/blog/rag-chatbot-for-your-business-website).
+
 ---
+
 ## Skills That Will Matter Most for Web Developers 
 
 The developer skillset is changing, but the answer isn't simply "learn AI." It's using [AI-assisted development](https://www.codewithamrendra.in/services/ai-automation) inside a reliable engineering process:
@@ -82,13 +87,17 @@ The developer skillset is changing, but the answer isn't simply "learn AI." It's
 - **Security fundamentals:** auth, input validation, session management, dependency risk
 - **Performance engineering:** understanding the full request lifecycle (Browser → Network → CDN → Server → Database → Response), not just one layer
 - **Product thinking:** asking "should we build this, and what's the simplest architecture that solves it?" rather than just "can I build this?"
+
 ---
+
 ## Is Web Development Dying? 
 
 No. But the old way of doing it is changing. Developers who spend most of their time on repetitive boilerplate will face increasing automation. Developers who understand systems, security, performance, and product decisions will stay essential. The difference isn't whether AI can write code, it can. It's whether someone can decide what code should exist, whether it's correct, and whether it's safe to ship. That's engineering judgment, and AI hasn't eliminated that problem, it's made it more important.
 
 The strongest teams combine AI speed with human judgment: they won't blindly trust generated code, rewrite stable apps just because a new framework trends, or move everything to the edge because it sounds modern. Want a second opinion on where your product stands? Browse our [case studies](https://www.codewithamrendra.in/resources/case-studies) or [get in touch](https://www.codewithamrendra.in/contact) to talk through your stack.
+
 ---
+
 ## Conclusion
 
 AI will change how web developers work. It won't remove the need for people who understand how software should work. The developers who thrive next won't be the ones who write the most code, they'll be the ones who think clearly, use AI effectively, and validate aggressively before anything ships.
