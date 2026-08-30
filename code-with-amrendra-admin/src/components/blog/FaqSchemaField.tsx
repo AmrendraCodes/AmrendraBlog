@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Plus, Trash2, Copy, Check, Sparkles, HelpCircle, ArrowDownToLine, ChevronDown, ChevronUp } from 'lucide-react';
 
 export interface FaqItem {
@@ -94,12 +94,24 @@ export default function FaqSchemaField({
   const [copied, setCopied] = useState<boolean>(false);
   const [insertedMarkdown, setInsertedMarkdown] = useState<boolean>(false);
   const [isManualJsonEditing, setIsManualJsonEditing] = useState<boolean>(false);
+  const isFirstMount = useRef<boolean>(true);
 
-  // Sync schema when FAQs update
+  // Sync state if initialFaqs changes (e.g. async fetch from server)
+  useEffect(() => {
+    if (initialFaqs && Array.isArray(initialFaqs) && initialFaqs.length > 0) {
+      setFaqs(initialFaqs);
+    }
+  }, [initialFaqs]);
+
+  // Sync schema and notify parent on user change
   useEffect(() => {
     if (!isManualJsonEditing) {
       const generated = generateFaqSchemaJson(faqs);
       setSchemaJson(generated);
+    }
+    if (isFirstMount.current) {
+      isFirstMount.current = false;
+      return;
     }
     if (onFaqsChange) {
       onFaqsChange(faqs);

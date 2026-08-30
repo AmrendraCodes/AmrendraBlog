@@ -200,15 +200,15 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         slug={post.slug}
       />
 
-      {/* FAQ Accordion Section */}
-      {faqs && faqs.length > 0 && (
-        <div className="max-w-[900px] mx-auto px-4 sm:px-6">
-          <BlogFaqAccordion faqs={faqs} />
-        </div>
-      )}
-
       {/* Bottom Sections */}
       <div className="max-w-[900px] mx-auto px-4 sm:px-6 pb-16">
+        {/* FAQ Accordion Section */}
+        {faqs && faqs.length > 0 && (
+          <div className="mb-14">
+            <BlogFaqAccordion faqs={faqs} />
+          </div>
+        )}
+
         <AuthorBox author={post.author} />
         <ArticleNavigation prev={prev} next={next} />
         <div className="mt-20">

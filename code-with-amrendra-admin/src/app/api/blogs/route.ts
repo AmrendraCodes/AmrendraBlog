@@ -176,9 +176,17 @@ export async function POST(request: Request) {
         authorName: data.authorName || session.user.name || 'Amrendra Kumar',
         categoryId: data.categoryId || null,
         categorySlug,
-        faqs: data.faqs && data.faqs.length > 0 ? (data.faqs as any) : null,
-      } as any,
+      },
     });
+
+    // Save faqs column in PostgreSQL using raw SQL (bypasses stale Prisma client schema)
+    if (data.faqs && data.faqs.length > 0) {
+      await prisma.$executeRawUnsafe(
+        'UPDATE "Blog" SET "faqs" = $1::jsonb WHERE "id" = $2',
+        JSON.stringify(data.faqs),
+        createdPost.id
+      );
+    }
 
     // Process & connect tags with robust slug matching
     if (data.tags && Array.isArray(data.tags)) {

@@ -74,7 +74,26 @@ export async function GET(
       );
     }
 
-    return NextResponse.json({ success: true, data: { post } });
+    // Explicitly query faqs column via raw SQL to guarantee retrieval
+    let postFaqs = (post as any).faqs;
+    if (postFaqs === undefined || postFaqs === null) {
+      try {
+        const rawRows = await prisma.$queryRawUnsafe<Array<{ faqs: any }>>(
+          'SELECT "faqs" FROM "Blog" WHERE "id" = $1',
+          id
+        );
+        postFaqs = rawRows[0]?.faqs || null;
+      } catch (e) {
+        console.error('Error fetching raw faqs:', e);
+      }
+    }
+
+    const postWithFaqs = {
+      ...post,
+      faqs: postFaqs,
+    };
+
+    return NextResponse.json({ success: true, data: { post: postWithFaqs } });
   } catch (error) {
     console.error('Fetch post detail error:', error);
     return NextResponse.json(
@@ -189,9 +208,17 @@ export async function PUT(
         authorName: data.authorName || 'Amrendra Kumar',
         categoryId: data.categoryId || null,
         categorySlug,
-        faqs: data.faqs !== undefined ? (data.faqs as any) : undefined,
-      } as any,
+      },
     });
+
+    // Update faqs column in PostgreSQL using raw SQL (bypasses stale Prisma client schema)
+    if (data.faqs !== undefined) {
+      await prisma.$executeRawUnsafe(
+        'UPDATE "Blog" SET "faqs" = $1::jsonb WHERE "id" = $2',
+        JSON.stringify(data.faqs),
+        id
+      );
+    }
 
     // Explicitly clear existing BlogTag join records for this post
     await prisma.blogTag.deleteMany({

@@ -157,6 +157,19 @@ export async function getPostBySlugAsync(slug) {
     });
 
     if (post) {
+      let postFaqs = post.faqs || null;
+      if (!postFaqs) {
+        try {
+          const rawRows = await prisma.$queryRawUnsafe(
+            'SELECT "faqs" FROM "Blog" WHERE "id" = $1',
+            post.id
+          );
+          postFaqs = rawRows[0]?.faqs || null;
+        } catch {
+          // ignore
+        }
+      }
+
       return {
         id: post.id,
         title: post.title,
@@ -180,7 +193,7 @@ export async function getPostBySlugAsync(slug) {
         wordCount: post.wordCount,
         content: normalizeMarkdown(post.content),
         status: post.status,
-        faqs: post.faqs || null,
+        faqs: postFaqs,
       };
     }
   } catch (err) {
