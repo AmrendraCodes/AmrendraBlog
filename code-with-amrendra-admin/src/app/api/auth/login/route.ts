@@ -2,15 +2,56 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { verifyPassword, hashPassword, createAdminSession, ADMIN_SESSION_COOKIE } from '@/lib/auth';
 import { loginSchema } from '@/schemas/auth';
+import { checkRateLimit, recordFailedAttempt, resetRateLimit, getClientIp } from '@/lib/rate-limit';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
+  const clientIp = getClientIp(request);
+  const rateLimitKey = `login:${clientIp}`;
+
+  // Rate Limiting: max 5 failed attempts per 1 minute (60s)
+  const rateCheck = checkRateLimit(rateLimitKey, 5, 60 * 1000);
+  if (rateCheck.isLimited) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: {
+          code: 'TOO_MANY_REQUESTS',
+          message: 'Too many login attempts. Please try again after some time.',
+        },
+      },
+      {
+        status: 429,
+        headers: {
+          'Retry-After': String(rateCheck.retryAfterSec),
+        },
+      }
+    );
+  }
+
   try {
-    const body = await request.json();
+    let body: unknown;
+    try {
+      body = await request.json();
+    } catch {
+      recordFailedAttempt(rateLimitKey, 60 * 1000);
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: 'VALIDATION_ERROR',
+            message: 'Invalid JSON request payload',
+          },
+        },
+        { status: 400 }
+      );
+    }
+
     const parsed = loginSchema.safeParse(body);
 
     if (!parsed.success) {
+      recordFailedAttempt(rateLimitKey, 60 * 1000);
       return NextResponse.json(
         {
           success: false,
@@ -71,6 +112,7 @@ export async function POST(request: Request) {
 
     // 3. User not found
     if (!user) {
+      recordFailedAttempt(rateLimitKey, 60 * 1000);
       return NextResponse.json(
         {
           success: false,
@@ -86,6 +128,7 @@ export async function POST(request: Request) {
     // 4. Verify password with bcrypt
     const isPasswordValid = await verifyPassword(password, user.passwordHash);
     if (!isPasswordValid) {
+      recordFailedAttempt(rateLimitKey, 60 * 1000);
       return NextResponse.json(
         {
           success: false,
@@ -98,7 +141,10 @@ export async function POST(request: Request) {
       );
     }
 
-    // 5. Create database session token
+    // 5. Successful login: reset rate limit attempts for this IP
+    resetRateLimit(rateLimitKey);
+
+    // 6. Create database session token
     let sessionToken: string;
     try {
       const sessionResult = await createAdminSession(user.id);

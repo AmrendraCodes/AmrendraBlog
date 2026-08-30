@@ -97,6 +97,40 @@ export async function PUT(
     }
 
     const { id } = await params;
+
+    // Fetch existing post to check existence and ownership
+    const existingPost = await prisma.blog.findUnique({
+      where: { id },
+      select: { id: true, authorId: true },
+    });
+
+    if (!existingPost) {
+      return NextResponse.json(
+        { success: false, error: { code: 'NOT_FOUND', message: 'Blog post not found' } },
+        { status: 404 }
+      );
+    }
+
+    // Role-based authorization: ADMIN and EDITOR can update any post, AUTHOR only their own
+    const userRole = session.user.role;
+    const isAuthorized =
+      userRole === 'ADMIN' ||
+      userRole === 'EDITOR' ||
+      (userRole === 'AUTHOR' && existingPost.authorId === session.user.id);
+
+    if (!isAuthorized) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: 'FORBIDDEN',
+            message: 'You do not have permission to modify this post',
+          },
+        },
+        { status: 403 }
+      );
+    }
+
     const body = await request.json();
     const parsed = blogSchema.safeParse(body);
 
@@ -236,6 +270,26 @@ export async function DELETE(
       return NextResponse.json(
         { success: false, error: { code: 'NOT_FOUND', message: 'Blog post not found' } },
         { status: 404 }
+      );
+    }
+
+    // Role-based authorization: ADMIN and EDITOR can delete any post, AUTHOR only their own
+    const userRole = session.user.role;
+    const isAuthorized =
+      userRole === 'ADMIN' ||
+      userRole === 'EDITOR' ||
+      (userRole === 'AUTHOR' && post.authorId === session.user.id);
+
+    if (!isAuthorized) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: 'FORBIDDEN',
+            message: 'You do not have permission to modify this post',
+          },
+        },
+        { status: 403 }
       );
     }
 
