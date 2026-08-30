@@ -131,7 +131,15 @@ export async function PUT(
       );
     }
 
-    const body = await request.json();
+    let body: unknown;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, error: { code: 'VALIDATION_ERROR', message: 'Invalid JSON request payload' } },
+        { status: 400 }
+      );
+    }
     const parsed = blogSchema.safeParse(body);
 
     if (!parsed.success) {

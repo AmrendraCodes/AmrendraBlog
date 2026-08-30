@@ -117,7 +117,15 @@ export async function POST(request: Request) {
       );
     }
 
-    const body = await request.json();
+    let body: unknown;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, error: { code: 'VALIDATION_ERROR', message: 'Invalid JSON request payload' } },
+        { status: 400 }
+      );
+    }
     const parsed = blogSchema.safeParse(body);
 
     if (!parsed.success) {
@@ -162,6 +170,7 @@ export async function POST(request: Request) {
         scheduledAt: data.scheduledAt ? new Date(data.scheduledAt) : null,
         readingTime: readTime,
         wordCount,
+        authorId: session.user.id,
         authorName: data.authorName || session.user.name || 'Amrendra Kumar',
         categoryId: data.categoryId || null,
         categorySlug,
