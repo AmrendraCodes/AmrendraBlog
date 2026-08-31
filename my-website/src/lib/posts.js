@@ -20,6 +20,7 @@ function countWords(content) {
 /**
  * Pre-processes markdown to prevent accidental CommonMark setext headings.
  * Automatically ensures dividers (---, ===, etc.) have blank lines before and after.
+ * Strips dangling hyphens/equals and protects paragraphs from turning into H1/H2 setext headings.
  */
 export function normalizeMarkdown(raw) {
   if (!raw || typeof raw !== "string") return "";
@@ -31,9 +32,21 @@ export function normalizeMarkdown(raw) {
     return placeholder;
   });
 
+  // Remove any trailing standalone dashes/hyphens/equals at the very end of content
+  processed = processed.replace(/\n+[ \t]*[-=_*]{1,3}[ \t]*$/, '\n');
+
+  // Ensure horizontal rules / dividers (---, ===, ***, ___) have blank lines before and after them.
+  // Also clean up 1-2 char underlines directly below paragraphs that turn regular text into Setext H1/H2 headings.
   processed = processed.replace(
-    /([^\n\r])[ \t]*\r?\n[ \t]*((?:-[ \t]*){3,}|(?:=[ \t]*){3,}|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,})[ \t]*(\r?\n|$)/g,
-    "$1\n\n$2\n\n"
+    /([^\n\r])[ \t]*\r?\n[ \t]*((?:-[ \t]*){1,}|(?:=[ \t]*){1,}|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,})[ \t]*(\r?\n|$)/g,
+    (match, textBefore, divider, textAfter) => {
+      const trimmedDivider = divider.replace(/\s+/g, '');
+      if (/^(?:-{3,}|={3,}|\*{3,}|_{3,})$/.test(trimmedDivider)) {
+        return `${textBefore}\n\n${divider}\n\n`;
+      }
+      // Single or double dash/equal attached directly under text -> remove to prevent accidental Setext heading
+      return `${textBefore}\n\n`;
+    }
   );
 
   processed = processed.replace(/__CODE_BLOCK_(\d+)__/g, (_, idx) => codeBlocks[parseInt(idx, 10)]);
@@ -126,7 +139,7 @@ export async function getAllPostsAsync() {
         content: normalizeMarkdown(post.content),
         status: post.status,
         views: post.views || 0,
-        faqs: post.faqs || null,
+        faqs: typeof post.faqs === "string" ? (() => { try { return JSON.parse(post.faqs); } catch { return null; } })() : (post.faqs || null),
       }));
     }
   } catch (error) {
@@ -167,6 +180,14 @@ export async function getPostBySlugAsync(slug) {
           postFaqs = rawRows[0]?.faqs || null;
         } catch {
           // ignore
+        }
+      }
+
+      if (typeof postFaqs === "string") {
+        try {
+          postFaqs = JSON.parse(postFaqs);
+        } catch {
+          postFaqs = null;
         }
       }
 

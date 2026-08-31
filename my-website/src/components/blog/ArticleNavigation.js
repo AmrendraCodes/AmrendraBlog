@@ -11,7 +11,7 @@ export default function ArticleNavigation({ prev, next }) {
 
   return (
     <nav
-      className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-12 pt-10 border-t border-[var(--card-border)]"
+      className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-6 border-t border-[var(--card-border)]/60"
       aria-label="Post navigation"
     >
       {/* Previous Post */}

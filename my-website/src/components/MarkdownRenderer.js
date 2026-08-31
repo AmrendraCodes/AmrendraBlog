@@ -34,11 +34,11 @@ function createHeadingComponent(level) {
   const HeadingComponent = ({ children, id, ...props }) => {
     let sizeClasses = "";
     if (level === 2) {
-      sizeClasses = "text-2xl sm:text-3xl font-extrabold text-[var(--text-heading)] mt-12 mb-5 leading-tight border-b border-[var(--card-border)]/30 pb-2 block w-full";
+      sizeClasses = "text-xl sm:text-2xl font-extrabold text-[var(--text-heading)] mt-6 sm:mt-7 mb-3 pt-2 border-b border-[var(--card-border)]/40 pb-2 leading-snug block w-full";
     } else if (level === 3) {
-      sizeClasses = "text-xl sm:text-2xl font-bold text-[var(--text-heading)] mt-10 mb-4 leading-snug block";
+      sizeClasses = "text-lg sm:text-xl font-bold text-[var(--text-heading)] mt-4 sm:mt-5 mb-2 leading-snug block";
     } else if (level === 4) {
-      sizeClasses = "text-lg sm:text-xl font-bold text-[var(--text-heading)] mt-8 mb-3 leading-normal block";
+      sizeClasses = "text-base sm:text-lg font-bold text-[var(--text-heading)] mt-3.5 mb-1.5 leading-normal block";
     }
 
     return (
@@ -130,8 +130,8 @@ const admonitionConfig = {
 
 /**
  * Pre-processes markdown to prevent accidental CommonMark setext headings.
- * When text is directly followed by `---` with no blank line, CommonMark interprets it as an H2 heading.
- * Normalizing guarantees proper paragraph and horizontal rule rendering.
+ * Automatically ensures dividers (---, ===, etc.) have blank lines before and after.
+ * Strips dangling hyphens/equals and protects paragraphs from turning into H1/H2 setext headings.
  */
 function normalizeMarkdown(raw) {
   if (!raw || typeof raw !== "string") return "";
@@ -144,10 +144,21 @@ function normalizeMarkdown(raw) {
     return placeholder;
   });
 
-  // Ensure horizontal rules / dividers (---, ===, ***, ___, - - -, * * *) have blank lines before and after them
+  // Remove any trailing standalone dashes/hyphens/equals at the very end of content
+  processed = processed.replace(/\n+[ \t]*[-=_*]{1,3}[ \t]*$/, '\n');
+
+  // Ensure horizontal rules / dividers (---, ===, ***, ___) have blank lines before and after them.
+  // Also clean up 1-2 char underlines directly below paragraphs that turn regular text into Setext H1/H2 headings.
   processed = processed.replace(
-    /([^\n\r])[ \t]*\r?\n[ \t]*((?:-[ \t]*){3,}|(?:=[ \t]*){3,}|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,})[ \t]*(\r?\n|$)/g,
-    "$1\n\n$2\n\n"
+    /([^\n\r])[ \t]*\r?\n[ \t]*((?:-[ \t]*){1,}|(?:=[ \t]*){1,}|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,})[ \t]*(\r?\n|$)/g,
+    (match, textBefore, divider, textAfter) => {
+      const trimmedDivider = divider.replace(/\s+/g, '');
+      if (/^(?:-{3,}|={3,}|\*{3,}|_{3,})$/.test(trimmedDivider)) {
+        return `${textBefore}\n\n${divider}\n\n`;
+      }
+      // Single or double dash/equal attached directly under text -> remove to prevent accidental Setext heading
+      return `${textBefore}\n\n`;
+    }
   );
 
   // Restore code blocks
@@ -177,7 +188,7 @@ export default function MarkdownRenderer({ content }) {
         // ─── Paragraphs with comfortable readability spacing ───
         p: ({ children, ...props }) => (
           <p
-            className="text-[var(--text-body)] text-base sm:text-[17px] lg:text-[18px] leading-[1.85] mb-7 last:mb-0"
+            className="text-[var(--text-body)] text-[16px] sm:text-[17px] leading-[1.75] mb-3.5 sm:mb-4 last:mb-0"
             {...props}
           >
             {children}
@@ -187,7 +198,7 @@ export default function MarkdownRenderer({ content }) {
         // ─── Lists & List Items ───
         ul: ({ children, ...props }) => (
           <ul
-            className="list-disc pl-6 my-6 space-y-2.5 text-[var(--text-body)] text-base sm:text-[17px] lg:text-[18px] leading-[1.8]"
+            className="list-disc pl-5 my-3 space-y-1 text-[var(--text-body)] text-[15px] sm:text-[16px] leading-[1.7]"
             {...props}
           >
             {children}
@@ -195,7 +206,7 @@ export default function MarkdownRenderer({ content }) {
         ),
         ol: ({ children, ...props }) => (
           <ol
-            className="list-decimal pl-6 my-6 space-y-2.5 text-[var(--text-body)] text-base sm:text-[17px] lg:text-[18px] leading-[1.8]"
+            className="list-decimal pl-5 my-3 space-y-1 text-[var(--text-body)] text-[15px] sm:text-[16px] leading-[1.7]"
             {...props}
           >
             {children}
@@ -203,7 +214,7 @@ export default function MarkdownRenderer({ content }) {
         ),
         li: ({ children, ...props }) => (
           <li
-            className="pl-1 my-1 leading-[1.8] text-[var(--text-body)] marker:text-[#F59E0B]"
+            className="pl-1 my-0.5 leading-[1.7] text-[var(--text-body)] marker:text-[#F59E0B]"
             {...props}
           >
             {children}
@@ -372,7 +383,7 @@ export default function MarkdownRenderer({ content }) {
             const config = admonitionConfig[admonition.type];
             return (
               <div
-                className={`my-6 p-4 border-l-4 rounded-r-xl ${config.borderColor} ${config.bgColor}`}
+                className={`my-5 p-4 border-l-4 rounded-xl ${config.borderColor} ${config.bgColor}`}
                 role="note"
               >
                 <div className="flex items-center gap-2 mb-1">
@@ -394,7 +405,7 @@ export default function MarkdownRenderer({ content }) {
 
           return (
             <blockquote
-              className="border-l-[#F59E0B] bg-[var(--section-alt-bg)] rounded-r-xl py-1 px-6"
+              className="my-4 border-l-4 border-[#F59E0B] bg-[var(--section-alt-bg)]/80 rounded-r-xl py-2.5 px-4 text-[15px] sm:text-[16px] text-[var(--text-body)] leading-relaxed italic"
               {...props}
             >
               {children}
@@ -404,7 +415,7 @@ export default function MarkdownRenderer({ content }) {
 
         // ─── Tables ───
         table: ({ children, ...props }) => (
-          <div className="overflow-x-auto my-8 border border-[var(--card-border)]/50 rounded-2xl shadow-lg bg-[var(--section-alt-bg)]/30 backdrop-blur-sm">
+          <div className="overflow-x-auto my-5 border border-[var(--card-border)] rounded-xl shadow-xs bg-[var(--card-bg)]/60 backdrop-blur-sm">
             <table
               className="min-w-full divide-y divide-[var(--card-border)] text-sm text-left"
               {...props}
@@ -415,7 +426,7 @@ export default function MarkdownRenderer({ content }) {
         ),
         thead: ({ children, ...props }) => (
           <thead
-            className="bg-[#F59E0B]/10 text-[var(--text-heading)] font-bold text-base"
+            className="bg-[var(--section-alt-bg)] text-[var(--text-heading)] font-bold text-xs uppercase tracking-wider"
             {...props}
           >
             {children}
@@ -423,7 +434,7 @@ export default function MarkdownRenderer({ content }) {
         ),
         th: ({ children, ...props }) => (
           <th
-            className="px-6 py-5 text-left font-semibold text-[var(--text-heading)] whitespace-nowrap"
+            className="px-4 py-2.5 text-left font-bold text-[var(--text-heading)] whitespace-nowrap border-b border-[var(--card-border)]"
             {...props}
           >
             {children}
@@ -431,7 +442,7 @@ export default function MarkdownRenderer({ content }) {
         ),
         td: ({ children, ...props }) => (
           <td
-            className="px-6 py-4 text-[var(--text-body)] border-t border-[var(--card-border)]/50"
+            className="px-4 py-2.5 text-sm text-[var(--text-body)] border-b border-[var(--card-border)]/40"
             {...props}
           >
             {children}
@@ -454,9 +465,13 @@ export default function MarkdownRenderer({ content }) {
           return <input type={type} checked={checked} {...props} />;
         },
 
-        // ─── Horizontal Rule ───
+        // ─── Horizontal Rule (Clean, crisp, clearly visible divider with tight margins) ───
         hr: () => (
-          <hr className="my-10 border-none h-px bg-gradient-to-r from-transparent via-[var(--card-border)] to-transparent" />
+          <div className="my-5 sm:my-6 flex items-center gap-3">
+            <div className="h-[1.5px] flex-1 bg-[var(--card-border)] opacity-80" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B]" />
+            <div className="h-[1.5px] flex-1 bg-[var(--card-border)] opacity-80" />
+          </div>
         ),
       }}
     >

@@ -23,57 +23,38 @@ export default function BlogDetailClient({ content, headings, title, slug }) {
       <ReadingProgress />
 
       {/* Layout Container */}
-      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14 grid grid-cols-1 xl:grid-cols-[250px_1fr_250px] gap-8 lg:gap-12">
+      <div className="relative max-w-[1160px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-5 grid grid-cols-1 xl:grid-cols-[240px_1fr] gap-8 lg:gap-10 items-start">
         
         {/* Desktop TOC — Sticky Sidebar on the Left */}
-        <div className="hidden xl:block w-[250px] shrink-0">
+        <div className="hidden xl:block w-[240px] shrink-0 sticky top-28 space-y-6">
           <TableOfContents headings={headings} />
+          <div className="pt-4 border-t border-[var(--card-border)]/50 pl-3">
+            <span className="block text-[11px] font-bold uppercase tracking-widest text-[var(--text-muted)] mb-2.5">
+              Share Article
+            </span>
+            <ShareButtons title={title} slug={slug} />
+          </div>
         </div>
 
         {/* Main Content strictly centered */}
-        <div className="w-full max-w-[900px] min-w-0 mx-auto">
+        <div className="w-full max-w-[820px] min-w-0 mx-auto">
           <motion.article 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.4 }}
             className="w-full"
           >
             {/* Mobile TOC */}
-            <div className="block xl:hidden mb-8">
+            <div className="block xl:hidden mb-6">
               <TableOfContents headings={headings} isMobile={true} />
             </div>
 
-            {/* Share + Article Content */}
-            <div className="flex items-center justify-between mb-8 lg:mb-10 border-b border-[var(--card-border)]/50 pb-6">
-              <ShareButtons title={title} slug={slug} />
-            </div>
-
             {/* Markdown Content */}
-            <div
-              className="prose prose-lg prose-slate dark:prose-invert max-w-none
-                prose-headings:text-[var(--text-heading)] prose-headings:font-extrabold prose-headings:tracking-tight
-                prose-h1:text-[28px] sm:prose-h1:text-[36px] lg:prose-h1:text-[48px] prose-h1:leading-[1.1]
-                prose-h2:text-[24px] sm:prose-h2:text-[28px] lg:prose-h2:text-[34px] prose-h2:leading-[1.2]
-                prose-h3:text-[20px] sm:prose-h3:text-[24px] lg:prose-h3:text-[28px] prose-h3:leading-[1.3]
-                prose-p:text-[var(--text-body)] prose-p:text-base sm:prose-p:text-[17px] lg:prose-p:text-[18px] prose-p:leading-[1.9]
-                prose-strong:text-[var(--text-heading)]
-                prose-a:text-[#0B1F3A] dark:text-[#F59E0B] hover:prose-a:text-[#F59E0B] prose-a:font-semibold prose-a:no-underline hover:prose-a:underline
-                prose-img:rounded-2xl prose-img:shadow-xl
-                prose-code:text-[#D97706] dark:prose-code:text-[#FBBF24] prose-code:bg-[#F59E0B]/10 dark:prose-code:bg-[#F59E0B]/15 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm prose-code:font-semibold prose-code:before:content-none prose-code:after:content-none
-                prose-pre:bg-[#071324] prose-pre:backdrop-blur-md prose-pre:border prose-pre:border-[var(--card-border)] prose-pre:rounded-xl prose-pre:text-sm prose-pre:shadow-2xl
-                prose-blockquote:border-l-4 prose-blockquote:border-l-[#F59E0B] prose-blockquote:bg-gradient-to-r prose-blockquote:from-[#F59E0B]/10 prose-blockquote:to-transparent prose-blockquote:rounded-r-xl prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:not-italic prose-blockquote:shadow-sm
-                prose-li:text-[var(--text-body)] prose-li:text-base sm:prose-li:text-[17px] lg:prose-li:text-[18px] prose-li:leading-[1.9] prose-li:marker:text-[#F59E0B]
-                prose-hr:border-[var(--card-border)]/50
-                prose-th:text-[var(--text-heading)] prose-td:text-[var(--text-body)]"
-              id="article-content"
-            >
+            <div id="article-content" className="w-full">
               <MarkdownRenderer content={content} />
             </div>
           </motion.article>
         </div>
-
-        {/* Dummy right sidebar placeholder to keep content centered */}
-        <div className="hidden xl:block w-[250px] shrink-0 pointer-events-none" aria-hidden="true" />
       </div>
     </>
   );

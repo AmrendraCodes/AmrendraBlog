@@ -27,36 +27,36 @@ export default function AuthorBox({ author }) {
   ];
 
   return (
-    <div className="mt-16 pt-10 border-t border-[var(--card-border)]/50">
-      <div className="bg-[var(--section-alt-bg)]/40 backdrop-blur-xl rounded-3xl p-8 sm:p-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start border border-white/5 shadow-2xl relative overflow-hidden">
+    <div className="pt-6 border-t border-[var(--card-border)]/60">
+      <div className="bg-[var(--section-alt-bg)]/50 backdrop-blur-md rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row gap-5 items-center sm:items-start border border-[var(--card-border)] shadow-xs relative overflow-hidden">
         {/* Glow behind author box */}
-        <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#F59E0B] rounded-full blur-[80px] opacity-15 pointer-events-none" />
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#F59E0B] rounded-full blur-[80px] opacity-10 pointer-events-none" />
         {/* Avatar with gradient ring */}
         <div className="shrink-0 relative">
-          <div className="absolute -inset-1 bg-gradient-to-br from-[#0B1F3A] to-[#F59E0B] rounded-full blur-sm opacity-60" />
+          <div className="absolute -inset-0.5 bg-gradient-to-br from-[#0B1F3A] to-[#F59E0B] rounded-full blur-[2px] opacity-70" />
           <Image
             src={siteMetadata.profileImage}
             alt={author || siteMetadata.author}
-            width={96}
-            height={96}
-            className="w-24 h-24 rounded-full object-cover relative border-2 border-[var(--background)]"
+            width={72}
+            height={72}
+            className="w-18 h-18 rounded-full object-cover relative border-2 border-[var(--background)] shadow-md"
           />
         </div>
 
         {/* Info */}
-        <div className="flex flex-col text-center sm:text-left">
-          <h3 className="text-2xl font-extrabold text-[var(--text-heading)] mb-2 flex items-center justify-center sm:justify-start gap-2">
+        <div className="flex flex-col text-center sm:text-left flex-1 min-w-0">
+          <h3 className="text-lg sm:text-xl font-bold text-[var(--text-heading)] mb-1.5 flex items-center justify-center sm:justify-start gap-2">
             {author || siteMetadata.author}
-            <span className="bg-[#F59E0B]/15 text-[#0B1F3A] dark:text-[#F59E0B] text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full font-bold border border-[#F59E0B]/30">
+            <span className="bg-[#F59E0B]/15 text-[#0B1F3A] dark:text-[#F59E0B] text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full font-extrabold border border-[#F59E0B]/30">
               Author
             </span>
           </h3>
-          <p className="text-[var(--text-body)] mb-6 leading-relaxed">
+          <p className="text-sm text-[var(--text-body)] mb-4 leading-relaxed">
             {siteMetadata.authorBio}
           </p>
 
           {/* Social Links */}
-          <div className="flex items-center justify-center sm:justify-start gap-3">
+          <div className="flex items-center justify-center sm:justify-start gap-2.5">
             {socials.map(({ href, icon: Icon, label }) => (
               <a
                 key={href}

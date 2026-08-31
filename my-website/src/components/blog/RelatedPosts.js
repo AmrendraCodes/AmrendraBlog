@@ -10,9 +10,9 @@ export default function RelatedPosts({ posts }) {
   if (!posts || posts.length === 0) return null;
 
   return (
-    <section className="mt-16 pt-10 border-t border-[var(--card-border)]/50">
-      <h2 className="text-3xl font-extrabold text-[var(--text-heading)] mb-10 flex items-center tracking-tight">
-        <span className="w-2.5 h-8 bg-gradient-to-b from-[#0B1F3A] to-[#F59E0B] rounded-full mr-4 shadow-sm" />
+    <section className="pt-6 border-t border-[var(--card-border)]/60">
+      <h2 className="text-xl sm:text-2xl font-extrabold text-[var(--text-heading)] mb-4 flex items-center tracking-tight">
+        <span className="w-1.5 h-6 bg-[#F59E0B] rounded-full mr-2.5 shadow-xs" />
         Read Next
       </h2>
 

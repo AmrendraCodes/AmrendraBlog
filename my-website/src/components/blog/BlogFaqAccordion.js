@@ -14,22 +14,22 @@ export default function BlogFaqAccordion({ faqs }) {
   };
 
   return (
-    <section className="my-16 pt-10 border-t border-[var(--card-border)]/50" id="faq-section">
-      <div className="flex items-center gap-3 mb-8">
-        <div className="w-10 h-10 rounded-xl bg-[#F59E0B]/10 text-[#F59E0B] flex items-center justify-center border border-[#F59E0B]/20">
-          <HelpCircle size={22} />
+    <section className="pt-6 border-t border-[var(--card-border)]/60" id="faq-section">
+      <div className="flex items-center gap-3 mb-5">
+        <div className="w-9 h-9 rounded-xl bg-[#F59E0B]/10 text-[#F59E0B] flex items-center justify-center border border-[#F59E0B]/20">
+          <HelpCircle size={20} />
         </div>
         <div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-heading)] tracking-tight m-0">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-[var(--text-heading)] tracking-tight m-0">
             Frequently Asked Questions
           </h2>
-          <p className="text-sm text-[var(--text-muted)] mt-1">
-            Common questions regarding this topic
+          <p className="text-xs sm:text-sm text-[var(--text-muted)] mt-0.5">
+            Key questions and clear answers regarding this topic
           </p>
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3">
         {faqs.map((faq, idx) => {
           const isOpen = openIndex === idx;
           return (

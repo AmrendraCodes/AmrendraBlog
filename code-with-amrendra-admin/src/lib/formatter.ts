@@ -146,11 +146,21 @@ export function formatArticleMarkdown(
   });
 
   // 1.5 Horizontal Rule & Divider Normalization
-  // Ensure horizontal rules / dividers (---, ===, ***, ___, - - -, * * *) have blank lines before and after them
-  // so CommonMark does not treat preceding text as Setext H1/H2 headings
+  // Remove any trailing standalone dashes/hyphens/equals at the very end of content
+  content = content.replace(/\n+[ \t]*[-=_*]{1,3}[ \t]*$/, '\n');
+
+  // Ensure horizontal rules / dividers (---, ===, ***, ___) have blank lines before and after them.
+  // Also clean up 1-2 char underlines directly below paragraphs that turn regular text into Setext H1/H2 headings.
   content = content.replace(
-    /([^\n\r])[ \t]*\r?\n[ \t]*((?:-[ \t]*){3,}|(?:=[ \t]*){3,}|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,})[ \t]*(\r?\n|$)/g,
-    '$1\n\n$2\n\n'
+    /([^\n\r])[ \t]*\r?\n[ \t]*((?:-[ \t]*){1,}|(?:=[ \t]*){1,}|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,})[ \t]*(\r?\n|$)/g,
+    (match, textBefore, divider) => {
+      const trimmedDivider = divider.replace(/\s+/g, '');
+      if (/^(?:-{3,}|={3,}|\*{3,}|_{3,})$/.test(trimmedDivider)) {
+        return `${textBefore}\n\n${divider}\n\n`;
+      }
+      // Single or double dash/equal attached directly under text -> remove to prevent accidental Setext heading
+      return `${textBefore}\n\n`;
+    }
   );
 
   // 2. Heading Structure Fixes

@@ -515,9 +515,16 @@ export default function BlogForm({
       const method = mode === 'create' ? 'POST' : 'PUT';
 
       // Automatically normalize dividers so they never become Setext headings
-      const normalizedContent = content.replace(
-        /([^\n\r])[ \t]*\r?\n[ \t]*((?:-[ \t]*){3,}|(?:=[ \t]*){3,}|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,})[ \t]*(\r?\n|$)/g,
-        '$1\n\n$2\n\n'
+      let normalizedContent = content.replace(/\n+[ \t]*[-=_*]{1,3}[ \t]*$/, '\n');
+      normalizedContent = normalizedContent.replace(
+        /([^\n\r])[ \t]*\r?\n[ \t]*((?:-[ \t]*){1,}|(?:=[ \t]*){1,}|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,})[ \t]*(\r?\n|$)/g,
+        (match, textBefore, divider) => {
+          const trimmedDivider = divider.replace(/\s+/g, '');
+          if (/^(?:-{3,}|={3,}|\*{3,}|_{3,})$/.test(trimmedDivider)) {
+            return `${textBefore}\n\n${divider}\n\n`;
+          }
+          return `${textBefore}\n\n`;
+        }
       );
 
       const payload = {

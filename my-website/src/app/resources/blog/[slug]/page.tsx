@@ -12,6 +12,7 @@ import ArticleNavigation from "@/components/blog/ArticleNavigation";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import AuthorBox from "@/components/blog/AuthorBox";
 import BlogFaqAccordion from "@/components/blog/BlogFaqAccordion";
+import Breadcrumbs from "@/components/blog/Breadcrumbs";
 
 export const dynamic = 'force-dynamic';
 export const dynamicParams = true;
@@ -101,9 +102,17 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     },
   ]);
 
-  // Prioritize explicit FAQs from Admin CMS, fallback to markdown extraction
-  const faqs = (post.faqs && Array.isArray(post.faqs) && post.faqs.length > 0)
-    ? post.faqs
+  // Prioritize explicit FAQs from Admin CMS (parsed array or JSON string), fallback to markdown extraction
+  let parsedDbFaqs = post.faqs;
+  if (typeof parsedDbFaqs === 'string') {
+    try {
+      parsedDbFaqs = JSON.parse(parsedDbFaqs);
+    } catch {
+      parsedDbFaqs = null;
+    }
+  }
+  const faqs = (Array.isArray(parsedDbFaqs) && parsedDbFaqs.length > 0)
+    ? parsedDbFaqs
     : extractFaqsFromContent(post.content);
   const faqSchema = faqs.length > 0 ? getFAQSchema(faqs) : null;
 
@@ -114,68 +123,78 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       {faqSchema && <JsonLd data={faqSchema} />}
 
       {/* Hero Section */}
-      <div className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] bg-[#F59E0B]/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="relative pt-24 pb-4 sm:pt-28 sm:pb-6 overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[350px] bg-[#F59E0B]/8 blur-[100px] rounded-full pointer-events-none" />
 
-        <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-[900px] mx-auto text-center flex flex-col items-center">
-            
-            {/* Back to Blog Link */}
+        <div className="relative max-w-[1160px] mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Breadcrumb Trail & Back Link */}
+          <div className="flex items-center justify-between gap-4 mb-5 flex-wrap">
+            <Breadcrumbs
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Resources", href: "/resources" },
+                { label: "Blog", href: "/resources/blog" },
+                { label: post.category || "Article", href: post.categorySlug ? `/category/${post.categorySlug}` : undefined },
+              ]}
+            />
             <Link
               href="/resources/blog"
-              className="group inline-flex items-center gap-2 text-sm font-semibold text-[var(--text-muted)] hover:text-[#F59E0B] transition-colors mb-6 no-underline"
+              className="group inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--text-muted)] hover:text-[#F59E0B] transition-colors no-underline"
             >
-              <ArrowLeft size={16} className="transition-transform duration-300 group-hover:-translate-x-1" />
-              Back to all articles
+              <ArrowLeft size={14} className="transition-transform duration-200 group-hover:-translate-x-1" />
+              All articles
             </Link>
+          </div>
 
+          {/* Article Header Content */}
+          <div className="max-w-[860px] mx-auto text-center flex flex-col items-center">
             {/* Category Badge */}
-            <div className="mb-6">
+            <div className="mb-3.5">
               <Link
                 href={`/category/${post.categorySlug}`}
-                className="bg-[#F59E0B]/10 backdrop-blur-md border border-[#F59E0B]/30 text-[#0B1F3A] dark:text-[#F59E0B] text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-sm hover:bg-[#F59E0B]/20 hover:border-[#F59E0B]/50 transition-all no-underline"
+                className="bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-[#0B1F3A] dark:text-[#F59E0B] text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider shadow-xs hover:bg-[#F59E0B]/20 transition-all no-underline"
               >
                 {post.category}
               </Link>
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-extrabold text-[var(--text-heading)] tracking-tight leading-[1.1] mb-6 drop-shadow-sm">
+            <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-[var(--text-heading)] tracking-tight leading-[1.18] mb-3.5">
               {post.title}
             </h1>
 
             {/* Description */}
             {post.description && (
-              <p className="text-lg sm:text-xl text-[var(--text-body)] max-w-2xl mb-10 leading-relaxed">
+              <p className="text-base sm:text-lg text-[var(--text-body)] max-w-2xl mx-auto mb-4 leading-relaxed">
                 {post.description}
               </p>
             )}
 
-            {/* Meta */}
-            <div className="flex flex-wrap items-center justify-center gap-6 text-[var(--text-body)] text-sm font-medium mb-12">
-              <div className="flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full">
+            {/* Meta Pill Row */}
+            <div className="flex flex-wrap items-center justify-center gap-3 text-[var(--text-body)] text-xs sm:text-sm font-medium mb-5">
+              <div className="flex items-center gap-2 bg-[var(--section-alt-bg)]/80 border border-[var(--card-border)] px-3.5 py-1.5 rounded-full shadow-xs">
                 <Image
                   src={siteMetadata.profileImage}
-                  alt={post.author}
-                  width={24}
-                  height={24}
-                  className="w-6 h-6 rounded-full object-cover"
+                  alt={post.author || "Amrendra Kumar"}
+                  width={22}
+                  height={22}
+                  className="w-5 h-5 rounded-full object-cover"
                 />
-                <span className="font-semibold text-[var(--text-heading)]">{post.author}</span>
+                <span className="font-semibold text-[var(--text-heading)]">{post.author || "Amrendra Kumar"}</span>
               </div>
-              <div className="flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full">
-                <Calendar size={16} className="text-[#F59E0B]" />
+              <div className="flex items-center gap-1.5 bg-[var(--section-alt-bg)]/80 border border-[var(--card-border)] px-3 py-1.5 rounded-full shadow-xs">
+                <Calendar size={14} className="text-[#F59E0B]" />
                 <span>{post.date}</span>
               </div>
-              <div className="flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full">
-                <Clock size={16} className="text-[#F59E0B]" />
+              <div className="flex items-center gap-1.5 bg-[var(--section-alt-bg)]/80 border border-[var(--card-border)] px-3 py-1.5 rounded-full shadow-xs">
+                <Clock size={14} className="text-[#F59E0B]" />
                 <span>{post.readTime}</span>
               </div>
             </div>
           </div>
 
           {/* Featured Image */}
-          <div className="max-w-[900px] mx-auto relative aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-[#0B1F3A]/20 border border-white/10 group mt-4 bg-slate-900">
+          <div className="max-w-[860px] mx-auto relative aspect-video rounded-2xl overflow-hidden shadow-xl border border-[var(--card-border)] group bg-slate-900">
             <Image
               src={
                 post.image ||
@@ -187,15 +206,15 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               unoptimized={Boolean(
                 post.image && (post.image.includes('blob.vercel-storage.com') || post.image.includes('vercel-storage.com'))
               )}
-              sizes="(max-width: 1400px) 100vw, 1400px"
-              className="absolute inset-0 object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              sizes="(max-width: 1200px) 100vw, 860px"
+              className="absolute inset-0 object-cover group-hover:scale-103 transition-transform duration-700 ease-out"
             />
           </div>
         </div>
       </div>
 
 
-      {/* Blog Detail Client */}
+      {/* Blog Detail Client (TOC Sidebar + Content) */}
       <BlogDetailClient
         content={post.content}
         headings={headings}
@@ -204,19 +223,15 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       />
 
       {/* Bottom Sections */}
-      <div className="max-w-[900px] mx-auto px-4 sm:px-6 pb-16">
+      <div className="max-w-[860px] mx-auto px-4 sm:px-6 pb-12 space-y-6 sm:space-y-7">
         {/* FAQ Accordion Section */}
         {faqs && faqs.length > 0 && (
-          <div className="mb-14">
-            <BlogFaqAccordion faqs={faqs} />
-          </div>
+          <BlogFaqAccordion faqs={faqs} />
         )}
 
         <AuthorBox author={post.author} />
         <ArticleNavigation prev={prev} next={next} />
-        <div className="mt-20">
-          <RelatedPosts posts={relatedPosts} />
-        </div>
+        <RelatedPosts posts={relatedPosts} />
       </div>
 
     </div>
