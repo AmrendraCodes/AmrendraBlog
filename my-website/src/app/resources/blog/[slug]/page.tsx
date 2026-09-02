@@ -14,9 +14,10 @@ import AuthorBox from "@/components/blog/AuthorBox";
 import BlogFaqAccordion from "@/components/blog/BlogFaqAccordion";
 import Breadcrumbs from "@/components/blog/Breadcrumbs";
 
-export const dynamic = 'force-dynamic';
 export const dynamicParams = true;
-export const revalidate = 0;
+// Published articles are static/ISR pages. This removes the database request
+// from the critical path for readers while keeping content fresh within 5 min.
+export const revalidate = 300;
 
 export async function generateStaticParams() {
   const posts = await getAllPostsAsync();

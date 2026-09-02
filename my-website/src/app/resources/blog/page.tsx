@@ -5,8 +5,9 @@ import JsonLd from "@/components/JsonLd";
 import { getCollectionPageSchema } from "@/lib/schema";
 import { siteMetadata } from "@/config/seo";
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+// Avoid querying the CMS for every reader. Next refreshes this list in the
+// background while visitors continue to receive the cached page.
+export const revalidate = 300;
 
 export const metadata = {
   title: "Blog & Technical Articles | Code with Amrendra",

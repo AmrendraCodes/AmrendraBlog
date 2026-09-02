@@ -10,8 +10,10 @@ import JsonLd from "@/components/JsonLd";
 import { getWebsiteSchema, getPersonSchema, getLocalBusinessSchema } from "@/lib/schema";
 import HomeClient from "@/components/HomeClient";
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+// Keep the public landing page at the CDN after it has been generated. The
+// previous force-dynamic/revalidate=0 combination made every visitor wait for
+// a database query and a server render before receiving any HTML.
+export const revalidate = 300;
 
 export const metadata = {
   title: "Code With Amrendra | AI Development Services & Cloud",

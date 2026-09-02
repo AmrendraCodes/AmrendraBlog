@@ -2,8 +2,9 @@ import Link from "next/link";
 import CategoriesSection from "@/components/blog/CategoriesSection";
 import { getAllPostsAsync } from "@/lib/posts";
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+// Categories are public content. Serve the generated page from the cache and
+// refresh it in the background so a database round trip cannot delay a visit.
+export const revalidate = 300;
 
 export const metadata = {
   title: "Categories | Code with Amrendra",

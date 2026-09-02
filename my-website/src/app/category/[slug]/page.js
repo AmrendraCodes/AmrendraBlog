@@ -4,8 +4,16 @@ import BlogCard from '@/components/BlogCard';
 import JsonLd from '@/components/JsonLd';
 import { getCollectionPageSchema, getBreadcrumbSchema } from '@/lib/schema';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+// Pre-render the known categories and refresh them periodically. New
+// categories can still be generated on their first request.
+export const revalidate = 300;
+
+export async function generateStaticParams() {
+  const posts = await getAllPostsAsync();
+  const categorySlugs = [...new Set(posts.map((post) => post.categorySlug).filter(Boolean))];
+
+  return categorySlugs.map((slug) => ({ slug }));
+}
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
