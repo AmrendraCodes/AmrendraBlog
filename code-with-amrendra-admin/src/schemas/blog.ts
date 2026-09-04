@@ -1,5 +1,11 @@
 import { z } from 'zod';
 
+const faqItemSchema = z.object({
+  id: z.string().optional(),
+  question: z.string().trim().min(1, 'FAQ question cannot be empty'),
+  answer: z.string().trim().min(1, 'FAQ answer cannot be empty'),
+});
+
 export const blogSchema = z.object({
   title: z.string().min(2, 'Title must be at least 2 characters'),
   slug: z.string().min(2, 'Slug must be at least 2 characters'),
@@ -18,16 +24,7 @@ export const blogSchema = z.object({
   categoryId: z.string().optional(),
   authorName: z.string().optional().default('Amrendra Kumar'),
   tags: z.array(z.string()).optional().default([]),
-  faqs: z
-    .array(
-      z.object({
-        id: z.string().optional(),
-        question: z.string(),
-        answer: z.string(),
-      })
-    )
-    .optional()
-    .default([]),
+  faqs: z.array(faqItemSchema).optional(),
 });
 
 export type BlogInput = z.infer<typeof blogSchema>;

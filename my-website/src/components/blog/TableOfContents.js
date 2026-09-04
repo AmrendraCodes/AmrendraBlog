@@ -118,18 +118,18 @@ export default function TableOfContents({ headings, isMobile = false }) {
     );
   }
 
-  // Desktop sticky TOC
+  // Desktop TOC (rendered inside sticky aside in parent layout)
   return (
-    <aside className="w-full shrink-0" id="toc-desktop">
-      <div className="sticky top-32 max-h-[calc(100vh-10rem)] overflow-y-auto pr-2 scrollbar-thin pb-10">
-        <div className="flex items-center gap-2 mb-6 px-3">
+    <div className="w-full" id="toc-desktop">
+      <div className="max-h-[calc(100vh-14rem)] overflow-y-auto pr-2 scrollbar-thin">
+        <div className="flex items-center gap-2 mb-4 px-3">
           <List size={18} className="text-[#F59E0B]" />
-          <h2 className="text-sm font-bold uppercase tracking-widest text-[var(--text-heading)]">
+          <h2 className="text-xs font-bold uppercase tracking-widest text-[var(--text-heading)]">
             On This Page
           </h2>
         </div>
         {tocList}
       </div>
-    </aside>
+    </div>
   );
 }

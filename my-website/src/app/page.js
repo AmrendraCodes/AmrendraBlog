@@ -10,7 +10,7 @@ import JsonLd from "@/components/JsonLd";
 import { getWebsiteSchema, getPersonSchema, getLocalBusinessSchema } from "@/lib/schema";
 import HomeClient from "@/components/HomeClient";
 
-// Keep the public landing page at the CDN after it has been generated. The
+// Keep the public landing page cached at the CDN after it has been generated. The
 // previous force-dynamic/revalidate=0 combination made every visitor wait for
 // a database query and a server render before receiving any HTML.
 export const revalidate = 300;

@@ -27,7 +27,7 @@ export default function AuthorBox({ author }) {
   ];
 
   return (
-    <div className="pt-6 border-t border-[var(--card-border)]/60">
+    <div className="pt-5 border-t border-[var(--card-border)]/60">
       <div className="bg-[var(--section-alt-bg)]/50 backdrop-blur-md rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row gap-5 items-center sm:items-start border border-[var(--card-border)] shadow-xs relative overflow-hidden">
         {/* Glow behind author box */}
         <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#F59E0B] rounded-full blur-[80px] opacity-10 pointer-events-none" />

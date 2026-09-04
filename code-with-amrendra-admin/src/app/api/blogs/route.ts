@@ -5,7 +5,8 @@ import { blogSchema } from '@/schemas/blog';
 import { calculateReadingTime, countWords, slugify } from '@/lib/utils';
 import { formatArticleMarkdown } from '@/lib/formatter';
 import { revalidatePath } from 'next/cache';
-import { BlogStatus, type Prisma } from '@prisma/client';
+import { BlogStatus, Prisma } from '@prisma/client';
+import { revalidatePublicBlog } from '@/lib/public-site-revalidation';
 
 export const dynamic = 'force-dynamic';
 
@@ -138,6 +139,10 @@ export async function POST(request: Request) {
     }
 
     const data = parsed.data;
+    const normalizedFaqs = (data.faqs || []).map(({ question, answer }) => ({
+      question: question.trim(),
+      answer: answer.trim(),
+    }));
 
     // Automatically format markdown & apply smart interlinking
     const formatRes = formatArticleMarkdown(data.content, {
@@ -176,17 +181,9 @@ export async function POST(request: Request) {
         authorName: data.authorName || session.user.name || 'Amrendra Kumar',
         categoryId: data.categoryId || null,
         categorySlug,
+        faqs: normalizedFaqs.length > 0 ? normalizedFaqs : Prisma.JsonNull,
       },
     });
-
-    // Save faqs column in PostgreSQL using raw SQL (bypasses stale Prisma client schema)
-    if (data.faqs && data.faqs.length > 0) {
-      await prisma.$executeRawUnsafe(
-        'UPDATE "Blog" SET "faqs" = $1::jsonb WHERE "id" = $2',
-        JSON.stringify(data.faqs),
-        createdPost.id
-      );
-    }
 
     // Process & connect tags with robust slug matching
     if (data.tags && Array.isArray(data.tags)) {
@@ -221,6 +218,8 @@ export async function POST(request: Request) {
       revalidatePath(`/resources/blog/${createdPost.slug}`);
       revalidatePath(`/blog/${createdPost.slug}`);
     } catch {}
+
+    await revalidatePublicBlog({ slug: createdPost.slug, categorySlug });
 
     const fullPost = await prisma.blog.findUnique({
       where: { id: createdPost.id },

@@ -34,3 +34,10 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## CMS cache revalidation
+
+Set `CMS_REVALIDATE_SECRET` in this project and in the separate CMS deployment
+to the same random value. The CMS calls `/api/revalidate` after blog create,
+edit, delete, and scheduled publish operations. Set `PUBLIC_SITE_URL` in the
+CMS deployment to this site’s URL.

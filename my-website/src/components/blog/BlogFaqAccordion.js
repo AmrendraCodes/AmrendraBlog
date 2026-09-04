@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export default function BlogFaqAccordion({ faqs }) {
   const [openIndex, setOpenIndex] = useState(null);
@@ -14,7 +16,7 @@ export default function BlogFaqAccordion({ faqs }) {
   };
 
   return (
-    <section className="pt-6 border-t border-[var(--card-border)]/60" id="faq-section">
+    <section className="pt-5 border-t border-[var(--card-border)]/60" id="faq-section">
       <div className="flex items-center gap-3 mb-5">
         <div className="w-9 h-9 rounded-xl bg-[#F59E0B]/10 text-[#F59E0B] flex items-center justify-center border border-[#F59E0B]/20">
           <HelpCircle size={20} />
@@ -41,13 +43,15 @@ export default function BlogFaqAccordion({ faqs }) {
                   : 'border-[var(--card-border)] bg-[var(--card-bg)]/30 hover:border-[#F59E0B]/20'
               }`}
             >
-              <button
-                type="button"
-                onClick={() => toggleFaq(idx)}
-                className="w-full py-4 px-5 sm:px-6 flex items-center justify-between text-left gap-4 cursor-pointer select-none"
-                aria-expanded={isOpen}
-              >
-                <span className="font-bold text-base sm:text-lg text-[var(--text-heading)] leading-snug">
+                <button
+                  type="button"
+                  onClick={() => toggleFaq(idx)}
+                  className="w-full py-4 px-5 sm:px-6 flex items-center justify-between text-left gap-4 cursor-pointer select-none"
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${idx}`}
+                  id={`faq-question-${idx}`}
+                >
+                <span role="heading" aria-level="3" className="font-bold text-base sm:text-lg text-[var(--text-heading)] leading-snug">
                   {faq.question}
                 </span>
                 <span
@@ -64,13 +68,27 @@ export default function BlogFaqAccordion({ faqs }) {
               <AnimatePresence initial={false}>
                 {isOpen && (
                   <motion.div
+                    id={`faq-answer-${idx}`}
+                    role="region"
+                    aria-labelledby={`faq-question-${idx}`}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.25, ease: 'easeInOut' }}
                   >
-                    <div className="px-5 pb-5 sm:px-6 sm:pb-6 text-base text-[var(--text-body)] leading-relaxed border-t border-[var(--card-border)]/30 pt-4">
-                      {faq.answer}
+                    <div className="px-5 pb-5 sm:px-6 sm:pb-6 text-base text-[var(--text-body)] leading-relaxed border-t border-[var(--card-border)]/30 pt-4 [&>p:first-child]:mt-0 [&>p:last-child]:mb-0">
+                      <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        components={{
+                          a: ({ href, children, ...props }) => (
+                            <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+                              {children}
+                            </a>
+                          ),
+                        }}
+                      >
+                        {typeof faq.answer === 'string' ? faq.answer : ''}
+                      </ReactMarkdown>
                     </div>
                   </motion.div>
                 )}

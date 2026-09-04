@@ -23,7 +23,7 @@ export default function BlogCard({ post }) {
         className="group relative bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[var(--card-border)] shadow-[var(--shadow-card)] hover:shadow-[0_20px_50px_rgba(11,31,58,0.08),0_4px_20px_rgba(245,158,11,0.15)] transition-shadow duration-500 h-full flex flex-col justify-between"
       >
       {/* Thumbnail */}
-      <div className="relative h-64 overflow-hidden rounded-t-3xl bg-slate-900">
+      <div className="relative aspect-video overflow-hidden rounded-t-3xl bg-slate-900">
         <Image
           src={imgSrc}
           alt={post.title?.trim() || "Blog Post"}
@@ -31,7 +31,7 @@ export default function BlogCard({ post }) {
           unoptimized={isExternalBlob && imgSrc === rawImage}
           onError={() => setImgSrc(defaultFallback)}
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className="object-contain"
         />
         <div className="absolute top-4 left-4">
           <span className="bg-[#F59E0B] text-[#0B1F3A] text-[11px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-md">

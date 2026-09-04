@@ -5,7 +5,8 @@ import { blogSchema } from '@/schemas/blog';
 import { calculateReadingTime, countWords, slugify } from '@/lib/utils';
 import { formatArticleMarkdown } from '@/lib/formatter';
 import { revalidatePath } from 'next/cache';
-import { BlogStatus } from '@prisma/client';
+import { BlogStatus, Prisma } from '@prisma/client';
+import { revalidatePublicBlog } from '@/lib/public-site-revalidation';
 
 export const dynamic = 'force-dynamic';
 
@@ -74,17 +75,13 @@ export async function GET(
       );
     }
 
-    // Explicitly query faqs column via raw SQL to guarantee retrieval
-    let postFaqs = (post as any).faqs;
-    if (postFaqs === undefined || postFaqs === null) {
+    // Prisma returns the nullable JSON FAQ field with the rest of the Blog row.
+    let postFaqs = post.faqs;
+    if (typeof postFaqs === 'string') {
       try {
-        const rawRows = await prisma.$queryRawUnsafe<Array<{ faqs: any }>>(
-          'SELECT "faqs" FROM "Blog" WHERE "id" = $1',
-          id
-        );
-        postFaqs = rawRows[0]?.faqs || null;
-      } catch (e) {
-        console.error('Error fetching raw faqs:', e);
+        postFaqs = JSON.parse(postFaqs);
+      } catch {
+        // keep as is
       }
     }
 
@@ -121,7 +118,7 @@ export async function PUT(
     // Fetch existing post to check existence and ownership
     const existingPost = await prisma.blog.findUnique({
       where: { id },
-      select: { id: true, authorId: true },
+      select: { id: true, authorId: true, slug: true, categorySlug: true },
     });
 
     if (!existingPost) {
@@ -170,6 +167,10 @@ export async function PUT(
     }
 
     const data = parsed.data;
+    const normalizedFaqs = (data.faqs || []).map(({ question, answer }) => ({
+      question: question.trim(),
+      answer: answer.trim(),
+    }));
 
     // Automatically format markdown & apply smart interlinking
     const formatRes = formatArticleMarkdown(data.content, {
@@ -208,17 +209,11 @@ export async function PUT(
         authorName: data.authorName || 'Amrendra Kumar',
         categoryId: data.categoryId || null,
         categorySlug,
+        faqs: data.faqs !== undefined
+          ? (normalizedFaqs.length > 0 ? normalizedFaqs : Prisma.JsonNull)
+          : undefined,
       },
     });
-
-    // Update faqs column in PostgreSQL using raw SQL (bypasses stale Prisma client schema)
-    if (data.faqs !== undefined) {
-      await prisma.$executeRawUnsafe(
-        'UPDATE "Blog" SET "faqs" = $1::jsonb WHERE "id" = $2',
-        JSON.stringify(data.faqs),
-        id
-      );
-    }
 
     // Explicitly clear existing BlogTag join records for this post
     await prisma.blogTag.deleteMany({
@@ -261,6 +256,13 @@ export async function PUT(
     } catch {
       // Ignore cache warning
     }
+
+    await revalidatePublicBlog({
+      slug: updatedPost.slug,
+      categorySlug,
+      previousSlug: existingPost.slug,
+      previousCategorySlug: existingPost.categorySlug,
+    });
 
     const fullPost = await prisma.blog.findUnique({
       where: { id },
@@ -353,6 +355,8 @@ export async function DELETE(
     } catch {
       // Ignore cache warning
     }
+
+    await revalidatePublicBlog({ slug: post.slug, categorySlug: post.categorySlug });
 
     return NextResponse.json({ success: true, data: { message: 'Post deleted successfully' } });
   } catch (error) {

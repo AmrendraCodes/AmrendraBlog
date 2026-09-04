@@ -71,6 +71,9 @@ DATABASE_URL="postgresql://postgres:password@localhost:5432/codewithamrendra?sch
 AUTH_SECRET="dev-secret-key-code-with-amrendra-admin"
 ADMIN_SESSION_COOKIE="admin_session_token"
 NEXT_PUBLIC_SITE_URL="http://localhost:3000"
+# Public website endpoint used for on-demand blog/FAQ cache invalidation
+PUBLIC_SITE_URL="https://www.codewithamrendra.in"
+CMS_REVALIDATE_SECRET="shared-secret-configured-in-both-vercel-projects"
 ```
 
 ### 3. Database Sync & Prisma Generation

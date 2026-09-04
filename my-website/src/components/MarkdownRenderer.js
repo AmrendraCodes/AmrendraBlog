@@ -12,7 +12,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import CopyButton from "./blog/CopyButton";
 import { Link as LinkIcon } from "lucide-react";
-import { useEffect } from "react";
+import { Children, isValidElement, useEffect } from "react";
 import Zoom from "react-medium-image-zoom";
 
 // Dynamically import MermaidBlock to keep initial bundle lean
@@ -32,13 +32,15 @@ function createHeadingComponent(level) {
   const Tag = `h${level}`;
 
   const HeadingComponent = ({ children, id, ...props }) => {
+    if (!hasRenderableContent(children)) return null;
+
     let sizeClasses = "";
     if (level === 2) {
-      sizeClasses = "text-xl sm:text-2xl font-extrabold text-[var(--text-heading)] mt-6 sm:mt-7 mb-3 pt-2 border-b border-[var(--card-border)]/40 pb-2 leading-snug block w-full";
+      sizeClasses = "text-xl sm:text-2xl font-extrabold text-[var(--text-heading)] pt-2 border-b border-[var(--card-border)]/40 pb-2 leading-snug block w-full text-left";
     } else if (level === 3) {
-      sizeClasses = "text-lg sm:text-xl font-bold text-[var(--text-heading)] mt-4 sm:mt-5 mb-2 leading-snug block";
+      sizeClasses = "text-lg sm:text-xl font-bold text-[var(--text-heading)] leading-snug block text-left";
     } else if (level === 4) {
-      sizeClasses = "text-base sm:text-lg font-bold text-[var(--text-heading)] mt-3.5 mb-1.5 leading-normal block";
+      sizeClasses = "text-base sm:text-lg font-bold text-[var(--text-heading)] leading-normal block text-left";
     }
 
     return (
@@ -129,9 +131,10 @@ const admonitionConfig = {
 };
 
 /**
- * Pre-processes markdown to prevent accidental CommonMark setext headings.
- * Automatically ensures dividers (---, ===, etc.) have blank lines before and after.
- * Strips dangling hyphens/equals and protects paragraphs from turning into H1/H2 setext headings.
+ * Pre-processes markdown:
+ * - Cleans up empty HTML tags and empty blocks before rendering.
+ * - Prevents accidental CommonMark setext headings.
+ * - Ensures horizontal rules have clean blank lines.
  */
 function normalizeMarkdown(raw) {
   if (!raw || typeof raw !== "string") return "";
@@ -144,6 +147,11 @@ function normalizeMarkdown(raw) {
     return placeholder;
   });
 
+  // Strip empty HTML elements (<p></p>, <p><br></p>, <p><br/></p>, <div></div>, etc.)
+  processed = processed.replace(/<p\b[^>]*>\s*(?:<br\s*\/?>|&nbsp;|\s*)*<\/p>/gi, "");
+  processed = processed.replace(/<div\b[^>]*>\s*<\/div>/gi, "");
+  processed = processed.replace(/<span\b[^>]*>\s*<\/span>/gi, "");
+
   // Remove any trailing standalone dashes/hyphens/equals at the very end of content
   processed = processed.replace(/\n+[ \t]*[-=_*]{1,3}[ \t]*$/, '\n');
 
@@ -151,7 +159,7 @@ function normalizeMarkdown(raw) {
   // Also clean up 1-2 char underlines directly below paragraphs that turn regular text into Setext H1/H2 headings.
   processed = processed.replace(
     /([^\n\r])[ \t]*\r?\n[ \t]*((?:-[ \t]*){1,}|(?:=[ \t]*){1,}|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,})[ \t]*(\r?\n|$)/g,
-    (match, textBefore, divider, textAfter) => {
+    (match, textBefore, divider) => {
       const trimmedDivider = divider.replace(/\s+/g, '');
       if (/^(?:-{3,}|={3,}|\*{3,}|_{3,})$/.test(trimmedDivider)) {
         return `${textBefore}\n\n${divider}\n\n`;
@@ -165,6 +173,19 @@ function normalizeMarkdown(raw) {
   processed = processed.replace(/__CODE_BLOCK_(\d+)__/g, (_, idx) => codeBlocks[parseInt(idx, 10)]);
 
   return processed;
+}
+
+function hasRenderableContent(children) {
+  if (children === null || children === undefined) return false;
+  return Children.toArray(children).some((child) => {
+    if (child === null || child === undefined) return false;
+    if (typeof child === "string") return child.trim().length > 0 && child.trim() !== "&nbsp;";
+    if (typeof child === "number") return true;
+    if (!isValidElement(child)) return Boolean(child);
+    if (child.type === "br") return false;
+    if (typeof child.type === "string" && ["img", "video", "iframe", "input"].includes(child.type)) return true;
+    return hasRenderableContent(child.props?.children);
+  });
 }
 
 export default function MarkdownRenderer({ content }) {
@@ -186,40 +207,44 @@ export default function MarkdownRenderer({ content }) {
         h4: createHeadingComponent(4),
 
         // ─── Paragraphs with comfortable readability spacing ───
-        p: ({ children, ...props }) => (
-          <p
-            className="text-[var(--text-body)] text-[16px] sm:text-[17px] leading-[1.75] mb-3.5 sm:mb-4 last:mb-0"
-            {...props}
-          >
-            {children}
-          </p>
-        ),
+        p: ({ children, ...props }) => {
+          if (!hasRenderableContent(children)) return null;
 
-        // ─── Lists & List Items ───
-        ul: ({ children, ...props }) => (
+          return (
+            <p
+              className="text-[var(--text-body)] text-[16px] sm:text-[17px] leading-[1.75] text-left"
+              {...props}
+            >
+              {children}
+            </p>
+          );
+        },
+
+        // ─── Lists & List Items (normalized without conflicting space-y) ───
+        ul: ({ children, ...props }) => hasRenderableContent(children) ? (
           <ul
-            className="list-disc pl-5 my-3 space-y-1 text-[var(--text-body)] text-[15px] sm:text-[16px] leading-[1.7]"
+            className="list-disc pl-6 text-[var(--text-body)] text-[15px] sm:text-[16px] leading-[1.7] text-left"
             {...props}
           >
             {children}
           </ul>
-        ),
-        ol: ({ children, ...props }) => (
+        ) : null,
+        ol: ({ children, ...props }) => hasRenderableContent(children) ? (
           <ol
-            className="list-decimal pl-5 my-3 space-y-1 text-[var(--text-body)] text-[15px] sm:text-[16px] leading-[1.7]"
+            className="list-decimal pl-6 text-[var(--text-body)] text-[15px] sm:text-[16px] leading-[1.7] text-left"
             {...props}
           >
             {children}
           </ol>
-        ),
-        li: ({ children, ...props }) => (
+        ) : null,
+        li: ({ children, ...props }) => hasRenderableContent(children) ? (
           <li
-            className="pl-1 my-0.5 leading-[1.7] text-[var(--text-body)] marker:text-[#F59E0B]"
+            className="leading-[1.7] text-[var(--text-body)] marker:text-[#F59E0B] text-left"
             {...props}
           >
             {children}
           </li>
-        ),
+        ) : null,
 
         // ─── Strong / Bold ───
         strong: ({ children, ...props }) => (
@@ -273,48 +298,48 @@ export default function MarkdownRenderer({ content }) {
           );
         },
 
-        // ─── Images with Next.js Image optimization and Zoom ───
+        // ─── Images with Next.js Image optimization and Zoom (Full width within container) ───
         img: ({ src, alt, ...props }) => {
           // For external images, use standard img with lazy loading
           if (src && (src.startsWith("http://") || src.startsWith("https://"))) {
             return (
-              <span className="block my-10 flex flex-col items-center">
+              <figure className="article-image block w-full my-6 flex flex-col items-center">
                 <Zoom>
                   <img
                     src={src}
                     alt={alt || ""}
                     loading="lazy"
-                    className="rounded-2xl shadow-xl max-w-full w-auto lg:max-w-[80%] mx-auto object-contain"
+                    className="rounded-2xl shadow-xl max-w-full w-full h-auto mx-auto object-contain"
                     {...props}
                   />
                 </Zoom>
                 {alt && (
-                  <span className="block text-center text-sm text-[var(--text-muted)] mt-4 italic">
+                  <figcaption className="block text-center text-sm text-[var(--text-muted)] mt-3 italic">
                     {alt}
-                  </span>
+                  </figcaption>
                 )}
-              </span>
+              </figure>
             );
           }
           // For local images, use Next.js Image
           return (
-            <span className="block my-10 flex flex-col items-center">
+            <figure className="article-image block w-full my-6 flex flex-col items-center">
               <Zoom>
                 <Image
                   src={src || ""}
                   alt={alt || ""}
                   width={800}
                   height={450}
-                  className="rounded-2xl shadow-xl max-w-full w-auto lg:max-w-[80%] mx-auto object-contain"
-                  sizes="(max-width: 768px) 100vw, 800px"
+                  className="rounded-2xl shadow-xl max-w-full w-full h-auto mx-auto object-contain"
+                  sizes="(max-width: 768px) 100vw, 760px"
                 />
               </Zoom>
               {alt && (
-                <span className="block text-center text-sm text-[var(--text-muted)] mt-4 italic">
+                <figcaption className="block text-center text-sm text-[var(--text-muted)] mt-3 italic">
                   {alt}
-                </span>
+                </figcaption>
               )}
-            </span>
+            </figure>
           );
         },
 
@@ -356,7 +381,7 @@ export default function MarkdownRenderer({ content }) {
           }
 
           return (
-            <div className="code-block-wrapper group relative my-6">
+            <div className="code-block-wrapper group relative my-6 w-full">
               {/* Language Label */}
               {language && (
                 <div className="code-lang-label">
@@ -366,7 +391,7 @@ export default function MarkdownRenderer({ content }) {
               {/* Copy Button */}
               <CopyButton text={codeText} />
               <pre
-                className="!mt-0 !rounded-xl !border !border-[var(--card-border)]"
+                className="!mt-0 !rounded-xl !border !border-[var(--card-border)] overflow-x-auto"
                 {...props}
               >
                 {children}
@@ -377,6 +402,8 @@ export default function MarkdownRenderer({ content }) {
 
         // ─── Blockquotes with admonition support ───
         blockquote: ({ children, ...props }) => {
+          if (!hasRenderableContent(children)) return null;
+
           const admonition = parseAdmonition(children);
 
           if (admonition) {
@@ -394,7 +421,7 @@ export default function MarkdownRenderer({ content }) {
                     {config.title}
                   </span>
                 </div>
-                <div className="text-sm text-[var(--text-body)] [&>p]:m-0 leading-relaxed">
+                <div className="text-sm text-[var(--text-body)] [&>p]:m-0 leading-relaxed text-left">
                   {admonition.remainingText && <p>{admonition.remainingText}</p>}
                   {/* Render remaining children after the first */}
                   {children.slice(1)}
@@ -405,7 +432,7 @@ export default function MarkdownRenderer({ content }) {
 
           return (
             <blockquote
-              className="my-4 border-l-4 border-[#F59E0B] bg-[var(--section-alt-bg)]/80 rounded-r-xl py-2.5 px-4 text-[15px] sm:text-[16px] text-[var(--text-body)] leading-relaxed italic"
+              className="my-4 border-l-4 border-[#F59E0B] bg-[var(--section-alt-bg)]/80 rounded-r-xl py-2.5 px-4 text-[15px] sm:text-[16px] text-[var(--text-body)] leading-relaxed italic text-left"
               {...props}
             >
               {children}
@@ -414,8 +441,8 @@ export default function MarkdownRenderer({ content }) {
         },
 
         // ─── Tables ───
-        table: ({ children, ...props }) => (
-          <div className="overflow-x-auto my-5 border border-[var(--card-border)] rounded-xl shadow-xs bg-[var(--card-bg)]/60 backdrop-blur-sm">
+        table: ({ children, ...props }) => hasRenderableContent(children) ? (
+          <div className="table-wrapper overflow-x-auto my-6 border border-[var(--card-border)] rounded-xl shadow-xs bg-[var(--card-bg)]/60 backdrop-blur-sm w-full">
             <table
               className="min-w-full divide-y divide-[var(--card-border)] text-sm text-left"
               {...props}
@@ -423,7 +450,7 @@ export default function MarkdownRenderer({ content }) {
               {children}
             </table>
           </div>
-        ),
+        ) : null,
         thead: ({ children, ...props }) => (
           <thead
             className="bg-[var(--section-alt-bg)] text-[var(--text-heading)] font-bold text-xs uppercase tracking-wider"
@@ -442,7 +469,7 @@ export default function MarkdownRenderer({ content }) {
         ),
         td: ({ children, ...props }) => (
           <td
-            className="px-4 py-2.5 text-sm text-[var(--text-body)] border-b border-[var(--card-border)]/40"
+            className="px-4 py-2.5 text-sm text-[var(--text-body)] border-b border-[var(--card-border)]/40 text-left"
             {...props}
           >
             {children}
@@ -467,7 +494,7 @@ export default function MarkdownRenderer({ content }) {
 
         // ─── Horizontal Rule (Clean, crisp, clearly visible divider with tight margins) ───
         hr: () => (
-          <div className="my-5 sm:my-6 flex items-center gap-3">
+          <div className="my-5 sm:my-6 flex items-center gap-3 w-full">
             <div className="h-[1.5px] flex-1 bg-[var(--card-border)] opacity-80" />
             <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B]" />
             <div className="h-[1.5px] flex-1 bg-[var(--card-border)] opacity-80" />

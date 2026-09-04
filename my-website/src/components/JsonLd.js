@@ -8,10 +8,13 @@ import React from 'react';
 export default function JsonLd({ data }) {
   if (!data) return null;
 
+  // Escape '<' to prevent unexpected script tag closing while keeping valid JSON-LD
+  const jsonString = JSON.stringify(data).replace(/</g, '\\u003c');
+
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: jsonString }}
     />
   );
 }

@@ -10,7 +10,7 @@ export default function RelatedPosts({ posts }) {
   if (!posts || posts.length === 0) return null;
 
   return (
-    <section className="pt-6 border-t border-[var(--card-border)]/60">
+    <section className="pt-5 border-t border-[var(--card-border)]/60">
       <h2 className="text-xl sm:text-2xl font-extrabold text-[var(--text-heading)] mb-4 flex items-center tracking-tight">
         <span className="w-1.5 h-6 bg-[#F59E0B] rounded-full mr-2.5 shadow-xs" />
         Read Next
@@ -24,7 +24,7 @@ export default function RelatedPosts({ posts }) {
             className="group bg-[var(--section-alt-bg)]/40 backdrop-blur-md border border-white/5 rounded-2xl overflow-hidden hover:border-[#F59E0B]/40 hover:shadow-2xl hover:shadow-[#F59E0B]/5 transition-all duration-300 no-underline flex flex-col relative"
           >
             {/* Image */}
-            <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl bg-slate-900">
+            <div className="relative aspect-video overflow-hidden rounded-t-2xl bg-slate-900">
               <Image
                 src={
                   post.image ||
@@ -36,7 +36,7 @@ export default function RelatedPosts({ posts }) {
                   post.image && (post.image.includes('blob.vercel-storage.com') || post.image.includes('vercel-storage.com'))
                 )}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                className="object-contain"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute top-3 left-3 z-10">

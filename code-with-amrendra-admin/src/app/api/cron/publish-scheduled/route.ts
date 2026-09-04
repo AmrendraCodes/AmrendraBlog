@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
+import { revalidatePublicBlog } from '@/lib/public-site-revalidation';
 
 export const dynamic = 'force-dynamic';
 
@@ -94,6 +95,8 @@ async function handlePublishScheduled(request: Request) {
       } catch {
         // Continue if revalidation warning in dev
       }
+
+      await revalidatePublicBlog({ slug: post.slug, categorySlug: post.categorySlug });
     }
 
     return NextResponse.json({

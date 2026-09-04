@@ -3,6 +3,8 @@ import path from "path";
 import matter from "gray-matter";
 import { prisma } from "./prisma.js";
 
+import { extractFaqsFromContent } from "./schema.js";
+
 // Fallback path to the content/posts directory
 const postsDirectory = path.join(process.cwd(), "content", "posts");
 
@@ -15,6 +17,62 @@ function calculateReadingTime(content) {
 
 function countWords(content) {
   return content ? content.trim().split(/\s+/).length : 0;
+}
+
+/**
+ * Normalizes FAQ data from Database JSON/JSONB, JSON strings, frontmatter objects, or markdown content.
+ * Returns an array of clean { question, answer } objects, or null if none exist.
+ *
+ * @param {any} rawFaqs
+ * @param {string} [content]
+ * @returns {Array<{question: string, answer: string}>|null}
+ */
+export function normalizePostFaqs(rawFaqs, content = "", useContentFallback = true) {
+  let parsed = rawFaqs;
+
+  if (typeof parsed === "string") {
+    try {
+      parsed = JSON.parse(parsed);
+    } catch {
+      parsed = null;
+    }
+  }
+
+  // If parsed is an object with an array property, unwrap it
+  if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+    if (Array.isArray(parsed.faqs)) parsed = parsed.faqs;
+    else if (Array.isArray(parsed.faq)) parsed = parsed.faq;
+    else if (Array.isArray(parsed.faqItems)) parsed = parsed.faqItems;
+    else if (Array.isArray(parsed.mainEntity)) {
+      parsed = parsed.mainEntity.map((e) => ({
+        question: e.name || e.question,
+        answer: e.acceptedAnswer?.text || e.answer,
+      }));
+    }
+  }
+
+  if (Array.isArray(parsed)) {
+    const valid = parsed
+      .map((item) => {
+        if (!item || typeof item !== "object") return null;
+        const qValue = item.question || item.name || item.q || "";
+        const aValue = item.answer || item.text || item.a || "";
+        const q = typeof qValue === "string" ? qValue.trim() : "";
+        const a = typeof aValue === "string" ? aValue.trim() : "";
+        return q && a ? { question: q, answer: a } : null;
+      })
+      .filter(Boolean);
+
+    if (valid.length > 0) return valid;
+  }
+
+  // Fallback to markdown extraction if content is provided
+  if (useContentFallback && content) {
+    const extracted = extractFaqsFromContent(content);
+    if (extracted.length > 0) return extracted;
+  }
+
+  return null;
 }
 
 /**
@@ -68,12 +126,16 @@ function getPostsFromFilesystem() {
     const filePath = path.join(postsDirectory, fileName);
     const fileContents = fs.readFileSync(filePath, "utf8");
     const { data, content } = matter(fileContents);
+    const normalizedContent = normalizeMarkdown(content);
+    const rawFaqs = data.faqs || data.faq || data.faqItems || null;
 
     return {
       id: data.slug || fileName.replace(/\.md$/, ""),
       title: data.title,
       slug: data.slug,
       date: data.date,
+      publishedAt: data.publishedAt || data.date || null,
+      updatedAt: data.updatedAt || data.publishedAt || data.date || null,
       readTime: data.readTime || calculateReadingTime(content),
       category: data.category,
       categorySlug: data.categorySlug,
@@ -83,15 +145,17 @@ function getPostsFromFilesystem() {
       featuredImage: data.featuredImage || data.image,
       metaTitle: data.metaTitle || data.title,
       metaDescription: data.metaDescription || data.description || data.excerpt,
+      canonicalUrl: data.canonicalUrl || null,
+      ogImage: data.ogImage || data.image || data.featuredImage || null,
       imageAlt: data.imageAlt || data.ogImageAlt || data.title,
       ogImageAlt: data.ogImageAlt || data.imageAlt || data.title,
       author: data.author || "Amrendra Kumar",
       tags: data.tags || [],
       wordCount: countWords(content),
-      content: normalizeMarkdown(content),
+      content: normalizedContent,
       status: "PUBLISHED",
       views: data.views || 0,
-      faqs: data.faqs || null,
+      faqs: normalizePostFaqs(rawFaqs, normalizedContent, false),
     };
   });
 
@@ -115,32 +179,39 @@ export async function getAllPostsAsync() {
     });
 
     if (dbPosts && dbPosts.length > 0) {
-      return dbPosts.map((post) => ({
-        id: post.id,
-        title: post.title,
-        slug: post.slug,
-        date: post.publishedAt
-          ? post.publishedAt.toISOString().split("T")[0]
-          : post.createdAt.toISOString().split("T")[0],
-        readTime: post.readingTime || calculateReadingTime(post.content),
-        category: post.category ? post.category.name : "General",
-        categorySlug: post.categorySlug || (post.category ? post.category.slug : "general"),
-        excerpt: post.excerpt || "",
-        description: post.description || post.excerpt || "",
-        metaTitle: post.metaTitle || post.title,
-        metaDescription: post.metaDescription || post.description || post.excerpt || "",
-        image: post.featuredImage || post.ogImage || "/images/og-blog.png",
-        featuredImage: post.featuredImage || post.ogImage,
-        imageAlt: post.title,
-        ogImageAlt: post.title,
-        author: post.authorName || "Amrendra Kumar",
-        tags: post.tags ? post.tags.map((t) => t.tag.name) : [],
-        wordCount: post.wordCount,
-        content: normalizeMarkdown(post.content),
-        status: post.status,
-        views: post.views || 0,
-        faqs: typeof post.faqs === "string" ? (() => { try { return JSON.parse(post.faqs); } catch { return null; } })() : (post.faqs || null),
-      }));
+      return dbPosts.map((post) => {
+        const normalizedContent = normalizeMarkdown(post.content);
+        return {
+          id: post.id,
+          title: post.title,
+          slug: post.slug,
+          date: post.publishedAt
+            ? post.publishedAt.toISOString().split("T")[0]
+            : post.createdAt.toISOString().split("T")[0],
+          publishedAt: post.publishedAt ? post.publishedAt.toISOString() : null,
+          updatedAt: post.updatedAt ? post.updatedAt.toISOString() : null,
+          readTime: post.readingTime || calculateReadingTime(post.content),
+          category: post.category ? post.category.name : "General",
+          categorySlug: post.categorySlug || (post.category ? post.category.slug : "general"),
+          excerpt: post.excerpt || "",
+          description: post.description || post.excerpt || "",
+          metaTitle: post.metaTitle || post.title,
+          metaDescription: post.metaDescription || post.description || post.excerpt || "",
+          canonicalUrl: post.canonicalUrl || null,
+          ogImage: post.ogImage || null,
+          image: post.featuredImage || post.ogImage || "/images/og-blog.png",
+          featuredImage: post.featuredImage || post.ogImage,
+          imageAlt: post.title,
+          ogImageAlt: post.title,
+          author: post.authorName || "Amrendra Kumar",
+          tags: post.tags ? post.tags.map((t) => t.tag.name) : [],
+          wordCount: post.wordCount,
+          content: normalizedContent,
+          status: post.status,
+          views: post.views || 0,
+          faqs: normalizePostFaqs(post.faqs, normalizedContent, false),
+        };
+      });
     }
   } catch (error) {
     console.warn("⚠️ Database query failed in posts.js, falling back to filesystem markdown:", error?.message || error);
@@ -170,26 +241,7 @@ export async function getPostBySlugAsync(slug) {
     });
 
     if (post) {
-      let postFaqs = post.faqs || null;
-      if (!postFaqs) {
-        try {
-          const rawRows = await prisma.$queryRawUnsafe(
-            'SELECT "faqs" FROM "Blog" WHERE "id" = $1',
-            post.id
-          );
-          postFaqs = rawRows[0]?.faqs || null;
-        } catch {
-          // ignore
-        }
-      }
-
-      if (typeof postFaqs === "string") {
-        try {
-          postFaqs = JSON.parse(postFaqs);
-        } catch {
-          postFaqs = null;
-        }
-      }
+      const normalizedContent = normalizeMarkdown(post.content);
 
       return {
         id: post.id,
@@ -198,6 +250,8 @@ export async function getPostBySlugAsync(slug) {
         date: post.publishedAt
           ? post.publishedAt.toISOString().split("T")[0]
           : post.createdAt.toISOString().split("T")[0],
+        publishedAt: post.publishedAt ? post.publishedAt.toISOString() : null,
+        updatedAt: post.updatedAt ? post.updatedAt.toISOString() : null,
         readTime: post.readingTime || calculateReadingTime(post.content),
         category: post.category ? post.category.name : "General",
         categorySlug: post.categorySlug || (post.category ? post.category.slug : "general"),
@@ -205,6 +259,8 @@ export async function getPostBySlugAsync(slug) {
         description: post.description || post.excerpt || "",
         metaTitle: post.metaTitle || post.title,
         metaDescription: post.metaDescription || post.description || post.excerpt || "",
+        canonicalUrl: post.canonicalUrl || null,
+        ogImage: post.ogImage || null,
         image: post.featuredImage || post.ogImage || "/images/og-blog.png",
         featuredImage: post.featuredImage || post.ogImage,
         imageAlt: post.title,
@@ -212,9 +268,9 @@ export async function getPostBySlugAsync(slug) {
         author: post.authorName || "Amrendra Kumar",
         tags: post.tags ? post.tags.map((t) => t.tag.name) : [],
         wordCount: post.wordCount,
-        content: normalizeMarkdown(post.content),
+        content: normalizedContent,
         status: post.status,
-        faqs: postFaqs,
+        faqs: normalizePostFaqs(post.faqs, normalizedContent, false),
       };
     }
   } catch (err) {

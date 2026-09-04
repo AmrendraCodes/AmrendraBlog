@@ -193,8 +193,19 @@ export default function BlogForm({
       if (initialData.canonicalUrl !== undefined) setCanonicalUrl(initialData.canonicalUrl || '');
       if (initialData.ogTitle !== undefined) setOgTitle(initialData.ogTitle || '');
       if (initialData.ogDescription !== undefined) setOgDescription(initialData.ogDescription || '');
-      if (initialData.ogImage !== undefined) setOgImage(initialData.ogImage || '');
-      if (initialData.faqs && Array.isArray(initialData.faqs)) setFaqs(initialData.faqs);
+      if (initialData.faqs) {
+        let loadedFaqs = initialData.faqs;
+        if (typeof loadedFaqs === 'string') {
+          try {
+            loadedFaqs = JSON.parse(loadedFaqs);
+          } catch {
+            loadedFaqs = [];
+          }
+        }
+        if (Array.isArray(loadedFaqs)) {
+          setFaqs(loadedFaqs);
+        }
+      }
     }
   }, [initialData]);
 

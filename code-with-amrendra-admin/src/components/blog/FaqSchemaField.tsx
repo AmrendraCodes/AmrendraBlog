@@ -17,33 +17,79 @@ interface FaqSchemaFieldProps {
   onInsertFaqSchemaScript?: (scriptTag: string) => void;
 }
 
+export function cleanMarkdownText(text: string): string {
+  if (!text || typeof text !== 'string') return '';
+  let cleaned = text;
+  cleaned = cleaned.replace(/>\s*\[![A-Z]+\]\s*/gim, '');
+  cleaned = cleaned.replace(/(?:^|\n)\s*>\s*/gm, ' ');
+  cleaned = cleaned.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+  cleaned = cleaned.replace(/`([^`]+)`/g, '$1');
+  cleaned = cleaned.replace(/(\*\*|__)(.*?)\1/g, '$2');
+  cleaned = cleaned.replace(/(\*|_)(.*?)\1/g, '$2');
+  cleaned = cleaned.replace(/<[^>]*>/g, '');
+  cleaned = cleaned.replace(/\s+/g, ' ').trim();
+  return cleaned;
+}
+
 export function extractFaqs(content: string): FaqItem[] {
-  if (!content) return [];
+  if (!content || typeof content !== 'string') return [];
   const faqs: FaqItem[] = [];
 
-  // 1. Look for dedicated FAQ section: ## FAQ or ## Frequently Asked Questions
-  const faqSectionRegex = /##\s*(?:FAQ|Frequently Asked Questions)[\s\S]*?(?=(?:##\s+|$))/i;
-  const faqSectionMatch = content.match(faqSectionRegex);
-  const targetText = faqSectionMatch ? faqSectionMatch[0] : content;
+  // Match dedicated FAQ section heading (e.g., ## FAQ, ## FAQs, ## **FAQ**, ## Frequently Asked Questions)
+  const faqSectionRegex = /(?:^|\n)##\s*(?:\*\*)?(?:(?:\d+[\.\)]\s*)?(?:FAQ(?:s)?|Frequently Asked Questions|Common Questions|Questions\s*(?:&|and)\s*Answers))(?:\*\*)?.*?\r?\n([\s\S]*?)(?=(?:\r?\n##\s+[^\n#]|$))/i;
+  const match = content.match(faqSectionRegex);
 
-  // 2. Match questions with ### Question? or **Question?**
-  const qaRegex = /(?:###|\*\*)\s*([^\n\?]+\?)\s*(?:\*\*)?\s*\n+([\s\S]*?)(?=(?:###|\*\*|\n##|\n---|$))/gi;
-  let match;
-  while ((match = qaRegex.exec(targetText)) !== null) {
-    const question = match[1].replace(/\*\*/g, '').trim();
-    const answer = match[2]
-      .replace(/\*\*/g, '')
-      .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
-      .trim();
+  if (!match || !match[1]) {
+    return [];
+  }
 
-    if (question && answer && question.includes('?')) {
-      faqs.push({
-        id: `faq_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
-        question,
-        answer,
-      });
+  const faqText = match[1].trim();
+  const lines = faqText.split(/\r?\n/);
+  let currentQuestion: string | null = null;
+  let currentAnswerLines: string[] = [];
+
+  const isQuestionLine = (line: string): string | null => {
+    const trimmed = line.trim();
+    if (/^#{3,4}\s+/.test(trimmed)) {
+      return trimmed.replace(/^#{3,4}\s+/, '').trim();
+    }
+    if (/^\*\*(?:(?:\d+[\.\)]\s*)|(?:Q:\s*))?.+\?\*\*$/.test(trimmed)) {
+      return trimmed.replace(/^\*\*|\*\*$/g, '').trim();
+    }
+    return null;
+  };
+
+  const flushFaq = () => {
+    if (currentQuestion && currentAnswerLines.length > 0) {
+      const rawQuestion = currentQuestion.replace(/^\d+[\.\)]\s*/, '').replace(/^Q:\s*/i, '').trim();
+      let rawAnswer = currentAnswerLines.join('\n').trim();
+      rawAnswer = rawAnswer.replace(/^---\s*$/gm, '').trim();
+
+      const question = cleanMarkdownText(rawQuestion);
+      const answer = cleanMarkdownText(rawAnswer);
+
+      if (question && answer) {
+        faqs.push({
+          id: `faq_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+          question,
+          answer,
+        });
+      }
+    }
+    currentQuestion = null;
+    currentAnswerLines = [];
+  };
+
+  for (const line of lines) {
+    const qText = isQuestionLine(line);
+    if (qText) {
+      flushFaq();
+      currentQuestion = qText;
+    } else if (currentQuestion) {
+      currentAnswerLines.push(line);
     }
   }
+  flushFaq();
 
   return faqs;
 }
@@ -67,10 +113,10 @@ export function generateFaqSchemaJson(faqs: FaqItem[]): string {
     '@type': 'FAQPage',
     mainEntity: validFaqs.map((faq) => ({
       '@type': 'Question',
-      name: faq.question.trim(),
+      name: cleanMarkdownText(faq.question),
       acceptedAnswer: {
         '@type': 'Answer',
-        text: faq.answer.trim(),
+        text: cleanMarkdownText(faq.answer),
       },
     })),
   };
@@ -117,6 +163,40 @@ export default function FaqSchemaField({
       onFaqsChange(faqs);
     }
   }, [faqs, isManualJsonEditing]);
+
+  const handleJsonChange = (newVal: string) => {
+    setIsManualJsonEditing(true);
+    setSchemaJson(newVal);
+
+    try {
+      const parsed = JSON.parse(newVal);
+      if (parsed && Array.isArray(parsed.mainEntity)) {
+        const parsedFaqs: FaqItem[] = parsed.mainEntity
+          .map((item: any) => {
+            const q = String(item.name || item.question || '').trim();
+            const a = String(item.acceptedAnswer?.text || item.answer || '').trim();
+            if (q && a) {
+              return {
+                id: `faq_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+                question: q,
+                answer: a,
+              };
+            }
+            return null;
+          })
+          .filter(Boolean) as FaqItem[];
+
+        if (parsedFaqs.length > 0) {
+          setFaqs(parsedFaqs);
+          if (onFaqsChange) {
+            onFaqsChange(parsedFaqs);
+          }
+        }
+      }
+    } catch {
+      // Allow user to continue editing malformed/partial JSON
+    }
+  };
 
   const handleAddFaq = () => {
     const newItem: FaqItem = {
@@ -232,10 +312,7 @@ export default function FaqSchemaField({
             <textarea
               rows={lineCount}
               value={schemaJson}
-              onChange={(e) => {
-                setIsManualJsonEditing(true);
-                setSchemaJson(e.target.value);
-              }}
+              onChange={(e) => handleJsonChange(e.target.value)}
               className="flex-1 p-3 bg-transparent text-emerald-400 font-mono text-xs leading-relaxed border-0 outline-none resize-none overflow-x-auto whitespace-pre"
             />
           </div>
