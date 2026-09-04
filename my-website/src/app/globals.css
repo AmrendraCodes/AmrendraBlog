@@ -67,8 +67,9 @@
   --section-alt-bg: #F8FAFC;
   --hero-gradient-from: #0B1F3A;
   --hero-gradient-to: #F59E0B;
-  --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-display: var(--font-syne), system-ui, sans-serif;
+  --font-sans: var(--font-geist), system-ui, sans-serif;
+  --font-display: var(--font-geist), system-ui, sans-serif;
+  --font-playfair: var(--font-geist), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), monospace;
 }
 

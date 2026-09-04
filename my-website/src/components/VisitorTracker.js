@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { readConsent } from '@/lib/cookie-consent';
 
 export default function VisitorTracker() {
   const pathname = usePathname();
@@ -36,7 +37,14 @@ export default function VisitorTracker() {
       }
     };
 
-    scheduleTrack();
+    if (readConsent()?.preferences.analytics) scheduleTrack();
+
+    const handleConsentUpdate = (event) => {
+      if (event.detail?.preferences.analytics) scheduleTrack();
+    };
+    window.addEventListener('cwa:consent-updated', handleConsentUpdate);
+
+    return () => window.removeEventListener('cwa:consent-updated', handleConsentUpdate);
   }, [pathname]);
 
   return null;

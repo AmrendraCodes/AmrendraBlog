@@ -15,6 +15,7 @@ import {
   Sparkles,
   Bot
 } from "lucide-react";
+import { CookieSettingsButton } from "./CookieConsent";
 
 export default function Footer() {
   const [currentYear, setCurrentYear] = useState(2026);
@@ -200,6 +201,9 @@ export default function Footer() {
                     </Link>
                   </li>
                 ))}
+                <li>
+                  <CookieSettingsButton />
+                </li>
               </ul>
             </div>
 

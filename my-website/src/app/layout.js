@@ -1,30 +1,18 @@
-import { Inter, JetBrains_Mono, Syne, Playfair_Display } from "next/font/google";
+import { Geist, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from 'next-themes';
-import { GoogleAnalytics } from '@next/third-parties/google';
-import Script from 'next/script';
 import "./globals.css";
 import ConditionalLayout from "../components/ConditionalLayout";
+import CookieConsent from "../components/CookieConsent";
+import ConsentAwareTracking from "../components/ConsentAwareTracking";
 
-const inter = Inter({
-  variable: "--font-inter",
+const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
   display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const syne = Syne({
-  variable: "--font-syne",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
   subsets: ["latin"],
   display: "swap",
 });
@@ -102,12 +90,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body
         suppressHydrationWarning
-        className={`${inter.variable} ${jetbrainsMono.variable} ${syne.variable} ${playfair.variable} bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300 overflow-x-hidden`}
+        className={`${geist.variable} ${jetbrainsMono.variable} bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300 overflow-x-hidden`}
       >
         <script
           type="application/ld+json"
@@ -139,35 +125,9 @@ export default function RootLayout({ children }) {
         />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ConditionalLayout>{children}</ConditionalLayout>
+          <CookieConsent />
         </ThemeProvider>
-        <GoogleAnalytics gaId="G-F1RG71SZFQ" />
-        <Script
-          id="meta-pixel"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '1771913473946323');
-              fbq('track', 'PageView');
-            `,
-          }}
-        />
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: 'none' }}
-            src="https://www.facebook.com/tr?id=1771913473946323&ev=PageView&noscript=1"
-            alt=""
-          />
-        </noscript>
+        <ConsentAwareTracking />
       </body>
     </html>
   );
