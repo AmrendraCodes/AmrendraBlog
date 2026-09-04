@@ -21,7 +21,9 @@ export const revalidate = 300;
 
 export async function generateStaticParams() {
   const posts = await getAllPostsAsync();
-  return posts.map((post) => ({ slug: post.slug }));
+  return posts
+    .filter((post) => typeof post.slug === "string" && post.slug.trim().length > 0)
+    .map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {

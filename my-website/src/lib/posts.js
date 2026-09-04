@@ -126,13 +126,14 @@ function getPostsFromFilesystem() {
     const filePath = path.join(postsDirectory, fileName);
     const fileContents = fs.readFileSync(filePath, "utf8");
     const { data, content } = matter(fileContents);
+    const slug = data.slug || fileName.replace(/\.md$/, "");
     const normalizedContent = normalizeMarkdown(content);
     const rawFaqs = data.faqs || data.faq || data.faqItems || null;
 
     return {
-      id: data.slug || fileName.replace(/\.md$/, ""),
+      id: slug,
       title: data.title,
-      slug: data.slug,
+      slug,
       date: data.date,
       publishedAt: data.publishedAt || data.date || null,
       updatedAt: data.updatedAt || data.publishedAt || data.date || null,
