@@ -286,11 +286,11 @@ export default function FaqSchemaField({
                 type="button"
                 onClick={handleInsertFaqMarkdownToArticle}
                 disabled={faqs.length === 0}
-                className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-indigo-600 text-white hover:bg-indigo-700 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-xs"
-                title="Append FAQs directly to Markdown Article"
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-600 text-white hover:bg-slate-700 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-xs"
+                title="Optional: Insert FAQ text into article markdown. Not needed for normal publishing — FAQs are saved automatically as structured data."
               >
                 {insertedMarkdown ? <Check size={12} /> : <ArrowDownToLine size={12} />}
-                <span>{insertedMarkdown ? 'Appended!' : 'Append FAQs to Post'}</span>
+                <span>{insertedMarkdown ? 'Appended!' : 'Insert into Markdown (Optional)'}</span>
               </button>
             )}
           </div>

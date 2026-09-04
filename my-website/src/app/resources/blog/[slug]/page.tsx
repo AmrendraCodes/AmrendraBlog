@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, Clock, Calendar } from "lucide-react";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/JsonLd";
-import { cleanMarkdownText, getBlogPostSchema, getBreadcrumbSchema, getFAQSchema, extractFaqsFromContent } from "@/lib/schema";
+import { getBlogPostSchema, getBreadcrumbSchema, getFAQSchema, extractFaqsFromContent, stripFaqSectionFromContent } from "@/lib/schema";
 import { siteMetadata } from "@/config/seo";
 import BlogDetailClient from "@/components/blog/BlogDetailClient";
 import ArticleNavigation from "@/components/blog/ArticleNavigation";
@@ -84,7 +84,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   }
 
   const canonicalUrl = post.canonicalUrl || `${siteMetadata.siteUrl}/resources/blog/${slug}`;
-  const headings = extractTocHeadings(post.content);
+  // headings computed after FAQ content decision below
   const relatedPosts = await getRelatedPostsAsync(slug, 3);
   const { prev, next } = await getPrevNextPostsAsync(slug);
 
@@ -112,15 +112,31 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     },
   ]);
 
-  // CMS FAQs are authoritative. Markdown extraction only supports older posts
-  // and is not rendered again as a duplicate accordion.
+  // --- FAQ Source of Truth ---
+  // 1. CMS FAQs present → accordion + schema from CMS (source of truth)
+  // 2. No CMS FAQs, markdown has FAQs → schema from markdown, no accordion (already inline)
+  // 3. Neither → nothing
   const cmsFaqs = Array.isArray(post.faqs) ? post.faqs : [];
   const markdownFaqs = extractFaqsFromContent(post.content);
   const faqs = cmsFaqs.length > 0 ? cmsFaqs : markdownFaqs;
-  const faqKey = (faq) => `${cleanMarkdownText(faq.question).toLowerCase()}|${cleanMarkdownText(faq.answer)}`;
-  const markdownFaqKeys = new Set(markdownFaqs.map(faqKey));
-  const visibleFaqs = cmsFaqs.filter((faq) => !markdownFaqKeys.has(faqKey(faq)));
   const faqSchema = getFAQSchema(faqs);
+
+  let visibleFaqs: { question: string; answer: string }[] = [];
+  let articleContent = post.content;
+
+  if (cmsFaqs.length > 0) {
+    // CMS FAQs are the source of truth — render through BlogFaqAccordion
+    visibleFaqs = cmsFaqs;
+    // If the markdown body also contains an FAQ section (e.g. auto-appended earlier),
+    // strip it from the rendered output to prevent duplicate visual rendering.
+    // The stored content is NOT modified — only the render output.
+    if (markdownFaqs.length > 0) {
+      articleContent = stripFaqSectionFromContent(post.content);
+    }
+  }
+  // When no CMS FAQs: visibleFaqs stays empty, markdown FAQ section renders inline naturally.
+
+  const headings = extractTocHeadings(articleContent);
 
   return (
     <div className="min-h-screen bg-[var(--background)] isolate">
@@ -223,7 +239,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
       {/* Blog Detail Client (TOC Sidebar + Content + Bottom Sections) */}
       <BlogDetailClient
-        content={post.content}
+        content={articleContent}
         headings={headings}
         title={post.title}
         slug={post.slug}
