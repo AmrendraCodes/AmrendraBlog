@@ -169,6 +169,14 @@ function getPostsFromFilesystem() {
  * Returns posts sorted by published date (newest first).
  */
 export async function getAllPostsAsync() {
+  // Markdown is a local-development/build fallback only. Once a database is
+  // configured, it is the source of truth so deleted or unpublished CMS
+  // content cannot be resurrected from a committed file.
+  if (!process.env.DATABASE_URL) {
+    console.warn("DATABASE_URL is not configured; using filesystem markdown fallback.");
+    return getPostsFromFilesystem();
+  }
+
   try {
     const dbPosts = await prisma.blog.findMany({
       where: { status: "PUBLISHED" },
@@ -179,7 +187,7 @@ export async function getAllPostsAsync() {
       orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
     });
 
-    if (dbPosts && dbPosts.length > 0) {
+    if (dbPosts) {
       return dbPosts.map((post) => {
         const normalizedContent = normalizeMarkdown(post.content);
         return {
@@ -215,10 +223,10 @@ export async function getAllPostsAsync() {
       });
     }
   } catch (error) {
-    console.warn("⚠️ Database query failed in posts.js, falling back to filesystem markdown:", error?.message || error);
+    console.error("Database query failed in posts.js:", error?.message || error);
   }
 
-  return getPostsFromFilesystem();
+  return [];
 }
 
 /**
@@ -232,9 +240,13 @@ export function getAllPosts() {
  * Returns a single post by its slug (Async).
  */
 export async function getPostBySlugAsync(slug) {
+  if (!process.env.DATABASE_URL) {
+    return getPostBySlug(slug);
+  }
+
   try {
-    const post = await prisma.blog.findUnique({
-      where: { slug },
+    const post = await prisma.blog.findFirst({
+      where: { slug, status: "PUBLISHED" },
       include: {
         category: true,
         tags: { include: { tag: true } },
@@ -274,11 +286,13 @@ export async function getPostBySlugAsync(slug) {
         faqs: normalizePostFaqs(post.faqs, normalizedContent, false),
       };
     }
+
+    return null;
   } catch (err) {
-    console.warn("⚠️ Database lookup failed for slug, using filesystem:", slug, err?.message || err);
+    console.error("Database lookup failed for slug:", slug, err?.message || err);
   }
 
-  return getPostBySlug(slug);
+  return null;
 }
 
 /**

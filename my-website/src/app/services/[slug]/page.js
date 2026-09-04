@@ -43,7 +43,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: service.metaTitle,
       description: service.metaDescription,
-      url: `https://codewithamrendra.in/services/${service.slug}`,
+      url: `https://www.codewithamrendra.in/services/${service.slug}`,
       type: "article",
     },
     alternates: {
@@ -71,7 +71,7 @@ export default async function ServiceDetailPage({ params }) {
     "provider": {
       "@type": "Organization",
       "name": "Code with Amrendra",
-      "url": "https://codewithamrendra.in"
+      "url": "https://www.codewithamrendra.in"
     },
     "areaServed": "Worldwide",
     "serviceType": service.title,
@@ -86,19 +86,19 @@ export default async function ServiceDetailPage({ params }) {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://codewithamrendra.in"
+        "item": "https://www.codewithamrendra.in"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Services",
-        "item": "https://codewithamrendra.in/services"
+        "item": "https://www.codewithamrendra.in/services"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": service.title,
-        "item": `https://codewithamrendra.in/services/${service.slug}`
+        "item": `https://www.codewithamrendra.in/services/${service.slug}`
       }
     ]
   };

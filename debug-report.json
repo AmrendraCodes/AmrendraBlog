@@ -1,0 +1,265 @@
+{
+  "auditDate": "2026-09-04",
+  "scope": {
+    "publicApp": "my-website",
+    "cmsApp": "code-with-amrendra-admin",
+    "productionSite": "https://www.codewithamrendra.in",
+    "cmsOrigin": "https://amrendra-cms-blog-five.vercel.app"
+  },
+  "summary": {
+    "sitemapRoutesTested": 36,
+    "sitemapRoutesHealthy": 36,
+    "negativeRoutesTested": 4,
+    "confirmedBrokenRoutes": 2,
+    "liveCmsApisReadOnlyTested": 3,
+    "productionBuild": "PASS_WITH_LOCAL_DATABASE_FALLBACK",
+    "publicLint": "PASS",
+    "cmsBuild": "PASS_WITH_MIDDLEWARE_DEPRECATION_WARNING",
+    "cmsLint": "PASS",
+    "productionBlockers": 2
+  },
+  "routes": [
+    {
+      "url": "sitemap.xml (36 listed public URLs)",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "result": "healthy",
+      "evidence": "All sitemap URLs returned 200; 0.485s to 1.755s in one external sample."
+    },
+    {
+      "url": "/resources/blog/not-a-real-post-audit-2026",
+      "expectedStatus": 404,
+      "actualStatus": 404,
+      "result": "healthy"
+    },
+    {
+      "url": "/services/not-a-real-service-audit-2026",
+      "expectedStatus": 404,
+      "actualStatus": 404,
+      "result": "healthy"
+    },
+    {
+      "url": "/resources/case-studies/not-a-real-case-study-audit-2026",
+      "expectedStatus": 404,
+      "actualStatus": 404,
+      "result": "healthy"
+    },
+    {
+      "url": "/category/not-a-real-category-audit-2026",
+      "expectedStatus": 404,
+      "actualStatus": 200,
+      "result": "soft_404",
+      "file": "my-website/src/app/category/[slug]/page.js",
+      "line": 58
+    },
+    {
+      "url": "/blog",
+      "expectedStatus": 308,
+      "actualStatus": 308,
+      "redirectTarget": "/resources/blog",
+      "result": "healthy"
+    },
+    {
+      "url": "/case-studies",
+      "expectedStatus": 308,
+      "actualStatus": 308,
+      "redirectTarget": "/resources/case-studies",
+      "result": "healthy"
+    },
+    {
+      "url": "/resources/blog/docker-vs-kubernetes-practical-guide",
+      "expectedStatus": 404,
+      "actualStatus": 200,
+      "result": "content_control_bypass",
+      "file": "my-website/src/lib/posts.js",
+      "lines": [234, 282],
+      "rootCause": "Database miss falls through to repository Markdown."
+    }
+  ],
+  "apis": [
+    {
+      "endpoint": "CMS /api/blogs",
+      "method": "GET",
+      "actualStatus": 200,
+      "authentication": "missing",
+      "severity": "P0",
+      "evidence": "Live unauthenticated response contained ten complete post rows."
+    },
+    {
+      "endpoint": "CMS /api/blogs/[id]",
+      "method": "GET",
+      "actualStatus": 200,
+      "authentication": "missing",
+      "severity": "P0",
+      "evidence": "Live unauthenticated detail response returned a post."
+    },
+    {
+      "endpoint": "CMS /api/upload",
+      "method": "POST",
+      "authentication": "missing",
+      "severity": "P0",
+      "file": "code-with-amrendra-admin/src/app/api/upload/route.ts",
+      "line": 11
+    },
+    {
+      "endpoint": "Public /api/track",
+      "methods": ["GET", "POST"],
+      "severity": "P2",
+      "file": "my-website/src/app/api/track/route.js",
+      "lines": [27, 71, 74],
+      "rootCause": "Database write failures are swallowed while success is returned."
+    },
+    {
+      "endpoint": "CMS /api/cron/publish-scheduled",
+      "methods": ["GET", "POST"],
+      "severity": "P1_conditional",
+      "file": "code-with-amrendra-admin/src/app/api/cron/publish-scheduled/route.ts",
+      "lines": [10, 34],
+      "rootCause": "Request authorization is skipped when CRON_SECRET is absent."
+    }
+  ],
+  "errors": [
+    {
+      "id": "P0-1",
+      "severity": "P0",
+      "file": "my-website/src/lib/posts.js",
+      "lines": [234, 282],
+      "function": "getPostBySlugAsync",
+      "title": "Unpublished/deleted CMS content can render from Markdown fallback"
+    },
+    {
+      "id": "P0-2",
+      "severity": "P0",
+      "file": "code-with-amrendra-admin/src/app/api/blogs/route.ts",
+      "lines": [55, 110],
+      "function": "GET",
+      "title": "Unauthenticated CMS content API"
+    },
+    {
+      "id": "P0-3",
+      "severity": "P0",
+      "file": "code-with-amrendra-admin/src/app/api/upload/route.ts",
+      "lines": [11, 139],
+      "function": "POST",
+      "title": "Unauthenticated Vercel Blob upload"
+    },
+    {
+      "id": "P1-1",
+      "severity": "P1",
+      "file": "my-website/src/app/category/[slug]/page.js",
+      "lines": [58, 117],
+      "function": "CategoryPage",
+      "title": "Unknown category returns cacheable HTTP 200"
+    }
+  ],
+  "warnings": [
+    {
+      "severity": "P2",
+      "title": "Cross-deployment revalidation can fail silently",
+      "files": [
+        "code-with-amrendra-admin/src/lib/public-site-revalidation.ts",
+        "code-with-amrendra-admin/src/app/api/blogs/route.ts",
+        "code-with-amrendra-admin/src/app/api/blogs/[id]/route.ts"
+      ]
+    },
+    {
+      "severity": "P2",
+      "title": "No public revalidation call for CMS category mutations",
+      "file": "code-with-amrendra-admin/src/app/api/categories/route.ts"
+    },
+    {
+      "severity": "P2",
+      "title": "No route error boundaries",
+      "files": ["my-website/src/app/error.js", "my-website/src/app/global-error.js"]
+    },
+    {
+      "severity": "P3",
+      "title": "Next.js middleware convention is deprecated",
+      "file": "code-with-amrendra-admin/src/middleware.ts"
+    }
+  ],
+  "seo": [
+    {
+      "severity": "P2",
+      "file": "my-website/src/lib/schema.js",
+      "lines": [41, 173],
+      "title": "Profile image used in structured data returns 404"
+    },
+    {
+      "severity": "P3",
+      "file": "my-website/src/app/services/[slug]/page.js",
+      "line": 46,
+      "title": "Open Graph URL uses non-canonical host"
+    },
+    {
+      "severity": "P3",
+      "file": "my-website/src/app/page.js",
+      "lines": [86, 88],
+      "title": "Homepage duplicates Person structured data from root layout"
+    }
+  ],
+  "performance": [
+    {
+      "scope": "36 sitemap URLs",
+      "meanSeconds": 1.0,
+      "medianSeconds": 1.054,
+      "minSeconds": 0.485,
+      "maxSeconds": 1.755,
+      "note": "Single external read-only sample, not a load test."
+    },
+    {
+      "file": "my-website/src/app/resources/blog/[slug]/page.tsx",
+      "lines": [29, 31, 80, 91],
+      "title": "Detail routes make repeated and sequential published-post reads"
+    }
+  ],
+  "brokenLinks": [],
+  "recommendations": [
+    "Restrict the Markdown fallback to explicit local/no-database conditions and return null for a DB miss; include status PUBLISHED in detail lookups.",
+    "Add getAuthSession and role checks to CMS post reads and upload before any data/storage operation.",
+    "Call notFound() for unknown categories.",
+    "Fail closed when CRON_SECRET is missing in production.",
+    "Make public revalidation outcome visible and add category and sitemap invalidation.",
+    "Standardize all canonical, Open Graph, and schema URLs on https://www.codewithamrendra.in and repair the profile image URL.",
+    "Add error boundaries and shared/distributed rate limits."
+  ],
+  "remediationAppliedLocally": [
+    {
+      "finding": "Markdown fallback bypass",
+      "status": "fixed_pending_deploy",
+      "files": ["my-website/src/lib/posts.js"]
+    },
+    {
+      "finding": "CMS unauthenticated post reads",
+      "status": "fixed_pending_deploy",
+      "files": [
+        "code-with-amrendra-admin/src/app/api/blogs/route.ts",
+        "code-with-amrendra-admin/src/app/api/blogs/[id]/route.ts"
+      ]
+    },
+    {
+      "finding": "CMS unauthenticated uploads",
+      "status": "fixed_pending_deploy",
+      "files": ["code-with-amrendra-admin/src/app/api/upload/route.ts"]
+    },
+    {
+      "finding": "Category soft 404",
+      "status": "fixed_pending_deploy",
+      "files": ["my-website/src/app/category/[slug]/page.js"]
+    },
+    {
+      "finding": "Structured-data asset and canonical host URLs",
+      "status": "fixed_pending_deploy",
+      "files": [
+        "my-website/src/lib/schema.js",
+        "my-website/src/app/services/[slug]/page.js",
+        "my-website/src/app/category/[slug]/page.js"
+      ]
+    }
+  ],
+  "limitations": [
+    "No authenticated CMS mutations, contact/newsletter writes, uploads, or signed revalidation requests were executed.",
+    "No Vercel secret values or database indexes were inspected.",
+    "No browser-console or visual mobile test harness was available."
+  ]
+}

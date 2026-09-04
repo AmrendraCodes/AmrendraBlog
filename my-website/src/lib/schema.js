@@ -20,11 +20,6 @@ export function getWebsiteSchema() {
     "@type": "WebSite",
     "name": "Code with Amrendra",
     "url": "https://www.codewithamrendra.in",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://codewithamrendra.in/blog?search={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
   };
 }
 
@@ -38,7 +33,7 @@ export function getPersonSchema() {
     "@type": "Person",
     "name": "Amrendra Kumar",
     "url": "https://www.codewithamrendra.in",
-    "image": "https://codewithamrendra.in/Profile%20photo.jpeg",
+    "image": "https://www.codewithamrendra.in/profile-photo.jpeg",
     "sameAs": [
       "https://github.com/AmrendraCodes",
       "https://x.com/codewithamrendr",
@@ -61,12 +56,12 @@ export function getLocalBusinessSchema() {
   return {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "SoftwareCompany"],
-    "@id": "https://codewithamrendra.in/#organization",
+    "@id": "https://www.codewithamrendra.in/#organization",
     "name": "Code With Amrendra",
     "alternateName": ["Code with Amrendra", "CWA Engineering"],
     "url": "https://www.codewithamrendra.in",
-    "logo": "https://codewithamrendra.in/logo-square.png",
-    "image": "https://codewithamrendra.in/logo-square.png",
+    "logo": "https://www.codewithamrendra.in/logo-square.png",
+    "image": "https://www.codewithamrendra.in/logo-square.png",
     "telephone": "+91-6205482614",
     "priceRange": "$$",
     "description": "Software company specializing in Custom AI Development Services, Web Development, SaaS Architecture, and Cloud Solutions.",
@@ -170,7 +165,7 @@ export function getBlogPostSchema({ title, description, slug, canonicalUrl, imag
       "name": "Code with Amrendra",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://codewithamrendra.in/Profile%20photo.jpeg"
+          "url": "https://www.codewithamrendra.in/logo-square.png"
       }
     },
     "mainEntityOfPage": {

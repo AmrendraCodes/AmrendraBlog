@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { getAllPostsAsync } from '@/lib/posts';
 import BlogCard from '@/components/BlogCard';
 import JsonLd from '@/components/JsonLd';
@@ -62,20 +63,24 @@ export default async function CategoryPage({ params }) {
     (p) => (p.categorySlug || '').toLowerCase() === slug.toLowerCase()
   );
 
+  if (posts.length === 0) {
+    notFound();
+  }
+
   const formattedName = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
   const categorySchema = getCollectionPageSchema({
     name: `${formattedName} Articles`,
     description: `Articles related to ${formattedName}`,
-    url: `https://codewithamrendra.in/category/${slug}`,
+    url: `https://www.codewithamrendra.in/category/${slug}`,
   });
 
   const breadcrumbSchema = getBreadcrumbSchema([
-    { name: "Home", url: "https://codewithamrendra.in" },
-    { name: "Categories", url: "https://codewithamrendra.in/categories" },
+    { name: "Home", url: "https://www.codewithamrendra.in" },
+    { name: "Categories", url: "https://www.codewithamrendra.in/categories" },
     {
       name: formattedName,
-      url: `https://codewithamrendra.in/category/${slug}`,
+      url: `https://www.codewithamrendra.in/category/${slug}`,
     },
   ]);
 

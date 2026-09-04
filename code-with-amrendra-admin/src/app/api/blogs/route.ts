@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { getAuthSession } from '@/lib/auth';
+import { authorizeRole, getAuthSession, Role } from '@/lib/auth';
 import { blogSchema } from '@/schemas/blog';
 import { calculateReadingTime, countWords, slugify } from '@/lib/utils';
 import { formatArticleMarkdown } from '@/lib/formatter';
@@ -54,6 +54,14 @@ async function resolveOrCreateTag(rawTagInput: string) {
 
 export async function GET(request: Request) {
   try {
+    const session = await getAuthSession();
+    if (!session) {
+      return NextResponse.json(
+        { success: false, error: { code: 'UNAUTHORIZED', message: 'Not authenticated' } },
+        { status: 401 }
+      );
+    }
+
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('search') || '';
     const status = searchParams.get('status') || '';
@@ -62,6 +70,14 @@ export async function GET(request: Request) {
     const limit = parseInt(searchParams.get('limit') || '50', 10);
 
     const where: Prisma.BlogWhereInput = {};
+    if (session.user.role === Role.AUTHOR) {
+      where.authorId = session.user.id;
+    } else if (!authorizeRole(session.user.role, [Role.EDITOR])) {
+      return NextResponse.json(
+        { success: false, error: { code: 'FORBIDDEN', message: 'You do not have permission to view blog posts' } },
+        { status: 403 }
+      );
+    }
     if (search) {
       where.OR = [
         { title: { contains: search } },

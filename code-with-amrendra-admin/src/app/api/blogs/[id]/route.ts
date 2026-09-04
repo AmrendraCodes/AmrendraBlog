@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { getAuthSession } from '@/lib/auth';
+import { authorizeRole, getAuthSession, Role } from '@/lib/auth';
 import { blogSchema } from '@/schemas/blog';
 import { calculateReadingTime, countWords, slugify } from '@/lib/utils';
 import { formatArticleMarkdown } from '@/lib/formatter';
@@ -57,6 +57,14 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const session = await getAuthSession();
+    if (!session) {
+      return NextResponse.json(
+        { success: false, error: { code: 'UNAUTHORIZED', message: 'Not authenticated' } },
+        { status: 401 }
+      );
+    }
+
     const { id } = await params;
 
     const post = await prisma.blog.findUnique({
@@ -64,7 +72,15 @@ export async function GET(
       include: {
         category: true,
         tags: { include: { tag: true } },
-        author: true,
+        author: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            role: true,
+            avatar: true,
+          },
+        },
       },
     });
 
@@ -72,6 +88,14 @@ export async function GET(
       return NextResponse.json(
         { success: false, error: { code: 'NOT_FOUND', message: 'Blog post not found' } },
         { status: 404 }
+      );
+    }
+
+    const canReadAllPosts = authorizeRole(session.user.role, [Role.EDITOR]);
+    if (!canReadAllPosts && (session.user.role !== Role.AUTHOR || post.authorId !== session.user.id)) {
+      return NextResponse.json(
+        { success: false, error: { code: 'FORBIDDEN', message: 'You do not have permission to view this blog post' } },
+        { status: 403 }
       );
     }
 
