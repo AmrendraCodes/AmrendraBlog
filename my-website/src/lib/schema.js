@@ -149,7 +149,7 @@ export function getBlogPostSchema({ title, description, slug, canonicalUrl, imag
   };
   const canonical = toSafeUrl(canonicalUrl, defaultCanonical);
   const schemaImage = toSafeUrl(image, 'https://www.codewithamrendra.in/images/og-default.png');
-  
+
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -291,7 +291,7 @@ export function extractFaqsFromContent(content) {
   const faqs = [];
 
   // Match dedicated FAQ section heading (e.g., ## FAQ, ## FAQs, ## **FAQ**, ## Frequently Asked Questions)
-  const faqSectionRegex = /(?:^|\n)##\s*(?:\*\*)?(?:(?:\d+[\.\)]\s*)?(?:FAQ(?:s)?|Frequently Asked Questions|Common Questions|Questions\s*(?:&|and)\s*Answers))(?:\*\*)?.*?\r?\n([\s\S]*?)(?=(?:\r?\n##\s+[^\n#]|$))/i;
+  const faqSectionRegex = /(?:^|\n)##\s*(?:\*\*)?(?:(?:\d+[\.\\)]\s*)?(?:FAQ(?:s)?|Frequently Asked Questions|Common Questions|Questions\s*(?:&|and)\s*Answers))(?:\*\*)?.*?\r?\n([\s\S]*?)(?=(?:\r?\n##\s+[^\n#]|$))/i;
   const match = content.match(faqSectionRegex);
 
   if (!match || !match[1]) {
@@ -310,7 +310,7 @@ export function extractFaqsFromContent(content) {
       return trimmed.replace(/^#{3,4}\s+/, '').trim();
     }
     // **1. Question?** or **Q: Question?** or **Question?**
-    if (/^\*\*(?:(?:\d+[\.\)]\s*)|(?:Q:\s*))?.+\?\*\*$/.test(trimmed)) {
+    if (/^\*\*(?:(?:\d+[\.\\)]\s*)|(?:Q:\s*))?.+\?\*\*$/.test(trimmed)) {
       return trimmed.replace(/^\*\*|\*\*$/g, '').trim();
     }
     return null;
@@ -318,7 +318,7 @@ export function extractFaqsFromContent(content) {
 
   const flushFaq = () => {
     if (currentQuestion && currentAnswerLines.length > 0) {
-      let rawQuestion = currentQuestion.replace(/^\d+[\.\)]\s*/, '').replace(/^Q:\s*/i, '').trim();
+      let rawQuestion = currentQuestion.replace(/^\d+[\.\\)]\s*/, '').replace(/^Q:\s*/i, '').trim();
       let rawAnswer = currentAnswerLines.join('\n').trim();
 
       // Clean markdown dividers if any
@@ -347,6 +347,24 @@ export function extractFaqsFromContent(content) {
   flushFaq();
 
   return faqs;
+}
+
+/**
+ * Strips an FAQ section (heading + Q&A content) from markdown for rendering purposes.
+ * Used when CMS FAQs are the source of truth and the same FAQs were previously
+ * appended into the article body — prevents duplicate visual rendering.
+ *
+ * NOTE: This does NOT modify stored content. It only affects the rendered output.
+ *
+ * @param {string} content
+ * @returns {string}
+ */
+export function stripFaqSectionFromContent(content) {
+  if (!content || typeof content !== 'string') return content;
+  return content.replace(
+    /\n*##\s*(?:\*\*)?(?:(?:\d+[\.)\]]\s*)?(?:FAQ(?:s)?|Frequently Asked Questions|Common Questions|Questions\s*(?:&|and)\s*Answers))(?:\*\*)?[^\r\n]*\r?\n[\s\S]*?(?=\r?\n##\s+[^\n#]|$)/i,
+    ''
+  );
 }
 
 /**
