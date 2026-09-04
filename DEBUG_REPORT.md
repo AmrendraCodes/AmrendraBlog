@@ -284,6 +284,8 @@ The audit findings above describe the live deployment at audit time. The followi
 
 Re-run the public and CMS production builds after committing. Then deploy both projects and repeat the live route/API checks: the legacy Markdown-only slug should become 404, unknown categories should become 404, and unauthenticated CMS post GETs/upload POST should become 401.
 
+Post-fix verification: public lint and a fresh production build passed. CMS lint and `tsc --noEmit` passed. The CMS post-fix `next build` entered static generation but did not produce `BUILD_ID` within the bounded local wait, so its three audit-owned workers were stopped. This is a local build-completion limitation; the pre-fix CMS build did produce its full build artifact. Run the CMS build in Vercel/staging with its production environment before release.
+
 ## Verification Performed / Remaining Coverage
 
 Performed: architecture/source audit, public and CMS lint/build, environment-name audit, import-case audit, sitemap crawl, static link destination crawl, redirect/404 checks, production cache/header checks, metadata/schema asset checks, and read-only CMS API access checks.

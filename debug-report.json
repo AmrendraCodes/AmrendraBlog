@@ -257,6 +257,13 @@
       ]
     }
   ],
+  "postFixVerification": {
+    "publicLint": "PASS",
+    "publicBuild": "PASS",
+    "cmsLint": "PASS",
+    "cmsTypecheck": "PASS",
+    "cmsBuild": "LOCAL_STATIC_GENERATION_DID_NOT_COMPLETE_WITHIN_BOUNDED_WAIT"
+  },
   "limitations": [
     "No authenticated CMS mutations, contact/newsletter writes, uploads, or signed revalidation requests were executed.",
     "No Vercel secret values or database indexes were inspected.",
