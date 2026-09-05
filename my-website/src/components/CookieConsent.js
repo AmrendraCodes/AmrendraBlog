@@ -5,10 +5,8 @@ import Link from "next/link";
 import { Check, ChevronLeft, X } from "lucide-react";
 import {
   DEFAULT_CONSENT,
-  dismissConsentForSession,
   readConsent,
   saveConsent,
-  wasConsentDismissedForSession,
 } from "@/lib/cookie-consent";
 
 const categories = [
@@ -61,7 +59,6 @@ function PreferencesRow({ title, description, checked, disabled, onChange }) {
 
 export default function CookieConsent() {
   const [hydrated, setHydrated] = useState(false);
-  const [consent, setConsent] = useState(null);
   const [dismissed, setDismissed] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [draft, setDraft] = useState(DEFAULT_CONSENT);
@@ -70,7 +67,6 @@ export default function CookieConsent() {
 
   useEffect(() => {
     const stored = readConsent();
-    setConsent(stored);
     setDraft(stored?.preferences || DEFAULT_CONSENT);
     setHydrated(true);
 
@@ -119,7 +115,7 @@ export default function CookieConsent() {
 
   const persist = (preferences) => {
     const next = saveConsent(preferences);
-    setConsent(next);
+    setDismissed(true);
     setDraft(next.preferences);
     setSettingsOpen(false);
   };
@@ -129,7 +125,8 @@ export default function CookieConsent() {
 
   if (!hydrated) return null;
 
-  const shouldShowNotice = !consent && !dismissed && !wasConsentDismissedForSession();
+  // Keep dismissal local to this page load so the notice returns on refresh.
+  const shouldShowNotice = !dismissed;
 
   return (
     <>
@@ -142,12 +139,11 @@ export default function CookieConsent() {
           <button
             type="button"
             onClick={() => {
-              dismissConsentForSession();
               setDismissed(true);
             }}
             className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-lg text-[var(--text-muted)] transition-colors hover:bg-[var(--section-alt-bg)] hover:text-[var(--text-heading)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F59E0B]"
-            aria-label="Dismiss cookie notice for this session"
-            title="Dismiss for this session"
+            aria-label="Dismiss cookie notice"
+            title="Dismiss until next refresh"
           >
             <X size={17} />
           </button>
