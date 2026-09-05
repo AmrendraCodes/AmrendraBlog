@@ -1,5 +1,3 @@
-"use client";
-
 import React from 'react';
 
 /**
@@ -15,7 +13,7 @@ export default function WhatsAppButton() {
   return (
     <div className="fixed bottom-[calc(5rem+env(safe-area-inset-bottom,0px))] right-[calc(1.5rem+env(safe-area-inset-right,0px))] z-40 group flex items-center">
       {/* Tooltip on Hover */}
-      <span className="absolute right-14 bg-[#0B1F3A] text-white text-xs font-semibold py-1.5 px-3 rounded-lg shadow-lg opacity-0 translate-x-2 pointer-events-none group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 whitespace-nowrap border border-[#1E293B] backdrop-blur-sm">
+      <span className="absolute right-14 bg-[#0B1F3A] text-white text-xs font-semibold py-1.5 px-3 rounded-lg shadow-lg opacity-0 translate-x-2 pointer-events-none group-hover:opacity-100  transition-opacity duration-200 whitespace-nowrap border border-[#1E293B] backdrop-blur-sm">
         Chat with us on WhatsApp
       </span>
 
@@ -24,7 +22,7 @@ export default function WhatsAppButton() {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] shrink-0 rounded-full bg-[#25D366] text-white shadow-lg shadow-black/20 hover:shadow-black/40 flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 hover:-translate-y-0.5"
+        className="w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] shrink-0 rounded-full bg-[#25D366] text-white shadow-lg shadow-black/20 hover:bg-[#20bd5a] flex items-center justify-center cursor-pointer transition-colors duration-200   "
         aria-label="Chat with us on WhatsApp"
       >
         <svg

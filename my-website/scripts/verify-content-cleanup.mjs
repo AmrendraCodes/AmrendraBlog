@@ -1,0 +1,27 @@
+import assert from 'node:assert/strict';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import rehypeRaw from 'rehype-raw';
+import cleanup from '../src/lib/rehype-content-cleanup.js';
+
+const processor = unified().use(remarkParse).use(remarkRehype, { allowDangerousHtml: true }).use(rehypeRaw).use(cleanup);
+const parse = source => processor.run(processor.parse(source));
+const elements = (tree, tag) => [tree, ...(tree.children || []).flatMap(child => elements(child, tag))].filter(node => node.tagName === tag);
+const text = node => node.value || (node.children || []).map(text).join('');
+const empty = await parse('<p></p>\n<p><br></p>\n<p>&nbsp; </p>\n<div> </div>\n\nReadable paragraph.');
+assert.equal(elements(empty, 'p').length, 1);
+assert.equal(elements(empty, 'div').length, 0);
+assert.match(text(empty), /Readable paragraph/);
+const code = await parse('~~~html\n<p><br></p>\n<div></div>\n~~~\n\n`<p></p>`');
+assert.match(text(elements(code, 'pre')[0]), /<p><br><\/p>\n<div><\/div>/);
+assert.ok(elements(code, 'code').some(node => text(node) === '<p></p>'));
+const anchors = await parse('<div id="anchor"></div>\n\n![Diagram](/diagram.png)\n\nParagraph<br><br><br>next');
+assert.equal(elements(anchors, 'div')[0].properties.id, 'anchor');
+assert.equal(elements(anchors, 'img').length, 1);
+assert.ok(!elements(anchors, 'p').some(node => elements(node, 'img').length));
+assert.equal(elements(anchors, 'br').length, 1);
+const media = await parse('<div><video src="clip.mp4"></video></div>');
+assert.equal(elements(media, 'video').length, 1);
+assert.equal(elements(media, 'div').length, 1);
+console.log('Content cleanup: empty editor blocks, fenced/inline code, anchors, images, line breaks and media passed.');

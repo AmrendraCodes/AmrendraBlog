@@ -48,7 +48,7 @@ export default function CaseStudiesPage() {
       />
 
       {/* Page Header */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-16 mb-12 pt-28 md:pt-36 lg:pt-40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 pt-24 md:pt-28">
         <div className="relative py-4">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#F59E0B]/8 blur-[100px] rounded-full pointer-events-none" />
 

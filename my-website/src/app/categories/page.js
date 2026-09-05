@@ -1,6 +1,6 @@
 import Link from "next/link";
 import CategoriesSection from "@/components/blog/CategoriesSection";
-import { getAllPostsAsync } from "@/lib/posts";
+import { getPostSummariesAsync } from "@/lib/posts";
 
 // Categories are public content. Serve the generated page from the cache and
 // refresh it in the background so a database round trip cannot delay a visit.
@@ -33,7 +33,7 @@ export const metadata = {
 };
 
 export default async function CategoriesPage() {
-  const allPosts = await getAllPostsAsync();
+  const allPosts = await getPostSummariesAsync();
   const categoryCounts = {};
   allPosts.forEach((post) => {
     if (post.categorySlug) {

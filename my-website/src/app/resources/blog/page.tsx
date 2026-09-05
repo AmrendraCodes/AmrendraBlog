@@ -1,6 +1,6 @@
 import HeroSection from "@/components/blog/HeroSection";
 import BlogPageClient from "@/components/blog/BlogPageClient";
-import { getAllPostsAsync, getAllTagsAsync } from "@/lib/posts";
+import { getPostSummariesAsync, getAllTagsAsync } from "@/lib/posts";
 import JsonLd from "@/components/JsonLd";
 import { getCollectionPageSchema } from "@/lib/schema";
 import { siteMetadata } from "@/config/seo";
@@ -36,8 +36,7 @@ export const metadata = {
 };
 
 export default async function BlogPage() {
-  const posts = await getAllPostsAsync();
-  const allTags = await getAllTagsAsync();
+  const [posts, allTags] = await Promise.all([getPostSummariesAsync(), getAllTagsAsync()]);
 
   const articles = posts.map((post) => ({
     title: post.title,

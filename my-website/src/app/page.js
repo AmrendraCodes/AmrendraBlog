@@ -4,7 +4,7 @@ import { ArrowRight, TerminalSquare, Github, Linkedin, Twitter, Youtube, Chevron
 import nextDynamic from 'next/dynamic';
 const CategoriesSection = nextDynamic(() => import('@/components/blog/CategoriesSection'));
 const FAQ = nextDynamic(() => import('@/components/FAQ'));
-import { getAllPostsAsync } from "@/lib/posts";
+import { getPostSummariesAsync } from "@/lib/posts";
 import { getAllCaseStudies } from "@/lib/case-studies";
 import JsonLd from "@/components/JsonLd";
 import { getWebsiteSchema, getPersonSchema, getLocalBusinessSchema } from "@/lib/schema";
@@ -44,7 +44,7 @@ export const metadata = {
 
 export default async function Home() {
   // Fetch posts from database (or markdown fallback) and pick top 3 for featured section
-  const allPosts = await getAllPostsAsync();
+  const allPosts = await getPostSummariesAsync();
   const featuredPosts = allPosts.slice(0, 3).map((post) => ({
     title: post.title,
     excerpt: post.excerpt || post.description || "",

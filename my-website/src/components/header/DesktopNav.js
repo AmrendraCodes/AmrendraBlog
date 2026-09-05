@@ -83,7 +83,7 @@ export default function DesktopNav({
                 onMouseEnter={handleServicesEnter}
                 onMouseLeave={handleServicesLeave}
               >
-                <div className={`inline-flex items-center rounded-full transition-all duration-300 ${
+                <div className={`inline-flex items-center rounded-full transition-colors duration-200 ${
                   isActive || isServicesOpen
                     ? 'bg-amber-500/10 text-[#0B1F3A] dark:text-[#F59E0B]'
                     : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#112240]'
@@ -114,7 +114,7 @@ export default function DesktopNav({
                   >
                     <ChevronDown
                       size={14}
-                      className={`transition-transform duration-300 ${isServicesOpen ? 'rotate-180 text-[#F59E0B]' : ''}`}
+                      className={`transition-transform duration-200 ${isServicesOpen ? 'rotate-180 text-[#F59E0B]' : ''}`}
                     />
                   </button>
                 </div>
@@ -141,7 +141,7 @@ export default function DesktopNav({
                 onMouseEnter={handleResourcesEnter}
                 onMouseLeave={handleResourcesLeave}
               >
-                <div className={`inline-flex items-center rounded-full transition-all duration-300 ${
+                <div className={`inline-flex items-center rounded-full transition-colors duration-200 ${
                   isActive || isResourcesOpen
                     ? 'bg-amber-500/10 text-[#0B1F3A] dark:text-[#F59E0B]'
                     : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#112240]'
@@ -172,7 +172,7 @@ export default function DesktopNav({
                   >
                     <ChevronDown
                       size={14}
-                      className={`transition-transform duration-300 ${isResourcesOpen ? 'rotate-180 text-[#F59E0B]' : ''}`}
+                      className={`transition-transform duration-200 ${isResourcesOpen ? 'rotate-180 text-[#F59E0B]' : ''}`}
                     />
                   </button>
                 </div>
@@ -195,7 +195,7 @@ export default function DesktopNav({
             <Link
               key={link.name}
               href={link.href}
-              className={`relative text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-all duration-300 whitespace-nowrap px-3 lg:px-4 py-1.5 rounded-full ${
+              className={`relative text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-colors duration-200 whitespace-nowrap px-3 lg:px-4 py-1.5 rounded-full ${
                 isActive
                   ? 'text-[#0B1F3A] dark:text-[#F59E0B] bg-amber-500/10 font-bold'
                   : 'text-slate-700 dark:text-slate-200 hover:text-[#F59E0B] dark:hover:text-[#F59E0B] hover:bg-slate-100 dark:hover:bg-[#112240]'

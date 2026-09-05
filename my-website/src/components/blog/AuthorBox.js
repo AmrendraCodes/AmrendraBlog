@@ -28,7 +28,7 @@ export default function AuthorBox({ author }) {
 
   return (
     <div className="pt-5 border-t border-[var(--card-border)]/60">
-      <div className="bg-[var(--section-alt-bg)]/50 backdrop-blur-md rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row gap-5 items-center sm:items-start border border-[var(--card-border)] shadow-xs relative overflow-hidden">
+      <div className="bg-[var(--section-alt-bg)]/50  rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row gap-5 items-center sm:items-start border border-[var(--card-border)] shadow-xs relative overflow-hidden">
         {/* Glow behind author box */}
         <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#F59E0B] rounded-full blur-[80px] opacity-10 pointer-events-none" />
         {/* Avatar with gradient ring */}
@@ -63,7 +63,7 @@ export default function AuthorBox({ author }) {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-[var(--card-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--text-muted)] hover:text-[#F59E0B] hover:border-[#F59E0B]/40 hover:shadow-md transition-all"
+                className="w-10 h-10 rounded-full bg-[var(--card-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--text-muted)] hover:text-[#F59E0B] hover:border-[#F59E0B]/40  transition-colors"
                 aria-label={label}
               >
                 <Icon size={18} />

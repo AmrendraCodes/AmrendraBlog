@@ -1,12 +1,10 @@
-'use client';
-
 import AnimatedSection from "@/components/AnimatedSection";
 
 export default function ServiceProcess({ processSteps = [] }) {
   return (
-    <section className="py-20 bg-[var(--background)] border-b border-[var(--card-border)]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-16">
-        <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-16">
+    <section className="py-12 md:py-16 bg-[var(--background)] border-b border-[var(--card-border)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
           <span className="text-xs font-extrabold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 mb-4 inline-block">
             OUR FRAMEWORK
           </span>
@@ -24,7 +22,7 @@ export default function ServiceProcess({ processSteps = [] }) {
               key={idx}
               direction="up"
               delay={idx * 0.08}
-              className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-7 relative flex flex-col justify-between group hover:border-[#F59E0B]/40 transition-all duration-300 hover:-translate-y-1"
+              className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-7 relative flex flex-col justify-between group    "
             >
               <div>
                 <div className="flex items-center justify-between mb-6">
@@ -36,7 +34,7 @@ export default function ServiceProcess({ processSteps = [] }) {
                   </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-[var(--text-heading)] mb-3 group-hover:text-[#F59E0B] transition-colors">
+                <h3 className="text-xl font-bold text-[var(--text-heading)] mb-3  ">
                   {step.title}
                 </h3>
 

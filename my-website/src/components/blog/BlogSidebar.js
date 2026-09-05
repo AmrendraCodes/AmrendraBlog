@@ -58,7 +58,7 @@ export default function BlogSidebar({
                 setSelectedTag(selectedTag === tag ? '' : tag);
                 setCurrentPage(1);
               }}
-              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer border flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-colors cursor-pointer border flex items-center gap-1.5 ${
                 selectedTag === tag
                   ? 'bg-[#F59E0B] text-[#0B1F3A] border-[#F59E0B]'
                   : 'bg-[var(--section-alt-bg)] text-[var(--text-body)] border-[var(--card-border)] hover:border-[#F59E0B]/40 hover:text-[#F59E0B]'
@@ -100,7 +100,7 @@ export default function BlogSidebar({
               <button
                 type="submit"
                 disabled={isSidebarSubmitting}
-                className="w-full bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-extrabold text-xs py-2.5 rounded-xl transition-all shadow-md shadow-amber-500/20 disabled:opacity-50 cursor-pointer border-none"
+                className="w-full bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-extrabold text-xs py-2.5 rounded-xl transition-colors shadow-md shadow-amber-500/20 disabled:opacity-50 cursor-pointer border-none"
               >
                 {isSidebarSubmitting ? 'Subscribing...' : 'Subscribe Free'}
               </button>
@@ -109,7 +109,7 @@ export default function BlogSidebar({
 
           <div className="mt-6 flex items-center gap-3 pt-6 border-t border-white/10">
             <div className="relative w-8 h-8 rounded-full overflow-hidden shrink-0 border border-[#F59E0B]/30">
-              <Image src="/profile-photo.jpeg" alt="Author" fill className="object-cover" />
+              <Image src="/profile-photo.jpeg" alt="Author" sizes="32px" fill className="object-cover" />
             </div>
             <div>
               <span className="text-[11px] font-bold text-white block">Curated by Amrendra</span>

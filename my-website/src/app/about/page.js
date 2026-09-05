@@ -1,86 +1,51 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Play, Github, Linkedin, Twitter, Youtube, Code2, Cloud, Brain, Palette, Terminal } from "lucide-react";
-import { motion } from "framer-motion";
 
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-  },
-};
 
 export default function AboutPage() {
-  const [displayText, setDisplayText] = useState("");
-  const fullText = "Hi, I'm Amrendra";
-
-  useEffect(() => {
-    let i = 0;
-    const typingInterval = setInterval(() => {
-      if (i <= fullText.length) {
-        setDisplayText(fullText.substring(0, i));
-        i++;
-      } else {
-        clearInterval(typingInterval);
-      }
-    }, 60);
-    return () => clearInterval(typingInterval);
-  }, []);
+  const displayText = "Hi, I'm Amrendra";
 
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-amber-100 dark:selection:bg-amber-900/40 font-sans overflow-x-hidden">
 
       {/* ═══════════ HERO SECTION — Developer Portfolio 2-Column Layout ═══════════ */}
-      <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 px-6 overflow-hidden border-b border-[var(--card-border)]">
+      <section className="relative pt-24 pb-12 md:pt-28 md:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-[var(--card-border)]">
         {/* Background Effects */}
         <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
-        <div className="absolute top-[5%] left-[10%] w-[280px] sm:w-[400px] md:w-[500px] h-[280px] sm:h-[400px] md:h-[500px] rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.12)_0%,transparent_70%)] blur-3xl pointer-events-none animate-[float_10s_ease-in-out_infinite]" />
+        <div className="absolute top-[5%] left-[10%] w-[280px] sm:w-[400px] md:w-[500px] h-[280px] sm:h-[400px] md:h-[500px] rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.12)_0%,transparent_70%)] blur-3xl pointer-events-none " />
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             
             {/* LEFT COLUMN: Main Brand Message & CTAs */}
-            <motion.div 
-              initial="hidden"
-              animate="visible"
-              variants={stagger}
+            <div
               className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left"
             >
               {/* Floating Status Badge */}
-              <motion.div variants={fadeUp}>
+              <div>
                 <span className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[#F59E0B]/30 bg-[#F59E0B]/10 text-xs font-mono font-bold uppercase tracking-wider text-[#0B1F3A] dark:text-[#F59E0B] mb-6 shadow-sm backdrop-blur-sm">
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F59E0B] opacity-75 motion-reduce:animate-none"></span>
+                    <span className=" absolute inline-flex h-full w-full rounded-full bg-[#F59E0B] opacity-75 motion-reduce:animate-none"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F59E0B]"></span>
                   </span>
                   DEVELOPER &amp; CONTENT CREATOR
                 </span>
-              </motion.div>
+              </div>
 
               {/* Hero Heading with Typing Effect */}
-              <motion.h1
-                variants={fadeUp}
+              <h1
                 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6 text-[var(--text-heading)]"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
                 <span>{displayText.substring(0, 8)}</span>
                 <span className="gradient-text">{displayText.substring(8)}</span>
-                <span className="inline-block w-1.5 h-[0.8em] bg-[#F59E0B] ml-1.5 align-middle animate-[blink_1s_infinite] motion-reduce:animate-none"></span>
-              </motion.h1>
+                <span className="inline-block w-1.5 h-[0.8em] bg-[#F59E0B] ml-1.5 align-middle  motion-reduce:animate-none"></span>
+              </h1>
 
               {/* Subtitle / Description */}
-              <motion.p
-                variants={fadeUp}
+              <p
                 className="text-base sm:text-lg lg:text-xl text-[var(--text-body)] max-w-2xl mb-8 leading-relaxed font-medium"
               >
                 A{" "}
@@ -92,27 +57,27 @@ export default function AboutPage() {
                   Frontend Developer
                 </span>{" "}
                 passionate about building amazing web experiences and sharing knowledge with the community.
-              </motion.p>
+              </p>
 
               {/* CTA Buttons */}
-              <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-10">
+              <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-10">
                 <Link
                   href="/resources/blog"
-                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-2xl bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base transition-all duration-300 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)] hover:-translate-y-0.5 hover:scale-105 active:scale-95 w-full sm:w-auto"
+                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-2xl bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base transition-colors duration-200 shadow-[var(--shadow-glow)]     w-full sm:w-auto"
                 >
                   <span>View Articles</span>
-                  <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  <ArrowRight size={18} className="transition-transform duration-200 " />
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] font-bold text-base transition-all duration-300 hover:shadow-[var(--shadow-card)] hover:border-[#F59E0B]/50 hover:text-[#F59E0B] hover:-translate-y-0.5 w-full sm:w-auto"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] font-bold text-base transition-colors duration-200  hover:border-[#F59E0B]/50 hover:text-[#F59E0B]  w-full sm:w-auto"
                 >
                   Get in Touch
                 </Link>
-              </motion.div>
+              </div>
 
               {/* Core Stack Badges */}
-              <motion.div variants={fadeUp} className="flex items-center gap-3 pt-4 border-t border-[var(--card-border)] text-xs font-mono text-[var(--text-muted)] flex-wrap justify-center lg:justify-start">
+              <div className="flex items-center gap-3 pt-4 border-t border-[var(--card-border)] text-xs font-mono text-[var(--text-muted)] flex-wrap justify-center lg:justify-start">
                 <span className="font-semibold text-[var(--text-heading)] uppercase tracking-wider">Core Tech:</span>
                 <div className="flex items-center gap-2 flex-wrap">
                   {["React", "Next.js", "TypeScript", "TailwindCSS"].map((tech) => (
@@ -124,14 +89,11 @@ export default function AboutPage() {
                     </span>
                   ))}
                 </div>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
 
             {/* RIGHT COLUMN: Developer IDE Visual Card */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            <div
               className="lg:col-span-5 relative w-full flex justify-center lg:justify-end mt-4 lg:mt-0"
             >
               <div className="relative w-full max-w-md lg:max-w-none">
@@ -184,7 +146,7 @@ export default function AboutPage() {
                     {/* Terminal Status Output */}
                     <div className="mt-5 pt-4 border-t border-slate-800/80 flex items-center justify-between text-[11px]">
                       <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-[#F59E0B] animate-ping" />
+                        <span className="w-2 h-2 rounded-full bg-[#F59E0B] " />
                         <span className="text-[#F59E0B] font-bold">Ready for new projects</span>
                       </div>
                       <span className="text-slate-500 font-bold">v2.4.0</span>
@@ -203,24 +165,19 @@ export default function AboutPage() {
                   <span>Next.js 16</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
           </div>
         </div>
       </section>
 
       {/* ═══════════ FOUNDER CARD SECTION ═══════════ */}
-      <section className="py-16 md:py-24 px-6">
-        <motion.div
+      <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+        <div
           className="max-w-5xl mx-auto"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={stagger}
         >
           {/* Founder Card — Large Centered */}
-          <motion.div
-            variants={fadeUp}
+          <div
             className="relative flex flex-col md:flex-row items-center gap-10 md:gap-14 bg-[var(--card-bg)] rounded-3xl border border-[var(--card-border)] shadow-[var(--shadow-card)] p-8 md:p-12 overflow-hidden"
           >
             {/* Decorative glow */}
@@ -235,7 +192,6 @@ export default function AboutPage() {
                   alt="Amrendra — Technical Content Writer & Frontend Developer"
                   fill
                   sizes="(max-width: 768px) 192px, 256px"
-                  priority
                   className="object-cover"
                 />
               </div>
@@ -279,42 +235,37 @@ export default function AboutPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Visit ${label} profile`}
-                    className="w-10 h-10 rounded-xl flex items-center justify-center bg-[var(--section-alt-bg)] border border-[var(--card-border)] text-[var(--text-muted)] hover:text-[#F59E0B] dark:hover:text-[#F59E0B] hover:border-[#F59E0B]/30 transition-all duration-300 hover:-translate-y-0.5"
+                    className="w-10 h-10 rounded-xl flex items-center justify-center bg-[var(--section-alt-bg)] border border-[var(--card-border)] text-[var(--text-muted)] hover:text-[#F59E0B] dark:hover:text-[#F59E0B] transition-colors duration-200 "
                   >
                     <Icon size={18} />
                   </a>
                 ))}
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* ═══════════ MY STORY — Bento Grid ═══════════ */}
-      <section className="py-16 md:py-24 px-6">
-        <motion.div
+      <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+        <div
           className="max-w-7xl mx-auto"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={stagger}
         >
           {/* Section Header */}
-          <motion.div variants={fadeUp} className="mb-12">
+          <div className="mb-12">
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3 text-[var(--text-heading)]">
               My <span className="gradient-text">Story</span>
             </h2>
             <p className="text-[var(--text-body)] text-lg max-w-lg">
               The journey from curious learner to full-time builder.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Story Card — Spans 2 columns */}
-            <motion.div
-              variants={fadeUp}
+            <div
               whileHover={{ y: -5 }}
-              className="lg:col-span-2 bg-[var(--card-bg)] p-8 md:p-12 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-3d)] transition-all duration-500 flex flex-col justify-center"
+              className="lg:col-span-2 bg-[var(--card-bg)] p-8 md:p-12 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)]  transition-colors duration-200 flex flex-col justify-center"
             >
               <div className="space-y-6 md:space-y-8">
                 <p className="text-base md:text-lg text-[var(--text-body)] leading-relaxed">
@@ -327,13 +278,12 @@ export default function AboutPage() {
                   &ldquo;Code with Amrendra&rdquo; was born from this vision: to create a platform where developers can learn cutting-edge technologies, stay updated with industry trends, and connect with a like-minded community. Whether you&apos;re just starting your coding journey or looking to master advanced concepts, I&apos;m here to guide you every step of the way. Let&apos;s build amazing things together!
                 </p>
               </div>
-            </motion.div>
+            </div>
 
             {/* Skills Card */}
-            <motion.div
-              variants={fadeUp}
+            <div
               whileHover={{ y: -5 }}
-              className="lg:col-span-1 bg-[var(--card-bg)] p-8 md:p-10 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-3d)] transition-all duration-500"
+              className="lg:col-span-1 bg-[var(--card-bg)] p-8 md:p-10 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)]  transition-colors duration-200"
             >
               <h3 className="text-2xl md:text-3xl font-extrabold text-[var(--text-heading)] mb-8 flex items-center gap-3">
                 <span className="w-8 h-1.5 md:h-2 bg-gradient-to-r from-[#0B1F3A] to-[#F59E0B] rounded-full"></span>
@@ -355,36 +305,32 @@ export default function AboutPage() {
                     </div>
                     <div className="w-full bg-[var(--section-alt-bg)] border border-[rgba(255,255,255,0.05)] rounded-full h-2 overflow-hidden">
                       <div
-                        className="h-full bg-gradient-to-r from-[#0B1F3A] to-[#F59E0B] rounded-full transition-all duration-500 ease-out shadow-[var(--shadow-glow)]"
+                        className="h-full bg-gradient-to-r from-[#0B1F3A] to-[#F59E0B] rounded-full transition-colors duration-200 ease-out shadow-[var(--shadow-glow)]"
                         style={{ width: `${skill.percentage}%` }}
                       ></div>
                     </div>
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* ═══════════ WHAT I DO — Icon Grid ═══════════ */}
-      <section className="py-16 md:py-24 px-6 bg-[var(--section-alt-bg)] border-t border-[var(--card-border)]">
-        <motion.div
+      <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-[var(--section-alt-bg)] border-t border-[var(--card-border)]">
+        <div
           className="max-w-5xl mx-auto"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={stagger}
         >
           {/* Section Header */}
-          <motion.div variants={fadeUp} className="text-center mb-12">
+          <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3 text-[var(--text-heading)]">
               What I <span className="gradient-text">Do</span>
             </h2>
             <p className="text-[var(--text-body)] text-lg">
               Core areas where I build, write, and create impact.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             {[
@@ -393,34 +339,28 @@ export default function AboutPage() {
               { icon: Brain, title: "AI Engineering", desc: "AI Agents, LLMs, RAG & automation workflows" },
               { icon: Palette, title: "Technical Writing", desc: "Tutorials, guides & developer education content" },
             ].map(({ icon: Icon, title, desc }) => (
-              <motion.div
+              <div
                 key={title}
-                variants={fadeUp}
                 whileHover={{ y: -5 }}
-                className="flex flex-col items-center text-center gap-4 p-6 md:p-8 rounded-2xl bg-[var(--card-bg)] border border-[var(--card-border)] transition-all duration-300 hover:border-[#F59E0B]/30 hover:shadow-[0_0_40px_rgba(245,158,11,0.08)]"
+                className="flex flex-col items-center text-center gap-4 p-6 md:p-8 rounded-2xl bg-[var(--card-bg)] border border-[var(--card-border)] transition-colors duration-200 hover:border-[#F59E0B]/30 "
               >
                 <div className="w-14 h-14 rounded-2xl bg-[#F59E0B]/10 dark:bg-[#F59E0B]/15 border border-[#F59E0B]/20 flex items-center justify-center text-[#0B1F3A] dark:text-[#F59E0B]">
                   <Icon size={26} />
                 </div>
                 <h3 className="font-bold text-base text-[var(--text-heading)]">{title}</h3>
                 <p className="text-sm text-[var(--text-muted)] leading-relaxed">{desc}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* ═══════════ CTA SECTION ═══════════ */}
-      <section className="py-16 md:py-24 px-6">
-        <motion.div
+      <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+        <div
           className="max-w-3xl mx-auto"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={stagger}
         >
-          <motion.div
-            variants={fadeUp}
+          <div
             className="relative bg-[var(--card-bg)] border border-[var(--card-border)] rounded-3xl p-8 sm:p-12 text-center overflow-hidden"
           >
             {/* Radial glow */}
@@ -435,14 +375,14 @@ export default function AboutPage() {
               </p>
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base md:text-lg py-4 md:py-5 px-8 md:px-10 rounded-2xl transition-all duration-300 shadow-[var(--shadow-glow)] hover:shadow-[var(--shadow-float)] hover:-translate-y-1 hover:scale-105 no-underline"
+                className="group inline-flex items-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base md:text-lg py-4 md:py-5 px-8 md:px-10 rounded-2xl transition-colors duration-200 shadow-[var(--shadow-glow)]    no-underline"
               >
                 Get in Touch
-                <ArrowRight size={20} className="transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRight size={20} className="transition-transform duration-200 " />
               </Link>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
     </div>
   );

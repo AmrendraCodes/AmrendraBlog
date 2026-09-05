@@ -1,26 +1,15 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 import TiltCard from "./ui/TiltCard";
 
-const staggerItem = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-  },
-};
 
 export default function CaseStudyCard({ study }) {
   return (
     <TiltCard className="h-full">
       <article
-        className="group bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[var(--card-border)] shadow-[var(--shadow-card)] hover:shadow-[0_20px_50px_rgba(11,31,58,0.08),0_4px_20px_rgba(245,158,11,0.15)] transition-shadow duration-500 relative h-full flex flex-col justify-between"
+        className="group bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[var(--card-border)] shadow-[var(--shadow-card)]  transition-shadow duration-200 relative h-full flex flex-col justify-between"
       >
       {/* Cover Image */}
       <div className="relative h-56 overflow-hidden">
@@ -29,7 +18,7 @@ export default function CaseStudyCard({ study }) {
           alt={study.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          className="object-cover transition-transform duration-200 "
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--card-bg)] via-transparent to-transparent opacity-60" />
 
@@ -72,7 +61,7 @@ export default function CaseStudyCard({ study }) {
           <span className="text-[12px] font-medium text-[var(--text-muted)]">
             {study.duration} · {study.client}
           </span>
-          <span className="w-9 h-9 rounded-full bg-[var(--section-alt-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--foreground)] group-hover:bg-[#F59E0B] group-hover:text-[#0B1F3A] group-hover:border-[#F59E0B] transition-all duration-300">
+          <span className="w-9 h-9 rounded-full bg-[var(--section-alt-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--foreground)]  group-hover:text-[#0B1F3A]  transition-colors duration-200">
             <ArrowUpRight size={16} />
           </span>
         </div>

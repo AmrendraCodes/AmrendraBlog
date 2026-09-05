@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { Check, X, Sparkles } from 'lucide-react';
 
@@ -15,7 +13,7 @@ export default function ComparisonTable() {
   ];
 
   return (
-    <div className="w-full max-w-5xl mx-auto rounded-3xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] p-6 sm:p-8 shadow-sm overflow-hidden backdrop-blur-xl transition-colors duration-300">
+    <div className="w-full max-w-5xl mx-auto rounded-3xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] p-6 sm:p-8 shadow-sm overflow-hidden backdrop-blur-xl  ">
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse min-w-[640px]">
           <thead>
@@ -41,7 +39,7 @@ export default function ComparisonTable() {
             {comparisonItems.map((item, index) => (
               <tr
                 key={index}
-                className="border-b border-slate-100 dark:border-[#1E293B]/60 hover:bg-slate-50 dark:hover:bg-[#112240] transition-colors duration-150"
+                className="border-b border-slate-100 dark:border-[#1E293B]/60    "
               >
                 <td className="py-4 text-xs font-medium text-slate-800 dark:text-[#F8FAFC]">
                   {item.feature}

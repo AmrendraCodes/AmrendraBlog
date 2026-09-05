@@ -87,11 +87,11 @@ export default function ServicesPage() {
       <JsonLd data={servicesCollectionSchema} />
 
       {/* ─── Hero Section ─── */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 border-b border-[var(--card-border)] overflow-hidden bg-gradient-to-b from-[var(--background)] via-[var(--card-bg)] to-[var(--background)]">
+      <section className="relative pt-24 pb-12 md:pt-28 md:pb-16 border-b border-[var(--card-border)] overflow-hidden bg-gradient-to-b from-[var(--background)] via-[var(--card-bg)] to-[var(--background)]">
         {/* Glow Spheres */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-[#F59E0B]/20 via-[#0B1F3A]/25 to-transparent rounded-full blur-[120px] pointer-events-none -z-10" />
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-16 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection direction="up" delay={0.05}>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-[#0B1F3A] dark:text-[#F59E0B] text-xs font-extrabold uppercase tracking-wider mb-6">
               <Sparkles size={14} />
@@ -114,14 +114,14 @@ export default function ServicesPage() {
           <AnimatedSection direction="up" delay={0.2} className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2.5 bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base py-4 px-9 rounded-full shadow-[0_0_25px_rgba(245,158,11,0.3)] transition-all duration-300 hover:scale-105 active:scale-95 w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2.5 bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base py-4 px-9 rounded-full shadow-[0_0_25px_rgba(245,158,11,0.3)] transition-colors duration-200   w-full sm:w-auto"
             >
               <span>Get Started</span>
               <ArrowRight size={18} />
             </Link>
             <a
               href="#all-services"
-              className="inline-flex items-center justify-center gap-2 bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-heading)] font-semibold text-base py-4 px-8 rounded-full hover:border-[#F59E0B] hover:text-[#F59E0B] transition-all duration-300 w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-heading)] font-semibold text-base py-4 px-8 rounded-full hover:border-[#F59E0B] hover:text-[#F59E0B] transition-colors duration-200 w-full sm:w-auto"
             >
               <Compass size={18} />
               <span>Explore Services</span>
@@ -131,9 +131,9 @@ export default function ServicesPage() {
       </section>
 
       {/* ─── Framework Overview: Idea → Build → Launch → Grow → Scale ─── */}
-      <section className="py-20 bg-[var(--section-alt-bg)] border-b border-[var(--card-border)] relative">
-        <div className="max-w-7xl mx-auto px-6 lg:px-16">
-          <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-16">
+      <section className="py-12 md:py-16 bg-[var(--section-alt-bg)] border-b border-[var(--card-border)] relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
             <span className="text-xs font-extrabold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 mb-4 inline-block">
               OUR SERVICE ARCHITECTURE
             </span>
@@ -240,9 +240,9 @@ export default function ServicesPage() {
       </section>
 
       {/* ─── All Services Grid ─── */}
-      <section id="all-services" className="py-24 bg-[var(--background)] border-b border-[var(--card-border)] scroll-mt-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-16">
-          <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-16">
+      <section id="all-services" className="py-12 md:py-16 bg-[var(--background)] border-b border-[var(--card-border)] scroll-mt-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
             <span className="text-xs font-extrabold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 mb-4 inline-block">
               COMPLETE SERVICE OFFERINGS
             </span>

@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
@@ -7,17 +5,17 @@ import MagneticButton from '../ui/MagneticButton';
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[85vh] flex flex-col justify-center px-6 pt-32 pb-20 overflow-hidden border-b border-slate-200 dark:border-[#1E293B] transition-colors duration-300">
+    <section className="relative flex flex-col justify-center px-4 sm:px-6 lg:px-8 pt-24 md:pt-28 pb-12 md:pb-16 overflow-hidden border-b border-slate-200 dark:border-[#1E293B] transition-colors duration-200">
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 grid-bg opacity-20 dark:opacity-30 pointer-events-none" />
 
       {/* Central Ambient Glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[radial-gradient(circle,rgba(245,158,11,0.12)_0%,transparent_70%)] blur-3xl pointer-events-none transition-all duration-700" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[radial-gradient(circle,rgba(245,158,11,0.12)_0%,transparent_70%)] blur-3xl pointer-events-none transition-colors duration-200" />
 
       <div className="relative z-10 max-w-4xl mx-auto w-full flex flex-col items-center text-center">
         {/* Eyebrow Label */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#F59E0B]/40 bg-[#F59E0B]/10 text-xs font-mono font-bold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] mb-6 backdrop-blur-md shadow-[0_0_20px_rgba(245,158,11,0.2)]">
-          <span className="w-2 h-2 rounded-full bg-[#F59E0B] animate-pulse" />
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#F59E0B]/40 bg-[#F59E0B]/10 text-xs font-mono font-bold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] mb-6  shadow-[0_0_20px_rgba(245,158,11,0.2)]">
+          <span className="w-2 h-2 rounded-full bg-[#F59E0B] " />
           BEST-IN-CLASS SOFTWARE &amp; AI ENGINEERING
         </div>
 
@@ -33,7 +31,7 @@ export default function HeroSection() {
         </h1>
 
         {/* Subtitle Description Card (High Readability Backdrop) */}
-        <div className="max-w-3xl mb-10 px-6 sm:px-8 py-4.5 rounded-2xl bg-white/90 dark:bg-[#0B1F3A]/85 border border-slate-200 dark:border-[#1E293B] backdrop-blur-xl shadow-md dark:shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+        <div className="max-w-3xl mb-10 px-6 sm:px-8 py-4.5 rounded-2xl bg-white/90 dark:bg-[#0B1F3A]/85 border border-slate-200 dark:border-[#1E293B]  shadow-md dark:shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
           <p className="text-base sm:text-lg text-slate-700 dark:text-[#F8FAFC] leading-relaxed font-medium [text-wrap:balance]">
             Code with Amrendra delivers AI Development Services, Custom Software, SaaS Architecture &amp; Cloud Solutions that help modern businesses build faster.
           </p>
@@ -44,17 +42,17 @@ export default function HeroSection() {
           <MagneticButton className="w-full sm:w-auto">
             <Link
               href="/contact"
-              className="group inline-flex items-center justify-center gap-3 px-9 py-4 rounded-2xl bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base transition-all duration-300 shadow-[0_0_30px_rgba(245,158,11,0.35)] hover:shadow-[0_0_50px_rgba(245,158,11,0.55)] w-full sm:w-auto hover:scale-105 active:scale-95"
+              className="group inline-flex items-center justify-center gap-3 px-6 py-3 rounded-2xl bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base transition-colors duration-200 shadow-[0_0_30px_rgba(245,158,11,0.35)]  w-full sm:w-auto  "
             >
               <span>Start Free Consultation</span>
-              <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight size={18} className="transition-transform duration-200 " />
             </Link>
           </MagneticButton>
 
           <MagneticButton className="w-full sm:w-auto">
             <Link
               href="/services"
-              className="inline-flex items-center justify-center gap-2.5 px-9 py-4 rounded-2xl border border-[#0B1F3A]/20 dark:border-[#1E293B] bg-white dark:bg-[#071324] text-[#0B1F3A] dark:text-[#F8FAFC] font-bold text-base transition-all duration-300 hover:border-[#F59E0B] hover:text-[#F59E0B] hover:bg-slate-50 dark:hover:bg-[#112240] w-full sm:w-auto backdrop-blur-md shadow-sm"
+              className="inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-2xl border border-[#0B1F3A]/20 dark:border-[#1E293B] bg-white dark:bg-[#071324] text-[#0B1F3A] dark:text-[#F8FAFC] font-bold text-base transition-colors duration-200 hover:border-[#F59E0B] hover:text-[#F59E0B] hover:bg-slate-50 dark:hover:bg-[#112240] w-full sm:w-auto  shadow-sm"
             >
               Explore Our AI Services
             </Link>

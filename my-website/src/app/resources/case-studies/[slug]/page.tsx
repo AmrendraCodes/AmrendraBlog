@@ -62,10 +62,10 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   return (
     <div className="min-h-screen bg-[var(--background)] isolate">
       {/* Hero Section */}
-      <div className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
+      <div className="relative pt-24 pb-12 md:pt-28 md:pb-16 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] bg-[#F59E0B]/10 blur-[120px] rounded-full pointer-events-none" />
 
-        <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-[900px] mx-auto text-center flex flex-col items-center">
 
             {/* Back Link */}
@@ -73,7 +73,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               href="/resources/case-studies"
               className="group inline-flex items-center gap-2 text-sm font-semibold text-[var(--text-muted)] hover:text-[#F59E0B] transition-colors mb-8 no-underline"
             >
-              <ArrowLeft size={16} className="transition-transform duration-300 group-hover:-translate-x-1" />
+              <ArrowLeft size={16} className="transition-transform duration-200 " />
               Back to all case studies
             </Link>
 
@@ -119,7 +119,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                   href={study.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(245,158,11,0.4)] no-underline"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-sm transition-colors duration-200   no-underline"
                 >
                   <ExternalLink size={16} />
                   View Live
@@ -130,7 +130,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                   href={study.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] font-bold text-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#F59E0B]/50 hover:text-[#F59E0B] hover:shadow-lg no-underline"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] font-bold text-sm transition-colors duration-200  hover:border-[#F59E0B]/50 hover:text-[#F59E0B]  no-underline"
                 >
                   <Github size={16} />
                   Source Code
@@ -147,7 +147,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               fill
               priority
               sizes="(max-width: 1400px) 100vw, 1400px"
-              className="absolute inset-0 object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              className="absolute inset-0 object-cover  transition-transform duration-200 ease-out"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/80 via-transparent to-transparent opacity-60" />
           </div>
@@ -155,13 +155,13 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       </div>
 
       {/* Content + Sidebar */}
-      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Main Content */}
-          <article className="flex-1 min-w-0">
-            <div className="prose prose-lg dark:prose-invert max-w-none
+          <article className="flex-1 min-w-0 max-w-[760px] mx-auto">
+            <div className="prose article-prose dark:prose-invert max-w-none
               prose-headings:text-[var(--text-heading)] prose-headings:font-extrabold prose-headings:tracking-tight
-              prose-h2:text-2xl prose-h2:sm:text-3xl prose-h2:mt-16 prose-h2:mb-6 prose-h2:pb-4 prose-h2:border-b prose-h2:border-[var(--card-border)]
+              prose-h2:text-2xl prose-h2:sm:text-3xl prose-h2:pb-2 prose-h2:border-b prose-h2:border-[var(--card-border)]
               prose-p:text-[var(--text-body)] prose-p:leading-relaxed
               prose-strong:text-[var(--text-heading)]
               prose-a:text-[#0B1F3A] dark:prose-a:text-[#F59E0B] prose-a:font-semibold
@@ -225,9 +225,9 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               {/* Back Link */}
               <Link
                 href="/resources/case-studies"
-                className="group flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] font-bold text-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#F59E0B]/40 hover:text-[#F59E0B] hover:shadow-lg no-underline"
+                className="group flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--foreground)] font-bold text-sm transition-colors duration-200  hover:border-[#F59E0B]/40 hover:text-[#F59E0B]  no-underline"
               >
-                <ArrowLeft size={16} className="transition-transform duration-300 group-hover:-translate-x-1" />
+                <ArrowLeft size={16} className="transition-transform duration-200 " />
                 All Case Studies
               </Link>
             </div>

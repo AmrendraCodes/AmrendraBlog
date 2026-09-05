@@ -1,25 +1,17 @@
 "use client";
 
-import { useEffect } from "react";
 import dynamic from 'next/dynamic';
 import ReadingProgress from "./ReadingProgress";
-import MarkdownRenderer from "@/components/MarkdownRenderer";
 
 const TableOfContents = dynamic(() => import('./TableOfContents'), { ssr: true });
 const ShareButtons = dynamic(() => import('./ShareButtons'), { ssr: false });
-import { motion } from "framer-motion";
 
 /**
  * BlogDetailClient — Client wrapper for the blog detail page.
  * Uses a max-w-7xl centered parent container with a 3-column desktop layout:
- * Left (240px TOC) | Center (max-w-[760px] centered article & bottom sections) | Right (240px balancer).
+ * Flexible TOC | 760px article | flexible balancing column.
  */
-export default function BlogDetailClient({ content, headings, title, slug, children }) {
-  useEffect(() => {
-    // Asynchronously load code highlight & math CSS so they do not block initial render / FCP / LCP
-    import("highlight.js/styles/atom-one-dark.css");
-    import("katex/dist/katex.min.css");
-  }, []);
+export default function BlogDetailClient({ article, headings, title, slug, children }) {
 
   return (
     <>
@@ -42,10 +34,7 @@ export default function BlogDetailClient({ content, headings, title, slug, child
 
           {/* Main Content Column — strictly centered (target: 760px) */}
           <div className="w-full max-w-[760px] min-w-0 mx-auto">
-            <motion.article 
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
+            <article
               className="w-full"
             >
               {/* Mobile TOC */}
@@ -54,10 +43,10 @@ export default function BlogDetailClient({ content, headings, title, slug, child
               </div>
 
               {/* Markdown Content with prose max-w-none (width controlled by outer wrapper) */}
-              <div id="article-content" className="w-full prose max-w-none text-left">
-                <MarkdownRenderer content={content} />
+              <div id="article-content" className="w-full prose article-prose max-w-none text-left">
+                {article}
               </div>
-            </motion.article>
+            </article>
 
             {/* Bottom Sections: FAQ, Author Box, Article Navigation, Related Posts */}
             {children && (
@@ -68,7 +57,7 @@ export default function BlogDetailClient({ content, headings, title, slug, child
           </div>
 
           {/* Right Column Spacer (desktop only) to keep center column perfectly centered */}
-          <div className="hidden xl:block w-[240px] pointer-events-none" aria-hidden="true" />
+          <div className="hidden xl:block w-[240px] shrink-0 pointer-events-none" aria-hidden="true" />
         </div>
       </div>
     </>

@@ -1,5 +1,3 @@
-'use client';
-
 import Link from "next/link";
 import { ArrowRight, BookOpen, Layers } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -21,11 +19,11 @@ export default function ServiceRelated({ relatedServices = [], relatedBlogSlugs 
   };
 
   return (
-    <section className="py-20 bg-[var(--section-alt-bg)] border-b border-[var(--card-border)]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-16">
+    <section className="py-12 md:py-16 bg-[var(--section-alt-bg)] border-b border-[var(--card-border)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Related Services */}
         {relatedServices.length > 0 && (
-          <div className="mb-20">
+          <div className="mb-12">
             <AnimatedSection direction="up" className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-12 gap-4">
               <div>
                 <span className="text-xs font-extrabold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 mb-3 inline-block">
@@ -71,12 +69,12 @@ export default function ServiceRelated({ relatedServices = [], relatedBlogSlugs 
                   <Link
                     key={slug}
                     href={`/resources/blog/${slug}`}
-                    className="group flex items-center justify-between p-4 rounded-xl bg-[var(--background)] border border-[var(--card-border)] hover:border-[#F59E0B]/50 transition-all duration-300"
+                    className="group flex items-center justify-between p-4 rounded-xl bg-[var(--background)] border border-[var(--card-border)] hover:border-[#F59E0B]/50 transition-colors duration-200"
                   >
                     <span className="text-sm font-semibold text-[var(--text-heading)] group-hover:text-[#F59E0B] transition-colors line-clamp-1 pr-4">
                       {BLOG_TITLES[slug] || slug.replace(/-/g, ' ')}
                     </span>
-                    <ArrowRight size={16} className="text-[var(--text-muted)] group-hover:text-[#F59E0B] group-hover:translate-x-1 transition-all shrink-0" />
+                    <ArrowRight size={16} className="text-[var(--text-muted)] group-hover:text-[#F59E0B]  transition-colors shrink-0" />
                   </Link>
                 ))}
               </div>
@@ -100,12 +98,12 @@ export default function ServiceRelated({ relatedServices = [], relatedBlogSlugs 
                   <Link
                     key={slug}
                     href={`/resources/case-studies/${slug}`}
-                    className="group flex items-center justify-between p-4 rounded-xl bg-[var(--background)] border border-[var(--card-border)] hover:border-[#F59E0B]/50 transition-all duration-300"
+                    className="group flex items-center justify-between p-4 rounded-xl bg-[var(--background)] border border-[var(--card-border)] hover:border-[#F59E0B]/50 transition-colors duration-200"
                   >
                     <span className="text-sm font-semibold text-[var(--text-heading)] group-hover:text-[#F59E0B] transition-colors line-clamp-1 pr-4">
                       {CASE_STUDY_TITLES[slug] || slug.replace(/-/g, ' ')}
                     </span>
-                    <ArrowRight size={16} className="text-[var(--text-muted)] group-hover:text-[#F59E0B] group-hover:translate-x-1 transition-all shrink-0" />
+                    <ArrowRight size={16} className="text-[var(--text-muted)] group-hover:text-[#F59E0B]  transition-colors shrink-0" />
                   </Link>
                 ))}
               </div>

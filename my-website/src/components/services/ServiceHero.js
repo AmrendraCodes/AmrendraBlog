@@ -1,16 +1,14 @@
-'use client';
-
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Sparkles, MessageCircle } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 
 export default function ServiceHero({ service }) {
   return (
-    <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden border-b border-[var(--card-border)] bg-gradient-to-b from-[var(--background)] via-[var(--card-bg)] to-[var(--background)]">
+    <section className="relative pt-24 pb-12 md:pt-28 md:pb-16 overflow-hidden border-b border-[var(--card-border)] bg-gradient-to-b from-[var(--background)] via-[var(--card-bg)] to-[var(--background)]">
       {/* Subtle Background Glow Spheres */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-[#F59E0B]/15 to-[#0B1F3A]/20 rounded-full blur-[100px] pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb Navigation */}
         <AnimatedSection direction="down" delay={0.05} className="mb-8">
           <nav aria-label="Breadcrumb" className="inline-flex items-center gap-2 text-xs sm:text-sm text-[var(--text-muted)] bg-[var(--card-bg)] border border-[var(--card-border)] px-4 py-2 rounded-full shadow-sm">
@@ -47,7 +45,7 @@ export default function ServiceHero({ service }) {
             <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2.5 bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base py-3.5 px-8 rounded-full shadow-[0_0_25px_rgba(245,158,11,0.3)] transition-all duration-300 hover:scale-105 active:scale-95 w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2.5 bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base py-3.5 px-8 rounded-full shadow-[0_0_25px_rgba(245,158,11,0.3)] transition-colors duration-200   w-full sm:w-auto"
               >
                 <span>Get Started</span>
                 <ArrowRight size={18} />
@@ -56,7 +54,7 @@ export default function ServiceHero({ service }) {
                 href="https://wa.me/916205482614?text=Hi%20Amrendra,%20I'd%20like%20to%20discuss%20your%20services."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-heading)] font-semibold text-base py-3.5 px-7 rounded-full hover:border-[#F59E0B] hover:text-[#F59E0B] transition-all duration-300 w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-heading)] font-semibold text-base py-3.5 px-7 rounded-full hover:border-[#F59E0B] hover:text-[#F59E0B] transition-colors duration-200 w-full sm:w-auto"
               >
                 <MessageCircle size={18} className="text-[#25D366]" />
                 <span>Talk to Us</span>
@@ -85,7 +83,7 @@ export default function ServiceHero({ service }) {
 
               <div className="space-y-4">
                 {service.offerings.slice(0, 3).map((item, idx) => (
-                  <div key={idx} className="p-4 rounded-xl bg-[var(--background)] border border-[var(--card-border)] flex items-start gap-3 transition-transform hover:scale-[1.02]">
+                  <div key={idx} className="p-4 rounded-xl bg-[var(--background)] border border-[var(--card-border)] flex items-start gap-3 transition-transform ">
                     <div className="w-2 h-2 rounded-full bg-[#F59E0B] mt-2 shrink-0" />
                     <div>
                       <h2 className="text-xs sm:text-sm font-bold text-[var(--text-heading)]">
