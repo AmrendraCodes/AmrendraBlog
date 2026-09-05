@@ -71,12 +71,12 @@ export default function Header() {
   return (
     <>
       <div
-        className={`fixed top-4 left-0 right-0 z-[100] flex justify-center px-3 sm:px-4 md:px-6 pointer-events-none transition-transform duration-300 ease-in-out ${
+        className={`fixed top-4 left-0 right-0 z-[100] flex justify-center px-3 sm:px-4 md:px-6 pointer-events-none transition-transform duration-200 ease-in-out ${
           isVisible ? 'translate-y-0' : '-translate-y-[150%]'
         }`}
       >
         <header
-          className={`pointer-events-auto z-[100] transition-all duration-300 flex items-center justify-between rounded-full relative w-full max-w-[1240px] py-2.5 px-4 sm:py-3 sm:px-6 border box-border ${
+          className={`pointer-events-auto z-[100] transition-[background-color,border-color,box-shadow] duration-200 flex items-center justify-between rounded-full relative w-full max-w-[1240px] py-2.5 px-4 sm:py-3 sm:px-6 border box-border ${
             isScrolled
               ? 'bg-white/95 text-slate-900 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.25)] border-white/80 dark:bg-[#0B1F3A]/95 dark:text-slate-50 dark:border-[#1E293B]'
               : 'bg-white/90 text-slate-900 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.15)] border-white/60 dark:bg-[#0B1F3A]/85 dark:text-slate-50 dark:border-[#1E293B]/60'
@@ -93,7 +93,7 @@ export default function Header() {
                 width={36}
                 height={36}
                 sizes="36px"
-                className="w-9 h-9 object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-sm"
+                className="w-9 h-9 object-contain transition-transform duration-200  drop-shadow-sm"
                 priority
               />
               <span className="text-[20px] font-extrabold tracking-wider flex items-center text-slate-900 dark:text-white ml-1">
@@ -118,13 +118,13 @@ export default function Header() {
             <ThemeToggle />
             <Link
               href="/contact"
-              className="hidden md:inline-flex items-center justify-center whitespace-nowrap shrink-0 bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-[0.875rem] py-2.5 px-6 rounded-full border-none cursor-pointer transition-all duration-300 shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(245,158,11,0.5)] hover:scale-105 active:scale-95"
+              className="hidden md:inline-flex items-center justify-center whitespace-nowrap shrink-0 bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-[0.875rem] py-2.5 px-6 rounded-full border-none cursor-pointer transition-colors duration-200 shadow-[0_0_20px_rgba(245,158,11,0.3)]    "
             >
               Get started
             </Link>
             <button
               type="button"
-              className="flex md:hidden items-center justify-center bg-slate-100 dark:bg-[#112240] border border-slate-200 dark:border-[#1E293B] text-slate-900 dark:text-slate-50 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-all duration-300 shrink-0 hover:bg-slate-200 dark:hover:bg-[#1E3A8A]"
+              className="flex md:hidden items-center justify-center bg-slate-100 dark:bg-[#112240] border border-slate-200 dark:border-[#1E293B] text-slate-900 dark:text-slate-50 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-colors duration-200 shrink-0 hover:bg-slate-200 dark:hover:bg-[#1E3A8A]"
               onClick={() => setIsMenuOpen(true)}
               aria-label="Open menu"
               aria-expanded={isMenuOpen}

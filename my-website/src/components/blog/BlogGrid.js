@@ -53,7 +53,7 @@ export default function BlogGrid({
           <button
             onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
             disabled={currentPage === 1}
-            className="w-10 h-10 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] flex items-center justify-center text-[var(--text-muted)] hover:text-[#F59E0B] hover:border-[#F59E0B]/40 transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+            className="w-10 h-10 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] flex items-center justify-center text-[var(--text-muted)] hover:text-[#F59E0B] hover:border-[#F59E0B]/40 transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
             aria-label="Previous page"
           >
             <ChevronLeft size={18} />
@@ -63,7 +63,7 @@ export default function BlogGrid({
             <button
               key={page}
               onClick={() => setCurrentPage(page)}
-              className={`w-10 h-10 rounded-full text-sm font-bold transition-all cursor-pointer border ${
+              className={`w-10 h-10 rounded-full text-sm font-bold transition-colors cursor-pointer border ${
                 currentPage === page
                   ? 'bg-[#F59E0B] text-[#0B1F3A] border-[#F59E0B] shadow-md shadow-amber-500/20'
                   : 'bg-[var(--card-bg)] border-[var(--card-border)] text-[var(--text-body)] hover:border-[#F59E0B]/40 hover:text-[#F59E0B]'
@@ -78,7 +78,7 @@ export default function BlogGrid({
           <button
             onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
             disabled={currentPage === totalPages}
-            className="w-10 h-10 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] flex items-center justify-center text-[var(--text-muted)] hover:text-[#F59E0B] hover:border-[#F59E0B]/40 transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+            className="w-10 h-10 rounded-full border border-[var(--card-border)] bg-[var(--card-bg)] flex items-center justify-center text-[var(--text-muted)] hover:text-[#F59E0B] hover:border-[#F59E0B]/40 transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
             aria-label="Next page"
           >
             <ChevronRight size={18} />

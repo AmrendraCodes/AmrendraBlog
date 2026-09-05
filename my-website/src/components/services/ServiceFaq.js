@@ -12,9 +12,9 @@ export default function ServiceFaq({ faqs = [], serviceTitle }) {
   };
 
   return (
-    <section className="py-20 bg-[var(--background)] border-b border-[var(--card-border)]">
-      <div className="max-w-4xl mx-auto px-6 lg:px-16">
-        <AnimatedSection direction="up" className="text-center mb-16">
+    <section className="py-12 md:py-16 bg-[var(--background)] border-b border-[var(--card-border)]">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AnimatedSection direction="up" className="text-center mb-8 md:mb-10">
           <span className="text-xs font-extrabold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 mb-4 inline-block">
             QUESTIONS &amp; ANSWERS
           </span>
@@ -37,7 +37,7 @@ export default function ServiceFaq({ faqs = [], serviceTitle }) {
                 key={idx}
                 direction="up"
                 delay={idx * 0.05}
-                className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl overflow-hidden transition-all duration-300 hover:border-[#F59E0B]/40"
+                className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl overflow-hidden transition-colors duration-200 hover:border-[#F59E0B]/40"
               >
                 <h3>
                   <button
@@ -54,7 +54,7 @@ export default function ServiceFaq({ faqs = [], serviceTitle }) {
                     </span>
                     <ChevronDown
                       size={20}
-                      className={`text-[var(--text-muted)] shrink-0 transition-transform duration-300 ${
+                      className={`text-[var(--text-muted)] shrink-0 transition-transform duration-200 ${
                         isOpen ? "rotate-180 text-[#F59E0B]" : ""
                       }`}
                     />

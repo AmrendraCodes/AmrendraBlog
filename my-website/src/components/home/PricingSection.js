@@ -64,10 +64,10 @@ export default function PricingSection() {
   return (
     <div className="flex flex-col items-center">
       {/* Billing Cycle Toggle */}
-      <div className="inline-flex items-center gap-2 p-1.5 rounded-full bg-slate-100 dark:bg-[#071324] border border-slate-200 dark:border-[#1E293B] mb-12">
+      <div className="flex flex-wrap justify-center items-center gap-2 p-1.5 rounded-full bg-slate-100 dark:bg-[#071324] border border-slate-200 dark:border-[#1E293B] mb-12">
         <button
           onClick={() => setBillingCycle('project')}
-          className={`px-5 py-2 rounded-full text-xs font-bold transition-all duration-300 ${
+          className={`px-5 py-2 rounded-full text-xs font-bold transition-colors duration-200 ${
             billingCycle === 'project'
               ? 'bg-[#F59E0B] text-[#0B1F3A] shadow-[0_0_20px_rgba(245,158,11,0.35)]'
               : 'text-slate-600 dark:text-[#94A3B8] hover:text-[#0B1F3A] dark:hover:text-white'
@@ -77,7 +77,7 @@ export default function PricingSection() {
         </button>
         <button
           onClick={() => setBillingCycle('monthly')}
-          className={`px-5 py-2 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-1.5 ${
+          className={`px-5 py-2 rounded-full text-xs font-bold transition-colors duration-200 flex items-center gap-1.5 ${
             billingCycle === 'monthly'
               ? 'bg-[#F59E0B] text-[#0B1F3A] shadow-[0_0_20px_rgba(245,158,11,0.35)]'
               : 'text-slate-600 dark:text-[#94A3B8] hover:text-[#0B1F3A] dark:hover:text-white'
@@ -89,14 +89,14 @@ export default function PricingSection() {
       </div>
 
       {/* Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
         {tiers.map((tier, idx) => (
           <div
             key={idx}
-            className={`relative rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 ${
+            className={`relative rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-colors duration-200  ${
               tier.popular
                 ? 'bg-gradient-to-b from-amber-500/5 to-white dark:from-[#112240] dark:to-[#0B1F3A] border-2 border-[#F59E0B] shadow-[0_10px_40px_rgba(245,158,11,0.2)]'
-                : 'bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] hover:border-[#F59E0B]/50 shadow-sm'
+                : 'bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] shadow-sm'
             }`}
           >
             {tier.popular && (
@@ -145,9 +145,9 @@ export default function PricingSection() {
             {/* CTA Button */}
             <Link
               href="/contact"
-              className={`w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl font-bold text-xs transition-all duration-300 ${
+              className={`w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl font-bold text-xs transition-colors duration-200 ${
                 tier.popular
-                  ? 'bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] shadow-lg shadow-amber-500/30 hover:scale-[1.02]'
+                  ? 'bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] shadow-lg shadow-amber-500/30 '
                   : 'bg-slate-100 dark:bg-[#112240] text-[#0B1F3A] dark:text-white border border-slate-200 dark:border-[#1E293B] hover:border-[#F59E0B] hover:text-[#F59E0B]'
               }`}
             >

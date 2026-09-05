@@ -1,6 +1,5 @@
-'use client';
-
 import React from 'react';
+import MotionPreferences from './ui/MotionPreferences';
 import Header from './Header';
 import Footer from './Footer';
 import WhatsAppButton from './WhatsAppButton';
@@ -9,7 +8,7 @@ import VisitorTracker from './VisitorTracker';
 
 export default function ConditionalLayout({ children }) {
   return (
-    <>
+    <MotionPreferences>
       <VisitorTracker />
       <a href="#main-content" className="skip-to-main">
         Skip to main content
@@ -19,7 +18,7 @@ export default function ConditionalLayout({ children }) {
       <Footer />
       <BackToTop />
       <WhatsAppButton />
-    </>
+    </MotionPreferences>
   );
 }
 

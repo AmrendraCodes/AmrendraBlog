@@ -18,12 +18,12 @@ export default function ArticleNavigation({ prev, next }) {
       {prev ? (
         <Link
           href={`/resources/blog/${prev.slug}`}
-          className="group flex flex-col p-5 bg-[var(--section-alt-bg)] border border-[var(--card-border)] rounded-xl hover:border-[#F59E0B]/50 hover:bg-[var(--card-bg-hover)] transition-all duration-300 no-underline"
+          className="group flex flex-col p-5 bg-[var(--section-alt-bg)] border border-[var(--card-border)] rounded-xl hover:border-[#F59E0B]/50 hover:bg-[var(--card-bg-hover)] transition-colors duration-200 no-underline"
         >
           <span className="text-xs font-bold uppercase tracking-widest text-[var(--text-muted)] mb-2 flex items-center gap-1.5">
             <ArrowLeft
               size={12}
-              className="group-hover:-translate-x-1 transition-transform"
+              className=" transition-transform"
             />
             Previous
           </span>
@@ -44,13 +44,13 @@ export default function ArticleNavigation({ prev, next }) {
       {next ? (
         <Link
           href={`/resources/blog/${next.slug}`}
-          className="group flex flex-col p-5 bg-[var(--section-alt-bg)] border border-[var(--card-border)] rounded-xl hover:border-[#F59E0B]/50 hover:bg-[var(--card-bg-hover)] transition-all duration-300 no-underline text-right"
+          className="group flex flex-col p-5 bg-[var(--section-alt-bg)] border border-[var(--card-border)] rounded-xl hover:border-[#F59E0B]/50 hover:bg-[var(--card-bg-hover)] transition-colors duration-200 no-underline text-right"
         >
           <span className="text-xs font-bold uppercase tracking-widest text-[var(--text-muted)] mb-2 flex items-center gap-1.5 justify-end">
             Next
             <ArrowRight
               size={12}
-              className="group-hover:translate-x-1 transition-transform"
+              className=" transition-transform"
             />
           </span>
           <span className="text-sm font-bold text-[var(--text-heading)] group-hover:text-[#F59E0B] transition-colors line-clamp-2">

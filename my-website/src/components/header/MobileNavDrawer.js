@@ -19,7 +19,7 @@ export default function MobileNavDrawer({
     <>
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 bg-slate-900/25 dark:bg-black/60 backdrop-blur-sm z-[105] transition-all duration-300 ${
+        className={`fixed inset-0 bg-slate-900/25 dark:bg-black/60 backdrop-blur-sm z-[105] transition-opacity duration-200 ${
           isMenuOpen ? 'opacity-100 visible pointer-events-auto' : 'opacity-0 invisible pointer-events-none'
         }`}
         onClick={() => setIsMenuOpen(false)}
@@ -27,7 +27,7 @@ export default function MobileNavDrawer({
 
       {/* Drawer Panel */}
       <div
-        className={`fixed top-0 right-0 bottom-0 w-[min(100%,24rem)] bg-white dark:bg-[#0B1F3A] z-[110] transition-transform duration-500 flex flex-col border-l border-slate-200/50 dark:border-[#1E293B] box-border ${
+        className={`fixed top-0 right-0 bottom-0 w-[min(100%,24rem)] bg-white dark:bg-[#0B1F3A] z-[110] transition-transform duration-200 flex flex-col border-l border-slate-200/50 dark:border-[#1E293B] box-border ${
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         role="dialog"
@@ -48,7 +48,7 @@ export default function MobileNavDrawer({
           <button
             type="button"
             onClick={() => setIsMenuOpen(false)}
-            className="flex items-center justify-center bg-slate-100/80 dark:bg-[#112240] border border-slate-200/50 dark:border-[#1E293B] text-slate-900 dark:text-slate-50 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-all duration-300 hover:bg-slate-200/80 dark:hover:bg-[#1E3A8A]"
+            className="flex items-center justify-center bg-slate-100/80 dark:bg-[#112240] border border-slate-200/50 dark:border-[#1E293B] text-slate-900 dark:text-slate-50 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-colors duration-200 hover:bg-slate-200/80 dark:hover:bg-[#1E3A8A]"
             aria-label="Close menu"
           >
             <X size={20} />
@@ -66,7 +66,7 @@ export default function MobileNavDrawer({
                     <button
                       type="button"
                       onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                      className={`text-[1.35rem] font-extrabold text-left transition-colors duration-300 leading-tight py-2.5 px-4 rounded-xl flex-1 flex items-center justify-between cursor-pointer border-none bg-transparent ${
+                      className={`text-[1.35rem] font-extrabold text-left transition-colors duration-200 leading-tight py-2.5 px-4 rounded-xl flex-1 flex items-center justify-between cursor-pointer border-none bg-transparent ${
                         isActive || isMobileServicesOpen
                           ? 'text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 dark:bg-[#F59E0B]/15 font-bold'
                           : 'text-slate-900 dark:text-slate-50 hover:text-[#F59E0B] dark:hover:text-[#F59E0B]'
@@ -76,7 +76,7 @@ export default function MobileNavDrawer({
                       <span>{link.name}</span>
                       <ChevronDown
                         size={22}
-                        className={`transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180 text-[#F59E0B]' : 'text-slate-400'}`}
+                        className={`transition-transform duration-200 ${isMobileServicesOpen ? 'rotate-180 text-[#F59E0B]' : 'text-slate-400'}`}
                       />
                     </button>
                   </div>
@@ -113,7 +113,7 @@ export default function MobileNavDrawer({
                     <button
                       type="button"
                       onClick={() => setIsMobileResourcesOpen(!isMobileResourcesOpen)}
-                      className={`text-[1.35rem] font-extrabold text-left transition-colors duration-300 leading-tight py-2.5 px-4 rounded-xl flex-1 flex items-center justify-between cursor-pointer border-none bg-transparent ${
+                      className={`text-[1.35rem] font-extrabold text-left transition-colors duration-200 leading-tight py-2.5 px-4 rounded-xl flex-1 flex items-center justify-between cursor-pointer border-none bg-transparent ${
                         isActive || isMobileResourcesOpen
                           ? 'text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 dark:bg-[#F59E0B]/15 font-bold'
                           : 'text-slate-900 dark:text-slate-50 hover:text-[#F59E0B] dark:hover:text-[#F59E0B]'
@@ -123,7 +123,7 @@ export default function MobileNavDrawer({
                       <span>{link.name}</span>
                       <ChevronDown
                         size={22}
-                        className={`transition-transform duration-300 ${isMobileResourcesOpen ? 'rotate-180 text-[#F59E0B]' : 'text-slate-400'}`}
+                        className={`transition-transform duration-200 ${isMobileResourcesOpen ? 'rotate-180 text-[#F59E0B]' : 'text-slate-400'}`}
                       />
                     </button>
                   </div>
@@ -157,7 +157,7 @@ export default function MobileNavDrawer({
               <Link
                 key={link.name}
                 href={link.href}
-                className={`text-[1.35rem] font-extrabold no-underline transition-colors duration-300 leading-tight py-2.5 px-4 rounded-xl block w-full ${
+                className={`text-[1.35rem] font-extrabold no-underline transition-colors duration-200 leading-tight py-2.5 px-4 rounded-xl block w-full ${
                   isActive
                     ? 'text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 dark:bg-[#F59E0B]/15 font-bold'
                     : 'text-slate-900 dark:text-slate-50 hover:text-[#F59E0B] dark:hover:text-[#F59E0B] hover:bg-[#F59E0B]/5 dark:hover:bg-[#F59E0B]/10'
@@ -171,7 +171,7 @@ export default function MobileNavDrawer({
           <div className="flex flex-col gap-3 mt-auto pt-6 mb-4">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-[1.1rem] py-3.5 px-8 rounded-full border-none cursor-pointer w-full transition-opacity duration-300 shadow-lg shadow-amber-500/20"
+              className="inline-flex items-center justify-center bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-[1.1rem] py-3.5 px-8 rounded-full border-none cursor-pointer w-full transition-opacity duration-200 shadow-lg shadow-amber-500/20"
               onClick={() => setIsMenuOpen(false)}
             >
               Get started

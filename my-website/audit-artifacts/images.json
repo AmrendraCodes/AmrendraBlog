@@ -1,0 +1,112 @@
+[
+  {
+    "file": "public/images/b6e1bfce-102f-4efe-8f8a-b4c70e5d6a51-1787767348174.png",
+    "bytes": 1689400,
+    "width": 1536,
+    "height": 1024,
+    "format": "png"
+  },
+  {
+    "file": "public/images/b6e1bfce-102f-4efe-8f8a-b4c70e5d6a51-1787767449394.png",
+    "bytes": 1689400,
+    "width": 1536,
+    "height": 1024,
+    "format": "png"
+  },
+  {
+    "file": "public/images/b6e1bfce-102f-4efe-8f8a-b4c70e5d6a51-1787767615134.png",
+    "bytes": 1689400,
+    "width": 1536,
+    "height": 1024,
+    "format": "png"
+  },
+  {
+    "file": "public/images/b6e1bfce-102f-4efe-8f8a-b4c70e5d6a51-1787970862872.png",
+    "bytes": 1689400,
+    "width": 1536,
+    "height": 1024,
+    "format": "png"
+  },
+  {
+    "file": "public/images/business-logo.png",
+    "bytes": 0,
+    "error": "Input file contains unsupported image format"
+  },
+  {
+    "file": "public/images/how-to-build-light-dark-theme-toggle-javascript.png",
+    "bytes": 1040783,
+    "width": 1024,
+    "height": 682,
+    "format": "png"
+  },
+  {
+    "file": "public/images/javascript-enlightenment-master-core-concepts.jpg",
+    "bytes": 287666,
+    "width": 1024,
+    "height": 682,
+    "format": "jpeg"
+  },
+  {
+    "file": "public/images/nextjs-website-cost-2026.png",
+    "bytes": 1014819,
+    "width": 1024,
+    "height": 682,
+    "format": "png"
+  },
+  {
+    "file": "public/images/og-blog.png",
+    "bytes": 407833,
+    "width": 1024,
+    "height": 1024,
+    "format": "jpeg"
+  },
+  {
+    "file": "public/images/og-default.png",
+    "bytes": 275474,
+    "width": 1024,
+    "height": 682,
+    "format": "jpeg"
+  },
+  {
+    "file": "public/images/rag-chatbot-for-your-business-website-2026.png",
+    "bytes": 321979,
+    "width": 1024,
+    "height": 576,
+    "format": "png"
+  },
+  {
+    "file": "public/images/rag-chatbot-for-your-business-website.png",
+    "bytes": 321979,
+    "width": 1024,
+    "height": 576,
+    "format": "png"
+  },
+  {
+    "file": "public/images/why-ai-agents-are-replacing-saas-seats-2026.jpg",
+    "bytes": 276867,
+    "width": 1024,
+    "height": 682,
+    "format": "jpeg"
+  },
+  {
+    "file": "public/profile-photo.jpeg",
+    "bytes": 171534,
+    "width": 896,
+    "height": 1184,
+    "format": "jpeg"
+  },
+  {
+    "file": "public/logo-square.png",
+    "bytes": 69261,
+    "width": 404,
+    "height": 303,
+    "format": "png"
+  },
+  {
+    "file": "public/logo-wide.png",
+    "bytes": 68592,
+    "width": 404,
+    "height": 303,
+    "format": "png"
+  }
+]

@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 
 const PROCESS_STEPS = [
@@ -27,8 +25,8 @@ const PROCESS_STEPS = [
 
 export default function ProcessTimelineSection() {
   return (
-    <section className="py-24 px-6 max-w-7xl mx-auto content-visibility-auto">
-      <div className="text-center max-w-3xl mx-auto mb-16">
+    <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
         <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3 py-1 rounded-full border border-[#F59E0B]/30">
           HOW WE EXECUTE
         </span>
@@ -44,7 +42,7 @@ export default function ProcessTimelineSection() {
         {PROCESS_STEPS.map((item, idx) => (
           <div
             key={idx}
-            className="rounded-3xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] p-6 hover:border-[#F59E0B]/50 transition-all duration-300 flex flex-col justify-between shadow-sm"
+            className="rounded-3xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] p-6    flex flex-col justify-between shadow-sm"
           >
             <div>
               <span className="text-3xl font-extrabold font-mono text-[#F59E0B] block mb-4">

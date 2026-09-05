@@ -45,16 +45,16 @@ export default function ResourcesDropdown({ onClose, onMouseEnter, onMouseLeave 
                 href={item.href}
                 onClick={onClose}
                 role="menuitem"
-                className="group flex flex-col justify-between p-4 rounded-2xl border border-slate-100 dark:border-[#1E293B] bg-slate-50/50 dark:bg-[#112240]/60 hover:border-[#F59E0B]/40 hover:bg-slate-100/90 dark:hover:bg-[#112240] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F59E0B]"
+                className="group flex flex-col justify-between p-4 rounded-2xl border border-slate-100 dark:border-[#1E293B] bg-slate-50/50 dark:bg-[#112240]/60 hover:border-[#F59E0B]/40 hover:bg-slate-100/90 dark:hover:bg-[#112240] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F59E0B]"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-white dark:bg-[#112240] border border-slate-200 dark:border-[#1E293B] text-[#0B1F3A] dark:text-[#F59E0B] flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-[#F59E0B] group-hover:text-[#0B1F3A] transition-all duration-300 shadow-sm">
+                    <div className="w-10 h-10 rounded-xl bg-white dark:bg-[#112240] border border-slate-200 dark:border-[#1E293B] text-[#0B1F3A] dark:text-[#F59E0B] flex items-center justify-center shrink-0  group-hover:bg-[#F59E0B] group-hover:text-[#0B1F3A] transition-colors duration-200 shadow-sm">
                       <Icon size={20} />
                     </div>
                     <ChevronRight 
                       size={16} 
-                      className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#F59E0B] shrink-0" 
+                      className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-colors text-[#F59E0B] shrink-0" 
                     />
                   </div>
                   <h3 className="text-base font-bold text-slate-900 dark:text-[#F8FAFC] group-hover:text-[#F59E0B] dark:group-hover:text-[#F59E0B] transition-colors mb-1">
@@ -67,7 +67,7 @@ export default function ResourcesDropdown({ onClose, onMouseEnter, onMouseLeave 
 
                 <div className="pt-3 mt-3 border-t border-slate-200/60 dark:border-[#1E293B] flex items-center justify-between text-xs font-semibold text-[#0B1F3A] dark:text-[#F59E0B]">
                   <span>{item.ctaText}</span>
-                  <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  <ArrowRight size={13} className="transition-transform duration-200 group-hover:translate-x-1" />
                 </div>
               </Link>
             );
@@ -82,7 +82,7 @@ export default function ResourcesDropdown({ onClose, onMouseEnter, onMouseLeave 
           <Link
             href="/resources"
             onClick={onClose}
-            className="inline-flex items-center gap-1.5 font-bold text-xs text-[#0B1F3A] dark:text-[#F59E0B] hover:underline bg-[#F59E0B]/10 px-3 py-1.5 rounded-full border border-[#F59E0B]/20 hover:bg-[#F59E0B]/20 transition-all"
+            className="inline-flex items-center gap-1.5 font-bold text-xs text-[#0B1F3A] dark:text-[#F59E0B] hover:underline bg-[#F59E0B]/10 px-3 py-1.5 rounded-full border border-[#F59E0B]/20 hover:bg-[#F59E0B]/20 transition-colors"
           >
             <span>Overview Page</span>
             <ArrowRight size={13} />

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getAllPostsAsync } from '@/lib/posts';
+import { getPostSummariesAsync } from '@/lib/posts';
 import BlogCard from '@/components/BlogCard';
 import JsonLd from '@/components/JsonLd';
 import { getCollectionPageSchema, getBreadcrumbSchema } from '@/lib/schema';
@@ -10,7 +10,7 @@ import { getCollectionPageSchema, getBreadcrumbSchema } from '@/lib/schema';
 export const revalidate = 300;
 
 export async function generateStaticParams() {
-  const posts = await getAllPostsAsync();
+  const posts = await getPostSummariesAsync();
   const categorySlugs = [...new Set(posts.map((post) => post.categorySlug).filter(Boolean))];
 
   return categorySlugs.map((slug) => ({ slug }));
@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const formattedName = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-  const allPosts = await getAllPostsAsync();
+  const allPosts = await getPostSummariesAsync();
   const posts = allPosts.filter(
     (p) => (p.categorySlug || '').toLowerCase() === slug.toLowerCase()
   );
@@ -58,7 +58,7 @@ export async function generateMetadata({ params }) {
 
 export default async function CategoryPage({ params }) {
   const { slug } = await params;
-  const allPosts = await getAllPostsAsync();
+  const allPosts = await getPostSummariesAsync();
   const posts = allPosts.filter(
     (p) => (p.categorySlug || '').toLowerCase() === slug.toLowerCase()
   );
@@ -88,7 +88,7 @@ export default async function CategoryPage({ params }) {
     <div className="min-h-screen bg-[var(--background)]">
       <JsonLd data={categorySchema} />
       <JsonLd data={breadcrumbSchema} />
-      <section className="max-w-6xl mx-auto px-6 pt-28 pb-16 md:pt-36 md:pb-24">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 md:pt-28 md:pb-16">
         <div className="mb-12">
           <Link href="/categories" className="text-[#0B1F3A] hover:text-[#F59E0B] dark:text-[#F59E0B] text-sm font-semibold mb-4 inline-flex items-center gap-2 transition-colors">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>

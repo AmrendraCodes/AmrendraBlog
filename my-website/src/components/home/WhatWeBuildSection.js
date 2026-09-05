@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import { 
@@ -54,9 +52,9 @@ const SERVICES = [
 
 export default function WhatWeBuildSection() {
   return (
-    <section className="py-24 px-6 max-w-7xl mx-auto content-visibility-auto" aria-label="What We Build">
+    <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto" aria-label="What We Build">
       {/* Top Header Area */}
-      <div className="text-center max-w-3xl mx-auto mb-16">
+      <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
         <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 inline-block mb-4">
           WHAT WE BUILD
         </span>
@@ -76,11 +74,11 @@ export default function WhatWeBuildSection() {
             <ScrollReveal key={service.title} delay={index * 0.06} variant="fade-up">
               <Link
                 href={service.href}
-                className="group relative rounded-2xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] p-6 sm:p-8 flex flex-col justify-between h-full transition-all duration-300 hover:border-[#F59E0B]/60 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(11,31,58,0.08),0_4px_20px_rgba(245,158,11,0.15)] shadow-sm"
+                className="group relative rounded-2xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] p-6 sm:p-8 flex flex-col justify-between h-full transition-colors duration-200 hover:border-[#F59E0B]/60   shadow-sm"
               >
                 <div>
                   {/* Icon Container */}
-                  <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-[#112240] text-[#0B1F3A] dark:text-[#F59E0B] border border-slate-200 dark:border-[#1E293B] flex items-center justify-center mb-5 shrink-0 group-hover:bg-[#F59E0B] group-hover:text-[#0B1F3A] transition-all duration-300 shadow-sm">
+                  <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-[#112240] text-[#0B1F3A] dark:text-[#F59E0B] border border-slate-200 dark:border-[#1E293B] flex items-center justify-center mb-5 shrink-0  group-hover:text-[#0B1F3A] transition-colors duration-200 shadow-sm">
                     <Icon size={22} />
                   </div>
 
@@ -91,7 +89,7 @@ export default function WhatWeBuildSection() {
                     </h3>
                     <ArrowRight
                       size={18}
-                      className="text-slate-400 dark:text-slate-500 group-hover:text-[#F59E0B] group-hover:translate-x-1 transition-all shrink-0 ml-2"
+                      className="text-slate-400 dark:text-slate-500 group-hover:text-[#F59E0B]  transition-colors shrink-0 ml-2"
                     />
                   </div>
 
@@ -110,7 +108,7 @@ export default function WhatWeBuildSection() {
       <div className="flex justify-center">
         <Link
           href="/services"
-          className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base transition-all duration-300 shadow-[0_0_25px_rgba(245,158,11,0.3)] hover:shadow-[0_0_40px_rgba(245,158,11,0.5)] hover:scale-105 active:scale-95 cursor-pointer"
+          className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base transition-colors duration-200 shadow-[0_0_25px_rgba(245,158,11,0.3)]    cursor-pointer"
         >
           <span>Explore Our Capabilities</span>
           <ArrowRight size={18} />

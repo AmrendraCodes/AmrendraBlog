@@ -4,23 +4,19 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Calendar, User, Clock } from "lucide-react";
-import { motion } from "framer-motion";
 
 import TiltCard from "./ui/TiltCard";
 
 export default function BlogCard({ post }) {
   const postLink = post.link || `/resources/blog/${post.slug}`;
   const rawImage = post.image?.trim();
-  const isExternalBlob = Boolean(
-    rawImage && (rawImage.includes('blob.vercel-storage.com') || rawImage.includes('vercel-storage.com'))
-  );
   const defaultFallback = "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=800&auto=format&fit=crop";
   const [imgSrc, setImgSrc] = useState(rawImage || defaultFallback);
 
   return (
     <TiltCard className="h-full">
       <article 
-        className="group relative bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[var(--card-border)] shadow-[var(--shadow-card)] hover:shadow-[0_20px_50px_rgba(11,31,58,0.08),0_4px_20px_rgba(245,158,11,0.15)] transition-shadow duration-500 h-full flex flex-col justify-between"
+        className="group relative bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[var(--card-border)] shadow-[var(--shadow-card)]  transition-shadow duration-200 h-full flex flex-col justify-between"
       >
       {/* Thumbnail */}
       <div className="relative aspect-video overflow-hidden rounded-t-3xl bg-slate-900">
@@ -28,7 +24,6 @@ export default function BlogCard({ post }) {
           src={imgSrc}
           alt={post.title?.trim() || "Blog Post"}
           fill
-          unoptimized={isExternalBlob && imgSrc === rawImage}
           onError={() => setImgSrc(defaultFallback)}
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-contain"
@@ -41,8 +36,8 @@ export default function BlogCard({ post }) {
       </div>
 
       {/* Content */}
-      <div className="p-7">
-        <div className="flex items-center space-x-4 text-[var(--text-muted)] text-[12px] font-medium mb-4">
+      <div className="p-5 sm:p-6">
+        <div className="flex flex-wrap items-center gap-3 text-[var(--text-muted)] text-[12px] font-medium mb-4">
           <div className="flex items-center">
             <Calendar size={14} className="mr-1.5 text-[#F59E0B]" />
             <span>{post.date || "Feb 27, 2026"}</span>
@@ -76,7 +71,7 @@ export default function BlogCard({ post }) {
           </div>
         )}
 
-        <div className="flex items-center justify-between pt-6 border-t border-[var(--card-border)]">
+        <div className="flex flex-wrap gap-3 items-center justify-between pt-5 border-t border-[var(--card-border)]">
           <div className="flex items-center space-x-3">
             <Image 
               src={post.authorImage || "/profile-photo.jpeg"} 
@@ -89,7 +84,7 @@ export default function BlogCard({ post }) {
           </div>
 
           <span
-            className="w-10 h-10 rounded-full bg-[var(--section-alt-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--foreground)] group-hover:bg-[#F59E0B] group-hover:text-[#0B1F3A] group-hover:border-[#F59E0B] transition-all duration-300 relative z-20"
+            className="w-10 h-10 rounded-full bg-[var(--section-alt-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--foreground)]  group-hover:text-[#0B1F3A]  transition-colors duration-200 relative z-20"
             aria-hidden="true"
           >
             <ArrowUpRight size={18} />

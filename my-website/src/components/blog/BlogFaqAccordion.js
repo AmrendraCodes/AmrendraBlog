@@ -37,7 +37,7 @@ export default function BlogFaqAccordion({ faqs }) {
           return (
             <div
               key={idx}
-              className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
+              className={`rounded-2xl border transition-colors duration-200 overflow-hidden ${
                 isOpen
                   ? 'border-[#F59E0B]/40 bg-[var(--section-alt-bg)]/60 shadow-lg shadow-[#0B1F3A]/5'
                   : 'border-[var(--card-border)] bg-[var(--card-bg)]/30 hover:border-[#F59E0B]/20'
@@ -55,7 +55,7 @@ export default function BlogFaqAccordion({ faqs }) {
                   {faq.question}
                 </span>
                 <span
-                  className={`p-1.5 rounded-full transition-transform duration-300 shrink-0 ${
+                  className={`p-1.5 rounded-full transition-transform duration-200 shrink-0 ${
                     isOpen
                       ? 'bg-[#F59E0B] text-[#0B1F3A] rotate-180'
                       : 'bg-white/5 text-[var(--text-muted)]'

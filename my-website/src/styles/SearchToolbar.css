@@ -32,11 +32,9 @@
   height: 3.5rem;
   border-radius: 9999px;
   background: var(--card-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--card-border);
   box-shadow: var(--shadow-card);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .search-toolbar__inner:focus-within {
@@ -72,6 +70,7 @@
 /* Input Field */
 .search-toolbar__input {
   flex: 1;
+  min-width: 0;
   border: none;
   outline: none;
   background: transparent;
@@ -99,7 +98,7 @@
   background: rgba(245, 158, 11, 0.1);
   color: var(--text-muted);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
   flex-shrink: 0;
 }
 
@@ -145,8 +144,6 @@
   text-align: center;
   padding: 4rem 2rem;
   background: var(--card-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border: 1px dashed var(--card-border);
   border-radius: 1.5rem;
   animation: emptyFade 0.4s ease-out;

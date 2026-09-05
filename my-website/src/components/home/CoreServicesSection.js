@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import {
@@ -61,9 +59,9 @@ const CORE_SERVICES = [
 
 export default function CoreServicesSection() {
   return (
-    <section className="py-24 px-6 bg-[#F8FAFC] dark:bg-[#071324] border-y border-slate-200 dark:border-[#1E293B] transition-colors duration-300 relative content-visibility-auto">
+    <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC] dark:bg-[#071324] border-y border-slate-200 dark:border-[#1E293B] transition-colors duration-200 relative">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3 py-1 rounded-full border border-[#F59E0B]/30">
             CORE SERVICES
           </span>
@@ -80,9 +78,9 @@ export default function CoreServicesSection() {
             const Icon = service.icon;
             return (
               <ScrollReveal key={index} delay={index * 0.08} variant="fade-up">
-                <TiltCard className="group relative rounded-3xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] p-8 transition-all duration-300 hover:border-[#F59E0B]/60 hover:shadow-[0_10px_30px_rgba(11,31,58,0.08),0_4px_20px_rgba(245,158,11,0.15)] flex flex-col justify-between h-full shadow-sm">
+                <TiltCard className="group relative rounded-3xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] p-8 transition-colors duration-200 hover:border-[#F59E0B]/60  flex flex-col justify-between h-full shadow-sm">
                   <div>
-                    <div className="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-[#112240] border border-slate-200 dark:border-[#1E293B] text-[#0B1F3A] dark:text-[#F59E0B] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#F59E0B] group-hover:text-[#0B1F3A] transition-all duration-300 shadow-sm">
+                    <div className="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-[#112240] border border-slate-200 dark:border-[#1E293B] text-[#0B1F3A] dark:text-[#F59E0B] flex items-center justify-center mb-6   group-hover:text-[#0B1F3A] transition-colors duration-200 shadow-sm">
                       <Icon size={26} />
                     </div>
                     <span className="text-[10px] font-mono text-[#D97706] dark:text-[#F59E0B] uppercase tracking-wider block mb-2 font-bold">
@@ -97,7 +95,7 @@ export default function CoreServicesSection() {
                   </div>
                   <Link
                     href={service.href}
-                    className="inline-flex items-center gap-2 text-xs font-bold text-[#0B1F3A] dark:text-[#F59E0B] group-hover:text-[#F59E0B] group-hover:translate-x-1 transition-all"
+                    className="inline-flex items-center gap-2 text-xs font-bold text-[#0B1F3A] dark:text-[#F59E0B] group-hover:text-[#F59E0B]  transition-colors"
                   >
                     <span>Learn More</span>
                     <ChevronRight size={14} />

@@ -160,7 +160,7 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
       />
 
       {/* Main Articles Listing Section */}
-      <section className="py-12 md:py-16 px-6 lg:px-16 bg-[var(--section-alt-bg)]">
+      <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-[var(--section-alt-bg)]">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12">
           {/* Main Content (Articles) */}
           <div className="flex-1 min-w-0">
@@ -174,7 +174,7 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
                       setActiveCategory(cat);
                       setCurrentPage(1);
                     }}
-                    className={`shrink-0 px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 border cursor-pointer ${
+                    className={`shrink-0 px-4 py-2 rounded-full text-sm font-bold transition-colors duration-200 border cursor-pointer ${
                       activeCategory === cat
                         ? 'bg-[#F59E0B] border-[#F59E0B] text-[#0B1F3A] shadow-md shadow-amber-500/20'
                         : 'bg-[var(--card-bg)] border-[var(--card-border)] text-[var(--text-body)] hover:border-[#F59E0B]/40 hover:text-[#F59E0B]'

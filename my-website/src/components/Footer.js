@@ -25,12 +25,12 @@ export default function Footer() {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   };
 
 
   return (
-    <footer className="relative z-10 bg-[#0B1F3A] text-slate-300 pt-20 pb-8 border-t border-[#1E293B] transition-colors duration-300 mt-28 overflow-hidden">
+    <footer className="relative z-10 bg-[#0B1F3A] text-slate-300 pt-12 md:pt-16 pb-8 border-t border-[#1E293B] transition-colors duration-200 overflow-hidden">
       
       {/* Background Radial Glow Effects */}
       <div 
@@ -45,10 +45,10 @@ export default function Footer() {
       {/* Top Accent Line */}
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#F59E0B]/40 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ─── SECTION 1 — PREMIUM CTA BLOCK ─── */}
-        <div className="relative overflow-hidden rounded-3xl bg-[#071324] border border-[#1E293B] p-8 sm:p-12 lg:p-16 mb-20 shadow-2xl group">
+        <div className="relative overflow-hidden rounded-3xl bg-[#071324] border border-[#1E293B] p-6 sm:p-8 lg:p-10 mb-12 shadow-2xl group">
           
           {/* Subtle Inner Glow */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(245,158,11,0.12),transparent_70%)] pointer-events-none" />
@@ -77,10 +77,10 @@ export default function Footer() {
             <div className="shrink-0 w-full sm:w-auto">
               <Link
                 href="/contact"
-                className="group/btn inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base shadow-[0_0_25px_rgba(245,158,11,0.3)] hover:shadow-[0_0_35px_rgba(245,158,11,0.5)] transition-all duration-300 hover:-translate-y-0.5 no-underline w-full sm:w-auto"
+                className="group/btn inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base shadow-[0_0_25px_rgba(245,158,11,0.3)]  transition-colors duration-200  no-underline w-full sm:w-auto"
               >
                 <span>Start a Project</span>
-                <ArrowRight size={18} className="transition-transform duration-300 group-hover/btn:translate-x-1.5" />
+                <ArrowRight size={18} className="transition-transform duration-200 " />
               </Link>
             </div>
           </div>
@@ -98,7 +98,7 @@ export default function Footer() {
                 alt="Code with Amrendra Logo" 
                 width={40} 
                 height={40} 
-                className="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-sm" 
+                className="w-10 h-10 object-contain transition-transform duration-200  drop-shadow-sm" 
               />
               <span className="text-2xl font-black tracking-wider text-white leading-none">
                 <span className="bg-gradient-to-r from-[#F59E0B] to-[#FBBF24] text-transparent bg-clip-text font-black">CWA</span>
@@ -113,9 +113,9 @@ export default function Footer() {
             {/* Contact Email */}
             <a 
               href="mailto:amrendra1999official@gmail.com" 
-              className="inline-flex items-center gap-2.5 text-xs sm:text-sm text-slate-300 bg-[#071324] border border-[#1E293B] px-4 py-2.5 rounded-xl hover:border-[#F59E0B]/50 hover:text-white transition-all duration-300 group no-underline max-w-full"
+              className="inline-flex items-center gap-2.5 text-xs sm:text-sm text-slate-300 bg-[#071324] border border-[#1E293B] px-4 py-2.5 rounded-xl hover:border-[#F59E0B]/50 hover:text-white transition-colors duration-200 group no-underline max-w-full"
             >
-              <Mail size={16} className="text-[#F59E0B] transition-transform group-hover:scale-110 shrink-0" />
+              <Mail size={16} className="text-[#F59E0B] transition-transform  shrink-0" />
               <span className="font-medium break-all">amrendra1999official@gmail.com</span>
             </a>
           </div>
@@ -141,7 +141,7 @@ export default function Footer() {
                   <li key={link.name}>
                     <Link 
                       href={link.href} 
-                      className="text-slate-300 hover:text-[#F59E0B] transition-colors duration-200 font-medium block no-underline hover:translate-x-0.5 transition-transform"
+                      className="text-slate-300 hover:text-[#F59E0B] transition-colors duration-200 font-medium block no-underline"
                     >
                       {link.name}
                     </Link>
@@ -168,7 +168,7 @@ export default function Footer() {
                   <li key={link.name}>
                     <Link 
                       href={link.href} 
-                      className="text-slate-300 hover:text-[#F59E0B] transition-colors duration-200 font-medium block no-underline hover:translate-x-0.5 transition-transform"
+                      className="text-slate-300 hover:text-[#F59E0B] transition-colors duration-200 font-medium block no-underline"
                     >
                       {link.name}
                     </Link>
@@ -195,7 +195,7 @@ export default function Footer() {
                   <li key={link.name}>
                     <Link 
                       href={link.href} 
-                      className="text-slate-300 hover:text-[#F59E0B] transition-colors duration-200 font-medium block no-underline hover:translate-x-0.5 transition-transform"
+                      className="text-slate-300 hover:text-[#F59E0B] transition-colors duration-200 font-medium block no-underline"
                     >
                       {link.name}
                     </Link>
@@ -238,7 +238,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-10 h-10 rounded-xl bg-[#071324] border border-[#1E293B] text-slate-300 flex items-center justify-center hover:bg-[#F59E0B] hover:text-[#0B1F3A] hover:border-[#F59E0B] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#F59E0B]/50"
+                  className="w-10 h-10 rounded-xl bg-[#071324] border border-[#1E293B] text-slate-300 flex items-center justify-center hover:bg-[#F59E0B] hover:text-[#0B1F3A] hover:border-[#F59E0B] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#F59E0B]/50"
                 >
                   <Icon size={16} />
                 </a>
@@ -251,7 +251,7 @@ export default function Footer() {
             {/* Back to Top Button */}
             <button
               onClick={scrollToTop}
-              className="w-10 h-10 rounded-xl bg-[#071324] border border-[#1E293B] text-slate-300 flex items-center justify-center hover:text-[#F59E0B] hover:border-[#F59E0B]/50 hover:bg-[#F59E0B]/10 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#F59E0B]/50"
+              className="w-10 h-10 rounded-xl bg-[#071324] border border-[#1E293B] text-slate-300 flex items-center justify-center hover:text-[#F59E0B] hover:border-[#F59E0B]/50 hover:bg-[#F59E0B]/10 transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#F59E0B]/50"
               aria-label="Back to top"
               title="Back to top"
             >

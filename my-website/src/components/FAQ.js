@@ -67,27 +67,12 @@ const faqData = [
   },
 ];
 
-const stagger = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.06 },
-  },
-};
 
-const staggerItem = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-  },
-};
 
 function FAQItem({ question, answer, isOpen, onToggle, index }) {
   return (
     <motion.div
-      variants={staggerItem}
-      className="group rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-[var(--shadow-card)] transition-all duration-300 hover:border-[#F59E0B]/40 hover:shadow-[0_0_30px_rgba(245,158,11,0.08)] overflow-hidden"
+      className="group rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-[var(--shadow-card)] transition-colors duration-200 hover:border-[#F59E0B]/40  overflow-hidden"
     >
       <button
         onClick={onToggle}
@@ -100,7 +85,7 @@ function FAQItem({ question, answer, isOpen, onToggle, index }) {
           {question}
         </span>
         <span
-          className={`shrink-0 w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${
+          className={`shrink-0 w-8 h-8 rounded-xl flex items-center justify-center transition-transform duration-200 ${
             isOpen
               ? 'bg-[#F59E0B] text-[#0B1F3A] rotate-180'
               : 'bg-[#F59E0B]/10 text-[#0B1F3A] dark:text-[#F59E0B] rotate-0'
@@ -119,7 +104,7 @@ function FAQItem({ question, answer, isOpen, onToggle, index }) {
           height: isOpen ? 'auto' : 0,
           opacity: isOpen ? 1 : 0
         }}
-        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
         className="overflow-hidden"
       >
         <div className="px-6 pb-5 pt-0">
@@ -143,14 +128,10 @@ export default function FAQ() {
   return (
     <section className="py-12 md:py-16 bg-[var(--section-alt-bg)] border-t border-[var(--card-border)]">
       <motion.div
-        className="max-w-3xl mx-auto px-6 lg:px-16"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-80px' }}
-        variants={stagger}
+        className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         {/* Section Header */}
-        <motion.div variants={staggerItem} className="text-center mb-12">
+        <motion.div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3 text-[var(--text-heading)]">
             Frequently Asked{' '}
             <span className="gradient-text">Questions</span>

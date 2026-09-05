@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { cache } from "react";
 import { prisma } from "./prisma.js";
 
 import { extractFaqsFromContent } from "./schema.js";
@@ -236,10 +237,60 @@ export function getAllPosts() {
   return getPostsFromFilesystem();
 }
 
+/** Request-scoped memoization shares card data across metadata, related posts,
+ * categories and navigation without adding a persistent cache or delaying CMS updates.
+ * Article content and FAQ JSON are only selected by the detail loader.
+ */
+export const getPostSummariesAsync = cache(async function getPostSummariesAsync() {
+  if (!process.env.DATABASE_URL) {
+    return getPostsFromFilesystem().map(({ content, faqs, ...summary }) => summary);
+  }
+  try {
+    const posts = await prisma.blog.findMany({
+      where: { status: "PUBLISHED" },
+      select: {
+        id: true, title: true, slug: true, excerpt: true, description: true,
+        featuredImage: true, ogImage: true, canonicalUrl: true,
+        publishedAt: true, createdAt: true, updatedAt: true,
+        readingTime: true, wordCount: true, authorName: true,
+        categorySlug: true, category: { select: { name: true, slug: true } },
+        tags: { select: { tag: { select: { name: true } } } }, views: true,
+      },
+      orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
+    });
+    // Older CMS records may lack both reading-time fields. Fetch only those
+    // bodies to preserve their existing derived read time, rather than all bodies.
+    const missing = posts.filter(post => !post.readingTime && !post.wordCount);
+    const legacy = missing.length ? await prisma.blog.findMany({
+      where: { id: { in: missing.map(post => post.id) }, status: "PUBLISHED" },
+      select: { id: true, content: true },
+    }) : [];
+    const legacyTimes = new Map(legacy.map(post => [post.id, calculateReadingTime(post.content)]));
+    return posts.map(post => ({
+      id: post.id, title: post.title, slug: post.slug,
+      excerpt: post.excerpt || "", description: post.description || post.excerpt || "",
+      image: post.featuredImage || post.ogImage || "/images/og-blog.png",
+      featuredImage: post.featuredImage || post.ogImage,
+      ogImage: post.ogImage, canonicalUrl: post.canonicalUrl,
+      date: (post.publishedAt || post.createdAt).toISOString().split("T")[0],
+      publishedAt: post.publishedAt?.toISOString() || null,
+      updatedAt: post.updatedAt?.toISOString() || null,
+      readTime: post.readingTime || legacyTimes.get(post.id) || `${Math.max(1, Math.ceil(post.wordCount / 200))} min read`,
+      wordCount: post.wordCount, author: post.authorName || "Amrendra Kumar",
+      category: post.category?.name || "General",
+      categorySlug: post.categorySlug || post.category?.slug || "general",
+      tags: post.tags.map(({ tag }) => tag.name), views: post.views || 0,
+    }));
+  } catch (error) {
+    console.error("Database summary query failed:", error?.message || error);
+    return [];
+  }
+});
+
 /**
  * Returns a single post by its slug (Async).
  */
-export async function getPostBySlugAsync(slug) {
+export const getPostBySlugAsync = cache(async function getPostBySlugAsync(slug) {
   if (!process.env.DATABASE_URL) {
     return getPostBySlug(slug);
   }
@@ -293,7 +344,7 @@ export async function getPostBySlugAsync(slug) {
   }
 
   return null;
-}
+});
 
 /**
  * Returns a single post by its slug (Sync fallback).
@@ -322,8 +373,10 @@ export function getPostsByCategory(categorySlug) {
 export async function getAllCategoriesAsync() {
   try {
     const dbCategories = await prisma.category.findMany({
-      include: {
-        posts: { where: { status: "PUBLISHED" } },
+      select: {
+        slug: true,
+        name: true,
+        _count: { select: { posts: { where: { status: "PUBLISHED" } } } },
       },
     });
 
@@ -331,7 +384,7 @@ export async function getAllCategoriesAsync() {
       return dbCategories.map((c) => ({
         slug: c.slug,
         name: c.name,
-        count: c.posts ? c.posts.length : 0,
+        count: c._count.posts,
       }));
     }
   } catch (err) {
@@ -387,7 +440,7 @@ export function getAllTags() {
  * Returns related posts (Async).
  */
 export async function getRelatedPostsAsync(slug, limit = 3) {
-  const posts = await getAllPostsAsync();
+  const posts = await getPostSummariesAsync();
   const currentPost = posts.find((p) => p.slug === slug);
   if (!currentPost) return [];
 
@@ -434,7 +487,7 @@ export function getRelatedPosts(slug, limit = 3) {
  * Prev and Next posts navigation helper (Async).
  */
 export async function getPrevNextPostsAsync(slug) {
-  const posts = await getAllPostsAsync();
+  const posts = await getPostSummariesAsync();
   const currentIndex = posts.findIndex((p) => p.slug === slug);
 
   if (currentIndex === -1) return { prev: null, next: null };

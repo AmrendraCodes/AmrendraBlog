@@ -21,7 +21,7 @@ export default function RelatedPosts({ posts }) {
           <Link
             key={post.slug}
             href={`/resources/blog/${post.slug}`}
-            className="group bg-[var(--section-alt-bg)]/40 backdrop-blur-md border border-white/5 rounded-2xl overflow-hidden hover:border-[#F59E0B]/40 hover:shadow-2xl hover:shadow-[#F59E0B]/5 transition-all duration-300 no-underline flex flex-col relative"
+            className="group bg-[var(--section-alt-bg)]/40  border border-white/5 rounded-2xl overflow-hidden hover:border-[#F59E0B]/40   transition-colors duration-200 no-underline flex flex-col relative"
           >
             {/* Image */}
             <div className="relative aspect-video overflow-hidden rounded-t-2xl bg-slate-900">
@@ -32,13 +32,10 @@ export default function RelatedPosts({ posts }) {
                 }
                 alt={post.title}
                 fill
-                unoptimized={Boolean(
-                  post.image && (post.image.includes('blob.vercel-storage.com') || post.image.includes('vercel-storage.com'))
-                )}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1024px) 360px, 240px"
                 className="object-contain"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
               <div className="absolute top-3 left-3 z-10">
                 <span className="inline-block px-3 py-1.5 bg-[#F59E0B] backdrop-blur-sm text-[#0B1F3A] text-[10px] font-extrabold uppercase tracking-widest rounded-full shadow-lg">
                   {post.category}

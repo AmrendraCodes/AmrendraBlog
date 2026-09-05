@@ -16,13 +16,13 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
           <Link
             href="/"
-            className="w-full sm:w-auto px-8 py-3.5 bg-[#F59E0B] text-[#0B1F3A] rounded-full font-bold hover:bg-[#D97706] transition-all shadow-lg shadow-amber-500/20 hover:shadow-amber-500/40 hover:-translate-y-0.5 no-underline inline-flex items-center justify-center"
+            className="w-full sm:w-auto px-8 py-3.5 bg-[#F59E0B] text-[#0B1F3A] rounded-full font-bold hover:bg-[#D97706] transition-colors shadow-lg shadow-amber-500/20   no-underline inline-flex items-center justify-center"
           >
             Go Back Home
           </Link>
           <Link
             href="/resources/blog"
-            className="w-full sm:w-auto px-8 py-3.5 bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] rounded-full font-bold hover:bg-[var(--card-bg-hover)] hover:border-[#F59E0B]/50 hover:text-[#F59E0B] transition-all no-underline inline-flex items-center justify-center"
+            className="w-full sm:w-auto px-8 py-3.5 bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] rounded-full font-bold hover:bg-[var(--card-bg-hover)] hover:border-[#F59E0B]/50 hover:text-[#F59E0B] transition-colors no-underline inline-flex items-center justify-center"
           >
             Read the Blog
           </Link>

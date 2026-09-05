@@ -78,15 +78,15 @@ export default function ServicesDropdown({ onClose, onMouseEnter, onMouseLeave }
                       key={service.slug}
                       href={`/services/${service.slug}`}
                       onClick={onClose}
-                      className="group flex items-start gap-3.5 p-3 rounded-2xl border border-transparent hover:border-[#F59E0B]/30 hover:bg-slate-50 dark:hover:bg-[#112240] transition-all duration-300"
+                      className="group flex items-start gap-3.5 p-3 rounded-2xl border border-transparent hover:border-[#F59E0B]/30 hover:bg-slate-50 dark:hover:bg-[#112240] transition-colors duration-200"
                     >
-                      <div className="w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-xl bg-slate-100 dark:bg-[#112240] border border-slate-200 dark:border-[#1E293B] text-[#0B1F3A] dark:text-[#F59E0B] flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-[#F59E0B] group-hover:text-[#0B1F3A] transition-all duration-300 shadow-sm">
+                      <div className="w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-xl bg-slate-100 dark:bg-[#112240] border border-slate-200 dark:border-[#1E293B] text-[#0B1F3A] dark:text-[#F59E0B] flex items-center justify-center shrink-0  group-hover:bg-[#F59E0B] group-hover:text-[#0B1F3A] transition-colors duration-200 shadow-sm">
                         <Icon size={20} />
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="text-sm font-bold text-slate-900 dark:text-[#F8FAFC] group-hover:text-[#F59E0B] dark:group-hover:text-[#F59E0B] transition-colors flex items-center justify-between">
                           <span className="truncate">{service.title}</span>
-                          <ChevronRight size={15} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#F59E0B] shrink-0" />
+                          <ChevronRight size={15} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-[opacity,transform] text-[#F59E0B] shrink-0" />
                         </div>
                         <p className="text-xs text-slate-500 dark:text-[#94A3B8] line-clamp-2 leading-relaxed mt-1">
                           {service.subtitle}
@@ -108,7 +108,7 @@ export default function ServicesDropdown({ onClose, onMouseEnter, onMouseLeave }
           <Link
             href="/services"
             onClick={onClose}
-            className="inline-flex items-center gap-2 font-bold text-xs sm:text-sm text-[#0B1F3A] dark:text-[#F59E0B] hover:underline shrink-0 bg-[#F59E0B]/10 px-4 py-2 rounded-full border border-[#F59E0B]/30 hover:bg-[#F59E0B]/20 transition-all"
+            className="inline-flex items-center gap-2 font-bold text-xs sm:text-sm text-[#0B1F3A] dark:text-[#F59E0B] hover:underline shrink-0 bg-[#F59E0B]/10 px-4 py-2 rounded-full border border-[#F59E0B]/30 hover:bg-[#F59E0B]/20 transition-colors"
           >
             <span>Explore All Services</span>
             <ArrowRight size={15} />

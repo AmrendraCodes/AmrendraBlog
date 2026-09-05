@@ -1,4 +1,4 @@
-import { getAllPostsAsync } from "@/lib/posts";
+import { getPostSummariesAsync } from "@/lib/posts";
 import { getAllCaseStudies } from "@/lib/case-studies";
 import { SERVICES_DATA } from "@/data/servicesData";
 import { siteMetadata } from "@/config/seo";
@@ -83,7 +83,7 @@ export default async function sitemap() {
   }));
 
   // 3. Dynamic Blog Posts
-  const posts = (await getAllPostsAsync()) || [];
+  const posts = (await getPostSummariesAsync()) || [];
   const blogUrls = posts.map((post) => ({
     url: `${baseUrl}/resources/blog/${post.slug}`,
     lastModified: post.date ? new Date(post.date) : new Date(),

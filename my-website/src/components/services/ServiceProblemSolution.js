@@ -1,14 +1,12 @@
-'use client';
-
 import { AlertCircle, CheckCircle2, ArrowRight, Check, X } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 
 export default function ServiceProblemSolution({ problems = [], solutions = [], serviceTitle }) {
   return (
-    <section className="py-20 bg-[var(--section-alt-bg)] border-b border-[var(--card-border)]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-16">
+    <section className="py-12 md:py-16 bg-[var(--section-alt-bg)] border-b border-[var(--card-border)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-16">
+        <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
           <span className="text-xs font-extrabold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 mb-4 inline-block">
             CHALLENGES &amp; SOLUTIONS
           </span>
@@ -23,7 +21,7 @@ export default function ServiceProblemSolution({ problems = [], solutions = [], 
         {/* Grid Comparison */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
           {/* Problems Box */}
-          <AnimatedSection direction="left" delay={0.1} className="group bg-[var(--card-bg)] border border-rose-500/30 dark:border-rose-500/30 hover:border-rose-500 rounded-3xl p-6 sm:p-8 shadow-[var(--shadow-card)] hover:shadow-[0_0_35px_rgba(244,63,94,0.25)] transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col justify-between">
+          <AnimatedSection direction="left" delay={0.1} className="group bg-[var(--card-bg)] border border-rose-500/30 dark:border-rose-500/30  rounded-3xl p-6 sm:p-8 shadow-[var(--shadow-card)]      flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-10 h-10 rounded-full bg-rose-500/10 text-rose-500 flex items-center justify-center border border-rose-500/20 shrink-0">
@@ -60,7 +58,7 @@ export default function ServiceProblemSolution({ problems = [], solutions = [], 
           </AnimatedSection>
 
           {/* Solutions Box */}
-          <AnimatedSection direction="right" delay={0.2} className="group bg-[var(--card-bg)] border border-[#F59E0B]/30 dark:border-[#F59E0B]/30 hover:border-[#F59E0B] rounded-3xl p-6 sm:p-8 shadow-[var(--shadow-card)] hover:shadow-[0_0_35px_rgba(245,158,11,0.25)] transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col justify-between">
+          <AnimatedSection direction="right" delay={0.2} className="group bg-[var(--card-bg)] border border-[#F59E0B]/30 dark:border-[#F59E0B]/30  rounded-3xl p-6 sm:p-8 shadow-[var(--shadow-card)]      flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-10 h-10 rounded-full bg-[#F59E0B]/10 text-[#0B1F3A] dark:text-[#F59E0B] flex items-center justify-center border border-[#F59E0B]/30 shrink-0">

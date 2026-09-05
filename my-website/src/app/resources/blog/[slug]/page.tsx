@@ -1,4 +1,4 @@
-import { getPostBySlugAsync, getAllPostsAsync, getRelatedPostsAsync, getPrevNextPostsAsync } from "@/lib/posts";
+import { getPostBySlugAsync, getPostSummariesAsync, getRelatedPostsAsync, getPrevNextPostsAsync } from "@/lib/posts";
 import { extractTocHeadings } from "@/lib/toc";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import JsonLd from "@/components/JsonLd";
 import { getBlogPostSchema, getBreadcrumbSchema, getFAQSchema, extractFaqsFromContent, stripFaqSectionFromContent } from "@/lib/schema";
 import { siteMetadata } from "@/config/seo";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 import BlogDetailClient from "@/components/blog/BlogDetailClient";
 import ArticleNavigation from "@/components/blog/ArticleNavigation";
 import RelatedPosts from "@/components/blog/RelatedPosts";
@@ -20,7 +21,7 @@ export const dynamicParams = true;
 export const revalidate = 300;
 
 export async function generateStaticParams() {
-  const posts = await getAllPostsAsync();
+  const posts = await getPostSummariesAsync();
   return posts
     .filter((post) => typeof post.slug === "string" && post.slug.trim().length > 0)
     .map((post) => ({ slug: post.slug }));
@@ -87,8 +88,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
   const canonicalUrl = post.canonicalUrl || `${siteMetadata.siteUrl}/resources/blog/${slug}`;
   // headings computed after FAQ content decision below
-  const relatedPosts = await getRelatedPostsAsync(slug, 3);
-  const { prev, next } = await getPrevNextPostsAsync(slug);
+  const [relatedPosts, { prev, next }] = await Promise.all([
+    getRelatedPostsAsync(slug, 3),
+    getPrevNextPostsAsync(slug),
+  ]);
 
   const postSchema = getBlogPostSchema({
     title: post.title,
@@ -177,7 +180,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               <div className="mb-3.5">
                 <Link
                   href={`/category/${post.categorySlug}`}
-                  className="bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-[#0B1F3A] dark:text-[#F59E0B] text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider shadow-xs hover:bg-[#F59E0B]/20 transition-all no-underline"
+                  className="bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-[#0B1F3A] dark:text-[#F59E0B] text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider shadow-xs hover:bg-[#F59E0B]/20 transition-colors duration-200 no-underline"
                 >
                   {post.category}
                 </Link>
@@ -228,9 +231,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 alt={post.title}
                 fill
                 priority
-                unoptimized={Boolean(
-                  post.image && (post.image.includes('blob.vercel-storage.com') || post.image.includes('vercel-storage.com'))
-                )}
                 sizes="(max-width: 768px) 100vw, 760px"
                 className="absolute inset-0 object-contain"
               />
@@ -241,7 +241,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
       {/* Blog Detail Client (TOC Sidebar + Content + Bottom Sections) */}
       <BlogDetailClient
-        content={articleContent}
+        article={<MarkdownRenderer content={articleContent} />}
         headings={headings}
         title={post.title}
         slug={post.slug}

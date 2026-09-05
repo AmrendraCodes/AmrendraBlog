@@ -80,13 +80,13 @@ export default function ResourcesPage() {
       />
 
       {/* ─── Hero Section ─── */}
-      <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden border-b border-[var(--card-border)]">
+      <section className="relative pt-24 pb-12 md:pt-28 md:pb-16 overflow-hidden border-b border-[var(--card-border)]">
         {/* Background glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#F59E0B]/10 blur-[130px] rounded-full pointer-events-none" />
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-16 text-center flex flex-col items-center">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#F59E0B]/30 bg-[#F59E0B]/10 text-xs font-bold uppercase tracking-[0.12em] text-[#0B1F3A] dark:text-[#F59E0B] mb-6 shadow-sm">
-            <Sparkles size={14} className="animate-pulse text-[#F59E0B]" />
+            <Sparkles size={14} className=" text-[#F59E0B]" />
             Knowledge Hub
           </span>
 
@@ -101,15 +101,15 @@ export default function ResourcesPage() {
       </section>
 
       {/* ─── Main Resources Grid Section ─── */}
-      <section className="py-20 max-w-7xl mx-auto px-6 lg:px-16" aria-label="Resource directories">
+      <section className="py-12 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Resource directories">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {resourceCards.map((card) => {
             const Icon = card.icon;
             return (
               <TiltCard key={card.title} className="h-full">
-                <article className="group bg-[var(--card-bg)] rounded-3xl p-8 lg:p-10 border border-[rgba(255,255,255,0.08)] dark:border-[#1E293B] shadow-[var(--shadow-card)] hover:shadow-[0_25px_60px_rgba(11,31,58,0.1),0_4px_25px_rgba(245,158,11,0.15)] transition-all duration-500 relative h-full flex flex-col justify-between overflow-hidden">
+                <article className="group bg-[var(--card-bg)] rounded-3xl p-8 lg:p-10 border border-[rgba(255,255,255,0.08)] dark:border-[#1E293B] shadow-[var(--shadow-card)]  transition-colors duration-200 relative h-full flex flex-col justify-between overflow-hidden">
                   {/* Subtle Card Header Gradient */}
-                  <div className="absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-[#0B1F3A] via-[#F59E0B] to-[#D97706] opacity-80 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-[#0B1F3A] via-[#F59E0B] to-[#D97706] opacity-80  transition-opacity" />
 
                   {/* Clickable Overlay Link */}
                   <Link href={card.href} className="absolute inset-0 z-0" aria-label={`View ${card.title}`} />
@@ -117,7 +117,7 @@ export default function ResourcesPage() {
                   <div>
                     {/* Top Row: Icon + Badge */}
                     <div className="flex items-center justify-between mb-8">
-                      <div className="w-16 h-16 rounded-2xl bg-slate-100 dark:bg-[#112240] border border-slate-200 dark:border-[#1E293B] text-[#0B1F3A] dark:text-[#F59E0B] flex items-center justify-center group-hover:scale-110 group-hover:bg-[#F59E0B] group-hover:text-[#0B1F3A] transition-all duration-500 shadow-md">
+                      <div className="w-16 h-16 rounded-2xl bg-slate-100 dark:bg-[#112240] border border-slate-200 dark:border-[#1E293B] text-[#0B1F3A] dark:text-[#F59E0B] flex items-center justify-center   group-hover:text-[#0B1F3A] transition-colors duration-200 shadow-md">
                         <Icon size={32} />
                       </div>
                       <span className="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full border border-[var(--card-border)] bg-[var(--section-alt-bg)] text-[var(--text-muted)]">
@@ -152,10 +152,10 @@ export default function ResourcesPage() {
                   <div className="pt-2 relative z-10">
                     <Link
                       href={card.href}
-                      className="group/btn inline-flex items-center justify-center gap-3 w-full bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base py-4 px-8 rounded-2xl border-none cursor-pointer transition-all duration-300 shadow-[0_4px_20px_rgba(245,158,11,0.3)] hover:shadow-[0_8px_30px_rgba(245,158,11,0.5)] hover:-translate-y-0.5 no-underline active:scale-98"
+                      className="group/btn inline-flex items-center justify-center gap-3 w-full bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base py-4 px-8 rounded-2xl border-none cursor-pointer transition-colors duration-200 shadow-[0_4px_20px_rgba(245,158,11,0.3)]   no-underline "
                     >
                       <span>{card.cta}</span>
-                      <ArrowRight size={18} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
+                      <ArrowRight size={18} className="transition-transform duration-200 group-hover/btn:translate-x-1" />
                     </Link>
                   </div>
                 </article>

@@ -1,5 +1,3 @@
-'use client';
-
 import { ShieldCheck, Zap, Search, Target, MessageSquare, Scaling, BarChart2, Infinity } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 
@@ -48,9 +46,9 @@ const REASONS = [
 
 export default function ServiceWhyChooseUs() {
   return (
-    <section className="py-20 bg-[var(--section-alt-bg)] border-b border-[var(--card-border)]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-16">
-        <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-16">
+    <section className="py-12 md:py-16 bg-[var(--section-alt-bg)] border-b border-[var(--card-border)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
           <span className="text-xs font-extrabold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 mb-4 inline-block">
             WHY CODE WITH AMRENDRA
           </span>
@@ -70,7 +68,7 @@ export default function ServiceWhyChooseUs() {
                 key={idx}
                 direction="up"
                 delay={idx * 0.05}
-                className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 transition-all duration-300 hover:border-[#F59E0B]/40 hover:-translate-y-1"
+                className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6    "
               >
                 <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-[#112240] border border-slate-200 dark:border-[#1E293B] text-[#0B1F3A] dark:text-[#F59E0B] flex items-center justify-center mb-4">
                   <Icon size={20} />

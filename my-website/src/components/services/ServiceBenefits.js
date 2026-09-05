@@ -1,13 +1,11 @@
-'use client';
-
 import { TrendingUp, ShieldCheck, Zap, Award } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 
 export default function ServiceBenefits({ benefits = [], serviceTitle }) {
   return (
-    <section className="py-20 bg-[var(--section-alt-bg)] border-b border-[var(--card-border)] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-16">
-        <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-16">
+    <section className="py-12 md:py-16 bg-[var(--section-alt-bg)] border-b border-[var(--card-border)] relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
           <span className="text-xs font-extrabold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 mb-4 inline-block">
             VALUE DELIVERED
           </span>
@@ -25,13 +23,13 @@ export default function ServiceBenefits({ benefits = [], serviceTitle }) {
               key={idx}
               direction="up"
               delay={idx * 0.1}
-              className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 relative flex flex-col justify-between group hover:border-[#F59E0B]/40 hover:shadow-[var(--shadow-card)] transition-all duration-300"
+              className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 relative flex flex-col justify-between group    "
             >
               <div>
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#F59E0B]/20 to-[#0B1F3A]/20 border border-[#F59E0B]/30 text-[#0B1F3A] dark:text-[#F59E0B] font-bold text-sm flex items-center justify-center mb-5">
                   0{idx + 1}
                 </div>
-                <h3 className="text-lg font-bold text-[var(--text-heading)] mb-3 group-hover:text-[#F59E0B] transition-colors">
+                <h3 className="text-lg font-bold text-[var(--text-heading)] mb-3  ">
                   {benefit.title}
                 </h3>
                 <p className="text-xs sm:text-sm text-[var(--text-body)] leading-relaxed">

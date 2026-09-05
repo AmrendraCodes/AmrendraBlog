@@ -51,7 +51,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] font-sans overflow-x-hidden">
 
       {/* ═══════════ HERO ═══════════ */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-28 px-6 max-w-4xl mx-auto text-center">
+      <section className="pt-24 pb-12 md:pt-28 md:pb-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#0B1F3A] dark:text-[#F59E0B] mb-6">
           Get In Touch
         </p>
@@ -71,8 +71,8 @@ export default function ContactPage() {
       </section>
 
       {/* ═══════════ MAIN CONTENT ═══════════ */}
-      <section className="px-6 pb-20 md:pb-28">
-        <div className="max-w-6xl mx-auto">
+      <section className="px-4 sm:px-6 lg:px-8 pb-12 md:pb-16">
+        <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-28 items-start">
 
             {/* ─── Left Side: Contact Info ─── */}
@@ -102,7 +102,7 @@ export default function ContactPage() {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between py-5 border-b border-[var(--card-border)] hover:border-[#F59E0B]/40 transition-all duration-300 no-underline"
+                    className="group flex items-center justify-between py-5 border-b border-[var(--card-border)] hover:border-[#F59E0B]/40 transition-colors duration-200 no-underline"
                   >
                     <div>
                       <div className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-[0.18em] mb-1">
@@ -112,7 +112,7 @@ export default function ContactPage() {
                         {item.value}
                       </div>
                     </div>
-                    <svg className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[#F59E0B] transition-all duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[#F59E0B] transition-colors duration-200 " fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
                     </svg>
                   </a>
@@ -151,7 +151,7 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="John Doe"
-                        className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#F59E0B] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
+                        className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#F59E0B] focus:outline-none transition-colors duration-200 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
                       />
                     </div>
                     {/* Email */}
@@ -167,7 +167,7 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="name@example.com"
-                        className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#F59E0B] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
+                        className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#F59E0B] focus:outline-none transition-colors duration-200 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
                       />
                     </div>
                   </div>
@@ -185,7 +185,7 @@ export default function ContactPage() {
                       value={formData.subject}
                       onChange={handleChange}
                       placeholder="Project Inquiry"
-                      className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#F59E0B] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
+                      className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#F59E0B] focus:outline-none transition-colors duration-200 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 text-base"
                     />
                   </div>
 
@@ -201,7 +201,7 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={handleChange}
                       placeholder="Tell me about your project..."
-                      className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#F59E0B] focus:outline-none transition-colors duration-300 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 min-h-[140px] resize-none text-base"
+                      className="w-full py-3 bg-transparent border-b border-[var(--card-border)] focus:border-[#F59E0B] focus:outline-none transition-colors duration-200 text-[var(--foreground)] font-medium placeholder:text-[var(--text-muted)]/50 min-h-[140px] resize-none text-base"
                     ></textarea>
                   </div>
 
@@ -209,9 +209,9 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className={`w-full py-4 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer ${status === "success"
+                    className={`w-full py-4 rounded-xl font-bold transition-colors duration-200 flex items-center justify-center gap-3 cursor-pointer ${status === "success"
                       ? "bg-[#F59E0B] text-[#0B1F3A]"
-                      : "bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] hover:scale-[1.02] active:scale-[0.98] shadow-md"
+                      : "bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A]   shadow-md"
                       }`}
                   >
                     {status === "sending" ? "Sending..." : status === "success" ? "Message Sent!" : "Send Message"}
@@ -242,7 +242,7 @@ export default function ContactPage() {
       </section>
 
       {/* ═══════════ STATS / TRUST BAR ═══════════ */}
-      <section className="border-t border-[var(--card-border)] py-20 md:py-28 px-6">
+      <section className="border-t border-[var(--card-border)] py-12 md:py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-8 text-center">
             {[
@@ -264,7 +264,7 @@ export default function ContactPage() {
       </section>
 
       {/* ═══════════ TRUST BADGES ═══════════ */}
-      <section className="border-t border-[var(--card-border)] py-16 md:py-20 px-6">
+      <section className="border-t border-[var(--card-border)] py-12 md:py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)] mb-10">
             Recognized On
@@ -282,7 +282,7 @@ export default function ContactPage() {
                 href={platform.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-center px-6 py-3.5 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] opacity-70 hover:opacity-100 hover:border-[#F59E0B] hover:shadow-[0_0_20px_rgba(245,158,11,0.25)] hover:-translate-y-1 transition-all duration-300 min-w-[120px] no-underline"
+                className="group flex items-center justify-center px-6 py-3.5 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] opacity-70 hover:opacity-100 hover:border-[#F59E0B]   transition-colors duration-200 min-w-[120px] no-underline"
               >
                 <span className="text-sm font-bold text-[var(--text-heading)] group-hover:text-[#F59E0B] tracking-wide transition-colors">
                   {platform.name}

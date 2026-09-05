@@ -25,7 +25,7 @@ export default function TableOfContents({ headings, isMobile = false }) {
         const offset = 100; // Account for fixed header
         const top =
           element.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: "smooth" });
+        window.scrollTo({ top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
       }
       // Close mobile accordion after click
       setMobileOpen(false);
@@ -61,7 +61,7 @@ export default function TableOfContents({ headings, isMobile = false }) {
                 href={`#${heading.id}`}
                 onClick={(e) => handleClick(e, heading.id)}
                 className={`
-                  block py-1.5 pr-3 pl-4 rounded-r-lg text-[14px] font-medium transition-all duration-200 no-underline
+                  block py-1.5 pr-3 pl-4 rounded-r-lg text-[14px] font-medium transition-colors duration-200 no-underline
                   ${indent}
                   ${
                     isActive
@@ -81,7 +81,7 @@ export default function TableOfContents({ headings, isMobile = false }) {
 
   if (isMobile) {
     return (
-      <div className="w-full mb-8 bg-white/5 backdrop-blur-md border border-[var(--card-border)]/50 rounded-2xl shadow-sm" id="toc-mobile">
+      <div className="w-full bg-white/5 border border-[var(--card-border)]/50 rounded-2xl shadow-sm" id="toc-mobile">
         <button
           onClick={() => setMobileOpen((prev) => !prev)}
           className="w-full flex items-center justify-between px-5 py-4 text-sm font-bold text-[var(--text-heading)] cursor-pointer focus:outline-none"

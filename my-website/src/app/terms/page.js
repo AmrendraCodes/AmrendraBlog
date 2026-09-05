@@ -9,13 +9,13 @@ export const metadata = {
 export default function TermsPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950">
-      <section className="max-w-3xl mx-auto px-6 py-16 pt-24 md:pt-32">
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 md:pb-16 pt-24 md:pt-28">
         <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-[#0B1F3A] dark:text-[#F59E0B] uppercase bg-[#F59E0B]/10 dark:bg-[#F59E0B]/20 rounded-full border border-[#F59E0B]/30">
           Legal
         </div>
         <h1 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-slate-50 mb-8 tracking-tight">Terms of Service</h1>
 
-        <div className="prose prose-lg prose-slate dark:prose-invert max-w-none space-y-8">
+        <div className="prose prose-lg prose-slate dark:prose-invert max-w-none legal-prose">
           <div>
             <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-4">Acceptance of Terms</h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">

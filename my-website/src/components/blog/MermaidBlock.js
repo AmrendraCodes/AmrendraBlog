@@ -38,10 +38,17 @@ export default function MermaidBlock({ chart }) {
       }
     }
 
-    renderChart();
+    const container = containerRef.current;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      renderChart();
+    }, { rootMargin: "200px" });
+    if (container) observer.observe(container);
 
     return () => {
       cancelled = true;
+      observer.disconnect();
     };
   }, [chart]);
 
@@ -56,7 +63,7 @@ export default function MermaidBlock({ chart }) {
 
   if (!svg) {
     return (
-      <div className="my-6 p-8 bg-[var(--section-alt-bg)] border border-[var(--card-border)] rounded-xl flex items-center justify-center">
+      <div ref={containerRef} className="my-6 min-h-48 p-8 bg-[var(--section-alt-bg)] border border-[var(--card-border)] rounded-xl flex items-center justify-center" aria-label="Loading diagram">
         <div className="w-6 h-6 border-2 border-[#F59E0B] border-t-transparent rounded-full animate-spin" />
       </div>
     );
