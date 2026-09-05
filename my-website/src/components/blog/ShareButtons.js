@@ -10,7 +10,7 @@ import { siteMetadata } from "@/config/seo";
  *
  * @param {{ title: string, slug: string }} props
  */
-export default function ShareButtons({ title, slug }) {
+export default function ShareButtons({ title, slug, showLabel = false }) {
   const [copied, setCopied] = useState(false);
   const url = `${siteMetadata.siteUrl}/resources/blog/${slug}`;
 
@@ -78,14 +78,16 @@ export default function ShareButtons({ title, slug }) {
 
   return (
     <div className="flex items-center gap-2" id="share-buttons">
-      <span className="text-xs font-bold uppercase tracking-widest text-[var(--text-muted)] mr-1 hidden sm:inline">
-        Share
-      </span>
+      {showLabel && (
+        <span className="text-xs font-bold uppercase tracking-widest text-[var(--text-muted)] mr-1 hidden sm:inline">
+          Share
+        </span>
+      )}
       {buttons.map(({ label, icon: Icon, onClick, hoverClass }) => (
         <button
           key={label}
           onClick={onClick}
-          className={`w-10 h-10 rounded-full bg-[var(--section-alt-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--text-muted)] transition-all duration-200 cursor-pointer ${hoverClass}`}
+          className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[var(--section-alt-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--text-muted)] transition-all duration-200 cursor-pointer ${hoverClass}`}
           aria-label={label}
           title={label}
         >

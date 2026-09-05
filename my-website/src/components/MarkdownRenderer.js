@@ -36,7 +36,7 @@ function createHeadingComponent(level) {
 
     let sizeClasses = "";
     if (level === 2) {
-      sizeClasses = "text-xl sm:text-2xl font-extrabold text-[var(--text-heading)] pt-2 border-b border-[var(--card-border)]/40 pb-2 leading-snug block w-full text-left";
+      sizeClasses = "text-xl sm:text-2xl font-extrabold text-[var(--text-heading)] border-b border-[var(--card-border)]/40 pb-2 leading-snug block w-full text-left";
     } else if (level === 3) {
       sizeClasses = "text-lg sm:text-xl font-bold text-[var(--text-heading)] leading-snug block text-left";
     } else if (level === 4) {
@@ -147,10 +147,16 @@ function normalizeMarkdown(raw) {
     return placeholder;
   });
 
-  // Strip empty HTML elements (<p></p>, <p><br></p>, <p><br/></p>, <div></div>, etc.)
-  processed = processed.replace(/<p\b[^>]*>\s*(?:<br\s*\/?>|&nbsp;|\s*)*<\/p>/gi, "");
-  processed = processed.replace(/<div\b[^>]*>\s*<\/div>/gi, "");
-  processed = processed.replace(/<span\b[^>]*>\s*<\/span>/gi, "");
+  // Defensive newline normalization outside code blocks
+  processed = processed.replace(/\n{3,}/g, '\n\n');
+
+  // Strip empty HTML elements (<p></p>, <p><br></p>, <p><br/></p>, <div></div>, <span></span>, etc., including &nbsp; and Unicode whitespace)
+  processed = processed.replace(/<p\b[^>]*>(?:[\s\u00A0\u200B]|&nbsp;|<br\s*\/?>)*<\/p>/gi, "");
+  processed = processed.replace(/<div\b[^>]*>(?:[\s\u00A0\u200B]|&nbsp;|<br\s*\/?>)*<\/div>/gi, "");
+  processed = processed.replace(/<span\b[^>]*>(?:[\s\u00A0\u200B]|&nbsp;|<br\s*\/?>)*<\/span>/gi, "");
+
+  // Strip multiple consecutive <br> tags
+  processed = processed.replace(/(?:<br\s*\/?>[\s\u00A0\u200B]*){2,}/gi, "");
 
   // Remove any trailing standalone dashes/hyphens/equals at the very end of content
   processed = processed.replace(/\n+[ \t]*[-=_*]{1,3}[ \t]*$/, '\n');
@@ -179,11 +185,14 @@ function hasRenderableContent(children) {
   if (children === null || children === undefined) return false;
   return Children.toArray(children).some((child) => {
     if (child === null || child === undefined) return false;
-    if (typeof child === "string") return child.trim().length > 0 && child.trim() !== "&nbsp;";
+    if (typeof child === "string") {
+      const cleaned = child.replace(/[\s\u00A0\u200B]/g, "").replace(/&nbsp;/g, "");
+      return cleaned.length > 0;
+    }
     if (typeof child === "number") return true;
     if (!isValidElement(child)) return Boolean(child);
     if (child.type === "br") return false;
-    if (typeof child.type === "string" && ["img", "video", "iframe", "input"].includes(child.type)) return true;
+    if (Boolean(child.props?.src) || (typeof child.type === "string" && ["img", "video", "iframe", "input"].includes(child.type))) return true;
     return hasRenderableContent(child.props?.children);
   });
 }
@@ -303,7 +312,7 @@ export default function MarkdownRenderer({ content }) {
           // For external images, use standard img with lazy loading
           if (src && (src.startsWith("http://") || src.startsWith("https://"))) {
             return (
-              <figure className="article-image block w-full my-6 flex flex-col items-center">
+              <figure className="article-image block w-full flex flex-col items-center">
                 <Zoom>
                   <img
                     src={src}
@@ -323,7 +332,7 @@ export default function MarkdownRenderer({ content }) {
           }
           // For local images, use Next.js Image
           return (
-            <figure className="article-image block w-full my-6 flex flex-col items-center">
+            <figure className="article-image block w-full flex flex-col items-center">
               <Zoom>
                 <Image
                   src={src || ""}
@@ -381,7 +390,7 @@ export default function MarkdownRenderer({ content }) {
           }
 
           return (
-            <div className="code-block-wrapper group relative my-6 w-full">
+            <div className="code-block-wrapper group relative w-full">
               {/* Language Label */}
               {language && (
                 <div className="code-lang-label">
@@ -410,7 +419,7 @@ export default function MarkdownRenderer({ content }) {
             const config = admonitionConfig[admonition.type];
             return (
               <div
-                className={`my-5 p-4 border-l-4 rounded-xl ${config.borderColor} ${config.bgColor}`}
+                className={`p-4 border-l-4 rounded-xl ${config.borderColor} ${config.bgColor}`}
                 role="note"
               >
                 <div className="flex items-center gap-2 mb-1">
@@ -432,7 +441,7 @@ export default function MarkdownRenderer({ content }) {
 
           return (
             <blockquote
-              className="my-4 border-l-4 border-[#F59E0B] bg-[var(--section-alt-bg)]/80 rounded-r-xl py-2.5 px-4 text-[15px] sm:text-[16px] text-[var(--text-body)] leading-relaxed italic text-left"
+              className="border-l-4 border-[#F59E0B] bg-[var(--section-alt-bg)]/80 rounded-r-xl py-2.5 px-4 text-[15px] sm:text-[16px] text-[var(--text-body)] leading-relaxed italic text-left"
               {...props}
             >
               {children}
@@ -442,7 +451,7 @@ export default function MarkdownRenderer({ content }) {
 
         // ─── Tables ───
         table: ({ children, ...props }) => hasRenderableContent(children) ? (
-          <div className="table-wrapper overflow-x-auto my-6 border border-[var(--card-border)] rounded-xl shadow-xs bg-[var(--card-bg)]/60 backdrop-blur-sm w-full">
+          <div className="table-wrapper overflow-x-auto border border-[var(--card-border)] rounded-xl shadow-xs bg-[var(--card-bg)]/60 backdrop-blur-sm w-full">
             <table
               className="min-w-full divide-y divide-[var(--card-border)] text-sm text-left"
               {...props}
@@ -492,9 +501,9 @@ export default function MarkdownRenderer({ content }) {
           return <input type={type} checked={checked} {...props} />;
         },
 
-        // ─── Horizontal Rule (Clean, crisp, clearly visible divider with tight margins) ───
+        // ─── Horizontal Rule (Clean, crisp, clearly visible divider) ───
         hr: () => (
-          <div className="my-5 sm:my-6 flex items-center gap-3 w-full">
+          <div className="article-divider flex items-center gap-3 w-full">
             <div className="h-[1.5px] flex-1 bg-[var(--card-border)] opacity-80" />
             <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B]" />
             <div className="h-[1.5px] flex-1 bg-[var(--card-border)] opacity-80" />

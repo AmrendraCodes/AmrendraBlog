@@ -120,8 +120,8 @@ export default function TableOfContents({ headings, isMobile = false }) {
 
   // Desktop TOC (rendered inside sticky aside in parent layout)
   return (
-    <div className="w-full" id="toc-desktop">
-      <div className="max-h-[calc(100vh-14rem)] overflow-y-auto pr-2 scrollbar-thin">
+    <div className="w-full">
+      <div className="max-h-[calc(100vh-19rem)] overflow-y-auto pr-2 scrollbar-thin">
         <div className="flex items-center gap-2 mb-4 px-3">
           <List size={18} className="text-[#F59E0B]" />
           <h2 className="text-xs font-bold uppercase tracking-widest text-[var(--text-heading)]">

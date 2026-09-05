@@ -25,18 +25,18 @@ export default function BlogDetailClient({ content, headings, title, slug, child
     <>
       <ReadingProgress />
 
-      {/* Main Container — max-w-7xl centered */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-        <div className="grid grid-cols-1 xl:grid-cols-[240px_minmax(0,760px)_240px] xl:justify-center gap-8 lg:gap-12 items-start">
+      {/* Main Container — max-w-7xl / 2xl:max-w-[1380px] centered */}
+      <div className="relative max-w-7xl 2xl:max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+        <div className="grid grid-cols-1 xl:grid-cols-[240px_minmax(0,760px)_240px] xl:justify-center gap-8 lg:gap-10 xl:gap-12 items-start">
           
           {/* Desktop TOC — Sticky Sidebar on the Left */}
-          <aside className="hidden xl:block w-[240px] shrink-0 sticky top-28 space-y-6" id="toc-desktop">
+          <aside className="hidden xl:block w-[240px] shrink-0 sticky top-28 space-y-4" id="toc-desktop">
             <TableOfContents headings={headings} />
-            <div className="pt-4 border-t border-[var(--card-border)]/50 pl-3">
-              <span className="block text-[11px] font-bold uppercase tracking-widest text-[var(--text-muted)] mb-2.5">
+            <div className="pt-3.5 border-t border-[var(--card-border)]/50 px-3">
+              <span className="block text-xs font-bold uppercase tracking-widest text-[var(--text-heading)] mb-2.5">
                 Share Article
               </span>
-              <ShareButtons title={title} slug={slug} />
+              <ShareButtons title={title} slug={slug} showLabel={false} />
             </div>
           </aside>
 

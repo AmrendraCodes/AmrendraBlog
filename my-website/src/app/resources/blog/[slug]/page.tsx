@@ -150,7 +150,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       <div className="relative pt-24 pb-4 sm:pt-28 sm:pb-6 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[350px] bg-[#F59E0B]/8 blur-[100px] rounded-full pointer-events-none" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-7xl 2xl:max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="w-full max-w-[760px] mx-auto">
             {/* Breadcrumb Trail & Back Link */}
             <div className="flex items-center justify-between gap-4 mb-5 flex-wrap">

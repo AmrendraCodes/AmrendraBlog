@@ -90,6 +90,17 @@ export function normalizeMarkdown(raw) {
     return placeholder;
   });
 
+  // Defensive newline normalization outside code blocks
+  processed = processed.replace(/\n{3,}/g, '\n\n');
+
+  // Strip empty HTML elements (<p></p>, <p><br></p>, <p><br/></p>, <div></div>, <span></span>, etc., including &nbsp; and Unicode whitespace)
+  processed = processed.replace(/<p\b[^>]*>(?:[\s\u00A0\u200B]|&nbsp;|<br\s*\/?>)*<\/p>/gi, "");
+  processed = processed.replace(/<div\b[^>]*>(?:[\s\u00A0\u200B]|&nbsp;|<br\s*\/?>)*<\/div>/gi, "");
+  processed = processed.replace(/<span\b[^>]*>(?:[\s\u00A0\u200B]|&nbsp;|<br\s*\/?>)*<\/span>/gi, "");
+
+  // Strip multiple consecutive <br> tags
+  processed = processed.replace(/(?:<br\s*\/?>[\s\u00A0\u200B]*){2,}/gi, "");
+
   // Remove any trailing standalone dashes/hyphens/equals at the very end of content
   processed = processed.replace(/\n+[ \t]*[-=_*]{1,3}[ \t]*$/, '\n');
 
@@ -97,7 +108,7 @@ export function normalizeMarkdown(raw) {
   // Also clean up 1-2 char underlines directly below paragraphs that turn regular text into Setext H1/H2 headings.
   processed = processed.replace(
     /([^\n\r])[ \t]*\r?\n[ \t]*((?:-[ \t]*){1,}|(?:=[ \t]*){1,}|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,})[ \t]*(\r?\n|$)/g,
-    (match, textBefore, divider, textAfter) => {
+    (match, textBefore, divider) => {
       const trimmedDivider = divider.replace(/\s+/g, '');
       if (/^(?:-{3,}|={3,}|\*{3,}|_{3,})$/.test(trimmedDivider)) {
         return `${textBefore}\n\n${divider}\n\n`;
