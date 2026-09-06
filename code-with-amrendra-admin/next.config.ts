@@ -1,7 +1,23 @@
+// ============================================================================
+// CRITICAL: DO NOT REMOVE THIS DNS RESOLUTION RULE OR DANGEROUSLYALLOWLOCALIP.
+// In India and other regions with IPv6/NAT64 networks (Jio, Airtel, etc.),
+// Vercel Blob domains synthesize to RFC 6052 NAT64 IPv6 addresses ("64:ff9b::*").
+// Next.js classifies that as a private IP and blocks images with SSRF errors.
+// dns.setDefaultResultOrder('ipv4first') + dangerouslyAllowLocalIP: true + 
+// dev unoptimized: true guarantee that images ALWAYS load without errors.
+// ============================================================================
+import dns from 'node:dns';
 import type { NextConfig } from "next";
+
+if (typeof dns.setDefaultResultOrder === 'function') {
+  dns.setDefaultResultOrder('ipv4first');
+}
 
 const nextConfig: NextConfig = {
   images: {
+    // Permanent Protection against NAT64 / IPv6 synthetic private IP blocks
+    dangerouslyAllowLocalIP: true,
+    unoptimized: process.env.NODE_ENV === 'development',
     remotePatterns: [
       {
         protocol: 'https',
