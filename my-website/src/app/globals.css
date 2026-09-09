@@ -31,12 +31,12 @@
   --shadow-inner-glow: inset 0 1px 0 0 rgba(255,255,255,0.8), inset 0 0 0 1px rgba(245, 158, 11, 0.15);
 
   /* ─── Custom Animations & Keyframes ─── */
-  --animate-ticker-scroll: ticker-scroll 30s linear infinite;
+  --animate-ticker-scroll: ticker-scroll 50s linear infinite;
   --animate-pulse-glow: pulse-glow 4s ease-in-out infinite;
 
   @keyframes ticker-scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
   }
 
   @keyframes pulse-glow {
@@ -295,24 +295,52 @@ button, a, input, select, textarea {
 
 /* ─── Line Clamp Utilities ─── */
 /* ─── Ticker Animation & Styling ─── */
+@keyframes ticker-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
 .ticker-track {
   display: flex;
   width: max-content;
-  animation: var(--animate-ticker-scroll);
+  will-change: transform;
+  animation: ticker-scroll 50s linear infinite;
 }
 
 .ticker-track:hover {
   animation-play-state: paused;
 }
 
+.ticker-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
 .ticker-item {
-  display: inline-block;
-  padding-right: 2.5rem; /* 40px gap — mobile friendly */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 @media (min-width: 640px) {
   .ticker-item {
-    padding-right: 4rem; /* 64px gap on larger screens */
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none !important;
   }
 }
 

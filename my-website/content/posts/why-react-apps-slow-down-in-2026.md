@@ -32,20 +32,6 @@ faqs:
 
 **Quick Answer:** A slow React app is almost always caused by three things: unnecessary re-renders, unoptimized images, and shipping too much JavaScript on first load. Fixing just these three usually cuts Largest Contentful Paint (LCP) by **30-50%**. Next.js App Router apps have an edge here because server components ship **zero client JS by default** for static parts of the page.
 
----
-
-## Table of Contents
-
-- [Why React Apps Slow Down in 2026](#why-react-apps-slow-down-in-2026)
-- [The Core Performance Checklist](#the-core-performance-checklist)
-- [App Router vs Pages Router: Which Is Faster](#app-router-vs-pages-router-which-is-faster)
-- [Is Next.js Still a Single Page Application?](#is-nextjs-still-a-single-page-application)
-- [React Router vs Next.js Routing: Performance Comparison](#react-router-vs-nextjs-routing-performance-comparison)
-- [Performance Checklist for Admin Dashboards](#performance-checklist-for-admin-dashboards)
-- [Hidden Costs & Common Mistakes](#hidden-costs--common-mistakes)
-- [Need Help Optimizing Your React or Next.js App?](#need-help-optimizing-your-react-or-nextjs-app)
-- [Frequently Asked Questions](#faq-section)
-
 Most "slow React app" complaints don't come from React itself — they come from how the app is built. In 2026, with server components, streaming, and smarter bundlers, the tools to fix this are better than ever. This checklist covers what actually moves the needle, not just theory.
 
 ---
@@ -55,7 +41,9 @@ Most "slow React app" complaints don't come from React itself — they come from
 Three patterns show up in almost every slow app we've audited:
 
 1. **Client components doing server work**: fetching data in `useEffect` when it could happen on the server.
+
 2. **No memoization discipline**: every state change re-renders the entire component tree.
+
 3. **Unoptimized assets**: full-resolution images, unused JS shipped to every route.
 
 Fixing these is less about exotic techniques and more about following a checklist consistently. If you're still getting comfortable with React fundamentals like closures and the event loop before tackling performance, our guide covering scope, closures, prototypes, and the event loop is a good place to build that foundation first — read [JavaScript Enlightenment](https://www.codewithamrendra.in/resources/blog/javascript-enlightenment-master-core-concepts).
