@@ -108,6 +108,17 @@ const nextConfig = {
         destination: '/contact',
         permanent: true,
       },
+      // Fix Ahrefs 404s — dead category slugs with no posts
+      {
+        source: '/category/design',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/category/productivity',
+        destination: '/',
+        permanent: true,
+      },
     ];
   },
   async headers() {
