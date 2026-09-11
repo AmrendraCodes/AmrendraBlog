@@ -74,11 +74,11 @@ export default function WhatWeBuildSection() {
             <ScrollReveal key={service.title} delay={index * 0.06} variant="fade-up">
               <Link
                 href={service.href}
-                className="group relative rounded-2xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] p-6 sm:p-8 flex flex-col justify-between h-full transition-colors duration-200 hover:border-[#F59E0B]/60   shadow-sm"
+                className="group relative rounded-2xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] p-6 sm:p-8 flex flex-col justify-between h-full card-interactive shadow-sm"
               >
                 <div>
                   {/* Icon Container */}
-                  <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-[#112240] text-[#0B1F3A] dark:text-[#F59E0B] border border-slate-200 dark:border-[#1E293B] flex items-center justify-center mb-5 shrink-0  group-hover:text-[#0B1F3A] transition-colors duration-200 shadow-sm">
+                  <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-[#112240] text-[#0B1F3A] dark:text-[#F59E0B] border border-slate-200 dark:border-[#1E293B] flex items-center justify-center mb-5 shrink-0 group-hover:bg-[#F59E0B]/10 transition-colors duration-200 shadow-sm">
                     <Icon size={22} />
                   </div>
 
@@ -89,7 +89,7 @@ export default function WhatWeBuildSection() {
                     </h3>
                     <ArrowRight
                       size={18}
-                      className="text-slate-400 dark:text-slate-500 group-hover:text-[#F59E0B]  transition-colors shrink-0 ml-2"
+                      className="text-slate-400 dark:text-slate-500 group-hover:text-[#F59E0B] transition-all duration-200 shrink-0 ml-2 motion-safe:group-hover:translate-x-1"
                     />
                   </div>
 

@@ -65,7 +65,7 @@ export default function ServiceOfferings({ offerings = [], serviceTitle }) {
             return (
               <StaggerItem
                 key={idx}
-                className="group bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6     "
+                className="group bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 card-feature"
               >
                 <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-[#112240] border border-slate-200 dark:border-[#1E293B] text-[#0B1F3A] dark:text-[#F59E0B] flex items-center justify-center mb-5     ">
                   <IconComponent size={22} />

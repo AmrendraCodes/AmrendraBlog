@@ -93,7 +93,7 @@ export default function PricingSection() {
         {tiers.map((tier, idx) => (
           <div
             key={idx}
-            className={`relative rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-colors duration-200  ${
+            className={`relative rounded-3xl p-6 sm:p-8 flex flex-col justify-between card-pricing ${
               tier.popular
                 ? 'bg-gradient-to-b from-amber-500/5 to-white dark:from-[#112240] dark:to-[#0B1F3A] border-2 border-[#F59E0B] shadow-[0_10px_40px_rgba(245,158,11,0.2)]'
                 : 'bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] shadow-sm'

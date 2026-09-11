@@ -42,7 +42,7 @@ export default function ProcessTimelineSection() {
         {PROCESS_STEPS.map((item, idx) => (
           <div
             key={idx}
-            className="rounded-3xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] p-6    flex flex-col justify-between shadow-sm"
+            className="rounded-3xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] p-6 card-feature flex flex-col justify-between shadow-sm"
           >
             <div>
               <span className="text-3xl font-extrabold font-mono text-[#F59E0B] block mb-4">

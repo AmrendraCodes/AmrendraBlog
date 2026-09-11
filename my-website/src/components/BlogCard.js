@@ -16,7 +16,7 @@ export default function BlogCard({ post }) {
   return (
     <TiltCard className="h-full">
       <article 
-        className="group relative bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[var(--card-border)] shadow-[var(--shadow-card)]  transition-shadow duration-200 h-full flex flex-col justify-between"
+        className="group relative bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[var(--card-border)] shadow-[var(--shadow-card)] card-interactive h-full flex flex-col justify-between"
       >
       {/* Thumbnail */}
       <div className="relative aspect-video overflow-hidden rounded-t-3xl bg-slate-900">
@@ -26,7 +26,7 @@ export default function BlogCard({ post }) {
           fill
           onError={() => setImgSrc(defaultFallback)}
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-contain"
+          className="object-contain transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.03]"
         />
         <div className="absolute top-4 left-4">
           <span className="bg-[#F59E0B] text-[#0B1F3A] text-[11px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-md">
@@ -84,7 +84,7 @@ export default function BlogCard({ post }) {
           </div>
 
           <span
-            className="w-10 h-10 rounded-full bg-[var(--section-alt-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--foreground)]  group-hover:text-[#0B1F3A]  transition-colors duration-200 relative z-20"
+            className="w-10 h-10 rounded-full bg-[var(--section-alt-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--foreground)] group-hover:bg-[#F59E0B] group-hover:text-[#0B1F3A] group-hover:border-[#F59E0B] transition-colors duration-200 relative z-20"
             aria-hidden="true"
           >
             <ArrowUpRight size={18} />

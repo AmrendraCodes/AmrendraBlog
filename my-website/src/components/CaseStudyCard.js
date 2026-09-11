@@ -9,7 +9,7 @@ export default function CaseStudyCard({ study }) {
   return (
     <TiltCard className="h-full">
       <article
-        className="group bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[var(--card-border)] shadow-[var(--shadow-card)]  transition-shadow duration-200 relative h-full flex flex-col justify-between"
+        className="group bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[var(--card-border)] shadow-[var(--shadow-card)] card-interactive relative h-full flex flex-col justify-between"
       >
       {/* Cover Image */}
       <div className="relative h-56 overflow-hidden">
@@ -18,7 +18,7 @@ export default function CaseStudyCard({ study }) {
           alt={study.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition-transform duration-200 "
+          className="object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.03]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--card-bg)] via-transparent to-transparent opacity-60" />
 
@@ -61,7 +61,7 @@ export default function CaseStudyCard({ study }) {
           <span className="text-[12px] font-medium text-[var(--text-muted)]">
             {study.duration} · {study.client}
           </span>
-          <span className="w-9 h-9 rounded-full bg-[var(--section-alt-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--foreground)]  group-hover:text-[#0B1F3A]  transition-colors duration-200">
+          <span className="w-9 h-9 rounded-full bg-[var(--section-alt-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--foreground)] group-hover:bg-[#F59E0B] group-hover:text-[#0B1F3A] group-hover:border-[#F59E0B] transition-colors duration-200">
             <ArrowUpRight size={16} />
           </span>
         </div>

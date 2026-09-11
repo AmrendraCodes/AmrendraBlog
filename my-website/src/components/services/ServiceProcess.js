@@ -22,7 +22,7 @@ export default function ServiceProcess({ processSteps = [] }) {
               key={idx}
               direction="up"
               delay={idx * 0.08}
-              className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-7 relative flex flex-col justify-between group    "
+              className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-7 relative flex flex-col justify-between group card-feature"
             >
               <div>
                 <div className="flex items-center justify-between mb-6">

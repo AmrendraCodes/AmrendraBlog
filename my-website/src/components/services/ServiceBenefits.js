@@ -23,7 +23,7 @@ export default function ServiceBenefits({ benefits = [], serviceTitle }) {
               key={idx}
               direction="up"
               delay={idx * 0.1}
-              className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 relative flex flex-col justify-between group    "
+              className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 relative flex flex-col justify-between group card-feature"
             >
               <div>
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#F59E0B]/20 to-[#0B1F3A]/20 border border-[#F59E0B]/30 text-[#0B1F3A] dark:text-[#F59E0B] font-bold text-sm flex items-center justify-center mb-5">

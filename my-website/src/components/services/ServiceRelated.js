@@ -69,12 +69,12 @@ export default function ServiceRelated({ relatedServices = [], relatedBlogSlugs 
                   <Link
                     key={slug}
                     href={`/resources/blog/${slug}`}
-                    className="group flex items-center justify-between p-4 rounded-xl bg-[var(--background)] border border-[var(--card-border)] hover:border-[#F59E0B]/50 transition-colors duration-200"
+                    className="group flex items-center justify-between p-4 rounded-xl bg-[var(--background)] border border-[var(--card-border)] card-interactive"
                   >
                     <span className="text-sm font-semibold text-[var(--text-heading)] group-hover:text-[#F59E0B] transition-colors line-clamp-1 pr-4">
                       {BLOG_TITLES[slug] || slug.replace(/-/g, ' ')}
                     </span>
-                    <ArrowRight size={16} className="text-[var(--text-muted)] group-hover:text-[#F59E0B]  transition-colors shrink-0" />
+                    <ArrowRight size={16} className="text-[var(--text-muted)] group-hover:text-[#F59E0B] transition-all duration-200 shrink-0 motion-safe:group-hover:translate-x-1" />
                   </Link>
                 ))}
               </div>
@@ -98,12 +98,12 @@ export default function ServiceRelated({ relatedServices = [], relatedBlogSlugs 
                   <Link
                     key={slug}
                     href={`/resources/case-studies/${slug}`}
-                    className="group flex items-center justify-between p-4 rounded-xl bg-[var(--background)] border border-[var(--card-border)] hover:border-[#F59E0B]/50 transition-colors duration-200"
+                    className="group flex items-center justify-between p-4 rounded-xl bg-[var(--background)] border border-[var(--card-border)] card-interactive"
                   >
                     <span className="text-sm font-semibold text-[var(--text-heading)] group-hover:text-[#F59E0B] transition-colors line-clamp-1 pr-4">
                       {CASE_STUDY_TITLES[slug] || slug.replace(/-/g, ' ')}
                     </span>
-                    <ArrowRight size={16} className="text-[var(--text-muted)] group-hover:text-[#F59E0B]  transition-colors shrink-0" />
+                    <ArrowRight size={16} className="text-[var(--text-muted)] group-hover:text-[#F59E0B] transition-all duration-200 shrink-0 motion-safe:group-hover:translate-x-1" />
                   </Link>
                 ))}
               </div>

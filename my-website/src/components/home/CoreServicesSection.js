@@ -78,9 +78,9 @@ export default function CoreServicesSection() {
             const Icon = service.icon;
             return (
               <ScrollReveal key={index} delay={index * 0.08} variant="fade-up">
-                <TiltCard className="group relative rounded-3xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] p-8 transition-colors duration-200 hover:border-[#F59E0B]/60  flex flex-col justify-between h-full shadow-sm">
+                <TiltCard className="group relative rounded-3xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] p-8 card-interactive flex flex-col justify-between h-full shadow-sm">
                   <div>
-                    <div className="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-[#112240] border border-slate-200 dark:border-[#1E293B] text-[#0B1F3A] dark:text-[#F59E0B] flex items-center justify-center mb-6   group-hover:text-[#0B1F3A] transition-colors duration-200 shadow-sm">
+                    <div className="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-[#112240] border border-slate-200 dark:border-[#1E293B] text-[#0B1F3A] dark:text-[#F59E0B] flex items-center justify-center mb-6 group-hover:bg-[#F59E0B]/10 transition-colors duration-200 shadow-sm">
                       <Icon size={26} />
                     </div>
                     <span className="text-[10px] font-mono text-[#D97706] dark:text-[#F59E0B] uppercase tracking-wider block mb-2 font-bold">
@@ -98,7 +98,7 @@ export default function CoreServicesSection() {
                     className="inline-flex items-center gap-2 text-xs font-bold text-[#0B1F3A] dark:text-[#F59E0B] group-hover:text-[#F59E0B]  transition-colors"
                   >
                     <span>Learn More</span>
-                    <ChevronRight size={14} />
+                    <ChevronRight size={14} className="transition-transform duration-200 motion-safe:group-hover:translate-x-0.5" />
                   </Link>
                 </TiltCard>
               </ScrollReveal>

@@ -83,7 +83,7 @@ export default function WhyChooseUsSection() {
             const IconComponent = item.icon;
             return (
               <ScrollReveal key={item.id} delay={index * 0.06} variant="fade-up" className="h-full">
-                <div className="group relative rounded-3xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] p-6 sm:p-8      flex flex-col justify-between h-full overflow-hidden shadow-sm">
+                <div className="group relative rounded-3xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] p-6 sm:p-8 card-feature flex flex-col justify-between h-full overflow-hidden shadow-sm">
                   {/* Subtle Background Glow Effect on Hover */}
                   <div className="absolute -right-12 -top-12 w-32 h-32 bg-[#F59E0B]/5 rounded-full blur-2xl    pointer-events-none" />
 

@@ -31,7 +31,7 @@ export default function ServiceCard({ service }) {
   const badgeStyle = categoryColors[service.category] || categoryColors.BUILD;
 
   return (
-    <div className="group relative bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-colors duration-200 hover:border-[#F59E0B]/50  ">
+    <div className="group relative bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 sm:p-8 flex flex-col justify-between card-interactive">
       {/* Top subtle glow bar */}
       <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-[#F59E0B]/0  to-transparent transition-colors duration-200" />
 
@@ -42,7 +42,7 @@ export default function ServiceCard({ service }) {
         {/* Header Row */}
         <div className="flex items-center justify-between gap-4 mb-6">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#F59E0B]/10 to-[#0B1F3A]/10 dark:from-[#F59E0B]/20 dark:to-[#0B1F3A]/20 border border-[#F59E0B]/30 flex items-center justify-center text-[#0B1F3A] dark:text-[#F59E0B]  transition-transform duration-200 shadow-sm">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#F59E0B]/10 to-[#0B1F3A]/10 dark:from-[#F59E0B]/20 dark:to-[#0B1F3A]/20 border border-[#F59E0B]/30 flex items-center justify-center text-[#0B1F3A] dark:text-[#F59E0B] group-hover:bg-[#F59E0B]/20 transition-colors duration-200 shadow-sm">
               <IconComponent size={24} />
             </div>
             <span className={`text-xs font-bold tracking-wider px-3 py-1 rounded-full border ${badgeStyle}`}>
@@ -87,7 +87,7 @@ export default function ServiceCard({ service }) {
           className="inline-flex items-center justify-between w-full text-sm font-bold text-[#0B1F3A] dark:text-[#F59E0B] group-hover:text-[#F59E0B] transition-colors"
         >
           <span>Learn More &amp; View Details</span>
-          <ArrowRight size={16} className="transition-transform duration-200 " />
+          <ArrowRight size={16} className="transition-transform duration-200 motion-safe:group-hover:translate-x-1" />
         </Link>
       </div>
     </div>
