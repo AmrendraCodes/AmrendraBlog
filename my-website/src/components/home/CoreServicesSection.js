@@ -2,10 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import {
   Code2,
-  Cloud,
-  Zap,
   Layers,
-  Globe,
   ChevronRight,
   Bot,
 } from 'lucide-react';
@@ -15,45 +12,24 @@ import TiltCard from '../ui/TiltCard';
 const CORE_SERVICES = [
   {
     icon: Code2,
-    title: 'Full-Stack Web Engineering',
-    desc: 'End-to-end Web Development Services using React, Next.js, and TypeScript — built for speed, SEO, and long-term maintainability across every device.',
-    tag: 'Next.js • React • TS',
+    title: 'Full-Stack Web Development',
+    desc: 'End-to-end development using React, Next.js, and TypeScript — from UI/UX design and responsive frontend engineering to AWS cloud deployment, CI/CD pipelines, and production hosting.',
+    tag: 'Next.js • React • AWS',
     href: '/services/web-development',
   },
   {
     icon: Bot,
-    title: 'AI & Autonomous LLM Agents',
-    desc: 'Custom AI Agent Development Services that automate workflows, support decision-making, and integrate large language models directly into your product — a core pillar of our AI Automation Development Services.',
+    title: 'AI & Automation',
+    desc: 'Custom AI agents and workflow automations that connect LLM APIs, build intelligent chatbots, and eliminate repetitive manual tasks — integrated directly into your product.',
     tag: 'OpenAI • LangChain • RAG',
     href: '/services/ai-automation',
   },
   {
-    icon: Globe,
-    title: 'UI/UX & Product Architecture',
-    desc: 'From MVP to multi-tenant scale, our SaaS & Product Design Services cover user flows, interface prototyping, and high-conversion visual design.',
-    tag: 'Figma • Design System • UI',
-    href: '/services/ui-ux-product-design',
-  },
-  {
-    icon: Cloud,
-    title: 'AWS Cloud & DevOps Automation',
-    desc: 'Fully managed Cloud Software Development Services — CI/CD pipelines, infrastructure-as-code, container orchestration, and 24/7 monitoring on AWS.',
-    tag: 'AWS • Docker • Terraform',
-    href: '/services/cloud-devops',
-  },
-  {
     icon: Layers,
-    title: 'SEO & Growth Strategy',
-    desc: 'Technical SEO audits, data-driven content strategy, structured schema markup, and organic search optimization to scale search visibility.',
+    title: 'SEO & Technical Content Writing',
+    desc: 'Search-intent keyword strategy, technical SEO audits, and in-depth content written by a developer — not a generic content agency. Built to rank and build topical authority.',
     tag: 'SEO • Content • Growth',
     href: '/services/seo-content-strategy',
-  },
-  {
-    icon: Zap,
-    title: 'Digital Marketing & Conversion',
-    desc: 'Comprehensive digital marketing strategies covering paid media, search acquisition, and conversion rate optimization (CRO).',
-    tag: 'Growth • PPC • CRO',
-    href: '/services/digital-marketing',
   },
 ];
 

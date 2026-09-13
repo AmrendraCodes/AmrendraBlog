@@ -21,21 +21,21 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "Services — Web Development, AI Automation & Growth Strategy | Code with Amrendra",
-  description: "Explore professional digital services by Code with Amrendra: Custom Next.js Web Development, UI/UX Design, Digital Marketing, AI & Workflow Automation, Cloud DevOps, and Technical SEO.",
+  title: "Services — Web Development, AI Automation & SEO Content Writing | Code with Amrendra",
+  description: "Custom web development, AI agent integrations, and technical content writing by Amrendra Kumar. Three focused services — each delivered personally, not through an agency.",
   keywords: [
     "Web Development Services", 
     "Next.js Development", 
     "React Web Apps", 
-    "Digital Marketing Services", 
     "AI Automation Services", 
-    "UI UX Design Services", 
-    "Cloud DevOps AWS", 
-    "SEO Content Strategy"
+    "AI Chatbot Development",
+    "SEO Content Writing",
+    "Technical Content Writing",
+    "Code with Amrendra",
   ],
   openGraph: {
     title: "Services — Code with Amrendra",
-    description: "High-performance Web Engineering, AI Integrations, UI/UX Design, Cloud Deployments, and Data-Driven SEO Growth.",
+    description: "Custom web development, AI integrations, and technical content writing — three focused services delivered personally.",
     url: "https://codewithamrendra.in/services",
     type: "website",
   },
@@ -47,19 +47,19 @@ export const metadata = {
 export default function ServicesPage() {
   // Common 6-step framework for landing page
   const defaultProcess = [
-    { step: "01", title: "Discover & Audit", description: "Analyzing business objectives, target market, current bottlenecks, and technical requirements." },
-    { step: "02", title: "Strategy & Plan", description: "Crafting a precise engineering and growth roadmap with clear milestones and deliverables." },
-    { step: "03", title: "Build & Engineer", description: "Developing robust, modern Next.js applications, UI design systems, or automated AI pipelines." },
-    { step: "04", title: "Quality & Test", description: "Conducting rigorous cross-device testing, security audits, and Core Web Vitals performance tuning." },
-    { step: "05", title: "Launch & Deploy", description: "Deploying to production edge networks (Vercel/AWS) with automated SSL and CDN caching." },
-    { step: "06", title: "Grow & Scale", description: "Iterating based on search analytics, scaling cloud resources, and expanding organic reach." },
+    { step: "01", title: "Discover & Scope", description: "Understanding your business goals, target audience, technical constraints, and what success looks like." },
+    { step: "02", title: "Plan & Design", description: "Wireframes, architecture decisions, keyword research, or workflow mapping — depending on the service." },
+    { step: "03", title: "Build & Execute", description: "Writing code, creating content, or configuring AI integrations. You'll see progress weekly, not just at the end." },
+    { step: "04", title: "Test & Refine", description: "Cross-browser testing, content accuracy checks, AI guardrail validation — whatever quality assurance the project needs." },
+    { step: "05", title: "Launch & Deploy", description: "Going live with production deployment, published content, or activated automations. Handover documentation included." },
+    { step: "06", title: "Monitor & Iterate", description: "Tracking performance metrics, search rankings, or automation logs — and making adjustments based on real data." },
   ];
 
   const servicesCollectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Services — Code with Amrendra",
-    "description": "Professional Web Development, UI/UX Design, Digital Marketing, AI Automation, Cloud DevOps, and SEO Strategy.",
+    "description": "Custom web development, AI agent integrations, and technical content writing.",
     "url": "https://codewithamrendra.in/services",
     "provider": {
       "@type": "Organization",
@@ -95,19 +95,19 @@ export default function ServicesPage() {
           <AnimatedSection direction="up" delay={0.05}>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-[#0B1F3A] dark:text-[#F59E0B] text-xs font-extrabold uppercase tracking-wider mb-6">
               <Sparkles size={14} />
-              <span>END-TO-END DIGITAL CAPABILITIES</span>
+              <span>THREE FOCUSED SERVICES</span>
             </div>
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={0.1}>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[var(--text-heading)] tracking-tight leading-[1.1] mb-6 max-w-4xl mx-auto">
-              We <span className="bg-gradient-to-r from-[#0B1F3A] via-[#1E3A8A] to-[#F59E0B] dark:from-white dark:via-[#F8FAFC] dark:to-[#F59E0B] text-transparent bg-clip-text">Build, Grow &amp; Scale</span> Your Digital Presence
+              I <span className="bg-gradient-to-r from-[#0B1F3A] via-[#1E3A8A] to-[#F59E0B] dark:from-white dark:via-[#F8FAFC] dark:to-[#F59E0B] text-transparent bg-clip-text">Build, Write & Automate</span> for Your Business
             </h1>
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={0.15}>
             <p className="text-lg sm:text-xl text-[var(--text-body)] leading-relaxed mb-10 max-w-3xl mx-auto">
-              Code with Amrendra helps businesses build modern digital experiences, increase online visibility with search-focused marketing, adopt practical AI &amp; workflow automation, and scale digital products with reliable cloud architecture.
+              Web development, AI integrations, and technical content writing — three things I do well, delivered personally. No agency overhead, no handoffs to junior developers.
             </p>
           </AnimatedSection>
 
@@ -116,7 +116,7 @@ export default function ServicesPage() {
               href="/contact"
               className="inline-flex items-center justify-center gap-2.5 bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base py-4 px-9 rounded-full shadow-[0_0_25px_rgba(245,158,11,0.3)] transition-colors duration-200   w-full sm:w-auto"
             >
-              <span>Get Started</span>
+              <span>Start a Conversation</span>
               <ArrowRight size={18} />
             </Link>
             <a
@@ -130,18 +130,18 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ─── Framework Overview: Idea → Build → Launch → Grow → Scale ─── */}
+      {/* ─── Framework Overview: Build → Write → Automate ─── */}
       <section className="py-12 md:py-16 bg-[var(--section-alt-bg)] border-b border-[var(--card-border)] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
             <span className="text-xs font-extrabold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 mb-4 inline-block">
-              OUR SERVICE ARCHITECTURE
+              WHAT I DO
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[var(--text-heading)] tracking-tight mt-3 mb-4">
-              Idea → Build → Launch → Grow → Scale
+              Build → Write → Automate
             </h2>
             <p className="text-[var(--text-body)] text-base sm:text-lg leading-relaxed">
-              Three interconnected pillars designed to take digital products from initial concept to high-volume market presence.
+              Three interconnected services — each one strengthens the others. A well-built site ranks better. Good content drives traffic to it. And automation keeps it all running efficiently.
             </p>
           </AnimatedSection>
 
@@ -154,10 +154,10 @@ export default function ServicesPage() {
                   <Code2 size={24} />
                 </div>
                 <div className="inline-block px-3 py-1 rounded-full bg-[#F59E0B]/10 text-[#0B1F3A] dark:text-[#F59E0B] font-bold text-xs uppercase tracking-wider mb-4 border border-[#F59E0B]/20">
-                  PILLAR 01
+                  BUILD
                 </div>
                 <h3 className="text-2xl font-black text-[var(--text-heading)] mb-3">
-                  BUILD
+                  Web Development
                 </h3>
                 <p className="text-sm text-[var(--text-body)] leading-relaxed mb-6">
                   {SERVICES_CATEGORIES.BUILD.description}
@@ -167,10 +167,6 @@ export default function ServicesPage() {
               <div className="pt-6 border-t border-[var(--card-border)] space-y-2">
                 <Link href="/services/web-development" className="flex items-center justify-between text-xs font-bold text-[var(--text-heading)] hover:text-[#F59E0B] transition-colors py-1.5">
                   <span>• Web Development</span>
-                  <ArrowRight size={14} />
-                </Link>
-                <Link href="/services/ui-ux-product-design" className="flex items-center justify-between text-xs font-bold text-[var(--text-heading)] hover:text-[#F59E0B] transition-colors py-1.5">
-                  <span>• UI/UX &amp; Product Design</span>
                   <ArrowRight size={14} />
                 </Link>
               </div>
@@ -184,10 +180,10 @@ export default function ServicesPage() {
                   <TrendingUp size={24} />
                 </div>
                 <div className="inline-block px-3 py-1 rounded-full bg-[#F59E0B]/10 text-[#0B1F3A] dark:text-[#F59E0B] font-bold text-xs uppercase tracking-wider mb-4 border border-[#F59E0B]/20">
-                  PILLAR 02
+                  GROW
                 </div>
                 <h3 className="text-2xl font-black text-[var(--text-heading)] mb-3">
-                  GROW
+                  SEO & Content Writing
                 </h3>
                 <p className="text-sm text-[var(--text-body)] leading-relaxed mb-6">
                   {SERVICES_CATEGORIES.GROW.description}
@@ -195,12 +191,8 @@ export default function ServicesPage() {
               </div>
 
               <div className="pt-6 border-t border-[var(--card-border)] space-y-2">
-                <Link href="/services/digital-marketing" className="flex items-center justify-between text-xs font-bold text-[var(--text-heading)] hover:text-[#F59E0B] transition-colors py-1.5">
-                  <span>• Digital Marketing</span>
-                  <ArrowRight size={14} />
-                </Link>
                 <Link href="/services/seo-content-strategy" className="flex items-center justify-between text-xs font-bold text-[var(--text-heading)] hover:text-[#F59E0B] transition-colors py-1.5">
-                  <span>• SEO &amp; Content Strategy</span>
+                  <span>• SEO & Technical Content Writing</span>
                   <ArrowRight size={14} />
                 </Link>
               </div>
@@ -214,10 +206,10 @@ export default function ServicesPage() {
                   <Scaling size={24} />
                 </div>
                 <div className="inline-block px-3 py-1 rounded-full bg-[#F59E0B]/10 text-[#0B1F3A] dark:text-[#F59E0B] font-bold text-xs uppercase tracking-wider mb-4 border border-[#F59E0B]/20">
-                  PILLAR 03
+                  SCALE
                 </div>
                 <h3 className="text-2xl font-black text-[var(--text-heading)] mb-3">
-                  SCALE
+                  AI & Automation
                 </h3>
                 <p className="text-sm text-[var(--text-body)] leading-relaxed mb-6">
                   {SERVICES_CATEGORIES.SCALE.description}
@@ -226,11 +218,7 @@ export default function ServicesPage() {
 
               <div className="pt-6 border-t border-[var(--card-border)] space-y-2">
                 <Link href="/services/ai-automation" className="flex items-center justify-between text-xs font-bold text-[var(--text-heading)] hover:text-[#F59E0B] transition-colors py-1.5">
-                  <span>• AI &amp; Automation</span>
-                  <ArrowRight size={14} />
-                </Link>
-                <Link href="/services/cloud-devops" className="flex items-center justify-between text-xs font-bold text-[var(--text-heading)] hover:text-[#F59E0B] transition-colors py-1.5">
-                  <span>• Cloud &amp; DevOps</span>
+                  <span>• AI & Automation</span>
                   <ArrowRight size={14} />
                 </Link>
               </div>
@@ -244,13 +232,13 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
             <span className="text-xs font-extrabold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 mb-4 inline-block">
-              COMPLETE SERVICE OFFERINGS
+              SERVICE DETAILS
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-[var(--text-heading)] tracking-tight mt-3 mb-4">
-              Explore Our Specialist Capabilities
+              Explore Each Service
             </h2>
             <p className="text-[var(--text-body)] text-base sm:text-lg leading-relaxed">
-              Select a service below to view detailed offerings, business benefits, delivery workflows, and FAQs.
+              Click through to see detailed offerings, real case studies, delivery process, and FAQs for each service.
             </p>
           </AnimatedSection>
 

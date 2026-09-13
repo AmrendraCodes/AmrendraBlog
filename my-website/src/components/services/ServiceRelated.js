@@ -9,6 +9,11 @@ export default function ServiceRelated({ relatedServices = [], relatedBlogSlugs 
     "how-to-build-a-light-and-dark-theme-switch-using-javascript": "How to Build a Light & Dark Theme Toggle Using JavaScript",
     "microservices-vs-modular-monolith-2026": "Microservices vs Modular Monolith in 2026: Which Architecture Actually Scales?",
     "how-to-learn-react": "How to Learn React in 2026: The Complete Beginner's Guide",
+    "future-of-web-development-2026": "The Future of Web Development in 2026",
+    "ai-agents-replacing-saas-seats": "AI Agents Are Replacing SaaS Seats — Here's What That Means",
+    "rag-chatbot-for-your-business-website": "How to Build a RAG Chatbot for Your Business Website",
+    "saas-architecture-guide": "The Complete SaaS Architecture Guide",
+    "docker-tutorial-for-beginners-kubernetes-guide": "Docker Tutorial for Beginners & Kubernetes Guide",
   };
 
   // Map of static case study titles for interlinking

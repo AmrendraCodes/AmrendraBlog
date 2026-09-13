@@ -133,10 +133,7 @@ export default function Footer() {
                 {[
                   { name: "Web Development", href: "/services/web-development" },
                   { name: "AI & Automation", href: "/services/ai-automation" },
-                  { name: "Digital Marketing", href: "/services/digital-marketing" },
-                  { name: "UI/UX & Product Design", href: "/services/ui-ux-product-design" },
-                  { name: "SEO & Content Strategy", href: "/services/seo-content-strategy" },
-                  { name: "Cloud & DevOps", href: "/services/cloud-devops" },
+                  { name: "SEO & Content Writing", href: "/services/seo-content-strategy" },
                 ].map((link) => (
                   <li key={link.name}>
                     <Link 

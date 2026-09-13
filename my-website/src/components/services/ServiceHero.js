@@ -47,7 +47,7 @@ export default function ServiceHero({ service }) {
                 href="/contact"
                 className="inline-flex items-center justify-center gap-2.5 bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base py-3.5 px-8 rounded-full shadow-[0_0_25px_rgba(245,158,11,0.3)] transition-colors duration-200   w-full sm:w-auto"
               >
-                <span>Get Started</span>
+                <span>{service.ctaText || "Get Started"}</span>
                 <ArrowRight size={18} />
               </Link>
               <Link
@@ -57,7 +57,7 @@ export default function ServiceHero({ service }) {
                 className="inline-flex items-center justify-center gap-2 bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-heading)] font-semibold text-base py-3.5 px-7 rounded-full hover:border-[#F59E0B] hover:text-[#F59E0B] transition-colors duration-200 w-full sm:w-auto"
               >
                 <MessageCircle size={18} className="text-[#25D366]" />
-                <span>Talk to Us</span>
+                <span>{service.ctaSecondaryText || "Talk to Me"}</span>
               </Link>
             </div>
           </AnimatedSection>

@@ -40,7 +40,7 @@ const SERVICES = [
     title: 'Cloud Solutions',
     desc: 'Secure, scalable AWS & cloud infrastructure',
     icon: Cloud,
-    href: '/services/cloud-devops',
+    href: '/services/web-development',
   },
   {
     title: 'API & Integrations',

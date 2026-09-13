@@ -150,7 +150,11 @@ export default async function ServiceDetailPage({ params }) {
       />
 
       {/* 6. Why Choose Code with Amrendra */}
-      <ServiceWhyChooseUs />
+      <ServiceWhyChooseUs
+        reasons={service.whyChooseUs?.reasons}
+        heading={service.whyChooseUs?.heading}
+        subtitle={service.whyChooseUs?.subtitle}
+      />
 
       {/* 7. FAQs */}
       <ServiceFaq 

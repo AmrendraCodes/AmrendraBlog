@@ -1,12 +1,11 @@
+'use client';
+
 import React from 'react';
 
 const TICKER_SERVICES = [
-  'Web Development Services',
-  'Digital Marketing',
-  'UI/UX & Product Design',
-  'SEO & Content Strategy',
-  'AI Automation Development Services',
-  'Cloud & DevOps',
+  'Custom Web Development',
+  'AI & Automation Services',
+  'SEO & Technical Content Writing',
 ];
 
 // Repeat 3x within each group to comfortably exceed wide and ultra-wide displays

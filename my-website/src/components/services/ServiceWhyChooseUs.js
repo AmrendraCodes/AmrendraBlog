@@ -1,6 +1,10 @@
-import { ShieldCheck, Zap, Search, Target, MessageSquare, Scaling, BarChart2, Infinity } from "lucide-react";
+import { ShieldCheck, Zap, Search, Target, MessageSquare, Scaling, BarChart2, Infinity, Code2, Globe, Cloud, GitBranch, Layers, FileCheck, Activity, Eye, Gauge, DollarSign } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 
+const ICON_MAP = {
+  ShieldCheck, Zap, Search, Target, MessageSquare, Scaling, BarChart2, Infinity,
+  Code2, Globe, Cloud, GitBranch, Layers, FileCheck, Activity, Eye, Gauge, DollarSign,
+};
 const REASONS = [
   {
     icon: Zap,
@@ -44,7 +48,11 @@ const REASONS = [
   },
 ];
 
-export default function ServiceWhyChooseUs() {
+export default function ServiceWhyChooseUs({ reasons: customReasons, heading, subtitle }) {
+  const items = customReasons || REASONS;
+  const sectionHeading = heading || "Engineering Excellence Built on Trust & Results";
+  const sectionSubtitle = subtitle || "Combining deep technical expertise with strategic product thinking to deliver digital products that stand out.";
+
   return (
     <section className="py-12 md:py-16 bg-[var(--section-alt-bg)] border-b border-[var(--card-border)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,16 +61,16 @@ export default function ServiceWhyChooseUs() {
             WHY CODE WITH AMRENDRA
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[var(--text-heading)] tracking-tight mt-3 mb-4">
-            Engineering Excellence Built on Trust &amp; Results
+            {sectionHeading}
           </h2>
           <p className="text-[var(--text-body)] text-base sm:text-lg leading-relaxed">
-            Combining deep technical expertise with strategic product thinking to deliver digital products that stand out.
+            {sectionSubtitle}
           </p>
         </AnimatedSection>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {REASONS.map((item, idx) => {
-            const Icon = item.icon;
+          {items.map((item, idx) => {
+            const Icon = typeof item.icon === 'string' ? (ICON_MAP[item.icon] || Zap) : item.icon;
             return (
               <AnimatedSection
                 key={idx}

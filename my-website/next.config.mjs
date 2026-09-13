@@ -119,6 +119,22 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
+      // Service page consolidation — single-hop 301 redirects
+      {
+        source: '/services/ui-ux-product-design',
+        destination: '/services/web-development',
+        permanent: true,
+      },
+      {
+        source: '/services/cloud-devops',
+        destination: '/services/web-development',
+        permanent: true,
+      },
+      {
+        source: '/services/digital-marketing',
+        destination: '/services/seo-content-strategy',
+        permanent: true,
+      },
     ];
   },
   async headers() {
