@@ -1,8 +1,20 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Play, Github, Linkedin, Twitter, Youtube, Code2, Cloud, Brain, Palette, Terminal } from "lucide-react";
+import { siteMetadata } from "@/config/seo";
 
-
+export const metadata = {
+  title: "About Amrendra Kumar — Frontend Developer & Technical Writer",
+  description: "Learn more about Amrendra Kumar, a Frontend Developer and Technical Content Writer specializing in React, Next.js, AI systems, SaaS architecture, and cloud infrastructure.",
+  alternates: {
+    canonical: `${siteMetadata.siteUrl}/about`,
+  },
+  openGraph: {
+    title: "About Amrendra Kumar — Frontend Developer & Technical Writer",
+    description: "Learn more about Amrendra Kumar, a Frontend Developer and Technical Content Writer specializing in React, Next.js, AI systems, SaaS architecture, and cloud infrastructure.",
+    url: `${siteMetadata.siteUrl}/about`,
+    type: "profile",
+  },
+};
 
 export default function AboutPage() {
   const displayText = "Hi, I'm Amrendra";

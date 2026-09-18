@@ -95,34 +95,6 @@ export default function RootLayout({ children }) {
         suppressHydrationWarning
         className={`${geist.variable} ${jetbrainsMono.variable} bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300 overflow-x-hidden`}
       >
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              "name": "Amrendra Kumar",
-              "url": "https://www.codewithamrendra.in",
-              "image": "https://www.codewithamrendra.in/profile-photo.jpeg",
-              "jobTitle": "Frontend Developer & Technical Content Writer",
-              "description": "Personal insights on React, AI Agents, SaaS architecture, AWS infrastructure, DevOps automation, and modern software engineering.",
-              "email": "amrendra1999official@gmail.com",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Bihar Sharif",
-                "addressRegion": "Bihar",
-                "addressCountry": "IN"
-              },
-              "sameAs": [
-                "https://github.com/AmrendraCodes",
-                "https://x.com/AmrendraCodes",
-                "https://www.linkedin.com/in/amrendra1998/",
-                "https://www.youtube.com/@codewithamrendra",
-                "https://www.instagram.com/codewithamrendra"
-              ]
-            })
-          }}
-        />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ConditionalLayout>{children}</ConditionalLayout>
           <CookieConsent />

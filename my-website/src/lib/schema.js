@@ -34,17 +34,37 @@ export function getPersonSchema() {
     "name": "Amrendra Kumar",
     "url": "https://www.codewithamrendra.in",
     "image": "https://www.codewithamrendra.in/profile-photo.jpeg",
+    "jobTitle": "Software Engineer & Technical Writer",
+    "description": "Software engineer, cloud architect, and technical writer sharing practical insights on frontend engineering, AI systems, scalable SaaS platforms, and modern software engineering.",
+    "email": "amrendra1999official@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bihar Sharif",
+      "addressRegion": "Bihar",
+      "addressCountry": "IN"
+    },
     "sameAs": [
       "https://github.com/AmrendraCodes",
       "https://x.com/codewithamrendr",
       "https://www.linkedin.com/in/amrendra1998/",
       "https://www.youtube.com/@codewithamrendra",
-      "https://instagram.com/amrendracodes"
+      "https://www.instagram.com/codewithamrendra"
     ],
-    "jobTitle": "Software Engineer & Technical Writer",
+    "knowsAbout": [
+      "React",
+      "Next.js",
+      "Frontend Development",
+      "Artificial Intelligence",
+      "AI Agents",
+      "SaaS Architecture",
+      "AWS Cloud Infrastructure",
+      "DevOps Automation",
+      "Technical Content Writing"
+    ],
     "worksFor": {
       "@type": "Organization",
-      "name": "Code With Amrendra"
+      "name": "Code with Amrendra",
+      "url": "https://www.codewithamrendra.in"
     }
   };
 }

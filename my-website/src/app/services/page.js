@@ -3,6 +3,7 @@ import {
   SERVICES_DATA, 
   SERVICES_CATEGORIES 
 } from "@/data/servicesData";
+import { siteMetadata } from "@/config/seo";
 import ServiceCard from "@/components/services/ServiceCard";
 import ServiceProcess from "@/components/services/ServiceProcess";
 import ServiceWhyChooseUs from "@/components/services/ServiceWhyChooseUs";
@@ -36,11 +37,11 @@ export const metadata = {
   openGraph: {
     title: "Services — Code with Amrendra",
     description: "Custom web development, AI integrations, and technical content writing — three focused services delivered personally.",
-    url: "https://codewithamrendra.in/services",
+    url: `${siteMetadata.siteUrl}/services`,
     type: "website",
   },
   alternates: {
-    canonical: "/services",
+    canonical: `${siteMetadata.siteUrl}/services`,
   },
 };
 
@@ -60,11 +61,11 @@ export default function ServicesPage() {
     "@type": "CollectionPage",
     "name": "Services — Code with Amrendra",
     "description": "Custom web development, AI agent integrations, and technical content writing.",
-    "url": "https://codewithamrendra.in/services",
+    "url": `${siteMetadata.siteUrl}/services`,
     "provider": {
       "@type": "Organization",
       "name": "Code with Amrendra",
-      "url": "https://codewithamrendra.in"
+      "url": siteMetadata.siteUrl
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
@@ -75,7 +76,7 @@ export default function ServicesPage() {
           "@type": "Service",
           "name": service.title,
           "description": service.subtitle,
-          "url": `https://codewithamrendra.in/services/${service.slug}`
+          "url": `${siteMetadata.siteUrl}/services/${service.slug}`
         },
         "position": index + 1
       }))

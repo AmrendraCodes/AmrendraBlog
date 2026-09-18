@@ -4,6 +4,7 @@ import {
   getServiceBySlug, 
   getRelatedServices 
 } from "@/data/servicesData";
+import { siteMetadata } from "@/config/seo";
 import ServiceHero from "@/components/services/ServiceHero";
 import ServiceProblemSolution from "@/components/services/ServiceProblemSolution";
 import ServiceOfferings from "@/components/services/ServiceOfferings";
@@ -43,11 +44,11 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: service.metaTitle,
       description: service.metaDescription,
-      url: `https://www.codewithamrendra.in/services/${service.slug}`,
+      url: `${siteMetadata.siteUrl}/services/${service.slug}`,
       type: "article",
     },
     alternates: {
-      canonical: `/services/${service.slug}`,
+      canonical: `${siteMetadata.siteUrl}/services/${service.slug}`,
     },
   };
 }
@@ -68,14 +69,14 @@ export default async function ServiceDetailPage({ params }) {
     "@type": "Service",
     "name": service.title,
     "description": service.metaDescription,
-    "provider": {
+    provider: {
       "@type": "Organization",
       "name": "Code with Amrendra",
-      "url": "https://www.codewithamrendra.in"
+      "url": siteMetadata.siteUrl
     },
     "areaServed": "Worldwide",
     "serviceType": service.title,
-    "url": `https://codewithamrendra.in/services/${service.slug}`
+    "url": `${siteMetadata.siteUrl}/services/${service.slug}`
   };
 
   const breadcrumbSchema = {
@@ -86,19 +87,19 @@ export default async function ServiceDetailPage({ params }) {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://www.codewithamrendra.in"
+        "item": siteMetadata.siteUrl
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Services",
-        "item": "https://www.codewithamrendra.in/services"
+        "item": `${siteMetadata.siteUrl}/services`
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": service.title,
-        "item": `https://www.codewithamrendra.in/services/${service.slug}`
+        "item": `${siteMetadata.siteUrl}/services/${service.slug}`
       }
     ]
   };

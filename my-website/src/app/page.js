@@ -7,7 +7,9 @@ const FAQ = nextDynamic(() => import('@/components/FAQ'));
 import { getPostSummariesAsync } from "@/lib/posts";
 import { getAllCaseStudies } from "@/lib/case-studies";
 import JsonLd from "@/components/JsonLd";
-import { getWebsiteSchema, getPersonSchema, getLocalBusinessSchema } from "@/lib/schema";
+import { getWebsiteSchema, getPersonSchema, getLocalBusinessSchema, getFAQSchema } from "@/lib/schema";
+import { faqData } from "@/data/faqData";
+import { siteMetadata } from "@/config/seo";
 import HomeClient from "@/components/HomeClient";
 
 // Keep the public landing page cached at the CDN after it has been generated. The
@@ -21,7 +23,7 @@ export const metadata = {
   openGraph: {
     title: 'Code With Amrendra | AI Development Services & Cloud',
     description: 'Code With Amrendra delivers AI Development Services, custom software, SaaS & cloud engineering for modern businesses. Book a free consultation today.',
-    url: '/',
+    url: siteMetadata.siteUrl,
     images: [
       {
         url: '/images/og-default.png',
@@ -37,7 +39,7 @@ export const metadata = {
     images: ['/images/og-default.png'],
   },
   alternates: {
-    canonical: 'https://www.codewithamrendra.in',
+    canonical: siteMetadata.siteUrl,
   },
 };
 
@@ -81,11 +83,14 @@ export default async function Home() {
     metricHighlight: cs.metricHighlight,
   }));
 
+  const faqSchema = getFAQSchema(faqData);
+
   return (
     <div className="min-h-screen w-full overflow-x-hidden relative bg-[var(--background)]">
       <JsonLd data={getWebsiteSchema()} />
       <JsonLd data={getPersonSchema()} />
       <JsonLd data={getLocalBusinessSchema()} />
+      {faqSchema && <JsonLd data={faqSchema} />}
 
       <HomeClient featuredPosts={featuredPosts} caseStudies={caseStudies} />
 
