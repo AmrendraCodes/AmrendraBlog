@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { siteMetadata } from "@/config/seo";
+import { ArrowRight, Play, Github, Linkedin, Twitter, Youtube, Code2, Cloud, Brain, Palette, Terminal } from "lucide-react";
 
 export const metadata = {
   title: "About Amrendra Kumar — Frontend Developer & Technical Writer",
