@@ -19,7 +19,7 @@ export default function EngineeringDifferenceSection() {
       {/* Bento Grid Split: Legacy vs Code with Amrendra */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
         {/* Legacy Side */}
-        <div className="group rounded-3xl bg-slate-50 dark:bg-[#0B1F3A] border border-red-500/30  p-6 sm:p-8 shadow-md  relative overflow-hidden    ">
+        <div className="group rounded-3xl bg-slate-50 hover:bg-white dark:bg-[#0B1F3A] dark:hover:bg-[#132c50] border border-red-500/30 hover:border-red-500 p-6 sm:p-8 shadow-md hover:shadow-[0_0_30px_rgba(239,68,68,0.4)] relative overflow-hidden transition-all duration-300 ease-out hover:scale-[1.02] cursor-pointer">
           <div className="flex items-center gap-3.5 mb-6">
             <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-red-500/15 text-red-500 border border-red-500/30 shrink-0   flex items-center justify-center font-bold   shadow-[0_0_15px_rgba(239,68,68,0.15)]">
               <X size={20} strokeWidth={2.5} />
@@ -62,7 +62,7 @@ export default function EngineeringDifferenceSection() {
         </div>
 
         {/* Code with Amrendra Side */}
-        <div className="group rounded-3xl bg-gradient-to-br from-amber-500/5 to-slate-50 dark:from-[#112240] dark:to-[#0B1F3A] border-2 border-[#F59E0B]/50  p-6 sm:p-8 shadow-[0_0_30px_rgba(245,158,11,0.15)]  relative overflow-hidden    ">
+        <div className="group rounded-3xl bg-gradient-to-br from-amber-500/5 to-slate-50 hover:from-amber-500/10 hover:to-white dark:from-[#112240] dark:to-[#0B1F3A] dark:hover:from-[#192f58] dark:hover:to-[#12284c] border-2 border-[#F59E0B]/50 hover:border-[#F59E0B] p-6 sm:p-8 shadow-[0_0_30px_rgba(245,158,11,0.15)] hover:shadow-[0_0_35px_rgba(245,158,11,0.4)] relative overflow-hidden transition-all duration-300 ease-out hover:scale-[1.02] cursor-pointer">
           <div className="flex items-center gap-3.5 mb-6">
             <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#F59E0B] text-[#0B1F3A] shrink-0   shadow-[0_0_18px_rgba(245,158,11,0.4)] flex items-center justify-center font-bold  ">
               <Check size={20} strokeWidth={3} />
