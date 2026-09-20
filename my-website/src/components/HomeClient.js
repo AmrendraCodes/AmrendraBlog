@@ -13,6 +13,7 @@ import ProcessTimelineSection from './home/ProcessTimelineSection';
 import CaseStudiesSection from './CaseStudiesSection';
 import BlogCard from './BlogCard';
 import ComparisonTable from './home/ComparisonTable';
+import AboutAmrendraSection from './home/AboutAmrendraSection';
 import PricingSection from './home/PricingSection';
 
 export default function HomeClient({ caseStudies, featuredPosts }) {
@@ -93,7 +94,10 @@ export default function HomeClient({ caseStudies, featuredPosts }) {
         <ComparisonTable />
       </section>
 
-      {/* 11. Engagement Models & Pricing */}
+      {/* 11. About Amrendra - Personal Brand & Founder Introduction */}
+      <AboutAmrendraSection />
+
+      {/* 12. Engagement Models & Pricing */}
       <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC] dark:bg-[#071324] border-y border-slate-200 dark:border-[#1E293B] transition-colors duration-200">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
