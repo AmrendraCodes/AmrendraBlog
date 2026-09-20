@@ -24,6 +24,24 @@ export function getWebsiteSchema() {
 }
 
 /**
+ * Returns Organization JSON-LD Schema.
+ */
+export function getOrganizationSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://www.codewithamrendra.in/#organization",
+    "name": "Code With Amrendra",
+    "alternateName": [
+      "Code with Amrendra",
+      "CWA Engineering"
+    ],
+    "url": "https://www.codewithamrendra.in/",
+    "logo": "https://www.codewithamrendra.in/logo-square.png"
+  };
+}
+
+/**
  * Returns Person JSON-LD Schema for the author.
  * Useful on the Homepage.
  */
@@ -63,8 +81,9 @@ export function getPersonSchema() {
     ],
     "worksFor": {
       "@type": "Organization",
-      "name": "Code with Amrendra",
-      "url": "https://www.codewithamrendra.in"
+      "@id": "https://www.codewithamrendra.in/#organization",
+      "name": "Code With Amrendra",
+      "url": "https://www.codewithamrendra.in/"
     }
   };
 }
@@ -111,7 +130,7 @@ export function getLocalBusinessSchema() {
       "https://x.com/codewithamrendr",
       "https://www.linkedin.com/in/amrendra1998/",
       "https://www.youtube.com/@codewithamrendra",
-      "https://instagram.com/amrendracodes"
+      "https://www.instagram.com/codewithamrendra/"
     ]
   };
 }
@@ -182,10 +201,11 @@ export function getBlogPostSchema({ title, description, slug, canonicalUrl, imag
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Code with Amrendra",
+      "@id": "https://www.codewithamrendra.in/#organization",
+      "name": "Code With Amrendra",
       "logo": {
         "@type": "ImageObject",
-          "url": "https://www.codewithamrendra.in/logo-square.png"
+        "url": "https://www.codewithamrendra.in/logo-square.png"
       }
     },
     "mainEntityOfPage": {

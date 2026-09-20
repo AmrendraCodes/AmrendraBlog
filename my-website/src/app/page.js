@@ -7,7 +7,7 @@ const FAQ = nextDynamic(() => import('@/components/FAQ'));
 import { getPostSummariesAsync } from "@/lib/posts";
 import { getAllCaseStudies } from "@/lib/case-studies";
 import JsonLd from "@/components/JsonLd";
-import { getWebsiteSchema, getPersonSchema, getLocalBusinessSchema, getFAQSchema } from "@/lib/schema";
+import { getWebsiteSchema, getOrganizationSchema, getPersonSchema, getLocalBusinessSchema, getFAQSchema } from "@/lib/schema";
 import { faqData } from "@/data/faqData";
 import { siteMetadata } from "@/config/seo";
 import HomeClient from "@/components/HomeClient";
@@ -88,6 +88,7 @@ export default async function Home() {
   return (
     <div className="min-h-screen w-full overflow-x-hidden relative bg-[var(--background)]">
       <JsonLd data={getWebsiteSchema()} />
+      <JsonLd data={getOrganizationSchema()} />
       <JsonLd data={getPersonSchema()} />
       <JsonLd data={getLocalBusinessSchema()} />
       {faqSchema && <JsonLd data={faqSchema} />}

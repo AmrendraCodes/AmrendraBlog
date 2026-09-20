@@ -164,9 +164,33 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12">
           {/* Main Content (Articles) */}
           <div className="flex-1 min-w-0">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-6 sm:gap-4">
-              {/* Category Tabs */}
-              <div className="flex overflow-x-auto pb-2 sm:pb-0 gap-2 w-full sm:w-auto scrollbar-hide">
+            {/* Categories & Sorting Toolbar */}
+            <div className="space-y-4 mb-8">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-3 border-b border-[var(--card-border)]">
+                <div className="flex items-center gap-2.5">
+                  <span className="text-sm font-bold text-[var(--text-heading)]">Browse by Category</span>
+                  <span className="text-xs font-mono font-bold bg-[#F59E0B]/10 text-[#0B1F3A] dark:text-[#F59E0B] border border-[#F59E0B]/30 px-2.5 py-0.5 rounded-full">
+                    {activeCategory === 'All' ? `${filteredArticles.length} Posts` : activeCategory}
+                  </span>
+                </div>
+
+                {/* Sort By */}
+                <div className="flex items-center shrink-0 self-end sm:self-auto">
+                  <span className="text-sm text-[var(--text-muted)] mr-2 font-medium">Sort by:</span>
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value)}
+                    className="bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] text-sm rounded-xl focus:ring-[#F59E0B] focus:border-[#F59E0B] block py-1.5 px-3 outline-none cursor-pointer font-bold transition-colors"
+                  >
+                    <option value="Latest">Latest</option>
+                    <option value="Popular">Popular</option>
+                    <option value="Category">Category</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Category Tabs — flex-wrap ensures all categories are visible without cutting off */}
+              <div className="flex flex-wrap items-center gap-2 pt-1">
                 {categories.map((cat) => (
                   <button
                     key={cat}
@@ -174,29 +198,15 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
                       setActiveCategory(cat);
                       setCurrentPage(1);
                     }}
-                    className={`shrink-0 px-4 py-2 rounded-full text-sm font-bold transition-colors duration-200 border cursor-pointer ${
+                    className={`px-4 py-2 rounded-full text-sm font-bold transition-all duration-200 border cursor-pointer whitespace-nowrap ${
                       activeCategory === cat
-                        ? 'bg-[#F59E0B] border-[#F59E0B] text-[#0B1F3A] shadow-md shadow-amber-500/20'
+                        ? 'bg-[#F59E0B] border-[#F59E0B] text-[#0B1F3A] shadow-md shadow-amber-500/20 scale-[1.02]'
                         : 'bg-[var(--card-bg)] border-[var(--card-border)] text-[var(--text-body)] hover:border-[#F59E0B]/40 hover:text-[#F59E0B]'
                     }`}
                   >
                     {cat}
                   </button>
                 ))}
-              </div>
-
-              {/* Sort By */}
-              <div className="flex items-center shrink-0">
-                <span className="text-sm text-[var(--text-muted)] mr-2 font-medium">Sort by:</span>
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] text-sm rounded-lg focus:ring-[#F59E0B] focus:border-[#F59E0B] block p-2 outline-none cursor-pointer font-bold"
-                >
-                  <option value="Latest">Latest</option>
-                  <option value="Popular">Popular</option>
-                  <option value="Category">Category</option>
-                </select>
               </div>
             </div>
 

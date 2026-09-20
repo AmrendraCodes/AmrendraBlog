@@ -205,7 +205,7 @@ export default function AboutPage() {
                   alt="Amrendra — Technical Content Writer & Frontend Developer"
                   fill
                   sizes="(max-width: 768px) 192px, 256px"
-                  className="object-cover"
+                  className="object-cover object-top"
                 />
               </div>
             </div>
@@ -277,8 +277,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Story Card — Spans 2 columns */}
             <div
-              whileHover={{ y: -5 }}
-              className="lg:col-span-2 bg-[var(--card-bg)] p-8 md:p-12 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)]  transition-colors duration-200 flex flex-col justify-center"
+              className="lg:col-span-2 bg-[var(--card-bg)] p-8 md:p-12 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] transition-all duration-200 hover:-translate-y-1 flex flex-col justify-center"
             >
               <div className="space-y-6 md:space-y-8">
                 <p className="text-base md:text-lg text-[var(--text-body)] leading-relaxed">
@@ -295,8 +294,7 @@ export default function AboutPage() {
 
             {/* Skills Card */}
             <div
-              whileHover={{ y: -5 }}
-              className="lg:col-span-1 bg-[var(--card-bg)] p-8 md:p-10 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)]  transition-colors duration-200"
+              className="lg:col-span-1 bg-[var(--card-bg)] p-8 md:p-10 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] transition-all duration-200 hover:-translate-y-1"
             >
               <h3 className="text-2xl md:text-3xl font-extrabold text-[var(--text-heading)] mb-8 flex items-center gap-3">
                 <span className="w-8 h-1.5 md:h-2 bg-gradient-to-r from-[#0B1F3A] to-[#F59E0B] rounded-full"></span>
@@ -354,8 +352,7 @@ export default function AboutPage() {
             ].map(({ icon: Icon, title, desc }) => (
               <div
                 key={title}
-                whileHover={{ y: -5 }}
-                className="flex flex-col items-center text-center gap-4 p-6 md:p-8 rounded-2xl bg-[var(--card-bg)] border border-[var(--card-border)] transition-colors duration-200 hover:border-[#F59E0B]/30 "
+                className="flex flex-col items-center text-center gap-4 p-6 md:p-8 rounded-2xl bg-[var(--card-bg)] border border-[var(--card-border)] transition-all duration-200 hover:border-[#F59E0B]/30 hover:-translate-y-1"
               >
                 <div className="w-14 h-14 rounded-2xl bg-[#F59E0B]/10 dark:bg-[#F59E0B]/15 border border-[#F59E0B]/20 flex items-center justify-center text-[#0B1F3A] dark:text-[#F59E0B]">
                   <Icon size={26} />

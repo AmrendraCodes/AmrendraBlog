@@ -227,7 +227,7 @@ export default function Footer() {
                 { href: "https://x.com/codewithamrendr", icon: Twitter, label: "X (Twitter)" },
                 { href: "https://github.com/AmrendraCodes", icon: Github, label: "GitHub" },
                 { href: "https://www.linkedin.com/in/amrendra1998/", icon: Linkedin, label: "LinkedIn" },
-                { href: "https://instagram.com/amrendracodes", icon: Instagram, label: "Instagram" },
+                { href: "https://www.instagram.com/codewithamrendra/", icon: Instagram, label: "Instagram" },
               ].map(({ href, icon: Icon, label }) => (
                 <a
                   key={label}
