@@ -55,11 +55,11 @@ function filterAndSortArticles(articles, query, category, selectedTag, sortBy) {
 
   // 4. Sort
   if (sortBy === 'Latest') {
-    result.sort((a, b) => new Date(b.date) - new Date(a.date));
+    result.sort((a, b) => new Date(b.publishedAt || b.date) - new Date(a.publishedAt || a.date));
   } else if (sortBy === 'Popular') {
     result.sort(
       (a, b) =>
-        (b.views || 0) - (a.views || 0) || new Date(b.date) - new Date(a.date)
+        (b.views || 0) - (a.views || 0) || new Date(b.publishedAt || b.date) - new Date(a.publishedAt || a.date)
     );
   } else if (sortBy === 'Category') {
     result.sort((a, b) => a.category.localeCompare(b.category));
@@ -92,12 +92,12 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
     return propTags || [...new Set(articles.flatMap((a) => a.tags || []))];
   }, [articles, propTags]);
 
-  // Popular posts sorted by views
-  const popularPosts = useMemo(() => {
+  // Latest posts sorted by newest publication date
+  const latestPosts = useMemo(() => {
     return [...articles]
       .sort(
         (a, b) =>
-          (b.views || 0) - (a.views || 0) || new Date(b.date) - new Date(a.date)
+          new Date(b.publishedAt || b.date) - new Date(a.publishedAt || a.date)
       )
       .slice(0, 3);
   }, [articles]);
@@ -231,7 +231,7 @@ export default function BlogPageClient({ articles: propArticles, allTags: propTa
 
           {/* Sidebar Widgets */}
           <BlogSidebar
-            popularPosts={popularPosts}
+            latestPosts={latestPosts}
             allTags={allTags}
             selectedTag={selectedTag}
             setSelectedTag={setSelectedTag}

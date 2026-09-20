@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Tag, Check } from 'lucide-react';
 
 export default function BlogSidebar({
+  latestPosts,
   popularPosts,
   allTags,
   selectedTag,
@@ -17,16 +18,18 @@ export default function BlogSidebar({
   sidebarSubmitted,
   handleSidebarNewsletterSubmit,
 }) {
+  const postsToShow = latestPosts || popularPosts || [];
+
   return (
     <aside className="w-full lg:w-80 shrink-0 flex flex-col gap-8">
-      {/* Popular Posts Widget */}
+      {/* Latest Posts Widget */}
       <div className="bg-[var(--card-bg)] rounded-3xl p-6 border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)]">
         <h3 className="text-lg font-extrabold text-[var(--text-heading)] mb-6 flex items-center">
           <span className="w-2 h-6 bg-[#F59E0B] rounded-full mr-3"></span>
-          Popular Posts
+          Latest Posts
         </h3>
         <div className="flex flex-col gap-5">
-          {popularPosts.map((post, i) => (
+          {postsToShow.map((post, i) => (
             <Link key={i} href={post.link} className="group flex gap-4 items-center no-underline">
               <span className="text-3xl font-black text-[var(--card-border)] group-hover:text-[#F59E0B]/30 transition-colors">
                 0{i + 1}

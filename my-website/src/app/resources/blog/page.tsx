@@ -46,6 +46,7 @@ export default async function BlogPage() {
     author: post.author,
     authorImage: "/profile-photo.jpeg",
     date: post.date,
+    publishedAt: post.publishedAt,
     readTime: post.readTime,
     image: post.image,
     link: `/resources/blog/${post.slug}`,
