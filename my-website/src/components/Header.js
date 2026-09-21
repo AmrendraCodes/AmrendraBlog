@@ -76,7 +76,7 @@ export default function Header() {
         }`}
       >
         <header
-          className={`pointer-events-auto z-[100] transition-[background-color,border-color,box-shadow] duration-200 flex items-center justify-between rounded-full relative w-full max-w-[1240px] py-2.5 px-4 sm:py-3 sm:px-6 border box-border ${
+          className={`pointer-events-auto z-[100] transition-[background-color,border-color,box-shadow] duration-200 flex items-center justify-between rounded-full relative w-full max-w-[1240px] py-2 px-4 sm:py-2.5 sm:px-6 border box-border ${
             isScrolled
               ? 'bg-white/95 text-slate-900 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.25)] border-white/80 dark:bg-[#0B1F3A]/95 dark:text-slate-50 dark:border-[#1E293B]'
               : 'bg-white/90 text-slate-900 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.15)] border-white/60 dark:bg-[#0B1F3A]/85 dark:text-slate-50 dark:border-[#1E293B]/60'
@@ -86,21 +86,27 @@ export default function Header() {
         >
           {/* Brand Logo */}
           <div className="flex items-center justify-start shrink-0">
-            <Link href="/" className="flex items-center gap-2 md:gap-3 no-underline shrink-0 group">
+            <Link href="/" className="flex items-center no-underline shrink-0 group py-0.5" aria-label="Code With Amrendra Home">
               <Image
-                src="/logo-square.png"
-                alt="CWA Logo"
-                width={36}
+                src="/logo-wide.png"
+                alt="Code With Amrendra Logo"
+                width={140}
                 height={36}
-                sizes="36px"
-                className="w-9 h-9 object-contain transition-transform duration-200  drop-shadow-sm"
+                sizes="140px"
+                className="w-auto h-[24px] sm:h-[26px] max-h-[28px] object-contain dark:hidden transition-transform duration-200 group-hover:scale-[1.02]"
+                style={{ width: 'auto', height: '26px' }}
                 priority
               />
-              <span className="text-[20px] font-extrabold tracking-wider flex items-center text-slate-900 dark:text-white ml-1">
-                <span className="bg-gradient-to-r from-[#0B1F3A] to-[#F59E0B] dark:from-[#F59E0B] dark:to-[#FBBF24] text-transparent bg-clip-text font-black">
-                  CWA
-                </span>
-              </span>
+              <Image
+                src="/logo-wide-dark.png"
+                alt="Code With Amrendra Logo"
+                width={140}
+                height={36}
+                sizes="140px"
+                className="w-auto h-[24px] sm:h-[26px] max-h-[28px] object-contain hidden dark:block transition-transform duration-200 group-hover:scale-[1.02]"
+                style={{ width: 'auto', height: '26px' }}
+                priority
+              />
             </Link>
           </div>
 

@@ -18,7 +18,7 @@ import PricingSection from './home/PricingSection';
 
 export default function HomeClient({ caseStudies, featuredPosts }) {
   return (
-    <div className="relative min-h-screen bg-white dark:bg-[#060E1A] text-[#0B1F3A] dark:text-[#F8FAFC] transition-colors duration-200 overflow-x-hidden">
+    <>
       {/* 1. Hero Section */}
       <HeroSection />
 
@@ -115,6 +115,6 @@ export default function HomeClient({ caseStudies, featuredPosts }) {
           <PricingSection />
         </div>
       </section>
-    </div>
+    </>
   );
 }

@@ -84,14 +84,22 @@ export default async function Home() {
   }));
 
   const faqSchema = getFAQSchema(faqData);
+  const homeSchemas = [
+    getWebsiteSchema(),
+    getOrganizationSchema(),
+    getPersonSchema(),
+    getLocalBusinessSchema(),
+    ...(faqSchema ? [faqSchema] : [])
+  ].filter(Boolean);
+
+  const combinedSchema = {
+    "@context": "https://schema.org",
+    "@graph": homeSchemas
+  };
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden relative bg-[var(--background)]">
-      <JsonLd data={getWebsiteSchema()} />
-      <JsonLd data={getOrganizationSchema()} />
-      <JsonLd data={getPersonSchema()} />
-      <JsonLd data={getLocalBusinessSchema()} />
-      {faqSchema && <JsonLd data={faqSchema} />}
+      <JsonLd data={combinedSchema} />
 
       <HomeClient featuredPosts={featuredPosts} caseStudies={caseStudies} />
 

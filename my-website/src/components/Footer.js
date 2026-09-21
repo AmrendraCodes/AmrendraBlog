@@ -92,17 +92,16 @@ export default function Footer() {
           {/* ─── SECTION 2 — BRAND AREA ─── */}
           <div className="lg:col-span-5 flex flex-col items-start">
             {/* Logo */}
-            <Link href="/" className="inline-flex items-center gap-3 no-underline group mb-4">
+            <Link href="/" className="inline-flex items-center no-underline group mb-5" aria-label="Code with Amrendra Home">
               <Image 
-                src="/logo-square.png" 
+                src="/logo-wide-dark.png" 
                 alt="Code with Amrendra Logo" 
-                width={40} 
-                height={40} 
-                className="w-10 h-10 object-contain transition-transform duration-200  drop-shadow-sm" 
+                width={130} 
+                height={34} 
+                sizes="130px"
+                className="w-auto h-7 sm:h-8 object-contain transition-transform duration-200 group-hover:scale-[1.02]" 
+                style={{ width: 'auto', height: '28px' }}
               />
-              <span className="text-2xl font-black tracking-wider text-white leading-none">
-                <span className="bg-gradient-to-r from-[#F59E0B] to-[#FBBF24] text-transparent bg-clip-text font-black">CWA</span>
-              </span>
             </Link>
 
             {/* Description */}
