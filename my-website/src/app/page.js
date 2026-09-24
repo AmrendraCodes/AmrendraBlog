@@ -18,11 +18,11 @@ import HomeClient from "@/components/HomeClient";
 export const revalidate = 300;
 
 export const metadata = {
-  title: "Code With Amrendra | AI Development Services & Cloud",
-  description: "Code With Amrendra delivers AI Development Services, custom software, SaaS & cloud engineering for modern businesses. Book a free consultation today.",
+  title: "Code with Amrendra | AI Development & Cloud Services",
+  description: "Code with Amrendra builds fast websites, AI automation, and cloud infrastructure for startups and businesses. React & Next.js experts.",
   openGraph: {
-    title: 'Code With Amrendra | AI Development Services & Cloud',
-    description: 'Code With Amrendra delivers AI Development Services, custom software, SaaS & cloud engineering for modern businesses. Book a free consultation today.',
+    title: 'Code with Amrendra | AI Development & Cloud Services',
+    description: 'Code with Amrendra builds fast websites, AI automation, and cloud infrastructure for startups and businesses. React & Next.js experts.',
     url: siteMetadata.siteUrl,
     images: [
       {
@@ -34,8 +34,8 @@ export const metadata = {
     ],
   },
   twitter: {
-    title: 'Code With Amrendra | AI Development Services & Cloud',
-    description: 'Code With Amrendra delivers AI Development Services, custom software, SaaS & cloud engineering for modern businesses. Book a free consultation today.',
+    title: 'Code with Amrendra | AI Development & Cloud Services',
+    description: 'Code with Amrendra builds fast websites, AI automation, and cloud infrastructure for startups and businesses. React & Next.js experts.',
     images: ['/images/og-default.png'],
   },
   alternates: {

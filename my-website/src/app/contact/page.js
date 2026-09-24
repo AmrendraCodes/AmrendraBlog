@@ -2,14 +2,14 @@ import { siteMetadata } from "@/config/seo";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata = {
-  title: "Contact Amrendra Kumar | Hire & Collaborate | Code with Amrendra",
-  description: "Get in touch with Amrendra Kumar for web development, AI automation, technical content writing, freelance projects, or consulting inquiries.",
+  title: "Contact | Code with Amrendra",
+  description: "Get in touch with Code with Amrendra for web development, AI automation, or SEO strategy for your business.",
   alternates: {
     canonical: `${siteMetadata.siteUrl}/contact`,
   },
   openGraph: {
-    title: "Contact Amrendra Kumar | Code with Amrendra",
-    description: "Get in touch with Amrendra Kumar for web development, AI automation, technical content writing, freelance projects, or consulting inquiries.",
+    title: "Contact | Code with Amrendra",
+    description: "Get in touch with Code with Amrendra for web development, AI automation, or SEO strategy for your business.",
     url: `${siteMetadata.siteUrl}/contact`,
     type: "website",
   },

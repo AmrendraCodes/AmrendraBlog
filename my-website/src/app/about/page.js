@@ -4,14 +4,14 @@ import { siteMetadata } from "@/config/seo";
 import { ArrowRight, Play, Github, Linkedin, Twitter, Youtube, Code2, Cloud, Brain, Palette, Terminal } from "lucide-react";
 
 export const metadata = {
-  title: "About Amrendra Kumar — Frontend Developer & Technical Writer",
-  description: "Learn more about Amrendra Kumar, a Frontend Developer and Technical Content Writer specializing in React, Next.js, AI systems, SaaS architecture, and cloud infrastructure.",
+  title: "About | Code with Amrendra",
+  description: "Meet Amrendra: Frontend Developer and Technical Content Writer specializing in React and Next.js projects.",
   alternates: {
     canonical: `${siteMetadata.siteUrl}/about`,
   },
   openGraph: {
-    title: "About Amrendra Kumar — Frontend Developer & Technical Writer",
-    description: "Learn more about Amrendra Kumar, a Frontend Developer and Technical Content Writer specializing in React, Next.js, AI systems, SaaS architecture, and cloud infrastructure.",
+    title: "About | Code with Amrendra",
+    description: "Meet Amrendra: Frontend Developer and Technical Content Writer specializing in React and Next.js projects.",
     url: `${siteMetadata.siteUrl}/about`,
     type: "profile",
   },

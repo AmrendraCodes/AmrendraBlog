@@ -7,9 +7,9 @@ import { siteMetadata } from "@/config/seo";
 import TiltCard from "@/components/ui/TiltCard";
 
 export const metadata = {
-  title: "Resources | Engineering Insights & Case Studies — Code with Amrendra",
+  title: "Resources | Insights & Case Studies | Code with Amrendra",
   description:
-    "Discover technical articles, engineering insights and real-world project case studies by Amrendra Kumar.",
+    "Explore engineering insights and real case studies from Code with Amrendra: practical, no-fluff dev content.",
   alternates: {
     canonical: "/resources",
   },

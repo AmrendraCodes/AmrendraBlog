@@ -9,6 +9,37 @@ import { getCollectionPageSchema, getBreadcrumbSchema } from '@/lib/schema';
 // categories can still be generated on their first request.
 export const revalidate = 300;
 
+const categoryMetadata = {
+  'ai-agents': {
+    title: 'AI Agents Articles | Code with Amrendra',
+    description: 'Articles on AI agents: how they work, their cost, and how they are changing software and business workflows.',
+  },
+  'aws-infrastructure': {
+    title: 'AWS Infrastructure Articles | Code with Amrendra',
+    description: 'AWS infrastructure articles covering cloud setup, scalability, cost optimization, and DevOps best practices.',
+  },
+  development: {
+    title: 'Development Articles | Code with Amrendra',
+    description: 'Development articles covering web development, architecture, and practical coding guides for 2026.',
+  },
+  devops: {
+    title: 'DevOps Articles | Code with Amrendra',
+    description: 'DevOps articles on CI/CD, cloud infrastructure, Docker, Kubernetes, and scalable deployment practices.',
+  },
+  'frontend-development': {
+    title: 'Frontend Development Articles | Code with Amrendra',
+    description: 'Frontend development articles on React, JavaScript, performance, and building fast, modern web interfaces.',
+  },
+  react: {
+    title: 'React Articles | Code with Amrendra',
+    description: 'React articles covering hooks, performance, architecture, and real-world tips for building better apps.',
+  },
+  'saas-architecture': {
+    title: 'SaaS Architecture Articles | Code with Amrendra',
+    description: 'SaaS architecture articles on scalability, multi-tenancy, and building software products that grow.',
+  },
+};
+
 export async function generateStaticParams() {
   const posts = await getPostSummariesAsync();
   const categorySlugs = [...new Set(posts.map((post) => post.categorySlug).filter(Boolean))];
@@ -26,8 +57,9 @@ export async function generateMetadata({ params }) {
 
   // Use the first post's image as the category OG image, fallback to default
   const ogImage = (posts.length > 0 && posts[0]?.image) ? posts[0].image : '/images/og-default.png';
-  const title = `${formattedName} Articles | Code with Amrendra`;
-  const description = `Browse all articles and resources about ${formattedName} on Code with Amrendra.`;
+  const customMetadata = categoryMetadata[slug.toLowerCase()];
+  const title = customMetadata?.title || `${formattedName} Articles | Code with Amrendra`;
+  const description = customMetadata?.description || `Browse all articles and resources about ${formattedName} on Code with Amrendra.`;
 
   return {
     title,

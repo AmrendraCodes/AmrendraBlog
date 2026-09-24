@@ -22,8 +22,8 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "Services — Web Development, AI Automation & SEO Content Writing | Code with Amrendra",
-  description: "Custom web development, AI agent integrations, and technical content writing by Amrendra Kumar. Three focused services — each delivered personally, not through an agency.",
+  title: "Our Services: Web Dev, AI & Growth | Code with Amrendra",
+  description: "Explore our services: web development, AI automation, SEO, and growth strategy — built to scale your business online.",
   keywords: [
     "Web Development Services", 
     "Next.js Development", 
@@ -35,8 +35,8 @@ export const metadata = {
     "Code with Amrendra",
   ],
   openGraph: {
-    title: "Services — Code with Amrendra",
-    description: "Custom web development, AI integrations, and technical content writing — three focused services delivered personally.",
+    title: "Our Services: Web Dev, AI & Growth | Code with Amrendra",
+    description: "Explore our services: web development, AI automation, SEO, and growth strategy — built to scale your business online.",
     url: `${siteMetadata.siteUrl}/services`,
     type: "website",
   },

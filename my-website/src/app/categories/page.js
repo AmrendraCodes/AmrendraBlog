@@ -8,13 +8,13 @@ export const revalidate = 300;
 
 export const metadata = {
   title: "Categories | Code with Amrendra",
-  description: "Browse blog posts by category — React, AI Agents, SaaS Architecture, DevOps, and more.",
+  description: "Browse all blog categories on Code with Amrendra: React, DevOps, AI agents, SaaS architecture, and more.",
   alternates: {
     canonical: '/categories',
   },
   openGraph: {
     title: 'Categories | Code with Amrendra',
-    description: 'Browse blog posts by category — React, AI Agents, SaaS Architecture, DevOps, and more.',
+    description: 'Browse all blog categories on Code with Amrendra: React, DevOps, AI agents, SaaS architecture, and more.',
     url: '/categories',
     images: [
       {
