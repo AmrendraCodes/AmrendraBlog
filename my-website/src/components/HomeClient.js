@@ -3,18 +3,12 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import HeroSection from './hero/HeroSection';
 import ServicesTicker from './home/ServicesTicker';
-import EngineeringDifferenceSection from './home/EngineeringDifferenceSection';
 import CoreServicesSection from './home/CoreServicesSection';
-import WhatWeBuildSection from '@/components/home/WhatWeBuildSection';
-import WhyChooseUsSection from './home/WhyChooseUsSection';
 import ProcessTimelineSection from './home/ProcessTimelineSection';
-
-// Render content on the server; interactive children keep their own client boundaries.
 import CaseStudiesSection from './CaseStudiesSection';
-import BlogCard from './BlogCard';
-import ComparisonTable from './home/ComparisonTable';
+import WhyChooseUsSection from './home/WhyChooseUsSection';
 import AboutAmrendraSection from './home/AboutAmrendraSection';
-import PricingSection from './home/PricingSection';
+import BlogCard from './BlogCard';
 
 export default function HomeClient({ caseStudies, featuredPosts }) {
   return (
@@ -22,33 +16,30 @@ export default function HomeClient({ caseStudies, featuredPosts }) {
       {/* 1. Hero Section */}
       <HeroSection />
 
-      {/* 2. Client & Services Ticker Marquee */}
+      {/* 2. Technology Ecosystem & Trust Strip */}
       <ServicesTicker />
 
-      {/* 3. Problem Statement & Value Proposition */}
-      <EngineeringDifferenceSection />
-
-      {/* 4. Core Services Overview */}
+      {/* 3. Core Engineering Services (Merged Capabilities) */}
       <CoreServicesSection />
 
-      {/* 5. What We Build for Modern Businesses */}
-      <WhatWeBuildSection />
-
-      {/* 6. Why Businesses Choose Code with Amrendra */}
-      <WhyChooseUsSection />
-
-      {/* 7. Development Process Timeline */}
+      {/* 4. How I Work — 4-Step Engineering Process */}
       <ProcessTimelineSection />
 
-      {/* 8. Featured Case Studies & Work Showcase */}
+      {/* 5. Selected Work & Case Studies (Primary Proof) */}
       <section className="bg-[#F8FAFC] dark:bg-[#071324] border-y border-slate-200 dark:border-[#1E293B] transition-colors duration-200">
         <CaseStudiesSection caseStudies={caseStudies} />
       </section>
 
-      {/* 9. Featured Engineering Articles */}
+      {/* 6. Why Work With Me (Engineering Standards) */}
+      <WhyChooseUsSection />
+
+      {/* 7. About Amrendra — Personal Brand & Founder Introduction */}
+      <AboutAmrendraSection />
+
+      {/* 8. Latest Insights & Technical Articles */}
       {featuredPosts && featuredPosts.length > 0 && (
-        <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+        <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 md:mb-16 gap-4">
             <div>
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 inline-block mb-3">
                 LATEST INSIGHTS
@@ -62,10 +53,10 @@ export default function HomeClient({ caseStudies, featuredPosts }) {
             </div>
             <Link
               href="/resources/blog"
-              className="group inline-flex items-center gap-2 text-sm font-bold text-[#0B1F3A] dark:text-[#F59E0B] hover:underline shrink-0"
+              className="group inline-flex items-center gap-2 text-sm font-bold text-[#0B1F3A] dark:text-[#F59E0B] hover:underline shrink-0 no-underline"
             >
               <span>View All Articles</span>
-              <ArrowRight size={16} className="transition-transform duration-200 " />
+              <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </div>
 
@@ -76,45 +67,6 @@ export default function HomeClient({ caseStudies, featuredPosts }) {
           </div>
         </section>
       )}
-
-      {/* 10. Feature Comparison Matrix */}
-      <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
-          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3 py-1 rounded-full border border-[#F59E0B]/30">
-            DIRECT COMPARISON
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0B1F3A] dark:text-white mt-4 mb-6 tracking-tight">
-            How Our Engineering Stacks Up
-          </h2>
-          <p className="text-base sm:text-lg text-[#475569] dark:text-[#94A3B8] leading-relaxed">
-            Compare Code with Amrendra's enterprise standards against traditional development agencies and off-the-shelf templates.
-          </p>
-        </div>
-
-        <ComparisonTable />
-      </section>
-
-      {/* 11. About Amrendra - Personal Brand & Founder Introduction */}
-      <AboutAmrendraSection />
-
-      {/* 12. Engagement Models & Pricing */}
-      <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC] dark:bg-[#071324] border-y border-slate-200 dark:border-[#1E293B] transition-colors duration-200">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3 py-1 rounded-full border border-[#F59E0B]/30">
-              PRICING, MADE SIMPLE
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0B1F3A] dark:text-white mt-4 mb-6 tracking-tight">
-              Straightforward Pricing for Every Stage of Growth
-            </h2>
-            <p className="text-base sm:text-lg text-[#475569] dark:text-[#94A3B8] leading-relaxed">
-              Whether you need a focused build or an ongoing engineering partner, choose a plan that fits — no hidden fees, no long-term lock-in.
-            </p>
-          </div>
-
-          <PricingSection />
-        </div>
-      </section>
     </>
   );
 }

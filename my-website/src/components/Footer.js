@@ -55,32 +55,38 @@ export default function Footer() {
           <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-[#F59E0B]/10 blur-3xl rounded-full pointer-events-none" />
 
           <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
-            <div className="max-w-3xl">
+            <div className="max-w-2xl">
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-[#F59E0B] text-xs font-bold uppercase tracking-wider mb-5">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-[#F59E0B] text-xs font-mono font-bold uppercase tracking-wider mb-5">
                 <Sparkles size={14} className="text-[#F59E0B]" />
-                <span>High-Velocity Engineering Studio</span>
+                <span>LET&apos;S BUILD TOGETHER</span>
               </div>
 
               {/* Headline */}
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
-                Build Something That Matters.
+                Need Web Development, AI, or Technical Content Help?
               </h2>
 
               {/* Supporting Description */}
-              <p className="text-base sm:text-lg text-slate-300 max-w-2xl mt-4 leading-relaxed font-normal">
-                From AI-powered products to scalable web platforms, we engineer software built for growth.
+              <p className="text-base sm:text-lg text-slate-300 max-w-xl mt-4 leading-relaxed font-normal">
+                Whether you need a high-performance web platform built fast, custom AI agents integrated, or in-depth technical documentation, let&apos;s discuss your project.
               </p>
             </div>
 
-            {/* CTA Button */}
-            <div className="shrink-0 w-full sm:w-auto">
+            {/* Dual CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 shrink-0 w-full lg:w-auto">
               <Link
                 href="/contact"
-                className="group/btn inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base shadow-[0_0_25px_rgba(245,158,11,0.3)]  transition-colors duration-200  no-underline w-full sm:w-auto"
+                className="group/btn inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base shadow-[0_0_25px_rgba(245,158,11,0.3)] transition-colors duration-200 no-underline"
               >
-                <span>Start a Project</span>
-                <ArrowRight size={18} className="transition-transform duration-200 " />
+                <span>Let&apos;s Work Together</span>
+                <ArrowRight size={18} className="transition-transform duration-200 group-hover/btn:translate-x-1" />
+              </Link>
+              <Link
+                href="/resources/case-studies"
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl border border-[#1E293B] bg-[#0B1F3A]/80 hover:bg-[#112240] text-slate-200 hover:text-white font-bold text-base transition-colors duration-200 no-underline"
+              >
+                <span>View Selected Work</span>
               </Link>
             </div>
           </div>
@@ -95,11 +101,10 @@ export default function Footer() {
             <Link href="/" className="inline-flex items-center no-underline group mb-5" aria-label="Code with Amrendra Home">
               <Image 
                 src="/logo-wide-dark.png" 
-                alt="Code with Amrendra Logo" 
-                width={170} 
-                height={44} 
-                sizes="170px"
-                className="w-auto h-9 sm:h-10 object-contain transition-transform duration-200 group-hover:scale-[1.02]" 
+                alt="FooterLogo" 
+                width={175} 
+                height={41} 
+                className="w-[175px] h-[41px] object-contain object-left transition-transform duration-200 group-hover:scale-[1.02]" 
               />
             </Link>
 

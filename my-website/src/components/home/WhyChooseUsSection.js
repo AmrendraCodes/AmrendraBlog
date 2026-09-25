@@ -13,67 +13,67 @@ const whyChooseUsData = [
   {
     id: 'ai-first',
     icon: Sparkles,
-    title: 'AI-First Development',
+    title: 'AI-Native Engineering',
     description:
-      'Build smarter software with AI-powered workflows, automation, and modern development practices that reduce delivery time and increase efficiency.',
+      'Build smarter software with AI-powered workflows, custom agent integrations, and modern automation practices that accelerate delivery.',
     badge: null,
   },
   {
     id: 'seo-built-in',
     icon: Search,
-    title: 'SEO Built Into Every Project',
+    title: 'Technical SEO Built-In',
     description:
-      'Every website is structured for technical SEO, Core Web Vitals, metadata, semantic HTML, and long-term organic visibility from day one.',
+      'Every web application is engineered with semantic HTML, structured metadata, fast Core Web Vitals, and crawlable architecture from day one.',
     badge: null,
   },
   {
     id: 'high-performance',
     icon: Zap,
-    title: 'High Performance',
+    title: 'Core Web Vitals Focus',
     description:
-      'Optimized for fast loading, Core Web Vitals, and consistently high Lighthouse scores to deliver an excellent user experience.',
-    badge: '90+ Lighthouse',
+      'Optimized for instant page loads, smooth interaction (INP), and zero layout shift to maximize user retention and search rank.',
+    badge: null,
   },
   {
     id: 'secure-scalable',
     icon: ShieldCheck,
-    title: 'Secure & Scalable Architecture',
+    title: 'Type-Safe, Scalable Architecture',
     description:
-      'Applications are built with scalable architecture, secure authentication, clean code standards, and production-ready deployment practices.',
+      'Applications are built with TypeScript, modular component patterns, secure API authentications, and production cloud infrastructure.',
     badge: null,
   },
   {
     id: 'transparent-updates',
     icon: Calendar,
-    title: 'Transparent Weekly Updates',
+    title: 'Direct, Transparent Communication',
     description:
-      'Receive regular progress updates, milestone tracking, and clear communication throughout every stage of development.',
+      'Work directly with the engineer building your product — no junior handoffs, no account managers, and regular sprint progress updates.',
     badge: null,
   },
   {
     id: 'long-term-support',
     icon: Headphones,
-    title: 'Long-Term Technical Support',
+    title: 'Post-Launch Technical Support',
     description:
-      'Beyond launch, we provide maintenance, improvements, performance optimization, and ongoing technical support as your business evolves.',
+      'Beyond deployment, I provide maintenance, infrastructure monitoring, performance fine-tuning, and ongoing technical advisory.',
     badge: null,
   },
 ];
 
 export default function WhyChooseUsSection() {
   return (
-    <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC] dark:bg-[#071324] border-y border-slate-200 dark:border-[#1E293B]  ">
+    <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC] dark:bg-[#071324] border-y border-slate-200 dark:border-[#1E293B] transition-colors" aria-label="Why Work With Me">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
-          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3 py-1 rounded-full border border-[#F59E0B]/30">
-            THE CODE WITH AMRENDRA ADVANTAGE
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 inline-block mb-3">
+            WHY WORK WITH ME
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0B1F3A] dark:text-white mt-4 mb-6 tracking-tight">
-            Why Businesses Choose Code with Amrendra
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0B1F3A] dark:text-white tracking-tight mb-4">
+            Engineering Standards Built for Growth
           </h2>
-          <p className="text-base sm:text-lg text-[#475569] dark:text-[#94A3B8] leading-relaxed">
-            We combine modern engineering, AI automation, SEO, and scalable architecture to build software that grows with your business—not against it.
+          <p className="text-base sm:text-lg text-slate-600 dark:text-[#94A3B8] leading-relaxed">
+            I combine clean code, custom AI automation, built-in SEO, and direct communication to build software that grows with your business.
           </p>
         </div>
 

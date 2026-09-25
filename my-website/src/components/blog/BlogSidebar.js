@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Tag, Check } from 'lucide-react';
 
 export default function BlogSidebar({
@@ -107,18 +106,11 @@ export default function BlogSidebar({
               >
                 {isSidebarSubmitting ? 'Subscribing...' : 'Subscribe Free'}
               </button>
+              <p className="mt-3 text-center text-[10px] text-slate-400">
+                Zero spam, unsubscribe anytime
+              </p>
             </form>
           )}
-
-          <div className="mt-6 flex items-center gap-3 pt-6 border-t border-white/10">
-            <div className="relative w-8 h-8 rounded-full overflow-hidden shrink-0 border border-[#F59E0B]/30">
-              <Image src="/profile-photo.jpeg" alt="Author" sizes="32px" fill className="object-cover" />
-            </div>
-            <div>
-              <span className="text-[11px] font-bold text-white block">Curated by Amrendra</span>
-              <span className="text-[10px] text-slate-400">Zero spam, unsubscribe anytime</span>
-            </div>
-          </div>
         </div>
       </div>
     </aside>

@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, TerminalSquare, Github, Linkedin, Twitter, Youtube, ChevronDown } from "lucide-react";
 import nextDynamic from 'next/dynamic';
-const CategoriesSection = nextDynamic(() => import('@/components/blog/CategoriesSection'));
 const FAQ = nextDynamic(() => import('@/components/FAQ'));
 import { getPostSummariesAsync } from "@/lib/posts";
 import { getAllCaseStudies } from "@/lib/case-studies";
@@ -63,13 +62,6 @@ export default async function Home() {
     authorImage: "/profile-photo.jpeg",
   }));
 
-  // Compute category counts server-side and pass to client component
-  const categoryCounts = {};
-  allPosts.forEach((post) => {
-    if (post.categorySlug) {
-      categoryCounts[post.categorySlug] = (categoryCounts[post.categorySlug] || 0) + 1;
-    }
-  });
   // Fetch case studies from markdown files
   const caseStudies = getAllCaseStudies().slice(0, 3).map((cs) => ({
     title: cs.title,
@@ -105,9 +97,6 @@ export default async function Home() {
 
       {/* FAQ Section */}
       <FAQ />
-
-      {/* Categories Section */}
-      <CategoriesSection categoryCounts={categoryCounts} />
     </div>
   );
 }

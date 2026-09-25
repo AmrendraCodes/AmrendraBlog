@@ -26,7 +26,7 @@ export default function AboutAmrendraSection() {
     <section
       id="about-amrendra"
       aria-label="About Amrendra Kumar"
-      className="py-12 md:py-16 px-4 sm:px-6 lg:px-8 border-t border-slate-200 dark:border-[#1E293B] relative overflow-hidden"
+      className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-t border-slate-200 dark:border-[#1E293B] relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -71,7 +71,7 @@ export default function AboutAmrendraSection() {
           </p>
 
           {/* Short Introduction (Concise ~50 words) */}
-          <p className="text-base sm:text-lg text-[#475569] dark:text-[#94A3B8] leading-relaxed mb-6 max-w-2xl">
+          <p className="text-base sm:text-lg text-slate-600 dark:text-[#94A3B8] leading-relaxed mb-6 max-w-2xl">
             I&apos;m a frontend developer and technical writer specializing in React, Next.js,
             TypeScript, and modern cloud architectures. I build high-performance web applications and
             craft in-depth technical guides on AI systems, scalable SaaS platforms, and DevOps
@@ -101,18 +101,24 @@ export default function AboutAmrendraSection() {
             })}
           </div>
 
-          {/* Call to Action */}
-          <div>
+          {/* Call to Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
             <Link
-              href="/about"
-              className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base transition-colors duration-200 shadow-[var(--shadow-glow)] w-full sm:w-auto"
+              href="/contact"
+              className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base transition-colors duration-200 shadow-[var(--shadow-glow)] w-full sm:w-auto no-underline"
             >
-              <span>More About Me</span>
+              <span>Work With Me</span>
               <ArrowRight
                 size={18}
                 className="transition-transform duration-200 group-hover:translate-x-1"
                 aria-hidden="true"
               />
+            </Link>
+            <Link
+              href="/about"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl border border-slate-300 dark:border-[#1E293B] bg-white dark:bg-[#071324] text-[#0B1F3A] dark:text-[#F8FAFC] font-bold text-base transition-colors duration-200 hover:border-[#F59E0B] hover:text-[#F59E0B] w-full sm:w-auto no-underline"
+            >
+              <span>Read Full Story</span>
             </Link>
           </div>
         </div>
