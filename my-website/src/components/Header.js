@@ -90,21 +90,19 @@ export default function Header() {
               <Image
                 src="/logo-wide.png"
                 alt="Code With Amrendra Logo"
-                width={140}
-                height={36}
-                sizes="140px"
-                className="w-auto h-[24px] sm:h-[26px] max-h-[28px] object-contain dark:hidden transition-transform duration-200 group-hover:scale-[1.02]"
-                style={{ width: 'auto', height: '26px' }}
+                width={165}
+                height={42}
+                sizes="165px"
+                className="w-auto h-[30px] sm:h-[34px] max-h-[36px] object-contain dark:hidden transition-transform duration-200 group-hover:scale-[1.02]"
                 priority
               />
               <Image
                 src="/logo-wide-dark.png"
                 alt="Code With Amrendra Logo"
-                width={140}
-                height={36}
-                sizes="140px"
-                className="w-auto h-[24px] sm:h-[26px] max-h-[28px] object-contain hidden dark:block transition-transform duration-200 group-hover:scale-[1.02]"
-                style={{ width: 'auto', height: '26px' }}
+                width={165}
+                height={42}
+                sizes="165px"
+                className="w-auto h-[30px] sm:h-[34px] max-h-[36px] object-contain hidden dark:block transition-transform duration-200 group-hover:scale-[1.02]"
                 priority
               />
             </Link>

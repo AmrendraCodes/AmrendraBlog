@@ -40,7 +40,7 @@ export const SERVICES_DATA = [
     categoryLabel: "BUILD",
     indexNumber: "01",
     subtitle: "Full-stack websites and web apps — designed, coded, and deployed by one developer.",
-    metaTitle: "Modern Web Development Services | Code with Amrendra",
+    metaTitle: "Modern Web Development Services",
     metaDescription: "Custom React & Next.js web development services. Fast, scalable, SEO-friendly websites built for real business growth.",
     iconName: "Code2",
     shortDescription: "Custom Web Applications, UI/UX Design, Landing Pages, and Cloud Deployment — End to End.",

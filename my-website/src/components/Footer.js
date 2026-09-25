@@ -96,11 +96,10 @@ export default function Footer() {
               <Image 
                 src="/logo-wide-dark.png" 
                 alt="Code with Amrendra Logo" 
-                width={130} 
-                height={34} 
-                sizes="130px"
-                className="w-auto h-7 sm:h-8 object-contain transition-transform duration-200 group-hover:scale-[1.02]" 
-                style={{ width: 'auto', height: '28px' }}
+                width={170} 
+                height={44} 
+                sizes="170px"
+                className="w-auto h-9 sm:h-10 object-contain transition-transform duration-200 group-hover:scale-[1.02]" 
               />
             </Link>
 
