@@ -62,7 +62,7 @@ export default function AboutAmrendraSection() {
 
           {/* Heading (Single H2 for SEO hierarchy) */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#0B1F3A] dark:text-white leading-[1.15] mb-2">
-            Hi, I&apos;m Amrendra <span className="gradient-text">Kumar</span>.
+            Hi, I&apos;m Amrendra <span className="gradient-text">Kumar</span>
           </h2>
 
           {/* Role Positioning */}
