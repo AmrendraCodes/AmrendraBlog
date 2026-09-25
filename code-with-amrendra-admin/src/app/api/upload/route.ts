@@ -2,7 +2,7 @@ import { put } from '@vercel/blob';
 import { NextResponse } from 'next/server';
 import path from 'path';
 import { prisma } from '@/lib/prisma';
-import { getAuthSession } from '@/lib/auth';
+import { authorizeRole, getAuthSession, Role } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,6 +16,13 @@ export async function POST(request: Request) {
       return NextResponse.json(
         { success: false, error: { code: 'UNAUTHORIZED', message: 'Not authenticated' } },
         { status: 401 }
+      );
+    }
+
+    if (!authorizeRole(session.user.role, [Role.EDITOR])) {
+      return NextResponse.json(
+        { success: false, error: { code: 'FORBIDDEN', message: 'You do not have permission to upload media assets' } },
+        { status: 403 }
       );
     }
 

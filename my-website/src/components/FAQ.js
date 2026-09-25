@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 
 import { faqData } from '@/data/faqData';
@@ -11,8 +10,8 @@ export { faqData };
 
 function FAQItem({ question, answer, isOpen, onToggle, index }) {
   return (
-    <motion.div
-      className="group rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-[var(--shadow-card)] transition-colors duration-200 hover:border-[#F59E0B]/40  overflow-hidden"
+    <div
+      className="group rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-[var(--shadow-card)] transition-colors duration-200 hover:border-[#F59E0B]/40 overflow-hidden"
     >
       <button
         onClick={onToggle}
@@ -35,17 +34,16 @@ function FAQItem({ question, answer, isOpen, onToggle, index }) {
         </span>
       </button>
 
-      <motion.div
+      <div
         id={`faq-answer-${index}`}
         role="region"
         aria-labelledby={`faq-question-${index}`}
-        initial={false}
-        animate={{
-          height: isOpen ? 'auto' : 0,
-          opacity: isOpen ? 1 : 0
+        style={{
+          maxHeight: isOpen ? '500px' : '0',
+          opacity: isOpen ? 1 : 0,
+          transition: 'max-height 0.3s ease, opacity 0.2s ease',
+          overflow: 'hidden',
         }}
-        transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="overflow-hidden"
       >
         <div className="px-6 pb-5 pt-0">
           <div className="w-full h-px bg-gradient-to-r from-transparent via-[#F59E0B]/30 to-transparent mb-4" />
@@ -53,8 +51,8 @@ function FAQItem({ question, answer, isOpen, onToggle, index }) {
             {answer}
           </p>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
@@ -66,20 +64,24 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-12 md:py-16 bg-[var(--section-alt-bg)] border-t border-[var(--card-border)]">
-      <motion.div
-        className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"
-      >
+    <section
+      className="py-16 md:py-24 bg-[var(--section-alt-bg)] border-t border-[var(--card-border)]"
+      aria-label="Frequently Asked Questions"
+    >
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <motion.div className="text-center mb-12">
+        <div className="text-center mb-12">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 inline-block mb-3">
+            FAQ
+          </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3 text-[var(--text-heading)]">
             Frequently Asked{' '}
             <span className="gradient-text">Questions</span>
           </h2>
-          <p className="text-[var(--text-body)] text-lg max-w-lg mx-auto">
-            Everything you need to know about this blog and working together.
+          <p className="text-[var(--text-body)] text-base sm:text-lg max-w-lg mx-auto">
+            Common questions about working with me on web development, AI, and technical content projects.
           </p>
-        </motion.div>
+        </div>
 
         {/* FAQ Items */}
         <div className="flex flex-col gap-4">
@@ -94,7 +96,7 @@ export default function FAQ() {
             />
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

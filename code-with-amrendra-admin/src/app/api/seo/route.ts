@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { getAuthSession } from '@/lib/auth';
+import { authorizeRole, getAuthSession, Role } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,6 +15,21 @@ const defaultSeoConfig = {
 
 export async function GET() {
   try {
+    const session = await getAuthSession();
+    if (!session) {
+      return NextResponse.json(
+        { success: false, error: { code: 'UNAUTHORIZED', message: 'Not authenticated' } },
+        { status: 401 }
+      );
+    }
+
+    if (!authorizeRole(session.user.role, [Role.EDITOR])) {
+      return NextResponse.json(
+        { success: false, error: { code: 'FORBIDDEN', message: 'You do not have permission to view SEO settings' } },
+        { status: 403 }
+      );
+    }
+
     const settings = await prisma.settings.findUnique({ where: { id: 'global' } });
 
     let seo = defaultSeoConfig;
@@ -43,6 +58,13 @@ export async function PUT(request: Request) {
       return NextResponse.json(
         { success: false, error: { code: 'UNAUTHORIZED', message: 'Not authenticated' } },
         { status: 401 }
+      );
+    }
+
+    if (!authorizeRole(session.user.role, [Role.EDITOR])) {
+      return NextResponse.json(
+        { success: false, error: { code: 'FORBIDDEN', message: 'You do not have permission to update SEO settings' } },
+        { status: 403 }
       );
     }
 

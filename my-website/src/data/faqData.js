@@ -1,62 +1,42 @@
 export const faqData = [
   {
-    question: 'What topics do you write about?',
+    question: 'What services do you offer?',
     answer:
-      'We cover full-stack engineering (React, Next.js, Node), AI agent development, autonomous LLM workflows, AWS cloud architecture, DevOps automation, and modern SaaS product engineering.',
+      'I offer three core services: Full-Stack Web Development (React, Next.js, TypeScript, AWS), AI & Workflow Automation (custom AI agents, LLM integrations, business automation), and SEO & Technical Content Writing (technical SEO audits, developer-focused articles, search strategy). All services are delivered directly by me — no account managers or junior handoffs.',
   },
   {
-    question: 'Is this blog suitable for beginners?',
+    question: 'How much does a project cost?',
     answer:
-      'Yes — our content spans beginner tutorials through advanced architecture guides, so developers at any level can follow along.',
+      'Pricing depends on scope. A focused business website or landing page typically starts around $1,500–$3,000. A full web application with authentication, dashboards, and API integrations starts around $6,000+. For AI automation projects, we scope based on the complexity of workflows and integrations. I provide a fixed quote after an initial discovery call — no hourly billing surprises.',
   },
   {
-    question: 'Do you share AI agent tutorials?',
+    question: 'Do you work with startups and small businesses?',
     answer:
-      'Yes, we regularly publish walkthroughs on building autonomous AI agents and integrating them into production applications.',
+      'Yes — the majority of my clients are startups and growing businesses. I work well with founders who need a reliable engineering partner to build, scale, or automate their product without managing a full team. I handle the technical decisions end-to-end.',
   },
   {
-    question: 'Do you write about React and Next.js?',
+    question: 'What tech stack do you use?',
     answer:
-      'Absolutely — React and Next.js development are core to our engineering stack and covered extensively in our guides.',
+      'For web development: React 19, Next.js 15 (App Router), TypeScript, Tailwind CSS, and PostgreSQL/Prisma. For cloud: AWS (S3, CloudFront, EC2, Lambda) and Vercel. For AI: OpenAI API, Anthropic Claude, LangChain, and custom RAG pipelines. For automation: Zapier/Make, custom Node.js scripts, and webhook integrations.',
   },
   {
-    question: 'Can I learn AWS from this blog?',
+    question: 'Can you integrate AI into an existing product?',
     answer:
-      'Yes, we publish practical AWS cloud and DevOps automation tutorials based on real production deployments.',
+      'Yes — this is actually one of the most common requests. I can add LLM-powered features (chatbots, document processing, content generation) directly into your existing web application without rebuilding it from scratch. I connect to OpenAI or Anthropic APIs and build the application logic around your specific workflow.',
   },
   {
-    question: 'Are your tutorials based on real projects?',
+    question: 'How long does a typical project take?',
     answer:
-      "Yes — every tutorial is grounded in patterns we've used on live client engagements, not just theoretical examples.",
+      'A focused business website typically takes 3–5 weeks from kickoff to deployment. A larger web application is usually 6–12 weeks depending on feature scope. AI automation projects typically run 2–6 weeks depending on integration complexity. I\'ll give you a realistic timeline estimate during the initial call.',
   },
   {
-    question: 'How often do you publish new articles?',
+    question: 'Do you write technical content for other companies?',
     answer:
-      'We publish new engineering and AI development content on a regular weekly schedule.',
+      'Yes — I write technical articles, engineering blogs, API documentation, and developer guides for SaaS companies and tech brands. The content is written by an actual developer who runs the code examples before publishing — not outsourced to a generalist writer.',
   },
   {
-    question: 'Do you provide source code and GitHub examples?',
+    question: 'What topics does the engineering blog cover?',
     answer:
-      'Yes, most tutorials link to a companion GitHub repository with full source code.',
-  },
-  {
-    question: 'Can I subscribe for new articles?',
-    answer:
-      'Yes — subscribe through our newsletter to get new posts and case studies delivered directly to your inbox.',
-  },
-  {
-    question: 'Can businesses or startups work with you?',
-    answer:
-      'Yes — beyond content, we offer full AI Development Services, Custom Software Development Services, and Cloud Software Development Services for businesses ready to build or scale.',
-  },
-  {
-    question: 'What makes this blog different from other developer blogs?',
-    answer:
-      'We combine hands-on engineering experience with AI-native workflows, giving readers both practical tutorials and real production insight.',
-  },
-  {
-    question: 'Who is behind Code with Amrendra?',
-    answer:
-      'Code with Amrendra is an engineering-led team specializing in AI Development Services, full-stack web engineering, and cloud software architecture for modern businesses.',
+      'The blog covers full-stack engineering (React, Next.js, Node.js), AI agent development, autonomous LLM workflows, AWS cloud architecture, DevOps automation, and SaaS product engineering. Every article is grounded in real production experience.',
   },
 ];

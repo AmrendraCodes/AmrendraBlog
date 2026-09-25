@@ -7,6 +7,21 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
   try {
+    const session = await getAuthSession();
+    if (!session) {
+      return NextResponse.json(
+        { success: false, error: { code: 'UNAUTHORIZED', message: 'Not authenticated' } },
+        { status: 401 }
+      );
+    }
+
+    if (!authorizeRole(session.user.role, [Role.EDITOR])) {
+      return NextResponse.json(
+        { success: false, error: { code: 'FORBIDDEN', message: 'You do not have permission to view media assets' } },
+        { status: 403 }
+      );
+    }
+
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('search') || '';
 

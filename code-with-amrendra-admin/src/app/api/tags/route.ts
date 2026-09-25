@@ -7,6 +7,14 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
+    const session = await getAuthSession();
+    if (!session) {
+      return NextResponse.json(
+        { success: false, error: { code: 'UNAUTHORIZED', message: 'Not authenticated' } },
+        { status: 401 }
+      );
+    }
+
     const tags = await prisma.tag.findMany({
       orderBy: { name: 'asc' },
     });

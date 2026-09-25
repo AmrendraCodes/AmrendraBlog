@@ -9,15 +9,24 @@ async function handlePublishScheduled(request: Request) {
   try {
     const cronSecret = process.env.CRON_SECRET;
 
-    // Validate CRON_SECRET if configured (Vercel Cron sends "Authorization: Bearer <CRON_SECRET>")
+    if (process.env.NODE_ENV === 'production' && !cronSecret) {
+      console.error('CRON_SECRET is missing in production. Scheduled publishing is disabled.');
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: 'CONFIG_ERROR',
+            message: 'Scheduled publishing is not configured.',
+          },
+        },
+        { status: 503 }
+      );
+    }
+
+    // Validate CRON_SECRET when configured (Vercel Cron sends "Authorization: Bearer <CRON_SECRET>")
     if (cronSecret) {
       const authHeader = request.headers.get('authorization');
-      const url = new URL(request.url);
-      const querySecret = url.searchParams.get('secret');
-
-      const isAuthorized =
-        (authHeader && authHeader === `Bearer ${cronSecret}`) ||
-        (querySecret && querySecret === cronSecret);
+      const isAuthorized = authHeader === `Bearer ${cronSecret}`;
 
       if (!isAuthorized) {
         return NextResponse.json(
