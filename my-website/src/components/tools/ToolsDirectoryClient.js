@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
   Search,
   X,
@@ -68,6 +69,7 @@ const CATEGORY_ACCENTS = {
 };
 
 export default function ToolsDirectoryClient() {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [sortBy, setSortBy] = useState('default');
@@ -359,7 +361,13 @@ export default function ToolsDirectoryClient() {
               <div
                 key={tool.id}
                 id={tool.slug}
-                onClick={() => setActiveModalTool(tool)}
+                onClick={() => {
+                  if (tool.slug === 'ai-agent-cost-calculator') {
+                    router.push(`/tools/${tool.slug}`);
+                  } else {
+                    setActiveModalTool(tool);
+                  }
+                }}
                 className="group relative bg-[var(--card-bg)] rounded-2xl sm:rounded-3xl border border-[var(--card-border)] p-6 sm:p-7 shadow-[var(--shadow-card)] card-interactive flex flex-col justify-between hover:border-[#F59E0B]/50 hover:shadow-lg transition-all duration-300 min-h-[460px] cursor-pointer overflow-visible active:scale-[0.98]"
               >
                 <div>
@@ -462,21 +470,36 @@ export default function ToolsDirectoryClient() {
                     {tool.category}
                   </span>
 
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActiveModalTool(tool);
-                    }}
-                    className="min-h-[44px] px-3.5 sm:px-4 py-2 rounded-xl bg-slate-100 dark:bg-[#112240] group-hover:bg-[#F59E0B] text-slate-800 dark:text-slate-100 group-hover:text-[#0B1F3A] font-bold text-xs sm:text-sm inline-flex items-center gap-1.5 border border-slate-200 dark:border-[#1E293B] group-hover:border-[#F59E0B] transition-all duration-200 cursor-pointer shadow-2xs shrink-0 active:scale-95"
-                    aria-label={`Open ${tool.title}`}
-                  >
-                    <span>{tool.actionText}</span>
-                    <ArrowUpRight
-                      size={15}
-                      className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0"
-                    />
-                  </button>
+                  {tool.slug === 'ai-agent-cost-calculator' ? (
+                    <Link
+                      href={`/tools/${tool.slug}`}
+                      onClick={(e) => e.stopPropagation()}
+                      className="min-h-[44px] px-3.5 sm:px-4 py-2 rounded-xl bg-slate-100 dark:bg-[#112240] group-hover:bg-[#F59E0B] text-slate-800 dark:text-slate-100 group-hover:text-[#0B1F3A] font-bold text-xs sm:text-sm inline-flex items-center gap-1.5 border border-slate-200 dark:border-[#1E293B] group-hover:border-[#F59E0B] transition-all duration-200 cursor-pointer shadow-2xs shrink-0 active:scale-95 no-underline"
+                      aria-label={`Open ${tool.title}`}
+                    >
+                      <span>{tool.actionText}</span>
+                      <ArrowUpRight
+                        size={15}
+                        className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0"
+                      />
+                    </Link>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveModalTool(tool);
+                      }}
+                      className="min-h-[44px] px-3.5 sm:px-4 py-2 rounded-xl bg-slate-100 dark:bg-[#112240] group-hover:bg-[#F59E0B] text-slate-800 dark:text-slate-100 group-hover:text-[#0B1F3A] font-bold text-xs sm:text-sm inline-flex items-center gap-1.5 border border-slate-200 dark:border-[#1E293B] group-hover:border-[#F59E0B] transition-all duration-200 cursor-pointer shadow-2xs shrink-0 active:scale-95"
+                      aria-label={`Open ${tool.title}`}
+                    >
+                      <span>{tool.actionText}</span>
+                      <ArrowUpRight
+                        size={15}
+                        className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0"
+                      />
+                    </button>
+                  )}
                 </div>
               </div>
             );
@@ -621,13 +644,25 @@ export default function ToolsDirectoryClient() {
                 )}
               </button>
 
-              <button
-                type="button"
-                onClick={() => setActiveModalTool(null)}
-                className="px-4 py-2 text-xs font-semibold rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors cursor-pointer border-none shadow-xs"
-              >
-                Close
-              </button>
+              <div className="flex items-center gap-2">
+                {activeModalTool.slug === 'ai-agent-cost-calculator' && (
+                  <Link
+                    href={`/tools/${activeModalTool.slug}`}
+                    onClick={() => setActiveModalTool(null)}
+                    className="px-4 py-2 text-xs font-bold rounded-lg bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] transition-colors cursor-pointer shadow-xs inline-flex items-center gap-1.5 no-underline"
+                  >
+                    <span>Launch Calculator</span>
+                    <ArrowUpRight size={13} />
+                  </Link>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setActiveModalTool(null)}
+                  className="px-4 py-2 text-xs font-semibold rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors cursor-pointer border-none shadow-xs"
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         </div>

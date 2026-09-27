@@ -420,3 +420,42 @@ export function getBreadcrumbSchema(items) {
     }))
   };
 }
+
+/**
+ * Returns WebApplication / SoftwareApplication JSON-LD Schema.
+ * Useful for interactive developer tools, cost calculators, and client utilities.
+ * @param {Object} params
+ * @param {string} params.name
+ * @param {string} params.description
+ * @param {string} params.url
+ * @param {string} [params.applicationCategory='DeveloperApplication']
+ * @param {string} [params.operatingSystem='All']
+ * @param {string} [params.price='0']
+ * @param {string} [params.priceCurrency='USD']
+ */
+export function getWebApplicationSchema({
+  name,
+  description,
+  url,
+  applicationCategory = 'DeveloperApplication',
+  operatingSystem = 'All',
+  price = '0',
+  priceCurrency = 'USD',
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name,
+    description,
+    url,
+    applicationCategory,
+    operatingSystem,
+    browserRequirements: 'Requires JavaScript. Requires HTML5.',
+    offers: {
+      '@type': 'Offer',
+      price,
+      priceCurrency,
+    },
+  };
+}
+

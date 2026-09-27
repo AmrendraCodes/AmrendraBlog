@@ -49,6 +49,12 @@ export default async function sitemap() {
       priority: 0.85,
     },
     {
+      url: `${baseUrl}/tools/ai-agent-cost-calculator`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    {
       url: `${baseUrl}/about`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
