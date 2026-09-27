@@ -1,10 +1,12 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import MotionPreferences from './ui/MotionPreferences';
 import Header from './Header';
-import Footer from './Footer';
-import WhatsAppButton from './WhatsAppButton';
 import BackToTop from './blog/BackToTop';
 import VisitorTracker from './VisitorTracker';
+
+const Footer = dynamic(() => import('./Footer'));
+const WhatsAppButton = dynamic(() => import('./WhatsAppButton'));
 
 export default function ConditionalLayout({ children }) {
   return (

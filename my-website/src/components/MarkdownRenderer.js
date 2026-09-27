@@ -11,6 +11,7 @@ import MermaidBlock from "./blog/MermaidBlock";
 import rehypeContentCleanup from "@/lib/rehype-content-cleanup";
 import "highlight.js/styles/atom-one-dark.css";
 import "katex/dist/katex.min.css";
+import "@/styles/article.css";
 import CopyButton from "./blog/CopyButton";
 import { Link as LinkIcon } from "lucide-react";
 import { Children, isValidElement } from "react";

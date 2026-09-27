@@ -94,7 +94,6 @@ export default function Header() {
                 height={42}
                 sizes="165px"
                 className="w-auto h-[30px] sm:h-[34px] max-h-[36px] object-contain dark:hidden transition-transform duration-200 group-hover:scale-[1.02]"
-                priority
               />
               <Image
                 src="/logo-wide-dark.png"
@@ -103,7 +102,6 @@ export default function Header() {
                 height={42}
                 sizes="165px"
                 className="w-auto h-[30px] sm:h-[34px] max-h-[36px] object-contain hidden dark:block transition-transform duration-200 group-hover:scale-[1.02]"
-                priority
               />
             </Link>
           </div>

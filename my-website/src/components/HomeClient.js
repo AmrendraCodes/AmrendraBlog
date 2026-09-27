@@ -1,14 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import HeroSection from './hero/HeroSection';
 import ServicesTicker from './home/ServicesTicker';
 import CoreServicesSection from './home/CoreServicesSection';
 import ProcessTimelineSection from './home/ProcessTimelineSection';
-import CaseStudiesSection from './CaseStudiesSection';
-import WhyChooseUsSection from './home/WhyChooseUsSection';
-import AboutAmrendraSection from './home/AboutAmrendraSection';
 import BlogCard from './BlogCard';
+
+const CaseStudiesSection = dynamic(() => import('./CaseStudiesSection'));
+const WhyChooseUsSection = dynamic(() => import('./home/WhyChooseUsSection'));
+const AboutAmrendraSection = dynamic(() => import('./home/AboutAmrendraSection'));
 
 export default function HomeClient({ caseStudies, featuredPosts }) {
   return (

@@ -6,6 +6,8 @@ export const metadata = {
   },
 };
 
+import '@/styles/article.css';
+
 export default function TermsPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950">

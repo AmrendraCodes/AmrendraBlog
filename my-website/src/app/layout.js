@@ -8,13 +8,13 @@ import ConsentAwareTracking from "../components/ConsentAwareTracking";
 const geist = Geist({
   variable: "--font-geist",
   subsets: ["latin"],
-  display: "swap",
+  display: "optional",
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
-  display: "swap",
+  display: "optional",
 });
 
 export const metadata = {

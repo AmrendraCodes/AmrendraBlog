@@ -1,8 +1,4 @@
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, TerminalSquare, Github, Linkedin, Twitter, Youtube, ChevronDown } from "lucide-react";
 import nextDynamic from 'next/dynamic';
-const FAQ = nextDynamic(() => import('@/components/FAQ'));
 import { getPostSummariesAsync } from "@/lib/posts";
 import { getAllCaseStudies } from "@/lib/case-studies";
 import JsonLd from "@/components/JsonLd";
@@ -10,6 +6,8 @@ import { getWebsiteSchema, getOrganizationSchema, getPersonSchema, getLocalBusin
 import { faqData } from "@/data/faqData";
 import { siteMetadata } from "@/config/seo";
 import HomeClient from "@/components/HomeClient";
+
+const FAQ = nextDynamic(() => import('@/components/FAQ'));
 
 // Keep the public landing page cached at the CDN after it has been generated. The
 // previous force-dynamic/revalidate=0 combination made every visitor wait for
@@ -49,11 +47,9 @@ export default async function Home() {
   const featuredPosts = allPosts.slice(0, 3).map((post) => ({
     title: post.title,
     excerpt: post.excerpt || post.description || "",
-    description: post.excerpt || post.description || "",
     category: post.category,
     date: post.date,
     readTime: post.readTime,
-    readingTime: post.readTime,
     image: post.image,
     slug: post.slug,
     link: `/resources/blog/${post.slug}`,
