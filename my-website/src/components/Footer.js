@@ -160,6 +160,7 @@ export default function Footer() {
                 {[
                   { name: "Engineering Blog", href: "/resources/blog" },
                   { name: "Case Studies", href: "/resources/case-studies" },
+                  { name: "Developer Tools", href: "/tools" },
                   { name: "React", href: "/category/react" },
                   { name: "AI Agents", href: "/category/ai-agents" },
                   { name: "SaaS Architecture", href: "/category/saas-architecture" },

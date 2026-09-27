@@ -20,6 +20,7 @@ export const PRIMARY_NAV_ITEMS: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "Services", href: "/services", hasDropdown: true, dropdownType: "services" },
   { name: "Resources", href: "/resources", hasDropdown: true, dropdownType: "resources" },
+  { name: "Tools", href: "/tools" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
