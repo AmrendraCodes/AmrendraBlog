@@ -182,7 +182,6 @@ export default function AiAgentCostCalculatorClient() {
   // Enable Scenario Comparison
   const handleOpenComparison = () => {
     setIsComparing(true);
-    // Suggest a contrasting model by default (e.g. Anthropic Haiku or DeepSeek)
     setScenarioB({
       ...inputs,
       providerId: inputs.providerId === 'openai' ? 'anthropic' : 'openai',
@@ -192,57 +191,59 @@ export default function AiAgentCostCalculatorClient() {
   };
 
   return (
-    <div className="w-full space-y-8">
+    <div className="w-full space-y-8 min-w-0">
       
       {/* ─── Workload Presets Bar ─── */}
-      <div className="space-y-3">
-        <div className="flex items-center justify-between">
-          <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+      <div className="space-y-3 min-w-0">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
             <Sparkles size={14} className="text-[#F59E0B]" />
             <span>Select Common Agent Workload Presets:</span>
           </span>
-          <span className="text-[11px] text-slate-400 hidden sm:inline">
+          <span className="text-xs text-slate-400 hidden sm:inline">
             Presets populate baseline assumptions; all inputs remain fully editable.
           </span>
         </div>
 
-        {/* Scrollable Preset Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-          {AGENT_PRESETS.map((preset) => {
-            const isSelected = activePresetId === preset.id;
-            return (
-              <button
-                key={preset.id}
-                type="button"
-                onClick={() => handleSelectPreset(preset)}
-                className={`min-h-[44px] px-4 py-2 rounded-2xl text-xs font-bold whitespace-nowrap transition-all duration-200 cursor-pointer flex items-center gap-2 border select-none shrink-0 ${
-                  isSelected
-                    ? 'bg-[#F59E0B] text-[#0B1F3A] border-[#F59E0B] shadow-md shadow-amber-500/20 font-extrabold'
-                    : 'bg-white dark:bg-[#0B1F3A]/70 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-[#1E293B] hover:border-[#F59E0B]/40 hover:text-slate-900 dark:hover:text-white'
-                }`}
-                aria-pressed={isSelected}
-              >
-                <span>{preset.name}</span>
-                <span
-                  className={`text-[10px] font-mono px-2 py-0.5 rounded-full ${
+        {/* Scrollable Preset Pills with clean scroll wrapper */}
+        <div className="relative min-w-0 w-full overflow-hidden">
+          <div className="flex items-center gap-2.5 overflow-x-auto pb-2 pt-0.5 scrollbar-hide [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden min-w-0">
+            {AGENT_PRESETS.map((preset) => {
+              const isSelected = activePresetId === preset.id;
+              return (
+                <button
+                  key={preset.id}
+                  type="button"
+                  onClick={() => handleSelectPreset(preset)}
+                  className={`min-h-[44px] px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all duration-150 cursor-pointer flex items-center gap-2.5 border select-none shrink-0 focus-visible:ring-2 focus-visible:ring-[#F59E0B] focus-visible:outline-none ${
                     isSelected
-                      ? 'bg-[#0B1F3A]/20 text-[#0B1F3A]'
-                      : 'bg-slate-100 dark:bg-[#112240] text-slate-500 dark:text-slate-400'
+                      ? 'bg-[#F59E0B] text-[#0B1F3A] border-[#F59E0B] shadow-md shadow-amber-500/20 font-extrabold'
+                      : 'bg-[#0B1F3A] text-slate-300 border-[#1E293B] hover:border-[#F59E0B]/50 hover:text-white'
                   }`}
+                  aria-pressed={isSelected}
                 >
-                  {preset.badge}
-                </span>
-              </button>
-            );
-          })}
+                  <span>{preset.name}</span>
+                  <span
+                    className={`text-xs font-mono px-2 py-0.5 rounded-md font-semibold ${
+                      isSelected
+                        ? 'bg-[#0B1F3A]/20 text-[#0B1F3A]'
+                        : 'bg-[#071324] text-slate-400 border border-[#1E293B]'
+                    }`}
+                  >
+                    {preset.badge}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 
       {/* ─── Main 2-Column Responsive Workspace ─── */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start min-w-0">
         
         {/* Left Column (Inputs & Advanced Sliders) */}
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-7 min-w-0">
           <CalculatorForm
             inputs={inputs}
             onChange={handleInputChange}
@@ -254,7 +255,7 @@ export default function AiAgentCostCalculatorClient() {
         </div>
 
         {/* Right Column (Live Results Dashboard) */}
-        <div className="lg:col-span-5 lg:sticky lg:top-24">
+        <div className="lg:col-span-5 min-w-0 lg:sticky lg:top-24">
           <ResultsDashboard
             result={resultA}
             currency={inputs.currency}
@@ -284,10 +285,10 @@ export default function AiAgentCostCalculatorClient() {
         />
       )}
 
-      {/* ─── Temporary Toast Notification for URL Share ─── */}
+      {/* ─── Toast Notification for URL Share ─── */}
       {shareToast && (
-        <div className="fixed bottom-6 right-6 z-50 bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-2 text-xs sm:text-sm font-semibold animate-fade-in border border-amber-500/50">
-          <Check size={16} className="text-emerald-400" />
+        <div className="fixed bottom-6 right-6 z-50 bg-[#0B1F3A] text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-2.5 text-xs sm:text-sm font-semibold animate-fade-in border border-[#F59E0B]">
+          <Check size={18} className="text-emerald-400 shrink-0" />
           <span>Calculator configuration link copied to clipboard!</span>
         </div>
       )}
