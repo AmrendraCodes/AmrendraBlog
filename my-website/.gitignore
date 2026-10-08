@@ -43,3 +43,8 @@ next-env.d.ts
 
 # Isolated browser profile used for local UI audits
 /.audit-browser/
+
+# Local UI audit screenshots & scratch files
+/public/audit-screenshots/
+scratch*
+*.scratch*

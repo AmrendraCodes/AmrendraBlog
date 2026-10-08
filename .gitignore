@@ -6,3 +6,6 @@
 *.sqlite3
 node_modules
 .next
+scratch*
+*.scratch*
+/my-website/public/audit-screenshots/
