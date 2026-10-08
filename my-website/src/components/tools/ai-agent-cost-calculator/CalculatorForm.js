@@ -122,7 +122,7 @@ export default function CalculatorForm({
                     modelId: models[0]?.id || 'gpt-4o-mini',
                   });
                 }}
-                className="w-full min-h-[46px] appearance-none px-4 py-2.5 rounded-xl bg-[#071324] border border-[#1E293B] text-white text-sm font-semibold hover:border-slate-600 focus:border-[#F59E0B] focus:ring-2 focus:ring-[#F59E0B]/20 outline-none transition-all duration-150 cursor-pointer"
+                className="w-full min-h-[46px] appearance-none pl-4 pr-10 py-2.5 rounded-xl bg-[#071324] border border-[#1E293B] text-white text-sm font-semibold hover:border-slate-600 focus:border-[#F59E0B] focus:ring-2 focus:ring-[#F59E0B]/20 outline-none transition-all duration-150 cursor-pointer"
               >
                 {AI_PROVIDERS.map((prov) => (
                   <option key={prov.id} value={prov.id} className="bg-[#0B1F3A] text-white">
@@ -144,7 +144,7 @@ export default function CalculatorForm({
                 id="agent-model"
                 value={inputs.modelId}
                 onChange={(e) => handleInputChange('modelId', e.target.value)}
-                className="w-full min-h-[46px] appearance-none px-4 py-2.5 rounded-xl bg-[#071324] border border-[#1E293B] text-white text-sm font-semibold hover:border-slate-600 focus:border-[#F59E0B] focus:ring-2 focus:ring-[#F59E0B]/20 outline-none transition-all duration-150 cursor-pointer"
+                className="w-full min-h-[46px] appearance-none pl-4 pr-10 py-2.5 rounded-xl bg-[#071324] border border-[#1E293B] text-white text-sm font-semibold hover:border-slate-600 focus:border-[#F59E0B] focus:ring-2 focus:ring-[#F59E0B]/20 outline-none transition-all duration-150 cursor-pointer"
               >
                 {currentProviderModels.map((m) => (
                   <option key={m.id} value={m.id} className="bg-[#0B1F3A] text-white">

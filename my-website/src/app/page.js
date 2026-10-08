@@ -1,4 +1,3 @@
-import nextDynamic from 'next/dynamic';
 import { getPostSummariesAsync } from "@/lib/posts";
 import { getAllCaseStudies } from "@/lib/case-studies";
 import JsonLd from "@/components/JsonLd";
@@ -7,19 +6,28 @@ import { faqData } from "@/data/faqData";
 import { siteMetadata } from "@/config/seo";
 import HomeClient from "@/components/HomeClient";
 
-const FAQ = nextDynamic(() => import('@/components/FAQ'));
-
 // Keep the public landing page cached at the CDN after it has been generated. The
 // previous force-dynamic/revalidate=0 combination made every visitor wait for
 // a database query and a server render before receiving any HTML.
 export const revalidate = 300;
 
 export const metadata = {
-  title: "Code with Amrendra | AI Development & Cloud Services",
-  description: "Code with Amrendra builds fast websites, AI automation, and cloud infrastructure for startups and businesses. React & Next.js experts.",
+  title: "AI Agent Development & SEO Technical Writing Services | Code with Amrendra",
+  description: "I build custom AI agents that automate your operations, and write SEO technical content that ranks and brings qualified leads. Direct work with the engineer. Book a free call.",
+  keywords: [
+    "AI Agent Development",
+    "AI Automation Services",
+    "Custom AI Agents",
+    "LLM Integration",
+    "SEO Technical Writing",
+    "Technical Content Writing",
+    "SaaS Content Writing",
+    "Developer Documentation",
+    "Code with Amrendra"
+  ],
   openGraph: {
-    title: 'Code with Amrendra | AI Development & Cloud Services',
-    description: 'Code with Amrendra builds fast websites, AI automation, and cloud infrastructure for startups and businesses. React & Next.js experts.',
+    title: "AI Agent Development & SEO Technical Writing Services | Code with Amrendra",
+    description: "I build custom AI agents that automate your operations, and write SEO technical content that ranks and brings qualified leads. Direct work with the engineer. Book a free call.",
     url: siteMetadata.siteUrl,
     images: [
       {
@@ -31,8 +39,8 @@ export const metadata = {
     ],
   },
   twitter: {
-    title: 'Code with Amrendra | AI Development & Cloud Services',
-    description: 'Code with Amrendra builds fast websites, AI automation, and cloud infrastructure for startups and businesses. React & Next.js experts.',
+    title: "AI Agent Development & SEO Technical Writing Services | Code with Amrendra",
+    description: "I build custom AI agents that automate your operations, and write SEO technical content that ranks and brings qualified leads. Direct work with the engineer. Book a free call.",
     images: ['/images/og-default.png'],
   },
   alternates: {
@@ -90,9 +98,6 @@ export default async function Home() {
       <JsonLd data={combinedSchema} />
 
       <HomeClient featuredPosts={featuredPosts} caseStudies={caseStudies} />
-
-      {/* FAQ Section */}
-      <FAQ />
     </div>
   );
 }

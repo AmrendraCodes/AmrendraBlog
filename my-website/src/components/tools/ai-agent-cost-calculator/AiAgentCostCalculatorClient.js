@@ -205,37 +205,35 @@ export default function AiAgentCostCalculatorClient() {
           </span>
         </div>
 
-        {/* Scrollable Preset Pills with clean scroll wrapper */}
-        <div className="relative min-w-0 w-full overflow-hidden">
-          <div className="flex items-center gap-2.5 overflow-x-auto pb-2 pt-0.5 scrollbar-hide [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden min-w-0">
-            {AGENT_PRESETS.map((preset) => {
-              const isSelected = activePresetId === preset.id;
-              return (
-                <button
-                  key={preset.id}
-                  type="button"
-                  onClick={() => handleSelectPreset(preset)}
-                  className={`min-h-[44px] px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all duration-150 cursor-pointer flex items-center gap-2.5 border select-none shrink-0 focus-visible:ring-2 focus-visible:ring-[#F59E0B] focus-visible:outline-none ${
+        {/* Presets List */}
+        <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+          {AGENT_PRESETS.map((preset) => {
+            const isSelected = activePresetId === preset.id;
+            return (
+              <button
+                key={preset.id}
+                type="button"
+                onClick={() => handleSelectPreset(preset)}
+                className={`min-h-[42px] px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-150 cursor-pointer flex items-center gap-2 border select-none shrink-0 focus-visible:ring-2 focus-visible:ring-[#F59E0B] focus-visible:outline-none ${
+                  isSelected
+                    ? 'bg-[#F59E0B] text-[#0B1F3A] border-[#F59E0B] shadow-md shadow-amber-500/20 font-extrabold'
+                    : 'bg-[#0B1F3A] text-slate-300 border-[#1E293B] hover:border-[#F59E0B]/50 hover:text-white'
+                }`}
+                aria-pressed={isSelected}
+              >
+                <span>{preset.name}</span>
+                <span
+                  className={`text-[11px] font-mono px-2 py-0.5 rounded-md font-semibold shrink-0 ${
                     isSelected
-                      ? 'bg-[#F59E0B] text-[#0B1F3A] border-[#F59E0B] shadow-md shadow-amber-500/20 font-extrabold'
-                      : 'bg-[#0B1F3A] text-slate-300 border-[#1E293B] hover:border-[#F59E0B]/50 hover:text-white'
+                      ? 'bg-[#0B1F3A]/20 text-[#0B1F3A]'
+                      : 'bg-[#071324] text-slate-400 border border-[#1E293B]'
                   }`}
-                  aria-pressed={isSelected}
                 >
-                  <span>{preset.name}</span>
-                  <span
-                    className={`text-xs font-mono px-2 py-0.5 rounded-md font-semibold ${
-                      isSelected
-                        ? 'bg-[#0B1F3A]/20 text-[#0B1F3A]'
-                        : 'bg-[#071324] text-slate-400 border border-[#1E293B]'
-                    }`}
-                  >
-                    {preset.badge}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+                  {preset.badge}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
 

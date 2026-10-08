@@ -1,74 +1,53 @@
 import React from 'react';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import HeroSection from './hero/HeroSection';
-import ServicesTicker from './home/ServicesTicker';
-import CoreServicesSection from './home/CoreServicesSection';
+import ProblemSection from './home/ProblemSection';
+import ServicesSection from './home/ServicesSection';
+import OutcomesSection from './home/OutcomesSection';
 import ProcessTimelineSection from './home/ProcessTimelineSection';
-import BlogCard from './BlogCard';
+import WhyChooseUsSection from './home/WhyChooseUsSection';
+import SelectedWorkSection from './home/SelectedWorkSection';
+import TestimonialsSection from './home/TestimonialsSection';
+import AboutAmrendraSection from './home/AboutAmrendraSection';
+import HomeCtaBanner from './home/HomeCtaBanner';
 
-const CaseStudiesSection = dynamic(() => import('./CaseStudiesSection'));
-const WhyChooseUsSection = dynamic(() => import('./home/WhyChooseUsSection'));
-const AboutAmrendraSection = dynamic(() => import('./home/AboutAmrendraSection'));
+const FAQ = dynamic(() => import('./FAQ'));
 
-export default function HomeClient({ caseStudies, featuredPosts }) {
+export default function HomeClient({ caseStudies = [], featuredPosts = [] }) {
   return (
     <>
       {/* 1. Hero Section */}
       <HeroSection />
 
-      {/* 2. Technology Ecosystem & Trust Strip */}
-      <ServicesTicker />
+      {/* 2. Problem Section ("Sound Familiar?") */}
+      <ProblemSection />
 
-      {/* 3. Core Engineering Services (Merged Capabilities) */}
-      <CoreServicesSection />
+      {/* 3. Services Section (AI Agents, SEO Technical Writing + Secondary Web Dev) */}
+      <ServicesSection />
 
-      {/* 4. How I Work — 4-Step Engineering Process */}
+      {/* 4. Outcomes Section ("What Clients Come to Me For") */}
+      <OutcomesSection />
+
+      {/* 5. Process Section ("A Simple Process, Built Around You", anchor id: process) */}
       <ProcessTimelineSection />
 
-      {/* 5. Selected Work & Case Studies (Primary Proof) */}
-      <section className="bg-[#F8FAFC] dark:bg-[#071324] border-y border-slate-200 dark:border-[#1E293B] transition-colors duration-200">
-        <CaseStudiesSection caseStudies={caseStudies} />
-      </section>
-
-      {/* 6. Why Work With Me (Engineering Standards) */}
+      {/* 6. Why Work With Me ("Why Clients Choose to Work With Me") */}
       <WhyChooseUsSection />
 
-      {/* 7. About Amrendra — Personal Brand & Founder Introduction */}
+      {/* 7. Selected Work ("Selected Work and Insights" - Case Studies & Blog Cards) */}
+      <SelectedWorkSection caseStudies={caseStudies} featuredPosts={featuredPosts} />
+
+      {/* 8. Testimonials Section (Conditional - renders only if real data exists) */}
+      <TestimonialsSection />
+
+      {/* 9. About Section ("Hi, I'm Amrendra.") */}
       <AboutAmrendraSection />
 
-      {/* 8. Latest Insights & Technical Articles */}
-      {featuredPosts && featuredPosts.length > 0 && (
-        <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 md:mb-16 gap-4">
-            <div>
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 inline-block mb-3">
-                LATEST INSIGHTS
-              </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#0B1F3A] dark:text-white">
-                Featured Engineering <span className="gradient-text">Articles</span>
-              </h2>
-              <p className="text-slate-600 dark:text-[#9CA3AF] text-base sm:text-lg max-w-2xl mt-2">
-                Deep dives into modern full-stack development, AI agents, cloud architecture, and performance.
-              </p>
-            </div>
-            <Link
-              href="/resources/blog"
-              className="group inline-flex items-center gap-2 text-sm font-bold text-[#0B1F3A] dark:text-[#F59E0B] hover:underline shrink-0 no-underline"
-            >
-              <span>View All Articles</span>
-              <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
-            </Link>
-          </div>
+      {/* 10. FAQ Section (7 Questions & Answers) */}
+      <FAQ />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {featuredPosts.slice(0, 3).map((post) => (
-              <BlogCard key={post.slug || post.title} post={post} />
-            ))}
-          </div>
-        </section>
-      )}
+      {/* 11. Final CTA Section ("Ready to Save Time and Grow Your Traffic?") */}
+      <HomeCtaBanner />
     </>
   );
 }

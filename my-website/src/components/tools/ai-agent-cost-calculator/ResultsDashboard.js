@@ -76,67 +76,69 @@ export default function ResultsDashboard({
         </div>
 
         {/* Primary Metric Figures */}
-        <div className="relative z-10 pt-5 flex flex-col sm:flex-row items-baseline justify-between gap-4">
-          <div className="min-w-0">
-            <div className="text-4xl sm:text-5xl font-black font-mono tracking-tight text-white flex flex-wrap items-baseline gap-2">
-              <span>{formatCurrency(result.totalMonthlyCost, currency)}</span>
-              <span className="text-lg sm:text-xl font-normal text-slate-400 font-sans">
-                /month
-              </span>
-            </div>
-            <p className="text-xs text-slate-400 mt-2">
-              Model: <strong className="text-slate-200 font-semibold">{selectedModel.name}</strong> • Token, Tool &amp; Infra Consolidated
-            </p>
+        <div className="relative z-10 pt-5 space-y-3">
+          <div className="flex flex-wrap items-baseline gap-2.5">
+            <span className="text-3xl sm:text-4xl lg:text-5xl font-black font-mono tracking-tight text-white">
+              {formatCurrency(result.totalMonthlyCost, currency)}
+            </span>
+            <span className="text-base sm:text-lg font-medium text-slate-400 font-sans">
+              / month
+            </span>
           </div>
 
-          {result.cachedSavings > 0 && (
-            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-mono font-bold shrink-0">
-              <Zap size={14} className="text-emerald-400" />
-              <span>Saves {formatCurrency(result.cachedSavings, currency)}/mo via Caching</span>
-            </div>
-          )}
+          <div className="flex flex-wrap items-center gap-2.5 pt-0.5">
+            {result.cachedSavings > 0 && (
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-mono font-semibold shadow-xs">
+                <Zap size={13} className="text-emerald-400 shrink-0" />
+                <span>Saves {formatCurrency(result.cachedSavings, currency)}/mo via Caching</span>
+              </div>
+            )}
+            <p className="text-xs text-slate-400 leading-normal">
+              Model: <strong className="text-slate-200 font-semibold">{selectedModel.name}</strong> • Consolidated Token, Tool &amp; Infra
+            </p>
+          </div>
         </div>
       </div>
 
       {/* ─── Secondary Metrics Row ─── */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
         {/* Cost Per Run */}
-        <div className="bg-[#0B1F3A] rounded-2xl border border-[#1E293B] p-4 sm:p-5 shadow-sm hover:border-slate-700 transition-colors">
-          <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider block mb-1">
-            Cost / Agent Run
+        <div className="bg-[#0B1F3A] rounded-2xl border border-[#1E293B] p-3 sm:p-4 shadow-sm hover:border-slate-700 transition-colors flex flex-col justify-between min-w-0">
+          <span className="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider block mb-1 truncate" title="Cost / Agent Run">
+            Cost / Run
           </span>
-          <div className="text-xl sm:text-2xl font-black font-mono text-white">
+          <div className="text-base sm:text-xl font-black font-mono text-white truncate my-0.5" title={formatCurrency(result.costPerRun, currency)}>
             {formatCurrency(result.costPerRun, currency)}
           </div>
-          <span className="text-xs text-slate-400 mt-1 block">
-            Per completed user goal
+          <span className="text-[11px] text-slate-400 block truncate" title="Per completed user goal">
+            Per user goal
           </span>
         </div>
 
         {/* Cost Per 1,000 Runs */}
-        <div className="bg-[#0B1F3A] rounded-2xl border border-[#1E293B] p-4 sm:p-5 shadow-sm hover:border-slate-700 transition-colors">
-          <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider block mb-1">
-            Cost / 1,000 Runs
+        <div className="bg-[#0B1F3A] rounded-2xl border border-[#1E293B] p-3 sm:p-4 shadow-sm hover:border-slate-700 transition-colors flex flex-col justify-between min-w-0">
+          <span className="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider block mb-1 truncate" title="Cost / 1,000 Runs">
+            Per 1k Runs
           </span>
-          <div className="text-xl sm:text-2xl font-black font-mono text-[#F59E0B]">
+          <div className="text-base sm:text-xl font-black font-mono text-[#F59E0B] truncate my-0.5" title={formatCurrency(result.costPer1kRuns, currency)}>
             {formatCurrency(result.costPer1kRuns, currency)}
           </div>
-          <span className="text-xs text-slate-400 mt-1 block">
-            Baseline for unit economics
+          <span className="text-[11px] text-slate-400 block truncate" title="Unit economics">
+            Unit economics
           </span>
         </div>
 
         {/* Annual Forecast */}
-        <div className="bg-[#0B1F3A] rounded-2xl border border-[#1E293B] p-4 sm:p-5 shadow-sm hover:border-slate-700 transition-colors">
-          <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1">
-            <Calendar size={13} className="text-slate-400" />
-            <span>Estimated Annual</span>
+        <div className="bg-[#0B1F3A] rounded-2xl border border-[#1E293B] p-3 sm:p-4 shadow-sm hover:border-slate-700 transition-colors flex flex-col justify-between min-w-0">
+          <span className="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1 min-w-0" title="Estimated Annual Cost">
+            <Calendar size={12} className="text-slate-400 shrink-0" />
+            <span className="truncate">Annual Est.</span>
           </span>
-          <div className="text-xl sm:text-2xl font-black font-mono text-white">
+          <div className="text-base sm:text-xl font-black font-mono text-white truncate my-0.5" title={formatCurrency(result.annualCost, currency)}>
             {formatCurrency(result.annualCost, currency)}
           </div>
-          <span className="text-xs text-slate-400 mt-1 block">
-            12-month projection
+          <span className="text-[11px] text-slate-400 block truncate" title="12-month projection">
+            12-mo forecast
           </span>
         </div>
       </div>
@@ -195,26 +197,26 @@ export default function ResultsDashboard({
         </div>
 
         {/* Visualizer Legend Chips */}
-        <div className="flex flex-wrap gap-x-4 gap-y-2 pt-1 text-xs">
-          <div className="flex items-center gap-1.5 text-slate-300">
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0" />
-            <span>Input: <strong>{formatPercent(percentages.inputTokens)}</strong> ({formatCurrency(result.totalInputCost, currency)})</span>
+        <div className="flex flex-wrap gap-2 pt-1 text-xs">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#071324] border border-[#1E293B] text-slate-300 font-mono text-[11px]">
+            <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0" />
+            <span>Input: <strong className="text-white">{formatPercent(percentages.inputTokens)}</strong> ({formatCurrency(result.totalInputCost, currency)})</span>
           </div>
-          <div className="flex items-center gap-1.5 text-slate-300">
-            <span className="w-2.5 h-2.5 rounded-full bg-blue-500 shrink-0" />
-            <span>Output: <strong>{formatPercent(percentages.outputTokens)}</strong> ({formatCurrency(result.totalOutputCost, currency)})</span>
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#071324] border border-[#1E293B] text-slate-300 font-mono text-[11px]">
+            <span className="w-2 h-2 rounded-full bg-blue-500 shrink-0" />
+            <span>Output: <strong className="text-white">{formatPercent(percentages.outputTokens)}</strong> ({formatCurrency(result.totalOutputCost, currency)})</span>
           </div>
-          <div className="flex items-center gap-1.5 text-slate-300">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0" />
-            <span>Tools: <strong>{formatPercent(percentages.toolApis)}</strong> ({formatCurrency(result.toolCost, currency)})</span>
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#071324] border border-[#1E293B] text-slate-300 font-mono text-[11px]">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+            <span>Tools: <strong className="text-white">{formatPercent(percentages.toolApis)}</strong> ({formatCurrency(result.toolCost, currency)})</span>
           </div>
-          <div className="flex items-center gap-1.5 text-slate-300">
-            <span className="w-2.5 h-2.5 rounded-full bg-purple-500 shrink-0" />
-            <span>Infra: <strong>{formatPercent(percentages.infrastructure)}</strong> ({formatCurrency(result.fixedInfraCost, currency)})</span>
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#071324] border border-[#1E293B] text-slate-300 font-mono text-[11px]">
+            <span className="w-2 h-2 rounded-full bg-purple-500 shrink-0" />
+            <span>Infra: <strong className="text-white">{formatPercent(percentages.infrastructure)}</strong> ({formatCurrency(result.fixedInfraCost, currency)})</span>
           </div>
-          <div className="flex items-center gap-1.5 text-slate-300">
-            <span className="w-2.5 h-2.5 rounded-full bg-rose-500 shrink-0" />
-            <span>Retries: <strong>{formatPercent(percentages.retryOverhead)}</strong> ({formatCurrency(result.retryOverheadCost, currency)})</span>
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#071324] border border-[#1E293B] text-slate-300 font-mono text-[11px]">
+            <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0" />
+            <span>Retries: <strong className="text-white">{formatPercent(percentages.retryOverhead)}</strong> ({formatCurrency(result.retryOverheadCost, currency)})</span>
           </div>
         </div>
       </div>

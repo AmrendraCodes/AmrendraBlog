@@ -120,13 +120,13 @@ export default function Header() {
             <ThemeToggle />
             <Link
               href="/contact"
-              className="hidden md:inline-flex items-center justify-center whitespace-nowrap shrink-0 bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-[0.875rem] py-2.5 px-6 rounded-full border-none cursor-pointer transition-colors duration-200 shadow-[0_0_20px_rgba(245,158,11,0.3)]    "
+              className="hidden lg:inline-flex items-center justify-center whitespace-nowrap shrink-0 bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-[0.875rem] py-2 px-5 rounded-full border-none cursor-pointer transition-colors duration-200 shadow-[0_0_20px_rgba(245,158,11,0.3)]"
             >
-              Get started
+              Book a Free Call
             </Link>
             <button
               type="button"
-              className="flex md:hidden items-center justify-center bg-slate-100 dark:bg-[#112240] border border-slate-200 dark:border-[#1E293B] text-slate-900 dark:text-slate-50 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-full cursor-pointer transition-colors duration-200 shrink-0 hover:bg-slate-200 dark:hover:bg-[#1E3A8A]"
+              className="flex lg:hidden items-center justify-center bg-slate-100 dark:bg-[#112240] border border-slate-200 dark:border-[#1E293B] text-slate-900 dark:text-slate-50 w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] rounded-full cursor-pointer transition-colors duration-200 shrink-0 hover:bg-slate-200 dark:hover:bg-[#1E3A8A]"
               onClick={() => setIsMenuOpen(true)}
               aria-label="Open menu"
               aria-expanded={isMenuOpen}

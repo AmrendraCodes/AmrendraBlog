@@ -1,42 +1,37 @@
 export const faqData = [
   {
-    question: 'What services do you offer?',
+    question: "What types of AI agents do you build?",
     answer:
-      'I offer three core services: Full-Stack Web Development (React, Next.js, TypeScript, AWS), AI & Workflow Automation (custom AI agents, LLM integrations, business automation), and SEO & Technical Content Writing (technical SEO audits, developer-focused articles, search strategy). All services are delivered directly by me — no account managers or junior handoffs.',
+      "Lead qualification, customer support assistants, document and data processing, internal knowledge assistants, and workflow automation connected to the tools you already use.",
   },
   {
-    question: 'How much does a project cost?',
+    question: "Do I need to replace my current software?",
     answer:
-      'Pricing depends on scope. A focused business website or landing page typically starts around $1,500–$3,000. A full web application with authentication, dashboards, and API integrations starts around $6,000+. For AI automation projects, we scope based on the complexity of workflows and integrations. I provide a fixed quote after an initial discovery call — no hourly billing surprises.',
+      "No. I connect agents to your existing tools, so you don't rebuild from scratch.",
   },
   {
-    question: 'Do you work with startups and small businesses?',
+    question: "How much does it cost?",
     answer:
-      'Yes — the majority of my clients are startups and growing businesses. I work well with founders who need a reliable engineering partner to build, scale, or automate their product without managing a full team. I handle the technical decisions end-to-end.',
+      "It depends on scope. After a free discovery call, you get a fixed quote with no hourly surprises.",
   },
   {
-    question: 'What tech stack do you use?',
+    question: "How long does a project take?",
     answer:
-      'For web development: React 19, Next.js 15 (App Router), TypeScript, Tailwind CSS, and PostgreSQL/Prisma. For cloud: AWS (S3, CloudFront, EC2, Lambda) and Vercel. For AI: OpenAI API, Anthropic Claude, LangChain, and custom RAG pipelines. For automation: Zapier/Make, custom Node.js scripts, and webhook integrations.',
+      "Most AI automation projects take 2 to 6 weeks. Content engagements start delivering within the first month, while SEO results build over several months.",
   },
   {
-    question: 'Can you integrate AI into an existing product?',
+    question: "Who writes the content?",
     answer:
-      'Yes — this is actually one of the most common requests. I can add LLM-powered features (chatbots, document processing, content generation) directly into your existing web application without rebuilding it from scratch. I connect to OpenAI or Anthropic APIs and build the application logic around your specific workflow.',
+      "I do, an engineer who tests the examples before publishing. It's not outsourced to a generalist.",
   },
   {
-    question: 'How long does a typical project take?',
+    question: "Do you guarantee rankings?",
     answer:
-      'A focused business website typically takes 3–5 weeks from kickoff to deployment. A larger web application is usually 6–12 weeks depending on feature scope. AI automation projects typically run 2–6 weeks depending on integration complexity. I\'ll give you a realistic timeline estimate during the initial call.',
+      "No honest SEO can guarantee rankings. I guarantee a clear strategy, high-quality content and transparent reporting.",
   },
   {
-    question: 'Do you write technical content for other companies?',
+    question: "Is my business data safe?",
     answer:
-      'Yes — I write technical articles, engineering blogs, API documentation, and developer guides for SaaS companies and tech brands. The content is written by an actual developer who runs the code examples before publishing — not outsourced to a generalist writer.',
-  },
-  {
-    question: 'What topics does the engineering blog cover?',
-    answer:
-      'The blog covers full-stack engineering (React, Next.js, Node.js), AI agent development, autonomous LLM workflows, AWS cloud architecture, DevOps automation, and SaaS product engineering. Every article is grounded in real production experience.',
+      "Yes. I follow secure practices, use only the access needed, and can work under an NDA.",
   },
 ];

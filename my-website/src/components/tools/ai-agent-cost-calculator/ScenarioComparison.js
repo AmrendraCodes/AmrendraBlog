@@ -94,7 +94,7 @@ export default function ScenarioComparison({
                     modelId: models[0]?.id || 'gpt-4o-mini',
                   });
                 }}
-                className="w-full min-h-[44px] appearance-none px-3.5 py-2 rounded-xl bg-[#0B1F3A] border border-[#1E293B] text-xs font-semibold text-white outline-none focus:border-[#F59E0B] cursor-pointer"
+                className="w-full min-h-[44px] appearance-none pl-3.5 pr-9 py-2 rounded-xl bg-[#0B1F3A] border border-[#1E293B] text-xs font-semibold text-white outline-none focus:border-[#F59E0B] cursor-pointer"
               >
                 {AI_PROVIDERS.map((prov) => (
                   <option key={prov.id} value={prov.id} className="bg-[#0B1F3A] text-white">
@@ -116,7 +116,7 @@ export default function ScenarioComparison({
                 id="b-model"
                 value={scenarioB.modelId}
                 onChange={(e) => onUpdateScenarioB({ modelId: e.target.value })}
-                className="w-full min-h-[44px] appearance-none px-3.5 py-2 rounded-xl bg-[#0B1F3A] border border-[#1E293B] text-xs font-semibold text-white outline-none focus:border-[#F59E0B] cursor-pointer"
+                className="w-full min-h-[44px] appearance-none pl-3.5 pr-9 py-2 rounded-xl bg-[#0B1F3A] border border-[#1E293B] text-xs font-semibold text-white outline-none focus:border-[#F59E0B] cursor-pointer"
               >
                 {modelsForB.map((m) => (
                   <option key={m.id} value={m.id} className="bg-[#0B1F3A] text-white">

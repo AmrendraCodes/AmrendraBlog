@@ -174,7 +174,7 @@ export default function MobileNavDrawer({
               className="inline-flex items-center justify-center bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-[1.1rem] py-3.5 px-8 rounded-full border-none cursor-pointer w-full transition-opacity duration-200 shadow-lg shadow-amber-500/20"
               onClick={() => setIsMenuOpen(false)}
             >
-              Get started
+              Book a Free Call
             </Link>
           </div>
         </nav>

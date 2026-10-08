@@ -74,13 +74,9 @@ export default function FAQ() {
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 inline-block mb-3">
             FAQ
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3 text-[var(--text-heading)]">
-            Frequently Asked{' '}
-            <span className="gradient-text">Questions</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text-heading)]">
+            Frequently Asked Questions
           </h2>
-          <p className="text-[var(--text-body)] text-base sm:text-lg max-w-lg mx-auto">
-            Common questions about working with me on web development, AI, and technical content projects.
-          </p>
         </div>
 
         {/* FAQ Items */}

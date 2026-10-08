@@ -110,7 +110,7 @@ export default function Footer() {
 
             {/* Description */}
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-sm mb-6">
-              Engineering enterprise software, next-generation web platforms, autonomous AI solutions, and scalable cloud architectures.
+              AI agents and SEO technical writing for businesses that want measurable growth.
             </p>
 
             {/* Contact Email */}
@@ -134,9 +134,9 @@ export default function Footer() {
               </h3>
               <ul className="space-y-3.5 p-0 m-0 list-none text-xs sm:text-sm">
                 {[
-                  { name: "Web Development", href: "/services/web-development" },
                   { name: "AI & Automation", href: "/services/ai-automation" },
                   { name: "SEO & Content Writing", href: "/services/seo-content-strategy" },
+                  { name: "Web Development", href: "/services/web-development" },
                 ].map((link) => (
                   <li key={link.name}>
                     <Link 
