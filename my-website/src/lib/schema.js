@@ -29,21 +29,15 @@ export function getWebsiteSchema() {
 export function getOrganizationSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": ["Organization", "ProfessionalService"],
+    "@type": "Organization",
     "@id": "https://www.codewithamrendra.in/#organization",
-    "name": "Code with Amrendra",
+    "name": "Code With Amrendra",
     "alternateName": [
-      "Code With Amrendra",
+      "Code with Amrendra",
       "CWA Engineering"
     ],
     "url": "https://www.codewithamrendra.in/",
-    "logo": "https://www.codewithamrendra.in/logo-square.png",
-    "sameAs": [
-      "https://x.com/codewithamrendr",
-      "https://github.com/AmrendraCodes",
-      "https://www.linkedin.com/in/amrendra1998/",
-      "https://www.instagram.com/codewithamrendra/"
-    ]
+    "logo": "https://www.codewithamrendra.in/logo-square.png"
   };
 }
 

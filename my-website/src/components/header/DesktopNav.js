@@ -56,8 +56,8 @@ export default function DesktopNav({
   }, []);
 
   return (
-    <div className="hidden lg:flex items-center justify-center flex-1 px-2 xl:px-4">
-      <nav className="flex items-center gap-1 lg:gap-2 xl:gap-3.5 whitespace-nowrap" aria-label="Primary navigation">
+    <div className="hidden md:flex items-center justify-center flex-1 px-4">
+      <nav className="flex items-center gap-2 lg:gap-4 xl:gap-6 whitespace-nowrap" aria-label="Primary navigation">
         {/* Crawlable Fallback Links for Search Engine Indexing */}
         <div className="sr-only">
           {SERVICES_DATA.map((s) => (
@@ -94,7 +94,7 @@ export default function DesktopNav({
                       if (servicesTimerRef.current) clearTimeout(servicesTimerRef.current);
                       setIsServicesOpen(false);
                     }}
-                    className={`text-[0.78rem] lg:text-[0.84rem] xl:text-[0.9rem] font-semibold no-underline pl-2.5 lg:pl-3 pr-1 py-1.5 rounded-l-full cursor-pointer ${
+                    className={`text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline pl-3.5 lg:pl-4 pr-1 py-1.5 rounded-l-full cursor-pointer ${
                       isActive || isServicesOpen ? 'font-bold' : 'hover:text-[#F59E0B]'
                     }`}
                   >
@@ -152,7 +152,7 @@ export default function DesktopNav({
                       if (resourcesTimerRef.current) clearTimeout(resourcesTimerRef.current);
                       setIsResourcesOpen(false);
                     }}
-                    className={`text-[0.78rem] lg:text-[0.84rem] xl:text-[0.9rem] font-semibold no-underline pl-2.5 lg:pl-3 pr-1 py-1.5 rounded-l-full cursor-pointer ${
+                    className={`text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline pl-3.5 lg:pl-4 pr-1 py-1.5 rounded-l-full cursor-pointer ${
                       isActive || isResourcesOpen ? 'font-bold' : 'hover:text-[#F59E0B]'
                     }`}
                   >
@@ -195,7 +195,7 @@ export default function DesktopNav({
             <Link
               key={link.name}
               href={link.href}
-              className={`relative text-[0.78rem] lg:text-[0.84rem] xl:text-[0.9rem] font-semibold no-underline transition-colors duration-200 whitespace-nowrap px-2 lg:px-2.5 xl:px-3 py-1.5 rounded-full ${
+              className={`relative text-[0.85rem] lg:text-[0.95rem] font-semibold no-underline transition-colors duration-200 whitespace-nowrap px-3 lg:px-4 py-1.5 rounded-full ${
                 isActive
                   ? 'text-[#0B1F3A] dark:text-[#F59E0B] bg-amber-500/10 font-bold'
                   : 'text-slate-700 dark:text-slate-200 hover:text-[#F59E0B] dark:hover:text-[#F59E0B] hover:bg-slate-100 dark:hover:bg-[#112240]'
