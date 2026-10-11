@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ES2022",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["node"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -10,7 +11,7 @@
     "moduleResolution": "bundler",
     "jsx": "preserve",
     "paths": {
-      "@/*": ["./code-with-amrendra-admin/src/*"]
+      "@/*": ["./code-with-amrendra-admin/src/*", "./my-website/src/*"]
     }
   },
   "include": [

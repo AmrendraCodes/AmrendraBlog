@@ -7,6 +7,12 @@ export enum Role {
   AUTHOR = 'AUTHOR',
 }
 
+export enum BlogStatus {
+  DRAFT = 'DRAFT',
+  PUBLISHED = 'PUBLISHED',
+  SCHEDULED = 'SCHEDULED',
+}
+
 export const ADMIN_SESSION_COOKIE = 'admin_session_token';
 
 export async function hashPassword(password: string): Promise<string> {

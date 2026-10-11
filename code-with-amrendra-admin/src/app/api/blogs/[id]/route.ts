@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { authorizeRole, getAuthSession, Role } from '@/lib/auth';
+import { authorizeRole, getAuthSession, Role, BlogStatus } from '@/lib/auth';
 import { blogSchema } from '@/schemas/blog';
 import { calculateReadingTime, countWords, slugify } from '@/lib/utils';
 import { formatArticleMarkdown } from '@/lib/formatter';
 import { revalidatePath } from 'next/cache';
-import { BlogStatus, Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { revalidatePublicBlog } from '@/lib/public-site-revalidation';
 
 export const dynamic = 'force-dynamic';
@@ -191,10 +191,12 @@ export async function PUT(
     }
 
     const data = parsed.data;
-    const normalizedFaqs = (data.faqs || []).map(({ question, answer }) => ({
-      question: question.trim(),
-      answer: answer.trim(),
-    }));
+    const normalizedFaqs = (data.faqs || []).map(
+      ({ question, answer }: { question: string; answer: string }) => ({
+        question: (question || '').trim(),
+        answer: (answer || '').trim(),
+      })
+    );
 
     // Automatically format markdown & apply smart interlinking
     const formatRes = formatArticleMarkdown(data.content, {

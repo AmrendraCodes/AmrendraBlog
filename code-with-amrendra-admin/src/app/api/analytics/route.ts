@@ -25,24 +25,41 @@ export async function GET() {
     let recentPosts: (Blog & { category: Category | null })[] = [];
 
     try {
-      totalBlogs = await prisma.blog.count();
-      publishedBlogs = await prisma.blog.count({ where: { status: 'PUBLISHED' } });
-      draftBlogs = await prisma.blog.count({ where: { status: 'DRAFT' } });
-      totalCategories = await prisma.category.count();
-      totalMedia = await prisma.media.count();
-      totalVisitors = await prisma.visitor.count();
-      totalPageViews = await prisma.pageView.count();
+      const [
+        totalBlogsCount,
+        publishedBlogsCount,
+        draftBlogsCount,
+        categoriesCount,
+        mediaCount,
+        visitorsCount,
+        pageViewsCount,
+        viewsAgg,
+        recentPostsList,
+      ] = await Promise.all([
+        prisma.blog.count(),
+        prisma.blog.count({ where: { status: 'PUBLISHED' } }),
+        prisma.blog.count({ where: { status: 'DRAFT' } }),
+        prisma.category.count(),
+        prisma.media.count(),
+        prisma.visitor.count(),
+        prisma.pageView.count(),
+        prisma.blog.aggregate({ _sum: { views: true } }),
+        prisma.blog.findMany({
+          take: 5,
+          orderBy: { updatedAt: 'desc' },
+          include: { category: true },
+        }),
+      ]);
 
-      const viewsAgg = await prisma.blog.aggregate({
-        _sum: { views: true },
-      });
+      totalBlogs = totalBlogsCount;
+      publishedBlogs = publishedBlogsCount;
+      draftBlogs = draftBlogsCount;
+      totalCategories = categoriesCount;
+      totalMedia = mediaCount;
+      totalVisitors = visitorsCount;
+      totalPageViews = pageViewsCount;
       totalViews = (viewsAgg._sum.views || 0) + totalPageViews;
-
-      recentPosts = await prisma.blog.findMany({
-        take: 5,
-        orderBy: { updatedAt: 'desc' },
-        include: { category: true },
-      });
+      recentPosts = recentPostsList;
     } catch (dbErr) {
       console.warn('Analytics DB query warning:', dbErr);
     }

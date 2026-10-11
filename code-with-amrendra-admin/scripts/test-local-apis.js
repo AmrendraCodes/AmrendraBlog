@@ -168,7 +168,7 @@ async function runFullAudit() {
   const createdCatId = createCatJson.data?.category?.id;
   console.log(`1. Create Category: Status ${createCatRes.status}, ID: ${createdCatId} -> ${createCatRes.ok ? 'PASS' : 'FAIL'}`);
 
-  const listCatRes = await fetch(`${BASE_URL}/api/categories`);
+  const listCatRes = await fetch(`${BASE_URL}/api/categories`, { headers: { Cookie: sessionCookie } });
   const listCatJson = await listCatRes.json();
   console.log(`2. Read Categories: Status ${listCatRes.status}, Total Categories: ${listCatJson.data?.categories?.length || listCatJson.data?.length} -> ${listCatRes.ok ? 'PASS' : 'FAIL'}`);
 
@@ -197,7 +197,7 @@ async function runFullAudit() {
   const createdTagId = createTagJson.data?.tag?.id;
   console.log(`1. Create Tag: Status ${createTagRes.status}, ID: ${createdTagId} -> ${createTagRes.ok ? 'PASS' : 'FAIL'}`);
 
-  const listTagRes = await fetch(`${BASE_URL}/api/tags`);
+  const listTagRes = await fetch(`${BASE_URL}/api/tags`, { headers: { Cookie: sessionCookie } });
   console.log(`2. Read Tags: Status ${listTagRes.status} -> ${listTagRes.ok ? 'PASS' : 'FAIL'}`);
 
   const delTagRes = await fetch(`${BASE_URL}/api/tags?id=${createdTagId}`, {
@@ -215,7 +215,7 @@ async function runFullAudit() {
 
   // --- 7. SEO API ---
   console.log('\n--- 7. SEO API TESTS ---');
-  const seoGetRes = await fetch(`${BASE_URL}/api/seo`);
+  const seoGetRes = await fetch(`${BASE_URL}/api/seo`, { headers: { Cookie: sessionCookie } });
   const seoGetJson = await seoGetRes.json();
   console.log(`1. GET /api/seo: Status ${seoGetRes.status}, Title: "${seoGetJson.data?.defaultTitle}" -> ${seoGetRes.ok ? 'PASS' : 'FAIL'}`);
 
@@ -264,7 +264,7 @@ async function runFullAudit() {
 
   // --- 9. SETTINGS API ---
   console.log('\n--- 9. SETTINGS API TESTS ---');
-  const settingsGetRes = await fetch(`${BASE_URL}/api/settings`);
+  const settingsGetRes = await fetch(`${BASE_URL}/api/settings`, { headers: { Cookie: sessionCookie } });
   const settingsGetJson = await settingsGetRes.json();
   console.log(`1. GET /api/settings: Status ${settingsGetRes.status}, Site Name: "${settingsGetJson.data?.siteName}" -> ${settingsGetRes.ok ? 'PASS' : 'FAIL'}`);
 
