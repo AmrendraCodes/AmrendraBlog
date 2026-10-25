@@ -8,6 +8,7 @@
     "build": "prisma generate && next build",
     "start": "next start",
     "verify:faq": "node scripts/verify_faq_pipeline.mjs",
+    "sync:blogs": "node scripts/sync_live_posts.mjs",
     "postinstall": "prisma generate",
     "lint": "eslint",
     "analyze": "cross-env ANALYZE=true next build"

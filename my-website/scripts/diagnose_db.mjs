@@ -1,9 +1,15 @@
 import { PrismaClient } from '@prisma/client';
 
+if (!process.env.DATABASE_URL?.trim()) {
+  console.error('DATABASE_URL is required. Add it to your environment before running this diagnostic.');
+  console.error('If a database URL was previously committed here, rotate its credentials.');
+  process.exit(1);
+}
+
 const prisma = new PrismaClient({
   datasources: {
     db: {
-      url: process.env.DATABASE_URL || "postgresql://neondb_owner:npg_COASWcxg4N5r@ep-still-salad-aynruclp-pooler.c-5.us-east-2.aws.neon.tech/neondb?sslmode=require"
+      url: process.env.DATABASE_URL
     }
   }
 });

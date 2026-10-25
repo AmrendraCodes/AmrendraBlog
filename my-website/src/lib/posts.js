@@ -6,8 +6,50 @@ import { prisma } from "./prisma.js";
 
 import { extractFaqsFromContent } from "./schema.js";
 
-// Fallback path to the content/posts directory
+// Markdown fixtures live here and are only used when CONTENT_SOURCE=markdown.
 const postsDirectory = path.join(process.cwd(), "content", "posts");
+
+const contentSource = (process.env.CONTENT_SOURCE || "database").trim().toLowerCase();
+
+function hasDatabaseUrl() {
+  return Boolean(process.env.DATABASE_URL?.trim());
+}
+
+function isMarkdownSource() {
+  return contentSource === "markdown";
+}
+
+function assertConfiguredContentSource() {
+  if (isMarkdownSource()) return;
+
+  if (contentSource !== "database") {
+    throw new Error(
+      `[posts] Unsupported CONTENT_SOURCE="${contentSource}". ` +
+      `Use "database" (default) or "markdown".`
+    );
+  }
+
+  if (!hasDatabaseUrl()) {
+    throw new Error(
+      `[posts] CONTENT_SOURCE is set to "database" but DATABASE_URL is missing.\n` +
+      `→ Either add DATABASE_URL in .env.local\n` +
+      `→ Or set CONTENT_SOURCE=markdown to use local markdown files in content/posts`
+    );
+  }
+}
+
+function throwDatabaseQueryError(operation, error) {
+  const reason = error instanceof Error ? error.message : String(error);
+  throw new Error(
+    `[posts] Failed to ${operation} from the database. ` +
+    `Verify DATABASE_URL and database connectivity. Cause: ${reason}`,
+    { cause: error }
+  );
+}
+
+if (isMarkdownSource() && process.env.NODE_ENV !== "production") {
+  console.info("[posts] CONTENT_SOURCE=markdown: using files from content/posts.");
+}
 
 function calculateReadingTime(content) {
   const wordsPerMinute = 200;
@@ -125,7 +167,7 @@ export function normalizeMarkdown(raw) {
 }
 
 /**
- * Fallback loader from markdown files if DB is unavailable.
+ * Markdown fixture loader.
  */
 function getPostsFromFilesystem() {
   if (!fs.existsSync(postsDirectory)) return [];
@@ -181,13 +223,8 @@ function getPostsFromFilesystem() {
  * Returns posts sorted by published date (newest first).
  */
 export async function getAllPostsAsync() {
-  // Markdown is a local-development/build fallback only. Once a database is
-  // configured, it is the source of truth so deleted or unpublished CMS
-  // content cannot be resurrected from a committed file.
-  if (!process.env.DATABASE_URL) {
-    console.warn("DATABASE_URL is not configured; using filesystem markdown fallback.");
-    return getPostsFromFilesystem();
-  }
+  if (isMarkdownSource()) return getPostsFromFilesystem();
+  assertConfiguredContentSource();
 
   try {
     const dbPosts = await prisma.blog.findMany({
@@ -235,16 +272,20 @@ export async function getAllPostsAsync() {
       });
     }
   } catch (error) {
-    console.error("Database query failed in posts.js:", error?.message || error);
+    throwDatabaseQueryError("load published posts", error);
   }
-
-  return [];
 }
 
 /**
- * Synchronous version for static generation fallback.
+ * Synchronous markdown-only reader retained for compatibility.
  */
 export function getAllPosts() {
+  if (!isMarkdownSource()) {
+    throw new Error(
+      `[posts] getAllPosts() only supports CONTENT_SOURCE=markdown. ` +
+      `Use getAllPostsAsync() for database content.`
+    );
+  }
   return getPostsFromFilesystem();
 }
 
@@ -253,9 +294,10 @@ export function getAllPosts() {
  * Article content and FAQ JSON are only selected by the detail loader.
  */
 export const getPostSummariesAsync = cache(async function getPostSummariesAsync() {
-  if (!process.env.DATABASE_URL) {
+  if (isMarkdownSource()) {
     return getPostsFromFilesystem().map(({ content, faqs, ...summary }) => summary);
   }
+  assertConfiguredContentSource();
   try {
     const posts = await prisma.blog.findMany({
       where: { status: "PUBLISHED" },
@@ -293,8 +335,7 @@ export const getPostSummariesAsync = cache(async function getPostSummariesAsync(
       tags: post.tags.map(({ tag }) => tag.name), views: post.views || 0,
     }));
   } catch (error) {
-    console.error("Database summary query failed:", error?.message || error);
-    return [];
+    throwDatabaseQueryError("load published post summaries", error);
   }
 });
 
@@ -302,9 +343,10 @@ export const getPostSummariesAsync = cache(async function getPostSummariesAsync(
  * Returns a single post by its slug (Async).
  */
 export const getPostBySlugAsync = cache(async function getPostBySlugAsync(slug) {
-  if (!process.env.DATABASE_URL) {
+  if (isMarkdownSource()) {
     return getPostBySlug(slug);
   }
+  assertConfiguredContentSource();
 
   try {
     const post = await prisma.blog.findFirst({
@@ -351,14 +393,12 @@ export const getPostBySlugAsync = cache(async function getPostBySlugAsync(slug) 
 
     return null;
   } catch (err) {
-    console.error("Database lookup failed for slug:", slug, err?.message || err);
+    throwDatabaseQueryError(`load post "${slug}"`, err);
   }
-
-  return null;
 });
 
 /**
- * Returns a single post by its slug (Sync fallback).
+ * Returns a single markdown post by its slug.
  */
 export function getPostBySlug(slug) {
   const posts = getAllPosts();
@@ -382,6 +422,11 @@ export function getPostsByCategory(categorySlug) {
  * Returns unique categories with post count (Async).
  */
 export async function getAllCategoriesAsync() {
+  if (isMarkdownSource()) {
+    return getAllCategories();
+  }
+  assertConfiguredContentSource();
+
   try {
     const dbCategories = await prisma.category.findMany({
       select: {
@@ -391,28 +436,24 @@ export async function getAllCategoriesAsync() {
       },
     });
 
-    if (dbCategories && dbCategories.length > 0) {
-      return dbCategories.map((c) => ({
-        slug: c.slug,
-        name: c.name,
-        count: c._count.posts,
-      }));
-    }
+    return dbCategories.map((c) => ({
+      slug: c.slug,
+      name: c.name,
+      count: c._count.posts,
+    }));
   } catch (err) {
-    console.warn("⚠️ Database categories lookup failed:", err?.message || err);
+    throwDatabaseQueryError("load categories", err);
   }
 
-  const posts = getAllPosts();
-  const categorySlugs = [...new Set(posts.map((p) => p.categorySlug))];
-
-  return categorySlugs.map((slug) => ({
-    slug,
-    name: posts.find((p) => p.categorySlug === slug)?.category || slug,
-    count: posts.filter((p) => p.categorySlug === slug).length,
-  }));
 }
 
 export function getAllCategories() {
+  if (!isMarkdownSource()) {
+    throw new Error(
+      `[posts] getAllCategories() only supports CONTENT_SOURCE=markdown. ` +
+      `Use getAllCategoriesAsync() for database content.`
+    );
+  }
   const posts = getAllPosts();
   const categorySlugs = [...new Set(posts.map((p) => p.categorySlug))];
 
@@ -427,22 +468,29 @@ export function getAllCategories() {
  * Returns all unique tags (Async).
  */
 export async function getAllTagsAsync() {
+  if (isMarkdownSource()) {
+    return getAllTags();
+  }
+  assertConfiguredContentSource();
+
   try {
     const dbTags = await prisma.tag.findMany({
       select: { name: true },
     });
-    if (dbTags && dbTags.length > 0) {
-      return dbTags.map((t) => t.name).sort();
-    }
+    return dbTags.map((t) => t.name).sort();
   } catch (err) {
-    console.warn("⚠️ Database tags lookup failed:", err?.message || err);
+    throwDatabaseQueryError("load tags", err);
   }
 
-  const posts = getAllPosts();
-  return [...new Set(posts.flatMap((p) => p.tags || []))].sort();
 }
 
 export function getAllTags() {
+  if (!isMarkdownSource()) {
+    throw new Error(
+      `[posts] getAllTags() only supports CONTENT_SOURCE=markdown. ` +
+      `Use getAllTagsAsync() for database content.`
+    );
+  }
   const posts = getAllPosts();
   return [...new Set(posts.flatMap((p) => p.tags || []))].sort();
 }
