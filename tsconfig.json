@@ -3,6 +3,10 @@
     "target": "ES2022",
     "lib": ["dom", "dom.iterable", "esnext"],
     "types": ["node"],
+    "typeRoots": [
+      "./my-website/node_modules/@types",
+      "./code-with-amrendra-admin/node_modules/@types"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
