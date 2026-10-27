@@ -1,10 +1,20 @@
 import { z } from 'zod';
+import { MAX_SECONDARY_SEO_KEYWORDS, MAX_SEO_KEYWORD_LENGTH } from '@/lib/seo-keywords';
 
 const seoKeywordsSchema = z.object({
-  primary: z.string().trim().max(60, 'Focus keyword must be 60 characters or fewer').optional().default(''),
+  primary: z.string().trim().max(
+    MAX_SEO_KEYWORD_LENGTH,
+    `Focus keyword must be ${MAX_SEO_KEYWORD_LENGTH} characters or fewer`
+  ).optional().default(''),
   secondary: z.array(
-    z.string().trim().max(60, 'Each secondary keyword must be 60 characters or fewer')
-  ).max(10, 'A maximum of 10 secondary keywords is allowed').optional().default([]),
+    z.string().trim().max(
+      MAX_SEO_KEYWORD_LENGTH,
+      `Each secondary keyword must be ${MAX_SEO_KEYWORD_LENGTH} characters or fewer`
+    )
+  ).max(
+    MAX_SECONDARY_SEO_KEYWORDS,
+    `A maximum of ${MAX_SECONDARY_SEO_KEYWORDS} secondary keywords is allowed`
+  ).optional().default([]),
 });
 
 const faqItemSchema = z.object({

@@ -1,7 +1,11 @@
 'use client';
 
 import { useId, useState, type ClipboardEvent, type KeyboardEvent } from 'react';
-import type { SeoKeywords } from '@/lib/seo-keywords';
+import {
+  MAX_SECONDARY_SEO_KEYWORDS,
+  MAX_SEO_KEYWORD_LENGTH,
+  type SeoKeywords,
+} from '@/lib/seo-keywords';
 
 interface SeoKeywordsFieldProps {
   value: SeoKeywords;
@@ -20,13 +24,17 @@ export default function SeoKeywordsField({
   metaTitle = '',
   metaDescription = '',
   content = '',
-  maxSecondary = 10,
+  maxSecondary = MAX_SECONDARY_SEO_KEYWORDS,
 }: SeoKeywordsFieldProps) {
   const fieldId = useId();
   const [draft, setDraft] = useState('');
   const primary = value.primary || '';
   const secondary = value.secondary || [];
-  const isAtLimit = secondary.length >= maxSecondary;
+  const secondaryLimit = Math.min(
+    Math.max(0, maxSecondary),
+    MAX_SECONDARY_SEO_KEYWORDS
+  );
+  const isAtLimit = secondary.length >= secondaryLimit;
 
   const addKeywords = (rawKeywords: string[]) => {
     const nextSecondary = [...secondary];
@@ -42,9 +50,9 @@ export default function SeoKeywordsField({
 
       if (
         !keyword ||
-        keyword.length > 60 ||
+        keyword.length > MAX_SEO_KEYWORD_LENGTH ||
         seen.has(normalizedKeyword) ||
-        nextSecondary.length >= maxSecondary
+        nextSecondary.length >= secondaryLimit
       ) {
         continue;
       }
@@ -118,7 +126,7 @@ export default function SeoKeywordsField({
           id={`${fieldId}-primary`}
           type="text"
           value={primary}
-          maxLength={60}
+          maxLength={MAX_SEO_KEYWORD_LENGTH}
           onChange={(event) => onChange({ ...value, primary: event.target.value })}
           onBlur={handlePrimaryBlur}
           placeholder="Main keyword for this blog post"
@@ -128,8 +136,8 @@ export default function SeoKeywordsField({
           <div className="mt-2 flex flex-wrap gap-2" aria-label="Keyword usage checks">
             {badges.map(({ label, text }) => {
               const isIncluded = text
-                .toLocaleLowerCase()
-                .includes(primary.trim().toLocaleLowerCase());
+                .toLowerCase()
+                .includes(primary.trim().toLowerCase());
 
               return (
                 <span
@@ -162,7 +170,7 @@ export default function SeoKeywordsField({
             className="text-[10px] font-medium text-[var(--text-muted)]"
             aria-live="polite"
           >
-            {secondary.length}/{maxSecondary}
+            {secondary.length}/{secondaryLimit}
           </span>
         </div>
 
