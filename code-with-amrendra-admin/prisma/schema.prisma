@@ -74,6 +74,8 @@ model Blog {
   canonicalUrl    String?
   metaTitle       String?
   metaDescription String?
+  seoKeywords     String?
+  seoKeywordsSecondary String[] @default([])
   status          String    @default("PUBLISHED")
   publishedAt     DateTime?  @default(now())
   scheduledAt     DateTime?

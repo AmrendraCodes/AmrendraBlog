@@ -1,5 +1,12 @@
 import { z } from 'zod';
 
+const seoKeywordsSchema = z.object({
+  primary: z.string().trim().max(60, 'Focus keyword must be 60 characters or fewer').optional().default(''),
+  secondary: z.array(
+    z.string().trim().max(60, 'Each secondary keyword must be 60 characters or fewer')
+  ).max(10, 'A maximum of 10 secondary keywords is allowed').optional().default([]),
+});
+
 const faqItemSchema = z.object({
   id: z.string().optional(),
   question: z.string().trim().min(1, 'FAQ question cannot be empty'),
@@ -18,6 +25,7 @@ export const blogSchema = z.object({
   canonicalUrl: z.string().optional(),
   metaTitle: z.string().optional(),
   metaDescription: z.string().optional(),
+  seoKeywords: seoKeywordsSchema.optional(),
   status: z.enum(['DRAFT', 'PUBLISHED', 'SCHEDULED']).default('DRAFT'),
   publishedAt: z.string().optional(),
   scheduledAt: z.string().optional(),

@@ -40,10 +40,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const canonicalUrl = post.canonicalUrl || `${siteMetadata.siteUrl}/resources/blog/${slug}`;
   const postImage = post.ogImage || post.image || post.featuredImage || siteMetadata.ogImage;
   const ogAlt = post.ogImageAlt || post.imageAlt || metaTitle;
+  const keywords = [
+    post.seoKeywords,
+    ...(Array.isArray(post.seoKeywordsSecondary) ? post.seoKeywordsSecondary : []),
+  ]
+    .filter((keyword): keyword is string => typeof keyword === 'string' && keyword.trim().length > 0)
+    .map((keyword) => keyword.trim());
 
   return {
     title: metaTitle,
     description: metaDesc,
+    ...(keywords.length > 0 ? { keywords } : {}),
     alternates: {
       canonical: canonicalUrl,
     },

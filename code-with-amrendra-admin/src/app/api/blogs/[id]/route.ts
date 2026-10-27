@@ -7,6 +7,7 @@ import { formatArticleMarkdown } from '@/lib/formatter';
 import { revalidatePath } from 'next/cache';
 import { Prisma } from '@prisma/client';
 import { revalidatePublicBlog } from '@/lib/public-site-revalidation';
+import { normalizeSeoKeywords } from '@/lib/seo-keywords';
 
 export const dynamic = 'force-dynamic';
 
@@ -109,8 +110,17 @@ export async function GET(
       }
     }
 
+    const {
+      seoKeywords: primarySeoKeyword,
+      seoKeywordsSecondary,
+      ...postFields
+    } = post;
     const postWithFaqs = {
-      ...post,
+      ...postFields,
+      seoKeywords: {
+        primary: primarySeoKeyword || '',
+        secondary: seoKeywordsSecondary || [],
+      },
       faqs: postFaqs,
     };
 
@@ -191,6 +201,7 @@ export async function PUT(
     }
 
     const data = parsed.data;
+    const seoKeywords = normalizeSeoKeywords(data.seoKeywords);
     const normalizedFaqs = (data.faqs || []).map(
       ({ question, answer }: { question: string; answer: string }) => ({
         question: (question || '').trim(),
@@ -227,6 +238,12 @@ export async function PUT(
         canonicalUrl: data.canonicalUrl || null,
         metaTitle: data.metaTitle || data.title,
         metaDescription: data.metaDescription || data.excerpt || null,
+        ...(data.seoKeywords !== undefined
+          ? {
+              seoKeywords: seoKeywords.primary || null,
+              seoKeywordsSecondary: seoKeywords.secondary,
+            }
+          : {}),
         status: (data.status as BlogStatus) || BlogStatus.PUBLISHED,
         publishedAt: data.status === 'PUBLISHED' ? new Date() : null,
         scheduledAt: data.scheduledAt ? new Date(data.scheduledAt) : null,

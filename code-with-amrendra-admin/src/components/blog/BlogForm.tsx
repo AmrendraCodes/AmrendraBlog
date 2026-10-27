@@ -7,6 +7,8 @@ import ImageUploadField from '@/components/media/ImageUploadField';
 import StatusBadge from '@/components/ui/StatusBadge';
 import TableOfContentsField from './TableOfContentsField';
 import FaqSchemaField, { type FaqItem } from './FaqSchemaField';
+import SeoKeywordsField from './SeoKeywordsField';
+import type { SeoKeywords } from '@/lib/seo-keywords';
 import {
   Save,
   ArrowLeft,
@@ -64,6 +66,7 @@ export interface BlogPostFormData {
   tags?: TagItem[];
   metaTitle?: string;
   metaDescription?: string;
+  seoKeywords?: SeoKeywords;
   canonicalUrl?: string;
   ogTitle?: string;
   ogDescription?: string;
@@ -147,6 +150,14 @@ export default function BlogForm({
   const [metaDescription, setMetaDescription] = useState<string>(
     initialData?.metaDescription || ''
   );
+  const [seoKeywords, setSeoKeywords] = useState<SeoKeywords>(() =>
+    mode === 'edit' && initialData?.seoKeywords
+      ? {
+          primary: initialData.seoKeywords.primary || '',
+          secondary: initialData.seoKeywords.secondary || [],
+        }
+      : { primary: '', secondary: [] }
+  );
   const [canonicalUrl, setCanonicalUrl] = useState<string>(
     initialData?.canonicalUrl || ''
   );
@@ -190,6 +201,12 @@ export default function BlogForm({
       }
       if (initialData.metaTitle !== undefined) setMetaTitle(initialData.metaTitle || '');
       if (initialData.metaDescription !== undefined) setMetaDescription(initialData.metaDescription || '');
+      if (mode === 'edit' && initialData.seoKeywords !== undefined) {
+        setSeoKeywords({
+          primary: initialData.seoKeywords?.primary || '',
+          secondary: initialData.seoKeywords?.secondary || [],
+        });
+      }
       if (initialData.canonicalUrl !== undefined) setCanonicalUrl(initialData.canonicalUrl || '');
       if (initialData.ogTitle !== undefined) setOgTitle(initialData.ogTitle || '');
       if (initialData.ogDescription !== undefined) setOgDescription(initialData.ogDescription || '');
@@ -207,7 +224,7 @@ export default function BlogForm({
         }
       }
     }
-  }, [initialData]);
+  }, [initialData, mode]);
 
   // Load Categories
   useEffect(() => {
@@ -553,6 +570,7 @@ export default function BlogForm({
         tags: tagsArray,
         metaTitle: metaTitle || title,
         metaDescription: metaDescription || excerpt,
+        seoKeywords,
         canonicalUrl,
         ogTitle: ogTitle || metaTitle || title,
         ogDescription: ogDescription || metaDescription || excerpt,
@@ -1486,6 +1504,15 @@ export default function BlogForm({
                       className="admin-input text-xs resize-none"
                     />
                   </div>
+
+                  <SeoKeywordsField
+                    value={seoKeywords}
+                    onChange={setSeoKeywords}
+                    title={title}
+                    metaTitle={metaTitle}
+                    metaDescription={metaDescription}
+                    content={content}
+                  />
 
                   {/* Social Share Image */}
                   <div className="pt-2">
