@@ -133,7 +133,11 @@ export default function SeoKeywordsField({
           className="admin-input text-xs"
         />
         {primary.trim() && (
-          <div className="mt-2 flex flex-wrap gap-2" aria-label="Keyword usage checks">
+          <div
+            role="group"
+            aria-label="Keyword usage checks"
+            className="mt-2 flex flex-wrap gap-2"
+          >
             {badges.map(({ label, text }) => {
               const isIncluded = text
                 .toLowerCase()
