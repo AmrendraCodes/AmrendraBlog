@@ -59,28 +59,20 @@ export default function BlogCard({ post }) {
         </p>
 
         {(() => {
-          const displayTags = [
-            post.seoKeywords,
-            ...(post.seoKeywordsSecondary || []),
-            ...(post.tags || [])
-          ].filter((item, index, self) => Boolean(item) && self.indexOf(item) === index).slice(0, 3);
+          const displayTags = (post.tags || [])
+            .filter((tag, index, tags) => Boolean(tag) && tags.indexOf(tag) === index)
+            .slice(0, 3);
 
           if (displayTags.length === 0) return null;
 
           return (
             <div className="flex flex-wrap gap-1.5 mb-5 relative z-20">
               {displayTags.map((tag) => {
-                const isFocus = tag === post.seoKeywords;
                 return (
                   <span
                     key={tag}
-                    className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${
-                      isFocus
-                        ? 'text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/15 border-[#F59E0B]/40 shadow-xs'
-                        : 'text-[var(--text-muted)] bg-[var(--section-alt-bg)] border-[var(--card-border)]'
-                    }`}
+                    className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border text-[var(--text-muted)] bg-[var(--section-alt-bg)] border-[var(--card-border)]"
                   >
-                    {isFocus && <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#F59E0B] mr-1 align-middle" />}
                     {tag}
                   </span>
                 );

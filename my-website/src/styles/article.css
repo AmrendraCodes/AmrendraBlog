@@ -15,8 +15,8 @@
   position: absolute;
   top: 0;
   left: 1rem;
-  background: #0B1F3A;
-  color: #F59E0B;
+  background: var(--card-bg);
+  color: var(--accent-primary-hover);
   border-bottom: 2px solid #F59E0B;
   font-size: 0.65rem;
   font-weight: 700;
@@ -39,10 +39,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--section-alt-bg);
+  border: 1px solid var(--card-border);
   border-radius: 0.5rem;
-  color: #a1a1aa;
+  color: var(--text-muted);
   cursor: pointer;
   opacity: 1;
   transition: opacity 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
@@ -55,9 +55,26 @@
 }
 
 .copy-code-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: #f4f4f5;
-  border-color: rgba(255, 255, 255, 0.2);
+  background: var(--card-bg-hover);
+  color: var(--text-heading);
+  border-color: var(--card-border);
+}
+
+.dark .code-lang-label {
+  color: var(--accent-primary);
+}
+
+html.light .article-prose pre,
+html.light #article-content pre {
+  background: var(--section-alt-bg);
+  color: var(--text-body);
+  border-color: var(--card-border);
+}
+
+html.light .article-prose pre code,
+html.light #article-content pre code {
+  background: transparent;
+  color: var(--text-body);
 }
 
 /* ═══════════════════════════════════════════════════════════

@@ -99,12 +99,19 @@ export default function Footer() {
           <div className="lg:col-span-5 flex flex-col items-start">
             {/* Logo */}
             <Link href="/" className="inline-flex items-center no-underline group mb-5" aria-label="Code with Amrendra Home">
-              <Image 
-                src="/logo-wide-dark.png" 
-                alt="FooterLogo" 
+              <Image
+                src="/logo-wide.png"
+                alt="Code with Amrendra"
                 width={175} 
                 height={41} 
-                className="w-[175px] h-[41px] object-contain object-left transition-transform duration-200 group-hover:scale-[1.02]" 
+                className="w-[175px] h-[41px] object-contain object-left transition-transform duration-200 group-hover:scale-[1.02] dark:hidden"
+              />
+              <Image
+                src="/logo-wide-dark.png"
+                alt="Code with Amrendra"
+                width={175}
+                height={41}
+                className="hidden w-[175px] h-[41px] object-contain object-left transition-transform duration-200 group-hover:scale-[1.02] dark:block"
               />
             </Link>
 

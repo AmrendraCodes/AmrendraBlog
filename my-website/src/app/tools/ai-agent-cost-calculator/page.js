@@ -66,7 +66,7 @@ export default function AiAgentCostCalculatorPage() {
   const faqSchema = getFAQSchema(CALCULATOR_FAQS);
 
   return (
-    <div className="min-h-screen bg-[#060E1A] text-slate-200 overflow-x-hidden">
+    <div className="calculator-theme min-h-screen bg-[#060E1A] text-slate-200 overflow-x-hidden">
       {/* ─── Structured Data (JSON-LD) ─── */}
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={webAppSchema} />
