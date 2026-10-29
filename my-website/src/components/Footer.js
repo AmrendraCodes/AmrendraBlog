@@ -115,11 +115,13 @@ export default function Footer() {
 
             {/* Contact Email */}
             <a 
-              href="mailto:amrendra1999official@gmail.com" 
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=codewithamrendra@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 text-xs sm:text-sm text-slate-300 bg-[#071324] border border-[#1E293B] px-4 py-2.5 rounded-xl hover:border-[#F59E0B]/50 hover:text-white transition-colors duration-200 group no-underline max-w-full"
             >
               <Mail size={16} className="text-[#F59E0B] transition-transform  shrink-0" />
-              <span className="font-medium break-all">amrendra1999official@gmail.com</span>
+              <span className="font-medium break-all">codewithamrendra@gmail.com</span>
             </a>
           </div>
 

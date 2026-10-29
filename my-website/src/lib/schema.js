@@ -54,7 +54,7 @@ export function getPersonSchema() {
     "image": "https://www.codewithamrendra.in/profile-photo.jpeg",
     "jobTitle": "Software Engineer & Technical Writer",
     "description": "Software engineer, cloud architect, and technical writer sharing practical insights on frontend engineering, AI systems, scalable SaaS platforms, and modern software engineering.",
-    "email": "amrendra1999official@gmail.com",
+    "email": "codewithamrendra@gmail.com",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Bihar Sharif",

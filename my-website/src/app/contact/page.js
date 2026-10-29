@@ -61,7 +61,7 @@ export default function ContactPage() {
                 {[
                   { label: "Phone", value: "062054 82614", link: "tel:+916205482614" },
                   { label: "Location / Address", value: "Moh- Guphaper, South of Devi Asthan, Kalyanpur, Bihar Sharif, Bihar 803101", link: "https://maps.google.com/?q=Code+With+Amrendra+Bihar+Sharif" },
-                  { label: "Email Me", value: "amrendra1999official@gmail.com", link: "mailto:amrendra1999official@gmail.com" },
+                  { label: "Email Me", value: "codewithamrendra@gmail.com", link: "https://mail.google.com/mail/?view=cm&fs=1&to=codewithamrendra@gmail.com" },
                   { label: "Follow on X", value: "@codewithamrendr", link: "https://x.com/codewithamrendr" },
                   { label: "Connect on LinkedIn", value: "Amrendra Kumar", link: "https://www.linkedin.com/in/amrendra1998/" },
                   { label: "GitHub Projects", value: "AmrendraCodes", link: "https://github.com/AmrendraCodes" },
