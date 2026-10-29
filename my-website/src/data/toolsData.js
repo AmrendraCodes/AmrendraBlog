@@ -1,13 +1,21 @@
+/**
+ * Public tool catalog. A published entry must point to an implemented route and
+ * carry stable metadata used by the directory, page metadata, and sitemap.
+ */
 export const TOOL_CATEGORIES = [
   "All",
-  "AI & LLMs",
+  "AI & LLM Tools",
+  "SEO Tools",
   "Developer Utilities",
+  "Content & Writing Tools",
+  "Business & Marketing Tools",
+  "Web & Technical SEO",
 ];
 
 export const SORT_OPTIONS = [
   { label: "Default", value: "default" },
   { label: "Newest First", value: "newest" },
-  { label: "Alphabetical (A-Z)", value: "alphabetical" },
+  { label: "Name (A–Z)", value: "alphabetical" },
 ];
 
 export const TOOLS_DATA = [
@@ -15,16 +23,23 @@ export const TOOLS_DATA = [
     id: "ai-agent-cost-calculator",
     title: "AI Agent Cost Calculator",
     slug: "ai-agent-cost-calculator",
+    route: "/tools/ai-agent-cost-calculator",
     description: "Calculate estimated monthly and yearly costs for AI agents and LLM API calls based on token usage, model pricing, and execution frequency.",
-    category: "AI & LLMs",
+    category: "AI & LLM Tools",
     badge: "New",
-    semanticBadge: "new", // Genuine & factual
+    semanticBadge: "new",
     iconName: "Bot",
     tags: ["AI Agents", "LLMs", "Token Pricing", "Cost Estimator"],
-    status: "ready",
+    status: "published",
     featured: true,
-    updatedAt: "Sep 2026",
+    createdAt: "2026-09",
+    updatedAt: "2026-09",
     actionText: "Open Tool",
+    seo: {
+      title: "AI Agent Cost Calculator – Estimate LLM & Agent Costs | Code with Amrendra",
+      description: "Calculate the estimated cost of running autonomous AI agents based on model pricing, multi-call loops, token usage, tool APIs, and cloud infrastructure.",
+    },
+    implementation: "@/components/tools/ai-agent-cost-calculator/AiAgentCostCalculatorClient",
     highlights: [
       "Token usage & context window cost estimation",
       "Dynamic model comparison across major LLM providers",
@@ -36,21 +51,33 @@ export const TOOLS_DATA = [
     id: "free-json-validator",
     title: "Free JSON Validator",
     slug: "free-json-validator",
-    description: "Validate, format, and inspect JSON data in real time with clear error pointers, tree viewing, and clean syntax formatting.",
+    route: "/tools/free-json-validator",
+    description: "Validate, format, and compact JSON data in your browser with clear syntax errors. Your data stays on your device.",
     category: "Developer Utilities",
     badge: "Free Online",
-    semanticBadge: "free", // Factual & honest
+    semanticBadge: "free",
     iconName: "FileCode2",
-    tags: ["JSON", "Validator", "Formatter", "Tree View"],
-    status: "ready",
+    tags: ["JSON", "Validator", "Formatter", "Developer Utilities"],
+    status: "published",
     featured: true,
-    updatedAt: "Sep 2026",
+    createdAt: "2026-09",
+    updatedAt: "2026-09",
     actionText: "Open Tool",
+    seo: {
+      title: "Free JSON Validator & Formatter | Code with Amrendra",
+      description: "Validate JSON, find syntax errors, and format or compact data in your browser. No signup and no data uploads.",
+    },
+    implementation: "@/components/tools/JsonValidatorClient",
     highlights: [
-      "Real-time syntax validation with line & column error markers",
-      "Prettify, format, or compact JSON strings in one click",
-      "Interactive collapsible object & array inspection",
-      "100% in-browser processing — your JSON never leaves your machine",
+      "Validate JSON with useful line and column error locations",
+      "Format or compact valid JSON in one click",
+      "Copy the result or download it as a JSON file",
+      "All processing happens locally in your browser",
     ],
   },
 ];
+
+export const PUBLISHED_TOOLS = TOOLS_DATA.filter((tool) => tool.status === "published");
+export const getToolBySlug = (slug) => PUBLISHED_TOOLS.find((tool) => tool.slug === slug);
+export const getToolByRoute = (route) => PUBLISHED_TOOLS.find((tool) => tool.route === route);
+export const getToolLastModified = (tool) => new Date(tool.updatedAt || tool.createdAt);

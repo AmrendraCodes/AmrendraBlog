@@ -5,14 +5,14 @@ import ToolsDirectoryClient from "@/components/tools/ToolsDirectoryClient";
 export const metadata = {
   title: "Free Developer & AI Tools | Code with Amrendra",
   description:
-    "Curated collection of free online developer utilities, AI prompt token counters, JSON validators, regex debuggers, and SEO meta generators built for modern software engineers.",
+    "Free browser based developer tools for AI cost planning and JSON validation. Search the catalog and launch each published tool directly.",
   alternates: {
     canonical: `${siteMetadata.siteUrl}/tools`,
   },
   openGraph: {
     title: "Free Developer & AI Tools | Code with Amrendra",
     description:
-      "Curated collection of free online developer utilities, AI prompt token counters, JSON validators, regex debuggers, and SEO meta generators built for modern software engineers.",
+    "Free browser based developer tools for AI cost planning and JSON validation. Search the catalog and launch each published tool directly.",
     url: `${siteMetadata.siteUrl}/tools`,
     type: "website",
     images: [
@@ -27,7 +27,7 @@ export const metadata = {
   twitter: {
     title: "Free Developer & AI Tools | Code with Amrendra",
     description:
-      "Curated collection of free online developer utilities, AI prompt token counters, JSON validators, regex debuggers, and SEO meta generators built for modern software engineers.",
+    "Free browser based developer tools for AI cost planning and JSON validation. Search the catalog and launch each published tool directly.",
     images: ["/images/og-default.png"],
   },
 };
