@@ -58,18 +58,36 @@ export default function BlogCard({ post }) {
           {post.excerpt || "Discover the latest trends and insights in the world of technology and modern web development architectures."}
         </p>
 
-        {post.tags && post.tags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mb-5 relative z-20">
-            {post.tags.slice(0, 3).map((tag) => (
-              <span
-                key={tag}
-                className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)] bg-[var(--section-alt-bg)] border border-[var(--card-border)] px-2.5 py-1 rounded-full"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+        {(() => {
+          const displayTags = [
+            post.seoKeywords,
+            ...(post.seoKeywordsSecondary || []),
+            ...(post.tags || [])
+          ].filter((item, index, self) => Boolean(item) && self.indexOf(item) === index).slice(0, 3);
+
+          if (displayTags.length === 0) return null;
+
+          return (
+            <div className="flex flex-wrap gap-1.5 mb-5 relative z-20">
+              {displayTags.map((tag) => {
+                const isFocus = tag === post.seoKeywords;
+                return (
+                  <span
+                    key={tag}
+                    className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${
+                      isFocus
+                        ? 'text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/15 border-[#F59E0B]/40 shadow-xs'
+                        : 'text-[var(--text-muted)] bg-[var(--section-alt-bg)] border-[var(--card-border)]'
+                    }`}
+                  >
+                    {isFocus && <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#F59E0B] mr-1 align-middle" />}
+                    {tag}
+                  </span>
+                );
+              })}
+            </div>
+          );
+        })()}
 
         <div className="flex flex-wrap gap-3 items-center justify-between pt-5 border-t border-[var(--card-border)]">
           <div className="flex items-center space-x-3">

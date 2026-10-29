@@ -2,7 +2,7 @@ import { getPostBySlugAsync, getPostSummariesAsync, getRelatedPostsAsync, getPre
 import { extractTocHeadings } from "@/lib/toc";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Clock, Calendar } from "lucide-react";
+import { ArrowLeft, Clock, Calendar, Tag } from "lucide-react";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/JsonLd";
 import { getBlogPostSchema, getBreadcrumbSchema, getFAQSchema, extractFaqsFromContent, stripFaqSectionFromContent } from "@/lib/schema";
@@ -61,7 +61,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: "article",
       publishedTime: post.date,
       authors: [post.author || siteMetadata.author],
-      tags: post.tags,
+      tags: [
+      post.seoKeywords,
+      ...(post.seoKeywordsSecondary || []),
+      ...(post.tags || []),
+    ].filter(Boolean),
       images: [
         {
           url: postImage,
@@ -184,13 +188,19 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             {/* Article Header Content */}
             <div className="text-center flex flex-col items-center mb-6">
               {/* Category Badge */}
-              <div className="mb-3.5">
+              <div className="mb-3.5 flex items-center justify-center gap-2 flex-wrap">
                 <Link
                   href={`/category/${post.categorySlug}`}
                   className="bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-[#0B1F3A] dark:text-[#F59E0B] text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider shadow-xs hover:bg-[#F59E0B]/20 transition-colors duration-200 no-underline"
                 >
                   {post.category}
                 </Link>
+                {post.seoKeywords && (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#F59E0B]/10 text-[#0B1F3A] dark:text-[#F59E0B] border border-[#F59E0B]/30 shadow-xs">
+                    <Tag size={12} className="text-[#F59E0B]" />
+                    <span>Focus: <strong className="font-bold">{post.seoKeywords}</strong></span>
+                  </span>
+                )}
               </div>
 
               {/* Title */}
@@ -253,6 +263,40 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         title={post.title}
         slug={post.slug}
       >
+        {/* Keywords & Related Topics Section */}
+        {(post.seoKeywords || (post.seoKeywordsSecondary && post.seoKeywordsSecondary.length > 0) || (post.tags && post.tags.length > 0)) && (
+          <div className="w-full pt-8 pb-4 border-t border-[var(--card-border)]">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--text-heading)] mb-3.5 flex items-center gap-2">
+              <Tag size={15} className="text-[#F59E0B]" />
+              <span>Keywords &amp; Related Topics</span>
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {post.seoKeywords && (
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#F59E0B]/15 text-[#0B1F3A] dark:text-[#F59E0B] border border-[#F59E0B]/40 shadow-xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B]" />
+                  {post.seoKeywords}
+                </span>
+              )}
+              {post.seoKeywordsSecondary?.map((keyword, idx) => (
+                <span
+                  key={`sec-${idx}`}
+                  className="inline-flex items-center px-3 py-1.5 rounded-xl text-xs font-medium bg-[var(--section-alt-bg)] text-[var(--text-body)] border border-[var(--card-border)] hover:border-[#F59E0B]/40 transition-colors"
+                >
+                  {keyword}
+                </span>
+              ))}
+              {post.tags?.filter((t) => t !== post.seoKeywords && !post.seoKeywordsSecondary?.includes(t)).map((tag, idx) => (
+                <span
+                  key={`tag-${idx}`}
+                  className="inline-flex items-center px-3 py-1.5 rounded-xl text-xs font-medium bg-[var(--section-alt-bg)] text-[var(--text-muted)] border border-[var(--card-border)]"
+                >
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* FAQ Accordion Section */}
         {visibleFaqs.length > 0 && (
           <BlogFaqAccordion faqs={visibleFaqs} />

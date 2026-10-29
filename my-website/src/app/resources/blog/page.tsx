@@ -43,6 +43,8 @@ export default async function BlogPage() {
     excerpt: post.excerpt,
     category: post.category,
     tags: post.tags || [],
+    seoKeywords: post.seoKeywords || null,
+    seoKeywordsSecondary: post.seoKeywordsSecondary || [],
     author: post.author,
     authorImage: "/profile-photo.jpeg",
     date: post.date,
