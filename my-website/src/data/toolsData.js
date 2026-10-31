@@ -1,7 +1,12 @@
+export const TOOL_CATEGORY_CONFIG = [
+  { id: "seo", title: "SEO Tools", iconName: "Search" },
+  { id: "developer", title: "Developer Tools", iconName: "Code2" },
+  { id: "ai-llm", title: "AI & LLM Tools", iconName: "Sparkles" },
+];
+
 export const TOOL_CATEGORIES = [
   "All",
-  "AI & LLMs",
-  "Developer Utilities",
+  ...TOOL_CATEGORY_CONFIG.map((category) => category.title),
 ];
 
 export const SORT_OPTIONS = [
@@ -15,13 +20,17 @@ export const TOOLS_DATA = [
     id: "ai-agent-cost-calculator",
     title: "AI Agent Cost Calculator",
     slug: "ai-agent-cost-calculator",
+    route: "/tools/ai-agent-cost-calculator",
     description: "Calculate estimated monthly and yearly costs for AI agents and LLM API calls based on token usage, model pricing, and execution frequency.",
-    category: "AI & LLMs",
+    mainCategory: "AI & LLM Tools",
+    subcategory: "AI Utilities",
+    subcategoryIconName: "Calculator",
     badge: "New",
     semanticBadge: "new", // Genuine & factual
     iconName: "Bot",
     tags: ["AI Agents", "LLMs", "Token Pricing", "Cost Estimator"],
     status: "ready",
+    availabilityStatus: "published",
     featured: true,
     updatedAt: "Sep 2026",
     actionText: "Open Tool",
@@ -32,25 +41,8 @@ export const TOOLS_DATA = [
       "100% private, client-side execution",
     ],
   },
-  {
-    id: "free-json-validator",
-    title: "Free JSON Validator",
-    slug: "free-json-validator",
-    description: "Validate, format, and inspect JSON data in real time with clear error pointers, tree viewing, and clean syntax formatting.",
-    category: "Developer Utilities",
-    badge: "Free Online",
-    semanticBadge: "free", // Factual & honest
-    iconName: "FileCode2",
-    tags: ["JSON", "Validator", "Formatter", "Tree View"],
-    status: "ready",
-    featured: true,
-    updatedAt: "Sep 2026",
-    actionText: "Open Tool",
-    highlights: [
-      "Real-time syntax validation with line & column error markers",
-      "Prettify, format, or compact JSON strings in one click",
-      "Interactive collapsible object & array inspection",
-      "100% in-browser processing — your JSON never leaves your machine",
-    ],
-  },
 ];
+
+export const PUBLISHED_TOOLS = TOOLS_DATA.filter(
+  (tool) => tool.availabilityStatus === "published",
+);

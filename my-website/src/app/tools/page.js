@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { siteMetadata } from "@/config/seo";
 import JsonLd from "@/components/JsonLd";
 import ToolsDirectoryClient from "@/components/tools/ToolsDirectoryClient";
@@ -83,7 +84,17 @@ export default function ToolsPage() {
 
       {/* ═══════════ MAIN TOOLS DIRECTORY ═══════════ */}
       <section className="px-4 sm:px-6 lg:px-8 pb-20 md:pb-28 max-w-7xl mx-auto">
-        <ToolsDirectoryClient />
+        <Suspense
+          fallback={
+            <div
+              aria-busy="true"
+              aria-label="Loading tools"
+              className="min-h-[24rem] rounded-3xl border border-slate-200 bg-white/50 dark:border-[#1E293B] dark:bg-[#0B1F3A]/40"
+            />
+          }
+        >
+          <ToolsDirectoryClient />
+        </Suspense>
       </section>
     </div>
   );

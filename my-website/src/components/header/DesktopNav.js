@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import { ChevronDown } from 'lucide-react';
 import { SERVICES_DATA } from '@/data/servicesData';
 import { PRIMARY_NAV_ITEMS, RESOURCES_DROPDOWN_ITEMS } from '@/config/navigation';
+import ToolsMegaMenu from './ToolsMegaMenu';
 
 const ServicesDropdown = dynamic(() => import('../ServicesDropdown'), { ssr: false });
 const ResourcesDropdown = dynamic(() => import('../ResourcesDropdown'), { ssr: false });
@@ -19,11 +20,13 @@ export default function DesktopNav({
 }) {
   const servicesTimerRef = React.useRef(null);
   const resourcesTimerRef = React.useRef(null);
+  const [isToolsOpen, setIsToolsOpen] = React.useState(false);
 
   const handleServicesEnter = () => {
     if (servicesTimerRef.current) clearTimeout(servicesTimerRef.current);
     if (resourcesTimerRef.current) clearTimeout(resourcesTimerRef.current);
     setIsResourcesOpen(false);
+    setIsToolsOpen(false);
     setIsServicesOpen(true);
   };
 
@@ -38,6 +41,7 @@ export default function DesktopNav({
     if (servicesTimerRef.current) clearTimeout(servicesTimerRef.current);
     if (resourcesTimerRef.current) clearTimeout(resourcesTimerRef.current);
     setIsServicesOpen(false);
+    setIsToolsOpen(false);
     setIsResourcesOpen(true);
   };
 
@@ -130,6 +134,22 @@ export default function DesktopNav({
                   />
                 )}
               </div>
+            );
+          }
+
+          if (link.dropdownType === 'tools') {
+            return (
+              <ToolsMegaMenu
+                key={link.name}
+                isOpen={isToolsOpen}
+                isCurrent={isActive}
+                onToggle={() => {
+                  setIsServicesOpen(false);
+                  setIsResourcesOpen(false);
+                  setIsToolsOpen((open) => !open);
+                }}
+                onClose={() => setIsToolsOpen(false)}
+              />
             );
           }
 

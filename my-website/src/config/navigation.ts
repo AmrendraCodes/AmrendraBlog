@@ -4,7 +4,7 @@ export interface NavItem {
   name: string;
   href: string;
   hasDropdown?: boolean;
-  dropdownType?: "services" | "resources";
+  dropdownType?: "services" | "resources" | "tools";
 }
 
 export interface ResourceDropdownItem {
@@ -20,7 +20,7 @@ export const PRIMARY_NAV_ITEMS: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "Services", href: "/services", hasDropdown: true, dropdownType: "services" },
   { name: "Resources", href: "/resources", hasDropdown: true, dropdownType: "resources" },
-  { name: "Tools", href: "/tools" },
+  { name: "Tools", href: "/tools", hasDropdown: true, dropdownType: "tools" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];

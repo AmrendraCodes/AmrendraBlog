@@ -2,9 +2,26 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { X, Sparkles, ChevronDown } from 'lucide-react';
+import {
+  Bot,
+  Calculator,
+  ChevronDown,
+  Code2,
+  Search,
+  Sparkles,
+  X,
+} from 'lucide-react';
 import { SERVICES_DATA } from '@/data/servicesData';
 import { PRIMARY_NAV_ITEMS, RESOURCES_DROPDOWN_ITEMS } from '@/config/navigation';
+import { PUBLISHED_TOOLS, TOOL_CATEGORY_CONFIG } from '@/data/toolsData';
+
+const TOOL_ICON_MAP = {
+  Bot,
+  Calculator,
+  Code2,
+  Search,
+  Sparkles,
+};
 
 export default function MobileNavDrawer({
   isMenuOpen,
@@ -15,6 +32,10 @@ export default function MobileNavDrawer({
   setIsMobileResourcesOpen,
   pathname,
 }) {
+  const [isMobileToolsOpen, setIsMobileToolsOpen] = React.useState(false);
+  const [openToolCategory, setOpenToolCategory] = React.useState(null);
+  const [openToolSubcategory, setOpenToolSubcategory] = React.useState(null);
+
   return (
     <>
       {/* Backdrop */}
@@ -100,6 +121,148 @@ export default function MobileNavDrawer({
                           {s.title}
                         </Link>
                       ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
+            if (link.dropdownType === 'tools') {
+              return (
+                <div key={link.name} className="flex flex-col gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setIsMobileToolsOpen((open) => !open)}
+                    className={`flex w-full items-center justify-between rounded-xl border-none bg-transparent px-4 py-2.5 text-left text-[1.35rem] font-extrabold leading-tight transition-colors duration-200 ${
+                      isActive || isMobileToolsOpen
+                        ? 'bg-[#F59E0B]/10 text-[#0B1F3A] dark:bg-[#F59E0B]/15 dark:text-[#F59E0B]'
+                        : 'text-slate-900 hover:text-[#F59E0B] dark:text-slate-50 dark:hover:text-[#F59E0B]'
+                    }`}
+                    aria-expanded={isMobileToolsOpen}
+                    aria-controls="mobile-tools-menu"
+                  >
+                    <span>{link.name}</span>
+                    <ChevronDown
+                      size={22}
+                      className={`transition-transform duration-200 ${isMobileToolsOpen ? 'rotate-180 text-[#F59E0B]' : 'text-slate-400'}`}
+                    />
+                  </button>
+
+                  {isMobileToolsOpen && (
+                    <div id="mobile-tools-menu" className="ml-4 flex min-w-0 flex-col gap-2 border-l-2 border-[#F59E0B]/30 pl-3 pt-1">
+                      <Link
+                        href="/tools"
+                        onClick={() => setIsMenuOpen(false)}
+                        className="rounded-lg px-3 py-2 text-sm font-bold text-[#D97706] no-underline hover:text-[#B45309] dark:text-[#F59E0B] dark:hover:text-[#FBBF24]"
+                      >
+                        View All Tools
+                      </Link>
+
+                      {TOOL_CATEGORY_CONFIG.map((category) => {
+                        const tools = PUBLISHED_TOOLS.filter(
+                          (tool) => tool.mainCategory === category.title,
+                        );
+                        const isCategoryOpen = openToolCategory === category.id;
+                        const CategoryIcon = TOOL_ICON_MAP[category.iconName] ?? Search;
+                        const subcategories = [
+                          ...new Set(tools.map((tool) => tool.subcategory)),
+                        ];
+
+                        return (
+                          <section key={category.id} className="min-w-0">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setOpenToolCategory(isCategoryOpen ? null : category.id);
+                                setOpenToolSubcategory(null);
+                              }}
+                              className={`flex min-h-11 w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm font-bold transition-colors ${
+                                isCategoryOpen
+                                  ? 'bg-[#F59E0B]/10 text-[#B45309] dark:text-[#F59E0B]'
+                                  : 'text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-[#112240]'
+                              }`}
+                              aria-expanded={isCategoryOpen}
+                            >
+                              <CategoryIcon size={16} aria-hidden="true" className="shrink-0" />
+                              <span className="min-w-0 flex-1 truncate">{category.title}</span>
+                              <span className="text-xs font-medium text-slate-400">
+                                {tools.length}
+                              </span>
+                              <ChevronDown
+                                size={16}
+                                aria-hidden="true"
+                                className={`shrink-0 transition-transform ${isCategoryOpen ? 'rotate-180' : ''}`}
+                              />
+                            </button>
+
+                            {isCategoryOpen && (
+                              <div className="ml-3 mt-1 flex min-w-0 flex-col gap-1 border-l border-slate-200 pl-2 dark:border-[#1E293B]">
+                                {subcategories.length > 0 ? (
+                                  subcategories.map((subcategory) => {
+                                    const groupKey = `${category.id}:${subcategory}`;
+                                    const isSubcategoryOpen =
+                                      openToolSubcategory === groupKey;
+                                    const groupTools = tools.filter(
+                                      (tool) => tool.subcategory === subcategory,
+                                    );
+                                    return (
+                                      <div key={groupKey} className="min-w-0">
+                                        <button
+                                          type="button"
+                                          onClick={() =>
+                                            setOpenToolSubcategory(
+                                              isSubcategoryOpen ? null : groupKey,
+                                            )
+                                          }
+                                          className="flex min-h-10 w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-left text-xs font-semibold text-slate-500 transition-colors hover:bg-slate-100 hover:text-[#B45309] dark:text-slate-400 dark:hover:bg-[#112240] dark:hover:text-[#F59E0B]"
+                                          aria-expanded={isSubcategoryOpen}
+                                        >
+                                          <span className="min-w-0 truncate">{subcategory}</span>
+                                          <ChevronDown
+                                            size={14}
+                                            aria-hidden="true"
+                                            className={`shrink-0 transition-transform ${isSubcategoryOpen ? 'rotate-180' : ''}`}
+                                          />
+                                        </button>
+                                        {isSubcategoryOpen && (
+                                          <ul className="m-0 list-none space-y-0.5 p-0">
+                                            {groupTools.map((tool) => {
+                                              const ToolIcon =
+                                                TOOL_ICON_MAP[tool.iconName] ?? Code2;
+                                              return (
+                                                <li key={tool.id}>
+                                                  <Link
+                                                    href={tool.route}
+                                                    onClick={() => setIsMenuOpen(false)}
+                                                    className="flex min-h-10 min-w-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 no-underline transition-colors hover:bg-amber-500/10 hover:text-[#B45309] dark:text-slate-200 dark:hover:text-[#F59E0B]"
+                                                  >
+                                                    <ToolIcon
+                                                      size={14}
+                                                      aria-hidden="true"
+                                                      className="shrink-0"
+                                                    />
+                                                    <span className="min-w-0 truncate">
+                                                      {tool.title}
+                                                    </span>
+                                                  </Link>
+                                                </li>
+                                              );
+                                            })}
+                                          </ul>
+                                        )}
+                                      </div>
+                                    );
+                                  })
+                                ) : (
+                                  <p className="m-0 px-3 py-2 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+                                    No published tools in this category yet.
+                                  </p>
+                                )}
+                              </div>
+                            )}
+                          </section>
+                        );
+                      })}
                     </div>
                   )}
                 </div>

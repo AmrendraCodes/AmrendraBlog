@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import {
   Search,
   X,
@@ -26,7 +26,12 @@ import {
   SearchX,
   Send,
 } from 'lucide-react';
-import { TOOL_CATEGORIES, SORT_OPTIONS, TOOLS_DATA } from '@/data/toolsData';
+import {
+  PUBLISHED_TOOLS,
+  SORT_OPTIONS,
+  TOOL_CATEGORIES,
+  TOOL_CATEGORY_CONFIG,
+} from '@/data/toolsData';
 
 // Icon mapping helper
 const ICON_MAP = {
@@ -62,22 +67,50 @@ const SEMANTIC_BADGES = {
 
 // Category Icon Accents
 const CATEGORY_ACCENTS = {
-  'AI & LLMs': 'bg-gradient-to-br from-amber-500/20 to-orange-500/10 text-amber-600 dark:text-[#F59E0B] border-amber-500/30',
-  'Developer Utilities': 'bg-gradient-to-br from-blue-500/20 to-cyan-500/10 text-blue-600 dark:text-blue-400 border-blue-500/30',
-  'Web & SEO': 'bg-gradient-to-br from-emerald-500/20 to-teal-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30',
+  'AI & LLM Tools': 'bg-gradient-to-br from-amber-500/20 to-orange-500/10 text-amber-600 dark:text-[#F59E0B] border-amber-500/30',
+  'Developer Tools': 'bg-gradient-to-br from-blue-500/20 to-cyan-500/10 text-blue-600 dark:text-blue-400 border-blue-500/30',
+  'SEO Tools': 'bg-gradient-to-br from-emerald-500/20 to-teal-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30',
   'Design & CSS': 'bg-gradient-to-br from-purple-500/20 to-pink-500/10 text-purple-600 dark:text-purple-400 border-purple-500/30',
 };
 
 export default function ToolsDirectoryClient() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedSubcategory, setSelectedSubcategory] = useState('');
   const [sortBy, setSortBy] = useState('default');
   const [savedToolSlugs, setSavedToolSlugs] = useState([]);
   const [activeModalTool, setActiveModalTool] = useState(null);
   const [copiedSlug, setCopiedSlug] = useState(null);
   const [suggestModalOpen, setSuggestModalOpen] = useState(false);
   const searchInputRef = useRef(null);
+
+  useEffect(() => {
+    const params = searchParams;
+    const category = TOOL_CATEGORY_CONFIG.find(
+      (item) => item.id === params.get('category'),
+    );
+    if (!category) {
+      setSelectedCategory('All');
+      setSelectedSubcategory('');
+      return;
+    }
+
+    setSelectedCategory(category.title);
+    setSelectedSubcategory('');
+    const subcategory = params.get('subcategory');
+    if (
+      subcategory &&
+      PUBLISHED_TOOLS.some(
+        (tool) =>
+          tool.mainCategory === category.title &&
+          tool.subcategory === subcategory,
+      )
+    ) {
+      setSelectedSubcategory(subcategory);
+    }
+  }, [searchParams]);
 
   // Initialize saved bookmarks from localStorage
   useEffect(() => {
@@ -137,11 +170,19 @@ export default function ToolsDirectoryClient() {
 
   // Filter and sort tools
   const filteredTools = useMemo(() => {
-    let result = TOOLS_DATA.filter((tool) => {
+    let result = PUBLISHED_TOOLS.filter((tool) => {
       // Category filter
       if (selectedCategory === 'Saved') {
         if (!savedToolSlugs.includes(tool.slug)) return false;
-      } else if (selectedCategory !== 'All' && tool.category !== selectedCategory) {
+      } else if (selectedCategory !== 'All' && tool.mainCategory !== selectedCategory) {
+        return false;
+      }
+
+      if (
+        selectedCategory !== 'Saved' &&
+        selectedSubcategory &&
+        tool.subcategory !== selectedSubcategory
+      ) {
         return false;
       }
 
@@ -153,7 +194,8 @@ export default function ToolsDirectoryClient() {
         tool.title.toLowerCase().includes(q) ||
         tool.description.toLowerCase().includes(q) ||
         tool.tags.some((t) => t.toLowerCase().includes(q)) ||
-        tool.category.toLowerCase().includes(q)
+        tool.mainCategory.toLowerCase().includes(q) ||
+        tool.subcategory.toLowerCase().includes(q)
       );
     });
 
@@ -165,26 +207,32 @@ export default function ToolsDirectoryClient() {
     }
 
     return result;
-  }, [selectedCategory, searchQuery, sortBy, savedToolSlugs]);
+  }, [selectedCategory, selectedSubcategory, searchQuery, sortBy, savedToolSlugs]);
 
   // Category counts
   const categoryCounts = useMemo(() => {
     const counts = {
-      All: TOOLS_DATA.length,
+      All: PUBLISHED_TOOLS.length,
       Saved: savedToolSlugs.length,
     };
     TOOL_CATEGORIES.forEach((cat) => {
       if (cat !== 'All') {
-        counts[cat] = TOOLS_DATA.filter((t) => t.category === cat).length;
+        counts[cat] = PUBLISHED_TOOLS.filter((t) => t.mainCategory === cat).length;
       }
     });
     return counts;
   }, [savedToolSlugs]);
 
+  const isEmptyCategory =
+    selectedCategory !== 'All' &&
+    selectedCategory !== 'Saved' &&
+    !searchQuery &&
+    categoryCounts[selectedCategory] === 0;
+
   const handleCopyLink = (e, tool) => {
     e.stopPropagation();
     if (typeof window !== 'undefined') {
-      const url = `${window.location.origin}/tools#${tool.slug}`;
+      const url = `${window.location.origin}${tool.route}`;
       navigator.clipboard.writeText(url);
       setCopiedSlug(tool.slug);
       setTimeout(() => setCopiedSlug(null), 2000);
@@ -271,7 +319,10 @@ export default function ToolsDirectoryClient() {
               <button
                 key={category}
                 type="button"
-                onClick={() => setSelectedCategory(category)}
+                onClick={() => {
+                  setSelectedCategory(category);
+                  setSelectedSubcategory('');
+                }}
                 className={`min-h-[44px] px-4 py-2 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap transition-all duration-200 cursor-pointer flex items-center gap-2 border select-none active:scale-95 ${
                   isSelected
                     ? 'bg-[#F59E0B] text-[#0B1F3A] border-[#F59E0B] shadow-md shadow-amber-500/20'
@@ -296,7 +347,10 @@ export default function ToolsDirectoryClient() {
           {/* Bookmarked / Saved Tab */}
           <button
             type="button"
-            onClick={() => setSelectedCategory('Saved')}
+            onClick={() => {
+              setSelectedCategory('Saved');
+              setSelectedSubcategory('');
+            }}
             className={`min-h-[44px] px-4 py-2 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap transition-all duration-200 cursor-pointer flex items-center gap-2 border select-none active:scale-95 ${
               selectedCategory === 'Saved'
                 ? 'bg-[#F59E0B] text-[#0B1F3A] border-[#F59E0B] shadow-md shadow-amber-500/20'
@@ -322,8 +376,9 @@ export default function ToolsDirectoryClient() {
         <div className="flex items-center justify-between text-xs sm:text-sm text-slate-500 dark:text-slate-400 px-1">
           <p>
             Showing <span className="font-bold text-[#0B1F3A] dark:text-[#F59E0B]">{filteredTools.length}</span>{' '}
-            {filteredTools.length === 1 ? 'developer tool' : 'developer tools'}
+                {filteredTools.length === 1 ? 'tool' : 'tools'}
             {selectedCategory !== 'All' && <span> in <strong className="text-slate-700 dark:text-slate-200">{selectedCategory}</strong></span>}
+            {selectedSubcategory && <span> in <strong className="text-slate-700 dark:text-slate-200">{selectedSubcategory}</strong></span>}
             {searchQuery && <span> matching &ldquo;<strong className="text-slate-700 dark:text-slate-200">{searchQuery}</strong>&rdquo;</span>}
           </p>
 
@@ -332,6 +387,7 @@ export default function ToolsDirectoryClient() {
               type="button"
               onClick={() => {
                 setSelectedCategory('All');
+                setSelectedSubcategory('');
                 setSearchQuery('');
               }}
               className="text-[#D97706] dark:text-[#F59E0B] hover:underline font-semibold cursor-pointer border-none bg-transparent p-1 min-h-[44px] flex items-center"
@@ -353,7 +409,7 @@ export default function ToolsDirectoryClient() {
         >
           {filteredTools.map((tool) => {
             const IconComponent = ICON_MAP[tool.iconName] || Wrench;
-            const categoryAccent = CATEGORY_ACCENTS[tool.category] || CATEGORY_ACCENTS['Developer Utilities'];
+            const categoryAccent = CATEGORY_ACCENTS[tool.mainCategory] || CATEGORY_ACCENTS['Developer Tools'];
             const badgeMeta = SEMANTIC_BADGES[tool.semanticBadge] || SEMANTIC_BADGES.free;
             const isBookmarked = savedToolSlugs.includes(tool.slug);
 
@@ -362,8 +418,8 @@ export default function ToolsDirectoryClient() {
                 key={tool.id}
                 id={tool.slug}
                 onClick={() => {
-                  if (tool.slug === 'ai-agent-cost-calculator') {
-                    router.push(`/tools/${tool.slug}`);
+                  if (tool.route.startsWith('/tools/')) {
+                    router.push(tool.route);
                   } else {
                     setActiveModalTool(tool);
                   }
@@ -467,10 +523,10 @@ export default function ToolsDirectoryClient() {
                 {/* Bottom Row: Category & Touch-Friendly Action Button */}
                 <div className="pt-4 border-t border-[var(--card-border)] flex items-center justify-between gap-2 flex-nowrap">
                   <span className="text-[11px] font-mono font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider truncate shrink">
-                    {tool.category}
+                    {tool.mainCategory}
                   </span>
 
-                  {tool.slug === 'ai-agent-cost-calculator' ? (
+                  {tool.route.startsWith('/tools/') ? (
                     <Link
                       href={`/tools/${tool.slug}`}
                       onClick={(e) => e.stopPropagation()}
@@ -513,12 +569,17 @@ export default function ToolsDirectoryClient() {
           </div>
 
           <h3 className="text-xl sm:text-2xl font-bold text-[var(--text-heading)] mb-2">
-            No developer tools found
+            {isEmptyCategory
+              ? `No published ${selectedCategory} yet`
+              : 'No developer tools found'}
           </h3>
 
           <p className="text-slate-600 dark:text-[#94A3B8] text-sm leading-relaxed max-w-md mx-auto mb-6">
-            We couldn&apos;t find any tools matching &ldquo;<strong className="text-slate-800 dark:text-slate-200">{searchQuery}</strong>&rdquo;{' '}
+            {isEmptyCategory
+              ? `There are no published tools in ${selectedCategory} yet.`
+              : <>We couldn&apos;t find any tools matching &ldquo;<strong className="text-slate-800 dark:text-slate-200">{searchQuery}</strong>&rdquo;{' '}
             {selectedCategory !== 'All' && <span>in <strong>{selectedCategory}</strong></span>}.
+              </>}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -526,6 +587,7 @@ export default function ToolsDirectoryClient() {
               type="button"
               onClick={() => {
                 setSelectedCategory('All');
+                setSelectedSubcategory('');
                 setSearchQuery('');
               }}
               className="w-full sm:w-auto min-h-[44px] px-6 py-2.5 rounded-full bg-slate-100 dark:bg-[#112240] hover:bg-slate-200 dark:hover:bg-[#1E3A8A] text-slate-800 dark:text-slate-200 font-bold text-xs sm:text-sm cursor-pointer transition-colors border border-slate-200 dark:border-[#1E293B]"
@@ -567,7 +629,7 @@ export default function ToolsDirectoryClient() {
               <div>
                 <div className="flex items-center gap-2 mb-1.5 text-xs font-mono">
                   <span className="text-slate-500 dark:text-slate-400">
-                    {activeModalTool.category}
+                    {activeModalTool.mainCategory}
                   </span>
                   <span className="text-slate-300 dark:text-slate-700">/</span>
                   <span
@@ -645,7 +707,7 @@ export default function ToolsDirectoryClient() {
               </button>
 
               <div className="flex items-center gap-2">
-                {activeModalTool.slug === 'ai-agent-cost-calculator' && (
+                {activeModalTool.route.startsWith('/tools/') && (
                   <Link
                     href={`/tools/${activeModalTool.slug}`}
                     onClick={() => setActiveModalTool(null)}
