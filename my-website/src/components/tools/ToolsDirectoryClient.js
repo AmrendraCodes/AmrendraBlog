@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import {
   Search,
   X,
@@ -70,11 +70,12 @@ const CATEGORY_ACCENTS = {
   'AI & LLM Tools': 'bg-gradient-to-br from-amber-500/20 to-orange-500/10 text-amber-600 dark:text-[#F59E0B] border-amber-500/30',
   'Developer Tools': 'bg-gradient-to-br from-blue-500/20 to-cyan-500/10 text-blue-600 dark:text-blue-400 border-blue-500/30',
   'SEO Tools': 'bg-gradient-to-br from-emerald-500/20 to-teal-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30',
+  'Developer Utilities': 'bg-gradient-to-br from-blue-500/20 to-cyan-500/10 text-blue-600 dark:text-blue-400 border-blue-500/30',
+  'Web & SEO': 'bg-gradient-to-br from-emerald-500/20 to-teal-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30',
   'Design & CSS': 'bg-gradient-to-br from-purple-500/20 to-pink-500/10 text-purple-600 dark:text-purple-400 border-purple-500/30',
 };
 
 export default function ToolsDirectoryClient() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -117,7 +118,11 @@ export default function ToolsDirectoryClient() {
     try {
       const stored = localStorage.getItem('cwa_saved_tools');
       if (stored) {
-        setSavedToolSlugs(JSON.parse(stored));
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed)) {
+          const publishedSlugs = new Set(PUBLISHED_TOOLS.map((tool) => tool.slug));
+          setSavedToolSlugs(parsed.filter((slug) => publishedSlugs.has(slug)));
+        }
       }
     } catch {
       // Ignore localStorage read errors in private browsing
@@ -201,7 +206,7 @@ export default function ToolsDirectoryClient() {
 
     // Sorting logic
     if (sortBy === 'newest') {
-      result.sort((a, b) => (b.semanticBadge === 'new' ? 1 : 0) - (a.semanticBadge === 'new' ? 1 : 0));
+      result.sort((a, b) => new Date(b.createdAt || b.updatedAt) - new Date(a.createdAt || a.updatedAt));
     } else if (sortBy === 'alphabetical') {
       result.sort((a, b) => a.title.localeCompare(b.title));
     }
@@ -213,7 +218,7 @@ export default function ToolsDirectoryClient() {
   const categoryCounts = useMemo(() => {
     const counts = {
       All: PUBLISHED_TOOLS.length,
-      Saved: savedToolSlugs.length,
+      Saved: PUBLISHED_TOOLS.filter((tool) => savedToolSlugs.includes(tool.slug)).length,
     };
     TOOL_CATEGORIES.forEach((cat) => {
       if (cat !== 'All') {
@@ -232,10 +237,12 @@ export default function ToolsDirectoryClient() {
   const handleCopyLink = (e, tool) => {
     e.stopPropagation();
     if (typeof window !== 'undefined') {
-      const url = `${window.location.origin}${tool.route}`;
-      navigator.clipboard.writeText(url);
-      setCopiedSlug(tool.slug);
-      setTimeout(() => setCopiedSlug(null), 2000);
+      navigator.clipboard.writeText(`${window.location.origin}${tool.route}`)
+        .then(() => {
+          setCopiedSlug(tool.slug);
+          setTimeout(() => setCopiedSlug(null), 2000);
+        })
+        .catch(() => setCopiedSlug(null));
     }
   };
 
@@ -417,14 +424,7 @@ export default function ToolsDirectoryClient() {
               <div
                 key={tool.id}
                 id={tool.slug}
-                onClick={() => {
-                  if (tool.route.startsWith('/tools/')) {
-                    router.push(tool.route);
-                  } else {
-                    setActiveModalTool(tool);
-                  }
-                }}
-                className="group relative bg-[var(--card-bg)] rounded-2xl sm:rounded-3xl border border-[var(--card-border)] p-6 sm:p-7 shadow-[var(--shadow-card)] card-interactive flex flex-col justify-between hover:border-[#F59E0B]/50 hover:shadow-lg transition-all duration-300 min-h-[460px] cursor-pointer overflow-visible active:scale-[0.98]"
+                className="group relative bg-[var(--card-bg)] rounded-2xl sm:rounded-3xl border border-[var(--card-border)] p-6 sm:p-7 shadow-[var(--shadow-card)] card-interactive flex flex-col justify-between hover:border-[#F59E0B]/50 hover:shadow-lg transition-all duration-300 min-h-[460px] overflow-visible"
               >
                 <div>
                   {/* Top Bar: Icon + Semantic Badge + Quick Actions */}
@@ -478,8 +478,10 @@ export default function ToolsDirectoryClient() {
 
                   {/* Standardized Title Container (Guarantees perfect vertical alignment & zero clipping) */}
                   <div className="min-h-[3rem] sm:min-h-[3.25rem] flex items-start mb-2 overflow-visible">
-                    <h3 className="text-[15px] sm:text-base lg:text-[17px] font-bold text-[var(--text-heading)] group-hover:text-[#F59E0B] transition-colors leading-snug line-clamp-2 break-words">
+                    <h3 className="text-[15px] sm:text-base lg:text-[17px] font-bold leading-snug line-clamp-2 break-words">
+                      <Link href={tool.route} className="text-[var(--text-heading)] no-underline transition-colors hover:text-[#F59E0B] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500">
                       {tool.title}
+                      </Link>
                     </h3>
                   </div>
 
@@ -487,7 +489,7 @@ export default function ToolsDirectoryClient() {
                   <div className="flex items-center gap-2.5 text-[11px] font-mono text-slate-500 dark:text-slate-400 mb-3.5">
                     <span className="inline-flex items-center gap-1">
                       <Clock size={11} className="text-slate-400" />
-                      Updated {tool.updatedAt}
+                      Updated {new Date(tool.updatedAt).toLocaleDateString('en', { month: 'short', year: 'numeric', timeZone: 'UTC' })}
                     </span>
                     <span className="text-slate-300 dark:text-slate-600">•</span>
                     <span className="inline-flex items-center gap-1 text-slate-700 dark:text-slate-300 font-semibold">
@@ -502,10 +504,10 @@ export default function ToolsDirectoryClient() {
                   </p>
 
                   {/* Click to expand hint for desktop & mobile */}
-                  <div className="flex items-center gap-1 text-[11px] font-semibold text-[#D97706] dark:text-[#F59E0B] mb-4 group-hover:underline">
+                  <button type="button" onClick={() => setActiveModalTool(tool)} className="flex items-center gap-1 border-0 bg-transparent p-0 text-left text-[11px] font-semibold text-[#D97706] dark:text-[#F59E0B] mb-4 group-hover:underline">
                     <span>View tool &amp; features</span>
                     <ArrowUpRight size={12} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </div>
+                  </button>
 
                   {/* Tags Chips */}
                   <div className="flex flex-wrap gap-1.5 mb-5">
@@ -526,9 +528,9 @@ export default function ToolsDirectoryClient() {
                     {tool.mainCategory}
                   </span>
 
-                  {tool.route.startsWith('/tools/') ? (
+                  {tool.route && (
                     <Link
-                      href={`/tools/${tool.slug}`}
+                      href={tool.route}
                       onClick={(e) => e.stopPropagation()}
                       className="min-h-[44px] px-3.5 sm:px-4 py-2 rounded-xl bg-slate-100 dark:bg-[#112240] group-hover:bg-[#F59E0B] text-slate-800 dark:text-slate-100 group-hover:text-[#0B1F3A] font-bold text-xs sm:text-sm inline-flex items-center gap-1.5 border border-slate-200 dark:border-[#1E293B] group-hover:border-[#F59E0B] transition-all duration-200 cursor-pointer shadow-2xs shrink-0 active:scale-95 no-underline"
                       aria-label={`Open ${tool.title}`}
@@ -539,22 +541,6 @@ export default function ToolsDirectoryClient() {
                         className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0"
                       />
                     </Link>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setActiveModalTool(tool);
-                      }}
-                      className="min-h-[44px] px-3.5 sm:px-4 py-2 rounded-xl bg-slate-100 dark:bg-[#112240] group-hover:bg-[#F59E0B] text-slate-800 dark:text-slate-100 group-hover:text-[#0B1F3A] font-bold text-xs sm:text-sm inline-flex items-center gap-1.5 border border-slate-200 dark:border-[#1E293B] group-hover:border-[#F59E0B] transition-all duration-200 cursor-pointer shadow-2xs shrink-0 active:scale-95"
-                      aria-label={`Open ${tool.title}`}
-                    >
-                      <span>{tool.actionText}</span>
-                      <ArrowUpRight
-                        size={15}
-                        className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0"
-                      />
-                    </button>
                   )}
                 </div>
               </div>
@@ -707,9 +693,9 @@ export default function ToolsDirectoryClient() {
               </button>
 
               <div className="flex items-center gap-2">
-                {activeModalTool.route.startsWith('/tools/') && (
+                {activeModalTool.route && (
                   <Link
-                    href={`/tools/${activeModalTool.slug}`}
+                    href={activeModalTool.route}
                     onClick={() => setActiveModalTool(null)}
                     className="px-4 py-2 text-xs font-bold rounded-lg bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] transition-colors cursor-pointer shadow-xs inline-flex items-center gap-1.5 no-underline"
                   >

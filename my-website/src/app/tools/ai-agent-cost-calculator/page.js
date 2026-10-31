@@ -8,37 +8,11 @@ import AiAgentCostCalculatorClient from '@/components/tools/ai-agent-cost-calcul
 import CalculatorFaq from '@/components/tools/ai-agent-cost-calculator/CalculatorFaq';
 import { CALCULATOR_FAQS } from '@/data/calculatorFaqData';
 import CalculatorCta from '@/components/tools/ai-agent-cost-calculator/CalculatorCta';
+import { getToolBySlug } from '@/data/toolsData';
+import { createToolMetadata } from '@/lib/toolMetadata';
+import RelatedTools from '@/components/tools/RelatedTools';
 
-export const metadata = {
-  title: 'AI Agent Cost Calculator – Estimate LLM & Agent Costs | Code with Amrendra',
-  description:
-    'Calculate the estimated cost of running autonomous AI agents based on model pricing, multi-call loops, token usage, tool APIs, and cloud infrastructure.',
-  alternates: {
-    canonical: `${siteMetadata.siteUrl}/tools/ai-agent-cost-calculator`,
-  },
-  openGraph: {
-    title: 'AI Agent Cost Calculator – Estimate LLM & Agent Costs | Code with Amrendra',
-    description:
-      'Calculate the estimated cost of running autonomous AI agents based on model pricing, multi-call loops, token usage, tool APIs, and cloud infrastructure.',
-    url: `${siteMetadata.siteUrl}/tools/ai-agent-cost-calculator`,
-    type: 'website',
-    images: [
-      {
-        url: '/images/og-default.png',
-        width: 1200,
-        height: 630,
-        alt: 'AI Agent Cost Calculator — Code with Amrendra',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'AI Agent Cost Calculator – Estimate LLM & Agent Costs | Code with Amrendra',
-    description:
-      'Calculate the estimated cost of running autonomous AI agents based on model pricing, multi-call loops, token usage, tool APIs, and cloud infrastructure.',
-    images: ['/images/og-default.png'],
-  },
-};
+export const metadata = createToolMetadata(getToolBySlug('ai-agent-cost-calculator'));
 
 export default function AiAgentCostCalculatorPage() {
   const pageUrl = `${siteMetadata.siteUrl}/tools/ai-agent-cost-calculator`;
@@ -66,7 +40,7 @@ export default function AiAgentCostCalculatorPage() {
   const faqSchema = getFAQSchema(CALCULATOR_FAQS);
 
   return (
-    <div className="min-h-screen bg-[#060E1A] text-slate-200 overflow-x-hidden">
+    <div className="calculator-theme min-h-screen bg-[#060E1A] text-slate-200 overflow-x-hidden">
       {/* ─── Structured Data (JSON-LD) ─── */}
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={webAppSchema} />
@@ -385,6 +359,8 @@ export default function AiAgentCostCalculatorPage() {
       <section className="px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24 max-w-6xl mx-auto">
         <CalculatorCta />
       </section>
+      <RelatedTools currentSlug="ai-agent-cost-calculator" />
+      <div className="h-16" />
     </div>
   );
 }

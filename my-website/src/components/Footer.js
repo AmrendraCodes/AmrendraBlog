@@ -99,12 +99,19 @@ export default function Footer() {
           <div className="lg:col-span-5 flex flex-col items-start">
             {/* Logo */}
             <Link href="/" className="inline-flex items-center no-underline group mb-5" aria-label="Code with Amrendra Home">
-              <Image 
-                src="/logo-wide-dark.png" 
-                alt="FooterLogo" 
+              <Image
+                src="/logo-wide.png"
+                alt="Code with Amrendra"
                 width={175} 
                 height={41} 
-                className="w-[175px] h-[41px] object-contain object-left transition-transform duration-200 group-hover:scale-[1.02]" 
+                className="w-[175px] h-[41px] object-contain object-left transition-transform duration-200 group-hover:scale-[1.02] dark:hidden"
+              />
+              <Image
+                src="/logo-wide-dark.png"
+                alt="Code with Amrendra"
+                width={175}
+                height={41}
+                className="hidden w-[175px] h-[41px] object-contain object-left transition-transform duration-200 group-hover:scale-[1.02] dark:block"
               />
             </Link>
 
@@ -115,11 +122,13 @@ export default function Footer() {
 
             {/* Contact Email */}
             <a 
-              href="mailto:amrendra1999official@gmail.com" 
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=codewithamrendra@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 text-xs sm:text-sm text-slate-300 bg-[#071324] border border-[#1E293B] px-4 py-2.5 rounded-xl hover:border-[#F59E0B]/50 hover:text-white transition-colors duration-200 group no-underline max-w-full"
             >
               <Mail size={16} className="text-[#F59E0B] transition-transform  shrink-0" />
-              <span className="font-medium break-all">amrendra1999official@gmail.com</span>
+              <span className="font-medium break-all">codewithamrendra@gmail.com</span>
             </a>
           </div>
 

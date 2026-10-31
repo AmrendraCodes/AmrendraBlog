@@ -46,6 +46,7 @@
 
 /* ─── Light Theme Variables ─── */
 :root {
+  color-scheme: light;
   --background: #FFFFFF;
   --foreground: #0B1F3A;
   --primary: #0B1F3A;
@@ -74,6 +75,7 @@
 
 /* ─── Dark Theme Variables ─── */
 .dark {
+  color-scheme: dark;
   --background: #060E1A;
   --foreground: #F8FAFC;
   --primary: #FFFFFF;
@@ -452,5 +454,137 @@ button, a, input, select, textarea {
 .content-visibility-auto {
   content-visibility: auto;
   contain-intrinsic-size: 0 500px;
+}
+
+/* Legacy dark-only utility colors now follow the same global theme tokens.
+   Dark mode retains the original navy palette; light mode adapts these surfaces. */
+html.light :is([class*="bg-[#060E1A]"], [class*="bg-[#050b16]"], [class*="bg-[#0b1220]"]) {
+  background-color: var(--background);
+  color: var(--text-body);
+}
+
+html.light :is([class*="bg-[#071324]"], [class*="bg-[#0A1628]"], [class*="bg-slate-800"]) {
+  background-color: var(--section-alt-bg);
+  color: var(--text-body);
+}
+
+html.light :is([class*="bg-[#0B1F3A]"], [class*="bg-[#1A1B1E]"], [class*="bg-slate-950"], [class*="bg-slate-900"]) {
+  background-color: var(--card-bg);
+  color: var(--text-body);
+}
+
+html.light :is([class*="bg-[#112240]"], [class*="bg-[#132c50]"]) {
+  background-color: var(--card-bg-hover);
+  color: var(--text-body);
+}
+
+html.light [class*="bg-[#1E293B]"] {
+  background-color: var(--card-border);
+}
+
+html.light :is([class*="bg-[#060E1A]"], [class*="bg-[#050b16]"], [class*="bg-[#0b1220]"], [class*="bg-[#071324]"], [class*="bg-[#0A1628]"], [class*="bg-[#0B1F3A]"], [class*="bg-[#1A1B1E]"], [class*="bg-[#112240]"], [class*="bg-[#132c50]"], [class*="bg-slate-800"], [class*="bg-slate-900"], [class*="bg-slate-950"]) :is([class*="text-white"], [class*="text-slate-100"], [class*="text-slate-200"]) {
+  color: var(--text-heading);
+}
+
+html.light :is([class*="bg-[#060E1A]"], [class*="bg-[#050b16]"], [class*="bg-[#0b1220]"], [class*="bg-[#071324]"], [class*="bg-[#0A1628]"], [class*="bg-[#0B1F3A]"], [class*="bg-[#1A1B1E]"], [class*="bg-[#112240]"], [class*="bg-[#132c50]"], [class*="bg-slate-800"], [class*="bg-slate-900"], [class*="bg-slate-950"]) :is([class*="text-slate-300"]) {
+  color: var(--text-body);
+}
+
+html.light :is([class*="bg-[#060E1A]"], [class*="bg-[#050b16]"], [class*="bg-[#0b1220]"], [class*="bg-[#071324]"], [class*="bg-[#0A1628]"], [class*="bg-[#0B1F3A]"], [class*="bg-[#1A1B1E]"], [class*="bg-[#112240]"], [class*="bg-[#132c50]"], [class*="bg-slate-800"], [class*="bg-slate-900"], [class*="bg-slate-950"]) :is([class*="text-slate-400"], [class*="text-slate-500"]) {
+  color: var(--text-muted);
+}
+
+html.light :is([class*="bg-[#060E1A]"], [class*="bg-[#050b16]"], [class*="bg-[#0b1220]"], [class*="bg-[#071324]"], [class*="bg-[#0A1628]"], [class*="bg-[#0B1F3A]"], [class*="bg-[#1A1B1E]"], [class*="bg-[#112240]"], [class*="bg-[#132c50]"], [class*="bg-slate-800"], [class*="bg-slate-900"], [class*="bg-slate-950"]) :is([class*="text-[#9CA3AF]"], [class*="text-[#94A3B8]"]) {
+  color: var(--text-muted);
+}
+
+html.light :is([class*="bg-[#060E1A]"], [class*="bg-[#050b16]"], [class*="bg-[#0b1220]"], [class*="bg-[#071324]"], [class*="bg-[#0A1628]"], [class*="bg-[#0B1F3A]"], [class*="bg-[#1A1B1E]"], [class*="bg-[#112240]"], [class*="bg-[#132c50]"], [class*="bg-slate-800"], [class*="bg-slate-900"], [class*="bg-slate-950"]) :is([class*="text-[#CBD5E1]"]) {
+  color: var(--text-body);
+}
+
+html.light :is([class*="bg-[#060E1A]"], [class*="bg-[#050b16]"], [class*="bg-[#0b1220]"], [class*="bg-[#071324]"], [class*="bg-[#0A1628]"], [class*="bg-[#0B1F3A]"], [class*="bg-[#1A1B1E]"], [class*="bg-[#112240]"], [class*="bg-[#132c50]"], [class*="bg-slate-800"], [class*="bg-slate-900"], [class*="bg-slate-950"]) :is([class*="text-[#F8FAFC]"]) {
+  color: var(--text-heading);
+}
+
+html.light :is([class*="bg-[#060E1A]"], [class*="bg-[#050b16]"], [class*="bg-[#0b1220]"], [class*="bg-[#071324]"], [class*="bg-[#0A1628]"], [class*="bg-[#0B1F3A]"], [class*="bg-[#1A1B1E]"], [class*="bg-[#112240]"], [class*="bg-[#132c50]"], [class*="bg-slate-800"], [class*="bg-slate-900"], [class*="bg-slate-950"]) :is([class*="text-blue-400"]) {
+  color: #1d4ed8;
+}
+
+html.light :is([class*="bg-[#060E1A]"], [class*="bg-[#050b16]"], [class*="bg-[#0b1220]"], [class*="bg-[#071324]"], [class*="bg-[#0A1628]"], [class*="bg-[#0B1F3A]"], [class*="bg-[#1A1B1E]"], [class*="bg-[#112240]"], [class*="bg-[#132c50]"], [class*="bg-slate-800"], [class*="bg-slate-900"], [class*="bg-slate-950"]) :is([class*="text-emerald-400"]) {
+  color: #047857;
+}
+
+html.light :is([class*="bg-[#060E1A]"], [class*="bg-[#050b16]"], [class*="bg-[#0b1220]"], [class*="bg-[#071324]"], [class*="bg-[#0A1628]"], [class*="bg-[#0B1F3A]"], [class*="bg-[#1A1B1E]"], [class*="bg-[#112240]"], [class*="bg-[#132c50]"], [class*="bg-slate-800"], [class*="bg-slate-900"], [class*="bg-slate-950"]) :is([class*="text-purple-400"]) {
+  color: #7e22ce;
+}
+
+html.light :is([class*="bg-[#060E1A]"], [class*="bg-[#050b16]"], [class*="bg-[#0b1220]"], [class*="bg-[#071324]"], [class*="bg-[#0A1628]"], [class*="bg-[#0B1F3A]"], [class*="bg-[#1A1B1E]"], [class*="bg-[#112240]"], [class*="bg-[#132c50]"], [class*="bg-slate-800"], [class*="bg-slate-900"], [class*="bg-slate-950"]) :is([class*="text-rose-400"]) {
+  color: #be123c;
+}
+
+html.light :is([class*="bg-[#060E1A]"], [class*="bg-[#050b16]"], [class*="bg-[#0b1220]"], [class*="bg-[#071324]"], [class*="bg-[#0A1628]"], [class*="bg-[#0B1F3A]"], [class*="bg-[#1A1B1E]"], [class*="bg-[#112240]"], [class*="bg-[#132c50]"], [class*="bg-slate-800"], [class*="bg-slate-900"], [class*="bg-slate-950"]) :is([class*="text-amber-400"]) {
+  color: #b45309;
+}
+
+html.light :is([class*="bg-[#060E1A]"], [class*="bg-[#050b16]"], [class*="bg-[#0b1220]"], [class*="bg-[#071324]"], [class*="bg-[#0A1628]"], [class*="bg-[#0B1F3A]"], [class*="bg-[#1A1B1E]"], [class*="bg-[#112240]"], [class*="bg-[#132c50]"], [class*="bg-slate-800"], [class*="bg-slate-900"], [class*="bg-slate-950"]) :is([class*="hover:text-white"]:hover, [class*="hover:text-slate-200"]:hover) {
+  color: var(--text-heading);
+}
+
+html.light :is([class*="border-[#1E293B]"], [class*="border-slate-700"], [class*="border-slate-800"]) {
+  border-color: var(--card-border);
+}
+
+html.light [class*="divide-[#1E293B]"] > :not([hidden]) ~ :not([hidden]) {
+  border-color: var(--card-border);
+}
+
+html.light :is([class*="placeholder:text-slate-500"], [class*="placeholder:text-slate-400"])::placeholder {
+  color: var(--text-muted);
+}
+
+/* Do the reverse for legacy light-only panels so they also follow dark mode. */
+html.dark :is([class~="bg-white"], [class~="bg-slate-50"], [class~="bg-slate-100"], [class~="bg-gray-50"], [class~="bg-gray-100"], [class~="bg-[#F8FAFC]"]) {
+  background-color: var(--card-bg);
+  color: var(--text-body);
+}
+
+html.dark :is([class~="bg-white"], [class~="bg-slate-50"], [class~="bg-slate-100"], [class~="bg-gray-50"], [class~="bg-gray-100"], [class~="bg-[#F8FAFC]"]) :is([class*="text-slate-900"], [class*="text-slate-800"], [class*="text-slate-700"], [class*="text-slate-600"], [class*="text-[#0B1F3A]"]):not([class*="bg-[#F59E0B]"]) {
+  color: var(--text-heading);
+}
+
+html.dark :is([class~="bg-white"], [class~="bg-slate-50"], [class~="bg-slate-100"], [class~="bg-gray-50"], [class~="bg-gray-100"], [class~="bg-[#F8FAFC]"]) :is([class*="text-slate-500"], [class*="text-slate-400"]):not([class*="bg-[#F59E0B]"]) {
+  color: var(--text-muted);
+}
+
+html.dark :is([class~="bg-white"], [class~="bg-slate-50"], [class~="bg-slate-100"], [class~="bg-gray-50"], [class~="bg-gray-100"], [class~="bg-[#F8FAFC]"]) :is([class*="placeholder:text-slate-500"], [class*="placeholder:text-slate-400"])::placeholder {
+  color: var(--text-muted);
+}
+
+html.dark :is([class*="border-slate-100"], [class*="border-slate-200"], [class*="border-slate-300"], [class*="border-gray-100"], [class*="border-gray-200"]) {
+  border-color: var(--card-border);
+}
+
+html.light .calculator-theme [class*="from-white"] {
+  --tw-gradient-from: var(--text-heading);
+}
+
+html.light .calculator-theme [class*="via-slate-100"] {
+  --tw-gradient-via: var(--text-body);
+}
+
+html.light .calculator-theme [class*="from-[#0B1F3A]"] {
+  --tw-gradient-from: var(--card-bg);
+}
+
+html.light .calculator-theme [class*="via-[#08172c]"] {
+  --tw-gradient-via: var(--section-alt-bg);
+}
+
+html.light .calculator-theme [class*="to-[#060E1A]"] {
+  --tw-gradient-to: var(--background);
+}
+
+html.light .calculator-theme [class*="to-[#071324]"] {
+  --tw-gradient-to: var(--section-alt-bg);
 }
 

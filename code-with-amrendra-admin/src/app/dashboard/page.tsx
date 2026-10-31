@@ -20,6 +20,7 @@ import {
   ArrowRight,
   TrendingUp,
   Layers,
+  AlertCircle,
 } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 import type { Blog, Category } from '@prisma/client';
@@ -38,6 +39,7 @@ export default function DashboardPage() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [recentPosts, setRecentPosts] = useState<(Blog & { category?: Category | null })[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -46,12 +48,15 @@ export default function DashboardPage() {
       try {
         const res = await fetch('/api/analytics');
         const json = await res.json();
-        if (json.success) {
-          setStats(json.data.stats);
-          setRecentPosts(json.data.recentPosts || []);
+        if (!res.ok || !json.success) {
+          throw new Error(json.error?.message || 'Dashboard data could not be loaded.');
         }
+        setStats(json.data.stats);
+        setRecentPosts(json.data.recentPosts || []);
+        setLoadError(null);
       } catch (err) {
         console.error('Failed to load dashboard stats:', err);
+        setLoadError(err instanceof Error ? err.message : 'Dashboard data could not be loaded.');
       } finally {
         setLoading(false);
       }
@@ -96,8 +101,8 @@ export default function DashboardPage() {
             Welcome back, Amrendra 👋
           </h2>
           <p className="text-xs sm:text-sm text-indigo-100/90 mt-2 font-normal leading-relaxed">
-            Your content delivery network and APIs are fully operational. You have{' '}
-            <strong className="text-white font-bold">{stats?.publishedBlogs ?? 0} published articles</strong>{' '}
+            Your publishing overview is ready. You have{' '}
+            <strong className="text-white font-bold">{stats?.publishedBlogs ?? (loadError ? '—' : 0)} published articles</strong>{' '}
             live on the public portal.
           </p>
         </div>
@@ -121,10 +126,20 @@ export default function DashboardPage() {
       </div>
 
       {/* ─── 2. KPI STATISTICS GRID (REUSABLE STATCARD) ─── */}
+      {loadError && (
+        <div role="alert" className="mb-6 flex items-start gap-3 rounded-xl border border-red-300 bg-red-50 p-4 text-sm text-red-800 dark:border-red-900 dark:bg-red-950/30 dark:text-red-200">
+          <AlertCircle size={18} className="mt-0.5 shrink-0" />
+          <div>
+            <p className="font-bold">Dashboard data failed to load</p>
+            <p className="mt-1">{loadError}</p>
+          </div>
+        </div>
+      )}
+
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
         <StatCard
           title="Total Posts"
-          value={stats?.totalBlogs ?? 0}
+          value={stats?.totalBlogs ?? (loadError ? '—' : 0)}
           subtitle="Articles created"
           icon={FileText}
           loading={loading}
@@ -135,7 +150,7 @@ export default function DashboardPage() {
 
         <StatCard
           title="Published"
-          value={stats?.publishedBlogs ?? 0}
+          value={stats?.publishedBlogs ?? (loadError ? '—' : 0)}
           subtitle="Live on site"
           icon={CheckCircle2}
           loading={loading}
@@ -146,7 +161,7 @@ export default function DashboardPage() {
 
         <StatCard
           title="Drafts"
-          value={stats?.draftBlogs ?? 0}
+          value={stats?.draftBlogs ?? (loadError ? '—' : 0)}
           subtitle="In progress"
           icon={FileEdit}
           loading={loading}
@@ -157,7 +172,7 @@ export default function DashboardPage() {
 
         <StatCard
           title="Categories"
-          value={stats?.totalCategories ?? 0}
+          value={stats?.totalCategories ?? (loadError ? '—' : 0)}
           subtitle="Taxonomy terms"
           icon={FolderTree}
           loading={loading}
@@ -168,7 +183,7 @@ export default function DashboardPage() {
 
         <StatCard
           title="Media Library"
-          value={stats?.totalMedia ?? 0}
+          value={stats?.totalMedia ?? (loadError ? '—' : 0)}
           subtitle="Digital assets"
           icon={ImageIcon}
           loading={loading}
@@ -179,7 +194,7 @@ export default function DashboardPage() {
 
         <StatCard
           title="Page Views"
-          value={stats?.totalPageViews ?? 0}
+          value={stats?.totalPageViews ?? (loadError ? '—' : 0)}
           subtitle="Tracked visits"
           icon={Eye}
           loading={loading}
@@ -263,6 +278,16 @@ export default function DashboardPage() {
                     <div className="flex flex-col items-center justify-center gap-3">
                       <div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin" />
                       <span>Loading recent articles...</span>
+                    </div>
+                  </td>
+                </tr>
+              ) : loadError ? (
+                <tr>
+                  <td colSpan={6} className="py-12 text-center text-red-700 dark:text-red-300">
+                    <div className="flex flex-col items-center gap-2">
+                      <AlertCircle size={22} />
+                      <span className="font-bold">Recent posts are unavailable.</span>
+                      <span className="text-xs">Check the database connection and retry.</span>
                     </div>
                   </td>
                 </tr>

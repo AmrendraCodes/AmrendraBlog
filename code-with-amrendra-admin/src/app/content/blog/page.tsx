@@ -15,6 +15,7 @@ export default function BlogListPage() {
   const [search, setSearch] = useState('');
   const [status, setStatus] = useState('');
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
   const fetchPosts = useCallback(async () => {
@@ -26,11 +27,14 @@ export default function BlogListPage() {
 
       const res = await fetch(`/api/blogs?${query.toString()}`);
       const json = await res.json();
-      if (json.success) {
-        setPosts(json.data.posts);
+      if (!res.ok || !json.success) {
+        throw new Error(json.error?.message || 'Blog posts could not be loaded.');
       }
+      setPosts(json.data.posts);
+      setLoadError(null);
     } catch (err) {
       console.error('Fetch posts error:', err);
+      setLoadError(err instanceof Error ? err.message : 'Blog posts could not be loaded.');
     } finally {
       setLoading(false);
     }
@@ -131,6 +135,16 @@ export default function BlogListPage() {
                   <td colSpan={7} className="py-12 text-center text-[var(--text-dim)] font-medium">
                     <RefreshCw size={20} className="animate-spin mx-auto mb-2 text-indigo-600 dark:text-indigo-400" />
                     Loading blog posts...
+                  </td>
+                </tr>
+              ) : loadError ? (
+                <tr>
+                  <td colSpan={7} className="py-12 text-center text-red-700 dark:text-red-300">
+                    <p className="font-bold">Blog posts are unavailable.</p>
+                    <p className="mt-1">{loadError}</p>
+                    <button type="button" onClick={fetchPosts} className="admin-btn-secondary mt-4 inline-flex items-center gap-2 text-xs">
+                      <RefreshCw size={14} /> Retry
+                    </button>
                   </td>
                 </tr>
               ) : posts.length === 0 ? (

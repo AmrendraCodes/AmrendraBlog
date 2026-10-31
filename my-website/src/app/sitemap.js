@@ -2,6 +2,7 @@ import { getPostSummariesAsync } from "@/lib/posts";
 import { getAllCaseStudies } from "@/lib/case-studies";
 import { SERVICES_DATA } from "@/data/servicesData";
 import { siteMetadata } from "@/config/seo";
+import { PUBLISHED_TOOLS, getToolLastModified } from "@/data/toolsData";
 
 /**
  * Next.js Dynamic Sitemap Generator
@@ -49,12 +50,6 @@ export default async function sitemap() {
       priority: 0.85,
     },
     {
-      url: `${baseUrl}/tools/ai-agent-cost-calculator`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.85,
-    },
-    {
       url: `${baseUrl}/about`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
@@ -94,6 +89,14 @@ export default async function sitemap() {
     priority: 0.85,
   }));
 
+  // Public tool URLs are generated from the same catalog as the directory.
+  const toolUrls = PUBLISHED_TOOLS.map((tool) => ({
+    url: `${baseUrl}${tool.route}`,
+    lastModified: getToolLastModified(tool),
+    changeFrequency: 'monthly',
+    priority: tool.featured ? 0.85 : 0.7,
+  }));
+
   // 3. Dynamic Blog Posts
   const posts = (await getPostSummariesAsync()) || [];
   const blogUrls = posts.map((post) => ({
@@ -121,5 +124,5 @@ export default async function sitemap() {
     priority: 0.5,
   }));
 
-  return [...staticPages, ...serviceUrls, ...blogUrls, ...caseStudyUrls, ...categoryUrls];
+  return [...staticPages, ...toolUrls, ...serviceUrls, ...blogUrls, ...caseStudyUrls, ...categoryUrls];
 }

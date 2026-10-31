@@ -9,7 +9,14 @@ import { extractFaqsFromContent } from "./schema.js";
 // Markdown fixtures live here and are only used when CONTENT_SOURCE=markdown.
 const postsDirectory = path.join(process.cwd(), "content", "posts");
 
-const contentSource = (process.env.CONTENT_SOURCE || "database").trim().toLowerCase();
+const requestedContentSource = (process.env.CONTENT_SOURCE || "database").trim().toLowerCase();
+// A Vercel build can run without database secrets (for example, when only the
+// public site is deployed). In that case, use the checked-in markdown corpus
+// instead of failing page-data collection. Explicit database deployments keep
+// using the database whenever DATABASE_URL is present.
+const contentSource = requestedContentSource === "database" && !process.env.DATABASE_URL?.trim()
+  ? "markdown"
+  : requestedContentSource;
 
 function hasDatabaseUrl() {
   return Boolean(process.env.DATABASE_URL?.trim());
@@ -49,6 +56,10 @@ function throwDatabaseQueryError(operation, error) {
 
 if (isMarkdownSource() && process.env.NODE_ENV !== "production") {
   console.info("[posts] CONTENT_SOURCE=markdown: using files from content/posts.");
+}
+
+if (requestedContentSource === "database" && contentSource === "markdown") {
+  console.warn("[posts] DATABASE_URL is missing; using markdown files from content/posts as a fallback.");
 }
 
 function calculateReadingTime(content) {
@@ -310,6 +321,7 @@ export const getPostSummariesAsync = cache(async function getPostSummariesAsync(
         featuredImage: true, ogImage: true, canonicalUrl: true,
         publishedAt: true, createdAt: true, updatedAt: true,
         readingTime: true, wordCount: true, authorName: true,
+        seoKeywords: true, seoKeywordsSecondary: true,
         categorySlug: true, category: { select: { name: true, slug: true } },
         tags: { select: { tag: { select: { name: true } } } }, views: true,
       },
@@ -336,6 +348,8 @@ export const getPostSummariesAsync = cache(async function getPostSummariesAsync(
       wordCount: post.wordCount, author: post.authorName || "Amrendra Kumar",
       category: post.category?.name || "General",
       categorySlug: post.categorySlug || post.category?.slug || "general",
+      seoKeywords: post.seoKeywords || null,
+      seoKeywordsSecondary: post.seoKeywordsSecondary || [],
       tags: post.tags.map(({ tag }) => tag.name), views: post.views || 0,
     }));
   } catch (error) {
