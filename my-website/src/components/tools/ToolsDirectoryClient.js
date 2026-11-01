@@ -247,9 +247,9 @@ export default function ToolsDirectoryClient() {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full rounded-[2rem] border border-slate-200/80 dark:border-slate-800/90 bg-white/45 dark:bg-[#050C18]/45 p-4 sm:p-6 lg:p-8 shadow-xl shadow-slate-950/[0.03] dark:shadow-black/10 backdrop-blur-sm">
       {/* ─── Search, Sort & Category Controls ─── */}
-      <div className="mb-10 sm:mb-12 space-y-6">
+      <div className="mb-8 sm:mb-10 rounded-2xl border border-slate-200/70 dark:border-slate-800/80 bg-white/70 dark:bg-[#070F1E]/70 p-3 sm:p-4 space-y-5 shadow-sm">
         {/* Search & Sort Row */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 max-w-3xl mx-auto">
           {/* Search Input */}
@@ -267,7 +267,7 @@ export default function ToolsDirectoryClient() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search tools by name, tag, or tech (e.g. JSON, GPT-4o, SEO)..."
-                className="w-full pl-11 pr-24 py-4 rounded-2xl bg-white dark:bg-[#070F1E] text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 border border-slate-200/90 dark:border-slate-800 shadow-xl focus:border-[#F59E0B] focus:ring-2 focus:ring-[#F59E0B]/20 outline-none transition-all text-sm sm:text-base min-h-[52px]"
+                className="w-full pl-11 pr-24 py-4 rounded-2xl bg-white/95 dark:bg-[#070F1E] text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 border border-slate-200/90 dark:border-slate-800 shadow-sm focus:border-[#F59E0B] focus:ring-2 focus:ring-[#F59E0B]/20 outline-none transition-all text-sm sm:text-base min-h-[52px]"
                 aria-label="Search developer tools"
               />
               <div className="absolute right-3 flex items-center gap-1.5">
@@ -304,7 +304,7 @@ export default function ToolsDirectoryClient() {
                 id="tools-sort-select"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="appearance-none w-full sm:w-auto pl-9 pr-8 py-4 rounded-2xl bg-white dark:bg-[#070F1E] text-slate-700 dark:text-slate-200 border border-slate-200/90 dark:border-slate-800 text-xs sm:text-sm font-semibold shadow-xl focus:border-[#F59E0B] focus:ring-2 focus:ring-[#F59E0B]/20 outline-none cursor-pointer min-h-[52px]"
+                className="appearance-none w-full sm:w-auto pl-9 pr-8 py-4 rounded-2xl bg-white/95 dark:bg-[#070F1E] text-slate-700 dark:text-slate-200 border border-slate-200/90 dark:border-slate-800 text-xs sm:text-sm font-semibold shadow-sm focus:border-[#F59E0B] focus:ring-2 focus:ring-[#F59E0B]/20 outline-none cursor-pointer min-h-[52px]"
                 aria-label="Sort tools"
               >
                 {SORT_OPTIONS.map((opt) => (
@@ -425,7 +425,7 @@ export default function ToolsDirectoryClient() {
               <div
                 key={tool.id}
                 id={tool.slug}
-                className="group relative bg-white dark:bg-[#070F1E]/95 rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-slate-800/90 p-6 sm:p-7 shadow-sm hover:shadow-2xl hover:shadow-amber-500/5 hover:border-[#F59E0B]/50 transition-all duration-300 min-h-[460px] flex flex-col justify-between overflow-hidden before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-amber-500/40 before:to-transparent"
+                className="group relative bg-white/95 dark:bg-[#070F1E]/95 rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-slate-800/90 p-6 sm:p-7 shadow-sm hover:-translate-y-1 hover:shadow-2xl hover:shadow-amber-500/5 hover:border-[#F59E0B]/50 transition-all duration-300 min-h-[460px] flex flex-col justify-between overflow-hidden before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-amber-500/40 before:to-transparent"
               >
                 <div>
                   {/* Top Bar: Icon + Semantic Badge + Quick Actions */}

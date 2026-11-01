@@ -198,63 +198,163 @@ export default function ToolsPage() {
         aria-hidden="true"
       />
 
-      {/* ─── Ambient Top Glow Cone ─── */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[550px] bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(245,158,11,0.12),transparent_70%)] blur-3xl pointer-events-none"
-        aria-hidden="true"
-      />
+      {/* ─── Ambient Glow Rings & Radar Cones (Level AI Atmosphere) ─── */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[640px] pointer-events-none overflow-hidden" aria-hidden="true">
+        {/* Central Luminous Core */}
+        <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-[radial-gradient(ellipse_at_center,rgba(245,158,11,0.18)_0%,rgba(59,130,246,0.08)_40%,transparent_70%)] blur-3xl" />
+        
+        {/* Orbital Concentric Curves (Level AI signature geometry) */}
+        <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full border border-amber-500/10 [mask-image:radial-gradient(ellipse_at_top,white_20%,transparent_70%)]" />
+        <div className="absolute top-32 left-1/2 -translate-x-1/2 w-[1200px] h-[1200px] rounded-full border border-slate-700/20 [mask-image:radial-gradient(ellipse_at_top,white_15%,transparent_70%)]" />
+      </div>
 
       {/* ═══════════════════════════════════════════════════════
-          1. HERO SECTION (Linear / Vercel Tier)
+          1. HERO SECTION (Level AI Agents Architecture)
           ═══════════════════════════════════════════════════════ */}
-      <section className="relative pt-24 pb-8 md:pt-32 md:pb-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center z-10">
-        {/* Eyebrow Pill Badge with Glowing Amber Beacon */}
+      <section className="relative pt-24 pb-12 md:pt-32 md:pb-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto text-center z-10">
+        {/* Level AI Eyebrow Pill */}
         <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-xs font-mono font-bold uppercase tracking-widest text-amber-700 dark:text-[#F59E0B] mb-7 shadow-xs backdrop-blur-md">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F59E0B] opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F59E0B]" />
           </span>
-          ENGINEERING TOOLBOX
+          <span>ENGINEERING TOOLBOX</span>
+          <span className="text-amber-500/40">•</span>
+          <span className="text-[10px] text-slate-500 dark:text-slate-400 font-normal">v2.0 CLIENT-SIDE</span>
         </div>
 
         {/* Hero Title */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6 max-w-4xl mx-auto">
           <span className="text-slate-900 dark:text-white">Free Developer, AI &amp; </span>
-          <span className="bg-gradient-to-r from-amber-500 via-orange-400 to-[#F59E0B] text-transparent bg-clip-text">
+          <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-[#F59E0B] text-transparent bg-clip-text drop-shadow-xs">
             SEO Tools
           </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed mb-6 font-normal">
+        <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed mb-6 font-normal">
           Clean, fast, client-side tools for modern web development, AI agent planning and SEO workflows. Open a tool, get your answer, move on. No signup required.
         </p>
 
         {/* Trust Line */}
-        <div className="flex items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-mono text-slate-500 dark:text-slate-400 mb-8">
-          <span>Free to use</span>
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-mono text-slate-500 dark:text-slate-400 mb-8">
+          <span className="inline-flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            Free to use
+          </span>
           <span className="text-slate-300 dark:text-slate-700">•</span>
-          <span>Runs in your browser</span>
+          <span className="inline-flex items-center gap-1.5">
+            <ShieldCheck size={14} className="text-blue-500" />
+            Runs in your browser
+          </span>
           <span className="text-slate-300 dark:text-slate-700">•</span>
-          <span>Built by a working developer</span>
+          <span className="inline-flex items-center gap-1.5">
+            <Code2 size={14} className="text-[#F59E0B]" />
+            Built by a working developer
+          </span>
         </div>
 
-        {/* Hero Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-4">
+        {/* Action Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-14">
           <a
             href="#tools-catalog"
-            className="px-6 py-3 rounded-full bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-sm inline-flex items-center gap-2 transition-all shadow-md hover:shadow-amber-500/20 active:scale-95 no-underline cursor-pointer"
+            className="px-7 py-3.5 rounded-full bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-sm inline-flex items-center gap-2 transition-all shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 active:scale-95 no-underline cursor-pointer"
           >
             <span>Browse all tools</span>
             <ArrowRight size={16} />
           </a>
           <Link
             href="/contact?subject=Suggest%20a%20Tool"
-            className="px-6 py-3 rounded-full border border-slate-300 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-slate-800 dark:text-slate-200 font-semibold text-sm hover:border-[#F59E0B] hover:text-[#F59E0B] transition-all inline-flex items-center gap-2 no-underline active:scale-95"
+            className="px-7 py-3.5 rounded-full border border-slate-300 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-slate-800 dark:text-slate-200 font-semibold text-sm hover:border-[#F59E0B] hover:text-[#F59E0B] transition-all inline-flex items-center gap-2 no-underline active:scale-95 shadow-sm"
           >
             <span>Suggest a tool</span>
             <ArrowUpRight size={16} />
           </Link>
+        </div>
+
+        {/* ─── Level AI Signature Floating Console / Showcase Deck ─── */}
+        <div className="relative max-w-4xl mx-auto rounded-3xl border border-slate-200/90 dark:border-slate-800/90 bg-white/70 dark:bg-[#070F1E]/85 backdrop-blur-xl p-4 sm:p-6 shadow-2xl shadow-black/10 dark:shadow-black/50 overflow-hidden text-left before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-[#F59E0B]/60 before:to-transparent">
+          {/* Deck Header Bar */}
+          <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-slate-200/70 dark:border-slate-800/80">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-green-500/80 inline-block" />
+              <span className="ml-2 text-[11px] font-mono text-slate-500 dark:text-slate-400 hidden sm:inline-block">
+                toolbox.codewithamrendra.in/runtime
+              </span>
+            </div>
+            <div className="flex items-center gap-2 text-[11px] font-mono text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>ACTIVE · 100% CLIENT ENGINE</span>
+            </div>
+          </div>
+
+          {/* Deck 3-Pillar Capability Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {/* Pillar 1 */}
+            <Link
+              href="/tools/free-json-validator"
+              className="group p-4 rounded-2xl border border-slate-200/70 dark:border-slate-800/70 bg-slate-50/70 dark:bg-[#050C18]/70 hover:border-blue-500/50 hover:bg-white dark:hover:bg-[#09152B] transition-all no-underline block"
+            >
+              <div className="flex items-center justify-between mb-2">
+                <div className="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center font-bold border border-blue-500/20">
+                  <FileCode2 size={16} />
+                </div>
+                <span className="text-[10px] font-mono text-blue-600 dark:text-blue-400 group-hover:translate-x-0.5 transition-transform inline-flex items-center">
+                  LAUNCH ↗
+                </span>
+              </div>
+              <p className="text-xs font-bold text-slate-900 dark:text-white mb-1">
+                JSON Validator
+              </p>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-normal">
+                Instant parsing, missing comma detection &amp; formatter.
+              </p>
+            </Link>
+
+            {/* Pillar 2 */}
+            <Link
+              href="/tools/ai-agent-cost-calculator"
+              className="group p-4 rounded-2xl border border-slate-200/70 dark:border-slate-800/70 bg-slate-50/70 dark:bg-[#050C18]/70 hover:border-amber-500/50 hover:bg-white dark:hover:bg-[#09152B] transition-all no-underline block"
+            >
+              <div className="flex items-center justify-between mb-2">
+                <div className="w-8 h-8 rounded-xl bg-amber-500/10 text-[#F59E0B] flex items-center justify-center font-bold border border-amber-500/20">
+                  <Bot size={16} />
+                </div>
+                <span className="text-[10px] font-mono text-[#F59E0B] group-hover:translate-x-0.5 transition-transform inline-flex items-center">
+                  CALCULATE ↗
+                </span>
+              </div>
+              <p className="text-xs font-bold text-slate-900 dark:text-white mb-1">
+                AI Cost Calculator
+              </p>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-normal">
+                Multi-LLM token estimation &amp; agent budget planner.
+              </p>
+            </Link>
+
+            {/* Pillar 3 */}
+            <Link
+              href="/contact?subject=Suggest%20an%20SEO%20Tool"
+              className="group p-4 rounded-2xl border border-slate-200/70 dark:border-slate-800/70 bg-slate-50/70 dark:bg-[#050C18]/70 hover:border-emerald-500/50 hover:bg-white dark:hover:bg-[#09152B] transition-all no-underline block"
+            >
+              <div className="flex items-center justify-between mb-2">
+                <div className="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold border border-emerald-500/20">
+                  <Search size={16} />
+                </div>
+                <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 group-hover:translate-x-0.5 transition-transform inline-flex items-center">
+                  REQUEST ↗
+                </span>
+              </div>
+              <p className="text-xs font-bold text-slate-900 dark:text-white mb-1">
+                SEO Tools
+              </p>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-normal">
+                Metadata and structured schema checks in development.
+              </p>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -276,16 +376,78 @@ export default function ToolsPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          3. INTRO STATEMENT
+          3. INTRO STATEMENT (Redesigned Linear Bento Showcase)
           ═══════════════════════════════════════════════════════ */}
-      <section className="px-4 sm:px-6 lg:px-8 py-10 max-w-4xl mx-auto relative z-10">
-        <div className="relative rounded-3xl border border-slate-200/90 dark:border-slate-800/90 bg-white/70 dark:bg-[#070F1E]/70 backdrop-blur-xl p-7 sm:p-9 md:p-11 shadow-sm overflow-hidden before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-[#F59E0B]/50 before:to-transparent">
-          <p className="text-slate-800 dark:text-slate-200 text-base sm:text-lg lg:text-xl font-medium leading-relaxed mb-4">
-            Most online tools are slow, cluttered, or ask you to create an account before you can validate a single line of JSON. These tools are different. Each one is built to do one job well, load quickly, and respect your data by running in your browser.
-          </p>
-          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
-            The toolbox is organised into three categories: Developer Tools for everyday coding tasks, AI &amp; LLM Tools for planning and costing AI agents, and SEO Tools for technical and on-page optimisation. New tools are added regularly, and you can suggest the next one.
-          </p>
+      <section className="px-4 sm:px-6 lg:px-8 py-12 max-w-5xl mx-auto relative z-10">
+        <div className="relative rounded-3xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-[#070F1E]/80 backdrop-blur-xl p-8 sm:p-10 md:p-12 shadow-xl shadow-black/5 dark:shadow-black/20 overflow-hidden before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-[#F59E0B]/60 before:to-transparent">
+
+          {/* Top Label & Headline */}
+          <div className="max-w-3xl mb-8">
+            <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#F59E0B] bg-[#F59E0B]/10 px-3 py-1 rounded-full border border-[#F59E0B]/30 inline-block mb-3.5">
+              WHY THIS TOOLBOX EXISTS
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white leading-snug tracking-tight mb-4">
+              No clutter. No paywalls. Just clean, fast developer tools.
+            </h2>
+            <p className="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed font-medium">
+              Most online tools are slow, cluttered, or ask you to create an account before you can validate a single line of JSON. <span className="text-[#F59E0B] font-bold">These tools are different.</span> Each one is built to do one job well, load quickly, and respect your data by running in your browser.
+            </p>
+          </div>
+
+          {/* 3 Categories Visual Pill Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 pt-2 mb-6">
+            {/* Category 1 */}
+            <div className="rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800/80 bg-slate-50/80 dark:bg-[#050C18]/80 hover:border-blue-500/40 transition-colors">
+              <div className="w-9 h-9 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center font-bold mb-3 border border-blue-500/20">
+                <Code2 size={18} />
+              </div>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1.5">
+                Developer Tools
+              </h3>
+              <p className="text-xs sm:text-[13px] text-slate-600 dark:text-slate-400 leading-relaxed">
+                Everyday coding utilities for checking API responses, debugging config files, and data validation.
+              </p>
+            </div>
+
+            {/* Category 2 */}
+            <div className="rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800/80 bg-slate-50/80 dark:bg-[#050C18]/80 hover:border-amber-500/40 transition-colors">
+              <div className="w-9 h-9 rounded-xl bg-amber-500/10 text-[#F59E0B] flex items-center justify-center font-bold mb-3 border border-amber-500/20">
+                <Bot size={18} />
+              </div>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1.5">
+                AI &amp; LLM Tools
+              </h3>
+              <p className="text-xs sm:text-[13px] text-slate-600 dark:text-slate-400 leading-relaxed">
+                Interactive estimators for modeling token usage, comparing LLMs, and planning agent budgets.
+              </p>
+            </div>
+
+            {/* Category 3 */}
+            <div className="rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800/80 bg-slate-50/80 dark:bg-[#050C18]/80 hover:border-emerald-500/40 transition-colors">
+              <div className="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold mb-3 border border-emerald-500/20">
+                <Search size={18} />
+              </div>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1.5">
+                SEO Tools
+              </h3>
+              <p className="text-xs sm:text-[13px] text-slate-600 dark:text-slate-400 leading-relaxed">
+                Practical diagnostics for metadata, structured schema, and technical on-page optimisation.
+              </p>
+            </div>
+          </div>
+
+          {/* Footer Subtext with Suggest Link */}
+          <div className="pt-4 border-t border-slate-200/60 dark:border-slate-800/60 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+            <span>New tools are added regularly to expand the developer toolbox.</span>
+            <Link
+              href="/contact?subject=Suggest%20a%20Tool"
+              className="text-[#F59E0B] hover:underline font-semibold inline-flex items-center gap-1 shrink-0"
+            >
+              <span>Suggest the next tool</span>
+              <ArrowRight size={14} />
+            </Link>
+          </div>
+
         </div>
       </section>
 
