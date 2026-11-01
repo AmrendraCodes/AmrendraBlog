@@ -45,12 +45,39 @@ function assertConfiguredContentSource() {
   }
 }
 
-function throwDatabaseQueryError(operation, error) {
+async function queryWithRetry(queryFn, maxRetries = 2, delayMs = 1500) {
+  let lastError;
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await queryFn();
+    } catch (err) {
+      lastError = err;
+      const msg = err?.message || String(err);
+      const isConnectionIssue =
+        msg.includes("Can't reach database server") ||
+        msg.includes("Connection terminated") ||
+        msg.includes("connection timeout") ||
+        msg.includes("Closed") ||
+        err?.code === "P1001" ||
+        err?.code === "P1002" ||
+        err?.code === "P1008" ||
+        err?.code === "P1017";
+
+      if (isConnectionIssue && attempt < maxRetries) {
+        console.warn(`[posts] Database is waking up (attempt ${attempt}/${maxRetries}). Retrying in ${delayMs}ms...`);
+        await new Promise((r) => setTimeout(r, delayMs));
+        continue;
+      }
+      throw err;
+    }
+  }
+  throw lastError;
+}
+
+function handleDatabaseQueryError(operation, error) {
   const reason = error instanceof Error ? error.message : String(error);
-  throw new Error(
-    `[posts] Failed to ${operation} from the database. ` +
-    `Verify DATABASE_URL and database connectivity. Cause: ${reason}`,
-    { cause: error }
+  console.warn(
+    `[posts] Database unavailable for ${operation} (${reason}). Gracefully falling back to local markdown corpus.`
   );
 }
 
@@ -240,14 +267,16 @@ export async function getAllPostsAsync() {
   assertConfiguredContentSource();
 
   try {
-    const dbPosts = await prisma.blog.findMany({
-      where: { status: "PUBLISHED" },
-      include: {
-        category: true,
-        tags: { include: { tag: true } },
-      },
-      orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
-    });
+    const dbPosts = await queryWithRetry(() =>
+      prisma.blog.findMany({
+        where: { status: "PUBLISHED" },
+        include: {
+          category: true,
+          tags: { include: { tag: true } },
+        },
+        orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
+      })
+    );
 
     if (dbPosts) {
       return dbPosts.map((post) => {
@@ -287,7 +316,8 @@ export async function getAllPostsAsync() {
       });
     }
   } catch (error) {
-    throwDatabaseQueryError("load published posts", error);
+    handleDatabaseQueryError("load published posts", error);
+    return getPostsFromFilesystem();
   }
 }
 
@@ -295,12 +325,6 @@ export async function getAllPostsAsync() {
  * Synchronous markdown-only reader retained for compatibility.
  */
 export function getAllPosts() {
-  if (!isMarkdownSource()) {
-    throw new Error(
-      `[posts] getAllPosts() only supports CONTENT_SOURCE=markdown. ` +
-      `Use getAllPostsAsync() for database content.`
-    );
-  }
   return getPostsFromFilesystem();
 }
 
@@ -314,7 +338,7 @@ export const getPostSummariesAsync = cache(async function getPostSummariesAsync(
   }
   assertConfiguredContentSource();
   try {
-    const posts = await prisma.blog.findMany({
+    const posts = await queryWithRetry(() => prisma.blog.findMany({
       where: { status: "PUBLISHED" },
       select: {
         id: true, title: true, slug: true, excerpt: true, description: true,
@@ -326,7 +350,7 @@ export const getPostSummariesAsync = cache(async function getPostSummariesAsync(
         tags: { select: { tag: { select: { name: true } } } }, views: true,
       },
       orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
-    });
+    }));
     // Older CMS records may lack both reading-time fields. Fetch only those
     // bodies to preserve their existing derived read time, rather than all bodies.
     const missing = posts.filter(post => !post.readingTime && !post.wordCount);
@@ -353,7 +377,8 @@ export const getPostSummariesAsync = cache(async function getPostSummariesAsync(
       tags: post.tags.map(({ tag }) => tag.name), views: post.views || 0,
     }));
   } catch (error) {
-    throwDatabaseQueryError("load published post summaries", error);
+    handleDatabaseQueryError("load published post summaries", error);
+    return getPostsFromFilesystem().map(({ content, faqs, ...summary }) => summary);
   }
 });
 
@@ -367,13 +392,13 @@ export const getPostBySlugAsync = cache(async function getPostBySlugAsync(slug) 
   assertConfiguredContentSource();
 
   try {
-    const post = await prisma.blog.findFirst({
+    const post = await queryWithRetry(() => prisma.blog.findFirst({
       where: { slug, status: "PUBLISHED" },
       include: {
         category: true,
         tags: { include: { tag: true } },
       },
-    });
+    }));
 
     if (post) {
       const normalizedContent = normalizeMarkdown(post.content);
@@ -411,9 +436,10 @@ export const getPostBySlugAsync = cache(async function getPostBySlugAsync(slug) 
       };
     }
 
-    return null;
+    return getPostBySlug(slug) || null;
   } catch (err) {
-    throwDatabaseQueryError(`load post "${slug}"`, err);
+    handleDatabaseQueryError(`load post "${slug}"`, err);
+    return getPostBySlug(slug) || null;
   }
 });
 
@@ -448,13 +474,13 @@ export async function getAllCategoriesAsync() {
   assertConfiguredContentSource();
 
   try {
-    const dbCategories = await prisma.category.findMany({
+    const dbCategories = await queryWithRetry(() => prisma.category.findMany({
       select: {
         slug: true,
         name: true,
         _count: { select: { posts: { where: { status: "PUBLISHED" } } } },
       },
-    });
+    }));
 
     return dbCategories.map((c) => ({
       slug: c.slug,
@@ -462,18 +488,12 @@ export async function getAllCategoriesAsync() {
       count: c._count.posts,
     }));
   } catch (err) {
-    throwDatabaseQueryError("load categories", err);
+    handleDatabaseQueryError("load categories", err);
+    return getAllCategories();
   }
-
 }
 
 export function getAllCategories() {
-  if (!isMarkdownSource()) {
-    throw new Error(
-      `[posts] getAllCategories() only supports CONTENT_SOURCE=markdown. ` +
-      `Use getAllCategoriesAsync() for database content.`
-    );
-  }
   const posts = getAllPosts();
   const categorySlugs = [...new Set(posts.map((p) => p.categorySlug))];
 
@@ -494,23 +514,19 @@ export async function getAllTagsAsync() {
   assertConfiguredContentSource();
 
   try {
-    const dbTags = await prisma.tag.findMany({
-      select: { name: true },
-    });
+    const dbTags = await queryWithRetry(() =>
+      prisma.tag.findMany({
+        select: { name: true },
+      })
+    );
     return dbTags.map((t) => t.name).sort();
   } catch (err) {
-    throwDatabaseQueryError("load tags", err);
+    handleDatabaseQueryError("load tags", err);
+    return getAllTags();
   }
-
 }
 
 export function getAllTags() {
-  if (!isMarkdownSource()) {
-    throw new Error(
-      `[posts] getAllTags() only supports CONTENT_SOURCE=markdown. ` +
-      `Use getAllTagsAsync() for database content.`
-    );
-  }
   const posts = getAllPosts();
   return [...new Set(posts.flatMap((p) => p.tags || []))].sort();
 }

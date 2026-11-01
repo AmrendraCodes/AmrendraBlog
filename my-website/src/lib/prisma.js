@@ -1,4 +1,10 @@
 import { PrismaClient } from '@prisma/client';
+import dns from 'node:dns';
+
+// Ensure IPv4 is prioritized to avoid slow or failing IPv6 routes on Indian ISPs/hotspots
+if (typeof dns.setDefaultResultOrder === 'function') {
+  dns.setDefaultResultOrder('ipv4first');
+}
 
 const globalForPrisma = globalThis;
 
@@ -34,4 +40,3 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default prisma;
-
