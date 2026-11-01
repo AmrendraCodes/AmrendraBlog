@@ -16,14 +16,20 @@ function createPrismaClient() {
     ],
   });
 
-  // Filter out benign idle connection drops from Neon Serverless / PgBouncer
+  // Filter out benign connection events from Neon Serverless / PgBouncer
   client.$on('error', (e) => {
-    if (e.message?.includes('kind: Closed') || e.message?.includes('cause: None')) {
-      // Benign: Neon Serverless / PgBouncer closes idle TCP connections when inactive.
-      // Prisma automatically re-establishes connections on the next incoming query.
+    const msg = e.message || String(e);
+    if (
+      msg.includes('kind: Closed') ||
+      msg.includes('cause: None') ||
+      msg.includes("Can't reach database server") ||
+      msg.includes('P1001')
+    ) {
+      // Benign: Neon Serverless sleeping, idle drop, or wake-up handshake.
+      // The application loader handles automatic retry and markdown fallback.
       return;
     }
-    console.error('Prisma Database Error:', e.message || e);
+    console.error('Prisma Database Error:', msg);
   });
 
   client.$on('warn', (e) => {

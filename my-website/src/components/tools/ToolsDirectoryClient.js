@@ -253,7 +253,8 @@ export default function ToolsDirectoryClient() {
         {/* Search & Sort Row */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 max-w-3xl mx-auto">
           {/* Search Input */}
-          <div className="relative flex-1">
+          <div className="relative flex-1 group">
+            <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-amber-500/25 via-blue-500/20 to-amber-500/25 blur-sm opacity-60 group-hover:opacity-100 group-focus-within:opacity-100 transition duration-300 pointer-events-none" />
             <div className="relative flex items-center">
               <Search
                 size={18}
@@ -266,7 +267,7 @@ export default function ToolsDirectoryClient() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search tools by name, tag, or tech (e.g. JSON, GPT-4o, SEO)..."
-                className="w-full pl-11 pr-24 py-3.5 sm:py-4 rounded-2xl bg-white dark:bg-[#0B1F3A]/90 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 border border-slate-200 dark:border-[#1E293B] shadow-xs focus:border-[#F59E0B] focus:ring-2 focus:ring-[#F59E0B]/20 outline-none transition-all text-sm sm:text-base min-h-[48px]"
+                className="w-full pl-11 pr-24 py-4 rounded-2xl bg-white dark:bg-[#070F1E] text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 border border-slate-200/90 dark:border-slate-800 shadow-xl focus:border-[#F59E0B] focus:ring-2 focus:ring-[#F59E0B]/20 outline-none transition-all text-sm sm:text-base min-h-[52px]"
                 aria-label="Search developer tools"
               />
               <div className="absolute right-3 flex items-center gap-1.5">
@@ -303,7 +304,7 @@ export default function ToolsDirectoryClient() {
                 id="tools-sort-select"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="appearance-none w-full sm:w-auto pl-9 pr-8 py-3.5 sm:py-4 rounded-2xl bg-white dark:bg-[#0B1F3A]/90 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-[#1E293B] text-xs sm:text-sm font-semibold shadow-xs focus:border-[#F59E0B] focus:ring-2 focus:ring-[#F59E0B]/20 outline-none cursor-pointer min-h-[48px]"
+                className="appearance-none w-full sm:w-auto pl-9 pr-8 py-4 rounded-2xl bg-white dark:bg-[#070F1E] text-slate-700 dark:text-slate-200 border border-slate-200/90 dark:border-slate-800 text-xs sm:text-sm font-semibold shadow-xl focus:border-[#F59E0B] focus:ring-2 focus:ring-[#F59E0B]/20 outline-none cursor-pointer min-h-[52px]"
                 aria-label="Sort tools"
               >
                 {SORT_OPTIONS.map((opt) => (
@@ -424,7 +425,7 @@ export default function ToolsDirectoryClient() {
               <div
                 key={tool.id}
                 id={tool.slug}
-                className="group relative bg-[var(--card-bg)] rounded-2xl sm:rounded-3xl border border-[var(--card-border)] p-6 sm:p-7 shadow-[var(--shadow-card)] card-interactive flex flex-col justify-between hover:border-[#F59E0B]/50 hover:shadow-lg transition-all duration-300 min-h-[460px] overflow-visible"
+                className="group relative bg-white dark:bg-[#070F1E]/95 rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-slate-800/90 p-6 sm:p-7 shadow-sm hover:shadow-2xl hover:shadow-amber-500/5 hover:border-[#F59E0B]/50 transition-all duration-300 min-h-[460px] flex flex-col justify-between overflow-hidden before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-amber-500/40 before:to-transparent"
               >
                 <div>
                   {/* Top Bar: Icon + Semantic Badge + Quick Actions */}
