@@ -200,6 +200,7 @@ export default function Footer() {
                   { name: "About", href: "/about" },
                   { name: "Contact", href: "/contact" },
                   { name: "Privacy Policy", href: "/privacy" },
+                  { name: "Cookie Policy", href: "/cookie-policy" },
                   { name: "Terms of Service", href: "/terms" },
                 ].map((link) => (
                   <li key={link.name}>
@@ -227,8 +228,6 @@ export default function Footer() {
           {/* Copyright */}
           <div className="flex flex-col sm:flex-row items-center gap-2 text-center sm:text-left">
             <p>&copy; {currentYear} Code with Amrendra. All rights reserved.</p>
-            <span className="hidden sm:inline text-slate-500">•</span>
-            <p className="text-slate-400">Built with Next.js &amp; ❤️</p>
           </div>
 
           {/* Social Links & Back to Top */}

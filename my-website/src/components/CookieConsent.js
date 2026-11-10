@@ -150,10 +150,14 @@ export default function CookieConsent() {
 
           <p className="pr-8 text-[13px] leading-relaxed text-[var(--text-body)]">
             Essential cookies keep Code with Amrendra working properly. Optional cookies help us understand website usage and improve performance. You can accept, reject, or manage your preferences. Learn more in our{" "}
+            <Link className="font-semibold text-[#D97706] underline decoration-[#F59E0B]/40 underline-offset-2 hover:text-[#F59E0B]" href="/cookie-policy">
+              Cookie Policy
+            </Link>{" "}
+            and{" "}
             <Link className="font-semibold text-[#D97706] underline decoration-[#F59E0B]/40 underline-offset-2 hover:text-[#F59E0B]" href="/privacy">
               Privacy Policy
             </Link>
-            . <span className="font-semibold text-[var(--text-muted)]">MISSING COOKIE POLICY PAGE</span>
+            .
           </p>
 
           <div className="mt-5 flex flex-wrap items-center justify-end gap-2">

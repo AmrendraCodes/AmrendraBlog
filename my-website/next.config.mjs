@@ -108,6 +108,11 @@ const nextConfig = {
         destination: '/contact',
         permanent: true,
       },
+      {
+        source: '/cookies',
+        destination: '/cookie-policy',
+        permanent: true,
+      },
       // Fix Ahrefs 404s — dead category slugs with no posts
       {
         source: '/category/design',
