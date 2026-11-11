@@ -89,6 +89,35 @@ export const TOOLS_DATA = [
       "All processing happens locally in your browser",
     ],
   },
+  {
+    id: "seo-content-reviewer",
+    title: "SEO Content Reviewer",
+    slug: "seo-content-reviewer",
+    route: "/tools/seo-content-reviewer",
+    description: "Free all-in-one SEO content auditor: live 0–100 score, top 5 fixes, and real-time live editor.",
+    mainCategory: "SEO Tools",
+    subcategory: "Content Auditing",
+    category: "SEO Tools",
+    badge: "New",
+    semanticBadge: "new",
+    iconName: "SeoReviewer",
+    tags: ["SEO", "Content Optimization", "Readability", "Headings"],
+    status: "published",
+    featured: true,
+    createdAt: "2026-11",
+    updatedAt: "2026-11",
+    actionText: "Open Tool",
+    seo: {
+      title: "Free SEO Content Checker: Audit & Score Articles | Code with Amrendra",
+      description: "Use this free SEO content checker to audit articles or URLs. Get a live score out of 100, fix on-page issues, and improve readability without signing up.",
+    },
+    highlights: [
+      "Instant 0–100 weighted SEO score with Pass/Warn/Fail pills",
+      "Prioritized Top 5 action items to quickly boost rankings",
+      "Live debounced in-browser editor with one-click copy",
+      "URL analysis with safe SSRF-protected text extraction",
+    ],
+  },
 ];
 
 export const PUBLISHED_TOOLS = TOOLS_DATA.filter(

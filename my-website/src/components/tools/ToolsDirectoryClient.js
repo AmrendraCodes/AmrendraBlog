@@ -32,6 +32,7 @@ import {
   TOOL_CATEGORIES,
   TOOL_CATEGORY_CONFIG,
 } from '@/data/toolsData';
+import SeoReviewerIcon from '@/components/tools/SeoReviewerIcon';
 
 // Icon mapping helper
 const ICON_MAP = {
@@ -43,6 +44,8 @@ const ICON_MAP = {
   Gauge,
   KeyRound,
   FileImage,
+  SeoReviewer: SeoReviewerIcon,
+  Sparkles: SeoReviewerIcon,
 };
 
 // Strict Semantic Badge System (WCAG AA Compliant)
@@ -801,3 +804,4 @@ export default function ToolsDirectoryClient() {
     </div>
   );
 }
+

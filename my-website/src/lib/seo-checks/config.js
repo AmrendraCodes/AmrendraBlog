@@ -15,8 +15,8 @@ export const SEO_CHECK_CONFIG = {
     title: {
       idealMin: 50,
       idealMax: 60,
+      warnMax: 70, // >60 = WARN, >70 = FAIL
       acceptableMin: 40,
-      acceptableMax: 70,
     },
     metaDescription: {
       idealMin: 120,

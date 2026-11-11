@@ -2,6 +2,7 @@ import { SEO_CHECK_CONFIG } from './config.js';
 
 /**
  * Checks Title Tag and Meta Description
+ * Rule: Title length 50-60 pass, >60 chars = WARN, >70 = FAIL.
  * @param {Object} input
  * @param {string} [input.title]
  * @param {string} [input.metaDescription]
@@ -21,44 +22,71 @@ export function checkTitleMeta({ title = '', metaDescription = '', keyword = '' 
   const suggestions = [];
 
   let titleScore = 100;
+  let titleStatus = 'pass';
   let descScore = 100;
+  let descStatus = 'pass';
 
-  // 1. Title Evaluation
+  // 1. Title Evaluation: >60 = WARN, >70 = FAIL
   if (titleLen === 0) {
     titleScore = 0;
+    titleStatus = 'fail';
     issues.push('Title tag is missing');
     suggestions.push('Add an SEO page title between 50 and 60 characters.');
-  } else if (titleLen < SEO_CHECK_CONFIG.thresholds.title.acceptableMin) {
-    titleScore = Math.max(30, Math.round((titleLen / SEO_CHECK_CONFIG.thresholds.title.idealMin) * 70));
-    issues.push(`Title is too short (${titleLen} chars)`);
-    suggestions.push(`Expand title to 50–60 characters for maximum search engine click-through.`);
-  } else if (titleLen > SEO_CHECK_CONFIG.thresholds.title.acceptableMax) {
-    titleScore = Math.max(30, 100 - (titleLen - SEO_CHECK_CONFIG.thresholds.title.acceptableMax) * 4);
-    issues.push(`Title is too long (${titleLen} chars)`);
-    suggestions.push('Shorten title below 60 characters to prevent Google SERP truncation.');
-  } else if (titleLen >= SEO_CHECK_CONFIG.thresholds.title.idealMin && titleLen <= SEO_CHECK_CONFIG.thresholds.title.idealMax) {
+  } else if (titleLen > 70) {
+    titleScore = Math.max(20, Math.round(60 - (titleLen - 70) * 3));
+    titleStatus = 'fail';
+    issues.push(`Title tag is too long (${titleLen} chars — exceeds 70 character limit)`);
+    suggestions.push('Shorten title tag below 60 characters to prevent Google SERP truncation.');
+  } else if (titleLen > 60) {
+    titleScore = 70;
+    titleStatus = 'warn';
+    issues.push(`Title tag is slightly long (${titleLen} chars — recommended 50–60 characters)`);
+    suggestions.push('Trim title tag to 50–60 characters for optimal display on mobile & desktop.');
+  } else if (titleLen >= 50 && titleLen <= 60) {
     titleScore = 100;
+    titleStatus = 'pass';
+  } else if (titleLen >= 40 && titleLen < 50) {
+    titleScore = 75;
+    titleStatus = 'warn';
+    issues.push(`Title tag is slightly short (${titleLen} chars — recommended 50–60 characters)`);
+    suggestions.push('Expand title tag to 50–60 characters with secondary keywords or brand name.');
   } else {
-    titleScore = 80; // In acceptable range (40-49 or 61-70)
+    // titleLen < 40
+    titleScore = Math.max(25, Math.round((titleLen / 40) * 50));
+    titleStatus = 'fail';
+    issues.push(`Title tag is too short (${titleLen} chars — under 40 characters)`);
+    suggestions.push('Expand title to at least 50 characters to maximize search visibility.');
   }
 
-  // 2. Meta Description Evaluation
+  // 2. Meta Description Evaluation: 120-160 pass, <100 or >180 fail
   if (descLen === 0) {
     descScore = 0;
+    descStatus = 'fail';
     issues.push('Meta description is missing');
     suggestions.push('Add a compelling meta description between 120 and 160 characters.');
-  } else if (descLen < SEO_CHECK_CONFIG.thresholds.metaDescription.acceptableMin) {
-    descScore = Math.max(30, Math.round((descLen / SEO_CHECK_CONFIG.thresholds.metaDescription.idealMin) * 70));
-    issues.push(`Meta description is too short (${descLen} chars)`);
-    suggestions.push('Expand meta description to 120–160 characters to optimize SERP snippet real estate.');
-  } else if (descLen > SEO_CHECK_CONFIG.thresholds.metaDescription.acceptableMax) {
-    descScore = Math.max(30, 100 - (descLen - SEO_CHECK_CONFIG.thresholds.metaDescription.acceptableMax) * 3);
-    issues.push(`Meta description is too long (${descLen} chars)`);
-    suggestions.push('Trim meta description below 160 characters to avoid being cut off on mobile devices.');
-  } else if (descLen >= SEO_CHECK_CONFIG.thresholds.metaDescription.idealMin && descLen <= SEO_CHECK_CONFIG.thresholds.metaDescription.idealMax) {
-    descScore = 100;
+  } else if (descLen < 100) {
+    descScore = Math.max(30, Math.round((descLen / 120) * 60));
+    descStatus = 'fail';
+    issues.push(`Meta description is too short (${descLen} chars — under 100 characters)`);
+    suggestions.push('Expand meta description to 120–160 characters for complete search snippets.');
+  } else if (descLen < 120) {
+    descScore = 75;
+    descStatus = 'warn';
+    issues.push(`Meta description is slightly short (${descLen} chars — recommended 120–160 characters)`);
+    suggestions.push('Add more detail or a call to action to reach 120–160 characters.');
+  } else if (descLen > 180) {
+    descScore = Math.max(30, Math.round(70 - (descLen - 180) * 2));
+    descStatus = 'fail';
+    issues.push(`Meta description is too long (${descLen} chars — exceeds 180 characters)`);
+    suggestions.push('Shorten meta description below 160 characters to avoid snippet truncation.');
+  } else if (descLen > 160) {
+    descScore = 75;
+    descStatus = 'warn';
+    issues.push(`Meta description is slightly long (${descLen} chars — recommended 120–160 characters)`);
+    suggestions.push('Trim meta description below 160 characters to ensure it fits mobile search results.');
   } else {
-    descScore = 80;
+    descScore = 100;
+    descStatus = 'pass';
   }
 
   // 3. Keyword Presence in Title & Description
@@ -69,25 +97,25 @@ export function checkTitleMeta({ title = '', metaDescription = '', keyword = '' 
 
     if (!titleHasKeyword) {
       keywordPenalty += 20;
-      issues.push(`Target keyword "${cleanKeyword}" missing from title`);
-      suggestions.push(`Include your target keyword "${cleanKeyword}" near the beginning of your title tag.`);
+      issues.push(`Target keyword "${cleanKeyword}" missing from title tag`);
+      suggestions.push(`Include your focus keyword "${cleanKeyword}" near the start of the title tag.`);
     }
 
     if (!descHasKeyword) {
       keywordPenalty += 15;
       issues.push(`Target keyword "${cleanKeyword}" missing from meta description`);
-      suggestions.push(`Naturally weave "${cleanKeyword}" into your meta description snippet.`);
+      suggestions.push(`Naturally weave your focus keyword "${cleanKeyword}" into the meta description.`);
     }
   }
 
-  // Base score is 50% title + 50% meta description minus keyword penalty
+  // Compute overall check score & status
   const rawScore = Math.round((titleScore * 0.5 + descScore * 0.5) - keywordPenalty);
   const finalScore = Math.max(0, Math.min(100, rawScore));
 
   let status = 'pass';
-  if (finalScore < 60) {
+  if (titleStatus === 'fail' || descStatus === 'fail' || finalScore < 60) {
     status = 'fail';
-  } else if (finalScore < 85) {
+  } else if (titleStatus === 'warn' || descStatus === 'warn' || finalScore < 85) {
     status = 'warn';
   }
 
@@ -110,7 +138,11 @@ export function checkTitleMeta({ title = '', metaDescription = '', keyword = '' 
     weight,
     details: {
       titleLength: titleLen,
+      titleScore,
+      titleStatus,
       metaDescriptionLength: descLen,
+      descScore,
+      descStatus,
       titleHasKeyword: cleanKeyword ? cleanTitle.toLowerCase().includes(cleanKeyword) : null,
       descHasKeyword: cleanKeyword ? cleanDesc.toLowerCase().includes(cleanKeyword) : null,
       issues,
