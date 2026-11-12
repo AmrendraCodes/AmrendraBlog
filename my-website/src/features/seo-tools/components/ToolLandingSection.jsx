@@ -37,7 +37,7 @@ export default function ToolLandingSection() {
   } = SEO_REVIEWER_CONTENT;
 
   return (
-    <section className="mx-auto max-w-6xl space-y-16 pt-20 text-[var(--text-body)]">
+    <section className="mx-auto max-w-6xl space-y-10 pt-10 text-[var(--text-body)]">
       {/* ─── 1. HOW IT WORKS (3 NATURAL STEPS) ─── */}
       <div className="space-y-6">
         <div className="border-b border-[var(--card-border)] pb-4">
@@ -88,51 +88,49 @@ export default function ToolLandingSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
           {coreChecks.map((check) => (
             <div
               key={check.id}
-              className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-6 shadow-sm flex flex-col justify-between"
+              className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-4 sm:p-5 shadow-sm"
             >
-              <div>
-                <div className="flex items-center justify-between gap-3 mb-2.5">
-                  <h3 className="text-base font-bold text-[var(--text-heading)]">
-                    {check.title}
-                  </h3>
-                  <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
-                    Weight: {check.weight}
-                  </span>
-                </div>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  {check.description}
-                </p>
+              <div className="flex items-center justify-between gap-3 mb-2">
+                <h3 className="text-sm sm:text-base font-bold text-[var(--text-heading)]">
+                  {check.title}
+                </h3>
+                <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 shrink-0">
+                  Weight: {check.weight}
+                </span>
               </div>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                {check.description}
+              </p>
             </div>
           ))}
+        </div>
 
-          {/* Scoring & Provisional Weight Card */}
-          <div className="rounded-2xl border border-amber-500/30 bg-amber-500/5 p-6 shadow-sm flex flex-col justify-between">
-            <div>
-              <h3 className="text-base font-bold text-amber-900 dark:text-amber-300 mb-3">
-                Fair Scoring with Provisional Weights
-              </h3>
-              <ul className="space-y-2 text-xs sm:text-sm text-amber-950/80 dark:text-amber-200/90 leading-relaxed">
-                <li className="flex items-start gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5" />
-                  <span><strong className="text-amber-900 dark:text-amber-200">No Unfair Penalties:</strong> Missing a focus keyword or heading won&apos;t artificially drop your score.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5" />
-                  <span><strong className="text-amber-900 dark:text-amber-200">Auto Re-Weighting:</strong> The remaining active checks automatically re-scale to 100%.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5" />
-                  <span><strong className="text-amber-900 dark:text-amber-200">Provisional Status:</strong> Add your keyword anytime to unlock the full 5-check evaluation.</span>
-                </li>
-              </ul>
+        {/* Scoring & Provisional Weight Banner (Compact Full-Width Callout) */}
+        <div className="rounded-2xl border border-amber-500/30 bg-amber-500/5 p-4 sm:p-5 shadow-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-amber-500/20 pb-2.5 mb-3">
+            <h3 className="text-sm sm:text-base font-bold text-amber-900 dark:text-amber-300">
+              Fair Scoring with Provisional Weights
+            </h3>
+            <span className="text-[11px] font-mono text-amber-800 dark:text-amber-400">
+              Overall Score = Weighted average calculated only on provided inputs
+            </span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs sm:text-sm text-amber-950/80 dark:text-amber-200/90 leading-relaxed">
+            <div className="flex items-start gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5" />
+              <span><strong className="text-amber-900 dark:text-amber-200">No Unfair Penalties:</strong> Missing focus keyword or headings won&apos;t drop your score.</span>
             </div>
-            <div className="mt-4 pt-3 border-t border-amber-500/20 text-[11px] text-amber-800 dark:text-amber-400 font-medium">
-              Overall Score = Weighted average calculated only on provided inputs.
+            <div className="flex items-start gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5" />
+              <span><strong className="text-amber-900 dark:text-amber-200">Auto Re-Weighting:</strong> The remaining active checks automatically scale to 100%.</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5" />
+              <span><strong className="text-amber-900 dark:text-amber-200">Provisional Status:</strong> Add your keyword anytime to unlock the full 5-check review.</span>
             </div>
           </div>
         </div>
