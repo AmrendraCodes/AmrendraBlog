@@ -3,8 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, Calendar, User, Clock } from "lucide-react";
-
+import { ArrowUpRight, Calendar, Clock } from "lucide-react";
 import TiltCard from "./ui/TiltCard";
 
 export default function BlogCard({ post }) {
@@ -15,93 +14,93 @@ export default function BlogCard({ post }) {
 
   return (
     <TiltCard className="h-full">
-      <article 
-        className="group relative bg-[var(--card-bg)] rounded-3xl overflow-hidden border border-[var(--card-border)] shadow-[var(--shadow-card)] card-interactive h-full flex flex-col justify-between"
-      >
-      {/* Thumbnail */}
-      <div className="relative aspect-video overflow-hidden rounded-t-3xl bg-slate-900">
-        <Image
-          src={imgSrc}
-          alt={post.title?.trim() || "Blog Post"}
-          fill
-          onError={() => setImgSrc(defaultFallback)}
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-contain transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.03]"
-        />
-        <div className="absolute top-4 left-4">
-          <span className="bg-[#F59E0B] text-[#0B1F3A] text-[11px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-md">
-            {post.category || "Technology"}
-          </span>
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="p-5 sm:p-6">
-        <div className="flex flex-wrap items-center gap-3 text-[var(--text-muted)] text-[12px] font-medium mb-4">
-          <div className="flex items-center">
-            <Calendar size={14} className="mr-1.5 text-[#F59E0B]" />
-            <span>{post.date || "Feb 27, 2026"}</span>
-          </div>
-          <div className="flex items-center">
-            <Clock size={14} className="mr-1.5 text-[#F59E0B]" />
-            <span>{post.readTime || "5 min read"}</span>
+      <article className="group relative bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md transition-all duration-300 h-full flex flex-col justify-between">
+        {/* Thumbnail / Header */}
+        <div className="relative aspect-video overflow-hidden bg-slate-900">
+          <Image
+            src={imgSrc}
+            alt={post.title?.trim() || "Blog Post"}
+            fill
+            onError={() => setImgSrc(defaultFallback)}
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.03]"
+          />
+          <div className="absolute top-4 left-4 z-10">
+            <span className="bg-[#FFF3DC] text-[#9A4A00] text-[11px] font-mono font-bold px-3 py-1.5 rounded-full uppercase tracking-wider border border-amber-500/30 shadow-xs">
+              {post.category || "ENGINEERING"}
+            </span>
           </div>
         </div>
 
-        <h3 className="text-xl lg:text-2xl font-bold text-[var(--text-heading)] mb-3 leading-snug group-hover:text-[#F59E0B] transition-colors line-clamp-2">
-          <Link href={postLink} className="before:absolute before:inset-0 before:z-10 no-underline text-inherit">
-            {post.title}
-          </Link>
-        </h3>
-
-        <p className="text-[var(--text-body)] text-sm leading-relaxed mb-6 line-clamp-3">
-          {post.excerpt || "Discover the latest trends and insights in the world of technology and modern web development architectures."}
-        </p>
-
-        {(() => {
-          const displayTags = (post.tags || [])
-            .filter((tag, index, tags) => Boolean(tag) && tags.indexOf(tag) === index)
-            .slice(0, 3);
-
-          if (displayTags.length === 0) return null;
-
-          return (
-            <div className="flex flex-wrap gap-1.5 mb-5 relative z-20">
-              {displayTags.map((tag) => {
-                return (
-                  <span
-                    key={tag}
-                    className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border text-[var(--text-muted)] bg-[var(--section-alt-bg)] border-[var(--card-border)]"
-                  >
-                    {tag}
-                  </span>
-                );
-              })}
+        {/* Content */}
+        <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+          <div>
+            <div className="flex flex-wrap items-center gap-3 text-slate-500 text-xs font-medium mb-3.5">
+              <div className="flex items-center">
+                <Calendar size={13} className="mr-1.5 text-[#9A4A00]" />
+                <span>{post.date || "Feb 27, 2026"}</span>
+              </div>
+              <div className="flex items-center">
+                <Clock size={13} className="mr-1.5 text-[#9A4A00]" />
+                <span>{post.readTime || "5 min read"}</span>
+              </div>
             </div>
-          );
-        })()}
 
-        <div className="flex flex-wrap gap-3 items-center justify-between pt-5 border-t border-[var(--card-border)]">
-          <div className="flex items-center space-x-3">
-            <Image 
-              src={post.authorImage || "/profile-photo.jpeg"} 
-              alt={post.author || "Amrendra kumar"} 
-              width={32} 
-              height={32} 
-              className="w-8 h-8 rounded-full object-cover ring-1 ring-[var(--card-border)]" 
-            />
-            <span className="text-[13px] font-bold text-[var(--text-heading)]">{post.author || "Amrendra kumar"}</span>
+            <h3 className="text-xl font-bold text-[#1B2433] mb-3 leading-snug group-hover:text-[#9A4A00] transition-colors line-clamp-2">
+              <Link href={postLink} className="before:absolute before:inset-0 before:z-10 no-underline text-inherit">
+                {post.title}
+              </Link>
+            </h3>
+
+            <p className="text-[#1B2433]/75 text-sm leading-relaxed mb-5 line-clamp-3">
+              {post.excerpt || "Discover the latest trends and insights in the world of technology and modern web development architectures."}
+            </p>
           </div>
 
-          <span
-            className="w-10 h-10 rounded-full bg-[var(--section-alt-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--foreground)] group-hover:bg-[#F59E0B] group-hover:text-[#0B1F3A] group-hover:border-[#F59E0B] transition-colors duration-200 relative z-20"
-            aria-hidden="true"
-          >
-            <ArrowUpRight size={18} />
-          </span>
+          <div>
+            {(() => {
+              const displayTags = (post.tags || [])
+                .filter((tag, index, tags) => Boolean(tag) && tags.indexOf(tag) === index)
+                .slice(0, 3);
+
+              if (displayTags.length === 0) return null;
+
+              return (
+                <div className="flex flex-wrap gap-2 mb-5 relative z-20">
+                  {displayTags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs font-bold px-3 py-1 rounded-full text-[#9A4A00] bg-[#FFF3DC] border border-amber-500/20"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              );
+            })()}
+
+            <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+              <div className="flex items-center space-x-2.5">
+                <Image 
+                  src={post.authorImage || "/profile-photo.jpeg"} 
+                  alt={post.author || "Amrendra Kumar"} 
+                  width={28} 
+                  height={28} 
+                  className="w-7 h-7 rounded-full object-cover ring-1 ring-slate-200" 
+                />
+                <span className="text-xs font-bold text-[#1B2433]">{post.author || "Amrendra Kumar"}</span>
+              </div>
+
+              <span
+                className="w-9 h-9 rounded-full bg-[#FFF3DC] border border-amber-500/30 flex items-center justify-center text-[#9A4A00] group-hover:bg-[#F5A00B] group-hover:text-[#1B2433] group-hover:border-[#F5A00B] transition-colors duration-200 relative z-20"
+                aria-hidden="true"
+              >
+                <ArrowUpRight size={16} />
+              </span>
+            </div>
+          </div>
         </div>
-      </div>
-    </article>
-  </TiltCard>
+      </article>
+    </TiltCard>
   );
 }

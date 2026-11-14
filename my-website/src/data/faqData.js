@@ -1,42 +1,27 @@
 export const faqData = [
   {
-    question: 'What services do you offer?',
+    question: 'What services do you provide?',
     answer:
-      'I offer three core services: Full-Stack Web Development (React, Next.js, TypeScript, AWS), AI & Workflow Automation (custom AI agents, LLM integrations, business automation), and SEO & Technical Content Writing (technical SEO audits, developer-focused articles, search strategy). All services are delivered directly by me — no account managers or junior handoffs.',
-  },
-  {
-    question: 'How much does a project cost?',
-    answer:
-      'Pricing depends on scope. A focused business website or landing page typically starts around $1,500–$3,000. A full web application with authentication, dashboards, and API integrations starts around $6,000+. For AI automation projects, we scope based on the complexity of workflows and integrations. I provide a fixed quote after an initial discovery call — no hourly billing surprises.',
-  },
-  {
-    question: 'Do you work with startups and small businesses?',
-    answer:
-      'Yes — the majority of my clients are startups and growing businesses. I work well with founders who need a reliable engineering partner to build, scale, or automate their product without managing a full team. I handle the technical decisions end-to-end.',
-  },
-  {
-    question: 'What tech stack do you use?',
-    answer:
-      'For web development: React 19, Next.js 15 (App Router), TypeScript, Tailwind CSS, and PostgreSQL/Prisma. For cloud: AWS (S3, CloudFront, EC2, Lambda) and Vercel. For AI: OpenAI API, Anthropic Claude, LangChain, and custom RAG pipelines. For automation: Zapier/Make, custom Node.js scripts, and webhook integrations.',
-  },
-  {
-    question: 'Can you integrate AI into an existing product?',
-    answer:
-      'Yes — this is actually one of the most common requests. I can add LLM-powered features (chatbots, document processing, content generation) directly into your existing web application without rebuilding it from scratch. I connect to OpenAI or Anthropic APIs and build the application logic around your specific workflow.',
+      'I provide full-stack web application development (Next.js, React, TypeScript), production AI agent workflows (LangGraph, OpenAI, Claude), and advanced technical SEO architecture with sub-second performance tuning.',
   },
   {
     question: 'How long does a typical project take?',
     answer:
-      'A focused business website typically takes 3–5 weeks from kickoff to deployment. A larger web application is usually 6–12 weeks depending on feature scope. AI automation projects typically run 2–6 weeks depending on integration complexity. I\'ll give you a realistic timeline estimate during the initial call.',
+      'A custom Next.js landing page or MVP typically takes 2–4 weeks. A full-scale web application or multi-agent AI system usually runs 4–8 weeks depending on scope and integrations.',
   },
   {
-    question: 'Do you write technical content for other companies?',
+    question: 'How much does a project typically cost?',
     answer:
-      'Yes — I write technical articles, engineering blogs, API documentation, and developer guides for SaaS companies and tech brands. The content is written by an actual developer who runs the code examples before publishing — not outsourced to a generalist writer.',
+      'Projects are priced on a transparent, milestone-based fixed scope or retainer model. Web applications start around $2,500–$5,000, while complex AI agent pipelines and enterprise SEO systems are custom-scoped.',
   },
   {
-    question: 'What topics does the engineering blog cover?',
+    question: 'Do you work with existing codebases or build from scratch?',
     answer:
-      'The blog covers full-stack engineering (React, Next.js, Node.js), AI agent development, autonomous LLM workflows, AWS cloud architecture, DevOps automation, and SaaS product engineering. Every article is grounded in real production experience.',
+      'Both. I frequently audit, optimize, and refactor existing React/Next.js codebases or integrate AI agents into existing SaaS products, as well as architecting fresh greenfield applications.',
+  },
+  {
+    question: 'How do we communicate during a sprint?',
+    answer:
+      'Direct, asynchronous communication via Slack or Discord, combined with weekly video check-ins and live preview deployments on Vercel so you track real progress continuously.',
   },
 ];

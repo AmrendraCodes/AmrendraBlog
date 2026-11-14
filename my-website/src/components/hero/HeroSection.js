@@ -1,104 +1,110 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Bot, Code2, FileText, Sparkles } from 'lucide-react';
+import { ArrowRight, Bot, Code2, Search, Sparkles } from 'lucide-react';
 import MagneticButton from '../ui/MagneticButton';
 
 const CORE_OFFERINGS = [
   {
     icon: Code2,
-    title: 'Web engineering',
-    desc: 'Fast, scalable Next.js platforms built around your business.',
+    title: 'Next.js Development',
+    desc: 'Fast, SEO-ready web applications built with App Router, SSR, and modern React 19 architecture.',
     href: '/services/web-development',
   },
   {
     icon: Bot,
-    title: 'AI & automation',
-    desc: 'Practical AI agents and workflows that give your team time back.',
+    title: 'AI Agent Construction',
+    desc: 'Custom autonomous workflows, tool-calling agents, and LLM integrations that automate business processes.',
     href: '/services/ai-automation',
   },
   {
-    icon: FileText,
-    title: 'SEO & content',
-    desc: 'Technical content and search strategy made to build authority.',
+    icon: Search,
+    title: 'Technical SEO & Speed',
+    desc: 'Core Web Vitals optimization, programmatic SEO architecture, and top-tier Google crawlability.',
     href: '/services/seo-content-strategy',
   },
 ];
 
 export default function HeroSection() {
   return (
-    <section className="relative isolate overflow-hidden border-b border-white/15 bg-[#42628E] px-4 pb-14 pt-28 text-[#F2EFEB] sm:px-6 sm:pb-20 sm:pt-32 lg:px-8">
+    <section className="relative isolate overflow-hidden border-b border-slate-200/80 bg-[#FFFDF9] dark:bg-[#070F1E] px-4 pb-16 pt-28 text-[#1B2433] dark:text-slate-100 sm:px-6 sm:pb-24 sm:pt-36 lg:px-8">
+      {/* Subtle warm ambient lighting */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#42628E_0%,#607591_48%,#798496_100%)]"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(245,160,11,0.12),transparent_70%)]"
       />
-      <div aria-hidden="true" className="absolute inset-0 -z-10 grid-bg opacity-20" />
       <div
         aria-hidden="true"
-        className="absolute left-1/2 top-64 -z-10 h-80 w-[min(90vw,56rem)] -translate-x-1/2 rounded-full bg-[#9BBCE8]/15 blur-[100px]"
+        className="absolute left-1/2 top-48 -z-10 h-72 w-[min(90vw,52rem)] -translate-x-1/2 rounded-full bg-[#FFF3DC]/80 dark:bg-amber-500/5 blur-[90px]"
       />
 
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center text-center">
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.08] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#E4EAF2] shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] sm:text-xs">
-          <Sparkles size={14} className="text-[#DBCBB9]" aria-hidden="true" />
-          Software &amp; AI, built for growth
+        {/* Eyebrow Tag */}
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-[#FFF3DC] dark:bg-amber-500/10 px-4 py-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#9A4A00] dark:text-[#F5A00B] shadow-2xs">
+          <Sparkles size={13} className="text-[#9A4A00] dark:text-[#F5A00B]" aria-hidden="true" />
+          FULL-STACK &amp; AI AGENT SPECIALIST
         </div>
 
+        {/* H1 Headline */}
         <h1
-          className="max-w-4xl text-balance text-4xl font-medium leading-[1.08] tracking-[-0.04em] text-white sm:text-5xl md:text-[3.5rem] lg:text-[3.5rem]"
-          style={{ fontFamily: 'var(--font-display)' }}
+          className="max-w-4xl text-balance text-4xl font-extrabold leading-[1.12] tracking-tight text-[#1B2433] dark:text-white sm:text-5xl md:text-6xl"
         >
-          Custom AI development services
-          <span className="mt-1 block bg-gradient-to-r from-[#F2EFEB] via-[#DBCBB9] to-[#B7D2F5] bg-clip-text text-transparent">
-            for what comes next.
-          </span>
+          Next.js Developer &amp; AI Agent{' '}
+          <span className="text-[#1E3A8A] dark:text-amber-400">Builder</span>{' '}
+          for Startups and Growing Businesses
         </h1>
 
-        <p className="mt-6 max-w-2xl text-pretty text-base leading-7 text-[#E0E7F0] sm:text-lg sm:leading-8">
-          Turn complex ideas into useful software, AI workflows, and cloud
-          products — designed to help your business move forward.
+        {/* Subtitle */}
+        <p className="mt-6 max-w-3xl text-pretty text-base leading-relaxed text-[#1B2433]/80 dark:text-slate-300 sm:text-lg sm:leading-8">
+          I build fast, SEO-friendly React &amp; Next.js web applications, build custom AI agent
+          workflows, and optimize technical infrastructure for measurable business growth.
         </p>
 
-        <div className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-4">
+        {/* CTA Buttons */}
+        <div className="mt-8 flex w-full flex-col items-center justify-center gap-3.5 sm:w-auto sm:flex-row sm:gap-4">
           <MagneticButton className="w-full sm:w-auto">
             <Link
               href="/contact"
-              className="group inline-flex min-h-12 w-full items-center justify-center gap-2.5 rounded-xl bg-[#F2EFEB] px-6 py-3 text-sm font-bold text-[#172B49] shadow-[0_8px_30px_rgba(10,20,36,0.22)] transition duration-200 hover:-translate-y-0.5 hover:bg-white sm:w-auto sm:text-base"
+              className="group inline-flex min-h-12 w-full items-center justify-center gap-2.5 rounded-xl bg-[#F5A00B] hover:bg-[#E08F00] px-7 py-3 text-sm font-bold text-[#1B2433] shadow-md shadow-amber-500/20 transition duration-200 hover:-translate-y-0.5 sm:w-auto sm:text-base no-underline"
             >
-              <span>Start a conversation</span>
+              <span>Let&apos;s Build Something</span>
               <ArrowRight size={17} className="transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </MagneticButton>
           <MagneticButton className="w-full sm:w-auto">
             <Link
-              href="/services"
-              className="inline-flex min-h-12 w-full items-center justify-center rounded-xl border border-white/25 bg-white/[0.06] px-6 py-3 text-sm font-semibold text-white transition duration-200 hover:border-white/50 hover:bg-white/[0.12] sm:w-auto sm:text-base"
+              href="/resources/case-studies"
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-6 py-3 text-sm font-semibold text-[#1B2433] dark:text-slate-200 shadow-2xs transition duration-200 hover:border-amber-500/60 hover:text-[#9A4A00] dark:hover:text-amber-400 sm:w-auto sm:text-base no-underline"
             >
-              Explore our services
+              See Past Work
             </Link>
           </MagneticButton>
         </div>
 
-        <div className="mt-6 grid w-full grid-cols-1 gap-3 text-left sm:grid-cols-3 sm:gap-4">
+        {/* 3 Summary Feature Cards */}
+        <div className="mt-12 grid w-full grid-cols-1 gap-4 text-left sm:grid-cols-3 sm:gap-5">
           {CORE_OFFERINGS.map((item) => {
             const Icon = item.icon;
             return (
               <Link
                 key={item.title}
                 href={item.href}
-                className="group flex items-start gap-3 rounded-xl border border-white/15 bg-white/[0.06] p-4 text-left transition duration-200 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.1] sm:p-5"
+                className="group flex flex-col justify-between rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-[#0B1728] p-5 sm:p-6 shadow-sm hover:border-[#F5A00B]/60 hover:shadow-md transition-all duration-200 no-underline"
               >
-                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/15 bg-white/[0.08] text-[#DBCBB9]">
-                  <Icon size={17} aria-hidden="true" />
-                </span>
-                <span>
-                  <span className="block text-sm font-semibold text-white group-hover:text-[#DBCBB9]">
+                <div>
+                  <div className="mb-3.5 flex h-10 w-10 items-center justify-center rounded-xl bg-[#FFF3DC] dark:bg-amber-500/10 text-[#9A4A00] dark:text-[#F5A00B] border border-amber-500/25">
+                    <Icon size={19} aria-hidden="true" />
+                  </div>
+                  <h3 className="text-base font-bold text-[#1B2433] dark:text-white group-hover:text-[#9A4A00] dark:group-hover:text-[#F5A00B] transition-colors">
                     {item.title}
-                  </span>
-                  <span className="mt-1 block text-xs leading-5 text-[#B6C2D3]">
+                  </h3>
+                  <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-[#1B2433]/70 dark:text-slate-400">
                     {item.desc}
-                  </span>
-                </span>
-                <ArrowRight size={14} className="ml-auto mt-1 shrink-0 text-[#9BBCE8] transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
+                  </p>
+                </div>
+                <div className="mt-4 flex items-center gap-1.5 text-xs font-bold text-[#9A4A00] dark:text-[#F5A00B]">
+                  <span>Learn more</span>
+                  <ArrowRight size={13} className="transition-transform duration-200 group-hover:translate-x-1" />
+                </div>
               </Link>
             );
           })}

@@ -1,121 +1,88 @@
 import React from 'react';
-import {
-  Sparkles,
-  Search,
-  Zap,
-  ShieldCheck,
-  Calendar,
-  Headphones,
-} from 'lucide-react';
 import ScrollReveal from '../ui/ScrollReveal';
 
-const whyChooseUsData = [
+const STANDARDS_DATA = [
   {
-    id: 'ai-first',
-    icon: Sparkles,
-    title: 'AI-Native Engineering',
+    step: '01',
+    title: 'Clean Code Architecture',
     description:
-      'Build smarter software with AI-powered workflows, custom agent integrations, and modern automation practices that accelerate delivery.',
-    badge: null,
+      'Component-driven, modular React/Next.js codebases designed for maintainability, zero bloat, and easy scalability as team grows.',
   },
   {
-    id: 'seo-built-in',
-    icon: Search,
-    title: 'Technical SEO Built-In',
+    step: '02',
+    title: 'Modern Full Stack',
     description:
-      'Every web application is engineered with semantic HTML, structured metadata, fast Core Web Vitals, and crawlable architecture from day one.',
-    badge: null,
+      'Next.js App Router, React 19, TypeScript, Tailwind CSS, Supabase, and PostgreSQL for robust end-to-end architectures.',
   },
   {
-    id: 'high-performance',
-    icon: Zap,
-    title: 'Core Web Vitals Focus',
+    step: '03',
+    title: 'Autonomous AI Agent Loops',
     description:
-      'Optimized for instant page loads, smooth interaction (INP), and zero layout shift to maximize user retention and search rank.',
-    badge: null,
+      'Self-correcting LLM agents, dynamic context injection, RAG systems, and function-calling workflows using LangGraph and OpenAI.',
   },
   {
-    id: 'secure-scalable',
-    icon: ShieldCheck,
-    title: 'Type-Safe, Scalable Architecture',
+    step: '04',
+    title: 'Sub-Second Performance',
     description:
-      'Applications are built with TypeScript, modular component patterns, secure API authentications, and production cloud infrastructure.',
-    badge: null,
+      'Lighthouse 95+ scores across all metrics. Streaming SSR, image optimization, edge caching, and zero Cumulative Layout Shift (CLS).',
   },
   {
-    id: 'transparent-updates',
-    icon: Calendar,
-    title: 'Direct, Transparent Communication',
+    step: '05',
+    title: 'High-Impact Technical SEO',
     description:
-      'Work directly with the engineer building your product — no junior handoffs, no account managers, and regular sprint progress updates.',
-    badge: null,
+      'Server-rendered metadata, dynamic XML sitemaps, JSON-LD Schema markup, canonical tag handling, and Google Core Web Vitals compliance.',
   },
   {
-    id: 'long-term-support',
-    icon: Headphones,
-    title: 'Post-Launch Technical Support',
+    step: '06',
+    title: 'Production Security & Privacy',
     description:
-      'Beyond deployment, I provide maintenance, infrastructure monitoring, performance fine-tuning, and ongoing technical advisory.',
-    badge: null,
+      'Secure authentication, end-to-end type safety, encrypted API tokens, sanitized database inputs, and hardened cloud deployments.',
   },
 ];
 
 export default function WhyChooseUsSection() {
   return (
-    <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC] dark:bg-[#071324] border-y border-slate-200 dark:border-[#1E293B] transition-colors" aria-label="Why Work With Me">
+    <section className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-[#FFFDF9] border-b border-slate-200/80 transition-colors" aria-label="Engineering Standards">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#0B1F3A] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-3.5 py-1.5 rounded-full border border-[#F59E0B]/30 inline-block mb-3">
-            WHY WORK WITH ME
+        <div className="text-center max-w-3xl mx-auto mb-14 md:mb-18">
+          <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#9A4A00] bg-[#FFF3DC] px-4 py-1.5 rounded-full border border-amber-500/30 inline-block mb-3.5 shadow-2xs">
+            ENGINEERING STANDARDS
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0B1F3A] dark:text-white tracking-tight mb-4">
-            Engineering Standards Built for Growth
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1B2433] tracking-tight mb-4">
+            Engineering Built for <span className="text-[#1E3A8A]">Search and Growth</span>
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 dark:text-[#94A3B8] leading-relaxed">
-            I combine clean code, custom AI automation, built-in SEO, and direct communication to build software that grows with your business.
+          <p className="text-base sm:text-lg text-[#1B2433]/75 leading-relaxed max-w-2xl mx-auto">
+            Every line of code is written with performance, clean maintainability, and search visibility as core requirements.
           </p>
         </div>
 
-        {/* 3-column Desktop / 2-column Tablet / 1-column Mobile Grid */}
+        {/* 3x2 Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {whyChooseUsData.map((item, index) => {
-            const IconComponent = item.icon;
-            return (
-              <ScrollReveal key={item.id} delay={index * 0.06} variant="fade-up" className="h-full">
-                <div className="group relative rounded-3xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-[#1E293B] p-6 sm:p-8 card-feature flex flex-col justify-between h-full overflow-hidden shadow-sm">
-                  {/* Subtle Background Glow Effect on Hover */}
-                  <div className="absolute -right-12 -top-12 w-32 h-32 bg-[#F59E0B]/5 rounded-full blur-2xl    pointer-events-none" />
-
-                  <div>
-                    {/* Header Row inside Card: Icon & Optional Badge */}
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-[#112240] border border-slate-200 dark:border-[#1E293B] text-[#0B1F3A] dark:text-[#F59E0B] flex items-center justify-center      shadow-sm">
-                        <IconComponent size={24} />
-                      </div>
-
-                      {item.badge && (
-                        <span className="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold text-[#D97706] dark:text-[#F59E0B] bg-[#F59E0B]/10 px-2.5 py-1 rounded-full border border-[#F59E0B]/30 shadow-[0_0_10px_rgba(245,158,11,0.15)]">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] " />
-                          {item.badge}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-xl font-bold text-[#0B1F3A] dark:text-white mb-3  ">
-                      {item.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-xs sm:text-sm text-[#475569] dark:text-[#94A3B8] leading-relaxed">
-                      {item.description}
-                    </p>
+          {STANDARDS_DATA.map((item, index) => (
+            <ScrollReveal key={item.step} delay={index * 0.05} variant="fade-up" className="h-full">
+              <div className="group relative rounded-3xl bg-white border border-slate-200/90 p-7 sm:p-8 flex flex-col justify-between h-full shadow-xs hover:shadow-md hover:border-amber-400/50 transition-all duration-300">
+                <div>
+                  {/* Step Pill */}
+                  <div className="mb-5">
+                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#FFF3DC] border border-amber-500/30 text-[#9A4A00] font-mono font-extrabold text-sm shadow-2xs">
+                      {item.step}
+                    </span>
                   </div>
+
+                  {/* Title */}
+                  <h3 className="text-xl font-bold text-[#1B2433] mb-3 group-hover:text-[#9A4A00] transition-colors">
+                    {item.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-sm text-[#1B2433]/75 leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-              </ScrollReveal>
-            );
-          })}
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </div>
     </section>

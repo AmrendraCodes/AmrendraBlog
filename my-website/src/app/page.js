@@ -7,6 +7,8 @@ import { faqData } from "@/data/faqData";
 import { siteMetadata } from "@/config/seo";
 import HomeClient from "@/components/HomeClient";
 
+import BottomCtaSection from "@/components/home/BottomCtaSection";
+
 const FAQ = nextDynamic(() => import('@/components/FAQ'));
 
 // Keep the public landing page cached at the CDN after it has been generated. The
@@ -86,13 +88,16 @@ export default async function Home() {
   };
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden relative bg-[var(--background)]">
+    <div className="min-h-screen w-full overflow-x-hidden relative bg-[#FFFDF9]">
       <JsonLd data={combinedSchema} />
 
       <HomeClient featuredPosts={featuredPosts} caseStudies={caseStudies} />
 
       {/* FAQ Section */}
       <FAQ />
+
+      {/* Bottom CTA Banner */}
+      <BottomCtaSection />
     </div>
   );
 }
