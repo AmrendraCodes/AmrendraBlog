@@ -534,25 +534,134 @@ button, a, input, select, textarea {
 /* ─── Pattern A: Interactive / Clickable Cards ─── */
 .card-interactive {
   transition:
-    transform 250ms ease,
     box-shadow 250ms ease,
     border-color 250ms ease,
     background-color 250ms ease;
 }
 
 .card-interactive:hover {
-  transform: translateY(-4px);
   border-color: rgba(245, 158, 11, 0.4);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10), 0 0 0 1px rgba(245, 158, 11, 0.08);
-}
-
-.card-interactive:active {
-  transform: scale(0.99);
 }
 
 .card-interactive:focus-within {
   border-color: rgba(245, 158, 11, 0.5);
   box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.25);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   3D TILT-ON-HOVER & PROGRESSIVE ENHANCEMENT MOTION
+   ═══════════════════════════════════════════════════════════ */
+.cwa-tilt-card-wrapper {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.cwa-tilt-card-inner {
+  transform-style: preserve-3d;
+  transition:
+    transform 450ms cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 350ms ease,
+    border-color 300ms ease;
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) scale(1);
+}
+
+/* Gated strictly on devices that support hover with a fine pointer (mouse / trackpad) */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .cwa-tilt-card-wrapper:hover .cwa-tilt-card-inner,
+  .cwa-tilt-card-wrapper.is-active .cwa-tilt-card-inner {
+    will-change: transform;
+    transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-4px) scale(var(--tilt-scale, 1.01));
+    transition:
+      transform 75ms ease-out,
+      box-shadow 300ms ease,
+      border-color 300ms ease;
+  }
+
+  .cwa-tilt-card-wrapper:focus-visible .cwa-tilt-card-inner,
+  .cwa-tilt-card-wrapper:focus-within .cwa-tilt-card-inner {
+    will-change: transform;
+    transform: perspective(1000px) translateY(-3px) scale(1.008);
+  }
+}
+
+/* Subtle Cursor-Following Glare Highlight */
+.cwa-tilt-card-glare {
+  opacity: 0;
+  z-index: 25;
+  mix-blend-mode: overlay;
+  background: radial-gradient(
+    circle 320px at var(--mx, 50%) var(--my, 50%),
+    rgba(245, 160, 11, 0.22),
+    rgba(255, 255, 255, 0.12) 30%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.dark .cwa-tilt-card-glare {
+  background: radial-gradient(
+    circle 320px at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.18),
+    rgba(245, 160, 11, 0.14) 35%,
+    transparent 70%
+  );
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .cwa-tilt-card-wrapper:hover .cwa-tilt-card-glare,
+  .cwa-tilt-card-wrapper.is-active .cwa-tilt-card-glare {
+    opacity: 1;
+  }
+}
+
+/* Floating Feature/Service Icon Animation (2px, 4s, reduced-motion safe) */
+@keyframes subtle-icon-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .floating-icon {
+    animation: subtle-icon-float 4s ease-in-out infinite;
+  }
+}
+
+/* Progressive Underline on Inline Content Links only */
+@media (prefers-reduced-motion: no-preference) {
+  article p a:not([class*="btn"]):not([class*="button"]):not(.no-underline),
+  .prose p a:not([class*="btn"]):not([class*="button"]):not(.no-underline) {
+    position: relative;
+    text-decoration: none;
+    background-image: linear-gradient(#F5A00B, #F5A00B);
+    background-size: 0% 2px;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    transition: background-size 250ms ease;
+  }
+  article p a:not([class*="btn"]):not([class*="button"]):not(.no-underline):hover,
+  .prose p a:not([class*="btn"]):not([class*="button"]):not(.no-underline):hover {
+    background-size: 100% 2px;
+  }
+}
+
+/* Reduced Motion Override for Tilt Cards */
+@media (prefers-reduced-motion: reduce) {
+  .cwa-tilt-card-inner {
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+  .cwa-tilt-card-glare {
+    display: none !important;
+  }
+  .floating-icon {
+    animation: none !important;
+  }
 }
 
 /* ─── Pattern B: Feature / Informational Cards ─── */

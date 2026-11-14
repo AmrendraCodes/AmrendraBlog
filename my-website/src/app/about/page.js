@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { siteMetadata } from "@/config/seo";
+import TiltCard from "@/components/ui/TiltCard";
 import { ArrowRight, Play, Github, Linkedin, Twitter, Youtube, Code2, Cloud, Brain, Palette, Terminal } from "lucide-react";
 
 export const metadata = {
@@ -276,54 +277,58 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Story Card — Spans 2 columns */}
-            <div
-              className="lg:col-span-2 bg-[var(--card-bg)] p-8 md:p-12 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] transition-all duration-200 hover:-translate-y-1 flex flex-col justify-center"
-            >
-              <div className="space-y-6 md:space-y-8">
-                <p className="text-base md:text-lg text-[var(--text-body)] leading-relaxed">
-                  I&apos;m a self-taught developer who started my journey by learning HTML, CSS, and JavaScript through online courses and building real-world projects. Over the past few years, I&apos;ve developed a deep passion for frontend development and modern web technologies. What started as curiosity has turned into a full-fledged career where I constantly explore new frameworks, tools, and best practices in the web development ecosystem.
-                </p>
-                <p className="text-base md:text-lg text-[var(--text-body)] leading-relaxed">
-                  During my coding journey, I realized that learning in isolation wasn&apos;t fulfilling. I wanted to give back to the community that helped me grow. That&apos;s when I started creating content — blog posts, tutorials, and technical guides — to help other developers navigate the complexities of modern web development. Today, I blend my technical expertise with my passion for communication to create valuable, easy-to-understand content that empowers developers at all levels.
-                </p>
-                <p className="text-base md:text-lg text-[var(--text-body)] leading-relaxed">
-                  &ldquo;Code with Amrendra&rdquo; was born from this vision: to create a platform where developers can learn cutting-edge technologies, stay updated with industry trends, and connect with a like-minded community. Whether you&apos;re just starting your coding journey or looking to master advanced concepts, I&apos;m here to guide you every step of the way. Let&apos;s build amazing things together!
-                </p>
+            <TiltCard className="lg:col-span-2 h-full" maxTilt={6}>
+              <div
+                className="bg-[var(--card-bg)] p-8 md:p-12 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] transition-all duration-200 flex flex-col justify-center h-full"
+              >
+                <div className="space-y-6 md:space-y-8">
+                  <p className="text-base md:text-lg text-[var(--text-body)] leading-relaxed">
+                    I&apos;m a self-taught developer who started my journey by learning HTML, CSS, and JavaScript through online courses and building real-world projects. Over the past few years, I&apos;ve developed a deep passion for frontend development and modern web technologies. What started as curiosity has turned into a full-fledged career where I constantly explore new frameworks, tools, and best practices in the web development ecosystem.
+                  </p>
+                  <p className="text-base md:text-lg text-[var(--text-body)] leading-relaxed">
+                    During my coding journey, I realized that learning in isolation wasn&apos;t fulfilling. I wanted to give back to the community that helped me grow. That&apos;s when I started creating content — blog posts, tutorials, and technical guides — to help other developers navigate the complexities of modern web development. Today, I blend my technical expertise with my passion for communication to create valuable, easy-to-understand content that empowers developers at all levels.
+                  </p>
+                  <p className="text-base md:text-lg text-[var(--text-body)] leading-relaxed">
+                    &ldquo;Code with Amrendra&rdquo; was born from this vision: to create a platform where developers can learn cutting-edge technologies, stay updated with industry trends, and connect with a like-minded community. Whether you&apos;re just starting your coding journey or looking to master advanced concepts, I&apos;m here to guide you every step of the way. Let&apos;s build amazing things together!
+                  </p>
+                </div>
               </div>
-            </div>
+            </TiltCard>
 
             {/* Skills Card */}
-            <div
-              className="lg:col-span-1 bg-[var(--card-bg)] p-8 md:p-10 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] transition-all duration-200 hover:-translate-y-1"
-            >
-              <h3 className="text-2xl md:text-3xl font-extrabold text-[var(--text-heading)] mb-8 flex items-center gap-3">
-                <span className="w-8 h-1.5 md:h-2 bg-gradient-to-r from-[#0B1F3A] to-[#F59E0B] rounded-full"></span>
-                Expertise
-              </h3>
-              <div className="space-y-8">
-                {[
-                  { name: "React/Next.js", percentage: 95 },
-                  { name: "Node.js", percentage: 85 },
-                  { name: "React Native", percentage: 80 },
-                  { name: "UI/UX (Figma)", percentage: 75 },
-                  { name: "Digital Marketing", percentage: 88 },
-                  { name: "TailwindCSS", percentage: 92 }
-                ].map((skill) => (
-                  <div key={skill.name}>
-                    <div className="flex items-center justify-between mb-3">
-                      <h4 className="text-base font-bold text-[var(--text-heading)]">{skill.name}</h4>
-                      <span className="text-sm font-semibold text-[#0B1F3A] dark:text-[#F59E0B]">{skill.percentage}%</span>
+            <TiltCard className="lg:col-span-1 h-full" maxTilt={6}>
+              <div
+                className="bg-[var(--card-bg)] p-8 md:p-10 rounded-3xl border border-[rgba(255,255,255,0.05)] shadow-[var(--shadow-card)] transition-all duration-200 h-full"
+              >
+                <h3 className="text-2xl md:text-3xl font-extrabold text-[var(--text-heading)] mb-8 flex items-center gap-3">
+                  <span className="w-8 h-1.5 md:h-2 bg-gradient-to-r from-[#0B1F3A] to-[#F59E0B] rounded-full"></span>
+                  Expertise
+                </h3>
+                <div className="space-y-8">
+                  {[
+                    { name: "React/Next.js", percentage: 95 },
+                    { name: "Node.js", percentage: 85 },
+                    { name: "React Native", percentage: 80 },
+                    { name: "UI/UX (Figma)", percentage: 75 },
+                    { name: "Digital Marketing", percentage: 88 },
+                    { name: "TailwindCSS", percentage: 92 }
+                  ].map((skill) => (
+                    <div key={skill.name}>
+                      <div className="flex items-center justify-between mb-3">
+                        <h4 className="text-base font-bold text-[var(--text-heading)]">{skill.name}</h4>
+                        <span className="text-sm font-semibold text-[#0B1F3A] dark:text-[#F59E0B]">{skill.percentage}%</span>
+                      </div>
+                      <div className="w-full bg-[var(--section-alt-bg)] border border-[rgba(255,255,255,0.05)] rounded-full h-2 overflow-hidden">
+                        <div
+                          className="h-full bg-gradient-to-r from-[#0B1F3A] to-[#F59E0B] rounded-full transition-colors duration-200 ease-out shadow-[var(--shadow-glow)]"
+                          style={{ width: `${skill.percentage}%` }}
+                        ></div>
+                      </div>
                     </div>
-                    <div className="w-full bg-[var(--section-alt-bg)] border border-[rgba(255,255,255,0.05)] rounded-full h-2 overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-[#0B1F3A] to-[#F59E0B] rounded-full transition-colors duration-200 ease-out shadow-[var(--shadow-glow)]"
-                        style={{ width: `${skill.percentage}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            </TiltCard>
           </div>
         </div>
       </section>
@@ -350,16 +355,17 @@ export default function AboutPage() {
               { icon: Brain, title: "AI Engineering", desc: "AI Agents, LLMs, RAG & automation workflows" },
               { icon: Palette, title: "Technical Writing", desc: "Tutorials, guides & developer education content" },
             ].map(({ icon: Icon, title, desc }) => (
-              <div
-                key={title}
-                className="flex flex-col items-center text-center gap-4 p-6 md:p-8 rounded-2xl bg-[var(--card-bg)] border border-[var(--card-border)] transition-all duration-200 hover:border-[#F59E0B]/30 hover:-translate-y-1"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-[#F59E0B]/10 dark:bg-[#F59E0B]/15 border border-[#F59E0B]/20 flex items-center justify-center text-[#0B1F3A] dark:text-[#F59E0B]">
-                  <Icon size={26} />
+              <TiltCard key={title} className="h-full" maxTilt={8}>
+                <div
+                  className="flex flex-col items-center text-center gap-4 p-6 md:p-8 rounded-2xl bg-[var(--card-bg)] border border-[var(--card-border)] transition-all duration-200 hover:border-[#F59E0B]/30 h-full"
+                >
+                  <div className="w-14 h-14 rounded-2xl bg-[#F59E0B]/10 dark:bg-[#F59E0B]/15 border border-[#F59E0B]/20 flex items-center justify-center text-[#0B1F3A] dark:text-[#F59E0B] floating-icon">
+                    <Icon size={26} />
+                  </div>
+                  <h3 className="font-bold text-base text-[var(--text-heading)]">{title}</h3>
+                  <p className="text-sm text-[var(--text-muted)] leading-relaxed">{desc}</p>
                 </div>
-                <h3 className="font-bold text-base text-[var(--text-heading)]">{title}</h3>
-                <p className="text-sm text-[var(--text-muted)] leading-relaxed">{desc}</p>
-              </div>
+              </TiltCard>
             ))}
           </div>
         </div>

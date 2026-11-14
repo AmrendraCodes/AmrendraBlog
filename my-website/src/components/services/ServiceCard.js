@@ -1,4 +1,5 @@
 import Link from "next/link";
+import TiltCard from "../ui/TiltCard";
 import { 
   Code2, 
   TrendingUp, 
@@ -31,20 +32,21 @@ export default function ServiceCard({ service }) {
   const badgeStyle = categoryColors[service.category] || categoryColors.BUILD;
 
   return (
-    <div className="group relative bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 sm:p-8 flex flex-col justify-between card-interactive">
-      {/* Top subtle glow bar */}
-      <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-[#F59E0B]/0  to-transparent transition-colors duration-200" />
+    <TiltCard className="h-full" maxTilt={8}>
+      <div className="group relative bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 sm:p-8 flex flex-col justify-between card-interactive h-full">
+        {/* Top subtle glow bar */}
+        <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-[#F59E0B]/0  to-transparent transition-colors duration-200" />
 
-      {/* Clickable Overlay Link */}
-      <Link href={`/services/${service.slug}`} className="absolute inset-0 z-0" aria-label={`View ${service.title}`} />
+        {/* Clickable Overlay Link */}
+        <Link href={`/services/${service.slug}`} className="absolute inset-0 z-0" aria-label={`View ${service.title}`} />
 
-      <div className="relative z-10">
-        {/* Header Row */}
-        <div className="flex items-center justify-between gap-4 mb-6">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#F59E0B]/10 to-[#0B1F3A]/10 dark:from-[#F59E0B]/20 dark:to-[#0B1F3A]/20 border border-[#F59E0B]/30 flex items-center justify-center text-[#0B1F3A] dark:text-[#F59E0B] group-hover:bg-[#F59E0B]/20 transition-colors duration-200 shadow-sm">
-              <IconComponent size={24} />
-            </div>
+        <div className="relative z-10">
+          {/* Header Row */}
+          <div className="flex items-center justify-between gap-4 mb-6">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#F59E0B]/10 to-[#0B1F3A]/10 dark:from-[#F59E0B]/20 dark:to-[#0B1F3A]/20 border border-[#F59E0B]/30 flex items-center justify-center text-[#0B1F3A] dark:text-[#F59E0B] group-hover:bg-[#F59E0B]/20 transition-colors duration-200 shadow-sm floating-icon">
+                <IconComponent size={24} />
+              </div>
             <span className={`text-xs font-bold tracking-wider px-3 py-1 rounded-full border ${badgeStyle}`}>
               {service.categoryLabel}
             </span>
@@ -91,5 +93,6 @@ export default function ServiceCard({ service }) {
         </Link>
       </div>
     </div>
+    </TiltCard>
   );
 }

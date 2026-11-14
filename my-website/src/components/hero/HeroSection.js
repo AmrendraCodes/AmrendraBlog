@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, Bot, Code2, Search, Sparkles } from 'lucide-react';
 import MagneticButton from '../ui/MagneticButton';
+import TiltCard from '../ui/TiltCard';
 
 const CORE_OFFERINGS = [
   {
@@ -85,27 +86,28 @@ export default function HeroSection() {
           {CORE_OFFERINGS.map((item) => {
             const Icon = item.icon;
             return (
-              <Link
-                key={item.title}
-                href={item.href}
-                className="group flex flex-col justify-between rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-[#0B1728] p-5 sm:p-6 shadow-sm hover:border-[#F5A00B]/60 hover:shadow-md transition-all duration-200 no-underline"
-              >
-                <div>
-                  <div className="mb-3.5 flex h-10 w-10 items-center justify-center rounded-xl bg-[#FFF3DC] dark:bg-amber-500/10 text-[#9A4A00] dark:text-[#F5A00B] border border-amber-500/25">
-                    <Icon size={19} aria-hidden="true" />
+              <TiltCard key={item.title} className="h-full" maxTilt={8}>
+                <Link
+                  href={item.href}
+                  className="group flex flex-col justify-between rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-[#0B1728] p-5 sm:p-6 shadow-sm hover:border-[#F5A00B]/60 hover:shadow-md transition-all duration-200 no-underline h-full"
+                >
+                  <div>
+                    <div className="mb-3.5 flex h-10 w-10 items-center justify-center rounded-xl bg-[#FFF3DC] dark:bg-amber-500/10 text-[#9A4A00] dark:text-[#F5A00B] border border-amber-500/25 floating-icon">
+                      <Icon size={19} aria-hidden="true" />
+                    </div>
+                    <h3 className="text-base font-bold text-[#1B2433] dark:text-white group-hover:text-[#9A4A00] dark:group-hover:text-[#F5A00B] transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-[#1B2433]/70 dark:text-slate-400">
+                      {item.desc}
+                    </p>
                   </div>
-                  <h3 className="text-base font-bold text-[#1B2433] dark:text-white group-hover:text-[#9A4A00] dark:group-hover:text-[#F5A00B] transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-[#1B2433]/70 dark:text-slate-400">
-                    {item.desc}
-                  </p>
-                </div>
-                <div className="mt-4 flex items-center gap-1.5 text-xs font-bold text-[#9A4A00] dark:text-[#F5A00B]">
-                  <span>Learn more</span>
-                  <ArrowRight size={13} className="transition-transform duration-200 group-hover:translate-x-1" />
-                </div>
-              </Link>
+                  <div className="mt-4 flex items-center gap-1.5 text-xs font-bold text-[#9A4A00] dark:text-[#F5A00B]">
+                    <span>Learn more</span>
+                    <ArrowRight size={13} className="transition-transform duration-200 group-hover:translate-x-1" />
+                  </div>
+                </Link>
+              </TiltCard>
             );
           })}
         </div>

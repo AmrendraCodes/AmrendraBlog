@@ -33,6 +33,7 @@ import {
   TOOL_CATEGORY_CONFIG,
 } from '@/data/toolsData';
 import SeoReviewerIcon from '@/components/tools/SeoReviewerIcon';
+import TiltCard from '../ui/TiltCard';
 
 // Icon mapping helper
 const ICON_MAP = {
@@ -425,17 +426,17 @@ export default function ToolsDirectoryClient() {
             const isBookmarked = savedToolSlugs.includes(tool.slug);
 
             return (
-              <div
-                key={tool.id}
-                id={tool.slug}
-                className="group relative bg-white/95 dark:bg-[#070F1E]/95 rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-slate-800/90 p-6 sm:p-7 shadow-sm hover:-translate-y-1 hover:shadow-2xl hover:shadow-amber-500/5 hover:border-[#F59E0B]/50 transition-all duration-300 min-h-[460px] flex flex-col justify-between overflow-hidden before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-amber-500/40 before:to-transparent"
-              >
+              <TiltCard key={tool.id} className="h-full" maxTilt={8}>
+                <div
+                  id={tool.slug}
+                  className="group relative bg-white/95 dark:bg-[#070F1E]/95 rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-slate-800/90 p-6 sm:p-7 shadow-sm hover:shadow-2xl hover:shadow-amber-500/5 hover:border-[#F59E0B]/50 transition-all duration-300 min-h-[460px] flex flex-col justify-between overflow-hidden before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-amber-500/40 before:to-transparent h-full"
+                >
                 <div>
                   {/* Top Bar: Icon + Semantic Badge + Quick Actions */}
                   <div className="flex items-center justify-between gap-2 mb-5">
                     <div className="flex items-center gap-2.5">
                       <div
-                        className={`w-12 h-12 rounded-2xl flex items-center justify-center border shadow-xs transition-transform duration-300 group-hover:scale-105 shrink-0 ${categoryAccent}`}
+                        className={`w-12 h-12 rounded-2xl flex items-center justify-center border shadow-xs transition-transform duration-300 group-hover:scale-105 shrink-0 floating-icon ${categoryAccent}`}
                       >
                         <IconComponent size={22} strokeWidth={2.2} />
                       </div>
@@ -548,6 +549,7 @@ export default function ToolsDirectoryClient() {
                   )}
                 </div>
               </div>
+              </TiltCard>
             );
           })}
         </div>

@@ -13,8 +13,8 @@ export default function BlogCard({ post }) {
   const [imgSrc, setImgSrc] = useState(rawImage || defaultFallback);
 
   return (
-    <TiltCard className="h-full">
-      <article className="group relative bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md transition-all duration-300 h-full flex flex-col justify-between">
+    <TiltCard className="h-full" maxTilt={6}>
+      <article className="group relative bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md hover:border-amber-400/50 transition-all duration-300 h-full flex flex-col justify-between">
         {/* Thumbnail / Header */}
         <div className="relative aspect-video overflow-hidden bg-slate-900">
           <Image

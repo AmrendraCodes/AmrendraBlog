@@ -1,5 +1,6 @@
 import React from 'react';
 import ScrollReveal from '../ui/ScrollReveal';
+import TiltCard from '../ui/TiltCard';
 
 const STANDARDS_DATA = [
   {
@@ -61,26 +62,28 @@ export default function WhyChooseUsSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {STANDARDS_DATA.map((item, index) => (
             <ScrollReveal key={item.step} delay={index * 0.05} variant="fade-up" className="h-full">
-              <div className="group relative rounded-3xl bg-white border border-slate-200/90 p-7 sm:p-8 flex flex-col justify-between h-full shadow-xs hover:shadow-md hover:border-amber-400/50 transition-all duration-300">
-                <div>
-                  {/* Step Pill */}
-                  <div className="mb-5">
-                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#FFF3DC] border border-amber-500/30 text-[#9A4A00] font-mono font-extrabold text-sm shadow-2xs">
-                      {item.step}
-                    </span>
+              <TiltCard className="h-full" maxTilt={8}>
+                <div className="group relative rounded-3xl bg-white border border-slate-200/90 p-7 sm:p-8 flex flex-col justify-between h-full shadow-xs hover:shadow-md hover:border-amber-400/50 transition-all duration-300">
+                  <div>
+                    {/* Step Pill */}
+                    <div className="mb-5">
+                      <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#FFF3DC] border border-amber-500/30 text-[#9A4A00] font-mono font-extrabold text-sm shadow-2xs">
+                        {item.step}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-xl font-bold text-[#1B2433] mb-3 group-hover:text-[#9A4A00] transition-colors">
+                      {item.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-sm text-[#1B2433]/75 leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
-
-                  {/* Title */}
-                  <h3 className="text-xl font-bold text-[#1B2433] mb-3 group-hover:text-[#9A4A00] transition-colors">
-                    {item.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-sm text-[#1B2433]/75 leading-relaxed">
-                    {item.description}
-                  </p>
                 </div>
-              </div>
+              </TiltCard>
             </ScrollReveal>
           ))}
         </div>

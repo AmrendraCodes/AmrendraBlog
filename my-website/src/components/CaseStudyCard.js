@@ -26,8 +26,8 @@ export default function CaseStudyCard({ study, index = 0 }) {
   const metricText = study.metricHighlight || bannerConfig.metric;
 
   return (
-    <TiltCard className="h-full">
-      <article className="group bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md transition-all duration-300 relative h-full flex flex-col justify-between">
+    <TiltCard className="h-full" maxTilt={6}>
+      <article className="group bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md hover:border-amber-400/50 transition-all duration-300 relative h-full flex flex-col justify-between">
         {/* Visual Header Banner */}
         <div className={`relative h-44 ${bannerConfig.bg} p-6 flex flex-col justify-between overflow-hidden`}>
           {/* Subtle gradient pattern overlay */}

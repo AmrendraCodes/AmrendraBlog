@@ -1,4 +1,5 @@
 import React from 'react';
+import TiltCard from '../ui/TiltCard';
 
 const PROCESS_STEPS = [
   {
@@ -42,25 +43,26 @@ export default function ProcessTimelineSection() {
       {/* 4 Process Step Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {PROCESS_STEPS.map((item) => (
-          <div
-            key={item.step}
-            className="group relative rounded-3xl bg-white dark:bg-[#0B1728] border border-slate-200/90 dark:border-slate-800 hover:border-[#F5A00B]/60 p-6 sm:p-7 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-200"
-          >
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-3xl sm:text-4xl font-extrabold font-mono text-[#F5A00B]">
-                  {item.step}
-                </span>
-                <span className="w-2.5 h-2.5 rounded-full bg-[#FFF3DC] dark:bg-amber-500/20 border border-[#F5A00B] group-hover:scale-125 transition-transform" />
+          <TiltCard key={item.step} className="h-full" maxTilt={8}>
+            <div
+              className="group relative rounded-3xl bg-white dark:bg-[#0B1728] border border-slate-200/90 dark:border-slate-800 hover:border-[#F5A00B]/60 p-6 sm:p-7 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-200 h-full"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-3xl sm:text-4xl font-extrabold font-mono text-[#F5A00B]">
+                    {item.step}
+                  </span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#FFF3DC] dark:bg-amber-500/20 border border-[#F5A00B] group-hover:scale-125 transition-transform" />
+                </div>
+                <h3 className="text-base sm:text-lg font-bold text-[#1B2433] dark:text-white mb-2.5 group-hover:text-[#9A4A00] dark:group-hover:text-[#F5A00B] transition-colors leading-snug">
+                  {item.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-[#1B2433]/70 dark:text-slate-400 leading-relaxed">
+                  {item.desc}
+                </p>
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-[#1B2433] dark:text-white mb-2.5 group-hover:text-[#9A4A00] dark:group-hover:text-[#F5A00B] transition-colors leading-snug">
-                {item.title}
-              </h3>
-              <p className="text-xs sm:text-sm text-[#1B2433]/70 dark:text-slate-400 leading-relaxed">
-                {item.desc}
-              </p>
             </div>
-          </div>
+          </TiltCard>
         ))}
       </div>
     </section>
