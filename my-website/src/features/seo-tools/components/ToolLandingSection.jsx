@@ -39,7 +39,7 @@ export default function ToolLandingSection() {
   return (
     <section className="mx-auto max-w-6xl space-y-10 pt-10 text-[var(--text-body)]">
       {/* ─── 1. HOW IT WORKS (3 NATURAL STEPS) ─── */}
-      <div className="space-y-6">
+      <div id="how-it-works" className="scroll-mt-28 space-y-6">
         <div className="border-b border-[var(--card-border)] pb-4">
           <p className="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-1">
             Simple 3-Step Process
@@ -56,7 +56,7 @@ export default function ToolLandingSection() {
           {howItWorksSteps.map((s, idx) => (
             <div
               key={s.step}
-              className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-6 shadow-sm flex flex-col justify-between"
+              className="card-tilt rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-6 shadow-sm flex flex-col justify-between"
             >
               <div>
                 <span className="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 font-bold font-mono text-sm mb-4 border border-amber-500/20">
@@ -92,7 +92,7 @@ export default function ToolLandingSection() {
           {coreChecks.map((check) => (
             <div
               key={check.id}
-              className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-4 sm:p-5 shadow-sm"
+              className="card-tilt rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-4 sm:p-5 shadow-sm"
             >
               <div className="flex items-center justify-between gap-3 mb-2">
                 <h3 className="text-sm sm:text-base font-bold text-[var(--text-heading)]">
@@ -109,31 +109,6 @@ export default function ToolLandingSection() {
           ))}
         </div>
 
-        {/* Scoring & Provisional Weight Banner (Compact Full-Width Callout) */}
-        <div className="rounded-2xl border border-amber-500/30 bg-amber-500/5 p-4 sm:p-5 shadow-sm">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-amber-500/20 pb-2.5 mb-3">
-            <h3 className="text-sm sm:text-base font-bold text-amber-900 dark:text-amber-300">
-              Fair Scoring with Provisional Weights
-            </h3>
-            <span className="text-[11px] font-mono text-amber-800 dark:text-amber-400">
-              Overall Score = Weighted average calculated only on provided inputs
-            </span>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs sm:text-sm text-amber-950/80 dark:text-amber-200/90 leading-relaxed">
-            <div className="flex items-start gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5" />
-              <span><strong className="text-amber-900 dark:text-amber-200">No Unfair Penalties:</strong> Missing focus keyword or headings won&apos;t drop your score.</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5" />
-              <span><strong className="text-amber-900 dark:text-amber-200">Auto Re-Weighting:</strong> The remaining active checks automatically scale to 100%.</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5" />
-              <span><strong className="text-amber-900 dark:text-amber-200">Provisional Status:</strong> Add your keyword anytime to unlock the full 5-check review.</span>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* ─── 3. REALISTIC BEFORE & AFTER COMPARISON ─── */}
@@ -152,7 +127,7 @@ export default function ToolLandingSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Before */}
-          <div className="rounded-2xl border border-rose-200 dark:border-rose-900/50 bg-rose-50/50 dark:bg-rose-950/15 p-6 space-y-4">
+          <div className="card-tilt rounded-2xl border border-rose-200 dark:border-rose-900/50 bg-rose-50/50 dark:bg-rose-950/15 p-6 space-y-4">
             <div className="flex items-center justify-between border-b border-rose-200 dark:border-rose-900/40 pb-3">
               <span className="text-sm font-bold text-rose-800 dark:text-rose-300">
                 {quickExample.before.label}
@@ -170,7 +145,7 @@ export default function ToolLandingSection() {
           </div>
 
           {/* After */}
-          <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900/50 bg-emerald-50/50 dark:bg-emerald-950/15 p-6 space-y-4">
+          <div className="card-tilt rounded-2xl border border-emerald-200 dark:border-emerald-900/50 bg-emerald-50/50 dark:bg-emerald-950/15 p-6 space-y-4">
             <div className="flex items-center justify-between border-b border-emerald-200 dark:border-emerald-900/40 pb-3">
               <span className="text-sm font-bold text-emerald-800 dark:text-emerald-300">
                 {quickExample.after.label}
@@ -204,7 +179,7 @@ export default function ToolLandingSection() {
           {commonMistakes.map((mistake, idx) => (
             <div
               key={idx}
-              className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 shadow-sm space-y-2"
+              className="card-tilt rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 shadow-sm space-y-2"
             >
               <div className="flex items-center gap-2">
                 <span className="w-5 h-5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold flex items-center justify-center">
@@ -219,7 +194,7 @@ export default function ToolLandingSection() {
           ))}
 
           {/* Privacy Note inside grid */}
-          <div className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 shadow-sm space-y-2">
+          <div className="card-tilt rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 shadow-sm space-y-2">
             <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
               <ShieldCheck size={18} />
               <h3 className="text-sm font-bold text-[var(--text-heading)]">100% Private By Design</h3>
@@ -246,11 +221,11 @@ export default function ToolLandingSection() {
           </p>
         </div>
 
-        <ToolsFaqAccordion items={faqs} defaultOpen={0} />
+        <ToolsFaqAccordion items={faqs} defaultOpen={0} surface />
       </div>
 
       {/* ─── 6. RECOMMENDED ARTICLES ─── */}
-      <div className="rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)] p-6 sm:p-9 shadow-sm">
+      <div className="card-tilt rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)] p-6 sm:p-9 shadow-sm">
         <div className="flex items-center gap-2.5 mb-2 text-amber-600 dark:text-amber-400">
           <BookOpen size={20} />
           <h3 className="text-lg sm:text-xl font-bold text-[var(--text-heading)]">
@@ -266,7 +241,7 @@ export default function ToolLandingSection() {
             <Link
               key={post.slug}
               href={post.route}
-              className="rounded-2xl border border-[var(--card-border)] bg-slate-50/50 dark:bg-[#070e1a] p-5 flex flex-col justify-between hover:border-amber-500/50 transition-all group no-underline"
+              className="card-tilt rounded-2xl border border-[var(--card-border)] bg-slate-50/50 dark:bg-[#070e1a] p-5 flex flex-col justify-between hover:border-amber-500/50 transition-all group no-underline"
             >
               <div>
                 <h4 className="font-semibold text-[var(--text-heading)] text-sm group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors mb-2">
@@ -286,7 +261,7 @@ export default function ToolLandingSection() {
       </div>
 
       {/* ─── 7. CLOSING SOFT SERVICES INVITATION ─── */}
-      <div className="rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)] p-8 sm:p-12 text-center shadow-sm">
+      <div className="card-tilt rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)] p-8 sm:p-12 text-center shadow-sm">
         <h3 className="text-xl sm:text-2xl font-extrabold text-[var(--text-heading)] mb-3">
           {servicesCta.title}
         </h3>
@@ -298,7 +273,7 @@ export default function ToolLandingSection() {
           {servicesCta.services.map((svc) => (
             <div
               key={svc.name}
-              className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-[#070e1a] p-4"
+              className="card-tilt rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-[#070e1a] p-4"
             >
               <h4 className="text-xs sm:text-sm font-bold text-[var(--text-heading)] mb-1">
                 {svc.name}
@@ -312,7 +287,7 @@ export default function ToolLandingSection() {
 
         <Link
           href={servicesCta.buttonHref}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition-all shadow-sm no-underline cursor-pointer"
+          className="seo-primary-button inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-bold transition-all shadow-sm no-underline cursor-pointer"
         >
           <span>{servicesCta.buttonText}</span>
           <ArrowUpRight size={15} />

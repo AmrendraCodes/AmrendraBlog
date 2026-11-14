@@ -139,7 +139,7 @@ export default function MainSeoReviewer() {
       case 'pass':
         return <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />;
       case 'warn':
-        return <AlertTriangle size={16} className="text-amber-500 shrink-0" />;
+        return <AlertTriangle size={16} className="seo-semantic-warning shrink-0" />;
       case 'fail':
         return <XCircle size={16} className="text-rose-500 shrink-0" />;
       default:
@@ -157,7 +157,7 @@ export default function MainSeoReviewer() {
     }
     if (score >= 60) {
       return {
-        badgeBg: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/30',
+        badgeBg: 'seo-warning-badge bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/30',
         ringColor: 'stroke-amber-500',
         label: 'Good, Needs Minor Polish',
       };
@@ -172,11 +172,36 @@ export default function MainSeoReviewer() {
   const theme = getScoreTheme(report.overallScore);
   const wordCount = report.metadata?.wordCount || 0;
   const readingTimeMin = Math.max(1, Math.ceil(wordCount / 200));
+  const hasAnalysisInput = Boolean(
+    titleInput.trim() ||
+    metaDescInput.trim() ||
+    h1Input.trim() ||
+    keyword.trim() ||
+    contentInput.trim()
+  );
 
   return (
-    <div className="mx-auto max-w-7xl">
+    <div id="seo-audit-workspace" className="mx-auto max-w-7xl scroll-mt-28">
+      <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-amber-600 dark:text-amber-400">
+            Live SEO workspace
+          </p>
+          <h2 className="text-xl font-extrabold tracking-tight text-[var(--text-heading)] sm:text-2xl">
+            Review and refine your content
+          </h2>
+          <p className="mt-1 max-w-2xl text-sm leading-relaxed text-[var(--text-muted)]">
+            Add your draft on the left. Your score and next steps update as you edit.
+          </p>
+        </div>
+        <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3 py-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
+          Updates as you type
+        </span>
+      </div>
+
       {/* ─── WORKBENCH TOOLBAR ─── */}
-      <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-3.5 shadow-sm">
+      <div className="card-tilt mb-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-3.5 shadow-sm">
         {/* Mode Switcher with High-Contrast Active Highlighter */}
         <div className="flex items-center gap-1.5 rounded-xl bg-slate-100 dark:bg-[#070e1a] p-1 border border-slate-200 dark:border-slate-800 shadow-inner">
           <button
@@ -184,7 +209,7 @@ export default function MainSeoReviewer() {
             onClick={() => setActiveTab('paste')}
             className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer border-none ${
               activeTab === 'paste'
-                ? 'bg-amber-500 text-slate-950 font-bold shadow-md shadow-amber-500/20 ring-1 ring-amber-400'
+                ? 'seo-primary-button font-bold shadow-md shadow-amber-500/20 ring-1 ring-amber-400'
                 : 'bg-transparent text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/50'
             }`}
           >
@@ -196,7 +221,7 @@ export default function MainSeoReviewer() {
             onClick={() => setActiveTab('url')}
             className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer border-none ${
               activeTab === 'url'
-                ? 'bg-amber-500 text-slate-950 font-bold shadow-md shadow-amber-500/20 ring-1 ring-amber-400'
+                ? 'seo-primary-button font-bold shadow-md shadow-amber-500/20 ring-1 ring-amber-400'
                 : 'bg-transparent text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/50'
             }`}
           >
@@ -234,7 +259,7 @@ export default function MainSeoReviewer() {
       {activeTab === 'url' && (
         <form
           onSubmit={handleFetchUrl}
-          className="mb-6 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 shadow-sm"
+          className="card-tilt mb-6 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 shadow-sm"
         >
           <label htmlFor="url-input" className="block text-xs font-semibold text-[var(--text-heading)] mb-2">
             Target Article Webpage URL (HTTP / HTTPS)
@@ -252,7 +277,7 @@ export default function MainSeoReviewer() {
             <button
               type="submit"
               disabled={isLoadingUrl}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-amber-500 hover:bg-amber-400 px-5 py-2.5 text-xs sm:text-sm font-bold text-slate-950 disabled:opacity-50 transition-colors cursor-pointer border-none shadow-xs"
+              className="seo-primary-button inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-xs sm:text-sm font-bold disabled:opacity-50 transition-colors cursor-pointer border-none shadow-xs"
             >
               {isLoadingUrl ? (
                 <>
@@ -283,7 +308,7 @@ export default function MainSeoReviewer() {
         {/* ─── LEFT COLUMN: WRITING DESK (7 COLS ON DESKTOP) ─── */}
         <div className="lg:col-span-7 xl:col-span-8 space-y-5">
           {/* Metadata Controls Card */}
-          <div className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 sm:p-6 shadow-sm space-y-4">
+          <div className="card-tilt rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 sm:p-6 shadow-sm space-y-4">
             {/* Focus Keyword & H1 Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
@@ -326,7 +351,7 @@ export default function MainSeoReviewer() {
                     titleInput.length >= 50 && titleInput.length <= 60
                       ? 'text-emerald-600 dark:text-emerald-400 font-bold'
                       : titleInput.length > 60
-                      ? 'text-amber-600 dark:text-amber-400 font-bold'
+                      ? 'seo-semantic-warning font-bold'
                       : 'text-slate-500'
                   }`}
                 >
@@ -354,7 +379,7 @@ export default function MainSeoReviewer() {
                     metaDescInput.length >= 120 && metaDescInput.length <= 160
                       ? 'text-emerald-600 dark:text-emerald-400 font-bold'
                       : metaDescInput.length > 160
-                      ? 'text-amber-600 dark:text-amber-400'
+                      ? 'seo-semantic-warning'
                       : 'text-slate-500'
                   }`}
                 >
@@ -373,11 +398,11 @@ export default function MainSeoReviewer() {
           </div>
 
           {/* Main Article Editor */}
-          <div className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-sm overflow-hidden flex flex-col">
+          <div className="card-tilt rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-sm overflow-hidden flex flex-col">
             {/* Editor Toolbar Header */}
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800/80 px-5 py-3 bg-slate-50/60 dark:bg-[#070e1a]/60">
               <div className="flex items-center gap-3 text-xs text-slate-600 dark:text-slate-400 font-medium">
-                <span>Article Body / Markdown</span>
+                <span className="seo-cyan-accent">Article Body / Markdown</span>
                 <span className="text-slate-300 dark:text-slate-700">•</span>
                 <span className="font-mono text-slate-700 dark:text-slate-300 font-semibold">
                   {wordCount} words
@@ -428,13 +453,17 @@ export default function MainSeoReviewer() {
         {/* ─── RIGHT COLUMN: AUDIT INSPECTOR (5 COLS ON DESKTOP, STICKY) ─── */}
         <div className="lg:col-span-5 xl:col-span-4 space-y-5 lg:sticky lg:top-24">
           {/* Overall Score Card */}
-          <div className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 sm:p-6 shadow-sm">
+          <div className="card-tilt rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 sm:p-6 shadow-sm">
             <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800/80 pb-3 mb-4">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                SEO Audit Score
+                SEO Audit Overview
               </span>
-              <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full border ${theme.badgeBg}`}>
-                {theme.label}
+              <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full border ${
+                hasAnalysisInput
+                  ? theme.badgeBg
+                  : 'border-[var(--card-border)] bg-[var(--background)] text-[var(--text-muted)]'
+              }`}>
+                {hasAnalysisInput ? theme.label : 'Ready when you are'}
               </span>
             </div>
 
@@ -443,38 +472,45 @@ export default function MainSeoReviewer() {
               <div className="relative flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl bg-slate-100 dark:bg-[#070e1a] border border-slate-200 dark:border-slate-800 shadow-inner">
                 <div className="text-center">
                   <span className="text-3xl font-extrabold tracking-tight text-[var(--text-heading)]">
-                    {report.overallScore}
+                    {hasAnalysisInput ? report.overallScore : '—'}
                   </span>
-                  <span className="block text-[10px] font-mono font-bold text-slate-400">/ 100</span>
+                  <span className="block text-[10px] font-mono font-bold text-slate-400">
+                    {hasAnalysisInput ? '/ 100' : 'OUT OF 100'}
+                  </span>
                 </div>
               </div>
 
               <div className="space-y-1.5 flex-1">
+                {!hasAnalysisInput && (
+                  <p className="mb-3 text-xs leading-relaxed text-[var(--text-muted)]">
+                    Add a title, focus keyword, or draft to start your review.
+                  </p>
+                )}
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-slate-500">Passing Checks</span>
                   <span className="font-bold text-emerald-600 dark:text-emerald-400 font-mono">
-                    {report.summary.passCount}
+                    {hasAnalysisInput ? report.summary.passCount : '—'}
                   </span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-slate-500">Warnings</span>
-                  <span className="font-bold text-amber-600 dark:text-amber-400 font-mono">
-                    {report.summary.warnCount}
+                  <span className="seo-semantic-warning font-bold font-mono">
+                    {hasAnalysisInput ? report.summary.warnCount : '—'}
                   </span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-slate-500">Failures</span>
                   <span className="font-bold text-rose-600 dark:text-rose-400 font-mono">
-                    {report.summary.failCount}
+                    {hasAnalysisInput ? report.summary.failCount : '—'}
                   </span>
                 </div>
               </div>
             </div>
 
             {/* Provisional Score Callout */}
-            {report.isProvisional && (
-              <div className="mt-4 rounded-xl border border-amber-500/25 bg-amber-500/5 p-3 text-[11px] text-amber-800 dark:text-amber-300 leading-relaxed flex items-start gap-2">
-                <Info size={14} className="shrink-0 mt-0.5 text-amber-500" />
+            {hasAnalysisInput && report.isProvisional && (
+              <div className="seo-warning-callout mt-4 flex items-start gap-2 rounded-xl border border-amber-500/25 bg-amber-500/5 p-3 text-[11px] leading-relaxed">
+                <Info size={14} className="seo-semantic-warning mt-0.5 shrink-0" />
                 <span>
                   <strong>Provisional score:</strong> Missing focus keyword or heading tags are excluded from weights rather than penalized. Add a keyword for full accuracy.
                 </span>
@@ -483,17 +519,27 @@ export default function MainSeoReviewer() {
           </div>
 
           {/* Top Priority Fixes Card */}
-          <div className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 sm:p-6 shadow-sm space-y-3">
+          <div className="card-tilt rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 sm:p-6 shadow-sm space-y-3">
             <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800/80 pb-3">
               <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--text-heading)]">
                 Priority Action Items
               </h3>
               <span className="text-xs font-mono text-slate-500">
-                {report.topFixes.length} issue{report.topFixes.length !== 1 ? 's' : ''}
+                {hasAnalysisInput
+                  ? `${report.topFixes.length} issue${report.topFixes.length !== 1 ? 's' : ''}`
+                  : 'Waiting for content'}
               </span>
             </div>
 
-            {report.topFixes.length === 0 ? (
+            {!hasAnalysisInput ? (
+              <div className="py-6 text-center">
+                <FileText size={28} className="mx-auto mb-2 text-slate-400" aria-hidden="true" />
+                <p className="text-xs font-bold text-[var(--text-heading)]">Your priority fixes will appear here</p>
+                <p className="mt-1 text-[11px] leading-relaxed text-[var(--text-muted)]">
+                  Add content to get clear, actionable recommendations.
+                </p>
+              </div>
+            ) : report.topFixes.length === 0 ? (
               <div className="py-6 text-center text-slate-500">
                 <CheckCircle2 size={32} className="mx-auto text-emerald-500 mb-2" />
                 <p className="text-xs font-bold text-[var(--text-heading)]">All evaluated checks pass!</p>
@@ -504,7 +550,7 @@ export default function MainSeoReviewer() {
                 {report.topFixes.map((fix) => (
                   <li
                     key={fix.id}
-                    className="flex items-start gap-2.5 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-slate-50/70 dark:bg-[#070e1a] p-3 text-xs"
+                    className="card-tilt flex items-start gap-2.5 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-slate-50/70 dark:bg-[#070e1a] p-3 text-xs"
                   >
                     <span className="mt-0.5">{getStatusIcon(fix.status)}</span>
                     <div className="flex-1 min-w-0">
@@ -514,7 +560,7 @@ export default function MainSeoReviewer() {
                           className={`text-[9px] uppercase font-bold px-1.5 py-0.5 rounded ${
                             fix.status === 'fail'
                               ? 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20'
-                              : 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20'
+                              : 'seo-warning-badge bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20'
                           }`}
                         >
                           {fix.status}
@@ -531,18 +577,27 @@ export default function MainSeoReviewer() {
           </div>
 
           {/* 5 Core Checks Breakdown (Accordion) */}
-          <div className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 sm:p-6 shadow-sm space-y-3">
+          <div className="card-tilt rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 sm:p-6 shadow-sm space-y-3">
             <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--text-heading)] border-b border-slate-200 dark:border-slate-800/80 pb-3">
               5 Core Diagnostic Signals
             </h3>
 
             <div className="space-y-2">
-              {report.checks.map((check) => {
+              {!hasAnalysisInput ? (
+                <div className="rounded-xl border border-dashed border-[var(--card-border)] bg-[var(--background)] px-4 py-6 text-center">
+                  <p className="text-xs font-semibold text-[var(--text-heading)]">
+                    Your five checks are ready
+                  </p>
+                  <p className="mt-1 text-[11px] leading-relaxed text-[var(--text-muted)]">
+                    Start with a title or paste a draft to see each signal and its recommendation.
+                  </p>
+                </div>
+              ) : report.checks.map((check) => {
                 const isExpanded = expandedCheckId === check.id;
                 return (
                   <div
                     key={check.id}
-                    className="rounded-xl border border-slate-200 dark:border-slate-800/80 bg-slate-50/60 dark:bg-[#070e1a] overflow-hidden"
+                    className="card-tilt rounded-xl border border-slate-200 dark:border-slate-800/80 bg-slate-50/60 dark:bg-[#070e1a] overflow-hidden"
                   >
                     <button
                       type="button"
