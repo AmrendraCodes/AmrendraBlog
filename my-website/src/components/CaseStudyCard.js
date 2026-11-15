@@ -27,14 +27,14 @@ export default function CaseStudyCard({ study, index = 0 }) {
 
   return (
     <TiltCard className="h-full" maxTilt={6}>
-      <article className="group bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md hover:border-amber-400/50 transition-all duration-300 relative h-full flex flex-col justify-between">
-        {/* Visual Header Banner */}
-        <div className={`relative h-44 ${bannerConfig.bg} p-6 flex flex-col justify-between overflow-hidden`}>
-          {/* Subtle gradient pattern overlay */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-white/10 pointer-events-none" />
+      <article className="group bg-[var(--bg-card)] rounded-3xl overflow-hidden border border-[var(--border-card)] shadow-sm hover:shadow-md hover:border-[#F5A00B]/50 transition-all duration-300 relative h-full flex flex-col justify-between">
+        {/* Visual Header Banner with Guaranteed Dark Contrast Scrim */}
+        <div className={`relative h-44 ${bannerConfig.bg} p-6 flex flex-col justify-between overflow-hidden text-white`}>
+          {/* Permanent dark gradient scrim overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
           
           <div className="flex items-center justify-between z-10">
-            <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/15 backdrop-blur-xs text-white text-[11px] font-mono font-bold tracking-wider uppercase border border-white/20">
+            <span className="inline-flex items-center px-3 py-1 rounded-full bg-black/50 backdrop-blur-xs text-white text-[11px] font-mono font-bold tracking-wider uppercase border border-white/30 shadow-xs">
               {tagLabel}
             </span>
             {metricText && (
@@ -45,7 +45,7 @@ export default function CaseStudyCard({ study, index = 0 }) {
           </div>
 
           <div className="z-10 mt-auto">
-            <span className="text-white/80 text-xs font-mono tracking-wide">
+            <span className="inline-block px-2 py-0.5 rounded bg-black/40 text-white text-xs font-mono tracking-wide font-medium">
               Case Study #{String(index + 1).padStart(2, "0")}
             </span>
           </div>
@@ -54,13 +54,13 @@ export default function CaseStudyCard({ study, index = 0 }) {
         {/* Content */}
         <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
           <div>
-            <h3 className="text-xl font-bold text-[#1B2433] mb-2.5 leading-snug group-hover:text-[#9A4A00] transition-colors line-clamp-2">
+            <h3 className="text-xl font-bold text-[var(--text-heading)] mb-2.5 leading-snug group-hover:text-[#F5A00B] transition-colors line-clamp-2">
               <Link href={`/resources/case-studies/${study.slug}`} className="before:absolute before:inset-0 z-10 no-underline text-inherit">
                 {study.title}
               </Link>
             </h3>
 
-            <p className="text-[#1B2433]/75 text-sm leading-relaxed mb-6 line-clamp-3">
+            <p className="text-[var(--text-muted)] text-sm leading-relaxed mb-6 line-clamp-3">
               {study.description}
             </p>
           </div>
@@ -71,7 +71,7 @@ export default function CaseStudyCard({ study, index = 0 }) {
               {(study.stack || ["Next.js", "TypeScript", "Tailwind"]).slice(0, 4).map((tech) => (
                 <span
                   key={tech}
-                  className="px-3 py-1 rounded-full text-xs font-bold bg-[#FFF3DC] text-[#9A4A00] border border-amber-500/20"
+                  className="px-3 py-1 rounded-full text-xs font-bold bg-[var(--accent-tag-bg)] text-[var(--accent-tag-text)] border border-[var(--accent-tag-border)]"
                 >
                   {tech}
                 </span>
@@ -79,11 +79,11 @@ export default function CaseStudyCard({ study, index = 0 }) {
             </div>
 
             {/* Footer */}
-            <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-              <span className="text-xs font-medium text-slate-500">
+            <div className="flex items-center justify-between pt-4 border-t border-[var(--border-card)]">
+              <span className="text-xs font-medium text-[var(--text-muted)]">
                 {study.duration || "4 Weeks"} · {study.client || "Client Project"}
               </span>
-              <span className="w-9 h-9 rounded-full bg-[#FFF3DC] border border-amber-500/30 flex items-center justify-center text-[#9A4A00] group-hover:bg-[#F5A00B] group-hover:text-[#1B2433] group-hover:border-[#F5A00B] transition-colors duration-200">
+              <span className="w-9 h-9 rounded-full bg-[var(--accent-tag-bg)] border border-[var(--accent-tag-border)] flex items-center justify-center text-[var(--accent-tag-text)] group-hover:bg-[#F5A00B] group-hover:text-[#1B2433] group-hover:border-[#F5A00B] transition-colors duration-200">
                 <ArrowUpRight size={16} />
               </span>
             </div>

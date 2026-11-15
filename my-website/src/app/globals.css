@@ -7,19 +7,40 @@
    ═══════════════════════════════════════════════════════════ */
 
 @theme {
-  /* ─── Color Tokens ─── */
-  --color-bg-primary: #FFFFFF;
-  --color-bg-secondary: #F8FAFC;
-  --color-bg-elevated: #F1F5F9;
-  --color-border-subtle: #E2E8F0;
+  /* ─── Semantic Surface Tokens ─── */
+  --color-bg-page: var(--bg-page);
+  --color-bg-section-alt: var(--bg-section-alt);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-hover: var(--bg-card-hover);
+
+  /* ─── Semantic Typography Tokens ─── */
+  --color-text-heading: var(--text-heading);
+  --color-text-body: var(--text-body);
+  --color-text-muted: var(--text-muted);
+  --color-text-on-accent: var(--text-on-accent);
+
+  /* ─── Semantic Border Tokens ─── */
+  --color-border-card: var(--border-card);
+  --color-border-card-hover: var(--border-card-hover);
+
+  /* ─── Brand Accent Tokens ─── */
+  --color-accent: #F5A00B;
+  --color-accent-hover: #E08F00;
+  --color-accent-text-on-light: #9A4A00;
+  --color-accent-tag-bg: var(--accent-tag-bg);
+  --color-accent-tag-text: var(--accent-tag-text);
+  --color-accent-tag-border: var(--accent-tag-border);
+
+  /* ─── Legacy / Global Palette Aliases ─── */
+  --color-bg-primary: var(--bg-card);
+  --color-bg-secondary: var(--bg-section-alt);
+  --color-bg-elevated: var(--bg-card-hover);
+  --color-border-subtle: var(--border-card);
   --color-brand-primary: #0B1F3A;
   --color-brand-secondary: #1E3A8A;
-  --color-accent: #F59E0B;
-  --color-accent-hover: #D97706;
-  --color-accent-glow: rgba(245, 158, 11, 0.2);
-  --color-text-primary: #0B1F3A;
-  --color-text-secondary: #475569;
-  --color-text-muted: #64748B;
+  --color-accent-glow: rgba(245, 160, 11, 0.2);
+  --color-text-primary: var(--text-heading);
+  --color-text-secondary: var(--text-body);
 
   /* ─── Shadows & 3D Depth ─── */
   --shadow-card: 0 1px 3px rgba(11, 31, 58, 0.06), 0 4px 16px rgba(11, 31, 58, 0.04);
@@ -44,53 +65,83 @@
   }
 }
 
-/* ─── Light Theme Variables ─── */
+/* ─── Light Theme Variables (Warm White Palette) ─── */
 :root {
   color-scheme: light;
-  --background: #FFFFFF;
-  --foreground: #0B1F3A;
+  --bg-page: #FFFDF9;
+  --bg-section-alt: #F8F5EE;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FFFBF0;
+
+  --text-heading: #1B2433;       /* Contrast on #FFFDF9: 15.35:1 (AAA) */
+  --text-body: #334155;          /* Contrast on #FFFDF9: 10.19:1 (AAA) */
+  --text-muted: #475569;         /* Contrast on #FFFDF9: 7.46:1 (AAA) */
+  --text-on-accent: #1B2433;
+
+  --border-card: #E8E2D5;
+  --border-card-hover: #F5A00B;
+
+  --accent-tag-bg: #FFF3DC;
+  --accent-tag-text: #9A4A00;    /* Contrast on #FFF3DC: 5.70:1 (AA) */
+  --accent-tag-border: rgba(245, 160, 11, 0.35);
+
+  --background: #FFFDF9;
+  --foreground: #1B2433;
   --primary: #0B1F3A;
   --primary-hover: #1E3A8A;
-  --accent-primary: #F59E0B;
-  --accent-primary-hover: #D97706;
+  --accent-primary: #F5A00B;
+  --accent-primary-hover: #E08F00;
   --accent-cyan: #0284C7;
-  --accent-saffron: #F59E0B;
+  --accent-saffron: #F5A00B;
   --accent-mint: #FBBF24;
   --glass-bg: rgba(255, 255, 255, 0.92);
   --glass-border: rgba(11, 31, 58, 0.08);
   --card-bg: #FFFFFF;
-  --card-border: #E2E8F0;
-  --card-bg-hover: #F8FAFC;
-  --text-muted: #64748B;
-  --text-heading: #0B1F3A;
-  --text-body: #475569;
-  --section-alt-bg: #F8FAFC;
+  --card-border: #E8E2D5;
+  --card-bg-hover: #FFFBF0;
+  --section-alt-bg: #F8F5EE;
   --hero-gradient-from: #0B1F3A;
-  --hero-gradient-to: #F59E0B;
+  --hero-gradient-to: #F5A00B;
   --font-sans: var(--font-geist), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-display: var(--font-geist), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-playfair: var(--font-geist), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-/* ─── Dark Theme Variables ─── */
-.dark {
+/* ─── Dark Theme Variables (Deep Navy Palette) ─── */
+.dark,
+.section-dark,
+[data-theme="dark"] {
   color-scheme: dark;
+  --bg-page: #060E1A;
+  --bg-section-alt: #071324;
+  --bg-card: #0B1730;
+  --bg-card-hover: #0F1E3D;
+
+  --text-heading: #FFFFFF;       /* Contrast on #0B1730: 17.80:1 (AAA) */
+  --text-body: #CBD5E1;          /* Contrast on #0B1730: 11.99:1 (AAA) */
+  --text-muted: #94A3B8;         /* Contrast on #0B1730: 6.94:1 (AAA) */
+  --text-on-accent: #1B2433;
+
+  --border-card: #1E2D4A;
+  --border-card-hover: #F5A00B;
+
+  --accent-tag-bg: rgba(245, 160, 11, 0.14);
+  --accent-tag-text: #F5A00B;    /* Contrast on #0B1730: 8.41:1 (AAA) */
+  --accent-tag-border: rgba(245, 160, 11, 0.35);
+
   --background: #060E1A;
   --foreground: #F8FAFC;
   --primary: #FFFFFF;
   --primary-hover: #F1F5F9;
   --glass-bg: rgba(11, 31, 58, 0.88);
   --glass-border: rgba(255, 255, 255, 0.08);
-  --card-bg: #0B1F3A;
-  --card-border: #1E293B;
-  --card-bg-hover: #112240;
-  --text-muted: #94A3B8;
-  --text-heading: #FFFFFF;
-  --text-body: #CBD5E1;
+  --card-bg: #0B1730;
+  --card-border: #1E2D4A;
+  --card-bg-hover: #0F1E3D;
   --section-alt-bg: #071324;
   --hero-gradient-from: #FFFFFF;
-  --hero-gradient-to: #F59E0B;
+  --hero-gradient-to: #F5A00B;
 }
 
 /* ─── Base & Responsive Reset ─── */

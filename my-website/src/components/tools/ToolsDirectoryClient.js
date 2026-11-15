@@ -429,7 +429,7 @@ export default function ToolsDirectoryClient() {
               <TiltCard key={tool.id} className="h-full" maxTilt={8}>
                 <div
                   id={tool.slug}
-                  className="group relative bg-white/95 dark:bg-[#070F1E]/95 rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-slate-800/90 p-6 sm:p-7 shadow-sm hover:shadow-2xl hover:shadow-amber-500/5 hover:border-[#F59E0B]/50 transition-all duration-300 min-h-[460px] flex flex-col justify-between overflow-hidden before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-amber-500/40 before:to-transparent h-full"
+                  className="group relative bg-[var(--bg-card)] rounded-2xl sm:rounded-3xl border border-[var(--border-card)] p-6 sm:p-7 shadow-sm hover:shadow-2xl hover:shadow-amber-500/5 hover:border-[#F59E0B]/50 transition-all duration-300 min-h-[460px] flex flex-col justify-between overflow-hidden before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-amber-500/40 before:to-transparent h-full"
                 >
                 <div>
                   {/* Top Bar: Icon + Semantic Badge + Quick Actions */}
@@ -504,7 +504,7 @@ export default function ToolsDirectoryClient() {
                   </div>
 
                   {/* Tool Description (Clean clamp with full text available in quick modal) */}
-                  <p className="text-slate-600 dark:text-[#94A3B8] text-xs sm:text-sm leading-relaxed mb-3 line-clamp-3">
+                  <p className="text-[var(--text-body)] text-xs sm:text-sm leading-relaxed mb-3 line-clamp-3">
                     {tool.description}
                   </p>
 

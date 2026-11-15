@@ -88,7 +88,7 @@ export default async function Home() {
   };
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden relative bg-[#FFFDF9]">
+    <div className="min-h-screen w-full overflow-x-hidden relative bg-[var(--bg-page)] text-[var(--text-body)] transition-colors duration-200">
       <JsonLd data={combinedSchema} />
 
       <HomeClient featuredPosts={featuredPosts} caseStudies={caseStudies} />

@@ -28,7 +28,7 @@ export default function HomeClient({ caseStudies, featuredPosts }) {
       <ProcessTimelineSection />
 
       {/* 5. Selected Work & Case Studies */}
-      <section className="bg-[#FFFDF9] transition-colors duration-200">
+      <section className="bg-[var(--bg-page)] text-[var(--text-body)] transition-colors duration-200">
         <CaseStudiesSection caseStudies={caseStudies} />
       </section>
 
@@ -40,23 +40,23 @@ export default function HomeClient({ caseStudies, featuredPosts }) {
 
       {/* 8. Latest Insights & Technical Articles */}
       {featuredPosts && featuredPosts.length > 0 && (
-        <section className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-[#FFFDF9] border-b border-slate-200/80 transition-colors">
+        <section className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-[var(--bg-page)] text-[var(--text-body)] border-b border-[var(--border-card)] transition-colors">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 md:mb-16 gap-4">
               <div>
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#9A4A00] bg-[#FFF3DC] px-4 py-1.5 rounded-full border border-amber-500/30 inline-block mb-3.5 shadow-2xs">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-[var(--accent-tag-text)] bg-[var(--accent-tag-bg)] border border-[var(--accent-tag-border)] px-4 py-1.5 rounded-full inline-block mb-3.5 shadow-2xs">
                   LATEST INSIGHTS
                 </span>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#1B2433]">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text-heading)]">
                   Guides on <span className="text-[#F5A00B]">AI Agents, Next.js and SEO</span>
                 </h2>
-                <p className="text-[#1B2433]/75 text-base sm:text-lg max-w-2xl mt-2 leading-relaxed">
+                <p className="text-[var(--text-muted)] text-base sm:text-lg max-w-2xl mt-2 leading-relaxed">
                   Practical, in-depth architectural guides and industry breakdowns from real-world production experience.
                 </p>
               </div>
               <Link
                 href="/resources/blog"
-                className="group inline-flex items-center gap-2 text-sm font-bold text-[#9A4A00] hover:text-[#E08F00] shrink-0 no-underline"
+                className="group inline-flex items-center gap-2 text-sm font-bold text-[var(--accent-tag-text)] hover:text-[#F5A00B] shrink-0 no-underline"
               >
                 <span>View All Articles</span>
                 <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />

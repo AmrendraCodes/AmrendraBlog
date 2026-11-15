@@ -83,7 +83,7 @@ export default function ToolLandingSection() {
           <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[var(--text-heading)]">
             What the 5 Core SEO Checks Evaluate
           </h2>
-          <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400 mt-1">
+          <p className="text-sm sm:text-base text-[var(--text-muted)] mt-1">
             Each check is an independent, pure function based on public search engine documentation and editorial readability research.
           </p>
         </div>
@@ -92,17 +92,17 @@ export default function ToolLandingSection() {
           {coreChecks.map((check) => (
             <div
               key={check.id}
-              className="card-tilt rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-4 sm:p-5 shadow-sm"
+              className="card-tilt rounded-2xl border border-[var(--border-card)] bg-[var(--bg-card)] p-4 sm:p-5 shadow-sm"
             >
               <div className="flex items-center justify-between gap-3 mb-2">
                 <h3 className="text-sm sm:text-base font-bold text-[var(--text-heading)]">
                   {check.title}
                 </h3>
-                <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 shrink-0">
+                <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-md bg-[var(--bg-section-alt)] text-[var(--text-heading)] border border-[var(--border-card)] shrink-0">
                   Weight: {check.weight}
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[var(--text-body)] leading-relaxed">
                 {check.description}
               </p>
             </div>
