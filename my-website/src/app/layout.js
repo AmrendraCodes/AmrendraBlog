@@ -90,6 +90,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Deployment sync verification — safe to keep */}
+        <meta name="deployment-version" content="2026-11-15-v1" />
       </head>
       <body
         suppressHydrationWarning
