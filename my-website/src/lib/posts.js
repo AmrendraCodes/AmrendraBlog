@@ -351,14 +351,6 @@ export const getPostSummariesAsync = cache(async function getPostSummariesAsync(
       },
       orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
     }));
-    // Older CMS records may lack both reading-time fields. Fetch only those
-    // bodies to preserve their existing derived read time, rather than all bodies.
-    const missing = posts.filter(post => !post.readingTime && !post.wordCount);
-    const legacy = missing.length ? await prisma.blog.findMany({
-      where: { id: { in: missing.map(post => post.id) }, status: "PUBLISHED" },
-      select: { id: true, content: true },
-    }) : [];
-    const legacyTimes = new Map(legacy.map(post => [post.id, calculateReadingTime(post.content)]));
     return posts.map(post => ({
       id: post.id, title: post.title, slug: post.slug,
       excerpt: post.excerpt || "", description: post.description || post.excerpt || "",
@@ -368,7 +360,7 @@ export const getPostSummariesAsync = cache(async function getPostSummariesAsync(
       date: (post.publishedAt || post.createdAt).toISOString().split("T")[0],
       publishedAt: post.publishedAt?.toISOString() || null,
       updatedAt: post.updatedAt?.toISOString() || null,
-      readTime: post.readingTime || legacyTimes.get(post.id) || `${Math.max(1, Math.ceil(post.wordCount / 200))} min read`,
+      readTime: post.readingTime || (post.wordCount ? `${Math.max(1, Math.ceil(post.wordCount / 200))} min read` : "5 min read"),
       wordCount: post.wordCount, author: post.authorName || "Amrendra Kumar",
       category: post.category?.name || "General",
       categorySlug: post.categorySlug || post.category?.slug || "general",
@@ -511,19 +503,8 @@ export async function getAllTagsAsync() {
   if (isMarkdownSource()) {
     return getAllTags();
   }
-  assertConfiguredContentSource();
-
-  try {
-    const dbTags = await queryWithRetry(() =>
-      prisma.tag.findMany({
-        select: { name: true },
-      })
-    );
-    return dbTags.map((t) => t.name).sort();
-  } catch (err) {
-    handleDatabaseQueryError("load tags", err);
-    return getAllTags();
-  }
+  const posts = await getPostSummariesAsync();
+  return [...new Set(posts.flatMap((p) => p.tags || []))].sort();
 }
 
 export function getAllTags() {

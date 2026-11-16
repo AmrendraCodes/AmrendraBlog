@@ -2,9 +2,43 @@
 
 import { useState } from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+
+function renderFaqAnswer(text) {
+  if (typeof text !== 'string') return null;
+  const paragraphs = text.split(/\n\s*\n/);
+  return paragraphs.map((paragraph, pIdx) => {
+    const tokens = paragraph.split(/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*)/g);
+    return (
+      <p key={pIdx} className="mb-3 last:mb-0">
+        {tokens.map((token, idx) => {
+          const linkMatch = token.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (linkMatch) {
+            return (
+              <a
+                key={idx}
+                href={linkMatch[2]}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#F59E0B] hover:underline"
+              >
+                {linkMatch[1]}
+              </a>
+            );
+          }
+          const boldMatch = token.match(/^\*\*([^*]+)\*\*$/);
+          if (boldMatch) {
+            return (
+              <strong key={idx} className="font-semibold text-[var(--text-heading)]">
+                {boldMatch[1]}
+              </strong>
+            );
+          }
+          return token;
+        })}
+      </p>
+    );
+  });
+}
 
 export default function BlogFaqAccordion({ faqs }) {
   const [openIndex, setOpenIndex] = useState(null);
@@ -43,14 +77,14 @@ export default function BlogFaqAccordion({ faqs }) {
                   : 'border-[var(--card-border)] bg-[var(--card-bg)]/30 hover:border-[#F59E0B]/20'
               }`}
             >
-                <button
-                  type="button"
-                  onClick={() => toggleFaq(idx)}
-                  className="w-full py-4 px-5 sm:px-6 flex items-center justify-between text-left gap-4 cursor-pointer select-none"
-                  aria-expanded={isOpen}
-                  aria-controls={`faq-answer-${idx}`}
-                  id={`faq-question-${idx}`}
-                >
+              <button
+                type="button"
+                onClick={() => toggleFaq(idx)}
+                className="w-full py-4 px-5 sm:px-6 flex items-center justify-between text-left gap-4 cursor-pointer select-none"
+                aria-expanded={isOpen}
+                aria-controls={`faq-answer-${idx}`}
+                id={`faq-question-${idx}`}
+              >
                 <span role="heading" aria-level="3" className="font-bold text-base sm:text-lg text-[var(--text-heading)] leading-snug">
                   {faq.question}
                 </span>
@@ -65,34 +99,20 @@ export default function BlogFaqAccordion({ faqs }) {
                 </span>
               </button>
 
-              <AnimatePresence initial={false}>
-                {isOpen && (
-                  <motion.div
-                    id={`faq-answer-${idx}`}
-                    role="region"
-                    aria-labelledby={`faq-question-${idx}`}
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.25, ease: 'easeInOut' }}
-                  >
-                    <div className="px-5 pb-5 sm:px-6 sm:pb-6 text-base text-[var(--text-body)] leading-relaxed border-t border-[var(--card-border)]/30 pt-4 [&>p:first-child]:mt-0 [&>p:last-child]:mb-0">
-                      <ReactMarkdown
-                        remarkPlugins={[remarkGfm]}
-                        components={{
-                          a: ({ href, children, ...props }) => (
-                            <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
-                              {children}
-                            </a>
-                          ),
-                        }}
-                      >
-                        {typeof faq.answer === 'string' ? faq.answer : ''}
-                      </ReactMarkdown>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <div
+                id={`faq-answer-${idx}`}
+                role="region"
+                aria-labelledby={`faq-question-${idx}`}
+                className={`grid transition-all duration-200 ease-in-out ${
+                  isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <div className="px-5 pb-5 sm:px-6 sm:pb-6 text-base text-[var(--text-body)] leading-relaxed border-t border-[var(--card-border)]/30 pt-4">
+                    {renderFaqAnswer(faq.answer)}
+                  </div>
+                </div>
+              </div>
             </div>
           );
         })}

@@ -47,7 +47,7 @@ export default function BlogCard({ post }) {
             </div>
 
             <h3 className="text-xl font-bold text-[var(--text-heading)] mb-3 leading-snug group-hover:text-[#F5A00B] transition-colors line-clamp-2">
-              <Link href={postLink} className="before:absolute before:inset-0 before:z-10 no-underline text-inherit">
+              <Link href={postLink} prefetch={false} className="before:absolute before:inset-0 before:z-10 no-underline text-inherit">
                 {post.title}
               </Link>
             </h3>

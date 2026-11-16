@@ -18,6 +18,7 @@ export default function ArticleNavigation({ prev, next }) {
       {prev ? (
         <Link
           href={`/resources/blog/${prev.slug}`}
+          prefetch={false}
           className="group flex flex-col p-5 bg-[var(--section-alt-bg)] border border-[var(--card-border)] rounded-xl card-interactive no-underline"
         >
           <span className="text-xs font-bold uppercase tracking-widest text-[var(--text-muted)] mb-2 flex items-center gap-1.5">
@@ -44,6 +45,7 @@ export default function ArticleNavigation({ prev, next }) {
       {next ? (
         <Link
           href={`/resources/blog/${next.slug}`}
+          prefetch={false}
           className="group flex flex-col p-5 bg-[var(--section-alt-bg)] border border-[var(--card-border)] rounded-xl card-interactive no-underline text-right"
         >
           <span className="text-xs font-bold uppercase tracking-widest text-[var(--text-muted)] mb-2 flex items-center gap-1.5 justify-end">

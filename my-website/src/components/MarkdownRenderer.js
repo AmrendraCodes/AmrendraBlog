@@ -200,7 +200,7 @@ export default function MarkdownRenderer({ content }) {
 
   return (
     <ReactMarkdown
-      remarkPlugins={[remarkGfm, remarkMath]}
+      remarkPlugins={[remarkGfm, [remarkMath, { singleDollarTextMath: false }]]}
       rehypePlugins={[rehypeRaw, rehypeContentCleanup, rehypeSlug, [rehypeHighlight, { ignoreMissing: true }], rehypeKatex]}
       components={{
         // ─── Headings with anchor links ───

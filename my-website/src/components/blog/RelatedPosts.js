@@ -21,6 +21,7 @@ export default function RelatedPosts({ posts }) {
           <Link
             key={post.slug}
             href={`/resources/blog/${post.slug}`}
+            prefetch={false}
             className="group bg-[var(--section-alt-bg)]/40 border border-white/5 rounded-2xl overflow-hidden card-interactive no-underline flex flex-col relative"
           >
             {/* Image */}

@@ -3,7 +3,6 @@
 import { useState, useCallback } from "react";
 import { useActiveHeading } from "@/hooks/useActiveHeading";
 import { List, ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 
 /**
  * TableOfContents — Dual-mode TOC component.
@@ -50,11 +49,9 @@ export default function TableOfContents({ headings, isMobile = false }) {
           return (
             <li key={heading.id} className="relative">
               {isActive && (
-                <motion.div
-                  layoutId="activeIndicator"
-                  className="absolute left-[-1px] top-0 bottom-0 w-0.5 bg-[#F59E0B]"
-                  initial={false}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                <span
+                  className="absolute left-[-1px] top-0 bottom-0 w-0.5 bg-[#F59E0B] transition-opacity duration-150"
+                  aria-hidden="true"
                 />
               )}
               <a
@@ -92,28 +89,26 @@ export default function TableOfContents({ headings, isMobile = false }) {
             <List size={18} className="text-[#F59E0B]" />
             Table of Contents
           </span>
-          <motion.div
-            animate={{ rotate: mobileOpen ? 180 : 0 }}
-            transition={{ duration: 0.3 }}
+          <span
+            className={`transition-transform duration-300 ease-out inline-flex ${
+              mobileOpen ? "rotate-180" : ""
+            }`}
+            aria-hidden="true"
           >
             <ChevronDown size={18} className="text-[#F59E0B]" />
-          </motion.div>
+          </span>
         </button>
 
-        <AnimatePresence>
-          {mobileOpen && (
-            <motion.div
-              id="toc-mobile-content"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="overflow-hidden"
-            >
-              <div className="pt-2 pb-5 px-4">{tocList}</div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div
+          id="toc-mobile-content"
+          className={`grid transition-all duration-300 ease-in-out ${
+            mobileOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          }`}
+        >
+          <div className="overflow-hidden">
+            <div className="pt-2 pb-5 px-4">{tocList}</div>
+          </div>
+        </div>
       </div>
     );
   }

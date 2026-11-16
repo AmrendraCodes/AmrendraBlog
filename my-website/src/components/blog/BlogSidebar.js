@@ -29,7 +29,7 @@ export default function BlogSidebar({
         </h3>
         <div className="flex flex-col gap-5">
           {postsToShow.map((post, i) => (
-            <Link key={i} href={post.link} className="group flex gap-4 items-center no-underline">
+            <Link key={i} href={post.link} prefetch={false} className="group flex gap-4 items-center no-underline">
               <span className="text-3xl font-black text-[var(--card-border)] group-hover:text-[#F59E0B]/30 transition-colors">
                 0{i + 1}
               </span>
