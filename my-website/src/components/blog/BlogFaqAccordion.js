@@ -13,17 +13,22 @@ function renderFaqAnswer(text) {
         {tokens.map((token, idx) => {
           const linkMatch = token.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
           if (linkMatch) {
-            return (
-              <a
-                key={idx}
-                href={linkMatch[2]}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#F59E0B] hover:underline"
-              >
-                {linkMatch[1]}
-              </a>
-            );
+            const href = linkMatch[2].trim();
+            const isSafe = /^https?:\/\//i.test(href) || href.startsWith('/');
+            if (isSafe) {
+              return (
+                <a
+                  key={idx}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#F59E0B] hover:underline"
+                >
+                  {linkMatch[1]}
+                </a>
+              );
+            }
+            return linkMatch[1];
           }
           const boldMatch = token.match(/^\*\*([^*]+)\*\*$/);
           if (boldMatch) {
