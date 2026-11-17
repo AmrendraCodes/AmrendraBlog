@@ -19,6 +19,7 @@ export interface ResourceDropdownItem {
 export const PRIMARY_NAV_ITEMS: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "Services", href: "/services", hasDropdown: true, dropdownType: "services" },
+  { name: "Pricing", href: "/pricing" },
   { name: "Resources", href: "/resources", hasDropdown: true, dropdownType: "resources" },
   { name: "Tools", href: "/tools", hasDropdown: true, dropdownType: "tools" },
   { name: "About", href: "/about" },
