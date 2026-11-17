@@ -14,12 +14,12 @@ console.log('Description:', descMatch ? descMatch[1] : 'NOT FOUND');
 // 2. Check H1
 const h1Matches = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/gi) || [];
 console.log('\nH1 count:', h1Matches.length);
-h1Matches.forEach((h, i) => console.log(`H1 [${i+1}]:`, h.replace(/<[^>]+>/g, '').trim()));
+h1Matches.forEach((h, i) => console.log(`H1 [${i + 1}]:`, h.replace(/<[^>]+>/g, '').trim()));
 
 // 3. Check H2s
 const h2Matches = html.match(/<h2[^>]*>([\s\S]*?)<\/h2>/gi) || [];
 console.log('\nH2 count:', h2Matches.length);
-h2Matches.forEach((h, i) => console.log(`H2 [${i+1}]:`, h.replace(/<[^>]+>/g, '').trim()));
+h2Matches.forEach((h, i) => console.log(`H2 [${i + 1}]:`, h.replace(/<[^>]+>/g, '').trim()));
 
 // 4. Check JSON-LD
 const jsonLdMatch = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/i);
@@ -36,7 +36,7 @@ if (jsonLdMatch) {
     const faq = data['@graph']?.find(x => x['@type'] === 'FAQPage');
     console.log('FAQPage questions count:', faq?.mainEntity?.length);
     faq?.mainEntity?.forEach((q, i) => {
-      console.log(`  FAQ ${i+1}: ${q.name}`);
+      console.log(`  FAQ ${i + 1}: ${q.name}`);
     });
   } catch (e) {
     console.error('JSON-LD parse error:', e.message);
@@ -54,7 +54,7 @@ console.log('Contains "AI Agents" nav link:', html.includes('href="/services/ai-
 console.log('Contains "SEO Technical Writing" nav link:', html.includes('href="/services/seo-content-strategy"'));
 console.log('Contains "web-development" link:', html.includes('href="/services/web-development"'));
 console.log('Contains process anchor id:', html.includes('id="process"'));
-console.log('Contains WhatsApp link:', html.includes('https://wa.me/916205482614'));
+console.log('Contains WhatsApp link:', html.includes('https://wa.me/919558273077'));
 
 // 7. Check Footer Tagline & Order
 console.log('Contains Footer Tagline:', html.includes('AI agents and SEO technical writing for businesses that want measurable growth.'));
