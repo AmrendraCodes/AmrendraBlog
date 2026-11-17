@@ -146,6 +146,7 @@ export default function Footer() {
                   { name: "Web Development", href: "/services/web-development" },
                   { name: "AI & Automation", href: "/services/ai-automation" },
                   { name: "SEO & Content Writing", href: "/services/seo-content-strategy" },
+                  { name: "Pricing & Packages", href: "/pricing" },
                 ].map((link) => (
                   <li key={link.name}>
                     <Link 
