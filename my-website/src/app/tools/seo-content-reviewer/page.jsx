@@ -19,13 +19,13 @@ const tool = {
 };
 
 export const metadata = {
-  title: 'Free SEO Content Checker: Audit & Score Articles | Code with Amrendra',
+  title: "Real-time Analysis content Analysis",
   description: 'Use this free SEO content checker to audit articles or URLs. Get a live score out of 100, fix on-page issues, and improve readability without signing up.',
   alternates: {
     canonical: `${siteMetadata.siteUrl}/tools/seo-content-reviewer`,
   },
   openGraph: {
-    title: 'Free SEO Content Checker: Audit & Score Articles | Code with Amrendra',
+    title: "Real-time Analysis content Analysis",
     description: 'Use this free SEO content checker to audit articles or URLs. Get a live score out of 100, fix on-page issues, and improve readability without signing up.',
     url: `${siteMetadata.siteUrl}/tools/seo-content-reviewer`,
     type: 'website',

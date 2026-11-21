@@ -11,8 +11,6 @@ import {
   Mail, 
   ArrowUp, 
   ExternalLink,
-  ArrowRight,
-  Sparkles,
   Bot
 } from "lucide-react";
 import { CookieSettingsButton } from "./CookieConsent";
@@ -46,52 +44,6 @@ export default function Footer() {
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#F59E0B]/40 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* ─── SECTION 1 — PREMIUM CTA BLOCK ─── */}
-        <div className="relative overflow-hidden rounded-3xl bg-[#071324] border border-[#1E293B] p-6 sm:p-8 lg:p-10 mb-12 shadow-2xl group">
-          
-          {/* Subtle Inner Glow */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(245,158,11,0.12),transparent_70%)] pointer-events-none" />
-          <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-[#F59E0B]/10 blur-3xl rounded-full pointer-events-none" />
-
-          <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
-            <div className="max-w-2xl">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-[#F59E0B] text-xs font-mono font-bold uppercase tracking-wider mb-5">
-                <Sparkles size={14} className="text-[#F59E0B]" />
-                <span>LET&apos;S BUILD TOGETHER</span>
-              </div>
-
-              {/* Headline */}
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
-                Need Web Development, AI, or Technical Content Help?
-              </h2>
-
-              {/* Supporting Description */}
-              <p className="text-base sm:text-lg text-slate-300 max-w-xl mt-4 leading-relaxed font-normal">
-                Whether you need a high-performance web platform built fast, custom AI agents integrated, or in-depth technical documentation, let&apos;s discuss your project.
-              </p>
-            </div>
-
-            {/* Dual CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 shrink-0 w-full lg:w-auto">
-              <Link
-                href="/contact"
-                className="group/btn inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-[#F59E0B] hover:bg-[#D97706] text-[#0B1F3A] font-bold text-base shadow-[0_0_25px_rgba(245,158,11,0.3)] transition-colors duration-200 no-underline"
-              >
-                <span>Let&apos;s Work Together</span>
-                <ArrowRight size={18} className="transition-transform duration-200 group-hover/btn:translate-x-1" />
-              </Link>
-              <Link
-                href="/resources/case-studies"
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl border border-[#1E293B] bg-[#0B1F3A]/80 hover:bg-[#112240] text-slate-200 hover:text-white font-bold text-base transition-colors duration-200 no-underline"
-              >
-                <span>View Selected Work</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-
         {/* ─── MAIN FOOTER GRID (BRAND + NAVIGATION) ─── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-[#1E293B]">
           
